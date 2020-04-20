@@ -4,6 +4,10 @@ info:
   title: Phrase API
   description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
   version: 2.0.0
+  x-logo:
+    url: "https://developers.phrase.com/images/phrase-logo.png"
+    backgroundColor: "#0091eb"
+    altText: "Phrase"
 
 servers:
   - url: https://api.phrase.com/v2
@@ -139,6 +143,9 @@ paths:
           $ref: '#/components/responses/404'
         429:
           $ref: '#/components/responses/429'
+      x-code-samples:
+        - lang: CLI
+          source: phraseapp spaces list <account_id>
 
     post:
       summary: Create space
@@ -166,3 +173,6 @@ paths:
           $ref: '#/components/responses/422'
         429:
           $ref: '#/components/responses/429'
+      x-code-samples:
+        - lang: CLI
+          source: "phraseapp space create <account_id> --name \"My Android Projects\""
