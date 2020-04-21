@@ -1,6 +1,3 @@
-ruby:
-	openapi-generator generate -i ./openapi.yaml -g ruby -o clients/ruby
-
 run:
 	swagger-cli validate openapi.yaml
 	@echo ---
