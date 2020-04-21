@@ -33,7 +33,8 @@ To make it easier to work with documentation run
 
 and visit `localhost:8080` to see documentation.
 
-## Specificaiton
+## Specification
 
 [https://swagger.io/specification/#specification](https://swagger.io/specification/#specification)
+
 [https://swagger.io/docs/specification/about/](https://swagger.io/docs/specification/about/)
