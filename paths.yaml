@@ -1,0 +1,20 @@
+/accounts/{account_id}/spaces:
+  get:
+    $ref: "./paths/spaces/index.yaml"
+  post:
+    $ref: "./paths/spaces/create.yaml"
+/accounts/{account_id}/spaces/{space_id}:
+  get:
+    $ref: "./paths/spaces/show.yaml"
+  patch:
+    $ref: "./paths/spaces/patch.yaml"
+  delete:
+    $ref: "./paths/spaces/delete.yaml"
+/accounts/{account_id}/spaces/{space_id}/projects:
+  get:
+    $ref: "./paths/spaces/projects.yaml"
+  post:
+    $ref: "./paths/spaces/projects_create.yaml"
+/accounts/{account_id}/spaces/{space_id}/projects/{project_id}:
+  delete:
+    $ref: "./paths/spaces/projects_delete.yaml"

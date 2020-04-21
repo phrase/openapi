@@ -1,0 +1,13 @@
+account:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    company:
+      type: string
+    created_at:
+      type: string
+    updated_at:
+      type: string

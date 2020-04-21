@@ -6,6 +6,13 @@
 
 [Install openapi-generator](https://openapi-generator.tech/docs/installation) using your preferred method.
 
+
+### swagger-cli
+
+[Install swagger-cli](https://www.npmjs.com/package/swagger-cli)
+
+`npm install -g @apidevtools/swagger-cli`
+
 ### ReDoc (optinal)
 
 [Install ReDoc](https://github.com/Redocly/redoc) using your preferred method.
@@ -36,3 +43,8 @@ To make it easier to work with documentation run
 `$ make watch`
 
 and visit `localhost:8080` to see documentation.
+
+## Specificaiton
+
+[https://swagger.io/specification/#specification](https://swagger.io/specification/#specification)
+[https://swagger.io/docs/specification/about/](https://swagger.io/docs/specification/about/)
