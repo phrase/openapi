@@ -1,0 +1,33 @@
+{
+  "name": "phrase-api-reference",
+  "version": "2.0.0",
+  "description": "Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform.",
+  "scripts": {
+    "start": "make",
+    "run": "make run",
+    "doc": "make doc",
+    "watch": "make watch",
+    "lint": "make lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phrase/openapi.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phrase/openapi/issues"
+  },
+  "homepage": "https://developers.phrase.com/api/",
+  "devDependencies": {
+    "@apidevtools/swagger-cli": "^4.0.2",
+    "@openapitools/openapi-generator-cli": "^1.0.12-4.3.0",
+    "husky": "^4.2.5",
+    "redoc-cli": "^0.9.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "make lint"
+    }
+  }
+}

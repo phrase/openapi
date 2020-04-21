@@ -2,20 +2,7 @@
 
 ## Requirements
 
-### openapi-generator
-
-[Install openapi-generator](https://openapi-generator.tech/docs/installation) using your preferred method.
-
-
-### swagger-cli
-
-[Install swagger-cli](https://www.npmjs.com/package/swagger-cli)
-
-`npm install -g @apidevtools/swagger-cli`
-
-### ReDoc 
-
-[Install ReDoc](https://github.com/Redocly/redoc) using your preferred method.
+`$ npm install`
 
 ## Builing API clients
 
