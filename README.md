@@ -6,19 +6,22 @@
 
 ## Builing API clients
 
-`$ make`
+`$ npm start`
 
 ## Generate API documentation in HTML
 
-`$ make doc`
+`$ npm run doc`
 
 ## Making changes
 
 To make it easier to work with documentation run
 
-`$ make watch`
+`$ npm run watch`
 
 and visit `localhost:8080` to see documentation.
+
+
+You can also lint your changes by `$ npm run lint`
 
 ## Specification
 
