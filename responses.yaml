@@ -1,0 +1,21 @@
+400:
+  description: Bad request
+404:
+  description: Not Found
+422:
+  description: Unprocessable entity
+  content:
+    application/json:
+      schema:
+        $ref: './schemas/errors.yaml'
+429:
+  description: Rate Limiting
+  headers:
+    X-Rate-Limit-Limit:
+      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+    X-Rate-Limit-Remaining:
+      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+    X-Rate-Limit-Reset:
+      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+503:
+  description: Server error

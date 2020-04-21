@@ -36,3 +36,9 @@ To make it easier to work with documentation run
 `$ make watch`
 
 and visit `localhost:8080` to see documentation.
+
+
+## Specificaiton
+
+[https://swagger.io/specification/#specification](https://swagger.io/specification/#specification)
+[https://swagger.io/docs/specification/about/](https://swagger.io/docs/specification/about/)

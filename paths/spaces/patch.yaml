@@ -1,0 +1,72 @@
+summary: Update Space
+operationId: space_update
+tags:
+  - Spaces
+parameters:
+  - $ref: '../../parameters.yaml#/account_id'
+  - $ref: '../../parameters.yaml#/space_id'
+  - $ref: '../../parameters.yaml#/X-PhraseApp-OTP'
+requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          name:
+            type: string
+        example:
+          {"name":"My Android Projects"}
+responses:
+  200:
+    description: A JSON object of Space
+    content:
+      application/json:
+        schema:
+          type: object
+          item:
+            $ref: '../../schemas/space.yaml'
+        example:
+            {
+              "id": "2e7574e8f2372906a03110c2a7cfe671",
+              "name": "My first space",
+              "created_at": "2020-02-25T12:17:25Z",
+              "updated_at": "2020-03-13T14:46:57Z",
+              "projects_count": 2,
+              "projects": [
+                {
+                  "id": "abcd1234cdef1234abcd1234cdef1234",
+                  "name": "My Android Project",
+                  "main_format": "xml",
+                  "project_image_url": "http://assets.example.com/project.png",
+                  "account": "account",
+                  "created_at": "2015-01-28T09:52:53Z",
+                  "updated_at": "2015-01-28T09:52:53Z"
+                },
+                {
+                  "id": "abcd11231fadef1234adacd1234cdef1234",
+                  "name": "My IOS Project",
+                  "main_format": "yml",
+                  "project_image_url": "http://assets.example.com/project2.png",
+                  "account": "account",
+                  "created_at": "2015-01-28T09:52:53Z",
+                  "updated_at": "2015-01-28T09:52:53Z"
+                }
+              ]
+            }
+  400:
+    $ref: '../../responses.yaml#/400'
+  404:
+    $ref: '../../responses.yaml#/404'
+  422:
+    $ref: '../../responses.yaml#/422'
+  429:
+    $ref: '../../responses.yaml#/429'
+x-code-samples:
+  - lang: Curl
+    source: >
+      curl "https://api.phrase.com/v2/accounts/:account_id/spaces/:id" \
+        -u USERNAME_OR_ACCESS_TOKEN \
+        -X PATCH \
+        -d '{"name":"My Android Projects"}' \
+        -H 'Content-Type: application/json'
+  - lang: CLI
+    source: phraseapp space update <account_id> <id> --name "My Android Projects"

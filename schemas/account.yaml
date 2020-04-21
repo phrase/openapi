@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: string
+  name:
+    type: string
+  company:
+    type: string
+  created_at:
+    type: datetime
+  updated_at:
+    type: datetime

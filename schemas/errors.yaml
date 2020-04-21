@@ -1,0 +1,21 @@
+type: object
+properties:
+  message:
+    type: string
+  errors:
+    type: array
+    items:
+      type: object
+      properties:
+        resource:
+          type: string
+        field:
+          type: string
+        message:
+          type: string
+example:
+  message: Validation Failed
+  errors:
+    - resource: Resource
+      field: name
+      message: "can't be blank"

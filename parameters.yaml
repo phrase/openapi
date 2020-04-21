@@ -1,0 +1,43 @@
+X-PhraseApp-OTP:
+  in: header
+  name: X-PhraseApp-OTP
+  description: Two-Factor-Authentication token
+  required: false
+  allowEmptyValue: false
+  schema:
+    type: string
+account_id:
+  in: path
+  name: account_id
+  required: true
+  schema:
+    type: string
+space_id:
+  in: path
+  name: space_id
+  required: true
+  schema:
+    type: string
+project_id:
+  in: path
+  name: space_id
+  required: true
+  schema:
+    type: string
+page:
+  in: query
+  name: page
+  required: false
+  allowEmptyValue: false
+  schema:
+    type: integer
+  example: 1
+per_page:
+  in: query
+  name: per_page
+  description: allows you to specify a page size up to 100 items, 10 by default
+  required: false
+  allowEmptyValue: false
+  schema:
+    type: integer
+  example: 10

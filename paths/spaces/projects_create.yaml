@@ -1,0 +1,42 @@
+summary: Adds an existing project to the space.
+operationId: space_projects_create
+tags:
+  - Spaces
+parameters:
+  - $ref: '../../parameters.yaml#/account_id'
+  - $ref: '../../parameters.yaml#/space_id'
+  - $ref: '../../parameters.yaml#/X-PhraseApp-OTP'
+requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          id:
+            type: string
+        example:
+          {"id":"a4b3c2d1"}
+responses:
+  201:
+    description: A JSON object of project
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/project.yaml'
+  400:
+    $ref: '../../responses.yaml#/400'
+  404:
+    $ref: '../../responses.yaml#/404'
+  429:
+    $ref: '../../responses.yaml#/429'
+x-code-samples:
+  - lang: Curl
+    source: >
+      curl "https://api.phrase.com/v2/accounts/:account_id/spaces/:space_id/projects" \
+        -u USERNAME_OR_ACCESS_TOKEN \
+        -X POST \
+        -d '{"id":"a4b3c2d1"}' \
+        -H 'Content-Type: application/json'
+  - lang: CLI
+    source: >
+      phraseapp spaces projects create <account_id> <space_id> \
+      --id a4b3c2d1
