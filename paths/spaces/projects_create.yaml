@@ -11,8 +11,10 @@ requestBody:
     content:
       application/json:
         schema:
-          id:
-            type: string
+          type: object
+          properties:
+            id:
+              type: string
         example:
           {"id":"a4b3c2d1"}
 responses:
@@ -21,7 +23,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/project.yaml'
+          $ref: '../../schemas/project.yaml#/project'
   400:
     $ref: '../../responses.yaml#/400'
   404:

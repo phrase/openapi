@@ -12,9 +12,7 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          item:
-            $ref: '../../schemas/space.yaml'
+          $ref: '../../schemas/space.yaml#/space'
         example:
             {
               "id": "2e7574e8f2372906a03110c2a7cfe671",

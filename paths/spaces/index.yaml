@@ -15,7 +15,7 @@ responses:
         schema:
           type: array
           items:
-            $ref: '../../schemas/space.yaml'
+            $ref: '../../schemas/space.yaml#/space'
         example:
           [
             {

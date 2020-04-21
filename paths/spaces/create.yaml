@@ -10,8 +10,10 @@ requestBody:
     content:
       application/json:
         schema:
-          name:
-            type: string
+          type: object
+          properties:
+            name:
+              type: string
         example:
           {"name":"My Android Projects"}
 responses:
@@ -20,7 +22,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/space.yaml'
+          $ref: '../../schemas/space.yaml#/space'
   400:
     $ref: '../../responses.yaml#/400'
   404:

@@ -9,24 +9,28 @@ X-PhraseApp-OTP:
 account_id:
   in: path
   name: account_id
+  description: Account ID
   required: true
   schema:
     type: string
 space_id:
   in: path
   name: space_id
+  description: Space ID
   required: true
   schema:
     type: string
 project_id:
   in: path
-  name: space_id
+  name: project_id
+  description: Project ID
   required: true
   schema:
     type: string
 page:
   in: query
   name: page
+  description: Page number
   required: false
   allowEmptyValue: false
   schema:

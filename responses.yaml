@@ -1,3 +1,5 @@
+204:
+  description: The resource was deleted successfully.
 400:
   description: Bad request
 404:
@@ -7,7 +9,7 @@
   content:
     application/json:
       schema:
-        $ref: './schemas/errors.yaml'
+        $ref: './schemas/errors.yaml#/errors'
 429:
   description: Rate Limiting
   headers:

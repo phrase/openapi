@@ -8,8 +8,7 @@ parameters:
   - $ref: '../../parameters.yaml#/X-PhraseApp-OTP'
 responses:
   204:
-    content:
-      description: The resource was deleted successfully.
+    $ref: '../../responses.yaml#/204'
   400:
     $ref: '../../responses.yaml#/400'
   404:

@@ -16,7 +16,7 @@ responses:
         schema:
           type: array
           items:
-            $ref: '../../schemas/project.yaml'
+            $ref: '../../schemas/project.yaml#/project'
         example:
           [
             {
