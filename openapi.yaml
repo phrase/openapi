@@ -3,7 +3,7 @@ openapi: 3.0.3
 info:
   title: Phrase API Reference
   description: 
-    $ref: "./intro.yaml#/description"
+    $ref: "./intro.md"
   version: 2.0.0
   x-logo:
     url: "https://developers.phrase.com/images/phrase-logo.png"
