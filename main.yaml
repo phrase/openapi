@@ -329,6 +329,11 @@ tags:
   - name: Spaces
     description: Everything about Space
 
+x-tagGroups:
+  - name: Workflows
+    tags:
+      - Spaces
+
 components:
   securitySchemes:
     Token:
