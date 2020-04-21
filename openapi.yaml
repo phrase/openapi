@@ -47,16 +47,86 @@ components:
         type: integer
 
   schemas:
+    account:
+      type: object
+      properties:
+        id:
+          type: string
+        name: 
+          type: string
+        company: 
+          type: string
+        created_at:
+          type: datetime
+        updated_at:
+          type: datetime
+
+    project:
+      type: object
+      properties:
+        id:
+          type: string
+        name: 
+          type: string
+        main_format: 
+          type: string
+        project_image_url: 
+          type: string
+        account: 
+          type: string
+        created_at:
+          type: datetime
+        updated_at:
+          type: datetime
+      example:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: My Android Project
+        main_format: xml
+        project_image_url: http://assets.example.com/project.png
+        account: account
+        created_at: '2015-01-28T09:52:53Z'
+        updated_at: '2015-01-28T09:52:53Z'
+
     space:
       type: object
       properties:
         id:
           type: string
-        nane:
+        name:
           type: string
         projects_count:
           type: integer
           format: int32
+        projects:
+          type: array
+          items:
+            $ref: "#/components/schemas/project"
+        created_at:
+          type: datetime
+        updated_at:
+          type: datetime
+      example:
+        id: 2e7574e8f2372906a03110c2a7cfe671
+        name: My first space
+        created_at: '2020-02-25T12:17:25Z'
+        updated_at: '2020-03-13T14:46:57Z'
+        projects_count: 2
+        projects:
+        - id: abcd1234cdef1234abcd1234cdef1234
+          name: My Android Project
+          main_format: xml
+          project_image_url: http://assets.example.com/project.png
+          account: account
+          created_at: '2015-01-28T09:52:53Z'
+          updated_at: '2015-01-28T09:52:53Z'
+        - id: abcd11231fadef1234adacd1234cdef1234
+          name: My IOS Project
+          main_format: yml
+          project_image_url: http://assets.example.com/project2.png
+          account: account
+          created_at: '2015-01-28T09:52:53Z'
+          updated_at: '2015-01-28T09:52:53Z'
+
     errors:
       type: object
       properties:
@@ -221,6 +291,10 @@ paths:
         429:
           $ref: '#/components/responses/429'
       x-code-samples:
+        - lang: Curl
+          source: >
+            curl "https://api.phrase.com/v2/accounts/:account_id/spaces" \
+              -u USERNAME_OR_ACCESS_TOKEN
         - lang: CLI
           source: phraseapp spaces list <account_id>
 
@@ -252,5 +326,13 @@ paths:
         429:
           $ref: '#/components/responses/429'
       x-code-samples:
+        - lang: Curl
+          source: >
+            curl "https://api.phrase.com/v2/accounts/:account_id/spaces" \
+              -u USERNAME_OR_ACCESS_TOKEN \
+              -X POST \
+              -d '{"name":"My Android Projects"}' \
+              -H 'Content-Type: application/json'
         - lang: CLI
-          source: "phraseapp space create <account_id> --name \"My Android Projects\""
+          source: >
+            phraseapp space create <account_id> --name "My Android Projects"
