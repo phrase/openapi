@@ -28,3 +28,11 @@
 ## Generate API documentation in HTML
 
 Run `$ redoc-cli bundle ./openapi.yaml` and open `redoc-static.html` afterwards.
+
+## Making changes
+
+To make it easier to work with documentation run
+
+`$ make watch`
+
+and visit `localhost:8080` to see documentation.

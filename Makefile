@@ -9,3 +9,6 @@ generate:
 	redoc-cli bundle ./openapi.yaml
 	@echo ---
 	@echo Docuemntation generated, open redoc-static.html
+
+watch:
+	redoc-cli serve ./openapi.yaml --watch
