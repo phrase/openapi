@@ -8,7 +8,7 @@ run:
 	@echo ---
 	@echo Clients library genrated, check clients directory.
 
-generate:
+doc:
 	redoc-cli bundle ./openapi.yaml
 	@echo ---
 	@echo Docuemntation generated, open redoc-static.html
