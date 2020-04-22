@@ -1,0 +1,5 @@
+'!include': 'shared.yaml'
+generatorName: php
+outputDir: clients/php
+invokerPackage: Phrase
+artifactVersion: 1.0.0
