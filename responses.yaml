@@ -1,3 +1,5 @@
+201:
+  description: The resource has been created
 204:
   description: The resource was deleted successfully.
 400:

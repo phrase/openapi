@@ -34,9 +34,52 @@ tags:
     description: Everything about Space
 
 x-tagGroups:
+  - name: Core Resources
+    tags:
+      - Projects
+      - Locales
+      - Keys
+      - Translations
+      - Uploads
+      - Tags
+      - Blacklisted Keys
+      - Versions / History
   - name: Workflows
     tags:
       - Spaces
+      - Jobs
+      - Job Locales
+      - Comments
+      - Branches
+  - name: Quality
+    tags:
+      - Glossary
+      - Glossary Terms
+      - Glossary Term Translations
+  - name: Integrations
+    tags:
+      - Bitbucket Sync
+      - Webhooks
+      - Distributions
+      - Releases
+  - name: Ordering
+    tags:
+      - Orders
+      - Style guides
+  - name: User management
+    tags:
+      - Authorizations
+      - Users
+      - Accounts
+      - Members
+      - Invitations
+  - name: Screenshots
+    tags:
+      - Screenshots
+      - Screenshot Markers
+  - name: Misc
+    tags:
+      - Formats
 
 components:
   securitySchemes:
