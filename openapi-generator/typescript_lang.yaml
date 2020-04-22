@@ -1,0 +1,5 @@
+'!include': 'shared.yaml'
+generatorName: typescript-fetch
+outputDir: clients/typescript
+npmName: Phrase
+npmVersion: 1.0.0
