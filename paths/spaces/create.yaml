@@ -1,5 +1,5 @@
 summary: Create space
-operationId: space_create
+operationId: spacesCreate
 tags:
   - Spaces
 parameters:
