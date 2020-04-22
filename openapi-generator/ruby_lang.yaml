@@ -1,0 +1,3 @@
+'!include': 'shared.yaml'
+generatorName: ruby
+outputDir: clients/ruby

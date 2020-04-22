@@ -3,13 +3,12 @@
   "version": "2.0.0",
   "description": "Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform.",
   "scripts": {
-    "start": "npm run -s lint && npm run -s bundle && npm run -s generate.ruby && npm run -s generate.go && echo \"Clients library genrated, check clients directory.\"",
+    "start": "npm run -s lint && npm run -s bundle && npm run -s generate && echo \"Clients library genrated, check clients directory.\"",
     "doc": "redoc-cli bundle -o doc/index.html ./main.yaml",
     "watch": "redoc-cli serve ./main.yaml --watch",
     "bundle": "swagger-cli bundle main.yaml > tmp/compiled.yaml",
     "lint": "swagger-cli validate main.yaml",
-    "generate.ruby": "openapi-generator generate -i ./tmp/compiled.yaml -g ruby -o clients/ruby",
-    "generate.go": "openapi-generator generate -i ./tmp/compiled.yaml -g go -o clients/go"
+    "generate": "openapi-generator batch openapi-generator/*_lang.yaml"
   },
   "repository": {
     "type": "git",
