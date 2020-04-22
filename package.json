@@ -6,7 +6,7 @@
     "start": "npm run -s lint && npm run -s bundle && npm run -s generate && echo \"Clients library genrated, check clients directory.\"",
     "doc": "redoc-cli bundle -o doc/index.html ./main.yaml --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings",
     "watch": "redoc-cli serve ./main.yaml --watch --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings",
-    "bundle": "swagger-cli bundle main.yaml > tmp/compiled.yaml",
+    "bundle": "swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml",
     "lint": "swagger-cli validate main.yaml",
     "generate": "openapi-generator batch openapi-generator/*_lang.yaml"
   },
