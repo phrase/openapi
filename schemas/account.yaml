@@ -9,5 +9,13 @@ account:
       type: string
     created_at:
       type: string
+      format: date-time
     updated_at:
       type: string
+      format: date-time
+  example:
+    id: "abcd1234"
+    name: "Company Account"
+    company: "My Awesome Company"
+    created_at: "2015-01-28T09:52:53Z"
+    updated_at: "2015-01-28T09:52:53Z"

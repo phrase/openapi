@@ -13,8 +13,10 @@ project:
       type: string
     created_at:
       type: string
+      format: date-time
     updated_at:
       type: string
+      format: date-time
   example:
     id: abcd1234cdef1234abcd1234cdef1234
     name: My Android Project

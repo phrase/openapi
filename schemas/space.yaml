@@ -14,8 +14,10 @@ space:
         $ref: "./project.yaml#/project"
     created_at:
       type: string
+      format: date-time
     updated_at:
       type: string
+      format: date-time
   example:
     id: 2e7574e8f2372906a03110c2a7cfe671
     name: My first space
