@@ -13,15 +13,24 @@ upload:
     tag:
       type: string
     summary:
-      type:
-        locales_created: integer
-        translation_keys_created: integer
-        translation_keys_updated: integer
-        translation_keys_unmentioned: integer
-        translations_created: integer
-        translations_updated: integer
-        tags_created: integer
-        translation_keys_ignored: integer
+      type: object
+      properties:
+        locales_created:
+          type: integer
+        translation_keys_created:
+          type: integer
+        translation_keys_updated:
+          type: integer
+        translation_keys_unmentioned:
+          type: integer
+        translations_created:
+          type: integer
+        translations_updated:
+          type: integer
+        tags_created:
+          type: integer
+        translation_keys_ignored:
+          type: integer
     created_at:
       type: string
       format: date-time

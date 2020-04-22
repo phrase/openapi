@@ -1,0 +1,26 @@
+---
+summary: Create a glossary term
+description: Create a new glossary term.
+operationId: glossary_term/create
+tags:
+- Glossary Terms
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/glossary_id"
+responses:
+  '201':
+    "$ref": "../../responses.yaml#/201"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/glossaries/{glossary_id}/terms" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST
+- lang: CLI
+  source: phraseapp glossary_term create

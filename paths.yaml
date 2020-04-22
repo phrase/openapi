@@ -1,20 +1,420 @@
-/accounts/{account_id}/spaces:
+---
+"/formats":
   get:
-    $ref: "./paths/spaces/index.yaml"
+    "$ref": "./paths/formats/index.yaml"
+"/projects/{project_id}/styleguides":
+  get:
+    "$ref": "./paths/styleguides/index.yaml"
   post:
-    $ref: "./paths/spaces/create.yaml"
-/accounts/{account_id}/spaces/{space_id}:
+    "$ref": "./paths/styleguides/create.yaml"
+"/projects/{project_id}/styleguides/{id}":
   get:
-    $ref: "./paths/spaces/show.yaml"
+    "$ref": "./paths/styleguides/show.yaml"
   patch:
-    $ref: "./paths/spaces/patch.yaml"
+    "$ref": "./paths/styleguides/update.yaml"
   delete:
-    $ref: "./paths/spaces/delete.yaml"
-/accounts/{account_id}/spaces/{space_id}/projects:
+    "$ref": "./paths/styleguides/destroy.yaml"
+"/accounts/{account_id}/invitations":
   get:
-    $ref: "./paths/spaces/projects.yaml"
+    "$ref": "./paths/invitations/index.yaml"
   post:
-    $ref: "./paths/spaces/projects_create.yaml"
-/accounts/{account_id}/spaces/{space_id}/projects/{project_id}:
+    "$ref": "./paths/invitations/create.yaml"
+"/accounts/{account_id}/invitations/{id}":
+  get:
+    "$ref": "./paths/invitations/show.yaml"
+  patch:
+    "$ref": "./paths/invitations/update.yaml"
   delete:
-    $ref: "./paths/spaces/projects_delete.yaml"
+    "$ref": "./paths/invitations/destroy.yaml"
+"/accounts/{account_id}/invitations/{id}/resend":
+  post:
+    "$ref": "./paths/invitations/resend.yaml"
+"/projects/{project_id}/screenshots/{id}/markers":
+  get:
+    "$ref": "./paths/screenshot_markers/index.yaml"
+"/projects/{project_id}/screenshots/{screenshot_id}/markers/{id}":
+  get:
+    "$ref": "./paths/screenshot_markers/show.yaml"
+"/projects/{project_id}/screenshots/{screenshot_id}/markers":
+  post:
+    "$ref": "./paths/screenshot_markers/create.yaml"
+  patch:
+    "$ref": "./paths/screenshot_markers/update.yaml"
+  delete:
+    "$ref": "./paths/screenshot_markers/destroy.yaml"
+"/projects/{project_id}/locales":
+  get:
+    "$ref": "./paths/locales/index.yaml"
+  post:
+    "$ref": "./paths/locales/create.yaml"
+"/projects/{project_id}/locales/{id}":
+  get:
+    "$ref": "./paths/locales/show.yaml"
+  patch:
+    "$ref": "./paths/locales/update.yaml"
+  delete:
+    "$ref": "./paths/locales/destroy.yaml"
+"/projects/{project_id}/locales/{id}/download":
+  get:
+    "$ref": "./paths/locales/download.yaml"
+"/accounts/{account_id}/distributions":
+  get:
+    "$ref": "./paths/distributions/index.yaml"
+  post:
+    "$ref": "./paths/distributions/create.yaml"
+"/accounts/{account_id}/distributions/{id}":
+  get:
+    "$ref": "./paths/distributions/show.yaml"
+  patch:
+    "$ref": "./paths/distributions/update.yaml"
+  delete:
+    "$ref": "./paths/distributions/destroy.yaml"
+"/accounts/{account_id}/distributions/{distribution_id}/releases":
+  get:
+    "$ref": "./paths/releases/index.yaml"
+  post:
+    "$ref": "./paths/releases/create.yaml"
+"/accounts/{account_id}/distributions/{distribution_id}/releases/{id}":
+  get:
+    "$ref": "./paths/releases/show.yaml"
+  patch:
+    "$ref": "./paths/releases/update.yaml"
+  delete:
+    "$ref": "./paths/releases/destroy.yaml"
+"/accounts/{account_id}/distributions/{distribution_id}/releases/{id}/publish":
+  post:
+    "$ref": "./paths/releases/publish.yaml"
+"/projects/{project_id}/jobs":
+  get:
+    "$ref": "./paths/jobs/index.yaml"
+  post:
+    "$ref": "./paths/jobs/create.yaml"
+"/projects/{project_id}/jobs/{id}":
+  get:
+    "$ref": "./paths/jobs/show.yaml"
+  patch:
+    "$ref": "./paths/jobs/update.yaml"
+  delete:
+    "$ref": "./paths/jobs/destroy.yaml"
+"/projects/{project_id}/jobs/{id}/start":
+  post:
+    "$ref": "./paths/jobs/start.yaml"
+"/projects/{project_id}/jobs/{id}/complete":
+  post:
+    "$ref": "./paths/jobs/complete.yaml"
+"/projects/{project_id}/jobs/{id}/reopen":
+  post:
+    "$ref": "./paths/jobs/reopen.yaml"
+"/projects/{project_id}/jobs/{id}/keys":
+  post:
+    "$ref": "./paths/jobs/add_keys.yaml"
+  delete:
+    "$ref": "./paths/jobs/remove_keys.yaml"
+"/accounts/{account_id}/glossaries":
+  get:
+    "$ref": "./paths/glossaries/index.yaml"
+  post:
+    "$ref": "./paths/glossaries/create.yaml"
+"/accounts/{account_id}/glossaries/{id}":
+  get:
+    "$ref": "./paths/glossaries/show.yaml"
+  patch:
+    "$ref": "./paths/glossaries/update.yaml"
+  delete:
+    "$ref": "./paths/glossaries/destroy.yaml"
+"/authorizations":
+  get:
+    "$ref": "./paths/authorizations/index.yaml"
+  post:
+    "$ref": "./paths/authorizations/create.yaml"
+"/authorizations/{id}":
+  get:
+    "$ref": "./paths/authorizations/show.yaml"
+  patch:
+    "$ref": "./paths/authorizations/update.yaml"
+  delete:
+    "$ref": "./paths/authorizations/destroy.yaml"
+"/bitbucket_syncs":
+  get:
+    "$ref": "./paths/bitbucket_syncs/index.yaml"
+"/bitbucket_syncs/{id}/export":
+  post:
+    "$ref": "./paths/bitbucket_syncs/export.yaml"
+"/bitbucket_syncs/{id}/import":
+  post:
+    "$ref": "./paths/bitbucket_syncs/import.yaml"
+"/projects/{project_id}/keys/{key_id}/comments":
+  get:
+    "$ref": "./paths/comments/index.yaml"
+  post:
+    "$ref": "./paths/comments/create.yaml"
+"/projects/{project_id}/keys/{key_id}/comments/{id}":
+  get:
+    "$ref": "./paths/comments/show.yaml"
+  patch:
+    "$ref": "./paths/comments/update.yaml"
+  delete:
+    "$ref": "./paths/comments/destroy.yaml"
+"/projects/{project_id}/keys/{key_id}/comments/{id}/read":
+  patch:
+    "$ref": "./paths/comments/mark_as_read.yaml"
+  delete:
+    "$ref": "./paths/comments/unmark_as_read.yaml"
+  get:
+    "$ref": "./paths/comments/check_if_read.yaml"
+"/projects/{project_id}/webhooks":
+  get:
+    "$ref": "./paths/webhooks/index.yaml"
+  post:
+    "$ref": "./paths/webhooks/create.yaml"
+"/projects/{project_id}/webhooks/{id}":
+  get:
+    "$ref": "./paths/webhooks/show.yaml"
+  patch:
+    "$ref": "./paths/webhooks/update.yaml"
+  delete:
+    "$ref": "./paths/webhooks/destroy.yaml"
+"/projects/{project_id}/webhooks/{id}/test":
+  post:
+    "$ref": "./paths/webhooks/test.yaml"
+"/projects/{project_id}/uploads":
+  post:
+    "$ref": "./paths/uploads/create.yaml"
+  get:
+    "$ref": "./paths/uploads/index.yaml"
+"/projects/{project_id}/uploads/{id}":
+  get:
+    "$ref": "./paths/uploads/show.yaml"
+"/projects/{project_id}/translations/{translation_id}/versions":
+  get:
+    "$ref": "./paths/versions/index.yaml"
+"/projects/{project_id}/translations/{translation_id}/versions/{id}":
+  get:
+    "$ref": "./paths/versions/show.yaml"
+"/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations":
+  post:
+    "$ref": "./paths/glossary_term_translations/create.yaml"
+"/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations/{id}":
+  patch:
+    "$ref": "./paths/glossary_term_translations/update.yaml"
+  delete:
+    "$ref": "./paths/glossary_term_translations/destroy.yaml"
+"/projects":
+  get:
+    "$ref": "./paths/projects/index.yaml"
+  post:
+    "$ref": "./paths/projects/create.yaml"
+"/projects/{id}":
+  get:
+    "$ref": "./paths/projects/show.yaml"
+  patch:
+    "$ref": "./paths/projects/update.yaml"
+  delete:
+    "$ref": "./paths/projects/destroy.yaml"
+"/projects/{project_id}/jobs/{job_id}/locales":
+  get:
+    "$ref": "./paths/job_locales/index.yaml"
+  post:
+    "$ref": "./paths/job_locales/create.yaml"
+"/projects/{project_id}/jobs/{job_id}/locale/{id}":
+  get:
+    "$ref": "./paths/job_locales/show.yaml"
+"/projects/{project_id}/jobs/{job_id}/locales/{id}":
+  patch:
+    "$ref": "./paths/job_locales/update.yaml"
+  delete:
+    "$ref": "./paths/job_locales/destroy.yaml"
+"/projects/{project_id}/jobs/{job_id}/locales/{id}/complete":
+  post:
+    "$ref": "./paths/job_locales/complete.yaml"
+"/projects/{project_id}/jobs/{job_id}/locales/{id}/reopen":
+  post:
+    "$ref": "./paths/job_locales/reopen.yaml"
+"/projects/{project_id}/branches":
+  get:
+    "$ref": "./paths/branches/index.yaml"
+  post:
+    "$ref": "./paths/branches/create.yaml"
+"/projects/{project_id}/branches/{name}":
+  get:
+    "$ref": "./paths/branches/show.yaml"
+  patch:
+    "$ref": "./paths/branches/update.yaml"
+  delete:
+    "$ref": "./paths/branches/destroy.yaml"
+"/projects/{project_id}/branches/{name}/merge":
+  patch:
+    "$ref": "./paths/branches/merge.yaml"
+"/projects/{project_id}/branches/{name}/compare":
+  get:
+    "$ref": "./paths/branches/compare.yaml"
+"/accounts":
+  get:
+    "$ref": "./paths/accounts/index.yaml"
+"/accounts/{id}":
+  get:
+    "$ref": "./paths/accounts/show.yaml"
+"/user":
+  get:
+    "$ref": "./paths/users/user.yaml"
+"/accounts/{account_id}/members":
+  get:
+    "$ref": "./paths/members/index.yaml"
+"/accounts/{account_id}/members/{id}":
+  get:
+    "$ref": "./paths/members/show.yaml"
+  patch:
+    "$ref": "./paths/members/update.yaml"
+  delete:
+    "$ref": "./paths/members/destroy.yaml"
+"/projects/{project_id}/screenshots":
+  get:
+    "$ref": "./paths/screenshots/index.yaml"
+  post:
+    "$ref": "./paths/screenshots/create.yaml"
+"/projects/{project_id}/screenshots/{id}":
+  get:
+    "$ref": "./paths/screenshots/show.yaml"
+  patch:
+    "$ref": "./paths/screenshots/update.yaml"
+  delete:
+    "$ref": "./paths/screenshots/destroy.yaml"
+"/accounts/{account_id}/glossaries/{glossary_id}/terms":
+  get:
+    "$ref": "./paths/glossary_terms/index.yaml"
+  post:
+    "$ref": "./paths/glossary_terms/create.yaml"
+"/accounts/{account_id}/glossaries/{glossary_id}/terms/{id}":
+  get:
+    "$ref": "./paths/glossary_terms/show.yaml"
+  patch:
+    "$ref": "./paths/glossary_terms/update.yaml"
+  delete:
+    "$ref": "./paths/glossary_terms/destroy.yaml"
+"/projects/{project_id}/tags":
+  get:
+    "$ref": "./paths/tags/index.yaml"
+  post:
+    "$ref": "./paths/tags/create.yaml"
+"/projects/{project_id}/tags/{name}":
+  get:
+    "$ref": "./paths/tags/show.yaml"
+  delete:
+    "$ref": "./paths/tags/destroy.yaml"
+"/projects/{project_id}/blacklisted_keys":
+  get:
+    "$ref": "./paths/blacklisted_keys/index.yaml"
+  post:
+    "$ref": "./paths/blacklisted_keys/create.yaml"
+"/projects/{project_id}/blacklisted_keys/{id}":
+  get:
+    "$ref": "./paths/blacklisted_keys/show.yaml"
+  patch:
+    "$ref": "./paths/blacklisted_keys/update.yaml"
+  delete:
+    "$ref": "./paths/blacklisted_keys/destroy.yaml"
+"/projects/{project_id}/keys":
+  get:
+    "$ref": "./paths/keys/index.yaml"
+  post:
+    "$ref": "./paths/keys/create.yaml"
+  delete:
+    "$ref": "./paths/keys/destroy-list.yaml"
+"/projects/{project_id}/keys/search":
+  post:
+    "$ref": "./paths/keys/search.yaml"
+"/projects/{project_id}/keys/{id}":
+  get:
+    "$ref": "./paths/keys/show.yaml"
+  patch:
+    "$ref": "./paths/keys/update.yaml"
+  delete:
+    "$ref": "./paths/keys/destroy.yaml"
+"/projects/{project_id}/keys/tag":
+  patch:
+    "$ref": "./paths/keys/tag.yaml"
+"/projects/{project_id}/keys/untag":
+  patch:
+    "$ref": "./paths/keys/untag.yaml"
+"/projects/{project_id}/orders":
+  get:
+    "$ref": "./paths/orders/index.yaml"
+  post:
+    "$ref": "./paths/orders/create.yaml"
+"/projects/{project_id}/orders/{id}":
+  get:
+    "$ref": "./paths/orders/show.yaml"
+  delete:
+    "$ref": "./paths/orders/destroy.yaml"
+"/projects/{project_id}/orders/{id}/confirm":
+  patch:
+    "$ref": "./paths/orders/confirm.yaml"
+"/accounts/{account_id}/spaces":
+  get:
+    "$ref": "./paths/spaces/index.yaml"
+  post:
+    "$ref": "./paths/spaces/create.yaml"
+"/accounts/{account_id}/spaces/{id}":
+  get:
+    "$ref": "./paths/spaces/show.yaml"
+  patch:
+    "$ref": "./paths/spaces/update.yaml"
+  delete:
+    "$ref": "./paths/spaces/delete.yaml"
+"/accounts/{account_id}/spaces/{space_id}/projects":
+  get:
+    "$ref": "./paths/spaces/spaces_projects.yaml"
+  post:
+    "$ref": "./paths/spaces/add_project.yaml"
+"/accounts/{account_id}/spaces/{space_id}/projects/{id}":
+  delete:
+    "$ref": "./paths/spaces/remove_project.yaml"
+"/projects/{project_id}/translations":
+  get:
+    "$ref": "./paths/translations/index.yaml"
+  post:
+    "$ref": "./paths/translations/create.yaml"
+"/projects/{project_id}/locales/{locale_id}/translations":
+  get:
+    "$ref": "./paths/translations/index_locale.yaml"
+"/projects/{project_id}/keys/{key_id}/translations":
+  get:
+    "$ref": "./paths/translations/index_keys.yaml"
+"/projects/{project_id}/translations/search":
+  post:
+    "$ref": "./paths/translations/search.yaml"
+"/projects/{project_id}/translations/{id}":
+  get:
+    "$ref": "./paths/translations/show.yaml"
+  patch:
+    "$ref": "./paths/translations/update.yaml"
+"/projects/{project_id}/translations/{id}/verify":
+  patch:
+    "$ref": "./paths/translations/verify.yaml"
+"/projects/{project_id}/translations/{id}/unverify":
+  patch:
+    "$ref": "./paths/translations/unverify.yaml"
+"/projects/{project_id}/translations/{id}/review":
+  patch:
+    "$ref": "./paths/translations/review.yaml"
+"/projects/{project_id}/translations/{id}/exclude":
+  patch:
+    "$ref": "./paths/translations/exclude.yaml"
+"/projects/{project_id}/translations/{id}/include":
+  patch:
+    "$ref": "./paths/translations/include.yaml"
+"/projects/{project_id}/translations/verify":
+  patch:
+    "$ref": "./paths/translations/batch_verify.yaml"
+"/projects/{project_id}/translations/unverify":
+  patch:
+    "$ref": "./paths/translations/batch_unverify.yaml"
+"/projects/{project_id}/translations/review":
+  patch:
+    "$ref": "./paths/translations/batch_review.yaml"
+"/projects/{project_id}/translations/exclude":
+  patch:
+    "$ref": "./paths/translations/batch_exclude.yaml"
+"/projects/{project_id}/translations/include":
+  patch:
+    "$ref": "./paths/translations/batch_include.yaml"

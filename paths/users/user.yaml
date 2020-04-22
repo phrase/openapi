@@ -1,0 +1,27 @@
+---
+summary: Show current User
+description: Show details for current User.
+operationId: show/user
+tags:
+- Users
+parameters: []
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/user.yaml#/user"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/user" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: phraseapp show user

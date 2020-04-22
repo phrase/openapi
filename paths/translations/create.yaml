@@ -1,0 +1,25 @@
+---
+summary: Create a translation
+description: Create a translation.
+operationId: translation/create
+tags:
+- Translations
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+responses:
+  '201':
+    "$ref": "../../responses.yaml#/201"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/translations" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST
+- lang: CLI
+  source: phraseapp translation create

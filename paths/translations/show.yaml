@@ -1,0 +1,42 @@
+---
+summary: Get a single translation
+description: Get details on a single translation.
+operationId: translation/show
+tags:
+- Translations
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/translation_details.yaml#/translation_details"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/translations/{id}?branch=my-feature-branch" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: |-
+    phraseapp translation show \
+    --branch my-feature-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch

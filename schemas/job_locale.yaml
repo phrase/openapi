@@ -9,7 +9,9 @@ job_locale:
     locale:
       "$ref": "./locale_preview.yaml#/locale_preview"
     users:
-      type: array of user_preview
+      type: array
+      items:
+        "$ref": "./user_preview.yaml#/user_preview"
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     job:

@@ -1,0 +1,59 @@
+---
+summary: Set exclude from export flag on translations selected by query
+description: Exclude translations matching query from locale export.
+operationId: translations/exclude
+tags:
+- Translations
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/affected_count.yaml#/affected_count"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/translations/exclude" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"branch":"my-feature-branch","q":"PhraseApp*%20verified:true%20tags:feature,center","sort":"updated_at","order":"desc"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp translations exclude \
+    --branch my-feature-branch \
+    --query 'PhraseApp*%20verified:true%20tags:feature,center' \
+    --sort updated_at \
+    --order desc
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          q:
+            description: q_description_placeholder
+            type: string
+            example: PhraseApp*%20verified:true%20tags:feature,center
+          sort:
+            description: 'Sort criteria. Can be one of: key_name, created_at, updated_at.'
+            type: string
+            example: updated_at
+          order:
+            description: 'Order direction. Can be one of: asc, desc.'
+            type: string
+            example: desc

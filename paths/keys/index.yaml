@@ -1,0 +1,63 @@
+---
+summary: List keys
+description: List all keys for the given project. Alternatively you can POST requests to /search.
+operationId: keys/list
+tags:
+- Keys
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/translation_key.yaml#/translation_key"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/keys?branch=my-feature-branch&sort=updated_at&order=desc&q=mykey*%20translated:true&locale_id=abcd1234abcd1234abcd1234abcd1234" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: |-
+    phraseapp keys list \
+    --branch my-feature-branch \
+    --sort updated_at \
+    --order desc \
+    --query 'mykey* translated:true' \
+    --locale-id abcd1234abcd1234abcd1234abcd1234
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          sort:
+            description: 'Sort by field. Can be one of: name, created_at, updated_at.'
+            type: string
+            example: updated_at
+          order:
+            description: 'Order direction. Can be one of: asc, desc.'
+            type: string
+            example: desc
+          q:
+            description: q_description_placeholder
+            type: string
+            example: mykey* translated:true
+          locale_id:
+            description: Locale used to determine the translation state of a key when filtering for untranslated or translated keys.
+            type: string
+            example: abcd1234abcd1234abcd1234abcd1234

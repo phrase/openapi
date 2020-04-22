@@ -1,0 +1,30 @@
+---
+summary: Resend an invitation
+description: Resend the invitation email (must not be accepted yet). Access token scope must include <code>team.manage</code>.
+operationId: invitation/resend
+tags:
+- Invitations
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/invitation.yaml#/invitation"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/invitations/{id}/resend" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST
+- lang: CLI
+  source: phraseapp invitation resend

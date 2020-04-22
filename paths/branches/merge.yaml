@@ -1,0 +1,41 @@
+---
+summary: Merge a branch
+description: Merge an existing branch.
+operationId: branch/merge
+tags:
+- Branches
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/name"
+responses:
+  '200':
+    description: OK
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/branches/{name}/merge" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"strategy":"use_master"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp branch merge \
+    --strategy use_master
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          strategy:
+            description: strategy used for merge blocking, use_master or use_branch
+            type: string
+            example: use_master

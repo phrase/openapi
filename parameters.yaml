@@ -27,6 +27,76 @@ project_id:
   required: true
   schema:
     type: string
+key_id:
+  in: path
+  name: key_id
+  description: Translation Key ID
+  required: true
+  schema:
+    type: string
+job_id:
+  in: path
+  name: job_id
+  description: Job ID
+  required: true
+  schema:
+    type: string
+distribution_id:
+  in: path
+  name: distribution_id
+  description: Distribution ID
+  required: true
+  schema:
+    type: string
+screenshot_id:
+  in: path
+  name: screenshot_id
+  description: Screenshot ID
+  required: true
+  schema:
+    type: string
+translation_id:
+  in: path
+  name: translation_id
+  description: Translation ID
+  required: true
+  schema:
+    type: string
+glossary_id:
+  in: path
+  name: glossary_id
+  description: Glossary ID
+  required: true
+  schema:
+    type: string
+term_id:
+  in: path
+  name: term_id
+  description: Term ID
+  required: true
+  schema:
+    type: string
+locale_id:
+  in: path
+  name: locale_id
+  description: Locale ID
+  required: true
+  schema:
+    type: string
+id:
+  in: path
+  name: id
+  description: ID
+  required: true
+  schema:
+    type: string
+name:
+  in: path
+  name: name
+  description: name
+  required: true
+  schema:
+    type: string
 page:
   in: query
   name: page

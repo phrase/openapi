@@ -1,0 +1,30 @@
+---
+summary: List invitations
+description: List invitations for an account. It will also list the accessible resources like projects and locales the invited user has access to. In case nothing is shown the default access from the role is used. Access token scope must include <code>team.manage</code>.
+operationId: invitations/list
+tags:
+- Invitations
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/invitation.yaml#/invitation"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/invitations" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: phraseapp invitations list

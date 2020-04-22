@@ -1,0 +1,32 @@
+---
+summary: Update a glossary term translation
+description: Update an existing glossary term translation.
+operationId: glossary_term_translation/update
+tags:
+- Glossary Term Translations
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/glossary_id"
+- "$ref": "../../parameters.yaml#/term_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/glossary_term_translation.yaml#/glossary_term_translation"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH
+- lang: CLI
+  source: phraseapp glossary_term_translation update

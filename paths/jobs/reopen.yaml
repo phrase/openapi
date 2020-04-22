@@ -1,0 +1,45 @@
+---
+summary: Reopen a job
+description: Mark a job as uncompleted.
+operationId: job/reopen
+tags:
+- Jobs
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/job_details.yaml#/job_details"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/jobs/{id}/reopen" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"branch":"my-feature-branch"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp job reopen \
+    --branch my-feature-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch

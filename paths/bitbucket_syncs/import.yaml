@@ -1,0 +1,25 @@
+---
+summary: Import to Phrase from Bitbucket
+description: Import translations from Bitbucket to Phrase according to the .phraseapp.yml file within the Bitbucket repository.
+operationId: bitbucket_sync/import
+tags:
+- Bitbucket Sync
+parameters:
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/bitbucket_syncs/{id}/import" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST
+- lang: CLI
+  source: phraseapp bitbucket_sync import

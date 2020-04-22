@@ -1,0 +1,29 @@
+---
+summary: Update an authorization
+description: Update an existing authorization.
+operationId: authorization/update
+tags:
+- Authorizations
+parameters:
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/authorization.yaml#/authorization"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/authorizations/{id}" \
+      -u USERNAME \
+      -X PATCH
+- lang: CLI
+  source: phraseapp authorization update

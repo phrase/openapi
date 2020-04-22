@@ -1,0 +1,30 @@
+---
+summary: List glossaries
+description: List all glossaries the current user has access to.
+operationId: glossaries/list
+tags:
+- Glossary
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/glossary.yaml#/glossary"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/glossaries" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: phraseapp glossaries list

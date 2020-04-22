@@ -1,0 +1,45 @@
+---
+summary: Review a translation
+description: Mark an existing translation as reviewed.
+operationId: translation/review
+tags:
+- Translations
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/translation_details.yaml#/translation_details"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/translations/{id}/review" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"branch":"my-feature-branch"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp translation review \
+    --branch my-feature-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch

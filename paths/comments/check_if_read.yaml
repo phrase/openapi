@@ -1,0 +1,39 @@
+---
+summary: Check if comment is read
+description: Check if comment was marked as read. Returns 204 if read, 404 if unread.
+operationId: comment/mark/check
+tags:
+- Comments
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/key_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '204':
+    "$ref": "../../responses.yaml#/204"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/keys/{key_id}/comments/{id}/read?branch=my-feature-branch" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: |-
+    phraseapp comment mark check \
+    --branch my-feature-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch

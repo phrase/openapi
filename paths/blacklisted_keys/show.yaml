@@ -1,0 +1,29 @@
+---
+summary: Get a single blacklisted key
+description: Get details on a single rule for blacklisting keys for a given project.
+operationId: blacklisted_key/show
+tags:
+- Blacklisted Keys
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/blacklisted_key.yaml#/blacklisted_key"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/blacklisted_keys/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: phraseapp blacklisted_key show

@@ -1,0 +1,41 @@
+---
+summary: Delete a tag
+description: Delete an existing tag.
+operationId: tag/delete
+tags:
+- Tags
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/name"
+responses:
+  '204':
+    "$ref": "../../responses.yaml#/204"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/tags/{name}" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X DELETE \
+      -d '{"branch":"my-feature-branch"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp tag delete \
+    --branch my-feature-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch

@@ -1,0 +1,59 @@
+---
+summary: List translations by locale
+description: List translations for a specific locale. If you want to download all translations for one locale we recommend to use the <code>locales#download</code> endpoint.
+operationId: translations/by_locale
+tags:
+- Translations
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/locale_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/translation.yaml#/translation"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/locales/{locale_id}/translations?branch=my-feature-branch&sort=updated_at&order=desc&q=PhraseApp*%2520unverified:true%2520excluded:true%2520tags:feature,center" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: |-
+    phraseapp translations by_locale \
+    --branch my-feature-branch \
+    --sort updated_at \
+    --order desc \
+    --query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          sort:
+            description: 'Sort criteria. Can be one of: key_name, created_at, updated_at.'
+            type: string
+            example: updated_at
+          order:
+            description: 'Order direction. Can be one of: asc, desc.'
+            type: string
+            example: desc
+          q:
+            description: q_description_placeholder
+            type: string
+            example: PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center

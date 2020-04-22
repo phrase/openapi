@@ -1,0 +1,29 @@
+---
+summary: Update a project
+description: Update an existing project.
+operationId: project/update
+tags:
+- Projects
+parameters:
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/project_details.yaml#/project_details"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH
+- lang: CLI
+  source: phraseapp project update

@@ -1,0 +1,25 @@
+---
+summary: Delete an authorization
+description: Delete an existing authorization. API calls using that token will stop working.
+operationId: authorization/delete
+tags:
+- Authorizations
+parameters:
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '204':
+    "$ref": "../../responses.yaml#/204"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/authorizations/{id}" \
+      -u USERNAME \
+      -X DELETE
+- lang: CLI
+  source: phraseapp authorization delete

@@ -1,0 +1,31 @@
+---
+summary: Update a job locale
+description: Update an existing job locale.
+operationId: job_locale/update
+tags:
+- Job Locales
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/job_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/job_locale.yaml#/job_locale"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/jobs/{job_id}/locales/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH
+- lang: CLI
+  source: phraseapp job_locale update

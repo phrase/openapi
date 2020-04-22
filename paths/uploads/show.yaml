@@ -1,0 +1,42 @@
+---
+summary: View upload details
+description: View details and summary for a single upload.
+operationId: upload/show
+tags:
+- Uploads
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/upload.yaml#/upload"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/uploads/{id}?branch=my-feature-branch" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: |-
+    phraseapp upload show \
+    --branch my-feature-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch

@@ -1,0 +1,62 @@
+---
+summary: Create a new invitation
+description: Invite a person to an account. Developers and translators need <code>project_ids</code> and <code>locale_ids</code> assigned to access them. Access token scope must include <code>team.manage</code>.
+operationId: invitation/create
+tags:
+- Invitations
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+responses:
+  '201':
+    "$ref": "../../responses.yaml#/201"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/invitations" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"email":"example@mail.com","role":"Developer","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","permissions":{"create_upload":true,"review_translations":true}}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp invitation create \
+    --email example@mail.com \
+    --role Developer \
+    --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
+    --locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
+    --permissions {"create_upload"=>true, "review_translations"=>true}
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          email:
+            description: The email of the invited user. The <code>email</code> can not be updated once created. Create a new invitation for each unique email.
+            type: string
+            example: example@mail.com
+          role:
+            description: Invitiation role, can be any of Manager, Developer, Translator.
+            type: string
+            example: Developer
+          project_ids:
+            description: List of project ids the invited user has access to.
+            type: string
+            example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
+          locale_ids:
+            description: List of locale ids the invited user has access to.
+            type: string
+            example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
+          permissions:
+            description: Additional permissions depending on invitation role. Available permissions are <code>create_upload</code> and <code>review_translations</code>
+            type: string
+            example:
+              create_upload: true
+              review_translations: true

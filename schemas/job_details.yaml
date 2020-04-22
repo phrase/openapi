@@ -11,7 +11,9 @@ job_details:
       items:
         "$ref": "./locale_preview.yaml#/locale_preview"
     keys:
-      type: array of key_preview
+      type: array
+      items:
+        "$ref": "./key_preview.yaml#/key_preview"
   example:
     owner:
       id: abcd1234cdef1234abcd1234cdef1234

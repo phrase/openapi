@@ -1,0 +1,41 @@
+---
+summary: Add Project
+description: Adds an existing project to the space.
+operationId: spaces/projects/create
+tags:
+- Spaces
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/space_id"
+responses:
+  '201':
+    "$ref": "../../responses.yaml#/201"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/spaces/{space_id}/projects" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"id":"a4b3c2d1"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp spaces projects create \
+    --id a4b3c2d1
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          id:
+            description: Project ID to add or to the Space
+            type: string
+            example: a4b3c2d1

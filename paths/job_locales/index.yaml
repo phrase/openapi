@@ -1,0 +1,44 @@
+---
+summary: List job locales
+description: List all job locales for a given job.
+operationId: job_locales/list
+tags:
+- Job Locales
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/job_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/job_locale.yaml#/job_locale"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/jobs/{job_id}/locales?branch=my-feature-branch" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: |-
+    phraseapp job_locales list \
+    --branch my-feature-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch

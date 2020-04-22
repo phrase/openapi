@@ -1,0 +1,27 @@
+---
+summary: Create a glossary term translation
+description: Create a new glossary term translation.
+operationId: glossary_term_translation/create
+tags:
+- Glossary Term Translations
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/glossary_id"
+- "$ref": "../../parameters.yaml#/term_id"
+responses:
+  '201':
+    "$ref": "../../responses.yaml#/201"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST
+- lang: CLI
+  source: phraseapp glossary_term_translation create

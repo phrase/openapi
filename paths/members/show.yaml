@@ -1,0 +1,29 @@
+---
+summary: Get single member
+description: Get details on a single user in the account. Access token scope must include <code>team.manage</code>.
+operationId: member/show
+tags:
+- Members
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/member.yaml#/member"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/members/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: phraseapp member show

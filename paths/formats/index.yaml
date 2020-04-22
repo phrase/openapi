@@ -1,0 +1,27 @@
+---
+summary: List formats
+description: Get a handy list of all localization file formats supported in Phrase.
+operationId: formats/list
+tags:
+- Formats
+parameters: []
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/format.yaml#/format"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: curl "https://api.phrase.com/formats"
+- lang: CLI
+  source: phraseapp formats list

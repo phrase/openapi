@@ -1,0 +1,49 @@
+---
+summary: Review translations selected by query
+description: Review translations matching query.
+operationId: translations/review
+tags:
+- Translations
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/affected_count.yaml#/affected_count"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/translations/review" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"branch":"my-feature-branch","q":"PhraseApp*%reviewed:false%20tags:feature,center"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp translations review \
+    --branch my-feature-branch \
+    --query 'PhraseApp*%reviewed:false%20tags:feature,center'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          q:
+            description: q_description_placeholder
+            type: string
+            example: PhraseApp*%reviewed:false%20tags:feature,center

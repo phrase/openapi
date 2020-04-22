@@ -1,0 +1,30 @@
+---
+summary: Update a webhook
+description: Update an existing webhook.
+operationId: webhook/update
+tags:
+- Webhooks
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/webhook.yaml#/webhook"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/webhooks/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH
+- lang: CLI
+  source: phraseapp webhook update

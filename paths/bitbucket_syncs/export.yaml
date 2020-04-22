@@ -1,0 +1,29 @@
+---
+summary: Export from Phrase to Bitbucket
+description: Export translations from Phrase to Bitbucket according to the .phraseapp.yml file within the Bitbucket Repository.
+operationId: bitbucket_sync/export
+tags:
+- Bitbucket Sync
+parameters:
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/bitbucket_sync_export_response.yaml#/bitbucket_sync_export_response"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/bitbucket_syncs/{id}/export" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST
+- lang: CLI
+  source: phraseapp bitbucket_sync export

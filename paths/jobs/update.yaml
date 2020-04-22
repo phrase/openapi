@@ -1,0 +1,60 @@
+---
+summary: Update a job
+description: Update an existing job.
+operationId: job/update
+tags:
+- Jobs
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/job_details.yaml#/job_details"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/jobs/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"branch":"my-feature-branch","name":"de","briefing":"de-DE","due_date":"2017-08-15"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp job update \
+    --branch my-feature-branch \
+    --name de \
+    --briefing de-DE \
+    --due-date 2017-08-15
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          name:
+            description: Job name
+            type: string
+            example: de
+          briefing:
+            description: Briefing for the translators
+            type: string
+            example: de-DE
+          due_date:
+            description: Date the job should be finished
+            type: string
+            example: '2017-08-15'

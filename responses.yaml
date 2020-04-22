@@ -1,3 +1,5 @@
+200:
+  description: OK
 201:
   description: The resource has been created
 204:

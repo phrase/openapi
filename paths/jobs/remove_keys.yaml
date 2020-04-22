@@ -1,0 +1,47 @@
+---
+summary: Remove keys from job
+description: Remove multiple keys from existing job.
+operationId: job/keys/delete
+tags:
+- Jobs
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '204':
+    "$ref": "../../responses.yaml#/204"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/jobs/{id}/keys" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X DELETE \
+      -d '{"branch":"my-feature-branch","translation_key_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp job keys delete \
+    --branch my-feature-branch \
+    --translation-key-ids "abcd1234cdef1234abcd1234cdef1234"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          translation_key_ids:
+            description: ids of keys that should added to the job
+            type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234

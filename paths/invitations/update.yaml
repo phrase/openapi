@@ -1,0 +1,61 @@
+---
+summary: Update an invitation
+description: Update an existing invitation (must not be accepted yet). The <code>email</code> cannot be updated. Developers and translators need <code>project_ids</code> and <code>locale_ids</code> assigned to access them. Access token scope must include <code>team.manage</code>.
+operationId: invitation/update
+tags:
+- Invitations
+parameters:
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/invitation.yaml#/invitation"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/invitations/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"role":"Invitiation role","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","permissions":{"create_upload":true}}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp invitation update \
+    --role "Invitiation role" \
+    --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
+    --locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
+    --permissions {"create_upload"=>true}
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          role:
+            description: Invitiation role, can be any of Manager, Developer, Translator
+            type: string
+            example: Invitiation role
+          project_ids:
+            description: List of project ids the invited user has access to
+            type: string
+            example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
+          locale_ids:
+            description: List of locale ids the invited user has access to
+            type: string
+            example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
+          permissions:
+            description: Additional permissions depending on invitation role.
+            type: string
+            example:
+              create_upload: true

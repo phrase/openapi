@@ -1,42 +1,40 @@
-summary: Create space
-operationId: spacesCreate
+---
+summary: Create a Space
+description: Create a new Space.
+operationId: space/create
 tags:
-  - Spaces
+- Spaces
 parameters:
-  - $ref: '../../parameters.yaml#/account_id'
-  - $ref: '../../parameters.yaml#/X-PhraseApp-OTP'
-requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            name:
-              type: string
-        example:
-          {"name":"My Android Projects"}
+- "$ref": "../../parameters.yaml#/account_id"
 responses:
-  201:
-    description: A JSON array of space
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/space.yaml#/space'
-  400:
-    $ref: '../../responses.yaml#/400'
-  404:
-    $ref: '../../responses.yaml#/404'
-  429:
-    $ref: '../../responses.yaml#/429'
+  '201':
+    "$ref": "../../responses.yaml#/201"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
 x-code-samples:
-  - lang: Curl
-    source: >
-      curl "https://api.phrase.com/v2/accounts/:account_id/spaces" \
-        -u USERNAME_OR_ACCESS_TOKEN \
-        -X POST \
-        -d '{"name":"My Android Projects"}' \
-        -H 'Content-Type: application/json'
-  - lang: CLI
-    source: >
-      phraseapp space create <account_id> --name "My Android Projects"
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/accounts/{account_id}/spaces" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"name":"My Android Projects"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp space create \
+    --name "My Android Projects"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: Name of the space
+            type: string
+            example: My Android Projects

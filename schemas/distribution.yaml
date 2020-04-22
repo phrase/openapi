@@ -13,7 +13,9 @@ distribution:
       items:
         type: string
     releases:
-      type: array of release_preview
+      type: array
+      items:
+        "$ref": "./release_preview.yaml#/release_preview"
     created_at:
       type: string
       format: date-time

@@ -19,7 +19,7 @@ invitation:
       items:
         "$ref": "./locale_preview.yaml#/locale_preview"
     permissions:
-      type: hash
+      type: object
     created_at:
       type: string
       format: date-time

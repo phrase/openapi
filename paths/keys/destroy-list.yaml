@@ -1,0 +1,54 @@
+---
+summary: Delete collection of keys
+description: Delete all keys matching query. Same constraints as list. Please limit the number of affected keys to about 1,000 as you might experience timeouts otherwise.
+operationId: keys/delete
+tags:
+- Keys
+parameters:
+- "$ref": "../../parameters.yaml#/project_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/affected_resources.yaml#/affected_resources"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/projects/{project_id}/keys" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X DELETE \
+      -d '{"branch":"my-feature-branch","q":"mykey* translated:true","locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp keys delete \
+    --branch my-feature-branch \
+    --query 'mykey* translated:true' \
+    --locale-id abcd1234abcd1234abcd1234abcd1234
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          q:
+            description: q_description_placeholder
+            type: string
+            example: mykey* translated:true
+          locale_id:
+            description: Locale used to determine the translation state of a key when filtering for untranslated or translated keys.
+            type: string
+            example: abcd1234abcd1234abcd1234abcd1234

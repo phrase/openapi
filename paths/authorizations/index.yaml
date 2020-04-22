@@ -1,0 +1,29 @@
+---
+summary: List authorizations
+description: List all your authorizations.
+operationId: authorizations/list
+tags:
+- Authorizations
+parameters: []
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/authorization.yaml#/authorization"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/authorizations" \
+      -u USERNAME
+- lang: CLI
+  source: phraseapp authorizations list
