@@ -1,0 +1,8 @@
+---
+authorization_with_token:
+  type: object
+  properties:
+    token:
+      type: string
+  example:
+    token: abcd1234cdef1234abcd1234cdef1234abcd1234cdef1234abcd1234cdef1234abcd1234cdef1234abcd1234cdef1234abcd1234cdef1234abcd1234cdef1234

@@ -1,3 +1,4 @@
+---
 space:
   type: object
   properties:
@@ -5,19 +6,18 @@ space:
       type: string
     name:
       type: string
-    projects_count:
-      type: integer
-      format: int32
-    projects:
-      type: array
-      items:
-        $ref: "./project.yaml#/project"
     created_at:
       type: string
       format: date-time
     updated_at:
       type: string
       format: date-time
+    projects_count:
+      type: integer
+    projects:
+      type: array
+      items:
+        "$ref": "./project.yaml#/project"
   example:
     id: 2e7574e8f2372906a03110c2a7cfe671
     name: My first space

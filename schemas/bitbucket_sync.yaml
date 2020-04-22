@@ -1,0 +1,32 @@
+---
+bitbucket_sync:
+  type: object
+  properties:
+    id:
+      type: string
+    repository_name:
+      type: string
+    last_export_to_bitbucket_at:
+      type: string
+      format: date-time
+    last_import_from_bitbucket_at:
+      type: string
+      format: date-time
+    valid_phraseapp_yaml:
+      type: boolean
+    phraseapp_projects:
+      type: array
+      items:
+        "$ref": "./project_short.yaml#/project_short"
+  example:
+    id: aad1ar91-0331-4181-b90p-4crdnv0bd812
+    repository_name: some-repository
+    last_export_to_bitbucket_at: '2015-01-28T09:52:53Z'
+    last_import_from_bitbucket_at: '2015-01-28T09:52:53Z'
+    valid_phraseapp_yaml: true
+    phraseapp_projects:
+    - id: abcd1234cdef1234abcd1234cdef1234
+      name: My Android Project
+      main_format: xml
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'

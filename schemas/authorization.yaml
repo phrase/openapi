@@ -1,0 +1,35 @@
+---
+authorization:
+  type: object
+  properties:
+    id:
+      type: string
+    note:
+      type: string
+    token_last_eight:
+      type: string
+    hashed_token:
+      type: string
+    scopes:
+      type: array
+      items:
+        type: string
+    expires_at:
+      type: string
+      format: date-time
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    note: My Deploy Script
+    token_last_eight: 1234abcd
+    hashed_token: abcd1234cdef1234abcd1234cdef1234abcd1234cdef1234abcd1234cdef1234
+    scopes:
+    - read
+    expires_at: '2015-03-30T09:52:53Z'
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'

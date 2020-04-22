@@ -1,0 +1,38 @@
+---
+translation_key:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    description:
+      type: string
+    name_hash:
+      type: string
+    plural:
+      type: boolean
+    tags:
+      type: array
+      items:
+        type: string
+    data_type:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    name: home.index.headline
+    description: My description for this key...
+    name_hash: 1b31d2580ce324f246f66b3be00ed399
+    plural: false
+    tags:
+    - awesome-feature
+    - needs-proofreading
+    data_type: string
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'

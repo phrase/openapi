@@ -1,0 +1,19 @@
+---
+locale_statistics:
+  type: object
+  properties:
+    keys_total_count:
+      type: integer
+    keys_untranslated_count:
+      type: integer
+    words_total_count:
+      type: integer
+    translations_completed_count:
+      type: integer
+    translations_unverified_count:
+      type: integer
+    unverified_words_count:
+      type: integer
+    missing_words_count:
+      type: integer
+  example: 

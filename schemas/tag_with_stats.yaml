@@ -1,0 +1,23 @@
+---
+tag_with_stats:
+  type: object
+  properties:
+    statistics:
+      type:
+      - locale: locale_preview
+        statistics:
+          keys_total_count: integer
+          translations_completed_count: integer
+          translations_unverified_count: integer
+          keys_untranslated_count: integer
+  example:
+    statistics:
+    - locale:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: de
+        code: de-DE
+      statistics:
+        keys_total_count: 12
+        translations_completed_count: 9
+        translations_unverified_count: 11
+        keys_untranslated_count: 3

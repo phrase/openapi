@@ -1,0 +1,26 @@
+---
+job_locale:
+  type: object
+  properties:
+    id:
+      type: string
+    job:
+      "$ref": "./job_preview.yaml#/job_preview"
+    locale:
+      "$ref": "./locale_preview.yaml#/locale_preview"
+    users:
+      type: array of user_preview
+  example:
+    id: 626ea67628690c73ac86ac81eec2d185
+    job:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: My Job 1
+      state: completed
+    users:
+    - id: abcd1234cdef1234abcd1234cdef1234
+      username: joe.doe
+      name: Joe Doe
+    locale:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: English
+      code: en-GB

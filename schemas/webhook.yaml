@@ -1,17 +1,19 @@
 ---
-project:
+webhook:
   type: object
   properties:
     id:
       type: string
-    name:
+    callback_url:
       type: string
-    main_format:
+    description:
       type: string
-    project_image_url:
-      type: string
-    account:
-      "$ref": "./account.yaml#/account"
+    events:
+      type: array
+      items:
+        type: string
+    active:
+      type: boolean
     created_at:
       type: string
       format: date-time
@@ -20,9 +22,9 @@ project:
       format: date-time
   example:
     id: abcd1234cdef1234abcd1234cdef1234
-    name: My Android Project
-    main_format: xml
-    project_image_url: http://assets.example.com/project.png
-    account: account
+    callback_url: http://example.com/hooks/phraseapp-notifications
+    description: My webhook for chat notifications
+    events: locales:create,translations:update
+    active: true
     created_at: '2015-01-28T09:52:53Z'
     updated_at: '2015-01-28T09:52:53Z'

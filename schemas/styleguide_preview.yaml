@@ -1,0 +1,11 @@
+---
+styleguide_preview:
+  type: object
+  properties:
+    id:
+      type: string
+    title:
+      type: string
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    title: My Style Guide

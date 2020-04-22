@@ -1,28 +1,28 @@
 ---
-project:
+screenshot:
   type: object
   properties:
     id:
       type: string
     name:
       type: string
-    main_format:
+    description:
       type: string
-    project_image_url:
+    screenshot_url:
       type: string
-    account:
-      "$ref": "./account.yaml#/account"
     created_at:
       type: string
       format: date-time
     updated_at:
       type: string
       format: date-time
+    markers_count:
+      type: integer
   example:
-    id: abcd1234cdef1234abcd1234cdef1234
-    name: My Android Project
-    main_format: xml
-    project_image_url: http://assets.example.com/project.png
-    account: account
+    id: d2e056aa9e70b01121f41693e344f5ee
+    name: A screenshot name
+    description: A screenshot description
+    screenshot_url: http://assets.example.com/screenshot.png
     created_at: '2015-01-28T09:52:53Z'
     updated_at: '2015-01-28T09:52:53Z'
+    markers_count: 0

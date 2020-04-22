@@ -1,0 +1,40 @@
+---
+screenshot_marker:
+  type: object
+  properties:
+    id:
+      type: string
+    presentation:
+      type: string
+    presentation_type:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    translation_key:
+      "$ref": "./translation_key.yaml#/translation_key"
+  example:
+    id: d2e056aa9e70b01121f41693e344f5ee
+    presentation:
+      x: 10
+      y: 10
+      w: 10
+      h: 10
+    presentation_type: default
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'
+    translation_key:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: home.index.headline
+      description: My description for this key...
+      name_hash: 1b31d2580ce324f246f66b3be00ed399
+      plural: false
+      tags:
+      - awesome-feature
+      - needs-proofreading
+      data_type: string
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'

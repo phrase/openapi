@@ -1,0 +1,45 @@
+---
+locale:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    code:
+      type: string
+    default:
+      type: boolean
+    main:
+      type: boolean
+    rtl:
+      type: boolean
+    plural_forms:
+      type: array
+      items:
+        type: string
+    source_locale:
+      "$ref": "./locale_preview.yaml#/locale_preview"
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    name: de
+    code: de-DE
+    default: true
+    main: false
+    rtl: false
+    plural_forms:
+    - zero
+    - one
+    - other
+    source_locale:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: en
+      code: en-GB
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'

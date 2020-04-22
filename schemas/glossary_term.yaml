@@ -1,0 +1,43 @@
+---
+glossary_term:
+  type: object
+  properties:
+    id:
+      type: string
+    term:
+      type: string
+    description:
+      type: string
+    translatable:
+      type: boolean
+    case_sensitive:
+      type: boolean
+    translations:
+      type: array
+      items:
+        "$ref": "./glossary_term_translation.yaml#/glossary_term_translation"
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1233
+    term: Save
+    description: This term is used on the 'Save' buttons of our website
+    translatable: true
+    case_sensitive: true
+    translations:
+    - id: abcd1234cdef1234abcd1234cdef1234
+      locale_code: fr-FR
+      content: Entasser
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+    - id: abcd1234cdef1234abcd1234cdef1235
+      locale_code: de-DE
+      content: Speichern
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'

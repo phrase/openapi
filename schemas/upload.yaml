@@ -1,0 +1,47 @@
+---
+upload:
+  type: object
+  properties:
+    id:
+      type: string
+    filename:
+      type: string
+    format:
+      type: string
+    state:
+      type: string
+    tag:
+      type: string
+    summary:
+      type:
+        locales_created: integer
+        translation_keys_created: integer
+        translation_keys_updated: integer
+        translation_keys_unmentioned: integer
+        translations_created: integer
+        translations_updated: integer
+        tags_created: integer
+        translation_keys_ignored: integer
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    filename: example.json
+    format: json
+    state: success
+    tag: tag
+    summary:
+      locales_created: 2
+      translation_keys_created: 162
+      translation_keys_updated: 10
+      translation_keys_unmentioned: 0
+      translations_created: 291
+      translations_updated: 3
+      tags_created: 2
+      translation_keys_ignored: 0
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'

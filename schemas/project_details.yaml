@@ -1,0 +1,11 @@
+---
+project_details:
+  type: object
+  properties:
+    slug:
+      type: string
+    shares_translation_memory:
+      type: boolean
+  example:
+    slug: my-android-project
+    shares_translation_memory: true

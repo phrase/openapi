@@ -1,0 +1,52 @@
+---
+release_preview:
+  type: object
+  properties:
+    id:
+      type: string
+    version:
+      type: integer
+    app_min_version:
+      type: string
+    app_max_version:
+      type: string
+    description:
+      type: string
+    platforms:
+      type: array
+      items:
+        type: string
+    environments:
+      type: array
+      items:
+        type: string
+    locale_codes:
+      type: array
+      items:
+        type: string
+    project:
+      "$ref": "./project_short.yaml#/project_short"
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    version: 1
+    project:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: My Android Project
+      main_format: xml
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+    platforms:
+    - android
+    environments:
+    - development
+    locale_codes:
+    - de
+    - en
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'

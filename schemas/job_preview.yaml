@@ -1,0 +1,11 @@
+---
+job_preview:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    state:
+      type: string
+  example: 

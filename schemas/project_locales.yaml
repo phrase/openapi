@@ -1,0 +1,13 @@
+---
+project_locales:
+  type: object
+  properties:
+    locales:
+      type: array
+      items:
+        "$ref": "./locale_preview.yaml#/locale_preview"
+  example:
+    locales:
+    - id: abcd1234cdef1234abcd1234cdef1234
+      name: English
+      code: en-GB

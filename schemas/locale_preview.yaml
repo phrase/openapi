@@ -1,0 +1,14 @@
+---
+locale_preview:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    code:
+      type: string
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    name: English
+    code: en-GB

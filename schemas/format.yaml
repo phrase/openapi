@@ -1,0 +1,35 @@
+---
+format:
+  type: object
+  properties:
+    name:
+      type: string
+    api_name:
+      type: string
+    description:
+      type: string
+    extension:
+      type: string
+    default_encoding:
+      type: string
+    importable:
+      type: boolean
+    exportable:
+      type: boolean
+    default_file:
+      type: string
+    renders_default_locale:
+      type: boolean
+    includes_locale_information:
+      type: boolean
+  example:
+    name: Ruby/Rails YAML
+    api_name: yml
+    description: YAML file format for use with Ruby/Rails applications
+    extension: yml
+    default_encoding: UTF-8
+    importable: true
+    exportable: true
+    default_file: "./config/locales/<locale_name>.yml"
+    renders_default_locale: false
+    includes_locale_information: true

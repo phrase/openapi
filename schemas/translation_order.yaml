@@ -1,0 +1,71 @@
+---
+translation_order:
+  type: object
+  properties:
+    id:
+      type: string
+    lsp:
+      type: string
+    amount_in_cents:
+      type: integer
+    currency:
+      type: string
+    message:
+      type: string
+    state:
+      type: string
+    translation_type:
+      type: string
+    progress_percent:
+      type: integer
+    source_locale:
+      "$ref": "./locale_preview.yaml#/locale_preview"
+    target_locales:
+      type: array
+      items:
+        "$ref": "./locale_preview.yaml#/locale_preview"
+    tag:
+      type: string
+    styleguide:
+      "$ref": "./styleguide_preview.yaml#/styleguide_preview"
+    unverify_translations_upon_delivery:
+      type: boolean
+    quality:
+      type: boolean
+    priority:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: 30AB4884
+    lsp: gengo
+    amount_in_cents: 1152
+    currency: usd
+    message: Please make everything sound really nice :)
+    state: confirmed
+    translation_type: pro
+    progress_percent: 50
+    source_locale:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: en
+      code: en-GB
+    target_locales:
+    - id: abcd1234cdef1234abcd1234cdef1234
+      name: de
+      code: de-DE
+    - id: abcd1234cdef1234abcd1234cdef1234
+      name: fr
+      code: fr-FR
+    tag: latest-upload
+    styleguide:
+      id: abcd1234cdef1234abcd1234cdef1234
+      title: My Styleguide
+    unverify_translations_upon_delivery: true
+    quality: true
+    priority: true
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'

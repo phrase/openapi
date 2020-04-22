@@ -1,0 +1,11 @@
+---
+key_preview:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    plural:
+      type: boolean
+  example: 

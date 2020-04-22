@@ -1,17 +1,17 @@
 ---
-project:
+user:
   type: object
   properties:
     id:
       type: string
+    username:
+      type: string
     name:
       type: string
-    main_format:
+    email:
       type: string
-    project_image_url:
+    position:
       type: string
-    account:
-      "$ref": "./account.yaml#/account"
     created_at:
       type: string
       format: date-time
@@ -20,9 +20,9 @@ project:
       format: date-time
   example:
     id: abcd1234cdef1234abcd1234cdef1234
-    name: My Android Project
-    main_format: xml
-    project_image_url: http://assets.example.com/project.png
-    account: account
+    username: joe.doe
+    name: Joe Doe
+    email: joe@phrase.com
+    position: Lead Developer
     created_at: '2015-01-28T09:52:53Z'
     updated_at: '2015-01-28T09:52:53Z'

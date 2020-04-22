@@ -1,0 +1,8 @@
+---
+affected_count:
+  type: object
+  properties:
+    records_affected:
+      type: integer
+  example:
+    records_affected: 96

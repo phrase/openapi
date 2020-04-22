@@ -1,0 +1,11 @@
+---
+translation_version_with_user:
+  type: object
+  properties:
+    user:
+      "$ref": "./user_preview.yaml#/user_preview"
+  example:
+    user:
+      id: abcd1234cdef1234abcd1234cdef1234
+      username: joe.doe
+      name: Joe Doe
