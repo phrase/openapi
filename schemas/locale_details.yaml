@@ -1,15 +1,17 @@
 ---
 locale_details:
-  type: object
-  properties:
-    statistics:
-      "$ref": "./locale_statistics.yaml#/locale_statistics"
-  example:
-    statistics:
-      keys_total_count: 2120
-      keys_untranslated_count: 100
-      words_total_count: 3102102
-      translations_completed_count: 1920
-      translations_unverified_count: 32
-      unverified_words_count: 129
-      missing_words_count: 3920
+  allOf:
+  - "$ref": "./locale.yaml#/locale"
+  - type: object
+    properties:
+      statistics:
+        "$ref": "./locale_statistics.yaml#/locale_statistics"
+    example:
+      statistics:
+        keys_total_count: 2120
+        keys_untranslated_count: 100
+        words_total_count: 3102102
+        translations_completed_count: 1920
+        translations_unverified_count: 32
+        unverified_words_count: 129
+        missing_words_count: 3920

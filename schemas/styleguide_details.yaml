@@ -1,44 +1,46 @@
 ---
 styleguide_details:
-  type: object
-  properties:
-    public_url:
-      type: string
-    audience:
-      type: string
-    target_audience:
-      type: string
-    grammatical_person:
-      type: string
-    vocabulary_type:
-      type: string
-    business:
-      type: string
-    company_branding:
-      type: string
-    formatting:
-      type: string
-    glossary_terms:
-      type: string
-    grammar_consistency:
-      type: string
-    literal_translation:
-      type: string
-    overall_tone:
-      type: string
-    samples:
-      type: string
-  example:
-    public_url: https://phrase.com/styleguide/my-project/26f065cf597be340
-    audience: customer-facing
-    target_audience: teenager
-    grammatical_person: first_person_singular
-    vocabulary_type: technical
-    business: We are a travel site that helps customers find the best hotels and flights.
-    company_branding: ACME Inc. should never be translated.
-    formatting: Never use capital letters
-    glossary_terms: Appartement, cabin, loft
-    grammar_consistency: ''
-    literal_translation: Neutral
-    overall_tone: Tone should be fun and light
-    samples: http://www.myexample.com/my/document/path/to/samples.pdf
+  allOf:
+  - "$ref": "./styleguide.yaml#/styleguide"
+  - type: object
+    properties:
+      public_url:
+        type: string
+      audience:
+        type: string
+      target_audience:
+        type: string
+      grammatical_person:
+        type: string
+      vocabulary_type:
+        type: string
+      business:
+        type: string
+      company_branding:
+        type: string
+      formatting:
+        type: string
+      glossary_terms:
+        type: string
+      grammar_consistency:
+        type: string
+      literal_translation:
+        type: string
+      overall_tone:
+        type: string
+      samples:
+        type: string
+    example:
+      public_url: https://phrase.com/styleguide/my-project/26f065cf597be340
+      audience: customer-facing
+      target_audience: teenager
+      grammatical_person: first_person_singular
+      vocabulary_type: technical
+      business: We are a travel site that helps customers find the best hotels and flights.
+      company_branding: ACME Inc. should never be translated.
+      formatting: Never use capital letters
+      glossary_terms: Appartement, cabin, loft
+      grammar_consistency: ''
+      literal_translation: Neutral
+      overall_tone: Tone should be fun and light
+      samples: http://www.myexample.com/my/document/path/to/samples.pdf

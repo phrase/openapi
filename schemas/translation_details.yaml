@@ -1,14 +1,16 @@
 ---
 translation_details:
-  type: object
-  properties:
-    user:
-      "$ref": "./user_preview.yaml#/user_preview"
-    word_count:
-      type: integer
-  example:
-    user:
-      id: abcd1234cdef1234abcd1234cdef1234
-      username: joe.doe
-      name: Joe Doe
-    word_count: 2
+  allOf:
+  - "$ref": "./translation.yaml#/translation"
+  - type: object
+    properties:
+      user:
+        "$ref": "./user_preview.yaml#/user_preview"
+      word_count:
+        type: integer
+    example:
+      user:
+        id: abcd1234cdef1234abcd1234cdef1234
+        username: joe.doe
+        name: Joe Doe
+      word_count: 2

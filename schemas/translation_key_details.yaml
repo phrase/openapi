@@ -1,36 +1,38 @@
 ---
 translation_key_details:
-  type: object
-  properties:
-    name_plural:
-      type: string
-    comments_count:
-      type: integer
-    max_characters_allowed:
-      type: integer
-    screenshot_url:
-      type: string
-    unformatted:
-      type: boolean
-    xml_space_preserve:
-      type: boolean
-    original_file:
-      type: string
-    format_value_type:
-      type: string
-    creator:
-      "$ref": "./user_preview.yaml#/user_preview"
-  example:
-    name_plural: home.index.headlines
-    comments_count: 2
-    data_type: string
-    max_characters_allowed: 140
-    screenshot_url: http://assets.example.com/screenshot.png
-    unformatted: false
-    xml_space_preserve: false
-    original_file: ''
-    format_value_type: ''
-    creator:
-      id: abcd1234cdef1234abcd1234cdef1234
-      username: joe.doe
-      name: Joe Doe
+  allOf:
+  - "$ref": "./translation_key.yaml#/translation_key"
+  - type: object
+    properties:
+      name_plural:
+        type: string
+      comments_count:
+        type: integer
+      max_characters_allowed:
+        type: integer
+      screenshot_url:
+        type: string
+      unformatted:
+        type: boolean
+      xml_space_preserve:
+        type: boolean
+      original_file:
+        type: string
+      format_value_type:
+        type: string
+      creator:
+        "$ref": "./user_preview.yaml#/user_preview"
+    example:
+      name_plural: home.index.headlines
+      comments_count: 2
+      data_type: string
+      max_characters_allowed: 140
+      screenshot_url: http://assets.example.com/screenshot.png
+      unformatted: false
+      xml_space_preserve: false
+      original_file: ''
+      format_value_type: ''
+      creator:
+        id: abcd1234cdef1234abcd1234cdef1234
+        username: joe.doe
+        name: Joe Doe

@@ -1,8 +1,10 @@
 ---
 account_details:
-  type: object
-  properties:
-    slug:
-      type: string
-  example:
-    slug: company-account
+  allOf:
+  - "$ref": "./account.yaml#/account"
+  - type: object
+    properties:
+      slug:
+        type: string
+    example:
+      slug: company-account

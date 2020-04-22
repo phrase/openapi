@@ -1,31 +1,35 @@
 ---
 tag_with_stats:
-  type: object
-  properties:
-    statistics:
-      type: object
-      properties:
-        locale:
-          $ref: './locale_preview.yaml#/locale_preview'
-        statistics:
+  allOf:
+  - "$ref": "./tag.yaml#/tag"
+  - type: object
+    properties:
+      statistics:
+        type: array
+        items:
           type: object
           properties:
-            keys_total_count:
-              type: integer
-            translations_completed_count:
-              type: integer
-            translations_unverified_count:
-              type: integer
-            keys_untranslated_count:
-              type: integer
-  example:
-    statistics:
-    - locale:
-        id: abcd1234cdef1234abcd1234cdef1234
-        name: de
-        code: de-DE
+            locale:
+              "$ref": "./locale_preview.yaml#/locale_preview"
+            statistics:
+              type: object
+              properties:
+                keys_total_count:
+                  type: integer
+                translations_completed_count:
+                  type: integer
+                translations_unverified_count:
+                  type: integer
+                keys_untranslated_count:
+                  type: integer
+    example:
       statistics:
-        keys_total_count: 12
-        translations_completed_count: 9
-        translations_unverified_count: 11
-        keys_untranslated_count: 3
+      - locale:
+          id: abcd1234cdef1234abcd1234cdef1234
+          name: de
+          code: de-DE
+        statistics:
+          keys_total_count: 12
+          translations_completed_count: 9
+          translations_unverified_count: 11
+          keys_untranslated_count: 3
