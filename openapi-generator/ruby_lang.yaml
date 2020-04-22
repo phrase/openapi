@@ -1,3 +1,12 @@
 '!include': 'shared.yaml'
 generatorName: ruby
 outputDir: clients/ruby
+moduleName: Phrase
+gemName: Phrase
+gemVersion: 1.0.0
+gemDescription: 'Phrase is a translation management platform for software projects.'
+gemSummary: 'You can collaborate on language file translation with your team or order translations through our platform. The API allows you to import locale files, download locale files, tag keys or interact in other ways with the localization data stored in Phrase for your account.'
+gemLicense: 'MIT'
+gemHomepage: 'https://developers.phrase.com/api/'
+gemAuthor: Phrase
+gemAuthorEmail: 'support@phrase.com'
