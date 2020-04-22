@@ -1,3 +1,5 @@
 '!include': 'shared.yaml'
 generatorName: go
 outputDir: clients/go
+packageName: Phrase
+packageVersion: 1.0.0
