@@ -1,0 +1,11 @@
+'!include': 'shared.yaml'
+generatorName: swift4
+outputDir: clients/swift4
+projectName: Phrase
+swiftUseApiNamespace: true
+podAuthors: support@phrase.com
+podDocumentationURL: https://developers.phrase.com
+podLicense: "MIT"
+podVersion: "1.0.0"
+podSource: "{ :git => 'https://github.com/phrase/openapi.git', :branch => 'clients/swift4' }"
+podSummary: Phrase is a translation management platform for software projects.
