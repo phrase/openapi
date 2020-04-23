@@ -1,6 +1,7 @@
 ---
 glossary_term:
   type: object
+  title: glossary_term
   properties:
     id:
       type: string

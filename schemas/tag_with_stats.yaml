@@ -3,6 +3,7 @@ tag_with_stats:
   allOf:
   - "$ref": "./tag.yaml#/tag"
   - type: object
+    title: tag_with_stats
     properties:
       statistics:
         type: array

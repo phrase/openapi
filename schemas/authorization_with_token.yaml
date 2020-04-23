@@ -3,6 +3,7 @@ authorization_with_token:
   allOf:
   - "$ref": "./authorization.yaml#/authorization"
   - type: object
+    title: authorization_with_token
     properties:
       token:
         type: string

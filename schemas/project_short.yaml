@@ -1,6 +1,7 @@
 ---
 project_short:
   type: object
+  title: project_short
   properties:
     id:
       type: string

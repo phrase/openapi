@@ -1,6 +1,7 @@
 ---
 styleguide_preview:
   type: object
+  title: styleguide_preview
   properties:
     id:
       type: string

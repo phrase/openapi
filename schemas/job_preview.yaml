@@ -1,6 +1,7 @@
 ---
 job_preview:
   type: object
+  title: job_preview
   properties:
     id:
       type: string

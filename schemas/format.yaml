@@ -1,6 +1,7 @@
 ---
 format:
   type: object
+  title: format
   properties:
     name:
       type: string

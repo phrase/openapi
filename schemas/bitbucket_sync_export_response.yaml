@@ -1,6 +1,7 @@
 ---
 bitbucket_sync_export_response:
   type: object
+  title: bitbucket_sync_export_response
   properties:
     status_path:
       type: string

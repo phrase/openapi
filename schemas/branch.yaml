@@ -1,6 +1,7 @@
 ---
 branch:
   type: object
+  title: branch
   properties:
     name:
       type: string

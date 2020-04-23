@@ -1,6 +1,7 @@
 ---
 affected_count:
   type: object
+  title: affected_count
   properties:
     records_affected:
       type: integer

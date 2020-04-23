@@ -3,6 +3,7 @@ locale_details:
   allOf:
   - "$ref": "./locale.yaml#/locale"
   - type: object
+    title: locale_details
     properties:
       statistics:
         "$ref": "./locale_statistics.yaml#/locale_statistics"

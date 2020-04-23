@@ -1,6 +1,7 @@
 ---
 tag:
   type: object
+  title: tag
   properties:
     name:
       type: string

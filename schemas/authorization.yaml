@@ -1,6 +1,7 @@
 ---
 authorization:
   type: object
+  title: authorization
   properties:
     id:
       type: string

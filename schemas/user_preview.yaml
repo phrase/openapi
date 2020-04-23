@@ -1,6 +1,7 @@
 ---
 user_preview:
   type: object
+  title: user_preview
   properties:
     id:
       type: string

@@ -3,6 +3,7 @@ project_details:
   allOf:
   - "$ref": "./project.yaml#/project"
   - type: object
+    title: project_details
     properties:
       slug:
         type: string

@@ -3,6 +3,7 @@ translation_key_details:
   allOf:
   - "$ref": "./translation_key.yaml#/translation_key"
   - type: object
+    title: translation_key_details
     properties:
       name_plural:
         type: string

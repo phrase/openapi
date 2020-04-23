@@ -1,6 +1,7 @@
 ---
 comment:
   type: object
+  title: comment
   properties:
     id:
       type: string

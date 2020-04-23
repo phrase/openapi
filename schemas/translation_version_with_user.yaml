@@ -3,6 +3,7 @@ translation_version_with_user:
   allOf:
   - "$ref": "./translation_version.yaml#/translation_version"
   - type: object
+    title: translation_version_with_user
     properties:
       user:
         "$ref": "./user_preview.yaml#/user_preview"

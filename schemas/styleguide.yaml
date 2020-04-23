@@ -1,6 +1,7 @@
 ---
 styleguide:
   type: object
+  title: styleguide
   properties:
     id:
       type: string

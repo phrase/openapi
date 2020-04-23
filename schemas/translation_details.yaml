@@ -3,6 +3,7 @@ translation_details:
   allOf:
   - "$ref": "./translation.yaml#/translation"
   - type: object
+    title: translation_details
     properties:
       user:
         "$ref": "./user_preview.yaml#/user_preview"

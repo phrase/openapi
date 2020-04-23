@@ -1,6 +1,7 @@
 ---
 glossary:
   type: object
+  title: glossary
   properties:
     id:
       type: string

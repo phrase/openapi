@@ -1,6 +1,7 @@
 ---
 translation_key:
   type: object
+  title: translation_key
   properties:
     id:
       type: string

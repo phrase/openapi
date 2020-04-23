@@ -1,6 +1,7 @@
 ---
 job_locale:
   type: object
+  title: job_locale
   properties:
     id:
       type: string

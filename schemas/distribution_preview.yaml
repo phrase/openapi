@@ -1,6 +1,7 @@
 ---
 distribution_preview:
   type: object
+  title: distribution_preview
   properties:
     id:
       type: string

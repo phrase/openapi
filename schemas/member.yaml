@@ -1,6 +1,7 @@
 ---
 member:
   type: object
+  title: member
   properties:
     id:
       type: string

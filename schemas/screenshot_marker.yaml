@@ -1,6 +1,7 @@
 ---
 screenshot_marker:
   type: object
+  title: screenshot_marker
   properties:
     id:
       type: string

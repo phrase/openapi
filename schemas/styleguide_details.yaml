@@ -3,6 +3,7 @@ styleguide_details:
   allOf:
   - "$ref": "./styleguide.yaml#/styleguide"
   - type: object
+    title: styleguide_details
     properties:
       public_url:
         type: string

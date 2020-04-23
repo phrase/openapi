@@ -1,6 +1,7 @@
 ---
 blacklisted_key:
   type: object
+  title: blacklisted_key
   properties:
     id:
       type: string

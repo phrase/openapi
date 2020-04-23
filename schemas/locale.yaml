@@ -1,6 +1,7 @@
 ---
 locale:
   type: object
+  title: locale
   properties:
     id:
       type: string

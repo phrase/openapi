@@ -1,6 +1,7 @@
 ---
 upload:
   type: object
+  title: upload
   properties:
     id:
       type: string

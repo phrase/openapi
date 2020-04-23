@@ -1,6 +1,7 @@
 ---
 translation_version:
   type: object
+  title: translation_version
   properties:
     id:
       type: string

@@ -1,6 +1,7 @@
 ---
 screenshot:
   type: object
+  title: screenshot
   properties:
     id:
       type: string

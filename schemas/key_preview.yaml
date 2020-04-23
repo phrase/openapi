@@ -1,6 +1,7 @@
 ---
 key_preview:
   type: object
+  title: key_preview
   properties:
     id:
       type: string

@@ -3,6 +3,7 @@ job_details:
   allOf:
   - "$ref": "./job.yaml#/job"
   - type: object
+    title: job_details
     properties:
       owner:
         "$ref": "./user_preview.yaml#/user_preview"

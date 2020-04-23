@@ -1,6 +1,7 @@
 ---
 translation:
   type: object
+  title: translation
   properties:
     id:
       type: string

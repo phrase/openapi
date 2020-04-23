@@ -1,6 +1,7 @@
 ---
 locale_statistics:
   type: object
+  title: locale_statistics
   properties:
     keys_total_count:
       type: integer

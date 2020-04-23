@@ -1,6 +1,7 @@
 ---
 project:
   type: object
+  title: project
   properties:
     id:
       type: string

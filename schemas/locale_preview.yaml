@@ -1,6 +1,7 @@
 ---
 locale_preview:
   type: object
+  title: locale_preview
   properties:
     id:
       type: string

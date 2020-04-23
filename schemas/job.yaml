@@ -1,6 +1,7 @@
 ---
 job:
   type: object
+  title: job
   properties:
     id:
       type: string

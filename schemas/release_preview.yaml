@@ -1,6 +1,7 @@
 ---
 release_preview:
   type: object
+  title: release_preview
   properties:
     id:
       type: string

@@ -1,6 +1,7 @@
 ---
 affected_resources:
   type: object
+  title: affected_resources
   properties:
     records_affected:
       type: integer

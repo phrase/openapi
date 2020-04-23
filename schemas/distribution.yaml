@@ -1,6 +1,7 @@
 ---
 distribution:
   type: object
+  title: distribution
   properties:
     id:
       type: string

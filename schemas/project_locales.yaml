@@ -3,6 +3,7 @@ project_locales:
   allOf:
   - "$ref": "./project_short.yaml#/project_short"
   - type: object
+    title: project_locales
     properties:
       locales:
         type: array

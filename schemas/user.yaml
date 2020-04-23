@@ -1,6 +1,7 @@
 ---
 user:
   type: object
+  title: user
   properties:
     id:
       type: string

@@ -3,6 +3,7 @@ account_details:
   allOf:
   - "$ref": "./account.yaml#/account"
   - type: object
+    title: account_details
     properties:
       slug:
         type: string

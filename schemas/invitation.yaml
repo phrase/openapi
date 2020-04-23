@@ -1,6 +1,7 @@
 ---
 invitation:
   type: object
+  title: invitation
   properties:
     id:
       type: string

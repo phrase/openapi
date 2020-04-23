@@ -1,6 +1,7 @@
 ---
 bitbucket_sync:
   type: object
+  title: bitbucket_sync
   properties:
     id:
       type: string

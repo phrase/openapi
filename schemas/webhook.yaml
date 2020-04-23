@@ -1,6 +1,7 @@
 ---
 webhook:
   type: object
+  title: webhook
   properties:
     id:
       type: string

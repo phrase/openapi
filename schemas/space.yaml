@@ -1,6 +1,7 @@
 ---
 space:
   type: object
+  title: space
   properties:
     id:
       type: string
