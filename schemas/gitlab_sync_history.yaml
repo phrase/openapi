@@ -1,0 +1,29 @@
+---
+gitlab_sync_history:
+  type: object
+  title: gitlab_sync_history
+  properties:
+    status:
+      type: integer
+    action:
+      type: string
+    errors:
+      type: array
+      items:
+        type: string
+    date:
+      type: string
+      format: date-time
+    details:
+      type: object
+  example:
+    type: history
+    attributes:
+      status: success
+      action: import
+      errors:
+      - error message one
+      - error message two
+      date: '2015-01-28T12:55:14.000+00:00'
+      details:
+        auto_import: false

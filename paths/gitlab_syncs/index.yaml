@@ -1,0 +1,43 @@
+---
+summary: List GitLab syncs
+description: List all GitLab Sync Settings for which synchronisation with Phrase and GitLab is activated.
+operationId: gitlab_sync/list
+tags:
+- GitLab Sync
+parameters: []
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/gitlab_sync.yaml#/gitlab_sync"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/gitlab_syncs?account_id=abcd1234" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI
+  source: |-
+    phraseapp gitlab_sync list \
+    --account-id abcd1234
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: gitlab_sync/list
+        properties:
+          account_id:
+            description: Account ID to specify the actual account the GitLab Sync should be created in. Required if the requesting user is a member of multiple accounts.
+            type: string
+            example: abcd1234

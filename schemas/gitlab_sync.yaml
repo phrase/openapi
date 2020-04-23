@@ -1,0 +1,41 @@
+---
+gitlab_sync:
+  type: object
+  title: gitlab_sync
+  properties:
+    id:
+      type: string
+    project_id:
+      type: string
+    gitlab_project_id:
+      type: integer
+    gitlab_branch_name:
+      type: string
+    auto_import:
+      type: boolean
+    auto_import_secret:
+      type: string
+    auto_import_url:
+      type: string
+    self_hosted_api_url:
+      type: string
+    last_exported_at:
+      type: string
+      format: date-time
+    last_imported_at:
+      type: string
+      format: date-time
+    last_status:
+      type: string
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    project_id: ft5yufdh1234cdef1234abc5d12d4cdef123
+    gitlab_project_id: 18188930
+    gitlab_branch_name: master
+    auto_import: true
+    auto_import_secret: import_secret
+    auto_import_url: import_url
+    self_hosted_api_url: www.example.com/api/v4
+    last_exported_at: '2015-01-28T12:55:14.000+00:00'
+    last_imported_at: '2015-01-28T12:55:14.000+00:00'
+    last_status: success

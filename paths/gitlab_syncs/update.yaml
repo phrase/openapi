@@ -1,0 +1,60 @@
+---
+summary: Update single Sync Setting
+description: Updates a single GitLab Sync Setting.
+operationId: gitlab_sync/update
+tags:
+- GitLab Sync
+parameters:
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/gitlab_sync.yaml#/gitlab_sync"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/gitlab_syncs/{id}" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PUT \
+      -d '{"account_id":"abcd1234","phrase_project_code":"3456abcd","gitlab_project_id":12345,"gitlab_branch_name":"feature-development"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI
+  source: |-
+    phraseapp gitlab_sync update \
+    --account-id abcd1234 \
+    --phrase-project-code 3456abcd \
+    --gitlab-project-id 12345 \
+    --gitlab-branch-name feature-development
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: gitlab_sync/update
+        properties:
+          account_id:
+            description: Account ID to specify the actual account the GitLab Sync should be created in. Required if the requesting user is a member of multiple accounts.
+            type: string
+            example: abcd1234
+          phrase_project_code:
+            description: Code of the related Phrase Project.
+            type: string
+            example: 3456abcd
+          gitlab_project_id:
+            description: ID of the related GitLab Project.
+            type: string
+            example: 12345
+          gitlab_branch_name:
+            description: Name of the GitLab Branch.
+            type: string
+            example: feature-development
