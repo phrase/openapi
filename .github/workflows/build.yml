@@ -1,0 +1,85 @@
+name: API CLients
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run generate.go
+
+      - name: Deploy Go 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: clients/go
+          FOLDER: clients/go
+
+  build-ruby:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run generate.ruby
+
+      - name: Deploy Ruby 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: clients/ruby
+          FOLDER: clients/ruby
+
+  build-php:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run generate.php
+
+      - name: Deploy PHP 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: clients/php
+          FOLDER: clients/php
+
+  build-typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run generate.typescript
+
+      - name: Deploy Typescript 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: clients/typescript
+          FOLDER: clients/typescript

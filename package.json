@@ -8,7 +8,11 @@
     "watch": "redoc-cli serve ./main.yaml --watch --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings",
     "bundle": "swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml",
     "lint": "swagger-cli validate main.yaml",
-    "generate": "openapi-generator batch openapi-generator/*_lang.yaml"
+    "generate": "openapi-generator batch openapi-generator/*_lang.yaml",
+    "generate.ruby": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/ruby_lang.yaml",
+    "generate.go": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/go_lang.yaml",
+    "generate.php": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/php_lang.yaml",
+    "generate.typescript": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/typescript_lang.yaml"
   },
   "repository": {
     "type": "git",
