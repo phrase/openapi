@@ -12,7 +12,8 @@
     "generate.ruby": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/ruby_lang.yaml",
     "generate.go": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/go_lang.yaml",
     "generate.php": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/php_lang.yaml",
-    "generate.typescript": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/typescript_lang.yaml"
+    "generate.typescript": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/typescript_lang.yaml",
+    "generate.python": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/python_lang.yaml"
   },
   "repository": {
     "type": "git",
