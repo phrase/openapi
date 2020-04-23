@@ -40,6 +40,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: keys/tag
         properties:
           branch:
             description: specify the branch to use

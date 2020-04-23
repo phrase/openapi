@@ -44,6 +44,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: project/update
         properties:
           name:
             description: Name of the project

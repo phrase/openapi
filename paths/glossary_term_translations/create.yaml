@@ -36,6 +36,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: glossary_term_translation/create
         properties:
           locale_code:
             description: Identifies the language for this translation

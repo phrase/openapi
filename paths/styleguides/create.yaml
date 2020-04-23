@@ -45,6 +45,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: styleguide/create
         properties:
           title:
             description: Style guide title

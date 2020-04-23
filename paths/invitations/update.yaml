@@ -41,6 +41,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: invitation/update
         properties:
           role:
             description: Invitiation role, can be any of Manager, Developer, Translator

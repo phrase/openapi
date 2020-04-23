@@ -38,6 +38,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: blacklisted_key/update
         properties:
           name:
             description: Blacklisted key name

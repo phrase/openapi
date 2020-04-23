@@ -31,6 +31,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: branch/compare
         properties:
           name:
             description: Name of the branch

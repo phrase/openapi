@@ -46,6 +46,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: key/create
         properties:
           branch:
             description: specify the branch to use

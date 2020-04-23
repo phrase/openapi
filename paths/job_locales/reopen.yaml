@@ -39,6 +39,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: job_locale/reopen
         properties:
           branch:
             description: specify the branch to use

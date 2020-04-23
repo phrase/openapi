@@ -39,6 +39,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: translation/update
         properties:
           branch:
             description: specify the branch to use

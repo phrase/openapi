@@ -33,6 +33,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: space/create
         properties:
           name:
             description: Name of the space

@@ -34,6 +34,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: authorization/create
         properties:
           note:
             description: A note to help you remember what the access is used for.

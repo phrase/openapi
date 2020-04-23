@@ -41,6 +41,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: locale/update
         properties:
           branch:
             description: specify the branch to use

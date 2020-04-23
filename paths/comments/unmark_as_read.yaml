@@ -35,6 +35,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: comment/mark/unread
         properties:
           branch:
             description: specify the branch to use

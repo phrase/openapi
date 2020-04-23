@@ -38,6 +38,7 @@ requestBody:
     application/json:
       schema:
         type: object
+        title: branch/update
         properties:
           name:
             description: Name of the branch
