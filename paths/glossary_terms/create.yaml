@@ -21,6 +21,36 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/accounts/{account_id}/glossaries/{glossary_id}/terms" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"term":"MyCompany","description":"Use this when refering to our company","translatable":true,"case_sensitive":true}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp glossary_term create
+  source: |-
+    phraseapp glossary_term create \
+    --term MyCompany \
+    --description "Use this when refering to our company" \
+    --translatable true \
+    --case-sensitive true
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          term:
+            description: Glossary term
+            type: string
+            example: MyCompany
+          description:
+            description: Description of term
+            type: string
+            example: Use this when refering to our company
+          translatable:
+            description: Indicates whether the term should be used for all languages or can be translated
+            type: string
+            example: true
+          case_sensitive:
+            description: Indicates whether the term is case sensitive
+            type: string
+            example: true

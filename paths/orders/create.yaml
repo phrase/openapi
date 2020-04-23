@@ -20,6 +20,83 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/orders" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"branch":"my-feature-branch","lsp":"textmaster","source_locale_id":"abcd1234abcd1234abcd1234abcd1234","target_locale_ids":["1234abcd1234abcd1234abcd1234abcd","abcd1234abcd1234abcd1234abcd1234"],"translation_type":"premium","tag":"my-awesome-feature","message":"Please make everything sound really nice :)","styleguide_id":"1234abcd1234abcd1234abcd1234abcd","category":"C021"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp order create
+  source: |-
+    phraseapp order create \
+    --branch my-feature-branch \
+    --lsp textmaster \
+    --source-locale-id abcd1234abcd1234abcd1234abcd1234 \
+    --target-locale-ids "1234abcd1234abcd1234abcd1234abcd,abcd1234abcd1234abcd1234abcd1234" \
+    --translation-type premium \
+    --tag my-awesome-feature \
+    --message "Please make everything sound really nice :)" \
+    --styleguide-id 1234abcd1234abcd1234abcd1234abcd \
+    --category C021
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          lsp:
+            description: Name of the LSP that should process this order. Can be one of gengo, textmaster.
+            type: string
+            example: textmaster
+          source_locale_id:
+            description: Source locale for the order. Can be the name or public id of the source locale. Preferred is the public id.
+            type: string
+            example: abcd1234abcd1234abcd1234abcd1234
+          target_locale_ids:
+            description: List of target locales you want the source content translate to. Can be the name or public id of the target locales. Preferred is the public id.
+            type: string
+            example:
+            - 1234abcd1234abcd1234abcd1234abcd
+            - abcd1234abcd1234abcd1234abcd1234
+          translation_type:
+            description: 'Name of the quality level, availability depends on the LSP. Can be one of:  standard, pro (for orders processed by Gengo) and one of regular, premium, enterprise (for orders processed by TextMaster)'
+            type: string
+            example: premium
+          tag:
+            description: Tag you want to order translations for.
+            type: string
+            example: my-awesome-feature
+          message:
+            description: Message that is displayed to the translators for description.
+            type: string
+            example: Please make everything sound really nice :)
+          styleguide_id:
+            description: Style guide for translators to be sent with the order.
+            type: string
+            example: 1234abcd1234abcd1234abcd1234abcd
+          unverify_translations_upon_delivery:
+            description: Unverify translations upon delivery.
+            type: string
+            example: 
+          include_untranslated_keys:
+            description: Order translations for keys with untranslated content in the selected target locales.
+            type: string
+            example: 
+          include_unverified_translations:
+            description: Order translations for keys with unverified content in the selected target locales.
+            type: string
+            example: 
+          category:
+            description: Category to use (required for orders processed by TextMaster).
+            type: string
+            example: C021
+          quality:
+            description: Extra proofreading option to ensure consistency in vocabulary and style. Only available for orders processed by TextMaster.
+            type: string
+            example: 
+          priority:
+            description: Indicates whether the priority option should be ordered which decreases turnaround time by 30%. Available only for orders processed by TextMaster.
+            type: string
+            example: 

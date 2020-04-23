@@ -19,7 +19,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/branches/{name}/compare" \
+    curl "https://api.phrase.com/projects/{project_id}/branches/{name}/compare?name=my-branch" \
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI
-  source: phraseapp branch compare
+  source: |-
+    phraseapp branch compare \
+    --name my-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: Name of the branch
+            type: string
+            example: my-branch

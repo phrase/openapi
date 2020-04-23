@@ -24,6 +24,48 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{id}" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X PATCH
+      -X PATCH \
+      -F name=My%20Android%20Project \
+      -F main_format=yml \
+      -F shares_translation_memory=true \
+      -F project_image=@/path/to/my/project-screenshot.png \
+      -F account_id=abcd1234
 - lang: CLI
-  source: phraseapp project update
+  source: |-
+    phraseapp project update \
+    --name "My Android Project" \
+    --main-format yml \
+    --shares-translation-memory true \
+    --project-image /path/to/my/project-screenshot.png \
+    --account-id abcd1234
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: Name of the project
+            type: string
+            example: My Android Project
+          main_format:
+            description: Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href="https://help.phrase.com/help/supported-platforms-and-formats">Format Guide</a> or our <a href="#formats">Formats API Endpoint</a>.
+            type: string
+            example: yml
+          shares_translation_memory:
+            description: Indicates whether the project should share the account's translation memory
+            type: string
+            example: true
+          project_image:
+            description: Image to identify the project
+            type: string
+            example: "/path/to/my/project-screenshot.png"
+          remove_project_image:
+            description: Indicates whether the project image should be deleted.
+            type: string
+            example: 
+          account_id:
+            description: Account ID to specify the actual account the project should be created in. Required if the requesting user is a member of multiple accounts.
+            type: string
+            example: abcd1234

@@ -20,6 +20,33 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/accounts/{account_id}/glossaries" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"name":"My glossary","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"]}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp glossary create
+  source: |-
+    phraseapp glossary create \
+    --name "My glossary" \
+    --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
+    --space-ids "abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: Name of the glossary
+            type: string
+            example: My glossary
+          project_ids:
+            description: List of project ids the glossary should be assigned to.
+            type: string
+            example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
+          space_ids:
+            description: List of space ids the glossary should be assigned to.
+            type: string
+            example:
+            - abcd1234abcd1234abcd1234
+            - abcd1234abcd1234abcd1235

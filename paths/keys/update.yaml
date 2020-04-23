@@ -25,6 +25,90 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/keys/{id}" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X PATCH
+      -X PATCH \
+      -F branch=my-feature-branch \
+      -F name=home.index.headline \
+      -F description=Some%20description%20worth%20knowing... \
+      -F name_plural=home.index.headlines \
+      -F data_type=number \
+      -F tags=awesome-feature,needs-proofreading \
+      -F max_characters_allowed=140 \
+      -F screenshot=@/path/to/my/screenshot.png
 - lang: CLI
-  source: phraseapp key update
+  source: |-
+    phraseapp key update \
+    --branch my-feature-branch \
+    --name home.index.headline \
+    --description "Some description worth knowing..." \
+    --name-plural home.index.headlines \
+    --data-type number \
+    --tags awesome-feature,needs-proofreading \
+    --max-characters-allowed 140 \
+    --screenshot /path/to/my/screenshot.png
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          name:
+            description: Key name
+            type: string
+            example: home.index.headline
+          description:
+            description: Key description (usually includes contextual information for translators)
+            type: string
+            example: Some description worth knowing...
+          plural:
+            description: Indicates whether key supports pluralization
+            type: string
+            example: 
+          name_plural:
+            description: Plural name for the key (used in some file formats, e.g. Gettext)
+            type: string
+            example: home.index.headlines
+          data_type:
+            description: 'Type of the key. Can be one of the following: string, number, boolean, array, markdown.'
+            type: string
+            example: number
+          tags:
+            description: List of tags separated by comma to be associated with the key.
+            type: string
+            example: awesome-feature,needs-proofreading
+          max_characters_allowed:
+            description: Max. number of characters translations for this key can have.
+            type: string
+            example: 140
+          screenshot:
+            description: Screenshot/image for the key. This parameter is deprecated. Please use the Screenshots endpoint instead.
+            type: string
+            example: "/path/to/my/screenshot.png"
+          remove_screenshot:
+            description: Indicates whether the screenshot will be deleted. This parameter is deprecated. Please use the Screenshots endpoint instead.
+            type: string
+            example: 
+          unformatted:
+            description: Indicates whether the key should be exported as "unformatted". Supported by Android XML and other formats.
+            type: string
+            example: 
+          xml_space_preserve:
+            description: Indicates whether the key should be exported with "xml:space=preserve". Supported by several XML-based formats.
+            type: string
+            example: 
+          original_file:
+            description: Original file attribute. Used in some formats, e.g. XLIFF.
+            type: string
+            example: 
+          localized_format_string:
+            description: NSStringLocalizedFormatKey attribute. Used in .stringsdict format.
+            type: string
+            example: 
+          localized_format_key:
+            description: NSStringLocalizedFormatKey attribute. Used in .stringsdict format.
+            type: string
+            example: 

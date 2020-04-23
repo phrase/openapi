@@ -20,6 +20,48 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/jobs" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"branch":"my-feature-branch","name":"de","briefing":"de-DE","due_date":"2017-08-15","tags":["myUploadTag"],"translation_key_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp job create
+  source: |-
+    phraseapp job create \
+    --branch my-feature-branch \
+    --name de \
+    --briefing de-DE \
+    --due-date 2017-08-15 \
+    --tags "myUploadTag" \
+    --translation-key-ids "abcd1234cdef1234abcd1234cdef1234"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          name:
+            description: Job name
+            type: string
+            example: de
+          briefing:
+            description: Briefing for the translators
+            type: string
+            example: de-DE
+          due_date:
+            description: Date the job should be finished
+            type: string
+            example: '2017-08-15'
+          tags:
+            description: tags of keys that should be included within the job
+            type: string
+            example:
+            - myUploadTag
+          translation_key_ids:
+            description: ids of keys that should be included within the job
+            type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234

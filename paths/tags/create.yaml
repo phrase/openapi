@@ -20,6 +20,26 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/tags" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"branch":"my-feature-branch","name":"my-feature"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp tag create
+  source: |-
+    phraseapp tag create \
+    --branch my-feature-branch \
+    --name my-feature
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          name:
+            description: Name of the tag
+            type: string
+            example: my-feature

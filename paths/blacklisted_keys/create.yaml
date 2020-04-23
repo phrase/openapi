@@ -20,6 +20,21 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/blacklisted_keys" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"name":"date.formats.*"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp blacklisted_key create
+  source: |-
+    phraseapp blacklisted_key create \
+    --name 'date.formats.*'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: Blacklisted key name
+            type: string
+            example: date.formats.*

@@ -24,6 +24,33 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/authorizations/{id}" \
       -u USERNAME \
-      -X PATCH
+      -X PATCH \
+      -d '{"note":"My Deploy Script","scopes":["read","write"],"expires_at":"2015-03-30T09:52:53Z"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp authorization update
+  source: |-
+    phraseapp authorization update \
+    --note "My Deploy Script" \
+    --scopes "read,write" \
+    --expires-at "2015-03-30T09:52:53Z"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          note:
+            description: A note to help you remember what the access is used for.
+            type: string
+            example: My Deploy Script
+          scopes:
+            description: A list of scopes that the access can be used for.
+            type: string
+            example:
+            - read
+            - write
+          expires_at:
+            description: Expiration date for the authorization token. Null means no expiration date (default).
+            type: string
+            example: '2015-03-30T09:52:53Z'

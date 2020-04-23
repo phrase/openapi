@@ -20,6 +20,21 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/branches" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"name":"my-branch"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp branch create
+  source: |-
+    phraseapp branch create \
+    --name my-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: Name of the branch
+            type: string
+            example: my-branch

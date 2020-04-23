@@ -20,6 +20,88 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/uploads" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -F branch=my-feature-branch \
+      -F file=@/path/to/my/file.json \
+      -F file_format=json \
+      -F locale_id=abcd1234cdef1234abcd1234cdef1234 \
+      -F tags=awesome-feature,needs-proofreading \
+      -F locale_mapping[en]=2 \
+      -F format_options[foo]=bar
 - lang: CLI
-  source: phraseapp upload create
+  source: |-
+    phraseapp upload create \
+    --branch my-feature-branch \
+    --file /path/to/my/file.json \
+    --file-format json \
+    --locale-id abcd1234cdef1234abcd1234cdef1234 \
+    --tags awesome-feature,needs-proofreading \
+    --locale-mapping "{"en": "2"}" \
+    --format-options "{"foo": "bar"}"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          file:
+            description: File to be imported
+            type: string
+            example: "/path/to/my/file.json"
+          file_format:
+            description: File format. Auto-detected when possible and not specified.
+            type: string
+            example: json
+          locale_id:
+            description: Locale of the file's content. Can be the name or public id of the locale. Preferred is the public id.
+            type: string
+            example: abcd1234cdef1234abcd1234cdef1234
+          tags:
+            description: List of tags separated by comma to be associated with the new keys contained in the upload.
+            type: string
+            example: awesome-feature,needs-proofreading
+          update_translations:
+            description: Indicates whether existing translations should be updated with the file content.
+            type: string
+            example: 
+          update_descriptions:
+            description: Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.
+            type: string
+            example: 
+          convert_emoji:
+            description: This option is obsolete. Providing the option will cause a bad request error.
+            type: string
+            example: 
+          skip_upload_tags:
+            description: Indicates whether the upload should not create upload tags.
+            type: string
+            example: 
+          skip_unverification:
+            description: Indicates whether the upload should unverify updated translations.
+            type: string
+            example: 
+          file_encoding:
+            description: Enforces a specific encoding on the file contents. Valid options are "UTF-8", "UTF-16" and "ISO-8859-1".
+            type: string
+            example: 
+          locale_mapping:
+            description: Optional, format specific mapping between locale names and the columns the translations to those locales are contained in.
+            type: string
+            example: '{"en": "2"}'
+          format_options:
+            description: Additional options available for specific formats. See our format guide for complete list.
+            type: string
+            example: '{"foo": "bar"}'
+          autotranslate:
+            description: If set, translations for the uploaded language will be fetched automatically.
+            type: string
+            example: 
+          mark_reviewed:
+            description: Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow (currently beta) is enabled for the project.
+            type: string
+            example: 

@@ -21,6 +21,32 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/jobs/{job_id}/locales" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"branch":"my-feature-branch","locale_id":"abcd1234cdef1234abcd1234cdef1234","user_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp job_locales create
+  source: |-
+    phraseapp job_locales create \
+    --branch my-feature-branch \
+    --locale-id abcd1234cdef1234abcd1234cdef1234 \
+    --user-ids "abcd1234cdef1234abcd1234cdef1234"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          locale_id:
+            description: locale id
+            type: string
+            example: abcd1234cdef1234abcd1234cdef1234
+          user_ids:
+            description: Array of user ids to be assigned to the job locale
+            type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234

@@ -21,6 +21,26 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/keys/{key_id}/comments" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"branch":"my-feature-branch","message":"Some message..."}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp comment create
+  source: |-
+    phraseapp comment create \
+    --branch my-feature-branch \
+    --message "Some message..."
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          message:
+            description: Comment message
+            type: string
+            example: Some message...

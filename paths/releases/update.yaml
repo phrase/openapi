@@ -26,6 +26,33 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/accounts/{account_id}/distributions/{distribution_id}/releases/{id}" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X PATCH
+      -X PATCH \
+      -d '{"description":"My first Release","platforms":["android","ios"],"branch":"my-feature-branch"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp release update
+  source: |-
+    phraseapp release update \
+    --description "My first Release" \
+    --platforms "android,ios" \
+    --branch my-feature-branch
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          description:
+            description: Description of the release
+            type: string
+            example: My first Release
+          platforms:
+            description: List of platforms the release should support.
+            type: string
+            example:
+            - android
+            - ios
+          branch:
+            description: Branch used for release
+            type: string
+            example: my-feature-branch

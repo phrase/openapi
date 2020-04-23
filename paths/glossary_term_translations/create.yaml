@@ -22,6 +22,26 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST
+      -X POST \
+      -d '{"locale_code":"en-US","content":"My translated term"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp glossary_term_translation create
+  source: |-
+    phraseapp glossary_term_translation create \
+    --locale-code en-US \
+    --content "My translated term"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          locale_code:
+            description: Identifies the language for this translation
+            type: string
+            example: en-US
+          content:
+            description: The content of the translation
+            type: string
+            example: My translated term

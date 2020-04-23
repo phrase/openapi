@@ -25,6 +25,53 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/accounts/{account_id}/distributions/{id}" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X PATCH
+      -X PATCH \
+      -d '{"name":"My Android Distribution","project_id":"abcd1234abcd1234abcd1234","platforms":["android","ios"],"format_options":"{xml:{enclose_in_cdata:'1'}}","fallback_to_non_regional_locale":true,"fallback_to_default_locale":true,"use_last_reviewed_version":true}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp distribution update
+  source: |-
+    phraseapp distribution update \
+    --name "My Android Distribution" \
+    --project-id abcd1234abcd1234abcd1234 \
+    --platforms "android,ios" \
+    --format-options "{xml:{enclose_in_cdata:'1'}}" \
+    --fallback-to-non-regional-locale true \
+    --fallback-to-default-locale true \
+    --use-last-reviewed-version true
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: Name of the distribution
+            type: string
+            example: My Android Distribution
+          project_id:
+            description: Project id the distribution should be assigned to.
+            type: string
+            example: abcd1234abcd1234abcd1234
+          platforms:
+            description: List of platforms the distribution should support.
+            type: string
+            example:
+            - android
+            - ios
+          format_options:
+            description: Additional formatting and render options. Only <code>enclose_in_cdata</code> is available for platform <code>android</code>.
+            type: string
+            example: "{xml:{enclose_in_cdata:'1'}}"
+          fallback_to_non_regional_locale:
+            description: Indicates whether to fallback to non regional locale when locale can not be found
+            type: string
+            example: true
+          fallback_to_default_locale:
+            description: Indicates whether to fallback to projects default locale when locale can not be found
+            type: string
+            example: true
+          use_last_reviewed_version:
+            description: Use last reviewed instead of latest translation in a project
+            type: string
+            example: true

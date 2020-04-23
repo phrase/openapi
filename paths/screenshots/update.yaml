@@ -25,6 +25,32 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/screenshots/{id}" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X PATCH
+      -X PATCH \
+      -F name=A%20screenshot%20name \
+      -F description=A%20screenshot%20description \
+      -F filename=@/path/to/my/screenshot.png
 - lang: CLI
-  source: phraseapp screenshot update
+  source: |-
+    phraseapp screenshot update \
+    --name "A screenshot name" \
+    --description "A screenshot description" \
+    --filename /path/to/my/screenshot.png
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: Name of the screenshot
+            type: string
+            example: A screenshot name
+          description:
+            description: Description of the screenshot
+            type: string
+            example: A screenshot description
+          filename:
+            description: Screenshot file
+            type: string
+            example: "/path/to/my/screenshot.png"

@@ -25,6 +25,26 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/screenshots/{screenshot_id}/markers" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X PATCH
+      -X PATCH \
+      -d '{"key_id":"abcd1234abcd1234abcd1234abcd1234","presentation":"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI
-  source: phraseapp screenshot_marker update
+  source: |-
+    phraseapp screenshot_marker update \
+    --key-id abcd1234abcd1234abcd1234abcd1234 \
+    --presentation "{ "x": 100, "y": 100, "w": 100, "h": 100 }"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          key_id:
+            description: Specify the Key ID which should be highlighted on the specified screenshot. The Key must belong to the project.
+            type: string
+            example: abcd1234abcd1234abcd1234abcd1234
+          presentation:
+            description: Presentation details of the screenshot marker in JSON format.<br/><br/>Each Screenshot Marker is represented as a rectangular shaped highlight box with the name of the specified Key attached. You can specify the marker position on the screenshot (<code>x</code>-axis and <code>y</code>-axis in pixels) from the top left corner of the screenshot and the dimensions of the marker itself (<code>w</code> and <code>h</code> in pixels).
+            type: string
+            example: '{ "x": 100, "y": 100, "w": 100, "h": 100 }'
