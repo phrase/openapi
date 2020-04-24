@@ -10,12 +10,7 @@
     "lint": "swagger-cli validate main.yaml",
     "generate": "openapi-generator batch openapi-generator/*_lang.yaml",
     "generate.ruby": "npm run -s lint && npm run -s bundle && openapi-generator generate -i tmp/compiled.yaml -g ruby -o clients/ruby -t ./openapi-generator/templates/ruby-client -c ./openapi-generator/ruby_lang.yaml",
-    "generate.go": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/go_lang.yaml",
-    "generate.php": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/php_lang.yaml",
-    "generate.typescript": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/typescript_lang.yaml",
-    "generate.python": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/python_lang.yaml",
-    "generate.java": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/java_lang.yaml",
-    "generate.swift4": "npm run -s lint && npm run -s bundle && openapi-generator batch openapi-generator/swift4_lang.yaml"
+    "generate.go": "npm run -s lint && npm run -s bundle && openapi-generator generate -i tmp/compiled.yaml -g go -o clients/go -t ./openapi-generator/templates/go -c ./openapi-generator/go_lang.yaml"
   },
   "repository": {
     "type": "git",
