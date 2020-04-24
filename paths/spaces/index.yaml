@@ -17,9 +17,6 @@ responses:
           type: array
           items:
             "$ref": "../../schemas/space.yaml#/space"
-    headers:
-      Link:
-        "$ref": "../../headers.yaml#/Link"
   '400':
     "$ref": "../../responses.yaml#/400"
   '404':
