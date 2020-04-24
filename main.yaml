@@ -59,6 +59,7 @@ x-tagGroups:
   - name: Integrations
     tags:
       - Bitbucket Sync
+      - GitLab Sync
       - Webhooks
       - Distributions
       - Releases
