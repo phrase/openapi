@@ -15,6 +15,9 @@ responses:
           type: array
           items:
             "$ref": "../../schemas/upload.yaml#/upload"
+    headers:
+      Link:
+        "$ref": "../../headers.yaml#/Link"
   '400':
     "$ref": "../../responses.yaml#/400"
   '404':

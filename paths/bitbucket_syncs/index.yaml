@@ -14,6 +14,9 @@ responses:
           type: array
           items:
             "$ref": "../../schemas/bitbucket_sync.yaml#/bitbucket_sync"
+    headers:
+      Link:
+        "$ref": "../../headers.yaml#/Link"
   '400':
     "$ref": "../../responses.yaml#/400"
   '404':

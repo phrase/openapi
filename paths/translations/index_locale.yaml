@@ -7,6 +7,8 @@ tags:
 parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/locale_id"
+- "$ref": "../../parameters.yaml#/page"
+- "$ref": "../../parameters.yaml#/per_page"
 responses:
   '200':
     description: OK
@@ -16,6 +18,9 @@ responses:
           type: array
           items:
             "$ref": "../../schemas/translation.yaml#/translation"
+    headers:
+      Link:
+        "$ref": "../../headers.yaml#/Link"
   '400':
     "$ref": "../../responses.yaml#/400"
   '404':
