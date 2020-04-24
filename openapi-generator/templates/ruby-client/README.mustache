@@ -69,13 +69,12 @@ require '{{{gemName}}}'
   # Configure HTTP basic authorization: {{{name}}}
   config.username = 'YOUR_USERNAME'
   config.password = 'YOUR_PASSWORD'{{/isBasicBasic}}{{#isBasicBearer}}
-  # Configure Bearer authorization{{#bearerFormat}} ({{{.}}}){{/bearerFormat}}: {{{name}}}
+  # Or configure Bearer authorization{{#bearerFormat}} ({{{.}}}){{/bearerFormat}}: {{{name}}}
   config.access_token = 'YOUR_BEARER_TOKEN'{{/isBasicBearer}}{{/isBasic}}{{#isApiKey}}
-  # Configure API key authorization: {{{name}}}
+  # Or configure API key authorization: {{{name}}}
   config.api_key['{{{keyParamName}}}'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['{{{keyParamName}}}'] = 'Bearer'{{/isApiKey}}{{#isOAuth}}
-  # Configure OAuth2 access token for authorization: {{{name}}}
+  config.api_key_prefix['{{{keyParamName}}}'] = 'token'{{/isApiKey}}{{#isOAuth}}
+  # Or configure OAuth2 access token for authorization: {{{name}}}
   config.access_token = 'YOUR ACCESS TOKEN'{{/isOAuth}}
 {{/authMethods}}end
 {{/hasAuthMethods}}
@@ -97,7 +96,9 @@ opts = {
 begin
 {{#summary}}  #{{{.}}}
 {{/summary}}  {{#returnType}}result = {{/returnType}}api_instance.{{{operationId}}}{{#hasParams}}({{#requiredParams}}{{{paramName}}}{{^-last}}, {{/-last}}{{/requiredParams}}{{#optionalParams}}{{#-last}}{{#hasRequiredParams}}, {{/hasRequiredParams}}opts{{/-last}}{{/optionalParams}}){{/hasParams}}{{#returnType}}
-  p result{{/returnType}}
+  pp result{{/returnType}}
+  pp result.next_page?
+  pp result.next_page
 rescue {{{moduleName}}}::ApiError => e
   puts "Exception when calling {{classname}}->{{{operationId}}}: #{e}"
 end

@@ -37,20 +37,6 @@ Put the package under your project folder and add the following in import:
 import "./{{packageName}}"
 ```
 
-## Documentation for API Endpoints
-
-All URIs are relative to *{{basePath}}*
-
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
-{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
-
-## Documentation For Models
-
-{{#models}}{{#model}} - [{{{classname}}}]({{modelDocPath}}{{{classname}}}.md)
-{{/model}}{{/models}}
-
 ## Documentation For Authorization
 
 {{^authMethods}} Endpoints do not require authorization.
@@ -66,7 +52,7 @@ Example
 ```golang
 auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
     Key: "APIKEY",
-    Prefix: "Bearer", // Omit if not necessary.
+    Prefix: "token",
 })
 r, err := client.Service.Operation(auth, args)
 ```
@@ -127,6 +113,50 @@ auth := context.WithValue(context.Background(), sw.ContextAWSv4, sw.AWSv4{
 r, err := client.Service.Operation(auth, args)
 ```
 {{/withAWSV4Signature}}
+
+## Getting Started
+
+```golang
+package main
+
+import (
+	"context"
+	"fmt"
+
+	phrase "github.com/phrase/phrase-go"
+)
+
+func main() {
+	auth := context.WithValue(context.Background(), phrase.ContextAPIKey, phrase.APIKey{
+		Key:    "YOUR_API_TOKEN",
+		Prefix: "token",
+	})
+
+	cfg := phrase.NewConfiguration()
+	client := phrase.NewAPIClient(cfg)
+
+	var projectsListOpts phrase.ProjectsListOpts
+
+	data, api_response, _ := client.ProjectsApi.ProjectsList(auth, &projectsListOpts)
+
+	fmt.Printf("%+v\n", data)
+	fmt.Printf("%+v\n", api_response) // &{Response:0xc00011ccf0 NextPage:2 FirstPage:1 LastPage:4 Rate:{Limit:1000 Remaining:998 Reset:2020-04-25 00:35:00 +0200 CEST}}
+}
+```
+
+## Documentation for API Endpoints
+
+All URIs are relative to *{{basePath}}*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
+{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
+
+## Documentation For Models
+
+{{#models}}{{#model}} - [{{{classname}}}]({{modelDocPath}}{{{classname}}}.md)
+{{/model}}{{/models}}
 
 ## Author
 
