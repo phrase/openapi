@@ -19,6 +19,12 @@ responses:
           items:
             "$ref": "../../schemas/upload.yaml#/upload"
     headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
       Link:
         "$ref": "../../headers.yaml#/Link"
   '400':
