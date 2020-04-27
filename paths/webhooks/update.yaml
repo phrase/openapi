@@ -64,5 +64,5 @@ requestBody:
             example: locales:create,translations:update
           active:
             description: Whether webhook is active or inactive
-            type: string
+            type: boolean
             example: 

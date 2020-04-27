@@ -62,4 +62,5 @@ requestBody:
           filename:
             description: Screenshot file
             type: string
+            format: binary
             example: "/path/to/my/screenshot.png"

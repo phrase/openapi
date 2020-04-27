@@ -60,7 +60,9 @@ requestBody:
             example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
           space_ids:
             description: List of space ids the glossary should be assigned to.
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - abcd1234abcd1234abcd1234
             - abcd1234abcd1234abcd1235

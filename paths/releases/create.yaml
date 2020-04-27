@@ -45,7 +45,9 @@ requestBody:
             example: My first Release
           platforms:
             description: List of platforms the release should support.
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - android
             - ios

@@ -65,7 +65,7 @@ requestBody:
             example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
           permissions:
             description: Additional permissions depending on member role. Available permissions are <code>create_upload</code> and <code>review_translations</code>
-            type: string
+            type: object
             example:
               create_upload: true
               review_translations: true

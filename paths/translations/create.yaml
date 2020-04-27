@@ -61,13 +61,13 @@ requestBody:
             example: 
           unverified:
             description: Indicates whether translation is unverified. Part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Advanced Workflows</a> feature.
-            type: string
+            type: boolean
             example: 
           excluded:
             description: Indicates whether translation is excluded.
-            type: string
+            type: boolean
             example: 
           autotranslate:
             description: Indicates whether the translation should be auto-translated. Responses with status 422 if provided for translation within a non-default locale or the project does not have the Autopilot feature enabled.
-            type: string
+            type: boolean
             example: 

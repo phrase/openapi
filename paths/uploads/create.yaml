@@ -54,6 +54,7 @@ requestBody:
           file:
             description: File to be imported
             type: string
+            format: binary
             example: "/path/to/my/file.json"
           file_format:
             description: File format. Auto-detected when possible and not specified.
@@ -69,23 +70,23 @@ requestBody:
             example: awesome-feature,needs-proofreading
           update_translations:
             description: Indicates whether existing translations should be updated with the file content.
-            type: string
+            type: boolean
             example: 
           update_descriptions:
             description: Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.
-            type: string
+            type: boolean
             example: 
           convert_emoji:
             description: This option is obsolete. Providing the option will cause a bad request error.
-            type: string
+            type: boolean
             example: 
           skip_upload_tags:
             description: Indicates whether the upload should not create upload tags.
-            type: string
+            type: boolean
             example: 
           skip_unverification:
             description: Indicates whether the upload should unverify updated translations.
-            type: string
+            type: boolean
             example: 
           file_encoding:
             description: Enforces a specific encoding on the file contents. Valid options are "UTF-8", "UTF-16" and "ISO-8859-1".
@@ -93,17 +94,17 @@ requestBody:
             example: 
           locale_mapping:
             description: Optional, format specific mapping between locale names and the columns the translations to those locales are contained in.
-            type: string
+            type: object
             example: '{"en": "2"}'
           format_options:
             description: Additional options available for specific formats. See our format guide for complete list.
-            type: string
+            type: object
             example: '{"foo": "bar"}'
           autotranslate:
             description: If set, translations for the uploaded language will be fetched automatically.
-            type: string
+            type: boolean
             example: 
           mark_reviewed:
             description: Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow (currently beta) is enabled for the project.
-            type: string
+            type: boolean
             example: 

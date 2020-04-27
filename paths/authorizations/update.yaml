@@ -55,11 +55,14 @@ requestBody:
             example: My Deploy Script
           scopes:
             description: A list of scopes that the access can be used for.
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - read
             - write
           expires_at:
             description: Expiration date for the authorization token. Null means no expiration date (default).
             type: string
+            format: date-time
             example: '2015-03-30T09:52:53Z'

@@ -52,23 +52,25 @@ requestBody:
             example: abcd1234abcd1234abcd1234
           platforms:
             description: List of platforms the distribution should support.
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - android
             - ios
           format_options:
             description: Additional formatting and render options. Only <code>enclose_in_cdata</code> is available for platform <code>android</code>.
-            type: string
+            type: object
             example: "{xml:{enclose_in_cdata:'1'}}"
           fallback_to_non_regional_locale:
             description: Indicates whether to fallback to non regional locale when locale can not be found
-            type: string
+            type: boolean
             example: true
           fallback_to_default_locale:
             description: Indicates whether to fallback to projects default locale when locale can not be found
-            type: string
+            type: boolean
             example: true
           use_last_reviewed_version:
             description: Use last reviewed instead of latest translation in a project
-            type: string
+            type: boolean
             example: true

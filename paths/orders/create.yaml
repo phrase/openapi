@@ -58,7 +58,9 @@ requestBody:
             example: abcd1234abcd1234abcd1234abcd1234
           target_locale_ids:
             description: List of target locales you want the source content translate to. Can be the name or public id of the target locales. Preferred is the public id.
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - 1234abcd1234abcd1234abcd1234abcd
             - abcd1234abcd1234abcd1234abcd1234
@@ -80,15 +82,15 @@ requestBody:
             example: 1234abcd1234abcd1234abcd1234abcd
           unverify_translations_upon_delivery:
             description: Unverify translations upon delivery.
-            type: string
+            type: boolean
             example: 
           include_untranslated_keys:
             description: Order translations for keys with untranslated content in the selected target locales.
-            type: string
+            type: boolean
             example: 
           include_unverified_translations:
             description: Order translations for keys with unverified content in the selected target locales.
-            type: string
+            type: boolean
             example: 
           category:
             description: Category to use (required for orders processed by TextMaster).
@@ -96,9 +98,9 @@ requestBody:
             example: C021
           quality:
             description: Extra proofreading option to ensure consistency in vocabulary and style. Only available for orders processed by TextMaster.
-            type: string
+            type: boolean
             example: 
           priority:
             description: Indicates whether the priority option should be ordered which decreases turnaround time by 30%. Available only for orders processed by TextMaster.
-            type: string
+            type: boolean
             example: 

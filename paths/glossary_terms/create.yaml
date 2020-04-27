@@ -50,9 +50,9 @@ requestBody:
             example: Use this when refering to our company
           translatable:
             description: Indicates whether the term should be used for all languages or can be translated
-            type: string
+            type: boolean
             example: true
           case_sensitive:
             description: Indicates whether the term is case sensitive
-            type: string
+            type: boolean
             example: true

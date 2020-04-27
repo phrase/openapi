@@ -60,7 +60,7 @@ requestBody:
             example: 3456abcd
           gitlab_project_id:
             description: ID of the related GitLab Project.
-            type: string
+            type: integer
             example: 12345
           gitlab_branch_name:
             description: Name of the GitLab Branch.

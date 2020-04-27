@@ -49,6 +49,8 @@ requestBody:
             example: abcd1234cdef1234abcd1234cdef1234
           user_ids:
             description: Array of user ids to be assigned to the job locale
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - abcd1234cdef1234abcd1234cdef1234

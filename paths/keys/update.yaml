@@ -75,7 +75,7 @@ requestBody:
             example: Some description worth knowing...
           plural:
             description: Indicates whether key supports pluralization
-            type: string
+            type: boolean
             example: 
           name_plural:
             description: Plural name for the key (used in some file formats, e.g. Gettext)
@@ -91,23 +91,24 @@ requestBody:
             example: awesome-feature,needs-proofreading
           max_characters_allowed:
             description: Max. number of characters translations for this key can have.
-            type: string
+            type: integer
             example: 140
           screenshot:
             description: Screenshot/image for the key. This parameter is deprecated. Please use the Screenshots endpoint instead.
             type: string
+            format: binary
             example: "/path/to/my/screenshot.png"
           remove_screenshot:
             description: Indicates whether the screenshot will be deleted. This parameter is deprecated. Please use the Screenshots endpoint instead.
-            type: string
+            type: boolean
             example: 
           unformatted:
             description: Indicates whether the key should be exported as "unformatted". Supported by Android XML and other formats.
-            type: string
+            type: boolean
             example: 
           xml_space_preserve:
             description: Indicates whether the key should be exported with "xml:space=preserve". Supported by several XML-based formats.
-            type: string
+            type: boolean
             example: 
           original_file:
             description: Original file attribute. Used in some formats, e.g. XLIFF.

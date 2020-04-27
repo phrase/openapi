@@ -55,6 +55,8 @@ requestBody:
             example: my-feature-branch
           translation_key_ids:
             description: ids of keys that should added to the job
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - abcd1234cdef1234abcd1234cdef1234

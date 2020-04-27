@@ -65,6 +65,6 @@ requestBody:
             example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
           permissions:
             description: Additional permissions depending on invitation role.
-            type: string
+            type: object
             example:
               create_upload: true

@@ -64,15 +64,16 @@ requestBody:
             example: yml
           shares_translation_memory:
             description: Indicates whether the project should share the account's translation memory
-            type: string
+            type: boolean
             example: true
           project_image:
             description: Image to identify the project
             type: string
+            format: binary
             example: "/path/to/my/project-screenshot.png"
           remove_project_image:
             description: Indicates whether the project image should be deleted.
-            type: string
+            type: boolean
             example: 
           account_id:
             description: Account ID to specify the actual account the project should be created in. Required if the requesting user is a member of multiple accounts.

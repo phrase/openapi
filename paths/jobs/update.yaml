@@ -66,4 +66,5 @@ requestBody:
           due_date:
             description: Date the job should be finished
             type: string
+            format: date-time
             example: '2017-08-15'

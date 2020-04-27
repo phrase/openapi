@@ -56,14 +56,19 @@ requestBody:
           due_date:
             description: Date the job should be finished
             type: string
+            format: date-time
             example: '2017-08-15'
           tags:
             description: tags of keys that should be included within the job
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - myUploadTag
           translation_key_ids:
             description: ids of keys that should be included within the job
-            type: string
+            type: array
+            items:
+              type: string
             example:
             - abcd1234cdef1234abcd1234cdef1234
