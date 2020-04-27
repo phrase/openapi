@@ -162,6 +162,30 @@ or send the access token via the `Authorization` header field:
 
 For more detailed information on authentication, check out the <a href="#authentication">API v2 Authentication Guide</a>.
 
+#### Send via parameter
+
+As JSONP (and other) requests cannot send HTTP Basic Auth credentials, a special query parameter `access_token` can be used:
+
+<pre><code>curl "https://api.phrase.com/v2/projects?access_token=ACCESS_TOKEN"</code></pre>
+
+You should only use this transport method if sending the authentication via header or Basic authentication is not possible.
+
+### Two-Factor-Authentication
+
+Users with Two-Factor-Authentication enabled have to send a valid token along their request with certain authentication methods (such as Basic authentication). The necessity of a Two-Factor-Authentication token is indicated by the `X-PhraseApp-OTP: required; :MFA-type` header in the response. The `:MFA-type`field indicates the source of the token, e.g. `app` (refers to your Authenticator application):
+
+<pre><code>X-PhraseApp-OTP: required; app</code></pre>
+
+To provide a Two-Factor-Authentication token you can simply send it in the header of the request:
+
+<pre><code>curl -H "X-PhraseApp-OTP: MFA-TOKEN" -u EMAIL https://api.phrase.com/v2/projects</code></pre>
+
+Since Two-Factor-Authentication tokens usually expire quickly, we recommend using an alternative authentication method such as OAuth access tokens.
+
+### Multiple Accounts
+
+Some endpoints require the account ID to be specified if the authenticated user is a member of multiple accounts. You can find the eight-digit account ID inside <a href="https://app.phrase.com/" target="_blank">Translation Center</a> by switching to the desired account and then visiting the account details page. If required, you can specify the account just like a normal parameter within the request.
+
 ## Pagination
 
 Endpoints that return a list or resources will usually return paginated results and include 25 items by default. To access further pages, use the `page` parameter:
