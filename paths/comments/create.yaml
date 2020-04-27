@@ -5,6 +5,7 @@ operationId: comment/create
 tags:
 - Comments
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/key_id"
 responses:

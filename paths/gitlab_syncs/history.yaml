@@ -5,6 +5,7 @@ operationId: gitlab_sync/history
 tags:
 - GitLab Sync
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/gitlab_sync_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"

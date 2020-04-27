@@ -1,7 +1,7 @@
 X-PhraseApp-OTP:
   in: header
   name: X-PhraseApp-OTP
-  description: Two-Factor-Authentication token
+  description: Two-Factor-Authentication token (optional)
   required: false
   allowEmptyValue: false
   schema:

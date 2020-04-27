@@ -4,7 +4,8 @@ description: List all GitLab Sync Settings for which synchronisation with Phrase
 operationId: gitlab_sync/list
 tags:
 - GitLab Sync
-parameters: []
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 responses:
   '200':
     description: OK

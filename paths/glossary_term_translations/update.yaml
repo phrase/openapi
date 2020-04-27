@@ -5,6 +5,7 @@ operationId: glossary_term_translation/update
 tags:
 - Glossary Term Translations
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
 - "$ref": "../../parameters.yaml#/glossary_id"
 - "$ref": "../../parameters.yaml#/term_id"

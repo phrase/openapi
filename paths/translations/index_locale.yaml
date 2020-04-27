@@ -5,6 +5,7 @@ operationId: translations/by_locale
 tags:
 - Translations
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/locale_id"
 - "$ref": "../../parameters.yaml#/page"

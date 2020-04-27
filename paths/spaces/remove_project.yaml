@@ -5,6 +5,7 @@ operationId: spaces/projects/delete
 tags:
 - Spaces
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
 - "$ref": "../../parameters.yaml#/space_id"
 - "$ref": "../../parameters.yaml#/id"

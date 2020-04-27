@@ -5,6 +5,7 @@ operationId: space/update
 tags:
 - Spaces
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
 - "$ref": "../../parameters.yaml#/id"
 responses:

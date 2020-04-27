@@ -4,7 +4,8 @@ description: Create a new project.
 operationId: project/create
 tags:
 - Projects
-parameters: []
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 responses:
   '201':
     "$ref": "../../responses.yaml#/201"

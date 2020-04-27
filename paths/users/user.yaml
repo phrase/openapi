@@ -4,7 +4,8 @@ description: Show details for current User.
 operationId: show/user
 tags:
 - Users
-parameters: []
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 responses:
   '200':
     description: OK

@@ -4,7 +4,8 @@ description: List all Bitbucket repositories for which synchronisation with Phra
 operationId: bitbucket_syncs/list
 tags:
 - Bitbucket Sync
-parameters: []
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 responses:
   '200':
     description: OK

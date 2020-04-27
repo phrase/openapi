@@ -5,6 +5,7 @@ operationId: gitlab_sync/export
 tags:
 - GitLab Sync
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/gitlab_sync_id"
 responses:
   '200':

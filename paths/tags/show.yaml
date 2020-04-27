@@ -5,6 +5,7 @@ operationId: tag/show
 tags:
 - Tags
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/name"
 responses:

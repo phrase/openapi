@@ -5,6 +5,7 @@ operationId: gitlab_sync/delete
 tags:
 - GitLab Sync
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/id"
 responses:
   '204':

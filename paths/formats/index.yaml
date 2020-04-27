@@ -4,7 +4,8 @@ description: Get a handy list of all localization file formats supported in Phra
 operationId: formats/list
 tags:
 - Formats
-parameters: []
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 responses:
   '200':
     description: OK

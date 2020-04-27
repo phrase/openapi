@@ -5,6 +5,7 @@ operationId: screenshot_markers/list
 tags:
 - Screenshot Markers
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/id"
 - "$ref": "../../parameters.yaml#/page"

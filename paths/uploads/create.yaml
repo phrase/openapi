@@ -5,6 +5,7 @@ operationId: upload/create
 tags:
 - Uploads
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 responses:
   '201':

@@ -5,6 +5,7 @@ operationId: versions/list
 tags:
 - Versions / History
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/translation_id"
 - "$ref": "../../parameters.yaml#/page"

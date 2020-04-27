@@ -5,6 +5,7 @@ operationId: authorizations/list
 tags:
 - Authorizations
 parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
 responses:
