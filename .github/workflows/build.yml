@@ -12,17 +12,25 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install and Build 🔧
+      - name: Build and Deploy 🚀
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install
           npm run generate.go
-
-      - name: Deploy Go 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: clients/go
-          FOLDER: clients/go
+          git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-go.git clones/go &> /dev/null
+          rsync -a --delete --exclude='.git/' clients/go/ clones/go
+          cd clones/go
+          if [ -n "$(git status --porcelain)" ]; then
+          git config --global user.email "support@phrase.com"
+          git config --global user.name "Phrase"
+          git add .
+          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git push origin master
+          else
+          echo "  No changes, skipping."
+          fi
 
   build-ruby:
     runs-on: ubuntu-latest
@@ -32,14 +40,22 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install and Build 🔧
+      - name: Build and Deploy 🚀
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install
           npm run generate.ruby
-
-      - name: Deploy Ruby 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: clients/ruby
-          FOLDER: clients/ruby
+          git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-ruby.git clones/ruby &> /dev/null
+          rsync -a --delete --exclude='.git/' clients/ruby/ clones/ruby
+          cd clones/ruby
+          if [ -n "$(git status --porcelain)" ]; then
+          git config --global user.email "support@phrase.com"
+          git config --global user.name "Phrase"
+          git add .
+          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git push origin master
+          else
+          echo "  No changes, skipping."
+          fi
