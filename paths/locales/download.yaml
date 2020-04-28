@@ -42,7 +42,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: locale/download
+        title: locale/download/parameters
         properties:
           branch:
             description: specify the branch to use

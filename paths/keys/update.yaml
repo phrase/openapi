@@ -59,7 +59,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: key/update
+        title: key/update/parameters
         properties:
           branch:
             description: specify the branch to use

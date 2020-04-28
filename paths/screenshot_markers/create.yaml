@@ -36,7 +36,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: screenshot_marker/create
+        title: screenshot_marker/create/parameters
         properties:
           key_id:
             description: Specify the Key ID which should be highlighted on the specified screenshot. The Key must belong to the project.

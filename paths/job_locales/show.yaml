@@ -44,7 +44,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: job_locale/show
+        title: job_locale/show/parameters
         properties:
           branch:
             description: specify the branch to use

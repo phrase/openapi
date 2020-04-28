@@ -43,7 +43,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: job/show
+        title: job/show/parameters
         properties:
           branch:
             description: specify the branch to use

@@ -48,7 +48,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: translations/unverify
+        title: translations/unverify/parameters
         properties:
           branch:
             description: specify the branch to use

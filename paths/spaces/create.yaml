@@ -34,7 +34,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: space/create
+        title: space/create/parameters
         properties:
           name:
             description: Name of the space

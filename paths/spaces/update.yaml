@@ -46,7 +46,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: space/update
+        title: space/update/parameters
         properties:
           name:
             description: New name of the space

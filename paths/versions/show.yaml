@@ -44,7 +44,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: version/show
+        title: version/show/parameters
         properties:
           branch:
             description: specify the branch to use

@@ -49,7 +49,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: invitation/update
+        title: invitation/update/parameters
         properties:
           role:
             description: Invitiation role, can be any of Manager, Developer, Translator

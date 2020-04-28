@@ -37,7 +37,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: release/create
+        title: release/create/parameters
         properties:
           description:
             description: Description of the release

@@ -47,7 +47,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: keys/delete
+        title: keys/delete/parameters
         properties:
           branch:
             description: specify the branch to use

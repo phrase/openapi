@@ -40,7 +40,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: distribution/create
+        title: distribution/create/parameters
         properties:
           name:
             description: Name of the distribution

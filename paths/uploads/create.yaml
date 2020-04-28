@@ -45,7 +45,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: upload/create
+        title: upload/create/parameters
         properties:
           branch:
             description: specify the branch to use
