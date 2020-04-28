@@ -97,14 +97,7 @@ components:
     $ref: "./headers.yaml"
 
   schemas:
-    account:
-      $ref: "./schemas/account.yaml#/account"
-    project:
-      $ref: "./schemas/project.yaml#/project"
-    space:
-      $ref: "./schemas/space.yaml#/space"
-    errors:
-      $ref: "./schemas/errors.yaml#/errors"
+    $ref: "./schemas.yaml#/schemas"
 
   parameters:
     $ref: "./parameters.yaml"
