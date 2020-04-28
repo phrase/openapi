@@ -3,14 +3,15 @@
   "version": "2.0.0",
   "description": "Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform.",
   "scripts": {
-    "start": "npm run -s lint && npm run -s bundle && npm run -s generate && echo \"Clients library genrated, check clients directory.\"",
+    "start": "run-s lint bundle generate && echo \"Clients library genrated, check clients directory.\"",
     "doc": "redoc-cli bundle -o doc/index.html ./main.yaml --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings",
     "watch": "redoc-cli serve ./main.yaml --watch --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings",
     "bundle": "swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml",
     "lint": "swagger-cli validate main.yaml",
     "generate": "openapi-generator batch openapi-generator/*_lang.yaml",
-    "generate.ruby": "npm run -s lint && npm run -s bundle && openapi-generator generate -i tmp/compiled.yaml -g ruby -o clients/ruby -t ./openapi-generator/templates/ruby-client -c ./openapi-generator/ruby_lang.yaml",
-    "generate.go": "npm run -s lint && npm run -s bundle && openapi-generator generate -i tmp/compiled.yaml -g go -o clients/go -t ./openapi-generator/templates/go -c ./openapi-generator/go_lang.yaml"
+    "generate.ruby": "run-s lint bundle && openapi-generator generate -i tmp/compiled.yaml -g ruby -o clients/ruby -t ./openapi-generator/templates/ruby-client -c ./openapi-generator/ruby_lang.yaml",
+    "generate.go": "run-s lint bundle && openapi-generator generate -i tmp/compiled.yaml -g go -o clients/go -t ./openapi-generator/templates/go -c ./openapi-generator/go_lang.yaml",
+    "generate.cli": "run-s lint bundle && openapi-generator generate -i tmp/compiled.yaml -g go -o tmp/cli -t ./openapi-generator/templates/cli -c ./openapi-generator/cli_lang.yaml && cp tmp/cli/api_* clients/cli/cmd/ && cp tmp/cli/README.md clients/cli/"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "@apidevtools/swagger-cli": "^4.0.2",
     "@openapitools/openapi-generator-cli": "^1.0.12-4.3.0",
     "husky": "^4.2.5",
+    "npm-run-all": "^4.1.5",
     "redoc-cli": "^0.9.7"
   },
   "husky": {

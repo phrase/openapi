@@ -1,0 +1,96 @@
+package cmd
+
+{{#operations}}
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	helpers "github.com/phrase/phrase-cli/helpers"
+	api "github.com/phrase/phrase-go"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+)
+
+func init() {
+	{{#operation}}
+	init{{{nickname}}}()
+	{{/operation}}
+
+	rootCmd.AddCommand({{#lambda.camelcase}}{{{classname}}}{{/lambda.camelcase}}Cmd)
+}
+
+var {{#lambda.camelcase}}{{{classname}}}{{/lambda.camelcase}}Cmd = &cobra.Command{
+	// this weird approach is due to mustache template limitations
+	Use:   strings.TrimSuffix("{{#lambda.lowercase}}{{{classname}}}{{/lambda.lowercase}}", "api"),
+	Short: strings.Join([]string{strings.TrimSuffix("{{classname}}", "Api"), "API"}, " "),
+}
+
+
+{{#operation}}
+func init{{{nickname}}}() {
+	params := viper.New()
+	var {{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}} = &cobra.Command{
+		// this weird approach is due to mustache template limitations
+		Use:   helpers.ToSnakeCase(strings.TrimPrefix(strings.TrimPrefix("{{nickname}}", strings.TrimSuffix("{{classname}}", "Api")), strings.TrimSuffix(strings.TrimSuffix("{{classname}}", "Api"), "s"))),
+		Short: "{{#summary}}{{{.}}}{{/summary}}{{^summary}}Method for {{operationId}}{{/summary}}",
+		Long:  `{{#notes}}{{notes}}{{/notes}}`,
+		Run: func(cmd *cobra.Command, args []string) {
+			// Do Stuff Here
+			auth := context.WithValue(context.Background(), api.ContextAPIKey, api.APIKey{
+				Key:    viper.GetString("access_token"),
+				Prefix: "token",
+			})
+
+			cfg := api.NewConfiguration()
+			client := api.NewAPIClient(cfg)
+
+			{{#hasOptionalParams}}localVarOptionals := api.{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts{}{{/hasOptionalParams}}
+
+			{{#allParams}}{{#required}}
+			{{#isPrimitiveType}}
+			{{paramName}} := params.Get{{#lambda.titlecase}}{{dataType}}{{/lambda.titlecase}}("{{paramName}}")
+			{{/isPrimitiveType}}
+			{{^isPrimitiveType}}
+			{{paramName}} := api.{{{dataType}}}{}
+			{{/isPrimitiveType}}
+			{{/required}}{{/allParams}}
+
+			{{#returnType}}data, {{/returnType}}api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
+
+			{{#returnType}}
+			jsonBuf, jsonErr := json.MarshalIndent(data, "", " ")
+			if jsonErr != nil {
+				fmt.Printf("%v\n", data)
+				HandleError(err)
+			}
+
+			fmt.Printf("%s\n", string(jsonBuf))
+			{{/returnType}}
+			if err != nil {
+				HandleError(err)
+			}
+
+			if Debug {
+				fmt.Printf("%+v\n", api_response) // &{Response:0xc00011ccf0 NextPage:2 FirstPage:1 LastPage:4 Rate:{Limit:1000 Remaining:998 Reset:2020-04-25 00:35:00 +0200 CEST}}
+			}
+		},
+	}
+
+	{{#lambda.camelcase}}{{{classname}}}{{/lambda.camelcase}}Cmd.AddCommand({{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}})
+
+	{{#allParams}}{{#required}}
+	{{#isPrimitiveType}}
+	AddFlag({{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}}, "{{{dataType}}}", "{{paramName}}", "", "ID")
+	{{/isPrimitiveType}}
+	{{^isPrimitiveType}}
+	// {{paramName}} := api.{{{dataType}}}{}
+	{{/isPrimitiveType}}
+	{{/required}}{{/allParams}}
+
+	params.BindPFlags({{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}}.Flags())
+}
+
+{{/operation}}
+{{/operations}}
