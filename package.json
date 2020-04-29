@@ -3,15 +3,14 @@
   "version": "2.0.0",
   "description": "Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform.",
   "scripts": {
-    "start": "run-s lint bundle generate && echo \"Clients library genrated, check clients directory.\"",
-    "doc": "redoc-cli bundle -o doc/index.html ./main.yaml --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings",
-    "watch": "redoc-cli serve ./main.yaml --watch --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings",
-    "bundle": "swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml",
-    "lint": "swagger-cli validate main.yaml",
-    "generate": "openapi-generator batch openapi-generator/*_lang.yaml",
-    "generate.ruby": "run-s lint bundle && openapi-generator generate -i tmp/compiled.yaml -g ruby -o clients/ruby -t ./openapi-generator/templates/ruby-client -c ./openapi-generator/ruby_lang.yaml",
-    "generate.go": "run-s lint bundle && openapi-generator generate -i tmp/compiled.yaml -g go -o clients/go -t ./openapi-generator/templates/go -c ./openapi-generator/go_lang.yaml",
-    "generate.cli": "run-s lint bundle && openapi-generator generate -i tmp/compiled.yaml -g go -o tmp/cli -t ./openapi-generator/templates/cli -c ./openapi-generator/cli_lang.yaml && cp tmp/cli/api_* clients/cli/cmd/ && cp tmp/cli/README.md clients/cli/"
+    "start": "make",
+    "doc": "make lint doc",
+    "watch": "make lint watch",
+    "bundle": "make lint bundle",
+    "lint": "make lint",
+    "generate.ruby": "make lint bundle ruby",
+    "generate.go": "make lint bundle go",
+    "generate.cli": "make lint bundle cli"
   },
   "repository": {
     "type": "git",
