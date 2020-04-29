@@ -7,7 +7,11 @@ import (
 	"github.com/spf13/viper"
 )
 
-func ConfigFile(cfgFile string) (*viper.Viper, error) {
+type Config struct {
+	AccessToken string `mapstructure:"access_token"`
+}
+
+func ConfigFile(cfgFile string) (*Config, error) {
 	if cfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
@@ -36,13 +40,21 @@ func ConfigFile(cfgFile string) (*viper.Viper, error) {
 		}
 	}
 
-	config := viper.Sub("phrase")
-	if config == nil {
-		config = viper.Sub("phraseapp")
-		if config == nil {
+	var config Config
+
+	if viper.IsSet("phrase") {
+		if err := viper.UnmarshalKey("phrase", &config); err != nil {
+			return nil, errors.New("Invalid config file structure. 2")
+		}
+	} else {
+		if viper.IsSet("phraseapp") {
+			if err := viper.UnmarshalKey("phraseapp", &config); err != nil {
+				return nil, errors.New("Invalid config file structure. 2")
+			}
+		} else {
 			return nil, errors.New("Invalid config file structure. 3")
 		}
 	}
 
-	return config, nil
+	return &config, nil
 }
