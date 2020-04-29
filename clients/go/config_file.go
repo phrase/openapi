@@ -35,7 +35,7 @@ func ConfigFile(cfgFile string) (*Config, error) {
 		if err := viper.ReadInConfig(); err != nil {
 			viper.SetConfigName(".phraseapp")
 			if err := viper.MergeInConfig(); err != nil {
-				return nil, errors.New("Invalid config file structure. 2")
+				return nil, errors.New("Invalid config file structure.")
 			}
 		}
 	}
@@ -44,15 +44,15 @@ func ConfigFile(cfgFile string) (*Config, error) {
 
 	if viper.IsSet("phrase") {
 		if err := viper.UnmarshalKey("phrase", &config); err != nil {
-			return nil, errors.New("Invalid config file structure. 2")
+			return nil, errors.New("Invalid config file structure.")
 		}
 	} else {
 		if viper.IsSet("phraseapp") {
 			if err := viper.UnmarshalKey("phraseapp", &config); err != nil {
-				return nil, errors.New("Invalid config file structure. 2")
+				return nil, errors.New("Invalid config file structure.")
 			}
 		} else {
-			return nil, errors.New("Invalid config file structure. 3")
+			return nil, errors.New("Invalid config file structure.")
 		}
 	}
 
