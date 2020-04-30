@@ -57,9 +57,8 @@ func init{{{nickname}}}() {
 			{{/isPrimitiveType}}
 			{{/required}}{{/allParams}}
 
-			{{#returnType}}data, {{/returnType}}api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
+			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
 
-			{{#returnType}}
 			jsonBuf, jsonErr := json.MarshalIndent(data, "", " ")
 			if jsonErr != nil {
 				fmt.Printf("%v\n", data)
@@ -67,7 +66,6 @@ func init{{{nickname}}}() {
 			}
 
 			fmt.Printf("%s\n", string(jsonBuf))
-			{{/returnType}}
 			if err != nil {
 				HandleError(err)
 			}
