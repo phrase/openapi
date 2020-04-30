@@ -302,7 +302,19 @@ func TestConfigPath_NoConfigAvailable(t *testing.T) {
 func TestParseConfig(t *testing.T) {
 	os.Setenv("PHRASEAPP_CONFIG", os.ExpandEnv("$GOPATH/src/github.com/phrase/phrase-go/testdata/config_files/.phrase.yml"))
 	defer os.Unsetenv("PHRASEAPP_CONFIG")
-	config, err := ReadConfig()
+	config, err := ReadConfig("")
+	if err != nil {
+		t.Error(err)
+	}
+
+	if config.Token != "123" {
+		t.Errorf("Got %s, expected %s", config.Token, "123")
+	}
+}
+
+func TestParseConfig_fromPath(t *testing.T) {
+	path := os.ExpandEnv("$GOPATH/src/github.com/phrase/phrase-go/testdata/random.yml")
+	config, err := ReadConfig(path)
 	if err != nil {
 		t.Error(err)
 	}
@@ -315,7 +327,7 @@ func TestParseConfig(t *testing.T) {
 func TestParseConfig_LegacyPhraseApp(t *testing.T) {
 	os.Setenv("PHRASEAPP_CONFIG", os.ExpandEnv("$GOPATH/src/github.com/phrase/phrase-go/testdata/config_files/.phraseapp.yml"))
 	defer os.Unsetenv("PHRASEAPP_CONFIG")
-	config, err := ReadConfig()
+	config, err := ReadConfig("")
 	if err != nil {
 		t.Error(err)
 	}

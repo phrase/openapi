@@ -38,9 +38,9 @@ type Config struct {
 var configNames = []string{".phrase.yml", ".phraseapp.yml"}
 
 // ReadConfig reads a .phrase.yml config file
-func ReadConfig() (*Config, error) {
+func ReadConfig(cfgFilePath string) (*Config, error) {
 	rawCfg := map[string]*Config{}
-	content, err := configContent()
+	content, err := configContent(cfgFilePath)
 	switch {
 	case err != nil:
 		return nil, err
@@ -63,8 +63,17 @@ func ReadConfig() (*Config, error) {
 	}
 }
 
-func configContent() ([]byte, error) {
-	path, err := configPath()
+func configContent(cfgFilePath string) ([]byte, error) {
+	var path string
+	var err error
+
+	if cfgFilePath != "" {
+		path = cfgFilePath
+		err = nil
+	} else {
+		path, err = configPath()
+	}
+
 	switch {
 	case err != nil:
 		return nil, err
