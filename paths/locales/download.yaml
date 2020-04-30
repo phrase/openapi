@@ -8,6 +8,90 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/id"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+- description: File format name. See the format guide for all supported file formats.
+  example: yml
+  name: file_format
+  in: query
+  schema:
+    type: string
+- description: Limit results to keys tagged with a list of comma separated tag names.
+  example: feature1,feature2
+  name: tags
+  in: query
+  schema:
+    type: string
+- description: Limit download to tagged keys. This parameter is deprecated. Please use the "tags" parameter instead
+  example: feature
+  name: tag
+  in: query
+  schema:
+    type: string
+- description: Indicates whether keys without translations should be included in the output as well.
+  example: 
+  name: include_empty_translations
+  in: query
+  schema:
+    type: boolean
+- description: Include translated keys in the locale file. Use in combination with include_empty_translations to obtain only untranslated keys.
+  example: 
+  name: include_translated_keys
+  in: query
+  schema:
+    type: boolean
+- description: Indicates whether [NOTRANSLATE] tags should be kept.
+  example: 
+  name: keep_notranslate_tags
+  in: query
+  schema:
+    type: boolean
+- description: This option is obsolete. Projects that were created on or after Nov 29th 2019 or that did not contain emoji by then will not require this flag any longer since emoji are now supported natively.
+  example: 
+  name: convert_emoji
+  in: query
+  schema:
+    type: boolean
+- description: 'Additional formatting and render options. See the <a href="https://help.phrase.com/help/supported-platforms-and-formats">format guide</a> for a list of options available for each format. Specify format options like this: <code>...&format_options[foo]=bar</code>'
+  example: 
+  name: format_options
+  in: query
+  schema:
+    type: object
+- description: Enforces a specific encoding on the file contents. Valid options are "UTF-8", "UTF-16" and "ISO-8859-1".
+  example: 
+  name: encoding
+  in: query
+  schema:
+    type: string
+- description: Indicates whether the locale file should skip all unverified translations. This parameter is deprecated and should be replaced with <code>include_unverified_translations</code>.
+  example: 
+  name: skip_unverified_translations
+  in: query
+  schema:
+    type: boolean
+- description: if set to false unverified translations are excluded
+  example: 
+  name: include_unverified_translations
+  in: query
+  schema:
+    type: boolean
+- description: If set to true the last reviewed version of a translation is used. This is only available if the review workflow (currently in beta) is enabled for the project.
+  example: 
+  name: use_last_reviewed_version
+  in: query
+  schema:
+    type: boolean
+- description: If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.
+  example: 
+  name: fallback_locale_id
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -36,67 +120,3 @@ x-code-samples:
     --file-format yml \
     --tags feature1,feature2 \
     --tag feature
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: locale/download/parameters
-        properties:
-          branch:
-            description: specify the branch to use
-            type: string
-            example: my-feature-branch
-          file_format:
-            description: File format name. See the format guide for all supported file formats.
-            type: string
-            example: yml
-          tags:
-            description: Limit results to keys tagged with a list of comma separated tag names.
-            type: string
-            example: feature1,feature2
-          tag:
-            description: Limit download to tagged keys. This parameter is deprecated. Please use the "tags" parameter instead
-            type: string
-            example: feature
-          include_empty_translations:
-            description: Indicates whether keys without translations should be included in the output as well.
-            type: boolean
-            example: 
-          include_translated_keys:
-            description: Include translated keys in the locale file. Use in combination with include_empty_translations to obtain only untranslated keys.
-            type: boolean
-            example: 
-          keep_notranslate_tags:
-            description: Indicates whether [NOTRANSLATE] tags should be kept.
-            type: boolean
-            example: 
-          convert_emoji:
-            description: This option is obsolete. Projects that were created on or after Nov 29th 2019 or that did not contain emoji by then will not require this flag any longer since emoji are now supported natively.
-            type: boolean
-            example: 
-          format_options:
-            description: 'Additional formatting and render options. See the <a href="https://help.phrase.com/help/supported-platforms-and-formats">format guide</a> for a list of options available for each format. Specify format options like this: <code>...&format_options[foo]=bar</code>'
-            type: object
-            example: 
-          encoding:
-            description: Enforces a specific encoding on the file contents. Valid options are "UTF-8", "UTF-16" and "ISO-8859-1".
-            type: string
-            example: 
-          skip_unverified_translations:
-            description: Indicates whether the locale file should skip all unverified translations. This parameter is deprecated and should be replaced with <code>include_unverified_translations</code>.
-            type: boolean
-            example: 
-          include_unverified_translations:
-            description: if set to false unverified translations are excluded
-            type: boolean
-            example: 
-          use_last_reviewed_version:
-            description: If set to true the last reviewed version of a translation is used. This is only available if the review workflow (currently in beta) is enabled for the project.
-            type: boolean
-            example: 
-          fallback_locale_id:
-            description: If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.
-            type: string
-            example: 

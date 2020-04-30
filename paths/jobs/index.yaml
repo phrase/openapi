@@ -9,6 +9,30 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+- description: filter by user owning job
+  example: abcd1234cdef1234abcd1234cdef1234
+  name: owned_by
+  in: query
+  schema:
+    type: string
+- description: filter by user assigned to job
+  example: abcd1234cdef1234abcd1234cdef1234
+  name: assigned_to
+  in: query
+  schema:
+    type: string
+- description: filter by state of job Valid states are <code>draft</code>, <code>in_progress</code>, <code>completed</code>
+  example: completed
+  name: state
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -45,27 +69,3 @@ x-code-samples:
     --owned-by abcd1234cdef1234abcd1234cdef1234 \
     --assigned-to abcd1234cdef1234abcd1234cdef1234 \
     --state completed
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: jobs/list/parameters
-        properties:
-          branch:
-            description: specify the branch to use
-            type: string
-            example: my-feature-branch
-          owned_by:
-            description: filter by user owning job
-            type: string
-            example: abcd1234cdef1234abcd1234cdef1234
-          assigned_to:
-            description: filter by user assigned to job
-            type: string
-            example: abcd1234cdef1234abcd1234cdef1234
-          state:
-            description: filter by state of job Valid states are <code>draft</code>, <code>in_progress</code>, <code>completed</code>
-            type: string
-            example: completed

@@ -9,6 +9,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/gitlab_sync_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
+- description: Account ID to specify the actual account the GitLab Sync should be created in. Required if the requesting user is a member of multiple accounts.
+  example: abcd1234
+  name: account_id
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -42,15 +48,3 @@ x-code-samples:
   source: |-
     phraseapp gitlab_sync history \
     --account-id abcd1234
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: gitlab_sync/history/parameters
-        properties:
-          account_id:
-            description: Account ID to specify the actual account the GitLab Sync should be created in. Required if the requesting user is a member of multiple accounts.
-            type: string
-            example: abcd1234

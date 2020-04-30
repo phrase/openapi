@@ -8,6 +8,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/name"
+- description: Name of the branch
+  example: my-branch
+  name: name
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -33,15 +39,3 @@ x-code-samples:
   source: |-
     phraseapp branch compare \
     --name my-branch
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: branch/compare/parameters
-        properties:
-          name:
-            description: Name of the branch
-            type: string
-            example: my-branch

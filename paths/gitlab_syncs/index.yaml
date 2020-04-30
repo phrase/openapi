@@ -6,6 +6,12 @@ tags:
 - GitLab Sync
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- description: Account ID to specify the actual account the GitLab Sync should be created in. Required if the requesting user is a member of multiple accounts.
+  example: abcd1234
+  name: account_id
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -39,15 +45,3 @@ x-code-samples:
   source: |-
     phraseapp gitlab_sync list \
     --account-id abcd1234
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: gitlab_sync/list/parameters
-        properties:
-          account_id:
-            description: Account ID to specify the actual account the GitLab Sync should be created in. Required if the requesting user is a member of multiple accounts.
-            type: string
-            example: abcd1234

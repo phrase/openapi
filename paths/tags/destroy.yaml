@@ -8,6 +8,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/name"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
 responses:
   '204':
     "$ref": "../../responses.yaml#/204"
@@ -29,15 +35,3 @@ x-code-samples:
   source: |-
     phraseapp tag delete \
     --branch my-feature-branch
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: tag/delete/parameters
-        properties:
-          branch:
-            description: specify the branch to use
-            type: string
-            example: my-feature-branch

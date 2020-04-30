@@ -9,6 +9,30 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+- description: 'Sort criteria. Can be one of: key_name, created_at, updated_at.'
+  example: updated_at
+  name: sort
+  in: query
+  schema:
+    type: string
+- description: 'Order direction. Can be one of: asc, desc.'
+  example: desc
+  name: order
+  in: query
+  schema:
+    type: string
+- description: q_description_placeholder
+  example: PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center
+  name: q
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -45,27 +69,3 @@ x-code-samples:
     --sort updated_at \
     --order desc \
     --query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: translations/list/parameters
-        properties:
-          branch:
-            description: specify the branch to use
-            type: string
-            example: my-feature-branch
-          sort:
-            description: 'Sort criteria. Can be one of: key_name, created_at, updated_at.'
-            type: string
-            example: updated_at
-          order:
-            description: 'Order direction. Can be one of: asc, desc.'
-            type: string
-            example: desc
-          q:
-            description: q_description_placeholder
-            type: string
-            example: PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center

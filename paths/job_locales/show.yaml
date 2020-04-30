@@ -9,6 +9,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/job_id"
 - "$ref": "../../parameters.yaml#/id"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -38,15 +44,3 @@ x-code-samples:
   source: |-
     phraseapp job_locale show \
     --branch my-feature-branch
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: job_locale/show/parameters
-        properties:
-          branch:
-            description: specify the branch to use
-            type: string
-            example: my-feature-branch

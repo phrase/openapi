@@ -7,6 +7,24 @@ tags:
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+- description: q_description_placeholder
+  example: mykey* translated:true
+  name: q
+  in: query
+  schema:
+    type: string
+- description: Locale used to determine the translation state of a key when filtering for untranslated or translated keys.
+  example: abcd1234abcd1234abcd1234abcd1234
+  name: locale_id
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -41,23 +59,3 @@ x-code-samples:
     --branch my-feature-branch \
     --query 'mykey* translated:true' \
     --locale-id abcd1234abcd1234abcd1234abcd1234
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: keys/delete/parameters
-        properties:
-          branch:
-            description: specify the branch to use
-            type: string
-            example: my-feature-branch
-          q:
-            description: q_description_placeholder
-            type: string
-            example: mykey* translated:true
-          locale_id:
-            description: Locale used to determine the translation state of a key when filtering for untranslated or translated keys.
-            type: string
-            example: abcd1234abcd1234abcd1234abcd1234

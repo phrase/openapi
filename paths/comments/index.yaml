@@ -10,6 +10,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/key_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -43,15 +49,3 @@ x-code-samples:
   source: |-
     phraseapp comments list \
     --branch my-feature-branch
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: comments/list/parameters
-        properties:
-          branch:
-            description: specify the branch to use
-            type: string
-            example: my-feature-branch
