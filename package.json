@@ -4,7 +4,7 @@
   "description": "Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform.",
   "scripts": {
     "start": "make",
-    "doc": "make lint doc",
+    "docs": "make lint docs",
     "watch": "make lint watch",
     "bundle": "make lint bundle",
     "lint": "make lint",
