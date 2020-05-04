@@ -11,6 +11,7 @@
     "generate.ruby": "make lint bundle ruby",
     "generate.go": "make lint bundle go",
     "generate.typescript": "make lint bundle typescript",
+    "generate.python": "make lint bundle python",
     "generate.cli": "make lint bundle cli"
   },
   "repository": {

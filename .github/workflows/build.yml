@@ -115,3 +115,31 @@ jobs:
           else
           echo "  No changes, skipping."
           fi
+
+  build-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Build and Deploy 🚀
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install
+          npm run generate.python
+          git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-python.git clones/python &> /dev/null
+          rsync -a --delete --exclude='.git/' clients/python/ clones/python
+          cd clones/python
+          if [ -n "$(git status --porcelain)" ]; then
+          git config --global user.email "support@phrase.com"
+          git config --global user.name "Phrase"
+          git add .
+          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git push origin master
+          else
+          echo "  No changes, skipping."
+          fi
