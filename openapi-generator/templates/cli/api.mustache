@@ -52,20 +52,29 @@ func init{{{nickname}}}() {
 			{{#isPrimitiveType}}
 			{{paramName}} := params.Get{{#lambda.titlecase}}{{dataType}}{{/lambda.titlecase}}("{{paramName}}")
 			{{/isPrimitiveType}}
+
 			{{^isPrimitiveType}}
 			{{paramName}} := api.{{{dataType}}}{}
+			if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
+				HandleError(err)
+			}
+			if Config.Debug {
+				fmt.Printf("%+v\n", {{paramName}})
+			}
 			{{/isPrimitiveType}}
 			{{/required}}{{/allParams}}
 
 			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
 
-			jsonBuf, jsonErr := json.MarshalIndent(data, "", " ")
-			if jsonErr != nil {
-				fmt.Printf("%v\n", data)
-				HandleError(err)
-			}
+			if api_response.StatusCode == 200 {
+				jsonBuf, jsonErr := json.MarshalIndent(data, "", " ")
+				if jsonErr != nil {
+					fmt.Printf("%v\n", data)
+					HandleError(err)
+				}
 
-			fmt.Printf("%s\n", string(jsonBuf))
+				fmt.Printf("%s\n", string(jsonBuf))
+			}
 			if err != nil {
 				HandleError(err)
 			}
@@ -80,9 +89,10 @@ func init{{{nickname}}}() {
 
 	{{#allParams}}{{#required}}
 	{{#isPrimitiveType}}
-	AddFlag({{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}}, "{{{dataType}}}", "{{paramName}}", "", "ID")
+	AddFlag({{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}}, "{{{dataType}}}", "{{paramName}}", "", "{{#description}}{{{.}}}{{/description}}", true)
 	{{/isPrimitiveType}}
 	{{^isPrimitiveType}}
+	AddFlag({{#lambda.camelcase}}{{{nickname}}}{{/lambda.camelcase}}, "string", "data", "d", "payload in JSON format", true)
 	// {{paramName}} := api.{{{dataType}}}{}
 	{{/isPrimitiveType}}
 	{{/required}}{{/allParams}}
