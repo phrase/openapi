@@ -1,0 +1,16 @@
+'!include': 'shared.yaml'
+generatorName: kotlin
+outputDir: clients/java
+artifactId: phrase
+artifactVersion: 1.0.0
+groupId: org.phrase
+packageName: org.phrase.client
+sourceFolder: src/main/phrase
+
+artifactUrl: https://developers.phrase.com
+developerEmail: support@phrase.com
+developerName: Phrase
+developerOrganization: Phrase.com
+developerOrganizationUrl: https://phrase.com/
+licenseName: MIT
+licenseUrl: https://choosealicense.com/licenses/mit/

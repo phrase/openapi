@@ -14,6 +14,7 @@
     "generate.python": "make lint bundle python",
     "generate.swift": "make lint bundle swift",
     "generate.java": "make lint bundle java",
+    "generate.kotlin": "make lint bundle kotlin",
     "generate.php": "make lint bundle php",
     "generate.cli": "make lint bundle cli"
   },

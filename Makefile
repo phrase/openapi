@@ -25,6 +25,8 @@ swift:
 	openapi-generator generate -i tmp/compiled.yaml -g swift4 -o clients/swift -c ./openapi-generator/swift4_lang.yaml
 java:
 	openapi-generator generate -i tmp/compiled.yaml -g java -o clients/java -c ./openapi-generator/java_lang.yaml
+kotlin:
+	openapi-generator generate -i tmp/compiled.yaml -g kotlin -o clients/kotlin -c ./openapi-generator/kotlin_lang.yaml
 php:
 	openapi-generator generate -i tmp/compiled.yaml -g php -o clients/php -c ./openapi-generator/php_lang.yaml
 cli:
