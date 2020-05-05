@@ -23,6 +23,29 @@ and visit `localhost:8080` to see documentation.
 
 You can also lint your changes by `$ npm run lint`
 
+## Generated repositories 
+
+https://github.com/phrase/phrase-csharp
+
+https://github.com/phrase/phrase-go
+
+https://github.com/phrase/phrase-java
+
+https://github.com/phrase/phrase-kotlin
+
+https://github.com/phrase/phrase-php
+
+https://github.com/phrase/phrase-python
+
+https://github.com/phrase/phrase-ruby
+
+https://github.com/phrase/phrase-swift
+
+https://github.com/phrase/phrase-typescript
+
+
+https://github.com/phrase/phrase-cli
+
 ## Specification
 
 [http://spec.openapis.org/oas/v3.0.3](http://spec.openapis.org/oas/v3.0.3)
