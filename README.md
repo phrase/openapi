@@ -25,6 +25,8 @@ You can also lint your changes by `$ npm run lint`
 
 ## Specification
 
+[http://spec.openapis.org/oas/v3.0.3](http://spec.openapis.org/oas/v3.0.3)
+
 [https://swagger.io/specification/#specification](https://swagger.io/specification/#specification)
 
 [https://swagger.io/docs/specification/about/](https://swagger.io/docs/specification/about/)
