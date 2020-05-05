@@ -29,6 +29,8 @@ kotlin:
 	openapi-generator generate -i tmp/compiled.yaml -g kotlin -o clients/kotlin -c ./openapi-generator/kotlin_lang.yaml
 php:
 	openapi-generator generate -i tmp/compiled.yaml -g php -o clients/php -c ./openapi-generator/php_lang.yaml
+csharp:
+	openapi-generator generate -i tmp/compiled.yaml -g csharp -o clients/csharp -c ./openapi-generator/csharp_lang.yaml
 cli:
 	openapi-generator generate -i tmp/compiled.yaml -g go -o tmp/cli -t ./openapi-generator/templates/cli -c ./openapi-generator/cli_lang.yaml
 	cp tmp/cli/api_* clients/cli/cmd/
