@@ -9,3 +9,4 @@ podLicense: "MIT"
 podVersion: "1.0.0"
 podSource: "{ :git => 'https://github.com/phrase/openapi.git', :branch => 'clients/swift4' }"
 podSummary: Phrase is a translation management platform for software projects.
+objcCompatible: true
