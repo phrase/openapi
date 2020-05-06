@@ -80,6 +80,7 @@ requestBody:
             description: This option is obsolete. Providing the option will cause a bad request error.
             type: boolean
             example: 
+            deprecated: true
           skip_upload_tags:
             description: Indicates whether the upload should not create upload tags.
             type: boolean

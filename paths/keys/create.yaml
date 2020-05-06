@@ -86,10 +86,12 @@ requestBody:
             type: string
             format: binary
             example: "/path/to/my/screenshot.png"
+            deprecated: true
           remove_screenshot:
             description: Indicates whether the screenshot will be deleted. This parameter is deprecated. Please use the Screenshots endpoint instead.
             type: boolean
             example: 
+            deprecated: true
           unformatted:
             description: Indicates whether the key should be exported as "unformatted". Supported by Android XML and other formats.
             type: boolean

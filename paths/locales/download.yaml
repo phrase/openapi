@@ -28,6 +28,7 @@ parameters:
     type: string
 - description: Limit download to tagged keys. This parameter is deprecated. Please use the "tags" parameter instead
   example: feature
+  deprecated: true
   name: tag
   in: query
   schema:
@@ -52,6 +53,7 @@ parameters:
     type: boolean
 - description: This option is obsolete. Projects that were created on or after Nov 29th 2019 or that did not contain emoji by then will not require this flag any longer since emoji are now supported natively.
   example: 
+  deprecated: true
   name: convert_emoji
   in: query
   schema:
@@ -70,6 +72,7 @@ parameters:
     type: string
 - description: Indicates whether the locale file should skip all unverified translations. This parameter is deprecated and should be replaced with <code>include_unverified_translations</code>.
   example: 
+  deprecated: true
   name: skip_unverified_translations
   in: query
   schema:
