@@ -73,6 +73,8 @@ requestBody:
           format_options:
             description: Additional formatting and render options. Only <code>enclose_in_cdata</code> is available for platform <code>android</code>.
             type: object
+            additionalProperties:
+              type: string
             example: "{xml:{enclose_in_cdata:'1'}}"
           fallback_to_non_regional_locale:
             description: Indicates whether to fallback to non regional locale when locale can not be found

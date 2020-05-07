@@ -96,10 +96,14 @@ requestBody:
           locale_mapping:
             description: Optional, format specific mapping between locale names and the columns the translations to those locales are contained in.
             type: object
+            additionalProperties:
+              type: string
             example: '{"en": "2"}'
           format_options:
             description: Additional options available for specific formats. See our format guide for complete list.
             type: object
+            additionalProperties:
+              type: string
             example: '{"foo": "bar"}'
           autotranslate:
             description: If set, translations for the uploaded language will be fetched automatically.

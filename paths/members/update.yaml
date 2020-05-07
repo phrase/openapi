@@ -66,6 +66,8 @@ requestBody:
           permissions:
             description: Additional permissions depending on member role. Available permissions are <code>create_upload</code> and <code>review_translations</code>
             type: object
+            additionalProperties:
+              type: string
             example:
               create_upload: true
               review_translations: true

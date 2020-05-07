@@ -66,5 +66,7 @@ requestBody:
           permissions:
             description: Additional permissions depending on invitation role.
             type: object
+            additionalProperties:
+              type: string
             example:
               create_upload: true
