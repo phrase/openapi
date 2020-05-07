@@ -3,6 +3,13 @@ run:
 	make bundle
 	make ruby
 	make go
+	make typescript
+	make python
+	make swift
+	make java
+	make kotlin
+	make php
+	make csharp
 	make cli
 	@echo Clients library genrated, check clients directory.
 lint:
