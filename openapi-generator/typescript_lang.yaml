@@ -1,6 +1,6 @@
 '!include': 'shared.yaml'
 generatorName: typescript-fetch
 outputDir: clients/typescript
-npmName: Phrase
+npmName: phrase/phrase-typescript
 npmVersion: 1.0.0
 typescriptThreePlus: true
