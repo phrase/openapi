@@ -1,6 +1,6 @@
 '!include': 'shared.yaml'
-generatorName: swift4
-outputDir: clients/swift4
+generatorName: swift5
+outputDir: clients/swift5
 projectName: Phrase
 swiftUseApiNamespace: true
 podAuthors: support@phrase.com

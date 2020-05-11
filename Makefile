@@ -29,7 +29,7 @@ typescript:
 python:
 	openapi-generator generate -i tmp/compiled.yaml -g python -o clients/python -t ./openapi-generator/templates/python -c ./openapi-generator/python_lang.yaml
 swift:
-	openapi-generator generate -i tmp/compiled.yaml -g swift4 -o clients/swift -c ./openapi-generator/swift4_lang.yaml
+	openapi-generator generate -i tmp/compiled.yaml -g swift5 -o clients/swift -c ./openapi-generator/swift5_lang.yaml
 java:
 	openapi-generator generate -i tmp/compiled.yaml -g java -o clients/java -c ./openapi-generator/java_lang.yaml
 kotlin:
