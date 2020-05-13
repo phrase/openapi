@@ -2,19 +2,15 @@ Phrase is a translation management platform for software projects. You can colla
 
 ## API Endpoint
 
-<div class="resource__code--outer">
-  <div class="code-section">
-    <pre><code>https://api.phrase.com/v2/</code></pre>
-  </div>
-</div>
+```
+https://api.phrase.com/v2/
+```
 
 The API is only accessible via HTTPS, the base URL is <code>https://api.phrase.com/</code>, and the current version is <code>v2</code> which results in the base URL for all requests: <code>https://api.phrase.com/v2/</code>.
-
 
 ## Usage
 
 [curl](http://curl.haxx.se/) is used primarily to send requests to Phrase in the examples. On most you'll find a second variant using the [Phrase API v2 client](https://phrase.com/cli/) that might be more convenient to handle. For further information check its [documentation](https://help.phrase.com/help/phrase-in-your-terminal).
-
 
 ## Use of HTTP Verbs
 
@@ -58,8 +54,10 @@ Phrase API v2 tries to use the appropriate HTTP verb for accessing each endpoint
 
 You must include the User-Agent header with the name of your application or project. It might be a good idea to include some sort of contact information  as well, so that we can get in touch if necessary (e.g. to warn you about Rate-Limiting or badly formed requests). Examples of excellent User-Agent headers:
 
-<pre><code>User-Agent: Frederiks Mobile App (frederik@phrase.com)
-User-Agent: ACME Inc Python Client (http://example.com/contact)</code></pre>
+```
+User-Agent: Frederiks Mobile App (frederik@phrase.com)
+User-Agent: ACME Inc Python Client (http://example.com/contact)
+```
 
 If you don't send this header, you will receive a response with 400 Bad Request.
 
@@ -75,11 +73,15 @@ Lists are usually [paginated](#pagination).
 
 Many endpoints support additional parameters, e.g. for pagination. When passing them in a GET request you can send them as HTTP query string parameters:
 
-<pre><code>$ curl -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects?page=2"</code></pre>
+```
+$ curl -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects?page=2"
+```
 
 When performing a POST, PUT, PATCH or DELETE request, we recommend sending parameters that are not already included in the URL, as JSON body:
 
-<pre><code>$ curl -H 'Content-Type: application/json' -d '{"name":"My new project"}' -u EMAIL_OR_ACCESS_TOKEN https://api.phrase.com/v2/projects</code></pre>
+```
+$ curl -H 'Content-Type: application/json' -d '{"name":"My new project"}' -u EMAIL_OR_ACCESS_TOKEN https://api.phrase.com/v2/projects
+```
 
 Encoding parameters as JSON means better support for types (boolean, integer) and usually better readability. Don't forget to set the correct Content-Type for your request.
 
@@ -93,16 +95,19 @@ Encoding parameters as JSON means better support for types (boolean, integer) an
 
 If a request contains invalid JSON or is missing a required parameter (besides resource attributes), the status `400 Bad Request` is returned:
 
-<pre><code>{
+```
+{
   "message": "JSON could not be parsed"
-}</code></pre>
+}
+```
 
 
 ### Validation Errors
 
 When the validation for a resource fails, the status `422 Unprocessable Entity` is returned, along with information on the affected fields:
 
-<pre><code>{
+```
+{
   "message": "Validation Failed",
   "errors": [
     {
@@ -111,22 +116,29 @@ When the validation for a resource fails, the status `422 Unprocessable Entity` 
       "message": "can't be blank"
     }
   ]
-}</code></pre>
+}
+```
 
 
 ## Date Format
 
 Times and dates are returned and expected in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) date format:
 
-<pre><code>YYYY-MM-DDTHH:MM:SSZ</code></pre>
+```
+YYYY-MM-DDTHH:MM:SSZ
+```
 
 Instead of 'Z' for UTC time zone you can specify your time zone's locale offset using the following notation:
 
-<pre><code>YYYY-MM-DDTHH:MM:SS¬±hh:mm</code></pre>
+```
+YYYY-MM-DDTHH:MM:SS¬±hh:mm
+```
 
 Example for CET (1 hour behind UTC):
 
-<pre><code>2015-03-31T13:00+01:00</code></pre>
+```
+2015-03-31T13:00+01:00
+```
 
 Please note that in HTTP headers, we will use the appropriate recommended date formats instead of ISO 8601.
 
@@ -145,7 +157,9 @@ There are two different ways to authenticate when performing API requests:
 
 To get started easily, you can use HTTP Basic authentication with your email and password:
 
-<pre><code>$ curl -u username:password "https://api.phrase.com/v2/projects"</code></pre>
+```
+$ curl -u username:password "https://api.phrase.com/v2/projects"
+```
 
 
 ### OAuth via Access Tokens
@@ -154,11 +168,15 @@ You can create and manage access tokens in your [profile settings](https://app.p
 
 Simply pass the access token as the username of your request:
 
-<pre><code>$ curl -u ACCESS_TOKEN: "https://api.phrase.com/v2/projects"</code></pre>
+```
+$ curl -u ACCESS_TOKEN: "https://api.phrase.com/v2/projects"
+```
 
 or send the access token via the `Authorization` header field:
 
-<pre><code>$ curl -H "Authorization: token ACCESS_TOKEN" https://api.phrase.com/v2/projects</code></pre>
+```
+$ curl -H "Authorization: token ACCESS_TOKEN" https://api.phrase.com/v2/projects
+```
 
 For more detailed information on authentication, check out the <a href="#authentication">API v2 Authentication Guide</a>.
 
@@ -166,7 +184,9 @@ For more detailed information on authentication, check out the <a href="#authent
 
 As JSONP (and other) requests cannot send HTTP Basic Auth credentials, a special query parameter `access_token` can be used:
 
-<pre><code>curl "https://api.phrase.com/v2/projects?access_token=ACCESS_TOKEN"</code></pre>
+```
+curl "https://api.phrase.com/v2/projects?access_token=ACCESS_TOKEN"
+```
 
 You should only use this transport method if sending the authentication via header or Basic authentication is not possible.
 
@@ -174,11 +194,15 @@ You should only use this transport method if sending the authentication via head
 
 Users with Two-Factor-Authentication enabled have to send a valid token along their request with certain authentication methods (such as Basic authentication). The necessity of a Two-Factor-Authentication token is indicated by the `X-PhraseApp-OTP: required; :MFA-type` header in the response. The `:MFA-type`field indicates the source of the token, e.g. `app` (refers to your Authenticator application):
 
-<pre><code>X-PhraseApp-OTP: required; app</code></pre>
+```
+X-PhraseApp-OTP: required; app
+```
 
 To provide a Two-Factor-Authentication token you can simply send it in the header of the request:
 
-<pre><code>curl -H "X-PhraseApp-OTP: MFA-TOKEN" -u EMAIL https://api.phrase.com/v2/projects</code></pre>
+```
+curl -H "X-PhraseApp-OTP: MFA-TOKEN" -u EMAIL https://api.phrase.com/v2/projects
+```
 
 Since Two-Factor-Authentication tokens usually expire quickly, we recommend using an alternative authentication method such as OAuth access tokens.
 
@@ -190,11 +214,15 @@ Some endpoints require the account ID to be specified if the authenticated user 
 
 Endpoints that return a list or resources will usually return paginated results and include 25 items by default. To access further pages, use the `page` parameter:
 
-<pre><code>$ curl -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects?page=2"</code></pre>
+```
+$ curl -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects?page=2"
+```
 
 Some endpoints also allow a custom page size by using the `per_page` parameter:
 
-<pre><code>$ curl -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects?page=2&per_page=50"</code></pre>
+```
+$ curl -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects?page=2&per_page=50"
+```
 
 Unless specified otherwise in the description of the respective endpoint, `per_page` allows you to specify a page size up to 100 items.
 
@@ -203,7 +231,9 @@ Unless specified otherwise in the description of the respective endpoint, `per_p
 
 We provide you with pagination URLs in the [Link Header field](http://tools.ietf.org/html/rfc5988). Make use of this information to avoid building pagination URLs yourself.
 
-<pre><code>Link: <https://api.phrase.com/v2/projects?page=1>; rel="first", <https://api.phrase.com/v2/projects?page=3>; rel="prev", <https://api.phrase.com/v2/projects?page=5>; rel="next", <https://api.phrase.com/v2/projects?page=9>; rel="last"</code></pre>
+```
+Link: <https://api.phrase.com/v2/projects?page=1>; rel="first", <https://api.phrase.com/v2/projects?page=3>; rel="prev", <https://api.phrase.com/v2/projects?page=5>; rel="next", <https://api.phrase.com/v2/projects?page=9>; rel="last"
+```
 
 Possible `rel` values are:
 
@@ -283,7 +313,8 @@ We will return an ETag or Last-Modified header with most GET requests. When you 
 
 Please note that all conditional requests that return a response with status 304 don't count against your rate limits.
 
-<pre><code>$ curl -i -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download"
+```
+$ curl -i -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download"
 HTTP/1.1 200 OK
 ETag: "abcd1234abcdefefabcd1234efab1234"
 Last-Modified: Wed, 28 Jan 2015 15:31:30 UTC
@@ -298,18 +329,22 @@ Status: 304 Not Modified
 $ curl -i -u EMAIL_OR_ACCESS_TOKEN "https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download" -H "If-Modified-Since: Wed, 28 Jan 2015 15:31:30 UTC"
 HTTP/1.1 304 Not Modified
 Last-Modified: Wed, 28 Jan 2015 15:31:30 UTC
-Status: 304 Not Modified</code></pre>
+Status: 304 Not Modified
+```
 
 
 ## JSONP
 
 The Phrase API supports [JSONP](http://en.wikipedia.org/wiki/JSONP) for all GET requests in order to deal with cross-domain request issues. Just send a `?callback` parameter along with the request to specify the Javascript function name to be called with the response content:
 
-<pre><code>$ curl "https://api.phrase.com/v2/projects?callback=myFunction"</code></pre>
+```
+$ curl "https://api.phrase.com/v2/projects?callback=myFunction"
+```
 
 The response will include the normal output for that endpoint, along with a `meta` section including header data:
 
-<pre><code>myFunction({
+```
+myFunction({
   {
     "meta": {
       "status": 200,
@@ -322,8 +357,11 @@ The response will include the normal output for that endpoint, along with a `met
       }
     ]
   }
-});</code></pre>
+});
+```
 
 To authenticate a JSONP request, you can send a valid [access token](#authentication) as the `?access_token` parameter along the request:
 
-<pre><code>$ curl "https://api.phrase.com/v2/projects?callback=myFunction&access_token=ACCESS-TOKEN"</code></pre>
+```
+$ curl "https://api.phrase.com/v2/projects?callback=myFunction&access_token=ACCESS-TOKEN"
+```

@@ -33,7 +33,7 @@
     "@apidevtools/swagger-cli": "^4.0.2",
     "@openapitools/openapi-generator-cli": "^1.0.12-4.3.0",
     "husky": "^4.2.5",
-    "redoc-cli": "^0.9.7"
+    "redoc-cli": "^0.9.8"
   },
   "husky": {
     "hooks": {
