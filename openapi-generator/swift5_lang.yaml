@@ -10,4 +10,5 @@ podLicense: "MIT"
 podVersion: "1.0.0"
 podSource: "{ :git => 'https://github.com/phrase/phrase-swift.git' }"
 podSummary: Phrase is a translation management platform for software projects.
-objcCompatible: true
+objcCompatible: false
+apiNamePrefix: Phrase
