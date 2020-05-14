@@ -26,14 +26,14 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts struct {
 {{^required}}
 {{#isPrimitiveType}}
 {{^isBinary}}
-    {{vendorExtensions.x-export-param-name}} optional.{{vendorExtensions.x-optional-data-type}}
+	{{vendorExtensions.x-export-param-name}} optional.{{vendorExtensions.x-optional-data-type}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/isBinary}}
 {{#isBinary}}
-    {{vendorExtensions.x-export-param-name}} optional.Interface
+	{{vendorExtensions.x-export-param-name}} optional.Interface `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/isBinary}}
 {{/isPrimitiveType}}
 {{^isPrimitiveType}}
-    {{vendorExtensions.x-export-param-name}} optional.Interface
+	{{vendorExtensions.x-export-param-name}} optional.Interface `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/isPrimitiveType}}
 {{/required}}
 {{/allParams}}
