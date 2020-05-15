@@ -216,7 +216,7 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams
 		localVarFileOk := false
 		localVarFile, localVarFileOk = localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value().({{dataType}})
 		if !localVarFileOk {
-				return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("{{paramName}} should be {{dataType}}")
+				return {{#returnType}}localVarReturnValue{{/returnType}}{{^returnType}}nil{{/returnType}}, nil, reportError("{{paramName}} should be {{dataType}}")
 		}
 	}
 {{/required}}
