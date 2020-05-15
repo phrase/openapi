@@ -3,3 +3,5 @@ generatorName: go
 outputDir: clients/go
 packageName: phrase
 packageVersion: 1.0.0
+gitUserId: phrase
+gitRepoId: phrase-go
