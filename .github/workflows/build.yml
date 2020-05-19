@@ -103,7 +103,7 @@ jobs:
         run: |
           npm install
           npm run generate.typescript
-          git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-typescript.git clones/typescript &> /dev/null
+          git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-js.git clones/typescript &> /dev/null
           rsync -a --delete --exclude='.git/' clients/typescript/ clones/typescript
           cd clones/typescript
           if [ -n "$(git status --porcelain)" ]; then

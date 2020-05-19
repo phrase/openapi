@@ -41,7 +41,7 @@ https://github.com/phrase/phrase-ruby
 
 https://github.com/phrase/phrase-swift
 
-https://github.com/phrase/phrase-typescript
+https://github.com/phrase/phrase-js
 
 
 https://github.com/phrase/phrase-cli
