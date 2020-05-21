@@ -1,0 +1,31 @@
+name: release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+      -
+        name: Version
+        id: version
+        run: |
+          echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      -
+        name: Release Github Package
+        run: bash ./build/release.sh -xe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.VERSION }}
+          OWNER: phrase
