@@ -31,7 +31,7 @@ python:
 swift:
 	openapi-generator generate -i tmp/compiled.yaml -g swift5 -o clients/swift -c ./openapi-generator/swift5_lang.yaml
 java:
-	openapi-generator generate -i tmp/compiled.yaml -g java -o clients/java -c ./openapi-generator/java_lang.yaml
+	openapi-generator generate -i tmp/compiled.yaml -g java -o clients/java -t ./openapi-generator/templates/java -c ./openapi-generator/java_lang.yaml
 kotlin:
 	openapi-generator generate -i tmp/compiled.yaml -g kotlin -o clients/kotlin -t ./openapi-generator/templates/kotlin-client -c ./openapi-generator/kotlin_lang.yaml
 php:
