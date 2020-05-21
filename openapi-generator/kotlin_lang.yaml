@@ -3,8 +3,8 @@ generatorName: kotlin
 outputDir: clients/java
 artifactId: phrase
 artifactVersion: 1.0.0
-groupId: org.phrase
-packageName: org.phrase.client
+groupId: com.phrase
+packageName: com.phrase.client
 sourceFolder: src/main/phrase
 
 artifactUrl: https://developers.phrase.com
