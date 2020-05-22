@@ -20,6 +20,11 @@ Gem::Specification.new do |s|
   {{/gemLicense}}
   s.required_ruby_version = "{{{gemRequiredRubyVersion}}}{{^gemRequiredRubyVersion}}>= 1.9{{/gemRequiredRubyVersion}}"
 
+  s.metadata = {
+    "bug_tracker_uri"   => "https://github.com/phrase/phrase-ruby/issues",
+    "source_code_uri"   => "https://github.com/phrase/phrase-ruby"
+  }
+
   {{#isFaraday}}
   s.add_runtime_dependency 'faraday', '>= 0.14.0'
   {{/isFaraday}}

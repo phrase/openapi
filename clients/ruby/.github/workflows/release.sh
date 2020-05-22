@@ -54,6 +54,17 @@ curl --data-binary @"$file" -H "Content-Type: application/octet-stream" $asset >
 echo Hash: $(sha256sum $file)
 
 # -----------
+
+echo "Setting up access to RubyGems"
+mkdir -p ~/.gem
+touch ~/.gem/credentials
+chmod 600 ~/.gem/credentials
+echo ":rubygems_api_key: ${RUBYGEMS_TOKEN}" > ~/.gem/credentials
+
+echo "Pushing the built gem to RubyGems"
+gem push phrase-${VERSION}.gem
+
+# -----------
 # file name and specs must match repo name for Github Packages
 
 echo "Building the phrase-ruby gem"

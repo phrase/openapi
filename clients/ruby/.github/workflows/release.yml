@@ -24,8 +24,9 @@ jobs:
           echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
       -
         name: Release Github Package
-        run: bash ./build/release.sh -xe
+        run: bash ./.github/workflows/release.sh -xe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
           VERSION: ${{ steps.version.outputs.VERSION }}
           OWNER: phrase
