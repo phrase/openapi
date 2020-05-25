@@ -25,23 +25,15 @@ You can also lint your changes by `$ npm run lint`
 
 ## Generated repositories 
 
-https://github.com/phrase/phrase-csharp
-
 https://github.com/phrase/phrase-go
 
 https://github.com/phrase/phrase-java
 
+https://github.com/phrase/phrase-js
+
 https://github.com/phrase/phrase-kotlin
 
-https://github.com/phrase/phrase-php
-
-https://github.com/phrase/phrase-python
-
 https://github.com/phrase/phrase-ruby
-
-https://github.com/phrase/phrase-swift
-
-https://github.com/phrase/phrase-js
 
 
 https://github.com/phrase/phrase-cli
