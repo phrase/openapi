@@ -39,6 +39,6 @@ php:
 csharp:
 	openapi-generator generate -i tmp/compiled.yaml -g csharp -o clients/csharp -c ./openapi-generator/csharp_lang.yaml
 cli:
-	openapi-generator generate -i tmp/compiled.yaml -g go -o tmp/cli -t ./openapi-generator/templates/cli -c ./openapi-generator/cli_lang.yaml
+	openapi-generator generate -i tmp/compiled.yaml -g go -o tmp/cli -t ./openapi-generator/templates/cli -c ./openapi-generator/cli_lang.yaml -e handlebars
 	cp tmp/cli/api_* clients/cli/cmd/
 	cp tmp/cli/README.md clients/cli/

@@ -1,0 +1,90 @@
+package cmd
+{{#operations}}
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+	"strings"
+
+	"github.com/antihax/optional"
+	helpers "github.com/phrase/phrase-cli/helpers"
+	api "github.com/phrase/phrase-go"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+)
+
+func init() {
+	{{#operation}}init{{{nickname}}}()
+	{{/operation}}
+	rootCmd.AddCommand({{{classname}}}Cmd)
+}
+
+var {{{classname}}}Cmd = &cobra.Command{
+	Use:	 helpers.ToSnakeCase("{{{cut classname "Api"}}}"),
+	Short:	 "{{{join (cut classname "Api") "API" " "}}}",
+}
+{{#operation}}
+func init{{{nickname}}}() {
+	params := viper.New()
+	var {{{nickname}}} = &cobra.Command{
+		// this weird approach is due to mustache template limitations
+		Use:	 helpers.ToSnakeCase(strings.TrimPrefix(strings.TrimPrefix("{{nickname}}", strings.TrimSuffix("{{classname}}", "Api")), strings.TrimSuffix(strings.TrimSuffix("{{classname}}", "Api"), "s"))),
+		Short: "{{#summary}}{{{.}}}{{/summary}}{{^summary}}Method for {{operationId}}{{/summary}}",
+		Long:  `{{#notes}}{{notes}}{{/notes}}`,
+		Run: func(cmd *cobra.Command, args []string) {
+			auth := context.WithValue(context.Background(), api.ContextAPIKey, api.APIKey{
+				Key:		Config.Credentials.Token,
+				Prefix: "token",
+			})
+
+			cfg := api.NewConfiguration()
+			client := api.NewAPIClient(cfg)
+
+			{{#hasOptionalParams}}localVarOptionals := api.{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts{}{{/hasOptionalParams}}
+			{{#allParams}}{{^required}}{{#isPrimitiveType}}if params.IsSet(helpers.ToSnakeCase("{{{paramName}}}")) {
+			{{#startsWith paramName "fileFormat"}}	localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#required}}params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/required}}{{^required}}optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))){{/required}}{{else}}{{#startsWith paramName "file"}}	file, err := os.Open(params.GetString(helpers.ToSnakeCase("file")))
+				localVarOptionals.File = optional.NewInterface(file)
+
+				if err != nil {
+					HandleError(err)
+				}{{else}}	localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#required}}params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/required}}{{^required}}optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))){{/required}}{{/startsWith}}{{/startsWith}}
+			}{{/isPrimitiveType}}{{/required}}
+			{{/allParams}}
+			{{#allParams}}{{#required}}{{#isPrimitiveType}}{{paramName}} := params.Get{{{capitalizeFirst dataType}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/isPrimitiveType}}
+			{{^isPrimitiveType}}{{paramName}} := api.{{{dataType}}}{}
+			if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
+				HandleError(err)
+			}
+			if Config.Debug {
+				fmt.Printf("%+v\n", {{paramName}})
+			}{{/isPrimitiveType}}{{/required}} {{/allParams}}
+			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
+
+			if api_response.StatusCode == 200 {
+				jsonBuf, jsonErr := json.MarshalIndent(data, "", " ")
+				if jsonErr != nil {
+					fmt.Printf("%v\n", data)
+					HandleError(err)
+				}
+
+				fmt.Printf("%s\n", string(jsonBuf))
+			}
+			if err != nil {
+				HandleError(err)
+			}
+
+			if Config.Debug {
+				fmt.Printf("%+v\n", api_response) // &{Response:0xc00011ccf0 NextPage:2 FirstPage:1 LastPage:4 Rate:{Limit:1000 Remaining:998 Reset:2020-04-25 00:35:00 +0200 CEST}}
+			}
+		},
+	}
+
+	{{{classname}}}Cmd.AddCommand({{{nickname}}})
+	{{#allParams}}{{#isPrimitiveType}}
+	AddFlag({{{nickname}}}, "{{{dataType}}}", helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"), "", "{{#description}}{{{.}}}{{/description}}", {{#required}}true{{/required}}{{^required}}false{{/required}}){{/isPrimitiveType}}{{^isPrimitiveType}}
+	AddFlag({{{nickname}}}, "string", "data", "d", "payload in JSON format", {{#required}}true{{/required}}{{^required}}false{{/required}})
+	{{/isPrimitiveType}}{{/allParams}}
+	params.BindPFlags({{{nickname}}}.Flags())
+}{{/operation}}
+{{/operations}}
