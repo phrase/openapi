@@ -33,6 +33,10 @@ https://github.com/phrase/phrase-js
 
 https://github.com/phrase/phrase-kotlin
 
+https://github.com/phrase/phrase-php
+
+https://github.com/phrase/phrase-python
+
 https://github.com/phrase/phrase-ruby
 
 
