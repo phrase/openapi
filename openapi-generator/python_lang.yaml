@@ -1,5 +1,5 @@
 '!include': 'shared.yaml'
 generatorName: python
 outputDir: clients/python
-packageName: Phrase
+packageName: phrase-api
 packageVersion: 1.0.0
