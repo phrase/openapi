@@ -1,0 +1,8 @@
+{{#hasAuthMethods}}
+{{#authMethods}}
+{{#isApiKey}}
+$config = {{{invokerPackage}}}\Configuration::getDefaultConfiguration()->setApiKey('{{{keyParamName}}}', 'YOUR_API_KEY');
+$config = {{{invokerPackage}}}\Configuration::getDefaultConfiguration()->setApiKeyPrefix('{{{keyParamName}}}', 'token');
+{{/isApiKey}}
+{{/authMethods}}
+{{/hasAuthMethods}}

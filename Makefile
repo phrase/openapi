@@ -35,7 +35,7 @@ java:
 kotlin:
 	openapi-generator generate -i tmp/compiled.yaml -g kotlin -o clients/kotlin -t ./openapi-generator/templates/kotlin-client -c ./openapi-generator/kotlin_lang.yaml
 php:
-	openapi-generator generate -i tmp/compiled.yaml -g php -o clients/php -c ./openapi-generator/php_lang.yaml
+	openapi-generator generate -i tmp/compiled.yaml -g php -o clients/php -t ./openapi-generator/templates/php -c ./openapi-generator/php_lang.yaml
 csharp:
 	openapi-generator generate -i tmp/compiled.yaml -g csharp -o clients/csharp -c ./openapi-generator/csharp_lang.yaml
 cli:
