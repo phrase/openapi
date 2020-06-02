@@ -4,6 +4,7 @@ import time
 import {{{packageName}}}
 from {{{packageName}}}.rest import ApiException
 from pprint import pprint
+
 {{> python_doc_auth_partial}}
 # Enter a context with an instance of the API client
 {{#hasAuthMethods}}
@@ -14,7 +15,8 @@ with {{{packageName}}}.ApiClient() as api_client:
 {{/hasAuthMethods}}
     # Create an instance of the API class
     api_instance = {{{packageName}}}.{{{classname}}}(api_client)
-    {{#allParams}}{{paramName}} = {{{example}}} # {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
+    {{#allParams}}
+    {{paramName}} = {{{example}}} # {{{dataType}}} | {{{description}}}{{#required}} (required){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
     {{/allParams}}
 
     try:

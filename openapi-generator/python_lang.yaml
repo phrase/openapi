@@ -3,3 +3,4 @@ generatorName: python
 outputDir: clients/python
 packageName: phrase-api
 packageVersion: 1.0.0
+packageUrl: "https://github.com/phrase/phrase-python"

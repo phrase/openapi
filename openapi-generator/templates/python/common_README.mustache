@@ -12,7 +12,8 @@ configuration.host = "{{{basePath}}}"
 with {{{packageName}}}.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = {{{packageName}}}.{{{classname}}}(api_client)
-    {{#allParams}}{{paramName}} = {{{example}}} # {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
+    {{#allParams}}
+    {{paramName}} = {{{example}}} # {{{dataType}}} | {{{description}}}{{#required}} (required){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
     {{/allParams}}
 
     try:
@@ -23,20 +24,6 @@ with {{{packageName}}}.ApiClient(configuration) as api_client:
         print("Exception when calling {{classname}}->{{operationId}}: %s\n" % e)
     {{/-first}}{{/operation}}{{/operations}}{{/-first}}{{/apis}}{{/apiInfo}}
 ```
-
-## Documentation for API Endpoints
-
-All URIs are relative to *{{basePath}}*
-
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
-{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
-
-## Documentation For Models
-
-{{#models}}{{#model}} - [{{{classname}}}]({{modelDocPath}}{{{classname}}}.md)
-{{/model}}{{/models}}
 
 ## Documentation For Authorization
 
@@ -51,13 +38,36 @@ Class | Method | HTTP request | Description
 - **Type**: API key
 - **API key parameter name**: {{{keyParamName}}}
 - **Location**: {{#isKeyInQuery}}URL query string{{/isKeyInQuery}}{{#isKeyInHeader}}HTTP header{{/isKeyInHeader}}
+
+```python
+import phrase-api
+
+configuration = phrase-api.Configuration()
+configuration.api_key['{{{keyParamName}}}'] = 'YOUR_API_KEY'
+configuration.api_key_prefix['{{{keyParamName}}}'] = 'token'
+```
 {{/isApiKey}}
 {{#isBasic}}
 {{#isBasicBasic}}
 - **Type**: HTTP basic authentication
+
+```python
+import phrase-api
+
+configuration = phrase-api.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+```
 {{/isBasicBasic}}
 {{#isBasicBearer}}
 - **Type**: Bearer authentication{{#bearerFormat}} ({{{.}}}){{/bearerFormat}}
+
+```pytjon
+import phrase-api
+
+configuration = phrase-api.Configuration()
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+```
 {{/isBasicBearer}}
 {{/isBasic}}
 {{#isOAuth}}
@@ -67,9 +77,30 @@ Class | Method | HTTP request | Description
 - **Scopes**: {{^scopes}}N/A{{/scopes}}
 {{#scopes}} - **{{{scope}}}**: {{{description}}}
 {{/scopes}}
+
+```python
+import phrase-api
+
+configuration = phrase-api.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+```
 {{/isOAuth}}
 
 {{/authMethods}}
+
+## Documentation for API Endpoints
+
+All URIs are relative to *{{basePath}}*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
+{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
+
+## Documentation For Models
+
+{{#models}}{{#model}} - [{{{classname}}}]({{modelDocPath}}{{{classname}}}.md)
+{{/model}}{{/models}}
 
 ## Author
 
