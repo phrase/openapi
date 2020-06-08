@@ -9,7 +9,18 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 responses:
   '201':
-    "$ref": "../../responses.yaml#/201"
+    description: Created
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/translation_key_details.yaml#/translation_key_details"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
   '400':
     "$ref": "../../responses.yaml#/400"
   '404':

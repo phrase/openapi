@@ -38,7 +38,7 @@ func init{{{nickname}}}() {
 				Prefix: "token",
 			})
 
-			cfg := api.NewConfiguration()
+			cfg := api.NewConfiguration(Config)
 			client := api.NewAPIClient(cfg)
 
 			{{#hasOptionalParams}}localVarOptionals := api.{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts{}{{/hasOptionalParams}}
@@ -61,7 +61,7 @@ func init{{{nickname}}}() {
 			}{{/isPrimitiveType}}{{/required}} {{/allParams}}
 			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
 
-			if api_response.StatusCode == 200 {
+			if api_response.StatusCode >= 200 && api_response.StatusCode < 300 {
 				jsonBuf, jsonErr := json.MarshalIndent(data, "", " ")
 				if jsonErr != nil {
 					fmt.Printf("%v\n", data)
