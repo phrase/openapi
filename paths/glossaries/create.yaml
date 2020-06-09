@@ -3,7 +3,7 @@ summary: Create a glossary
 description: Create a new glossary.
 operationId: glossary/create
 tags:
-- Glossary
+- Glossaries
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

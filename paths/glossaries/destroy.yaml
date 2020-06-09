@@ -3,7 +3,7 @@ summary: Delete a glossary
 description: Delete an existing glossary.
 operationId: glossary/delete
 tags:
-- Glossary
+- Glossaries
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

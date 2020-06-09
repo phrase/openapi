@@ -53,7 +53,7 @@ x-tagGroups:
       - Branches
   - name: Quality
     tags:
-      - Glossary
+      - Glossaries
       - Glossary Terms
       - Glossary Term Translations
   - name: Integrations

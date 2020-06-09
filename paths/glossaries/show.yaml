@@ -3,7 +3,7 @@ summary: Get a single glossary
 description: Get details on a single glossary.
 operationId: glossary/show
 tags:
-- Glossary
+- Glossaries
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
