@@ -27,9 +27,11 @@ var {{{classname}}}Cmd = &cobra.Command{
 {{#operation}}
 func init{{{nickname}}}() {
 	params := viper.New()
+	var use string
+	// this weird approach is due to mustache template limitations
+	use = strings.Join(strings.Split("{{operationIdOriginal}}", "/")[1:], "_")
 	var {{{nickname}}} = &cobra.Command{
-		// this weird approach is due to mustache template limitations
-		Use:	 helpers.ToSnakeCase(strings.TrimPrefix(strings.TrimPrefix("{{nickname}}", strings.TrimSuffix("{{classname}}", "Api")), strings.TrimSuffix(strings.TrimSuffix("{{classname}}", "Api"), "s"))),
+		Use:	 use,
 		Short: "{{#summary}}{{{.}}}{{/summary}}{{^summary}}Method for {{operationId}}{{/summary}}",
 		Long:  `{{#notes}}{{notes}}{{/notes}}`,
 		Run: func(cmd *cobra.Command, args []string) {
