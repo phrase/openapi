@@ -42,7 +42,6 @@ func init{{{nickname}}}() {
 
 			cfg := api.NewConfiguration(Config)
 			client := api.NewAPIClient(cfg)
-
 			{{#hasOptionalParams}}localVarOptionals := api.{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts{}{{/hasOptionalParams}}
 			{{#allParams}}{{^required}}{{#isPrimitiveType}}if params.IsSet(helpers.ToSnakeCase("{{{paramName}}}")) {
 			{{#startsWith paramName "fileFormat"}}	localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#required}}params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/required}}{{^required}}optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))){{/required}}{{else}}{{#startsWith paramName "file"}}	file, err := os.Open(params.GetString(helpers.ToSnakeCase("file")))
@@ -51,16 +50,22 @@ func init{{{nickname}}}() {
 				if err != nil {
 					HandleError(err)
 				}{{else}}	localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#required}}params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/required}}{{^required}}optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))){{/required}}{{/startsWith}}{{/startsWith}}
-			}{{/isPrimitiveType}}{{/required}}
+			}{{/isPrimitiveType}}{{^isPrimitiveType}}{{^isModel}}if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
+				var {{paramName}} map[string]interface{}
+				if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))), &{{paramName}}); err != nil {
+					HandleError(err)
+				}
+				localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface({{paramName}})
+			}{{/isModel}}{{/isPrimitiveType}}{{/required}}
 			{{/allParams}}
 			{{#allParams}}{{#required}}{{#isPrimitiveType}}{{paramName}} := params.Get{{{capitalizeFirst dataType}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/isPrimitiveType}}
-			{{^isPrimitiveType}}{{paramName}} := api.{{{dataType}}}{}
+			{{^isPrimitiveType}}{{#isModel}}{{paramName}} := api.{{{dataType}}}{}
 			if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
 				HandleError(err)
 			}
 			if Config.Debug {
 				fmt.Printf("%+v\n", {{paramName}})
-			}{{/isPrimitiveType}}{{/required}} {{/allParams}}
+			}{{/isModel}}{{/isPrimitiveType}}{{/required}}{{/allParams}}
 			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
 
 			if api_response.StatusCode >= 200 && api_response.StatusCode < 300 {
@@ -83,10 +88,8 @@ func init{{{nickname}}}() {
 	}
 
 	{{{classname}}}Cmd.AddCommand({{{nickname}}})
-	{{#allParams}}{{#isPrimitiveType}}
-	AddFlag({{{nickname}}}, "{{{dataType}}}", helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"), "", "{{#description}}{{{.}}}{{/description}}", {{#required}}true{{/required}}{{^required}}false{{/required}}){{/isPrimitiveType}}{{^isPrimitiveType}}
-	AddFlag({{{nickname}}}, "string", "data", "d", "payload in JSON format", {{#required}}true{{/required}}{{^required}}false{{/required}})
-	{{/isPrimitiveType}}{{/allParams}}
+	{{#allParams}}{{#isPrimitiveType}}AddFlag({{{nickname}}}, "{{{dataType}}}", helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"), "", "{{#description}}{{{.}}}{{/description}}", {{#required}}true{{/required}}{{^required}}false{{/required}}){{/isPrimitiveType}}{{^isPrimitiveType}}{{#isModel}}AddFlag({{{nickname}}}, "string", "data", "d", "payload in JSON format", {{#required}}true{{/required}}{{^required}}false{{/required}}){{/isModel}}{{^isModel}}AddFlag({{{nickname}}}, "string", helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"), "", "payload in JSON format", {{#required}}true{{/required}}{{^required}}false{{/required}}){{/isModel}}{{/isPrimitiveType}}
+  {{/allParams}}
 	params.BindPFlags({{{nickname}}}.Flags())
 }{{/operation}}
 {{/operations}}

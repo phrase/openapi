@@ -2,6 +2,8 @@ package {{packageName}}
 
 {{#operations}}
 import (
+	"fmt"
+
 	_context "context"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
@@ -243,7 +245,9 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams
 {{/isModel}}
 {{^isModel}}
 	if localVarOptionals != nil && localVarOptionals.{{vendorExtensions.x-export-param-name}}.IsSet() {
-		localVarFormParams.Add("{{baseName}}", parameterToString(localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value(), "{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}"))
+		{{#isPrimitiveType}}localVarFormParams.Add("{{baseName}}", parameterToString(localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value(), "{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}")){{/isPrimitiveType}}{{^isPrimitiveType}}for key, value := range localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value().(map[string]interface{}) {
+			localVarFormParams.Add(fmt.Sprintf("{{baseName}}[%s]", key), parameterToString(value, ""))
+		}{{/isPrimitiveType}}
 	}
 {{/isModel}}
 {{/required}}
