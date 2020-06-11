@@ -10,3 +10,5 @@ gemLicense: 'MIT'
 gemHomepage: 'https://phrase.com'
 gemAuthor: Phrase
 gemAuthorEmail: 'support@phrase.com'
+gitUserId: phrase
+gitRepoId: phrase-ruby
