@@ -55,7 +55,7 @@ Phrase API v2 tries to use the appropriate HTTP verb for accessing each endpoint
 You must include the User-Agent header with the name of your application or project. It might be a good idea to include some sort of contact information  as well, so that we can get in touch if necessary (e.g. to warn you about Rate-Limiting or badly formed requests). Examples of excellent User-Agent headers:
 
 ```
-User-Agent: Frederiks Mobile App (frederik@phrase.com)
+User-Agent: Example Mobile App (example@phrase.com)
 User-Agent: ACME Inc Python Client (http://example.com/contact)
 ```
 
