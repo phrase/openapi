@@ -1,0 +1,394 @@
+@import 'variables';
+
+@font-face {
+  font-family: 'Menlo';
+  src: local('Menlo Regular'), local('Menlo-Regular'),
+      url('fonts/Menlo-Regular.woff2') format('woff2'),
+      url('fonts/Menlo-Regular.woff') format('woff');
+  font-weight: $fontWeightNormal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.menu-content {
+  border-right: solid thin #efefef;
+  font-weight: $fontWeightNormal;
+
+  .-depth0 {
+    color: $colorPrimaryForeground;
+    font-weight: $fontWeightSemiBold;
+    font-size: $fontSize4;
+    opacity: 1;
+  }
+
+  .-depth1 {
+    padding-top: $spacing4;
+    padding-bottom: $spacing4;
+    font-size: $fontSize4;
+  }
+}
+
+div[role=search] i {
+  box-sizing: content-box;
+  margin-top: $spacing5 + $spacing1;
+  padding-right: $spacing3;
+  padding-left: $spacing3;
+}
+
+.search-icon {
+  left: $spacing8;
+  margin-top: $spacing6;
+  width: (15 / 19) * 1em; /* 15px */
+
+  > path {
+    fill: $colorSecondaryForeground;
+  }
+}
+
+.search-input {
+  margin-top: $spacing6;
+  margin-bottom: $spacing6;
+  padding-right: $spacing8;
+  padding-left: $spacing8;
+  border: thin solid $colorPrimaryBorder;
+  font-size: $fontSize4;
+  font-weight: $fontWeightNormal;
+  border-radius: $borderRadius2;
+
+  &::-webkit-input-placeholder {
+    color: $colorSecondaryForeground;
+  }
+  &::-moz-placeholder {
+    color: $colorSecondaryForeground;
+  }
+  &:-ms-input-placeholder {
+    color: $colorSecondaryForeground;
+  }
+  &:-moz-placeholder {
+    color: $colorSecondaryForeground;
+  }
+  &::placeholder {
+    color: $colorSecondaryForeground;
+  }
+}
+
+.operation-type, .http-verb {
+  margin-right: $spacing4;
+  padding: 0;
+  height: 18px;
+  line-height: 18px;
+  width: 42px;
+  text-align: center;
+  font-size: $fontSize2;
+  font-family: $fontPrimary;
+  font-weight: $fontWeightSemiBold;
+  letter-spacing: .28px;
+  border-radius: $borderRadius2;
+}
+
+h1 {
+  margin: 0;
+}
+
+div[data-section-id] {
+  margin-top: $spacing8;
+  padding: 0 0 $spacing8;
+
+  > div > div {
+    &,
+    > div,
+    > div > div,
+    > div > div > div {
+      > h5 {
+        margin-top: $spacing8;
+        border: none;
+        font-size: $fontSize5;
+        color: $colorPrimaryForeground;
+        text-transform: capitalize;
+
+        > h5 > span {
+          padding: $spacing1 $spacing2;
+          font-family: $fontCode;
+          font-size: $fontSize3;
+          line-height: 15px;
+          border-radius: $borderRadius2;
+          color: $colorPrimaryForeground;
+          background-color: $colorEmphasizedBackground;
+        }
+      }
+    }
+
+    > table,
+    > div > table,
+    > div > div > div > table {
+      &,
+      > tbody {
+        > tr > td:not([kind=field]) > div > div:first-child > span + span {
+          padding: $spacing1 $spacing2;
+          font-family: $fontCode;
+          font-size: $fontSize3;
+          line-height: 15px;
+          border-radius: $borderRadius2;
+          color: $colorPrimaryForeground;
+          background-color: $colorEmphasizedBackground;
+        }
+      }
+    }
+
+    > div > div > span:first-child:not([type]) {
+      padding: $spacing3 5px $spacing3 $spacing6;
+
+      &,
+      & ~ span {
+        margin-top: $spacing7;
+        display: inline-block;
+        line-height: 24px;
+        font-size: $fontSize5;
+        font-weight: $fontWeightNormal;
+        color: $colorPrimaryForeground;
+        background-color: $colorEmphasizedBackground;
+
+        > span > a {
+          color: #0091EB;
+        }
+      }
+
+      & ~ span {
+        padding: $spacing3 $spacing6 $spacing3 0;
+      }
+    }
+
+    > div > div > span::before,
+    > div > div > span::after {
+      font-weight: $fontWeightNormal;
+      text-transform: lowercase;
+    }
+
+
+    > table,
+    > div > table,
+    > div > div > div > table {
+      border: thin solid $colorPrimaryBorder;
+      border-width: thin 0 0 thin;
+      table-layout: fixed;
+
+      & > tr > td,
+      > tbody > tr > td {
+        border: thin solid $colorPrimaryBorder;
+        border-width: 0 thin thin 0;
+        padding: $spacing1;
+        background: none!important;
+
+        @media (min-width:#{$breakpointMd}) {
+          padding: $spacing3;
+        }
+
+        &[kind=field] {
+          width: 50%;
+          word-break: break-all;
+          white-space: normal;
+          font-size: $fontSize3;
+          font-family: $fontCode;
+
+          @media (min-width:#{$breakpointMd}) {
+            width: auto;
+          }
+
+          > div {
+            margin-left: 0;
+            font-family: $fontPrimary;
+          }
+        }
+
+        &:not([kind=field]) > div {
+          @media (min-width:#{$breakpointMd}) {
+            display: flex;
+          }
+
+          > div {
+            margin-top: (-$spacing1);
+            margin-bottom: (-$spacing1);
+            padding: $spacing1 0 $spacing1 $spacing1;
+            width: 100%;
+
+            @media (min-width:#{$breakpointMd}) {
+              margin-top: (-$spacing3);
+              margin-bottom: (-$spacing3);
+              padding: $spacing3 0 $spacing3 $spacing3;
+              width: 50%;
+            }
+
+            &:first-child {
+              padding: $spacing1 $spacing1 $spacing1 0;
+
+              @media (min-width:#{$breakpointMd}) {
+                padding: $spacing3 $spacing3 $spacing3 0;
+                width: 30%;
+              }
+
+              &:last-child {
+                border-right: none;
+                padding: $spacing1;
+                width: 100%;
+
+                @media (min-width:#{$breakpointMd}) {
+                  padding: $spacing3;
+                }
+              }
+            }
+
+            &:not(:last-child) {
+              @media (min-width:#{$breakpointMd}) {
+                border-right: thin solid $colorPrimaryBorder;
+              }
+            }
+
+            > span {
+              word-break: break-word;
+            }
+          }
+        }
+
+        > span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+div[data-section-id^="tag/"] {
+  padding-bottom: 0;
+}
+
+div[data-section-id^="operation/"] {
+  > div > div:nth-child(2) > div > div {
+    padding-top: $spacing3;
+    padding-bottom: $spacing3;
+    padding-left: $spacing3;
+
+    > span:not(.http-verb) {
+      font-size: $fontSize3;
+      font-family: $fontCode;
+    }
+  }
+
+  h3 {
+    margin-top: $spacing8;
+    $margin-bottom: $spacing6;
+    font-size: $fontSize5;
+    font-weight: $fontWeightNormal;
+
+    + [data-tabs] {
+      padding: 0 !important;
+
+      .react-tabs__tab-list {
+        margin: 0;
+      }
+
+      .react-tabs__tab {
+        margin: 0;
+        border: 0;
+        padding: $spacing3 $spacing6;
+        min-width: auto;
+        line-height: 17px;
+        font-size: $fontSize3;
+        font-weight: $fontWeightNormal;
+        color: $colorSecondaryForeground;
+        background-color: transparent;
+        border-radius: $borderRadius2 $borderRadius2 0 0;
+
+        &--selected {
+          margin: 0;
+          border: 0;
+          padding: $spacing3 $spacing6;
+          min-width: auto;
+          line-height: 17px;
+          font-size: $fontSize3;
+          font-weight: $fontWeightNormal;
+          color: #FFF;
+          background-color: $colorCodeBackground;
+          border-radius: $borderRadius2 $borderRadius2 0 0;
+        }
+      }
+
+      .react-tabs__tab-panel {
+        background: $colorCodeBackground;
+        border-radius: 0 $borderRadius3 $borderRadius3 $borderRadius3;
+
+        > div {
+          padding: $spacing6 $spacing5;
+
+          > div {
+            > span {
+              position: static;
+              font-size: $fontSize4;
+              font-weight: $fontWeightNormal;
+              color: $colorSecondaryForeground;
+
+              + div {
+                display: inline;
+                margin-left: $spacing2;
+                margin-left: .5ch;
+                padding: $spacing1 $spacing2;
+                line-height: 15px;
+                font-size: $fontSize3;
+                font-family: $fontCode;
+                color: $colorSecondaryForeground;
+                background: $colorPrimaryForeground;
+              }
+            }
+
+            > span > div,
+            > div > div > span {
+              line-height: 17px;
+              font-size: $fontSize3;
+              color: $colorSecondaryForeground;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.redoc-json {
+  .token {
+    &.attr-name,
+    &.builtin,
+    &.char,
+    &.inserted,
+    &.selector,
+    &.string {
+      color:$colorSecondaryForeground;
+    }
+    
+    &.constant,
+    &.deleted,
+    &.property,
+    &.symbol,
+    &.tag {
+      color:#3eaaee;
+    }
+    &.cdata
+    &.comment,
+    &.doctype,
+    &.prolog {
+      color:#708090;
+    }
+    
+    &.punctuation {
+      color:#fbfbfb;
+    }
+    
+    &.boolean,
+    &.number {
+      color:#ffff64;
+    }
+  }
+}

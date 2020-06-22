@@ -5,7 +5,7 @@
   "scripts": {
     "start": "make",
     "docs": "make lint docs",
-    "watch": "make lint watch",
+    "watch": "make lint watch -j2",
     "bundle": "make lint bundle",
     "lint": "make lint",
     "generate.ruby": "make lint bundle ruby",
@@ -33,11 +33,13 @@
     "@apidevtools/swagger-cli": "^4.0.2",
     "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
     "husky": "^4.2.5",
-    "redoc-cli": "^0.9.8"
+    "redoc-cli": "^0.9.8",
+    "sass": "^1.26.8"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint"
     }
-  }
+  },
+  "dependencies": {}
 }
