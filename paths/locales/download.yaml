@@ -14,7 +14,7 @@ parameters:
   in: query
   schema:
     type: string
-- description: File format name. See the format guide for all supported file formats.
+- description: File format name. See the [format guide](https://help.phrase.com/help/supported-platforms-and-formats) for all supported file formats.
   example: yml
   name: file_format
   in: query

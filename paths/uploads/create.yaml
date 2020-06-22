@@ -68,7 +68,7 @@ requestBody:
             format: binary
             example: "/path/to/my/file.json"
           file_format:
-            description: File format. Auto-detected when possible and not specified.
+            description: File format. Auto-detected when possible and not specified. See the [format guide](https://help.phrase.com/help/supported-platforms-and-formats) for all supported file formats.
             type: string
             example: json
           locale_id:
