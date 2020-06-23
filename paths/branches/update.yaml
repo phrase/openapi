@@ -36,6 +36,13 @@ x-code-samples:
       -X PATCH \
       -d '{"name":"my-branch"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase branches update \
+    --name branch-name \
+    --data '{"name":"my-branch"}' \
+    --project_id <project_id> \
+    --access_token <token>
 - lang: CLI v1
   source: |-
     phraseapp branch update \

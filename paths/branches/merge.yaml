@@ -32,6 +32,12 @@ x-code-samples:
       -X PATCH \
       -d '{"strategy":"use_master"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase branches merge \
+    --data '{"strategy":"use_master"}' \
+    --project_id <project_id> \
+    --access_token <token>
 - lang: CLI v1
   source: |-
     phraseapp branch merge \

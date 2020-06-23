@@ -33,5 +33,11 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/blacklisted_keys/{id}" \
       -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase blacklisted_keys show \
+    --project_id <project_id> \
+    --id <id> \
+    --access_token <token>
 - lang: CLI v1
   source: phraseapp blacklisted_key show

@@ -32,6 +32,13 @@ x-code-samples:
       -X DELETE \
       -d '{"branch":"my-feature-branch"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase comments mark_unread \
+    --project_id <project_id> \
+    --key_id <key_id> \
+    --id <id> \
+    --access_token <token>
 - lang: CLI v1
   source: |-
     phraseapp comment mark unread \

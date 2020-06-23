@@ -31,10 +31,15 @@ x-code-samples:
       -X POST \
       -d '{"account_id":"abcd1234"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase bitbucket_sync import \
+    --data '{"account_id": "abcd1234"}' \
+    --id <id> \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp bitbucket_sync import \
-    --account-id abcd1234
+    phraseapp bitbucket_sync import --account-id abcd1234 <id>
 requestBody:
   required: true
   content:
