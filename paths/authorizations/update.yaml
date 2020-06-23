@@ -35,7 +35,7 @@ x-code-samples:
       -X PATCH \
       -d '{"note":"My Deploy Script","scopes":["read","write"],"expires_at":"2015-03-30T09:52:53Z"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp authorization update \
     --note "My Deploy Script" \

@@ -35,7 +35,7 @@ x-code-samples:
       -X POST \
       -d '{"branch":"my-feature-branch","name":"my-feature"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp tag create \
     --branch my-feature-branch \

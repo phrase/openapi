@@ -59,7 +59,7 @@ x-code-samples:
       -X PUT \
       -d '{"account_id":"abcd1234","phrase_project_code":"3456abcd","gitlab_project_id":12345,"gitlab_branch_name":"feature-development"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp gitlab_sync update \
     --account-id abcd1234 \

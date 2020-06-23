@@ -37,7 +37,7 @@ x-code-samples:
       -F shares_translation_memory=true \
       -F project_image=@/path/to/my/project-screenshot.png \
       -F account_id=abcd1234
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp project create \
     --name "My Android Project" \

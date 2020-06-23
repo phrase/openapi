@@ -29,7 +29,7 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/keys/{key_id}/comments/{id}/read?branch=my-feature-branch" \
       -u USERNAME_OR_ACCESS_TOKEN
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp comment mark check \
     --branch my-feature-branch

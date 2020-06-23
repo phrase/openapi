@@ -26,7 +26,7 @@ x-code-samples:
       -X PATCH \
       -d '{"branch":"my-feature-branch"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp comment mark read \
     --branch my-feature-branch

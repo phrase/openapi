@@ -31,7 +31,7 @@ x-code-samples:
       -X DELETE \
       -d '{"branch":"my-feature-branch"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp key delete \
     --branch my-feature-branch

@@ -35,7 +35,7 @@ x-code-samples:
       -X PATCH \
       -d '{"branch":"my-feature-branch","q":"PhraseApp*%20unverified:true%20tags:feature,center","sort":"updated_at","order":"desc"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp translations verify \
     --branch my-feature-branch \

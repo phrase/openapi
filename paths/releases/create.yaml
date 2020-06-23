@@ -36,7 +36,7 @@ x-code-samples:
       -X POST \
       -d '{"description":"My first Release","platforms":["android","ios"],"branch":"my-feature-branch"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp release create \
     --description "My first Release" \

@@ -36,7 +36,7 @@ x-code-samples:
       -X PATCH \
       -d '{"name":"My Android Projects"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp space update \
     --name "My Android Projects"

@@ -41,7 +41,7 @@ x-code-samples:
       -F tags=awesome-feature,needs-proofreading \
       -F max_characters_allowed=140 \
       -F screenshot=@/path/to/my/screenshot.png
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp key create \
     --branch my-feature-branch \

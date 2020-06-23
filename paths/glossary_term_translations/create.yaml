@@ -37,7 +37,7 @@ x-code-samples:
       -X POST \
       -d '{"locale_code":"en-US","content":"My translated term"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp glossary_term_translation create \
     --locale-code en-US \

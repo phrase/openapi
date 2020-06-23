@@ -30,5 +30,5 @@ x-code-samples:
     curl "https://api.phrase.com/projects/{project_id}/webhooks/{id}/test" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST
-- lang: CLI
+- lang: CLI v1
   source: phraseapp webhook test

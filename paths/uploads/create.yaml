@@ -40,7 +40,7 @@ x-code-samples:
       -F tags=awesome-feature,needs-proofreading \
       -F locale_mapping[en]=2 \
       -F format_options[foo]=bar
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp upload create \
     --branch my-feature-branch \

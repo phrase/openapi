@@ -32,5 +32,5 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{id}" \
       -u USERNAME_OR_ACCESS_TOKEN
-- lang: CLI
+- lang: CLI v1
   source: phraseapp project show

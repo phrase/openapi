@@ -63,7 +63,7 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/locales/{locale_id}/translations?branch=my-feature-branch&sort=updated_at&order=desc&q=PhraseApp*%2520unverified:true%2520excluded:true%2520tags:feature,center" \
       -u USERNAME_OR_ACCESS_TOKEN
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp translations by_locale \
     --branch my-feature-branch \

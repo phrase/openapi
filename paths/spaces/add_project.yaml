@@ -32,7 +32,7 @@ x-code-samples:
       -X POST \
       -d '{"id":"a4b3c2d1"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp spaces projects create \
     --id a4b3c2d1

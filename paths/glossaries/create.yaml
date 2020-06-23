@@ -35,7 +35,7 @@ x-code-samples:
       -X POST \
       -d '{"name":"My glossary","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"]}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp glossary create \
     --name "My glossary" \

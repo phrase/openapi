@@ -37,7 +37,7 @@ x-code-samples:
       -X PATCH \
       -d '{"term":"MyCompany","description":"Use this when refering to our company","translatable":true,"case_sensitive":true}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp glossary_term update \
     --term MyCompany \

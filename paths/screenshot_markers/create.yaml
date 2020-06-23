@@ -36,7 +36,7 @@ x-code-samples:
       -X POST \
       -d '{"key_id":"abcd1234abcd1234abcd1234abcd1234","presentation":"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp screenshot_marker create \
     --key-id abcd1234abcd1234abcd1234abcd1234 \

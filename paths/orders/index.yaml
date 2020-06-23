@@ -44,7 +44,7 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/projects/{project_id}/orders?branch=my-feature-branch" \
       -u USERNAME_OR_ACCESS_TOKEN
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp orders list \
     --branch my-feature-branch

@@ -35,7 +35,7 @@ x-code-samples:
       -X POST \
       -d '{"name":"date.formats.*"}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp blacklisted_key create \
     --name 'date.formats.*'

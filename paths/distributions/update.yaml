@@ -36,7 +36,7 @@ x-code-samples:
       -X PATCH \
       -d '{"name":"My Android Distribution","project_id":"abcd1234abcd1234abcd1234","platforms":["android","ios"],"format_options":"{xml:{enclose_in_cdata:'1'}}","fallback_to_non_regional_locale":true,"fallback_to_default_locale":true,"use_last_reviewed_version":true}' \
       -H 'Content-Type: application/json'
-- lang: CLI
+- lang: CLI v1
   source: |-
     phraseapp distribution update \
     --name "My Android Distribution" \
