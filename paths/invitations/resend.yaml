@@ -31,8 +31,14 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/accounts/{account_id}/invitations/{id}/resend" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/invitations/:id/resend" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST
+- lang: CLI v2
+  source: |-
+    phrase invitations resend \
+    --account_id <account_id> \
+    --id <id> \
+    --access_token <token>
 - lang: CLI v1
-  source: phraseapp invitation resend
+  source: phraseapp invitation resend <account_id> <id>

@@ -35,7 +35,11 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects" \
+    curl "https://api.phrase.com/v2/projects" \
       -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase projects list \
+    --access_token <token>
 - lang: CLI v1
   source: phraseapp projects list

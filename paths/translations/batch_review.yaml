@@ -30,14 +30,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/translations/review" \
+    curl "https://api.phrase.com/v2/projects/:project_id/translations/review" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
       -d '{"branch":"my-feature-branch","q":"PhraseApp*%reviewed:false%20tags:feature,center"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase translations review \
+    --project_id <project_id> \
+    --data '{"branch":"my-feature-branch", "query":"'PhraseApp*%reviewed:false%20tags:feature,center'"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp translations review \
+    phraseapp translations review <project_id> \
     --branch my-feature-branch \
     --query 'PhraseApp*%reviewed:false%20tags:feature,center'
 requestBody:

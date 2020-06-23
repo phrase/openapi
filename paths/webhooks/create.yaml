@@ -30,14 +30,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/webhooks" \
+    curl "https://api.phrase.com/v2/projects/:project_id/webhooks" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"callback_url":"http://example.com/hooks/phraseapp-notifications","description":"My webhook for chat notifications","events":"locales:create,translations:update"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase webhooks create \
+    --project_id <project_id> \
+    --data '{"callback_url":""http://example.com/hooks/phraseapp-notifications"", "description":""My webhook for chat notifications"", "events":""locales:create,translations:update""}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp webhook create \
+    phraseapp webhook create <project_id> \
     --callback-url "http://example.com/hooks/phraseapp-notifications" \
     --description "My webhook for chat notifications" \
     --events "locales:create,translations:update"

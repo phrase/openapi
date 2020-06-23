@@ -31,14 +31,21 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/jobs/{job_id}/locales" \
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"branch":"my-feature-branch","locale_id":"abcd1234cdef1234abcd1234cdef1234","user_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase job_locales create \
+    --project_id <project_id> \
+    --job_id <job_id> \
+    --data '{"branch":"my-feature-branch", "locale_id":"abcd1234cdef1234abcd1234cdef1234", "user_ids":""abcd1234cdef1234abcd1234cdef1234""}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp job_locales create \
+    phraseapp job_locales create <project_id> <job_id> \
     --branch my-feature-branch \
     --locale-id abcd1234cdef1234abcd1234cdef1234 \
     --user-ids "abcd1234cdef1234abcd1234cdef1234"

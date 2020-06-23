@@ -30,7 +30,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/blacklisted_keys" \
+    curl "https://api.phrase.com/v2/projects/:project_id/blacklisted_keys" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"name":"date.formats.*"}' \
@@ -38,12 +38,12 @@ x-code-samples:
 - lang: CLI v2
   source: |-
     phrase blacklisted_keys create \
-    --data '{"name":"date.formats.*"}' \
     --project_id <project_id> \
+    --data '{"name":"'date.formats.*'"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp blacklisted_key create \
+    phraseapp blacklisted_key create <project_id> \
     --name 'date.formats.*'
 requestBody:
   required: true

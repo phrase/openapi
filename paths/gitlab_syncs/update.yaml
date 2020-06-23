@@ -54,14 +54,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/gitlab_syncs/{id}" \
+    curl "https://api.phrase.com/v2/gitlab_syncs/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PUT \
       -d '{"account_id":"abcd1234","phrase_project_code":"3456abcd","gitlab_project_id":12345,"gitlab_branch_name":"feature-development"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase gitlab_syncs update \
+    --id <id> \
+    --data '{"account_id":"abcd1234", "phrase_project_code":"3456abcd", "gitlab_project_id":"12345", "gitlab_branch_name":"feature-development"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp gitlab_sync update \
+    phraseapp gitlab_sync update <id> \
     --account-id abcd1234 \
     --phrase-project-code 3456abcd \
     --gitlab-project-id 12345 \

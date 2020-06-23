@@ -36,14 +36,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/keys/search" \
+    curl "https://api.phrase.com/v2/projects/:project_id/keys/search" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"branch":"my-feature-branch","sort":"updated_at","order":"desc","q":"mykey* translated:true","locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase keys search \
+    --project_id <project_id> \
+    --data '{"branch":"my-feature-branch", "sort":"updated_at", "order":"desc", "query":"'mykey* translated:true'", "locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp keys search \
+    phraseapp keys search <project_id> \
     --branch my-feature-branch \
     --sort updated_at \
     --order desc \

@@ -36,7 +36,12 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/webhooks" \
+    curl "https://api.phrase.com/v2/projects/:project_id/webhooks" \
       -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase webhooks list \
+    --project_id <project_id> \
+    --access_token <token>
 - lang: CLI v1
-  source: phraseapp webhooks list
+  source: phraseapp webhooks list <project_id>

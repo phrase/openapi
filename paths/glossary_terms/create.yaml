@@ -31,14 +31,21 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/accounts/{account_id}/glossaries/{glossary_id}/terms" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/glossaries/:glossary_id/terms" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"term":"MyCompany","description":"Use this when refering to our company","translatable":true,"case_sensitive":true}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase glossary_terms create \
+    --account_id <account_id> \
+    --glossary_id <glossary_id> \
+    --data '{"term":"MyCompany", "description":""Use this when refering to our company"", "translatable":"true", "case_sensitive":"true"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp glossary_term create \
+    phraseapp glossary_term create <account_id> <glossary_id> \
     --term MyCompany \
     --description "Use this when refering to our company" \
     --translatable true \

@@ -25,12 +25,18 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/gitlab_syncs/{id}" \
+    curl "https://api.phrase.com/v2/gitlab_syncs/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X DELETE \
       -d '{"account_id":"abcd1234"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase gitlab_syncs delete \
+    --id <id> \
+    --account_id abcd1234 \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp gitlab_sync delete \
+    phraseapp gitlab_sync delete <id> \
     --account-id abcd1234

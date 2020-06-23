@@ -30,14 +30,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/accounts/{account_id}/invitations" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/invitations" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"email":"example@mail.com","role":"Developer","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","permissions":{"create_upload":true,"review_translations":true}}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase invitations create \
+    --account_id <account_id> \
+    --data '{"email":"example@mail.com", "role":"Developer", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp invitation create \
+    phraseapp invitation create <account_id> \
     --email example@mail.com \
     --role Developer \
     --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \

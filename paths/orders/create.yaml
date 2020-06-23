@@ -30,14 +30,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/orders" \
+    curl "https://api.phrase.com/v2/projects/:project_id/orders" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"branch":"my-feature-branch","lsp":"textmaster","source_locale_id":"abcd1234abcd1234abcd1234abcd1234","target_locale_ids":["1234abcd1234abcd1234abcd1234abcd","abcd1234abcd1234abcd1234abcd1234"],"translation_type":"premium","tag":"my-awesome-feature","message":"Please make everything sound really nice :)","styleguide_id":"1234abcd1234abcd1234abcd1234abcd","category":"C021"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase orders create \
+    --project_id <project_id> \
+    --data '{"branch":"my-feature-branch", "lsp":"textmaster", "source_locale_id":"abcd1234abcd1234abcd1234abcd1234", "target_locale_ids":""1234abcd1234abcd1234abcd1234abcd,abcd1234abcd1234abcd1234abcd1234"", "translation_type":"premium", "tag":"my-awesome-feature", "message":""Please make everything sound really nice :)"", "styleguide_id":"1234abcd1234abcd1234abcd1234abcd", "category":"C021"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp order create \
+    phraseapp order create <project_id> \
     --branch my-feature-branch \
     --lsp textmaster \
     --source-locale-id abcd1234abcd1234abcd1234abcd1234 \

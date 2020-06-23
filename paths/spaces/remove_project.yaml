@@ -21,8 +21,15 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/accounts/{account_id}/spaces/{space_id}/projects/{id}" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/spaces/:space_id/projects/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X DELETE
+- lang: CLI v2
+  source: |-
+    phrase spaces projects \
+    --account_id <account_id> \
+    --space_id <space_id> \
+    --id <id> \
+    --access_token <token>
 - lang: CLI v1
-  source: phraseapp spaces projects delete
+  source: phraseapp spaces projects delete <account_id> <space_id> <id>

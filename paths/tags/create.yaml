@@ -30,14 +30,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/tags" \
+    curl "https://api.phrase.com/v2/projects/:project_id/tags" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"branch":"my-feature-branch","name":"my-feature"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase tags create \
+    --project_id <project_id> \
+    --data '{"branch":"my-feature-branch", "name":"my-feature"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp tag create \
+    phraseapp tag create <project_id> \
     --branch my-feature-branch \
     --name my-feature
 requestBody:

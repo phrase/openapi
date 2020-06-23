@@ -27,7 +27,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/branches/{name}/merge" \
+    curl "https://api.phrase.com/v2/projects/:project_id/branches/:name/merge" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
       -d '{"strategy":"use_master"}' \
@@ -35,12 +35,13 @@ x-code-samples:
 - lang: CLI v2
   source: |-
     phrase branches merge \
-    --data '{"strategy":"use_master"}' \
     --project_id <project_id> \
+    --name <name> \
+    --data '{"strategy":"use_master"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp branch merge \
+    phraseapp branch merge <project_id> <name> \
     --strategy use_master
 requestBody:
   required: true

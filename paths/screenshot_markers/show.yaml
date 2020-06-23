@@ -32,7 +32,14 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/screenshots/{screenshot_id}/markers/{id}" \
+    curl "https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers/:id" \
       -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase screenshot_markers show \
+    --project_id <project_id> \
+    --screenshot_id <screenshot_id> \
+    --id <id> \
+    --access_token <token>
 - lang: CLI v1
-  source: phraseapp screenshot_marker show
+  source: phraseapp screenshot_marker show <project_id> <screenshot_id> <id>

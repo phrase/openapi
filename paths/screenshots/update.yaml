@@ -31,15 +31,22 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/screenshots/{id}" \
+    curl "https://api.phrase.com/v2/projects/:project_id/screenshots/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
       -F name=A%20screenshot%20name \
       -F description=A%20screenshot%20description \
       -F filename=@/path/to/my/screenshot.png
+- lang: CLI v2
+  source: |-
+    phrase screenshots update \
+    --project_id <project_id> \
+    --id <id> \
+    --data '{"name":""A screenshot name"", "description":""A screenshot description"", "filename":"/path/to/my/screenshot.png"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp screenshot update \
+    phraseapp screenshot update <project_id> <id> \
     --name "A screenshot name" \
     --description "A screenshot description" \
     --filename /path/to/my/screenshot.png

@@ -30,14 +30,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/jobs" \
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"branch":"my-feature-branch","name":"de","briefing":"de-DE","due_date":"2017-08-15","tags":["myUploadTag"],"translation_key_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase jobs create \
+    --project_id <project_id> \
+    --data '{"branch":"my-feature-branch", "name":"de", "briefing":"de-DE", "due_date":"2017-08-15", "tags":""myUploadTag"", "translation_key_ids":""abcd1234cdef1234abcd1234cdef1234""}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp job create \
+    phraseapp job create <project_id> \
     --branch my-feature-branch \
     --name de \
     --briefing de-DE \

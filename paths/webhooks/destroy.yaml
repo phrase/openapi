@@ -20,8 +20,14 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/webhooks/{id}" \
+    curl "https://api.phrase.com/v2/projects/:project_id/webhooks/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X DELETE
+- lang: CLI v2
+  source: |-
+    phrase webhooks delete \
+    --project_id <project_id> \
+    --id <id> \
+    --access_token <token>
 - lang: CLI v1
-  source: phraseapp webhook delete
+  source: phraseapp webhook delete <project_id> <id>

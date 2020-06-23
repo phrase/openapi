@@ -30,7 +30,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/uploads" \
+    curl "https://api.phrase.com/v2/projects/:project_id/uploads" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -F branch=my-feature-branch \
@@ -40,9 +40,15 @@ x-code-samples:
       -F tags=awesome-feature,needs-proofreading \
       -F locale_mapping[en]=2 \
       -F format_options[foo]=bar
+- lang: CLI v2
+  source: |-
+    phrase uploads create \
+    --project_id <project_id> \
+    --data '{"branch":"my-feature-branch", "file":"/path/to/my/file.json", "file_format":"json", "locale_id":"abcd1234cdef1234abcd1234cdef1234", "tags":"awesome-feature,needs-proofreading", "locale_mapping":""{"en": "2"}"", "format_options":""{"foo": "bar"}""}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp upload create \
+    phraseapp upload create <project_id> \
     --branch my-feature-branch \
     --file /path/to/my/file.json \
     --file-format json \
@@ -53,7 +59,7 @@ x-code-samples:
 requestBody:
   required: true
   content:
-    multipart/form-data:
+    application/json:
       schema:
         type: object
         title: upload/create/parameters
@@ -68,7 +74,7 @@ requestBody:
             format: binary
             example: "/path/to/my/file.json"
           file_format:
-            description: File format. Auto-detected when possible and not specified. See the [format guide](https://help.phrase.com/help/supported-platforms-and-formats) for all supported file formats.
+            description: File format. Auto-detected when possible and not specified.
             type: string
             example: json
           locale_id:
@@ -107,12 +113,14 @@ requestBody:
           locale_mapping:
             description: Optional, format specific mapping between locale names and the columns the translations to those locales are contained in.
             type: object
-            properties: {}
+            additionalProperties:
+              type: string
             example: '{"en": "2"}'
           format_options:
             description: Additional options available for specific formats. See our format guide for complete list.
             type: object
-            properties: {}
+            additionalProperties:
+              type: string
             example: '{"foo": "bar"}'
           autotranslate:
             description: If set, translations for the uploaded language will be fetched automatically.

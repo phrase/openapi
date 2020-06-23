@@ -31,7 +31,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/branches/{name}" \
+    curl "https://api.phrase.com/v2/projects/:project_id/branches/:name" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
       -d '{"name":"my-branch"}' \
@@ -39,13 +39,13 @@ x-code-samples:
 - lang: CLI v2
   source: |-
     phrase branches update \
-    --name branch-name \
-    --data '{"name":"my-branch"}' \
     --project_id <project_id> \
+    --name <name> \
+    --data '{"name":"my-branch"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp branch update \
+    phraseapp branch update <project_id> <name> \
     --name my-branch
 requestBody:
   required: true

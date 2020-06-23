@@ -27,19 +27,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/keys/{key_id}/comments/{id}/read" \
+    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:id/read" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X DELETE \
       -d '{"branch":"my-feature-branch"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase comments mark_unread \
+    phrase comments mark \
     --project_id <project_id> \
     --key_id <key_id> \
     --id <id> \
+    --branch my-feature-branch \
     --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp comment mark unread \
+    phraseapp comment mark unread <project_id> <key_id> <id> \
     --branch my-feature-branch

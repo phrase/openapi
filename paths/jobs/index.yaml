@@ -60,11 +60,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/jobs?branch=my-feature-branch&owned_by=abcd1234cdef1234abcd1234cdef1234&assigned_to=abcd1234cdef1234abcd1234cdef1234&state=completed" \
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs?branch=my-feature-branch&owned_by=abcd1234cdef1234abcd1234cdef1234&assigned_to=abcd1234cdef1234abcd1234cdef1234&state=completed" \
       -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase jobs list \
+    --project_id <project_id> \
+    --branch my-feature-branch \
+    --owned_by abcd1234cdef1234abcd1234cdef1234 \
+    --assigned_to abcd1234cdef1234abcd1234cdef1234 \
+    --state completed \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp jobs list \
+    phraseapp jobs list <project_id> \
     --branch my-feature-branch \
     --owned-by abcd1234cdef1234abcd1234cdef1234 \
     --assigned-to abcd1234cdef1234abcd1234cdef1234 \

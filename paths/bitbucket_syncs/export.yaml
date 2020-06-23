@@ -30,7 +30,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/bitbucket_syncs/{id}/export" \
+    curl "https://api.phrase.com/v2/bitbucket_syncs/:id/export" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"account_id":"abcd1234"}' \
@@ -38,12 +38,13 @@ x-code-samples:
 - lang: CLI v2
   source: |-
     phrase bitbucket_sync export \
-    --data '{"account_id": "abcd1234"}' \
     --id <id> \
+    --data '{"account_id":"abcd1234"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp bitbucket_sync export --account-id abcd1234 <id>
+    phraseapp bitbucket_sync export <id> \
+    --account-id abcd1234
 requestBody:
   required: true
   content:

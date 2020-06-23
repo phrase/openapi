@@ -31,14 +31,21 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/accounts/{account_id}/invitations/{id}" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/invitations/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
       -d '{"role":"Invitiation role","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","permissions":{"create_upload":true}}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase invitations update \
+    --account_id <account_id> \
+    --id <id> \
+    --data '{"role":""Invitiation role"", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "permissions":"{"create_upload"=>true}"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp invitation update \
+    phraseapp invitation update <account_id> <id> \
     --role "Invitiation role" \
     --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
     --locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \

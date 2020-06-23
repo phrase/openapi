@@ -30,14 +30,20 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/gitlab_syncs/{gitlab_sync_id}/export" \
+    curl "https://api.phrase.com/v2/gitlab_syncs/:gitlab_sync_id/export" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"account_id":"abcd1234"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase gitlab_syncs export \
+    --gitlab_sync_id <gitlab_sync_id> \
+    --data '{"account_id":"abcd1234"}' \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp gitlab_sync export \
+    phraseapp gitlab_sync export <gitlab_sync_id> \
     --account-id abcd1234
 requestBody:
   required: true

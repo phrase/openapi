@@ -48,14 +48,22 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/keys" \
+    curl "https://api.phrase.com/v2/projects/:project_id/keys" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X DELETE \
       -d '{"branch":"my-feature-branch","q":"mykey* translated:true","locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
       -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase keys delete \
+    --project_id <project_id> \
+    --branch my-feature-branch \
+    --query 'mykey* translated:true' \
+    --locale_id abcd1234abcd1234abcd1234abcd1234 \
+    --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp keys delete \
+    phraseapp keys delete <project_id> \
     --branch my-feature-branch \
     --query 'mykey* translated:true' \
     --locale-id abcd1234abcd1234abcd1234abcd1234

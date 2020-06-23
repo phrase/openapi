@@ -32,6 +32,10 @@ responses:
     "$ref": "../../responses.yaml#/429"
 x-code-samples:
 - lang: Curl
-  source: curl "https://api.phrase.com/formats"
+  source: curl "https://api.phrase.com/v2/formats"
+- lang: CLI v2
+  source: |-
+    phrase formats list \
+    --access_token <token>
 - lang: CLI v1
   source: phraseapp formats list

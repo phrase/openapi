@@ -39,8 +39,13 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/gitlab_syncs?account_id=abcd1234" \
+    curl "https://api.phrase.com/v2/gitlab_syncs?account_id=abcd1234" \
       -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase gitlab_syncs list \
+    --account_id abcd1234 \
+    --access_token <token>
 - lang: CLI v1
   source: |-
     phraseapp gitlab_sync list \

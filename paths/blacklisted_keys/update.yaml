@@ -31,21 +31,21 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/projects/{project_id}/blacklisted_keys/{id}" \
+    curl "https://api.phrase.com/v2/projects/:project_id/blacklisted_keys/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
       -d '{"name":"date.formats.*"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase blacklisted_keys show \
+    phrase blacklisted_keys update \
     --project_id <project_id> \
     --id <id> \
-    --data '{"name":"date.formats.*"}' \
+    --data '{"name":"'date.formats.*'"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp blacklisted_key update \
+    phraseapp blacklisted_key update <project_id> <id> \
     --name 'date.formats.*'
 requestBody:
   required: true
