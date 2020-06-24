@@ -35,14 +35,15 @@ func init{{{nickname}}}() {
 		Short: "{{#summary}}{{{.}}}{{/summary}}{{^summary}}Method for {{operationId}}{{/summary}}",
 		Long:  `{{#notes}}{{notes}}{{/notes}}`,
 		Run: func(cmd *cobra.Command, args []string) {
-			auth := context.WithValue(context.Background(), api.ContextAPIKey, api.APIKey{
-				Key:		Config.Credentials.Token,
-				Prefix: "token",
-			})
+			auth := Auth()
 
 			cfg := api.NewConfiguration(Config)
 			client := api.NewAPIClient(cfg)
-			{{#hasOptionalParams}}localVarOptionals := api.{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts{}{{/hasOptionalParams}}
+			{{#hasOptionalParams}}localVarOptionals := api.{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts{}
+
+			if Config.Credentials.TFA && Config.Credentials.TFAToken != "" {
+				localVarOptionals.XPhraseAppOTP = optional.NewString(Config.Credentials.TFAToken)
+			}{{/hasOptionalParams}}
 			{{#allParams}}{{^required}}{{#isPrimitiveType}}if params.IsSet(helpers.ToSnakeCase("{{{paramName}}}")) {
 			{{#startsWith paramName "fileFormat"}}	localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#required}}params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/required}}{{^required}}optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))){{/required}}{{else}}{{#startsWith paramName "file"}}	file, err := os.Open(params.GetString(helpers.ToSnakeCase("file")))
 				localVarOptionals.File = optional.NewInterface(file)

@@ -15,6 +15,7 @@ type Credentials struct {
 	Username string
 	Token    string
 	TFA      bool
+	TFAToken string
 	Host     string
 }
 
