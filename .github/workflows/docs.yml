@@ -17,9 +17,19 @@ jobs:
           npm install
           npm run docs
 
-      - name: Deploy 🚀
+      - name: Deploy GH Page 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: doc
+
+      - name: Deploy developers.phrase.com 🚀
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          mkdir -p output
+          cp -r doc output/api
+          npm install netlify-cli
+          ./node_modules/.bin/netlify deploy --prod
