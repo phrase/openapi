@@ -30,7 +30,11 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/authorizations/{id}" \
+    curl "https://api.phrase.com/v2/authorizations/:id" \
       -u USERNAME
+- lang: CLI v2
+  source: |-
+    phrase authorizations show \
+    --id <id>
 - lang: CLI v1
-  source: phraseapp authorization show
+  source: phraseapp authorization show <id>

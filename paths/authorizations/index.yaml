@@ -35,7 +35,9 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/authorizations" \
+    curl "https://api.phrase.com/v2/authorizations" \
       -u USERNAME
+- lang: CLI v2
+  source: phrase authorizations list
 - lang: CLI v1
   source: phraseapp authorizations list

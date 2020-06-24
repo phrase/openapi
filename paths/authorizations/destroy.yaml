@@ -19,8 +19,12 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/authorizations/{id}" \
+    curl "https://api.phrase.com/v2/authorizations/:id" \
       -u USERNAME \
       -X DELETE
+- lang: CLI v2
+  source: |-
+    phrase authorizations delete \
+    --id <id>
 - lang: CLI v1
-  source: phraseapp authorization delete
+  source: phraseapp authorization delete <id>
