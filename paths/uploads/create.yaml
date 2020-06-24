@@ -59,7 +59,7 @@ x-code-samples:
 requestBody:
   required: true
   content:
-    application/json:
+    multipart/form-data:
       schema:
         type: object
         title: upload/create/parameters
