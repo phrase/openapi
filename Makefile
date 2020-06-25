@@ -16,14 +16,16 @@ lint:
 	swagger-cli validate main.yaml
 bundle:
 	swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml
-watch: watch_sass watch_docs
-watch_sass:
+watch:
+	make lint
+	swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json
 	./node_modules/.bin/sass --watch ./doc/main.scss ./doc/main.css
-watch_docs:
-	redoc-cli serve --watch --options.nativeScrollbars --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings -t doc/template.hbs -ssr --templateOptions.basePath ./doc --options.theme.colors.primary.main "#242424" --options.theme.colors.text.primary "#333" --options.theme.typography.fontFamily "Source Sans Pro,sans-serif" --options.theme.typography.fontSize "18px" --options.theme.typography.lineHeight "1.5" --options.theme.typography.fontWeightRegular "300" --options.theme.typography.headings.fontFamily "Source Sans Pro,sans-serif" --options.theme.typography.headings.lineHeight "1.3" --options.theme.typography.code.fontFamily "Menlo,monospace" --options.theme.typography.code.fontWeight "400"  --options.theme.logo.maxHeight 50px --options.theme.logo.maxWidth 134px --options.theme.logo.gutter "14px 14px 8px" --options.theme.rightPanel.backgroundColor '#242424' --options.theme.sidebar.backgroundColor "#FBFBFB" --options.theme.sidebar.textColor "#7C7C7C" --options.theme.sidebar.groupItems.textTransform "none" --options.theme.http.get "#51E05D" --options.theme.http.post "#0091EB" --options.theme.http.patch "#FFBB00" --options.theme.http.delete "#F44336" ./main.yaml
+serve:
+	./node_modules/.bin/http-server doc
 docs:
+	make lint
+	swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json
 	./node_modules/.bin/sass -s compressed ./doc/main.scss ./doc/main.css
-	redoc-cli bundle -t doc/template.hbs -o doc/index.html --options.nativeScrollbars --options.noAutoAuth --options.expandSingleSchemaField --options.suppressWarnings --templateOptions.basePath . --options.theme.colors.primary.main "#242424" --options.theme.colors.text.primary "#333" --options.theme.typography.fontFamily "Source Sans Pro,sans-serif" --options.theme.typography.fontSize "18px" --options.theme.typography.lineHeight "1.5" --options.theme.typography.fontWeightRegular "300" --options.theme.typography.headings.fontFamily "Source Sans Pro,sans-serif" --options.theme.typography.headings.lineHeight "1.3" --options.theme.typography.code.fontFamily "Menlo,monospace" --options.theme.typography.code.fontWeight "400"  --options.theme.logo.maxHeight 50px --options.theme.logo.maxWidth 134px --options.theme.logo.gutter "14px 14px 8px" --options.theme.rightPanel.backgroundColor '#242424' --options.theme.sidebar.backgroundColor "#FBFBFB" --options.theme.sidebar.textColor "#7C7C7C" --options.theme.sidebar.groupItems.textTransform "none" --options.theme.http.get "#51E05D" --options.theme.http.post "#0091EB" --options.theme.http.patch "#FFBB00" --options.theme.http.delete "#F44336" ./main.yaml
 ruby:
 	openapi-generator generate -i tmp/compiled.yaml -g ruby -o clients/ruby -t ./openapi-generator/templates/ruby-client -c ./openapi-generator/ruby_lang.yaml
 go:
