@@ -365,3 +365,1151 @@ To authenticate a JSONP request, you can send a valid [access token](#authentica
 ```
 $ curl "https://api.phrase.com/v2/projects?callback=myFunction&access_token=ACCESS-TOKEN"
 ```
+
+<div class="section resource">
+
+<div id="examples" class="resource__section resource__section--head" data-target="page.section">
+
+<div class="resource__copy">
+
+## Usage examples
+
+Learn how to work more efficiently with Phrase API v2 with these
+workflow-oriented examples.
+
+</div>
+
+</div>
+
+<div id="examples_excluded_translations" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Find excluded translations with a certain content
+
+    GET /v2/projects/:project_id/translations
+
+List excluded translations for the given project which start with the
+term `PhraseApp`.
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sort</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />
+Default: key_name</td>
+</tr>
+<tr class="even">
+<td><code>order</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Order direction. Can be one of: asc, desc.<br />
+Default: asc</td>
+</tr>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to find translations by content (including wildcards).<br />
+<br />
+The following qualifiers are supported in the query:<br />
+
+<ul>
+<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>tags:XYZ</code> for tags on the translation</li>
+<li><code>unverified:{true|false}</code> for verification status</li>
+<li><code>reviewed:{true|false}</code> for reviewed status</li>
+<li><code>excluded:{true|false}</code> for exclusion status</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/translations?sort=updated_at&order=desc&q=PhraseApp*%20excluded:true" \
+  -u USERNAME_OR_ACCESS_TOKEN
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase translations list \
+--project_id <project_id> \
+--sort updated_at \
+--order desc \
+--query 'PhraseApp* excluded:true' \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp translations list <project_id> \
+--sort updated_at \
+--order desc \
+--query 'PhraseApp* excluded:true'
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_unverified_translations" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Find unverified translations with a certain content
+
+    GET /v2/projects/:project_id/translations
+
+List unverified translations for the given project which start with the
+term `PhraseApp` and are not verified.
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sort</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />
+Default: key_name</td>
+</tr>
+<tr class="even">
+<td><code>order</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Order direction. Can be one of: asc, desc.<br />
+Default: asc</td>
+</tr>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to find translations by content (including wildcards).<br />
+<br />
+The following qualifiers are supported in the query:<br />
+
+<ul>
+<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>tags:XYZ</code> for tags on the translation</li>
+<li><code>unverified:{true|false}</code> for verification status</li>
+<li><code>reviewed:{true|false}</code> for reviewed status</li>
+<li><code>excluded:{true|false}</code> for exclusion status</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/translations?sort=updated_at&order=desc&q=PhraseApp*%20unverified:true" \
+  -u USERNAME_OR_ACCESS_TOKEN
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase translations list \
+--project_id <project_id> \
+--sort updated_at \
+--order desc \
+--query 'PhraseApp* unverified:true' \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp translations list <project_id> \
+--sort updated_at \
+--order desc \
+--query 'PhraseApp* unverified:true'
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_verify_translations" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Verify translations selected by query
+
+    PATCH /v2/projects/:project_id/translations/verify
+
+Verify all translations that are matching the query `my dog`.
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to find translations by content (including wildcards).<br />
+<br />
+The following qualifiers are supported in the query:<br />
+
+<ul>
+<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>tags:XYZ</code> for tags on the translation</li>
+<li><code>unverified:{true|false}</code> for verification status</li>
+<li><code>reviewed:{true|false}</code> for reviewed status</li>
+<li><code>excluded:{true|false}</code> for exclusion status</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+<tr class="even">
+<td><code>sort</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />
+Default: key_name</td>
+</tr>
+<tr class="odd">
+<td><code>order</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Order direction. Can be one of: asc, desc.<br />
+Default: asc</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/translations/verify" \
+  -u USERNAME_OR_ACCESS_TOKEN \
+  -X PATCH \
+  -d '{"q":"my dog unverified:true","sort":"updated_at","order":"desc"}' \
+  -H 'Content-Type: application/json'
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase translations verify \
+--project_id <project_id> \
+--data '{"query":""my dog unverified:true"", "sort":"updated_at", "order":"desc"}' \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp translations verify <project_id> \
+--query "my dog unverified:true" \
+--sort updated_at \
+--order desc
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_updated_keys" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Find recently updated keys
+
+    GET /v2/projects/:project_id/keys
+
+Find updated keys with with the `updated_at` qualifier like
+`updated_at:>=2013-02-21T00:00:00Z`. This example returns keys that have
+been updated on or after 2013-02-21.
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sort</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Sort by field. Can be one of: name, created_at, updated_at.<br />
+Default: name</td>
+</tr>
+<tr class="even">
+<td><code>order</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Order direction. Can be one of: asc, desc.<br />
+Default: asc</td>
+</tr>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to do broad search for keys by name (including wildcards).<br />
+<br />
+The following qualifiers are also supported in the search term:<br />
+
+<ul>
+<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
+<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+<tr class="even">
+<td><code>locale_id</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/keys?sort=updated_at&order=desc&q=updated_at:%3E=2013-02-21T00:00:00Z&locale_id=abcd1234abcd1234abcd1234abcd1234" \
+  -u USERNAME_OR_ACCESS_TOKEN
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase keys list \
+--project_id <project_id> \
+--sort updated_at \
+--order desc \
+--query "updated_at:>=2013-02-21T00:00:00Z" \
+--locale_id abcd1234abcd1234abcd1234abcd1234 \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp keys list <project_id> \
+--sort updated_at \
+--order desc \
+--query "updated_at:>=2013-02-21T00:00:00Z" \
+--locale-id abcd1234abcd1234abcd1234abcd1234
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_tagged_keys" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Find keys with a certain tag
+
+    GET /v2/projects/:project_id/keys
+
+Keys with certain tags can be filtered with the qualifier `tags:`.
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to do broad search for keys by name (including wildcards).<br />
+<br />
+The following qualifiers are also supported in the search term:<br />
+
+<ul>
+<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
+<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/keys?q=tags:admin" \
+  -u USERNAME_OR_ACCESS_TOKEN
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase keys list \
+--project_id <project_id> \
+--query "tags:admin" \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp keys list <project_id> \
+--query "tags:admin"
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_tag" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Add tags to collection of keys
+
+    PATCH /v2/projects/:project_id/keys/tag
+
+Add the tags `landing-page` and `release-1.2` to all keys that start
+with `dog` and are translated in the locale
+`abcd1234abcd1234abcd1234abcd1234`.
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to do broad search for keys by name (including wildcards).<br />
+<br />
+The following qualifiers are also supported in the search term:<br />
+
+<ul>
+<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
+<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+<tr class="even">
+<td><code>tags</code></td>
+<td><code>string</code></td>
+<td>Tag or comma-separated list of tags to add to the matching collection of keys</td>
+</tr>
+<tr class="odd">
+<td><code>locale_id</code><br />
+<span class="small">optional</span></td>
+<td><code>id</code></td>
+<td>Locale used to determine the translation state of a key when filtering for untranslated or translated keys.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/keys/tag" \
+  -u USERNAME_OR_ACCESS_TOKEN \
+  -X PATCH \
+  -d '{"q":"dog* translated:true","tags":"landing-page,release-1.2","locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
+  -H 'Content-Type: application/json'
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase keys tag \
+--project_id <project_id> \
+--data '{"query":"'dog* translated:true'", "tags":"landing-page,release-1.2", "locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp keys tag <project_id> \
+--query 'dog* translated:true' \
+--tags landing-page,release-1.2 \
+--locale-id abcd1234abcd1234abcd1234abcd1234
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_untag" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Remove tags from collection of keys
+
+    PATCH /v2/projects/:project_id/keys/untag
+
+Remove the tags `landing-page` and `release-1.2` from all keys that
+start with `dog` and are translated in the locale
+`abcd1234abcd1234abcd1234abcd1234`.
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to do broad search for keys by name (including wildcards).<br />
+<br />
+The following qualifiers are also supported in the search term:<br />
+
+<ul>
+<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
+<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+<tr class="even">
+<td><code>tags</code></td>
+<td><code>string</code></td>
+<td>Tag or comma-separated list of tags to remove from the matching collection of keys</td>
+</tr>
+<tr class="odd">
+<td><code>locale_id</code><br />
+<span class="small">optional</span></td>
+<td><code>id</code></td>
+<td>Locale used to determine the translation state of a key when filtering for untranslated or translated keys.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/keys/untag" \
+  -u USERNAME_OR_ACCESS_TOKEN \
+  -X PATCH \
+  -d '{"q":"dog* translated:true","tags":"landing-page,release-1.2","locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
+  -H 'Content-Type: application/json'
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase keys untag \
+--project_id <project_id> \
+--data '{"query":"'dog* translated:true'", "tags":"landing-page,release-1.2", "locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp keys untag <project_id> \
+--query 'dog* translated:true' \
+--tags landing-page,release-1.2 \
+--locale-id abcd1234abcd1234abcd1234abcd1234
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_broad_match" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Find keys with broad text match
+
+    GET /v2/projects/:project_id/keys
+
+Example query `my dog`
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to do broad search for keys by name (including wildcards).<br />
+<br />
+The following qualifiers are also supported in the search term:<br />
+
+<ul>
+<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
+<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+#### Matches
+
+<span class="result-match">**My dog** is lazy  
+</span> <span class="result-match">**my dog** is lazy  
+</span> <span class="result-match">angry **dog** in **my** house</span>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/keys?q=my%20dog" \
+  -u USERNAME_OR_ACCESS_TOKEN
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase keys list \
+--project_id <project_id> \
+--query "my dog" \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp keys list <project_id> \
+--query "my dog"
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_exact_match" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Find keys with exact text match
+
+    GET /v2/projects/:project_id/keys
+
+Example query `"my dog is lazy"` (note backslashes before any whitespace
+character in the example query)
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to do broad search for keys by name (including wildcards).<br />
+<br />
+The following qualifiers are also supported in the search term:<br />
+
+<ul>
+<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
+<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+#### Matches
+
+~~My dog is lazy~~  
+<span class="result-match">**my dog is lazy**  
+</span> ~~angry dog in my house~~
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/keys?q=name:my%5C%20dog%5C%20is%5C%20lazy" \
+  -u USERNAME_OR_ACCESS_TOKEN
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase keys list \
+--project_id <project_id> \
+--query "name:my\ dog\ is\ lazy" \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp keys list <project_id> \
+--query "name:my\ dog\ is\ lazy"
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_wildcard_match" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Find keys with wildcard character matching
+
+    GET /v2/projects/:project_id/keys
+
+Example query `*dog is*`
+
+#### Parameters
+
+<div class="table-responsive">
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>q</code><br />
+<span class="small">optional</span></td>
+<td><code>string</code></td>
+<td>Specify a query to do broad search for keys by name (including wildcards).<br />
+<br />
+The following qualifiers are also supported in the search term:<br />
+
+<ul>
+<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
+<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
+<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
+<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
+<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
+</ul>
+Find more examples <a href="#examples">here</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+#### Matches
+
+<span class="result-match">My **dog is** lazy  
+</span> <span class="result-match">my **dog is** lazy  
+</span> ~~angry dog in my house~~
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/keys?q=*dog%20is*" \
+  -u USERNAME_OR_ACCESS_TOKEN
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase keys list \
+--project_id <project_id> \
+--query '*dog is*' \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp keys list <project_id> \
+--query '*dog is*'
+```
+
+</div>
+
+</div>
+
+</div>
+
+<div id="examples_xlsx_upload" class="resource__section" data-target="page.section">
+
+<div class="resource__copy">
+
+### Upload an Excel file with several translations
+
+    POST /v2/projects/:project_id/uploads
+
+Suppose you have an excel file where the 'A' column contains the key
+names, the 'B' column contains English translations, the 'C' column
+contains German translations and the 'D' column contains comments.
+Furthermore, the actual content starts in the second row, since the
+first row is reserved for a header. You can upload this file and import
+all translations at once\!
+
+#### Parameters
+
+<div class="table-responsive">
+
+| Name                                | Type     | Description                                                 |
+| ----------------------------------- | -------- | ----------------------------------------------------------- |
+| `file`                              | `file`   | File to be imported                                         |
+| `file_format`                       | `string` | File format. Auto-detected when possible and not specified. |
+| `locale_mapping[en]`                | `string` | Name of the column containing translations for locale en.   |
+| `locale_mapping[de]`                | `string` | Name of the column containing translations for locale de.   |
+| `format_options[comment_column]`    | `string` | Name of the column containing descriptions for keys.        |
+| `format_options[tag_column]`        | `string` | Name of the column containing tags for keys.                |
+| `format_options[key_name_column]`   | `string` | Name of the column containing the names of the keys.        |
+| `format_options[first_content_row]` | `string` | Name of the first row containing actual translations.       |
+
+</div>
+
+</div>
+
+<div class="resource__code">
+
+#### Example Request
+
+<div class="code-section" data-target="technology-switch.example" data-technology="curl">
+
+``` language-bash
+curl "https://api.phrase.com/v2/projects/:project_id/uploads" \
+  -u USERNAME_OR_ACCESS_TOKEN \
+  -X POST \
+  -F file=@/path/to/my/file.xlsx \
+  -F file_format=xlsx \
+  -F locale_mapping[en]=B \
+  -F locale_mapping[de]=C \
+  -F format_options[comment_column]=D \
+  -F format_options[tag_column]=E \
+  -F format_options[key_name_column]=A \
+  -F format_options[first_content_row]=2
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v2">
+
+``` language-bash
+phrase uploads create \
+--project_id <project_id> \
+--file /path/to/my/file.xlsx \
+--file_format xlsx \
+--locale_id abcd1234cdef1234abcd1234cdef1234 \
+--tags awesome-feature,needs-proofreading \
+--locale_mapping '{"en": "B", "de": "C"}' \
+--format_options '{"comment_column": "D", "tag_column": "E", "key_name_column": "A", "first_content_row": "2"}' \
+--access_token <token>
+```
+
+</div>
+
+<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
+
+``` language-bash
+phraseapp upload create <project_id> \
+--file /path/to/my/file.xlsx \
+--file-format xlsx \
+--locale-mapping[en] B \
+--locale-mapping[de] C \
+--format-options[comment-column] D \
+--format-options[tag-column] E \
+--format-options[key-name-column] A \
+--format-options[first-content-row] 2
+```
+
+</div>
+
+</div>
+
+</div>
+
+</div>
