@@ -82,12 +82,25 @@ type Configuration struct {
 	HTTPClient    *http.Client
 }
 
+func ClientVersion() string {
+	return "{{{packageVersion}}}"
+}
+
+func GetUserAgent() string {
+	agent := "{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Phrase go{{/httpUserAgent}} (" + ClientVersion() + ")"
+	if ua := os.Getenv("PHRASEAPP_USER_AGENT"); ua != "" {
+		agent = ua + "; " + agent
+	}
+	return agent
+}
+
+
 // NewConfiguration returns a new Configuration object
 func NewConfiguration(config *Config) *Configuration {
 	cfg := &Configuration{
 		BasePath:      "{{{basePath}}}",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}OpenAPI-Generator/{{{packageVersion}}}/go{{/httpUserAgent}}",
+		UserAgent:     GetUserAgent(),
 		Debug:         false,
 		{{#servers}}
 		{{#-first}}
