@@ -86,9 +86,12 @@ func ClientVersion() string {
 	return "{{{packageVersion}}}"
 }
 
-func GetUserAgent() string {
+func GetUserAgent(additionalUserAgent string) string {
 	agent := "{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Phrase go{{/httpUserAgent}} (" + ClientVersion() + ")"
-	if ua := os.Getenv("PHRASEAPP_USER_AGENT"); ua != "" {
+	if additionalUserAgent != "" {
+		agent = additionalUserAgent + "; " + agent
+	}
+	if ua := os.Getenv("PHRASE_USER_AGENT"); ua != "" {
 		agent = ua + "; " + agent
 	}
 	return agent
@@ -100,7 +103,7 @@ func NewConfiguration(config *Config) *Configuration {
 	cfg := &Configuration{
 		BasePath:      "{{{basePath}}}",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     GetUserAgent(),
+		UserAgent:     GetUserAgent(config.UserAgent),
 		Debug:         false,
 		{{#servers}}
 		{{#-first}}

@@ -34,6 +34,8 @@ type Config struct {
 
 	Targets []byte
 	Sources []byte
+
+	UserAgent string
 }
 
 var configNames = []string{".phrase.yml", ".phraseapp.yml"}
