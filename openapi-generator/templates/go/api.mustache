@@ -166,7 +166,9 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams
 		}
 	{{/isCollectionFormatMulti}}
 	{{^isCollectionFormatMulti}}
-		localVarQueryParams.Add("{{baseName}}", parameterToString(localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value(), "{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}"))
+		{{#isPrimitiveType}}localVarQueryParams.Add("{{baseName}}", parameterToString(localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value(), "{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}")){{/isPrimitiveType}}{{^isPrimitiveType}}for key, value := range localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value().(map[string]interface{}) {
+			localVarQueryParams.Add(fmt.Sprintf("{{baseName}}[%s]", key), parameterToString(value, ""))
+		}{{/isPrimitiveType}}
 	{{/isCollectionFormatMulti}}
 	}
 	{{/required}}

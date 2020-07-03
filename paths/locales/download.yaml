@@ -64,8 +64,7 @@ parameters:
   in: query
   schema:
     type: object
-    additionalProperties:
-      type: string
+    properties: {}
 - description: Enforces a specific encoding on the file contents. Valid options are "UTF-8", "UTF-16" and "ISO-8859-1".
   example: 
   name: encoding
