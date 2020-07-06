@@ -16,16 +16,22 @@ lint:
 	swagger-cli validate main.yaml
 bundle:
 	swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml
-watch:
+watch: watch_bundle watch_scss watch_ts
+watch_bundle:
 	make lint
 	swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json
-	./node_modules/.bin/sass --watch ./doc/main.scss ./doc/main.css
+watch_scss:
+	./node_modules/.bin/sass --watch ./doc/main.scss:./doc/main.css ./doc/rapidoc.scss:./doc/rapidoc.css
+watch_ts:
+	./node_modules/.bin/tsc --watch ./doc/main.ts --outFile ./doc/main.js
 serve:
 	./node_modules/.bin/http-server doc
 docs:
 	make lint
 	swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json
-	./node_modules/.bin/sass -s compressed ./doc/main.scss ./doc/main.css
+	./node_modules/.bin/sass -s compressed ./doc/main.scss:./doc/main.css ./doc/rapidoc.scss:./doc/rapidoc.css
+	./node_modules/.bin/tsc ./doc/main.ts --outFile ./doc/main.js
+	./node_modules/.bin/terser ./doc/main.js --compress --mangle -o ./doc/main.js
 ruby:
 	openapi-generator generate -i tmp/compiled.yaml -g ruby -o clients/ruby -t ./openapi-generator/templates/ruby-client -c ./openapi-generator/ruby_lang.yaml
 go:

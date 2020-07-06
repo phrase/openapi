@@ -6,31 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./favicon-32x32.png?v=1" rel="icon" sizes="32x32" type="image/png">
     <link href="./favicon-16x16.png?v=1" rel="icon" sizes="16x16" type="image/png">
-    <script type="module" src="./rapidoc-min.js"></script>
+    <script type="module" src="./rapidoc-min.js" defer></script>
+    <script src="./main.js" defer></script>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous">
     <link rel="preload" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600:latin,cyrillic&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600:latin,cyrillic&display=swap" rel="stylesheet">
-
-    <!-- TODO: remove, POC -->
-    <style type="text/css" media="screen">
-      .nav-bar-h2 a{
-        border-left-color:rgba(0, 0, 0, 0);
-        border-left-style:solid;
-        border-left-width:4px;
-        color:rgba(255, 255, 255, 0.65);
-        cursor:pointer;
-        display:flex;
-        font-family:rapidoc, "Open Sans", system-ui, "Segoe UI", Roboto, Arial, sans-serif;
-        font-size:13px;
-        height:16px;
-        letter-spacing:normal;
-        line-height:16px;
-        margin-left:12px;
-        width:294px;
-        word-break:break-word;
-      }
-    </style>
-
+    <link href="./main.css" type="text/css" rel="stylesheet">
   </head>
   <body>
     <rapi-doc
@@ -42,28 +23,26 @@
       show-header="false"
       render-style="read"
       info-description-headings-in-navbar="true"
-      >
+      text-color="#242424"
+      primary-color="#0091EB"
+      regular-font="Source Sans Pro,Verdana,sans-serif"
+      mono-font="Menlo,monospace"
+      font-size="largest"
+      nav-bg-color="#FBFBFB"
+      nav-text-color="#7C7C7C"
+      nav-item-spacing="relaxed"
+      schema-style="table"
+      schema-expand-level="1"
+    >
       <img slot="logo" src="./phrase-logo.png" />
-      <img slot="nav-logo" src="./phrase-logo.png" />
-      <div slot="aside-footer">
-        <div class="nav-bar-h2">
-          <a href="https://app.phrase.com/signup" target="_blank">Try Phrase</a>
-        </div>
-        <div class="nav-bar-h2">
-          <a href="https://help.phrase.com/help" target="_blank">Help Center</a>
-        </div>
-        <div class="nav-bar-h2">
-          <a href="https://status.phrase.com/" target="_blank">System Status</a>
-        </div>
-        <div class="nav-bar-h2">
-          <a href="https://phrase.com/privacy/" target="_blank">Privacy</a>
-        </div>
-        <div class="nav-bar-h2">
-          <a href="https://phrase.com/terms/" target="_blank">Terms</a>
-        </div>
-        <div class="nav-bar-h2">
-          <a href="https://phrase.com/imprint/" target="_blank">Imprint</a>
-        </div>
+      <div slot="nav-logo" class="nav-logo"><img class="nav-logo__img" src="./phrase-logo.png" /></div>
+      <div slot="nav-bar-footer">
+        <a class="nav-bar-h2" href="https://app.phrase.com/signup" target="_blank">Try Phrase</a>
+        <a class="nav-bar-h2" href="https://help.phrase.com/help" target="_blank">Help Center</a>
+        <a class="nav-bar-h2" href="https://status.phrase.com/" target="_blank">System Status</a>
+        <a class="nav-bar-h2" href="https://phrase.com/privacy/" target="_blank">Privacy</a>
+        <a class="nav-bar-h2" href="https://phrase.com/terms/" target="_blank">Terms</a>
+        <a class="nav-bar-h2" href="https://phrase.com/imprint/" target="_blank">Imprint</a>
       </div>
     </rapi-doc>
   </body>
