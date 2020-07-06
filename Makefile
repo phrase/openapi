@@ -16,7 +16,6 @@ lint:
 	swagger-cli validate main.yaml
 bundle:
 	swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml
-watch: watch_bundle watch_scss watch_ts
 watch_bundle:
 	make lint
 	swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json

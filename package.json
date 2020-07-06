@@ -5,7 +5,7 @@
   "scripts": {
     "start": "make",
     "docs": "make docs",
-    "watch": "make watch serve -j3",
+    "watch": "make watch_bundle watch_scss watch_ts serve -j4",
     "bundle": "make lint bundle",
     "lint": "make lint",
     "generate.ruby": "make lint bundle ruby",
