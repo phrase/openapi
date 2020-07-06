@@ -43,6 +43,7 @@
 }
 
 .nav-bar-tag {
+  margin-left: $spacing5;
   color: $colorPrimaryForeground;
   display: none;
 
@@ -52,7 +53,30 @@
     background: #eee;
     z-index: 1;
     position: relative;
+
+  @at-root {
+    div#{&}:last-of-type {
+      color: transparent;
+      pointer-events: none;
+    }
   }
+}
+
+.nav-bar-path {
+  margin-left: 12px;
+}
+
+.nav-scroll .nav-bar-section {
+  font-size: $fontSize4;
+  border-left: solid $spacing2 transparent;
+  border-bottom: 0;
+  padding-left: $spacing4;
+  color: $colorPrimaryForeground;
+  filter: none;
+  text-align: left;
+  text-transform: lowercase;
+
+  &:first-letter { text-transform: uppercase; }
 }
 
 div.tag.title {
@@ -99,9 +123,9 @@ table:not(.m-table) {
 }
 
 .table-title.top-gap {
-  margin-top: $spacing3;
   --font-size-small: #{$fontSize5};
-
+  
+  margin-top: $spacing3;
   display: inline-block;
   text-transform: lowercase;
   font-weight: $fontWeightNormal;

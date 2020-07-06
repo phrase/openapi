@@ -40,4 +40,8 @@ rapi-doc {
   &:first-child {
     margin-top: $spacing8;
   }
+
+  &:hover, &:focus, &:active {
+    background-color: $colorPrimaryBorder;
+  }
 }
