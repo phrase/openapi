@@ -16,6 +16,10 @@ jobs:
         run: |
           npm install
           npm run docs
+          sed -e "s/TIME/$(date +%s)/g" ./doc/index.html > ./doc/index.html.skip_spec_cache
+          rm ./doc/index.html
+          mv ./doc/index.html.skip_spec_cache ./doc/index.html
+
 
       - name: Deploy GH Page 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
