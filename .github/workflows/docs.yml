@@ -13,20 +13,26 @@ jobs:
           persist-credentials: false
 
       - name: Install and Build 🔧
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
-          npm install
-          npm run docs
           sed -e "s/TIME/$(date +%s)/g" ./doc/index.html > ./doc/index.html.skip_spec_cache
           rm ./doc/index.html
           mv ./doc/index.html.skip_spec_cache ./doc/index.html
-
-
-      - name: Deploy GH Page 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: doc
+          npm install
+          npm run docs
+          git clone --branch gh-pages --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/openapi.git doc_release &> /dev/null
+          rsync -q -av --checksum --progress doc/. doc_release  --exclude .ssh --exclude .git --exclude .github --delete
+          cd doc_release
+          if [ -n "$(git status --porcelain)" ]; then
+          git config --global user.email "support@phrase.com"
+          git config --global user.name "Phrase"
+          git add .
+          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git push origin gh-pages
+          else
+          echo "  No changes, skipping."
+          fi
 
       - name: Deploy developers.phrase.com 🚀
         env:

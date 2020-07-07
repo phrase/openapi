@@ -1,4 +1,6 @@
 clients/
-doc/
+doc/*.css
+doc/*.css.map
+doc/*.js
 tmp/
 node_modules/
