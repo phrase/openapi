@@ -30,10 +30,10 @@
   },
   "homepage": "https://developers.phrase.com/api/",
   "devDependencies": {
-    "@apidevtools/swagger-cli": "^4.0.2",
+    "@apidevtools/swagger-cli": "^4.0.3",
     "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
     "husky": "^4.2.5",
-    "sass": "^1.26.8",
+    "sass": "^1.26.10",
     "terser": "^4.8.0",
     "typescript": "^3.9.6"
   },
