@@ -1,8 +1,20 @@
 @import 'variables';
 
 .nav-bar {
+  top: 0;
   border-right: solid 1px #EFEFEF;
   
+  div:first-child {
+    padding: 0!important;
+
+    .m-btn.toolbar-btn {
+      position: absolute;
+      right: $spacing2;
+      margin-top: $spacing1;
+      font-size: $fontSize5;
+    }
+  }
+
   div:nth-child(2) {
     --nav-hover-bg-color: transparent;
     flex-shrink: 0;
@@ -78,6 +90,21 @@
   text-transform: lowercase;
 
   &:first-letter { text-transform: uppercase; }
+}
+
+.main-header {
+  background: $colorAccentBackground;
+
+  .hamburger-btn {
+    --primary-color: #{$colorAccentForeground};
+    position: absolute;
+    right: $spacing2;
+    border-color: $colorAccentBackground;
+  }
+}
+
+.body .main-content {
+  margin-top: 54px;
 }
 
 div.tag.title {
