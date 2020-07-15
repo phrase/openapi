@@ -35,6 +35,8 @@ ruby:
 	openapi-generator generate -i tmp/compiled.yaml -g ruby -o clients/ruby -t ./openapi-generator/templates/ruby-client -c ./openapi-generator/ruby_lang.yaml
 go:
 	openapi-generator generate -i tmp/compiled.yaml -g go -o clients/go -t ./openapi-generator/templates/go -c ./openapi-generator/go_lang.yaml
+	go get golang.org/x/tools/cmd/goimports
+	goimports -w clients/go
 typescript:
 	openapi-generator generate -i tmp/compiled.yaml -g typescript-fetch -o clients/typescript -t ./openapi-generator/templates/typescript-fetch -c ./openapi-generator/typescript_lang.yaml
 python:
@@ -53,3 +55,5 @@ cli:
 	openapi-generator generate -i tmp/compiled.yaml -g go -o tmp/cli -t ./openapi-generator/templates/cli -c ./openapi-generator/cli_lang.yaml -e handlebars
 	cp tmp/cli/api_* clients/cli/cmd/
 	cp tmp/cli/README.md clients/cli/
+	go get golang.org/x/tools/cmd/goimports
+	goimports -w clients/cli
