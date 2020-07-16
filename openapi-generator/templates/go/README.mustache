@@ -31,10 +31,13 @@ func main() {
 
 	var projectsListOpts phrase.ProjectsListOpts
 
-	projects, apiResponse, _ := client.ProjectsApi.ProjectsList(auth, &projectsListOpts)
-
-	fmt.Printf("%+v\n", projects)
-	fmt.Printf("%+v\n", apiResponse) // &{Response:0xc00011ccf0 NextPage:2 FirstPage:1 LastPage:4 Rate:{Limit:1000 Remaining:998 Reset:2020-04-25 00:35:00 +0200 CEST}}
+	projects, apiResponse, err := client.ProjectsApi.ProjectsList(auth, &projectsListOpts)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Printf("%+v\n", projects)
+		fmt.Printf("%+v\n", apiResponse) // &{Response:0xc00011ccf0 NextPage:2 FirstPage:1 LastPage:4 Rate:{Limit:1000 Remaining:998 Reset:2020-04-25 00:35:00 +0200 CEST}}
+	}
 }
 ```
 
