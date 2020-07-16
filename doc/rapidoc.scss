@@ -104,7 +104,15 @@
 }
 
 .body .main-content {
-  margin-top: 54px;
+  &::before {
+    content: '';
+    display: block;
+    height: 50px;
+
+    @media (min-width: 768px) {
+      height: 34px;
+    }
+  }
 }
 
 div.tag.title {
@@ -120,9 +128,25 @@ div.tag.title {
   border-top: 0!important;
   font-weight: $fontWeightLight;
 
+  &[id=overview] {
+    margin-top: -$mobileHeaderHeight;
+    padding-top: $mobileHeaderHeight + $spacing8;
+
+    @media (min-width: 768px) {
+      margin-top: 0;
+      padding-top: $spacing8;
+    }
+  }
+
   h2 {
-    margin-top: $spacing8;
+    margin-top: -$mobileHeaderHeight;
     margin-bottom: $spacing7;
+    padding-top: $mobileHeaderHeight + $spacing8;
+
+    @media (min-width: 768px) {
+      margin-top: $spacing8;
+      padding-top: 0;
+    }
 
     & + .mono-font.regular-font-size {
       --font-size-regular: #{$fontSize4};
@@ -172,7 +196,14 @@ table:not(.m-table) {
 }
 
 .expanded-endpoint-body {
-  padding-top: $spacing7;
+  margin-top: -$mobileHeaderHeight;
+  border-top: solid $mobileHeaderHeight + $spacing7 transparent;
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+    border-top: 0;
+    padding-top: $spacing7!important;
+  }
 }
 
 table.m-table {
@@ -231,9 +262,5 @@ table.m-table {
   font-weight: $fontWeightNormal;
 
   &:first-letter { text-transform: uppercase; }
-}
-
-.expanded-endpoint-body {
-  margin-bottom: $spacing7;
 }
 
