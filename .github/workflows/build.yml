@@ -21,13 +21,11 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          go get golang.org/x/tools/cmd/goimports
           npm install
           npm run generate.go
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-go.git clones/go &> /dev/null
           rsync -a --delete --exclude='.git/' clients/go/ clones/go
           cd clones/go
-          goimports -w .
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -55,13 +53,11 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          go get golang.org/x/tools/cmd/goimports
           npm install
           npm run generate.cli
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-cli.git clones/cli &> /dev/null
           rsync -a --delete --exclude='.git/' clients/cli/ clones/cli
           cd clones/cli
-          goimports -w .
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
