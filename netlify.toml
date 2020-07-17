@@ -37,11 +37,3 @@
   to = "https://developers.phrase.com/api/"
   status = 301
   force = false
-
-# redirects for ReDoc
-
-[[redirects]]
-  from = "https://developers.phrase.com/api/#intro"
-  to = "https://developers.phrase.com/api/"
-  status = 301
-  force = false
