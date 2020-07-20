@@ -1,0 +1,61 @@
+---
+summary: Update Team
+description: Update the specified Team.
+operationId: team/update
+tags:
+- Teams
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/team_detail.yaml#/team_detail"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/teams/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"name":"German Translators"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase teams update \
+    --account_id <account_id> \
+    --id <id> \
+    --data '{"name":""German Translators""}' \
+    --access_token <token>
+- lang: CLI v1
+  source: |-
+    phraseapp team update <account_id> <id> \
+    --name "German Translators"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: team/update/parameters
+        properties:
+          name:
+            description: New name of the team
+            type: string
+            example: German Translators

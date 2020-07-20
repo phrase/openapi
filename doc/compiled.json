@@ -64,6 +64,10 @@
       "description": "Everything about Space"
     },
     {
+      "name": "Teams",
+      "description": "Everything about Teams"
+    },
+    {
       "name": "Jobs"
     },
     {
@@ -2012,6 +2016,147 @@
           ]
         }
       },
+      "team": {
+        "type": "object",
+        "title": "team",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/project"
+            }
+          },
+          "spaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/space"
+            }
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user"
+            }
+          }
+        },
+        "example": {
+          "id": "2e7574e8f2372906a03110c2a7cfe671",
+          "name": "My first Team",
+          "created_at": "2020-02-25T12:17:25Z",
+          "updated_at": "2020-03-13T14:46:57Z",
+          "projects": [
+            {
+              "id": "abcd11231fadef1234adacd1234cdef1234",
+              "name": "My IOS Project",
+              "main_format": "yml",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z"
+            }
+          ],
+          "spaces": [
+            {
+              "id": "626ea67628690c73ac86ac81eec2d185",
+              "name": "IOS",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z",
+              "projects_count": 3
+            }
+          ],
+          "users": [
+            {
+              "id": "3465jhkjhk3465hjjkhl346hklk3456kl",
+              "username": "Max",
+              "name": "Max Mustermann"
+            }
+          ]
+        }
+      },
+      "team_detail": {
+        "type": "object",
+        "title": "team",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/project"
+            }
+          },
+          "spaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/space"
+            }
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user"
+            }
+          }
+        },
+        "example": {
+          "id": "2e7574e8f2372906a03110c2a7cfe671",
+          "name": "My first Team",
+          "created_at": "2020-02-25T12:17:25Z",
+          "updated_at": "2020-03-13T14:46:57Z",
+          "projects": [
+            {
+              "id": "abcd11231fadef1234adacd1234cdef1234",
+              "name": "My IOS Project",
+              "main_format": "yml",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z"
+            }
+          ],
+          "spaces": [
+            {
+              "id": "626ea67628690c73ac86ac81eec2d185",
+              "name": "IOS",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z",
+              "projects_count": 3
+            }
+          ],
+          "users": [
+            {
+              "id": "3465jhkjhk3465hjjkhl346hklk3456kl",
+              "username": "Max",
+              "name": "Max Mustermann",
+              "position": "Developer",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z"
+            }
+          ]
+        }
+      },
       "job": {
         "type": "object",
         "title": "job",
@@ -2597,6 +2742,15 @@
         "in": "path",
         "name": "space_id",
         "description": "Space ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "team_id": {
+        "in": "path",
+        "name": "team_id",
+        "description": "Team ID",
         "required": true,
         "schema": {
           "type": "string"
@@ -15250,7 +15404,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase spaces projects \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--access_token <token>"
+            "source": "phrase spaces projects_list \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -15308,7 +15462,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase spaces projects \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
+            "source": "phrase spaces projects_create \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -15378,11 +15532,754 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase spaces projects \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase spaces projects_delete \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--id <id> \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
             "source": "phraseapp spaces projects delete <account_id> <space_id> <id>"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/teams": {
+      "get": {
+        "summary": "List Teams",
+        "description": "List all Teams for the given account.",
+        "operationId": "teams/list",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/team"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams list \\\n--account_id <account_id> \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp teams list <account_id>"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create a Team",
+        "description": "Create a new Team.",
+        "operationId": "team/create",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/team_detail"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"German Translators\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"German Translators\"\"}' \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp team create <account_id> \\\n--name \"German Translators\""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "team/create/parameters",
+                "properties": {
+                  "name": {
+                    "description": "Name of the team",
+                    "type": "string",
+                    "example": "German Translators"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/teams/{team_id}": {
+      "get": {
+        "summary": "Get Team",
+        "description": "Show the specified Team.",
+        "operationId": "team/show",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/team_detail"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp team show <account_id> <id>"
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Update Team",
+        "description": "Update the specified Team.",
+        "operationId": "team/update",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/team_detail"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"name\":\"German Translators\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"German Translators\"\"}' \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp team update <account_id> <id> \\\n--name \"German Translators\""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "team/update/parameters",
+                "properties": {
+                  "name": {
+                    "description": "New name of the team",
+                    "type": "string",
+                    "example": "German Translators"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Team",
+        "description": "Delete the specified Team.",
+        "operationId": "team/delete",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp team delete <account_id> <id>"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/teams/{team_id}/projects": {
+      "post": {
+        "summary": "Add Project",
+        "description": "Adds an existing project to the team.",
+        "operationId": "teams/projects/create",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/team_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:team_id/projects\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"id\":\"a4b3c2d1\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams projects \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp teams projects create <account_id> <team_id> \\\n--id a4b3c2d1"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "teams/projects/create/parameters",
+                "properties": {
+                  "id": {
+                    "description": "Project ID to add to the Team",
+                    "type": "string",
+                    "example": "a4b3c2d1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/teams/{team_id}/projects/{id}": {
+      "delete": {
+        "summary": "Remove Project",
+        "description": "Removes a specified project from the specified team.",
+        "operationId": "teams/projects/delete",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/team_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:team_id/projects/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams projects \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp teams projects delete <account_id> <team_id> <id>"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/teams/{team_id}/spaces": {
+      "post": {
+        "summary": "Add Space",
+        "description": "Adds an existing space to the team.",
+        "operationId": "teams/spaces/create",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/team_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:team_id/spaces\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"id\":\"a4b3c2d1\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams spaces \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp teams spaces create <account_id> <team_id> \\\n--id a4b3c2d1"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "teams/spaces/create/parameters",
+                "properties": {
+                  "id": {
+                    "description": "Space ID to add to the Team",
+                    "type": "string",
+                    "example": "a4b3c2d1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/teams/{team_id}/spaces/{id}": {
+      "delete": {
+        "summary": "Remove Space",
+        "description": "Removes a specified space from the specified team.",
+        "operationId": "teams/spaces/delete",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/team_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:team_id/spaces/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams spaces \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp teams spaces delete <account_id> <team_id> <id>"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/teams/{team_id}/users": {
+      "post": {
+        "summary": "Add User",
+        "description": "Adds an existing user to the team.",
+        "operationId": "teams/users/create",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/team_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:team_id/users\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"id\":\"a4b3c2d1\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams users \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp teams users create <account_id> <team_id> \\\n--id a4b3c2d1"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "teams/users/create/parameters",
+                "properties": {
+                  "id": {
+                    "description": "User ID to add to the Team",
+                    "type": "string",
+                    "example": "a4b3c2d1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/teams/{team_id}/users/{id}": {
+      "delete": {
+        "summary": "Remove User",
+        "description": "Removes a specified user from the specified team.",
+        "operationId": "teams/users/delete",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/team_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/teams/:team_id/users/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase teams users \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp teams users delete <account_id> <team_id> <id>"
           }
         ]
       }

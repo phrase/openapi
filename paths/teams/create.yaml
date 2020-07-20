@@ -1,0 +1,59 @@
+---
+summary: Create a Team
+description: Create a new Team.
+operationId: team/create
+tags:
+- Teams
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+responses:
+  '201':
+    description: Created
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/team_detail.yaml#/team_detail"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/teams" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"name":"German Translators"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase teams create \
+    --account_id <account_id> \
+    --data '{"name":""German Translators""}' \
+    --access_token <token>
+- lang: CLI v1
+  source: |-
+    phraseapp team create <account_id> \
+    --name "German Translators"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: team/create/parameters
+        properties:
+          name:
+            description: Name of the team
+            type: string
+            example: German Translators

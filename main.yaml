@@ -3,7 +3,7 @@ openapi: 3.0.3
 info:
   title: Phrase API Reference
   version: 2.0.0
-  description: 
+  description:
     $ref: './intro.md'
 
   contact:
@@ -18,7 +18,7 @@ info:
 
   termsOfService: 'https://phrase.com/terms/'
 
-  license: 
+  license:
     name: MIT
     url: https://choosealicense.com/licenses/mit/
 
@@ -88,6 +88,8 @@ tags:
   - name: Versions / History
   - name: Spaces
     description: Everything about Space
+  - name: Teams
+    description: Everything about Teams
   - name: Jobs
   - name: Job Locales
   - name: Comments
