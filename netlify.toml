@@ -37,3 +37,11 @@
   to = "https://developers.phrase.com/api/"
   status = 301
   force = false
+
+# redirects for RapiDocs
+
+[[redirects]]
+  from = "https://developers.phrase.com/api/#authorizations"
+  to = "https://developers.phrase.com/api/#tag--Authorizations"
+  status = 301
+  force = false

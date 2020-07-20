@@ -37,6 +37,10 @@
     {
       "name": "Spaces",
       "description": "Everything about Space"
+    },
+    {
+      "name": "Authorizations",
+      "description": "The endpoints provided by the Authorizations API are **only accessible via Basic authentication with email and password**.\n\nWhen creating a new authorization, the new access token for this authorization will be returned in the immediate response but not later, due to security reasons. When accessing authorizations later, you will only see the last eight chars of the token in plain text (`token_last_eight`) and the SHA256 digest of the token for reference (`hashed_token`).\n\nFor instructions on how authorization in general works, see our [Auth Guide](#authentication).\n\n### Scopes\n\nWhen creating or updating an OAuth authorization, you can define a list of scopes to limit the access that can be performed by that authorization.\n\n#### Available Scopes\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Scope</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>read</code></td>\n        <td class=\"basic-table__cell\">Read projects, locales, keys, translations, orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>write</code></td>\n        <td class=\"basic-table__cell\">Write projects, locales, keys, translations but not orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>orders.create</code></td>\n        <td class=\"basic-table__cell\">Create and confirm orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>team.manage</code></td>\n        <td class=\"basic-table__cell\">Manage invitations and members</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
     }
   ],
   "x-tagGroups": [
