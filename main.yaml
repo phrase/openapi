@@ -30,8 +30,188 @@ security:
   - Basic: []
 
 tags:
+  - name: Projects
+  - name: Locales
+  - name: Keys
+  - name: Translations
+  - name: Uploads
+    description: |
+      ### Formats
+
+      We support all common localization file formats. For a detailed overview, see our [Format Guide](https://help.phrase.com/help/supported-platforms-and-formats).
+
+      ### Processing
+
+      Uploads will be processed asynchronously and thus the data might not be imported yet although the upload is completed. Therefore we recommend to evaluate the returned <code>state</code> field for information on the import progress.
+
+      #### Available States
+
+      <div class="table-responsive">
+        <table class="basic-table">
+          <thead>
+            <tr class="basic-table__row basic-table__row--header">
+              <th class="basic-table__cell basic-table__cell--header">State</th>
+              <th class="basic-table__cell basic-table__cell--header">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="basic-table__cell"><code>initialized</code></td>
+              <td class="basic-table__cell">Data received.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>waiting_for_preview</code></td>
+              <td class="basic-table__cell">Upload is waiting for preview to be finished.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>waiting</code></td>
+              <td class="basic-table__cell">Upload is waiting for processing.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>processing</code></td>
+              <td class="basic-table__cell">Upload is being processed, data is currently imported.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>success</code></td>
+              <td class="basic-table__cell">Upload is complete and all data is imported.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>error</code></td>
+              <td class="basic-table__cell">Upload or import process failed.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  - name: Tags
+  - name: Blacklisted Keys
+  - name: Versions / History
   - name: Spaces
     description: Everything about Space
+  - name: Jobs
+  - name: Job Locales
+  - name: Comments
+  - name: Branches
+    description: |
+      ### Branch creation
+
+      Branches will be created asynchronously. State of branch creation is returned as state.
+
+      #### Available States
+
+      <div class="table-responsive">
+        <table class="basic-table">
+          <thead>
+            <tr class="basic-table__row basic-table__row--header">
+              <th class="basic-table__cell basic-table__cell--header">State</th>
+              <th class="basic-table__cell basic-table__cell--header">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="basic-table__cell"><code>initialized</code></td>
+              <td class="basic-table__cell">Data received.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>processing</code></td>
+              <td class="basic-table__cell">Branch is currently creating.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>success</code></td>
+              <td class="basic-table__cell">Branch was created successfully</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>error</code></td>
+              <td class="basic-table__cell">Branch creation failed.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  - name: Quality
+  - name: Glossaries
+    description: |
+      <div class="alert alert-info">
+        Note: Glossary API is still in beta and might be subject to change.
+        Glossaries are available in the <a href="https://phrase.com/pricing/" target="_blank">Pro Plan and higher</a>.
+      </div>
+  - name: Glossary Terms
+    description: |
+      <div class="alert alert-info">
+        Note: Glossary API is still in beta and might be subject to change.
+        Glossaries are available in the <a href="https://phrase.com/pricing/" target="_blank">Pro Plan and higher</a>.
+      </div>
+  - name: Glossary Term Translations
+    description: |
+      <div class="alert alert-info">
+        Note: Glossary API is still in beta and might be subject to change.
+        Glossaries are available in the <a href="https://phrase.com/pricing/" target="_blank">Pro Plan and higher</a>.
+      </div>
+  - name: Bitbucket Sync
+  - name: GitLab Sync
+  - name: Webhooks
+  - name: Distributions
+    description: |
+      <div class="alert alert-info">
+        Note: Distributions API is still in beta and might be subject to change.
+        Distributions are part of Over The Air which is available in the <a href="https://phrase.com/pricing/" target="_blank">Lite, Pro and Exclusive plans</a>.
+      </div>
+  - name: Releases
+    description: |
+      <div class="alert alert-info">
+        Note: Releases API is still in beta and might be subject to change.
+        Releases are part of Over The Air which is available in the <a href="https://phrase.com/pricing/" target="_blank">Lite, Pro and Exclusive plans</a>.
+      </div>
+  - name: Orders
+    description: |
+      ### List of categories [TextMaster]
+
+      When ordering translations from TextMaster, you need to specify a category ID along with your order. See this list for information on the category ID and their equivalent description.
+
+      <div class="table-responsive">
+        <table class="basic-table">
+          <thead>
+            <tr class="basic-table__row basic-table__row--header">
+              <th class="basic-table__cell basic-table__cell--header">Category ID</th>
+              <th class="basic-table__cell basic-table__cell--header">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="basic-table__cell">C001</td><td class="basic-table__cell">Agriculture</td></tr>
+            <tr><td class="basic-table__cell">C002</td><td class="basic-table__cell">Aerospace</td></tr>
+            <tr><td class="basic-table__cell">C003</td><td class="basic-table__cell">Animals/Pets/Plants</td></tr>
+            <tr><td class="basic-table__cell">C004</td><td class="basic-table__cell">Arts/Culture/Literature</td></tr>
+            <tr><td class="basic-table__cell">C005</td><td class="basic-table__cell">Automotive/Transportation</td></tr>
+            <tr><td class="basic-table__cell">C006</td><td class="basic-table__cell">Computers/Technology/Software</td></tr>
+            <tr><td class="basic-table__cell">C007</td><td class="basic-table__cell">Telecom</td></tr>
+            <tr><td class="basic-table__cell">C008</td><td class="basic-table__cell">Real Estate/Construction/Building</td></tr>
+            <tr><td class="basic-table__cell">C009</td><td class="basic-table__cell">Consumer Goods</td></tr>
+            <tr><td class="basic-table__cell">C010</td><td class="basic-table__cell">Education</td></tr>
+            <tr><td class="basic-table__cell">C011</td><td class="basic-table__cell">Entertainment</td></tr>
+            <tr><td class="basic-table__cell">C012</td><td class="basic-table__cell">Ecology/Environment</td></tr>
+            <tr><td class="basic-table__cell">C013</td><td class="basic-table__cell">Health/Biotechnology/Pharma</td></tr>
+            <tr><td class="basic-table__cell">C014</td><td class="basic-table__cell">Internet</td></tr>
+            <tr><td class="basic-table__cell">C015</td><td class="basic-table__cell">Policy/Government/Public</td></tr>
+            <tr><td class="basic-table__cell">C016</td><td class="basic-table__cell">Publishing/Media/Communication</td></tr>
+            <tr><td class="basic-table__cell">C017</td><td class="basic-table__cell">Religion</td></tr>
+            <tr><td class="basic-table__cell">C018</td><td class="basic-table__cell">Food/Beverages</td></tr>
+            <tr><td class="basic-table__cell">C019</td><td class="basic-table__cell">Retail</td></tr>
+            <tr><td class="basic-table__cell">C020</td><td class="basic-table__cell">Fashion/Luxury/Textiles</td></tr>
+            <tr><td class="basic-table__cell">C021</td><td class="basic-table__cell">Travel/Tourism</td></tr>
+            <tr><td class="basic-table__cell">C022</td><td class="basic-table__cell">Natural Resources/Energy</td></tr>
+            <tr><td class="basic-table__cell">C023</td><td class="basic-table__cell">Banking/Financial Services/Insurance</td></tr>
+            <tr><td class="basic-table__cell">C024</td><td class="basic-table__cell">Legal Affairs/Tax/Law</td></tr>
+            <tr><td class="basic-table__cell">C025</td><td class="basic-table__cell">Raw Materials/Industrial Goods</td></tr>
+            <tr><td class="basic-table__cell">C026</td><td class="basic-table__cell">Lifestyle/Leisure/Hobbies</td></tr>
+            <tr><td class="basic-table__cell">C027</td><td class="basic-table__cell">Sports</td></tr>
+            <tr><td class="basic-table__cell">C028</td><td class="basic-table__cell">Home/Family/Friends/Children</td></tr>
+            <tr><td class="basic-table__cell">C029</td><td class="basic-table__cell">Economy/Financial Markets</td></tr>
+            <tr><td class="basic-table__cell">C030</td><td class="basic-table__cell">Science</td></tr>
+            <tr><td class="basic-table__cell">C031</td><td class="basic-table__cell">Human Resources/Employment</td></tr>
+            <tr><td class="basic-table__cell">C032</td><td class="basic-table__cell">Adult (Pornography, Violence, etc.)</td></tr>
+          </tbody>
+        </table>
+      </div>
+  - name: Style guides
   - name: Authorizations
     description: |
       The endpoints provided by the Authorizations API are **only accessible via Basic authentication with email and password**.
@@ -74,6 +254,17 @@ tags:
           </tbody>
         </table>
       </div>
+  - name: Users
+  - name: Accounts
+  - name: Members
+    description: |
+      With the members endpoints you can do basic [team and user management](https://help.phrase.com/help/user-management) via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
+  - name: Invitations
+    description: |
+      With the invitation endpoint you can [manage and invite users](https://help.phrase.com/help/user-management) to Phrase via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
+  - name: Screenshots
+  - name: Screenshot Markers
+  - name: Formats
 
 x-tagGroups:
   - name: Core Resources
