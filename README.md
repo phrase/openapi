@@ -10,7 +10,7 @@
 
 ## Generate API documentation in HTML
 
-`$ npm run doc`
+`$ npm run docs`
 
 ## Making changes
 
