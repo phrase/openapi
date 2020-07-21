@@ -26,7 +26,7 @@ x-code-samples:
       -X DELETE
 - lang: CLI v2
   source: |-
-    phrase spaces projects \
+    phrase spaces projects_delete \
     --account_id <account_id> \
     --space_id <space_id> \
     --id <id> \

@@ -41,7 +41,7 @@ x-code-samples:
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
-    phrase spaces projects \
+    phrase spaces projects_list \
     --account_id <account_id> \
     --space_id <space_id> \
     --access_token <token>

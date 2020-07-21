@@ -34,7 +34,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase spaces projects \
+    phrase spaces projects_create \
     --account_id <account_id> \
     --space_id <space_id> \
     --data '{"id":"a4b3c2d1"}' \
