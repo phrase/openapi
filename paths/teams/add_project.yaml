@@ -34,15 +34,13 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase teams projects \
+    phrase teams projects_create \
     --account_id <account_id> \
     --team_id <team_id> \
     --data '{"id":"a4b3c2d1"}' \
     --access_token <token>
 - lang: CLI v1
-  source: |-
-    phraseapp teams projects create <account_id> <team_id> \
-    --id a4b3c2d1
+  source: The teams feature is not supported by our CLI v1
 requestBody:
   required: true
   content:

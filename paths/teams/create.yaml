@@ -42,9 +42,7 @@ x-code-samples:
     --data '{"name":""German Translators""}' \
     --access_token <token>
 - lang: CLI v1
-  source: |-
-    phraseapp team create <account_id> \
-    --name "German Translators"
+  source: The Teams feature is not supported by our CLI v1
 requestBody:
   required: true
   content:

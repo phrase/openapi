@@ -2049,7 +2049,7 @@
           "users": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/user"
+              "$ref": "#/components/schemas/user_preview"
             }
           }
         },
@@ -15612,7 +15612,7 @@
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp teams list <account_id>"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       },
@@ -15674,7 +15674,7 @@
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp team create <account_id> \\\n--name \"German Translators\""
+            "source": "The Teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -15759,7 +15759,7 @@
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp team show <account_id> <id>"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       },
@@ -15824,7 +15824,7 @@
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp team update <account_id> <id> \\\n--name \"German Translators\""
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -15889,7 +15889,7 @@
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp team delete <account_id> <id>"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       }
@@ -15945,11 +15945,11 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase teams projects \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
+            "source": "phrase teams projects_create \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp teams projects create <account_id> <team_id> \\\n--id a4b3c2d1"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -16015,11 +16015,11 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase teams projects \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase teams projects_delete \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp teams projects delete <account_id> <team_id> <id>"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       }
@@ -16075,11 +16075,11 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase teams spaces \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
+            "source": "phrase teams spaces_create \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp teams spaces create <account_id> <team_id> \\\n--id a4b3c2d1"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -16145,11 +16145,11 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase teams spaces \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase teams spaces_delete \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp teams spaces delete <account_id> <team_id> <id>"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       }
@@ -16205,11 +16205,11 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase teams users \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
+            "source": "phrase teams users_create \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp teams users create <account_id> <team_id> \\\n--id a4b3c2d1"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -16275,11 +16275,11 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase teams users \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase teams users_delete \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp teams users delete <account_id> <team_id> <id>"
+            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       }

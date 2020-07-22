@@ -24,7 +24,7 @@ team:
     users:
       type: array
       items:
-        "$ref": "./user.yaml#/user"
+        "$ref": "./user_preview.yaml#/user_preview"
   example:
     id: "2e7574e8f2372906a03110c2a7cfe671"
     name: "My first Team"

@@ -26,10 +26,10 @@ x-code-samples:
       -X DELETE
 - lang: CLI v2
   source: |-
-    phrase teams spaces \
+    phrase teams spaces_delete \
     --account_id <account_id> \
     --team_id <team_id> \
     --id <id> \
     --access_token <token>
 - lang: CLI v1
-  source: phraseapp teams spaces delete <account_id> <team_id> <id>
+  source: The teams feature is not supported by our CLI v1
