@@ -37,6 +37,7 @@ go:
 	openapi-generator generate -i tmp/compiled.yaml -g go -o clients/go -t ./openapi-generator/templates/go -c ./openapi-generator/go_lang.yaml
 	go get golang.org/x/tools/cmd/goimports
 	goimports -w clients/go
+	cd clients/go && go mod tidy
 typescript:
 	openapi-generator generate -i tmp/compiled.yaml -g typescript-fetch -o clients/typescript -t ./openapi-generator/templates/typescript-fetch -c ./openapi-generator/typescript_lang.yaml
 python:
@@ -57,3 +58,4 @@ cli:
 	cp tmp/cli/README.md clients/cli/
 	go get golang.org/x/tools/cmd/goimports
 	goimports -w clients/cli
+	cd clients/cli && go mod tidy
