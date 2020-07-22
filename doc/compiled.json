@@ -10170,6 +10170,11 @@
                     "description": "Account ID to specify the actual account the project should be created in. Required if the requesting user is a member of multiple accounts.",
                     "type": "string",
                     "example": "abcd1234"
+                  },
+                  "source_project_id": {
+                    "description": "When a source project ID is given, a clone of that project will be created, including all locales, keys and translations as well as the main project settings if they are not defined otherwise through the params.",
+                    "type": "string",
+                    "example": "abcd1234"
                   }
                 }
               }
