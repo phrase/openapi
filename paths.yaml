@@ -388,6 +388,37 @@
 "/accounts/{account_id}/spaces/{space_id}/projects/{id}":
   delete:
     "$ref": "./paths/spaces/remove_project.yaml"
+"/accounts/{account_id}/teams":
+  get:
+    "$ref": "./paths/teams/index.yaml"
+  post:
+    "$ref": "./paths/teams/create.yaml"
+"/accounts/{account_id}/teams/{team_id}":
+  get:
+    "$ref": "./paths/teams/show.yaml"
+  patch:
+    "$ref": "./paths/teams/update.yaml"
+  delete:
+    "$ref": "./paths/teams/delete.yaml"
+"/accounts/{account_id}/teams/{team_id}/projects":
+  post:
+    "$ref": "./paths/teams/add_project.yaml"
+"/accounts/{account_id}/teams/{team_id}/projects/{id}":
+  delete:
+    "$ref": "./paths/teams/remove_project.yaml"
+"/accounts/{account_id}/teams/{team_id}/spaces":
+  post:
+    "$ref": "./paths/teams/add_space.yaml"
+"/accounts/{account_id}/teams/{team_id}/spaces/{id}":
+  delete:
+    "$ref": "./paths/teams/remove_space.yaml"
+"/accounts/{account_id}/teams/{team_id}/users":
+  post:
+    "$ref": "./paths/teams/add_user.yaml"
+"/accounts/{account_id}/teams/{team_id}/users/{id}":
+  delete:
+    "$ref": "./paths/teams/remove_user.yaml"
+
 "/projects/{project_id}/translations":
   get:
     "$ref": "./paths/translations/index.yaml"

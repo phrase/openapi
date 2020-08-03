@@ -1,0 +1,54 @@
+---
+team_detail:
+  type: object
+  title: team
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    projects:
+      type: array
+      items:
+        "$ref": "./project.yaml#/project"
+    spaces:
+      type: array
+      items:
+        "$ref": "./space.yaml#/space"
+    users:
+      type: array
+      items:
+        "$ref": "./user.yaml#/user"
+  example:
+    id: "2e7574e8f2372906a03110c2a7cfe671"
+    name: "My first Team"
+    created_at: "2020-02-25T12:17:25Z"
+    updated_at: "2020-03-13T14:46:57Z"
+    projects:
+      -
+        id: "abcd11231fadef1234adacd1234cdef1234"
+        name: "My IOS Project"
+        main_format: "yml"
+        created_at: "2015-01-28T09:52:53Z"
+        updated_at: "2015-01-28T09:52:53Z"
+    spaces:
+      -
+        id: "626ea67628690c73ac86ac81eec2d185"
+        name: "IOS"
+        created_at: "2015-01-28T09:52:53Z"
+        updated_at: "2015-01-28T09:52:53Z"
+        projects_count: 3
+    users:
+      -
+        id: "3465jhkjhk3465hjjkhl346hklk3456kl"
+        username: "Max"
+        name: "Max Mustermann"
+        position: "Developer"
+        created_at: "2015-01-28T09:52:53Z"
+        updated_at: "2015-01-28T09:52:53Z"

@@ -20,6 +20,13 @@ space_id:
   required: true
   schema:
     type: string
+team_id:
+  in: path
+  name: team_id
+  description: Team ID
+  required: true
+  schema:
+    type: string
 project_id:
   in: path
   name: project_id
