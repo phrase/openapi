@@ -61,7 +61,7 @@
 .nav-bar-tag {
   margin-left: $spacing5;
   color: $colorPrimaryForeground;
-  display: none;
+  display: flex;
 
   & + & {
     /* hides empty search results */
