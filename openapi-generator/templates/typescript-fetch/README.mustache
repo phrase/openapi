@@ -87,6 +87,62 @@ let requestParameters = {
 spaceApi.spacesList(requestParameters).then(function (data) { console.log(data) })
 ```
 
+## Getting Started in Node.js
+
+This package is using window and FormData so make sure to have polyfills for it
+
+here is the example package.json
+
+```
+{
+  "name": "openapi_typescript_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.0.1",
+    "form-data": "^3.0.0",
+    "node-fetch": "^2.6.0",
+    "phrase-js": "^{{npmVersion}}"
+  },
+  "devDependencies": {
+    "tslint": "^5.20.1",
+    "typescript": "^3.9.2"
+  }
+}
+```
+
+and you can use it as follows
+
+```
+import {Configuration, SpacesApi} from "phrase-js"
+var FormData = require("form-data")
+var fetch = require("node-fetch")
+
+
+const globalAny: any = global;
+globalAny.window = {
+  fetch
+}
+globalAny.FormData = FormData
+
+const configuration = new Configuration({apiKey: 'token API_TOKEN'})
+
+const spaceApi = new SpacesApi(configuration)
+
+let requestParameters = {
+  accountId: 'YOUR_ACCOUNT_ID'
+}
+
+spaceApi.spacesList(requestParameters).then(function (data) {console.log(data)})
+```
+
 ## API Endpoints
 
 All URIs are relative to *{{basePath}}*
