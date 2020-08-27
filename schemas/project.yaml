@@ -7,6 +7,8 @@ project:
       type: string
     name:
       type: string
+    slug:
+      type: string
     main_format:
       type: string
     project_image_url:
@@ -22,6 +24,7 @@ project:
   example:
     id: abcd1234cdef1234abcd1234cdef1234
     name: My Android Project
+    slug: android_project
     main_format: xml
     project_image_url: http://assets.example.com/project.png
     account: account
