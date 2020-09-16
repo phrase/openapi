@@ -123,9 +123,9 @@ page:
 per_page:
   in: query
   name: per_page
-  description: allows you to specify a page size up to 100 items, 10 by default
+  description: allows you to specify a page size up to 100 items, 25 by default
   required: false
   allowEmptyValue: false
   schema:
     type: integer
-  example: 10
+  example: 25
