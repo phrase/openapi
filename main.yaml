@@ -83,6 +83,7 @@ tags:
         </table>
       </div>
 
+  - name: Documents
   - name: Tags
   - name: Blacklisted Keys
   - name: Versions / History

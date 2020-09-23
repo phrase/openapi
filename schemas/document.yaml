@@ -1,0 +1,20 @@
+---
+document:
+  type: object
+  title: document
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    name: email.html
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'
