@@ -1,7 +1,11 @@
 ---
+
 "/formats":
   get:
     "$ref": "./paths/formats/index.yaml"
+"/projects/{project_id}/documents":
+  get:
+    "$ref": "./paths/documents/index.yaml"
 "/projects/{project_id}/styleguides":
   get:
     "$ref": "./paths/styleguides/index.yaml"

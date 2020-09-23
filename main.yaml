@@ -83,6 +83,7 @@ tags:
         </table>
       </div>
 
+  - name: Documents
   - name: Tags
   - name: Blacklisted Keys
   - name: Versions / History
@@ -149,6 +150,7 @@ tags:
         Glossaries are available in the <a href="https://phrase.com/pricing/" target="_blank">Pro Plan and higher</a>.
       </div>
   - name: Bitbucket Sync
+  - name: GitHub Sync
   - name: GitLab Sync
   - name: Webhooks
   - name: Distributions
@@ -294,6 +296,7 @@ x-tagGroups:
   - name: Integrations
     tags:
       - Bitbucket Sync
+      - GitHub Sync
       - GitLab Sync
       - Webhooks
       - Distributions
