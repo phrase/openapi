@@ -189,6 +189,9 @@
 "/projects/{project_id}/uploads/{id}":
   get:
     "$ref": "./paths/uploads/show.yaml"
+"/github_syncs/export":
+  post:
+    "$ref": "./paths/github_syncs/export.yaml"
 "/gitlab_syncs":
   get:
     "$ref": "./paths/gitlab_syncs/index.yaml"
