@@ -1,0 +1,34 @@
+---
+summary: Delete document
+description: Delete an existing document.
+operationId: document/delete
+tags:
+- Documents
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    "$ref": "../../responses.yaml#/200"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/documents/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X DELETE \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase documents delete \
+    --project_id <project_id> \
+    --id <id> \
+    --access_token <token>
+- lang: CLI v1
+  source: UNAVAILABLE
