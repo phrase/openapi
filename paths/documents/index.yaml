@@ -8,6 +8,7 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
+- "$ref": "../../parameters.yaml#/project_id"
 responses:
   '200':
     description: OK
