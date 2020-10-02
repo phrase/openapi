@@ -195,6 +195,9 @@
 "/github_syncs/export":
   post:
     "$ref": "./paths/github_syncs/export.yaml"
+"/github_syncs/import":
+  post:
+    "$ref": "./paths/github_syncs/import.yaml"
 "/gitlab_syncs":
   get:
     "$ref": "./paths/gitlab_syncs/index.yaml"

@@ -1,0 +1,52 @@
+---
+summary: Import to Phrase from GitHub
+description: Import files to Phrase from your connected GitHub repository.
+operationId: github_sync/import
+tags:
+- GitHub Sync
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+responses:
+  '200':
+    description: OK
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '422':
+    "$ref": "../../responses.yaml#/422"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/github_syncs/import" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"project_id":"abcd1234"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    UNAVAILABLE
+- lang: CLI v1
+  source: |-
+    UNAVAILABLE
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: github_sync/import/parameters
+        properties:
+          project_id:
+            description: Project ID to specify the actual project the GitHub import should be triggered in.
+            type: string
+            example: abcd1234
