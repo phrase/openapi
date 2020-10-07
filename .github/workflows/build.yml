@@ -26,7 +26,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-go.git clones/go &> /dev/null
           rsync -a --delete --exclude='.git/' clients/go/ clones/go
           cd clones/go
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -59,7 +59,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-cli.git clones/cli &> /dev/null
           rsync -a --delete --exclude='.git/' clients/cli/ clones/cli
           cd clones/cli
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -88,7 +88,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-ruby.git clones/ruby &> /dev/null
           rsync -a --delete --exclude='.git/' clients/ruby/ clones/ruby
           cd clones/ruby
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -117,7 +117,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-js.git clones/typescript &> /dev/null
           rsync -a --delete --exclude='.git/' clients/typescript/ clones/typescript
           cd clones/typescript
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -146,7 +146,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-python.git clones/python &> /dev/null
           rsync -a --delete --exclude='.git/' clients/python/ clones/python
           cd clones/python
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -175,7 +175,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-swift.git clones/swift &> /dev/null
           rsync -a --delete --exclude='.git/' clients/swift/ clones/swift
           cd clones/swift
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -204,7 +204,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-java.git clones/java &> /dev/null
           rsync -a --delete --exclude='.git/' clients/java/ clones/java
           cd clones/java
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -233,7 +233,7 @@ jobs:
           # git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-kotlin.git clones/kotlin &> /dev/null
           # rsync -a --delete --exclude='.git/' clients/kotlin/ clones/kotlin
           # cd clones/kotlin
-          # git status --porcelain
+          # git status --verbose
           # if [ -n "$(git status --porcelain)" ]; then
           # git config --global user.email "support@phrase.com"
           # git config --global user.name "Phrase"
@@ -262,7 +262,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-php.git clones/php &> /dev/null
           rsync -a --delete --exclude='.git/' clients/php/ clones/php
           cd clones/php
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
@@ -291,7 +291,7 @@ jobs:
           git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-csharp.git clones/csharp &> /dev/null
           rsync -a --delete --exclude='.git/' clients/csharp/ clones/csharp
           cd clones/csharp
-          git status --porcelain
+          git status --verbose
           if [ -n "$(git status --porcelain)" ]; then
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
