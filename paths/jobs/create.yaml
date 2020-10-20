@@ -33,13 +33,13 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/jobs" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
-      -d '{"branch":"my-feature-branch","name":"de","briefing":"de-DE","due_date":"2017-08-15","tags":["myUploadTag"],"translation_key_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
+      -d '{"branch":"my-feature-branch","name":"de","briefing":"de-DE","due_date":"2017-08-15","ticket_url":"https://example.atlassian.net/browse/FOO","tags":["myUploadTag"],"translation_key_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase jobs create \
     --project_id <project_id> \
-    --data '{"branch":"my-feature-branch", "name":"de", "briefing":"de-DE", "due_date":"2017-08-15", "tags":""myUploadTag"", "translation_key_ids":""abcd1234cdef1234abcd1234cdef1234""}' \
+    --data '{"branch":"my-feature-branch", "name":"de", "briefing":"de-DE", "due_date":"2017-08-15", "ticket_url":"https://example.atlassian.net/browse/FOO", "tags":""myUploadTag"", "translation_key_ids":""abcd1234cdef1234abcd1234cdef1234""}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
@@ -75,6 +75,10 @@ requestBody:
             type: string
             format: date-time
             example: '2017-08-15'
+          ticket_url:
+            description: URL to a ticket for this job (e.g. Jira, Trello)
+            type: string
+            example: 'https://example.atlassian.net/browse/FOO'
           tags:
             description: tags of keys that should be included within the job
             type: array
