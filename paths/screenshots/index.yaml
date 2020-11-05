@@ -9,6 +9,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
+- description: filter by key
+  example: abcd1234cdef1234abcd1234cdef1234
+  name: key_id
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
