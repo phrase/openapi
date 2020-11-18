@@ -61,6 +61,10 @@ requestBody:
             description: Callback URL to send requests to
             type: string
             example: http://example.com/hooks/phraseapp-notifications
+          secret:
+            description: Webhook secret used to calculate signature. If empty, the default project secret will be used.
+            type: string
+            example: secr3t
           description:
             description: Webhook description
             type: string
@@ -72,4 +76,4 @@ requestBody:
           active:
             description: Whether webhook is active or inactive
             type: boolean
-            example: 
+            example:
