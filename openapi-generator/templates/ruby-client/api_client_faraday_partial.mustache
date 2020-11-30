@@ -116,6 +116,8 @@
           when ::Array, nil
             # let Faraday handle Array and nil parameters
             data[key] = value
+          when ::Hash
+            data[key] = build_request_body(header_params, value, body)
           else
             data[key] = value.to_s
           end
