@@ -16,14 +16,16 @@ job:
       type: string
     ticket_url:
       type: string
+    project:
+      "$ref": "./project_short.yaml#/project_short"
+    branch:
+      "$ref": "./branch_name.yaml#/branch_name"
     created_at:
       type: string
       format: date-time
     updated_at:
       type: string
       format: date-time
-    project:
-      "$ref": "./project_short.yaml#/project_short"
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     name: Translations for new Feature
