@@ -30,6 +30,7 @@ member:
       - id: abcd1234cdef1234abcd1234cdef1234
         name: English
         code: en-Gb
+    default_locale_codes: de,en
     permissions:
     - create_upload: true
       review_translations: true
