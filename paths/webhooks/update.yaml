@@ -77,3 +77,7 @@ requestBody:
             description: Whether webhook is active or inactive
             type: boolean
             example:
+          include_branches:
+            description: If enabled, webhook will also be triggered for events from branches of the project specified.
+            type: boolean
+            example:
