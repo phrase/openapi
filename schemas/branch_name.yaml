@@ -1,0 +1,9 @@
+---
+branch_name:
+  type: object
+  title: branch_name
+  properties:
+    name:
+      type: string
+  example:
+    name: new-branch
