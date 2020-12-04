@@ -11,6 +11,10 @@ member:
       type: string
     role:
       type: string
+    default_locale_codes:
+      type: array
+      items:
+        type: string
     projects:
       type: array
       items:
@@ -20,6 +24,9 @@ member:
     email: foo@bar.com
     username: myname
     role: Manager
+    default_locale_codes:
+      - en
+      - fi
     projects:
     - id: abcd1234cdef1234abcd1234cdef1234
       name: My Android Project
@@ -30,7 +37,7 @@ member:
       - id: abcd1234cdef1234abcd1234cdef1234
         name: English
         code: en-Gb
-    default_locale_codes: de,en
+
     permissions:
     - create_upload: true
       review_translations: true
