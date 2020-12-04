@@ -41,7 +41,7 @@ x-code-samples:
     phrase members update \
     --account_id <account_id> \
     --id <id> \
-    --data '{"role":"Developer", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "default_locale_codes":""de,en"", "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
+    --data '{"role":"Developer", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "default_locale_codes":["de","en"], "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
@@ -49,7 +49,6 @@ x-code-samples:
     --role Developer \
     --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
     --locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
-    --default_locale_codes "de,en" \
     --permissions {"create_upload"=>true, "review_translations"=>true}
 requestBody:
   required: true
