@@ -13,6 +13,8 @@ job_locale:
       type: array
       items:
         "$ref": "./user_preview.yaml#/user_preview"
+    completed:
+      type: boolean
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     job:
@@ -27,3 +29,4 @@ job_locale:
       id: abcd1234cdef1234abcd1234cdef1234
       name: English
       code: en-GB
+    completed: true
