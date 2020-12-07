@@ -34,14 +34,14 @@ x-code-samples:
     curl "https://api.phrase.com/v2/accounts/:account_id/members/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
-      -d '{"role":"Developer","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","default_locale_codes":["de","en"],"permissions":{"create_upload":true,"review_translations":true}}' \
+      -d '{"role":"Developer","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","default_locale_codes":["de","en"],"space_ids":["abcdef1","fedcba2"],"permissions":{"create_upload":true,"review_translations":true}}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase members update \
     --account_id <account_id> \
     --id <id> \
-    --data '{"role":"Developer", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "default_locale_codes":["de","en"], "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
+    --data '{"role":"Developer", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "default_locale_codes":["de","en"], "space_ids":["abcdef1","fedcba2"], "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
@@ -78,6 +78,14 @@ requestBody:
             example:
             - en
             - fi
+          space_ids:
+            description: List of spaces the user is assigned to
+            type: array
+            items:
+              type: string
+            example:
+            - abcdef1
+            - fedcba2
           permissions:
             description: Additional permissions depending on member role. Available permissions are <code>create_upload</code> and <code>review_translations</code>
             type: object

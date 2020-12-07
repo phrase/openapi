@@ -15,6 +15,10 @@ member:
       type: array
       items:
         type: string
+    space_ids:
+      type: array
+      items:
+        type: string
     projects:
       type: array
       items:
@@ -27,6 +31,9 @@ member:
     default_locale_codes:
       - en
       - fi
+    space_ids:
+      - abcdef1
+      - fedcba2
     projects:
     - id: abcd1234cdef1234abcd1234cdef1234
       name: My Android Project
