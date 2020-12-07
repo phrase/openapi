@@ -34,6 +34,24 @@
       $ref: './headers.yaml#/X-Rate-Limit-Remaining'
     X-Rate-Limit-Reset:
       $ref: './headers.yaml#/X-Rate-Limit-Reset'
+401:
+  description: Unauthorized
+  headers:
+    X-Rate-Limit-Limit:
+      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+    X-Rate-Limit-Remaining:
+      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+    X-Rate-Limit-Reset:
+      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+403:
+  description: Forbidden
+  headers:
+    X-Rate-Limit-Limit:
+      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+    X-Rate-Limit-Remaining:
+      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+    X-Rate-Limit-Reset:
+      $ref: './headers.yaml#/X-Rate-Limit-Reset'
 404:
   description: Not Found
   headers:
