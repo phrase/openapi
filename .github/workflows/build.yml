@@ -33,7 +33,7 @@ jobs:
           git add .
           git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
-          git tag -s -a v$PACKAGE_VERSION -m v$PACKAGE_VERSION || true
+          git tag -a v$PACKAGE_VERSION -m v$PACKAGE_VERSION || true
           git push --tags origin master
           else
           echo "  No changes, skipping."
