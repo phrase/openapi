@@ -11,29 +11,36 @@ member:
       type: string
     role:
       type: string
-    default_locale_codes:
-      type: array
-      items:
-        type: string
-    space_ids:
-      type: array
-      items:
-        type: string
     projects:
       type: array
       items:
         "$ref": "./project_locales.yaml#/project_locales"
+    permissions:
+      type: object
+    default_locale_codes:
+      type: array
+      items:
+        type: string
+    spaces:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+          created_at:
+            format: date-time
+          updated_at:
+            format: date-time
+          projects_count:
+            type: integer
   example:
     id: acbdacbdacbdacbdacbdacbd
     email: foo@bar.com
     username: myname
     role: Manager
-    default_locale_codes:
-      - en
-      - fi
-    space_ids:
-      - abcdef1
-      - fedcba2
     projects:
     - id: abcd1234cdef1234abcd1234cdef1234
       name: My Android Project
@@ -44,7 +51,15 @@ member:
       - id: abcd1234cdef1234abcd1234cdef1234
         name: English
         code: en-Gb
-
     permissions:
     - create_upload: true
       review_translations: true
+    default_locale_codes:
+      - en
+      - fi
+    spaces:
+      id: "04d36d845576b9d494d05e0b70fe813b"
+      name: "Space2"
+      created_at: "2020-12-07T12:56:21Z"
+      updated_at: "2020-12-07T12:56:21Z"
+      projects_count: 1
