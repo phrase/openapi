@@ -34,6 +34,20 @@
       $ref: './headers.yaml#/X-Rate-Limit-Remaining'
     X-Rate-Limit-Reset:
       $ref: './headers.yaml#/X-Rate-Limit-Reset'
+<<<<<<< HEAD
+=======
+401:
+  description: Unauthorized
+403:
+  description: Forbidden
+  headers:
+    X-Rate-Limit-Limit:
+      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+    X-Rate-Limit-Remaining:
+      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+    X-Rate-Limit-Reset:
+      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+>>>>>>> a406b75 (Added missing status codes to invitations API)
 404:
   description: Not Found
   headers:
