@@ -67,8 +67,8 @@ invitation:
     updated_at: '2015-01-28T09:52:53Z'
     accepted_at: '2015-02-28T09:52:53Z'
     spaces:
-      id: "04d36d845576b9d494d05e0b70fe813b"
-      name: "Space2"
-      created_at: "2020-12-07T12:56:21Z"
-      updated_at: "2020-12-07T12:56:21Z"
-      projects_count: 1
+      - id: "04d36d845576b9d494d05e0b70fe813b"
+        name: "Space2"
+        created_at: "2020-12-07T12:56:21Z"
+        updated_at: "2020-12-07T12:56:21Z"
+        projects_count: 1
