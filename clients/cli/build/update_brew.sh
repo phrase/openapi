@@ -17,11 +17,13 @@ done
 # Change the version in Formula/phrase.rb
 sed -i '' "s/version \".*\"/version \"$VERSION\"/g" "$brew_dir/Formula/phrase.rb"
 
+current=$(pwd)
 cd $brew_dir
 git config --global user.email "support@phrase.com"
 git config --global user.name "Phrase"
 git add Formula/phrase.rb
 git commit -m "Release version $VERSION"
 git push origin master
-
+rm -rf $brew_dir
+cd $current
 echo "Brew release successful"
