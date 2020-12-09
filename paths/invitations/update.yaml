@@ -38,7 +38,7 @@ x-code-samples:
     curl "https://api.phrase.com/v2/accounts/:account_id/invitations/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
-      -d '{"role":"Invitiation role","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","space_ids":["abcd1234abcd1234abcd1234", "default_locale_codes":["de","en"], "abcd1234abcd1234abcd1235"],"permissions":{"create_upload":true}}' \
+      -d '{"role":"Invitiation role","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"],"default_locale_codes":["de","en"],"permissions":{"create_upload":true}}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
