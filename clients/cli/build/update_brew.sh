@@ -24,5 +24,4 @@ git add Formula/phrase.rb
 git commit -m "Release version $VERSION"
 git push origin master
 
-echo $brew_dir
 echo "Brew release successful"
