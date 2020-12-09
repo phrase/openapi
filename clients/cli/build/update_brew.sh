@@ -5,7 +5,6 @@ set -eo pipefail
 brew_dir=$(mktemp -d -t ci-XXXXXXXXXX)
 git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/homebrew-brewed.git $brew_dir &> /dev/null
 
-# Upload artifacts
 DIST_DIR="./dist"
 FILES_FOR_BREW=("phrase_linux_386.tar.gz" "phrase_linux_amd64.tar.gz" "phrase_macosx_amd64.tar.gz")
 
