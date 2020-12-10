@@ -120,7 +120,7 @@ jobs:
         run: |
           npm install
           npm run generate.typescript
-          git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-js.git clones/typescript &> /dev/null
+          git clone https://$API_TOKEN_GITHUB@github.com/phrase/phrase-js.git clones/typescript &> /dev/null
           rsync -avI --delete --exclude='.git/' clients/typescript/ clones/typescript
           cd clones/typescript
           git status --verbose
@@ -129,7 +129,9 @@ jobs:
           git config --global user.name "Phrase"
           git add .
           git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
-          git push origin master
+          PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
+          git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
+          git push --tags origin master
           else
           echo "  No changes, skipping."
           fi
@@ -149,7 +151,7 @@ jobs:
         run: |
           npm install
           npm run generate.python
-          git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-python.git clones/python &> /dev/null
+          git clone https://$API_TOKEN_GITHUB@github.com/phrase/phrase-python.git clones/python &> /dev/null
           rsync -avI --delete --exclude='.git/' clients/python/ clones/python
           cd clones/python
           git status --verbose
@@ -158,7 +160,9 @@ jobs:
           git config --global user.name "Phrase"
           git add .
           git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
-          git push origin master
+          PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
+          git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
+          git push --tags origin master
           else
           echo "  No changes, skipping."
           fi
