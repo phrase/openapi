@@ -34,6 +34,21 @@ invitation:
     accepted_at:
       type: string
       format: date-time
+    spaces:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+          created_at:
+            format: date-time
+          updated_at:
+            format: date-time
+          projects_count:
+            type: integer
   example:
     id: acbdacbdacbdacbdacbdacbd
     email: foo@bar.com
@@ -58,3 +73,9 @@ invitation:
     created_at: '2015-01-28T09:52:53Z'
     updated_at: '2015-01-28T09:52:53Z'
     accepted_at: '2015-02-28T09:52:53Z'
+    spaces:
+      - id: "04d36d845576b9d494d05e0b70fe813b"
+        name: "Space2"
+        created_at: "2020-12-07T12:56:21Z"
+        updated_at: "2020-12-07T12:56:21Z"
+        projects_count: 1
