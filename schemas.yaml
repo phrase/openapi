@@ -28,6 +28,8 @@ schemas:
     "$ref": schemas/account_details.yaml#/account_details
   member:
     "$ref": schemas/member.yaml#/member
+  member_project_detail:
+    "$ref": schemas/member_project_detail.yaml#/member_project_detail
   invitation:
     "$ref": schemas/invitation.yaml#/invitation
   glossary:

@@ -1,7 +1,7 @@
 ---
-member:
+member_project_detail:
   type: object
-  title: member
+  title: member_project_detail
   properties:
     id:
       type: string
