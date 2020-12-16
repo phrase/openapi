@@ -1,5 +1,5 @@
 ---
-summary: Update a members invitation access
+summary: Update a member's invitation access
 description: Update member's settings in the invitations. Access token scope must include <code>team.manage</code>.
 operationId: invitation/update_settings
 tags:
