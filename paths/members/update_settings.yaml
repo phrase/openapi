@@ -1,0 +1,69 @@
+---
+summary: Update a member's project settings
+description: Update user settings in the project. Access token scope must include <code>team.manage</code>.
+operationId: member/update_settings
+tags:
+- Members
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/member_project_detail.yaml#/member_project_detail"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '401':
+    "$ref": "../../responses.yaml#/401"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/members/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"project_role":"Developer","locale_ids":["fff565db236400772368235db2c6117e","fff565db236400772368235db2c6117f"]}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase members update_settings \
+    --project_id <project_id> \
+    --id <id> \
+    --data '{"project_role":"Developer","locale_ids":["fff565db236400772368235db2c6117e","fff565db236400772368235db2c6117f"]}' \
+    --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: member/update_settings/parameters
+        properties:
+          project_role:
+            description: Member role, can be any of of Manager, Developer, Translator
+            type: string
+            example: Developer
+          locale_ids:
+            description: List of locale ids the user has access to.
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234abcd1234abcd1234
+            - abcd1234abcd1234abcd1235
