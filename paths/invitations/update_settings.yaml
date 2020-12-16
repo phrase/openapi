@@ -1,7 +1,7 @@
 ---
 summary: Update a members invitation access
-description: Update user settings in the invitations. Access token scope must include <code>team.manage</code>.
-operationId: member_settings/update
+description: Update member's settings in the invitations. Access token scope must include <code>team.manage</code>.
+operationId: invitation/update_settings
 tags:
 - Invitations
 parameters:
@@ -42,7 +42,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase invitations update \
+    phrase invitations update_settings \
     --project_id <project_id> \
     --id <id> \
     --data '{"project_role":"Developer","locale_ids":["fff565db236400772368235db2c6117e","fff565db236400772368235db2c6117f"]}' \
@@ -53,7 +53,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: member/update/parameters
+        title: invitation/update_settings/parameters
         properties:
           project_role:
             description: Member role, can be any of of Manager, Developer, Translator
