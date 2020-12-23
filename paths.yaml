@@ -36,6 +36,9 @@
 "/accounts/{account_id}/invitations/{id}/resend":
   post:
     "$ref": "./paths/invitations/resend.yaml"
+"/projects/{project_id}/invitations/{id}":
+  patch:
+    "$ref": "./paths/invitations/update_settings.yaml"
 "/projects/{project_id}/screenshots/{id}/markers":
   get:
     "$ref": "./paths/screenshot_markers/index.yaml"
