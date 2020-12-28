@@ -90,7 +90,7 @@ requestBody:
             type: string
             example: review
           machine_translation_enabled:
-            description: (Optional) Required for Autopilot and Smart Suggest
+            description: (Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest
             type: boolean
             example: true
           enable_branching:
