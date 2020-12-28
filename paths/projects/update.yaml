@@ -60,28 +60,96 @@ requestBody:
         type: object
         title: project/update/parameters
         properties:
+          account_id:
+            description: Required if the requesting user is a member of multiple accounts. Account ID to specify the actual account the project should be created in.
+            type: string
+            example: abcd1234
           name:
-            description: Name of the project
+            description: (Optional) Name of the project
             type: string
             example: My Android Project
           main_format:
-            description: Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href="https://help.phrase.com/help/supported-platforms-and-formats">Format Guide</a> or our <a href="#formats">Formats API Endpoint</a>.
+            description: (Optional) Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href="https://help.phrase.com/help/supported-platforms-and-formats">Format Guide</a> or our <a href="#formats">Formats API Endpoint</a>.
             type: string
             example: yml
           shares_translation_memory:
-            description: Indicates whether the project should share the account's translation memory
+            description: (Optional) Indicates whether the project should share the account's translation memory
             type: boolean
             example: true
           project_image:
-            description: Image to identify the project
+            description: (Optional) Image to identify the project
             type: string
             format: binary
             example: "/path/to/my/project-screenshot.png"
           remove_project_image:
-            description: Indicates whether the project image should be deleted.
+            description: (Optional) Indicates whether the project image should be deleted.
             type: boolean
-            example: 
-          account_id:
-            description: Account ID to specify the actual account the project should be created in. Required if the requesting user is a member of multiple accounts.
+            example: false
+          workflow:
+            description: (Optional) Review Workflow. "simple" / "review". <a href="https://help.phrase.com/help/advanced-review-workflow">Read more</a>
             type: string
-            example: abcd1234
+            example: review
+          machine_translation_enabled:
+            description: (Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest
+            type: boolean
+            example: true
+          enable_branching:
+            description: (Optional) Enable branching in the project
+            type: boolean
+            example: true
+          protect_master_branch:
+            description: (Optional) Protect the master branch in project where branching is enabled
+            type: boolean
+            example: true
+          enable_all_data_type_translation_keys_for_translators:
+            description: (Optional) Otherwise, translators are not allowed to edit translations other than strings
+            type: boolean
+            example: true
+          enable_icu_message_format:
+            description: (Optional) We can validate and highlight your ICU messages. <a href="https://help.phrase.com/help/icu-message-format">Read more</a>
+            type: boolean
+            example: true
+          zero_plural_form_enabled:
+            description: (Optional) Displays the input fields for the 'ZERO' plural form for every key as well although only some languages require the 'ZERO' explicitly.
+            type: boolean
+            example: true
+          autotranslate_enabled:
+            description: (Optional) Autopilot, requires machine_translation_enabled. <a href="https://help.phrase.com/help/autopilot">Read more</a>
+            type: boolean
+            example: true
+          autotranslate_check_new_translation_keys:
+            description: (Optional) Requires autotranslate_enabled to be true
+            type: boolean
+            example: true
+          autotranslate_check_new_uploads:
+            description: (Optional) Requires autotranslate_enabled to be true
+            type: boolean
+            example: true
+          autotranslate_check_new_locales:
+            description: (Optional) Requires autotranslate_enabled to be true
+            type: boolean
+            example: true
+          autotranslate_mark_as_unverified:
+            description: (Optional) Requires autotranslate_enabled to be true
+            type: boolean
+            example: true
+          autotranslate_use_machine_translation:
+            description: (Optional) Requires autotranslate_enabled to be true
+            type: boolean
+            example: true
+          autotranslate_use_translation_memory:
+            description: (Optional) Requires autotranslate_enabled to be true
+            type: boolean
+            example: true
+          smart_suggest_enabled:
+            description: (Optional) Smart Suggest, requires machine_translation_enabled
+            type: boolean
+            example: true
+          smart_suggest_use_glossary:
+            description: (Optional) Requires smart_suggest_enabled to be true
+            type: boolean
+            example: true
+          smart_suggest_use_machine_translation:
+            description: (Optional) Requires smart_suggest_enabled to be true
+            type: boolean
+            example: true
