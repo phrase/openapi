@@ -3,7 +3,7 @@ summary: List variables
 description: List all variables for the current project.
 operationId: variables/list
 tags:
-- Branches
+- Variables
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
