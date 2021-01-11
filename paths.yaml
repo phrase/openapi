@@ -268,6 +268,18 @@
 "/projects/{project_id}/jobs/{job_id}/locales/{id}/reopen":
   post:
     "$ref": "./paths/job_locales/reopen.yaml"
+"/projects/{project_id}/variables":
+  get:
+    "$ref": "./paths/variables/index.yaml"
+  post:
+    "$ref": "./paths/variables/create.yaml"
+"/projects/{project_id}/variables/{name}":
+  get:
+    "$ref": "./paths/variables/show.yaml"
+  patch:
+    "$ref": "./paths/variables/update.yaml"
+  delete:
+    "$ref": "./paths/variables/destroy.yaml"
 "/projects/{project_id}/branches":
   get:
     "$ref": "./paths/branches/index.yaml"

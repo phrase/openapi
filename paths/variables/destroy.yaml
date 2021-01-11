@@ -1,0 +1,31 @@
+---
+summary: Delete a variable
+description: Delete an existing variable.
+operationId: variable/delete
+tags:
+- Variables
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/name"
+responses:
+  '204':
+    "$ref": "../../responses.yaml#/204"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/variables/:name" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X DELETE
+- lang: CLI v2
+  source: |-
+    phrase variables delete \
+    --project_id <project_id> \
+    --name <name> \
+    --access_token <token>
