@@ -1,0 +1,59 @@
+---
+summary: Create a variable
+description: Create a new variable.
+operationId: variable/create
+tags:
+- Variables
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+responses:
+  '201':
+    description: Created
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/variable.yaml#/variable"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/variables" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"name":"MY_VARIABLE","value":"Hello World"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase variables create \
+    --project_id <project_id> \
+    --data '{"name":"MY_VARIABLE", "value":"Hello World"}' \
+    --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: variable/create/parameters
+        properties:
+          name:
+            description: Name of the variable
+            type: string
+            example: MY_VARIABLE
+          value:
+            description: Value of the variable
+            type: string
+            example: Hello World
