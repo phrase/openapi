@@ -118,3 +118,5 @@ schemas:
     "$ref": schemas/screenshot.yaml#/screenshot
   screenshot_marker:
     "$ref": schemas/screenshot_marker.yaml#/screenshot_marker
+  variable:
+    "$ref": schemas/variable.yaml#/variable

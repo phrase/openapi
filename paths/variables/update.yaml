@@ -49,7 +49,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: branch/update/parameters
+        title: variable/update/parameters
         properties:
           name:
             description: Name of the variable
