@@ -13,6 +13,8 @@ user:
       type: string
     position:
       type: string
+    language:
+      type: string
     created_at:
       type: string
       format: date-time
@@ -25,5 +27,6 @@ user:
     name: Joe Doe
     email: joe@phrase.com
     position: Lead Developer
+    language: de
     created_at: '2015-01-28T09:52:53Z'
     updated_at: '2015-01-28T09:52:53Z'
