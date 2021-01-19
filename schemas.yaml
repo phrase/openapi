@@ -88,6 +88,8 @@ schemas:
     "$ref": schemas/user_preview.yaml#/user_preview
   user:
     "$ref": schemas/user.yaml#/user
+  current_user:
+    "$ref": schemas/current_user.yaml#/user
   webhook:
     "$ref": schemas/webhook.yaml#/webhook
   space:

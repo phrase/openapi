@@ -12,7 +12,7 @@ responses:
     content:
       application/json:
         schema:
-          "$ref": "../../schemas/user.yaml#/user"
+          "$ref": "../../schemas/current_user.yaml#/user"
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
