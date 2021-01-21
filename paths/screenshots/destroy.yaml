@@ -8,6 +8,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/id"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
 responses:
   '204':
     "$ref": "../../responses.yaml#/204"
@@ -23,11 +29,14 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/screenshots/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X DELETE
+      -d '{"branch":"my-feature-branch"}' \
+      -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase screenshots delete \
     --project_id <project_id> \
     --id <id> \
+    --branch my-feature-branch \
     --access_token <token>
 - lang: CLI v1
   source: phraseapp screenshot delete <project_id> <id>
