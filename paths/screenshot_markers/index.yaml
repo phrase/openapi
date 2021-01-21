@@ -10,6 +10,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -37,12 +43,13 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/screenshots/:id/markers" \
+    curl "https://api.phrase.com/v2/projects/:project_id/screenshots/:id/markers?branch=my-feature-branch" \
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
     phrase screenshot_markers list \
     --project_id <project_id> \
+    --branch my-feature-branch \
     --id <id> \
     --access_token <token>
 - lang: CLI v1
