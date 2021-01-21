@@ -34,6 +34,7 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/screenshots/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
+      -F branch=my-feature-branch \
       -F name=A%20screenshot%20name \
       -F description=A%20screenshot%20description \
       -F filename=@/path/to/my/screenshot.png
@@ -42,7 +43,7 @@ x-code-samples:
     phrase screenshots update \
     --project_id <project_id> \
     --id <id> \
-    --data '{"name":""A screenshot name"", "description":""A screenshot description"", "filename":"/path/to/my/screenshot.png"}' \
+    --data '{"branch":"my-feature-branch", "name":""A screenshot name"", "description":""A screenshot description"", "filename":"/path/to/my/screenshot.png"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
@@ -58,6 +59,10 @@ requestBody:
         type: object
         title: screenshot/update/parameters
         properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
           name:
             description: Name of the screenshot
             type: string
