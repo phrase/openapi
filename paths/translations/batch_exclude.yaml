@@ -1,7 +1,7 @@
 ---
 summary: Set exclude from export flag on translations selected by query
 description: Exclude translations matching query from locale export.
-operationId: translations/exclude
+operationId: translations/exclude-collection
 tags:
 - Translations
 parameters:
@@ -37,7 +37,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase translations exclude \
+    phrase translations exclude-collection \
     --project_id <project_id> \
     --data '{"branch":"my-feature-branch", "query":"'PhraseApp*%20verified:true%20tags:feature,center'", "sort":"updated_at", "order":"desc"}' \
     --access_token <token>
