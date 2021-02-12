@@ -1,7 +1,7 @@
 ---
 summary: Mark translations selected by query as unverified
 description: Mark translations matching query as unverified.
-operationId: translations/unverify
+operationId: translations/unverify-collection
 tags:
 - Translations
 parameters:
@@ -37,7 +37,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase translations unverify \
+    phrase translations unverify-collection \
     --project_id <project_id> \
     --data '{"branch":"my-feature-branch", "query":"'PhraseApp*%20verified:true%20tags:feature,center'", "sort":"updated_at", "order":"desc"}' \
     --access_token <token>

@@ -1,7 +1,7 @@
 ---
 summary: Review translations selected by query
 description: Review translations matching query.
-operationId: translations/review
+operationId: translations/review-collection
 tags:
 - Translations
 parameters:
@@ -37,7 +37,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase translations review \
+    phrase translations review-collection \
     --project_id <project_id> \
     --data '{"branch":"my-feature-branch", "query":"'PhraseApp*%reviewed:false%20tags:feature,center'"}' \
     --access_token <token>

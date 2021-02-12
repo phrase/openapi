@@ -1,7 +1,7 @@
 ---
 summary: Delete collection of keys
 description: Delete all keys matching query. Same constraints as list. Please limit the number of affected keys to about 1,000 as you might experience timeouts otherwise.
-operationId: keys/delete
+operationId: keys/delete-collection
 tags:
 - Keys
 parameters:
@@ -66,7 +66,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase keys delete \
+    phrase keys delete-collection \
     --project_id <project_id> \
     --branch my-feature-branch \
     --query 'mykey* translated:true' \

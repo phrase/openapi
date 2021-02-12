@@ -372,7 +372,7 @@
   post:
     "$ref": "./paths/keys/create.yaml"
   delete:
-    "$ref": "./paths/keys/destroy-list.yaml"
+    "$ref": "./paths/keys/destroy-collection.yaml"
 "/projects/{project_id}/keys/search":
   post:
     "$ref": "./paths/keys/search.yaml"

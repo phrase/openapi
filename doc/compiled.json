@@ -51,6 +51,9 @@
       "description": "### Formats\n\nWe support all common localization file formats. For a detailed overview, see our [Format Guide](https://help.phrase.com/help/supported-platforms-and-formats).\n\n### Processing\n\nUploads will be processed asynchronously and thus the data might not be imported yet although the upload is completed. Therefore we recommend to evaluate the returned <code>state</code> field for information on the import progress.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>initialized</code></td>\n        <td class=\"basic-table__cell\">Data received.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting_for_preview</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for preview to be finished.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for processing.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>processing</code></td>\n        <td class=\"basic-table__cell\">Upload is being processed, data is currently imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>success</code></td>\n        <td class=\"basic-table__cell\">Upload is complete and all data is imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>error</code></td>\n        <td class=\"basic-table__cell\">Upload or import process failed.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
     },
     {
+      "name": "Documents"
+    },
+    {
       "name": "Tags"
     },
     {
@@ -97,6 +100,9 @@
     },
     {
       "name": "Bitbucket Sync"
+    },
+    {
+      "name": "GitHub Sync"
     },
     {
       "name": "GitLab Sync"
@@ -183,6 +189,7 @@
       "name": "Integrations",
       "tags": [
         "Bitbucket Sync",
+        "GitHub Sync",
         "GitLab Sync",
         "Webhooks",
         "Distributions",
@@ -598,6 +605,9 @@
           "name": {
             "type": "string"
           },
+          "slug": {
+            "type": "string"
+          },
           "company": {
             "type": "string"
           },
@@ -613,6 +623,7 @@
         "example": {
           "id": "abcd1234",
           "name": "Company Account",
+          "slug": "company_account",
           "company": "My Awesome Company",
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
@@ -658,6 +669,38 @@
             "items": {
               "$ref": "#/components/schemas/project_locales"
             }
+          },
+          "permissions": {
+            "type": "object"
+          },
+          "default_locale_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "spaces": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "format": "date-time"
+                },
+                "updated_at": {
+                  "format": "date-time"
+                },
+                "projects_count": {
+                  "type": "integer"
+                }
+              }
+            }
           }
         },
         "example": {
@@ -685,6 +728,146 @@
             {
               "create_upload": true,
               "review_translations": true
+            }
+          ],
+          "default_locale_codes": [
+            "en",
+            "fi"
+          ],
+          "spaces": [
+            {
+              "id": "04d36d845576b9d494d05e0b70fe813b",
+              "name": "Space2",
+              "created_at": "2020-12-07T12:56:21Z",
+              "updated_at": "2020-12-07T12:56:21Z",
+              "projects_count": 1
+            }
+          ]
+        }
+      },
+      "member_project_detail": {
+        "type": "object",
+        "title": "member_project_detail",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/project_locales"
+            }
+          },
+          "permissions": {
+            "type": "object"
+          },
+          "locale_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "default_locale_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "spaces": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "format": "date-time"
+                },
+                "updated_at": {
+                  "format": "date-time"
+                },
+                "projects_count": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "project_roles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "project_id": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "id": "acbdacbdacbdacbdacbdacbd",
+          "email": "foo@bar.com",
+          "username": "myname",
+          "role": "Manager",
+          "projects": [
+            {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "My Android Project",
+              "main_format": "xml",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z",
+              "locales": [
+                {
+                  "id": "abcd1234cdef1234abcd1234cdef1234",
+                  "name": "English",
+                  "code": "en-Gb"
+                }
+              ]
+            }
+          ],
+          "permissions": [
+            {
+              "create_upload": true,
+              "review_translations": true
+            }
+          ],
+          "locale_ids": [
+            "abcd1234abcd1234abcd1234",
+            "abcd1234abcd1234abcd1235"
+          ],
+          "default_locale_codes": [
+            "en",
+            "fi"
+          ],
+          "spaces": [
+            {
+              "id": "04d36d845576b9d494d05e0b70fe813b",
+              "name": "Space2",
+              "created_at": "2020-12-07T12:56:21Z",
+              "updated_at": "2020-12-07T12:56:21Z",
+              "projects_count": 1
+            }
+          ],
+          "project_roles": [
+            {
+              "project_id": "abcd1234cdef1234abcd1234cdef1234",
+              "role": "Developer"
             }
           ]
         }
@@ -717,8 +900,20 @@
               "$ref": "#/components/schemas/locale_preview"
             }
           },
+          "default_locale_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "permissions": {
             "type": "object"
+          },
+          "locale_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_at": {
             "type": "string",
@@ -731,6 +926,43 @@
           "accepted_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "spaces": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "format": "date-time"
+                },
+                "updated_at": {
+                  "format": "date-time"
+                },
+                "projects_count": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "project_role": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "project_id": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "example": {
@@ -754,15 +986,38 @@
               "code": "en-GB"
             }
           ],
+          "default_locale_codes": [
+            "en",
+            "de"
+          ],
           "permissions": [
             {
               "create_upload": true,
               "review_translations": true
             }
           ],
+          "locale_ids": [
+            "abcd1234abcd1234abcd1234",
+            "abcd1234abcd1234abcd1235"
+          ],
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z",
-          "accepted_at": "2015-02-28T09:52:53Z"
+          "accepted_at": "2015-02-28T09:52:53Z",
+          "spaces": [
+            {
+              "id": "04d36d845576b9d494d05e0b70fe813b",
+              "name": "Space2",
+              "created_at": "2020-12-07T12:56:21Z",
+              "updated_at": "2020-12-07T12:56:21Z",
+              "projects_count": 1
+            }
+          ],
+          "project_roles": [
+            {
+              "project_id": "abcd1234cdef1234abcd1234cdef1234",
+              "role": "Developer"
+            }
+          ]
         }
       },
       "glossary": {
@@ -1234,6 +1489,9 @@
           "name": {
             "type": "string"
           },
+          "slug": {
+            "type": "string"
+          },
           "main_format": {
             "type": "string"
           },
@@ -1255,6 +1513,7 @@
         "example": {
           "id": "abcd1234cdef1234abcd1234cdef1234",
           "name": "My Android Project",
+          "slug": "android_project",
           "main_format": "xml",
           "project_image_url": "http://assets.example.com/project.png",
           "account": "account",
@@ -1919,6 +2178,48 @@
           "updated_at": "2015-01-28T09:52:53Z"
         }
       },
+      "current_user": {
+        "type": "object",
+        "title": "user",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "position": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "username": "joe.doe",
+          "name": "Joe Doe",
+          "email": "joe@phrase.com",
+          "position": "Lead Developer",
+          "language": "de",
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z"
+        }
+      },
       "webhook": {
         "type": "object",
         "title": "webhook",
@@ -1941,6 +2242,9 @@
           "active": {
             "type": "boolean"
           },
+          "include_branches": {
+            "type": "boolean"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -1956,6 +2260,7 @@
           "description": "My webhook for chat notifications",
           "events": "locales:create,translations:update",
           "active": true,
+          "include_branches": false,
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
         }
@@ -2177,6 +2482,24 @@
           "state": {
             "type": "string"
           },
+          "ticket_url": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/project_short"
+          },
+          "branch": {
+            "type": "object",
+            "title": "branch_name",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            },
+            "example": {
+              "name": "new-branch"
+            }
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -2192,8 +2515,16 @@
           "briefing": "Some instructions for the translators",
           "due_date": "2017-02-28T09:52:53Z",
           "state": "completed",
+          "ticket_url": "https://example.atlassian.net/browse/FOO",
           "created_at": "2017-01-28T09:52:53Z",
-          "updated_at": "2017-01-28T09:52:53Z"
+          "updated_at": "2017-01-28T09:52:53Z",
+          "project": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "My Android Project",
+            "main_format": "xml",
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z"
+          }
         }
       },
       "job_details": {
@@ -2282,6 +2613,9 @@
             "items": {
               "$ref": "#/components/schemas/user_preview"
             }
+          },
+          "completed": {
+            "type": "boolean"
           }
         },
         "example": {
@@ -2302,7 +2636,8 @@
             "id": "abcd1234cdef1234abcd1234cdef1234",
             "name": "English",
             "code": "en-GB"
-          }
+          },
+          "completed": true
         }
       },
       "branch": {
@@ -2716,6 +3051,32 @@
             "updated_at": "2015-01-28T09:52:53Z"
           }
         }
+      },
+      "variable": {
+        "type": "object",
+        "title": "variable",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "name": "MY_VARIABLE",
+          "value": "Hello World",
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z"
+        }
       }
     },
     "parameters": {
@@ -2878,13 +3239,13 @@
       "per_page": {
         "in": "query",
         "name": "per_page",
-        "description": "allows you to specify a page size up to 100 items, 10 by default",
+        "description": "allows you to specify a page size up to 100 items, 25 by default",
         "required": false,
         "allowEmptyValue": false,
         "schema": {
           "type": "integer"
         },
-        "example": 10
+        "example": 25
       }
     },
     "responses": {
@@ -2932,6 +3293,23 @@
       },
       "400": {
         "description": "Bad request",
+        "headers": {
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
+          },
+          "X-Rate-Limit-Remaining": {
+            "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+          },
+          "X-Rate-Limit-Reset": {
+            "$ref": "#/components/headers/X-Rate-Limit-Reset"
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized"
+      },
+      "403": {
+        "description": "Forbidden",
         "headers": {
           "X-Rate-Limit-Limit": {
             "$ref": "#/components/headers/X-Rate-Limit-Limit"
@@ -3094,6 +3472,154 @@
           {
             "lang": "CLI v1",
             "source": "phraseapp formats list"
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/documents": {
+      "get": {
+        "summary": "List documents",
+        "description": "List all documents the current user has access to.",
+        "operationId": "documents/list",
+        "tags": [
+          "Documents"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "document",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "example": {
+                      "id": "abcd1234cdef1234abcd1234cdef1234",
+                      "name": "email.html",
+                      "created_at": "2015-01-28T09:52:53Z",
+                      "updated_at": "2015-01-28T09:52:53Z"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/documents?project_id=asdf\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase documents list \\\n--project_id <project_id> \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "UNAVAILABLE"
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/documents/{id}": {
+      "delete": {
+        "summary": "Delete document",
+        "description": "Delete an existing document.",
+        "operationId": "document/delete",
+        "tags": [
+          "Documents"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/documents/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase documents delete \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "UNAVAILABLE"
           }
         ]
       }
@@ -3624,6 +4150,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -3686,8 +4218,17 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "404": {
             "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
           },
           "429": {
             "$ref": "#/components/responses/429"
@@ -3696,11 +4237,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/invitations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"email\":\"example@mail.com\",\"role\":\"Developer\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"permissions\":{\"create_upload\":true,\"review_translations\":true}}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/invitations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"email\":\"example@mail.com\",\"role\":\"Developer\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"default_locale_codes\":[\"de\",\"en\"],\"permissions\":{\"create_upload\":true,\"review_translations\":true}}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase invitations create \\\n--account_id <account_id> \\\n--data '{\"email\":\"example@mail.com\", \"role\":\"Developer\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"permissions\":\"{\"create_upload\"=>true, \"review_translations\"=>true}\"}' \\\n--access_token <token>"
+            "source": "phrase invitations create \\\n--account_id <account_id> \\\n--data '{\"email\":\"example@mail.com\", \"role\":\"Developer\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true, \"review_translations\"=>true}\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -3734,6 +4275,28 @@
                     "description": "List of locale ids the invited user has access to.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235"
+                  },
+                  "space_ids": {
+                    "description": "List of spaces the user is assigned to.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234abcd1234abcd1234",
+                      "abcd1234abcd1234abcd1235"
+                    ]
+                  },
+                  "default_locale_codes": {
+                    "description": "List of default locales for the user.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "en",
+                      "de"
+                    ]
                   },
                   "permissions": {
                     "description": "Additional permissions depending on invitation role. Available permissions are <code>create_upload</code> and <code>review_translations</code>",
@@ -3796,6 +4359,12 @@
           },
           "400": {
             "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
           },
           "404": {
             "$ref": "#/components/responses/404"
@@ -3862,6 +4431,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -3872,11 +4447,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/invitations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"role\":\"Invitiation role\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"permissions\":{\"create_upload\":true}}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/invitations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"role\":\"Invitiation role\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"default_locale_codes\":[\"de\",\"en\"],\"permissions\":{\"create_upload\":true}}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase invitations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"\"Invitiation role\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"permissions\":\"{\"create_upload\"=>true}\"}' \\\n--access_token <token>"
+            "source": "phrase invitations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"\"Invitiation role\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true}\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -3905,6 +4480,28 @@
                     "description": "List of locale ids the invited user has access to",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235"
+                  },
+                  "space_ids": {
+                    "description": "List of spaces the user is assigned to.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234abcd1234abcd1234",
+                      "abcd1234abcd1234abcd1235"
+                    ]
+                  },
+                  "default_locale_codes": {
+                    "description": "List of default locales for the user.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "en",
+                      "de"
+                    ]
                   },
                   "permissions": {
                     "description": "Additional permissions depending on invitation role.",
@@ -3946,6 +4543,12 @@
           },
           "400": {
             "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
           },
           "404": {
             "$ref": "#/components/responses/404"
@@ -4014,6 +4617,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -4035,6 +4644,104 @@
             "source": "phraseapp invitation resend <account_id> <id>"
           }
         ]
+      }
+    },
+    "/projects/{project_id}/invitations/{id}": {
+      "patch": {
+        "summary": "Update a member's invitation access",
+        "description": "Update member's settings in the invitations. Access token scope must include <code>team.manage</code>.",
+        "operationId": "invitation/update_settings",
+        "tags": [
+          "Invitations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/invitation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/invitations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"project_role\":\"Developer\",\"locale_ids\":[\"fff565db236400772368235db2c6117e\",\"fff565db236400772368235db2c6117f\"]}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase invitations update_settings \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"project_role\":\"Developer\",\"locale_ids\":[\"fff565db236400772368235db2c6117e\",\"fff565db236400772368235db2c6117f\"]}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "invitation/update_settings/parameters",
+                "properties": {
+                  "project_role": {
+                    "description": "Member role, can be any of of Manager, Developer, Translator",
+                    "type": "string",
+                    "example": "Developer"
+                  },
+                  "locale_ids": {
+                    "description": "List of locale ids the user has access to.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234abcd1234abcd1234",
+                      "abcd1234abcd1234abcd1235"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/projects/{project_id}/screenshots/{id}/markers": {
@@ -4060,6 +4767,15 @@
           },
           {
             "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4103,11 +4819,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:id/markers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:id/markers?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshot_markers list \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase screenshot_markers list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--id <id> \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -4136,6 +4852,15 @@
           },
           {
             "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4173,11 +4898,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers/:id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshot_markers show \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase screenshot_markers show \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -4240,11 +4965,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"key_id\":\"abcd1234abcd1234abcd1234abcd1234\",\"presentation\":\"{ \\\"x\\\": 100, \\\"y\\\": 100, \\\"w\\\": 100, \\\"h\\\": 100 }\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\",\"presentation\":\"{ \\\"x\\\": 100, \\\"y\\\": 100, \\\"w\\\": 100, \\\"h\\\": 100 }\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshot_markers create \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\":\"\"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"\"}' \\\n--access_token <token>"
+            "source": "phrase screenshot_markers create \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\":\"\"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -4259,6 +4984,11 @@
                 "type": "object",
                 "title": "screenshot_marker/create/parameters",
                 "properties": {
+                  "branch": {
+                    "description": "specify the branch to use",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  },
                   "key_id": {
                     "description": "Specify the Key ID which should be highlighted on the specified screenshot. The Key must belong to the project.",
                     "type": "string",
@@ -4328,11 +5058,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"key_id\":\"abcd1234abcd1234abcd1234abcd1234\",\"presentation\":\"{ \\\"x\\\": 100, \\\"y\\\": 100, \\\"w\\\": 100, \\\"h\\\": 100 }\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\",\"presentation\":\"{ \\\"x\\\": 100, \\\"y\\\": 100, \\\"w\\\": 100, \\\"h\\\": 100 }\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshot_markers update \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\":\"\"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"\"}' \\\n--access_token <token>"
+            "source": "phrase screenshot_markers update \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\":\"\"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -4347,6 +5077,11 @@
                 "type": "object",
                 "title": "screenshot_marker/update/parameters",
                 "properties": {
+                  "branch": {
+                    "description": "specify the branch to use",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  },
                   "key_id": {
                     "description": "Specify the Key ID which should be highlighted on the specified screenshot. The Key must belong to the project.",
                     "type": "string",
@@ -4379,6 +5114,15 @@
           },
           {
             "$ref": "#/components/parameters/screenshot_id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4398,11 +5142,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:screenshot_id/markers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshot_markers delete \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--access_token <token>"
+            "source": "phrase screenshot_markers delete \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -4940,6 +5684,15 @@
             "description": "Indicates whether keys without translations should be included in the output as well.",
             "example": null,
             "name": "include_empty_translations",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Indicates whether zero forms should be included when empty in pluralized keys.",
+            "example": null,
+            "name": "exclude_empty_zero_forms",
             "in": "query",
             "schema": {
               "type": "boolean"
@@ -6133,11 +6886,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\",\"due_date\":\"2017-08-15\",\"tags\":[\"myUploadTag\"],\"translation_key_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\",\"due_date\":\"2017-08-15\",\"ticket_url\":\"https://example.atlassian.net/browse/FOO\",\"tags\":[\"myUploadTag\"],\"translation_key_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase jobs create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"tags\":\"\"myUploadTag\"\", \"translation_key_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase jobs create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\", \"tags\":\"\"myUploadTag\"\", \"translation_key_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -6173,6 +6926,11 @@
                     "format": "date-time",
                     "example": "2017-08-15"
                   },
+                  "ticket_url": {
+                    "description": "URL to a ticket for this job (e.g. Jira, Trello)",
+                    "type": "string",
+                    "example": "https://example.atlassian.net/browse/FOO"
+                  },
                   "tags": {
                     "description": "tags of keys that should be included within the job",
                     "type": "array",
@@ -6198,6 +6956,105 @@
             }
           }
         }
+      }
+    },
+    "/accounts/{account_id}/jobs": {
+      "get": {
+        "summary": "List account jobs",
+        "description": "List all jobs for the given account.",
+        "operationId": "jobs/by_account",
+        "tags": [
+          "Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "filter by user owning job",
+            "example": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "owned_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "filter by user assigned to job",
+            "example": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "assigned_to",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "filter by state of job Valid states are <code>draft</code>, <code>in_progress</code>, <code>completed</code>",
+            "example": "completed",
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/job"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/jobs?owned_by=abcd1234cdef1234abcd1234cdef1234&assigned_to=abcd1234cdef1234abcd1234cdef1234&state=completed\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase jobs by_account \\\n--account_id <account_id> \\\n--owned_by abcd1234cdef1234abcd1234cdef1234 \\\n--assigned_to abcd1234cdef1234abcd1234cdef1234 \\\n--state completed \\\n--access_token <token>"
+          }
+        ]
       }
     },
     "/projects/{project_id}/jobs/{id}": {
@@ -6328,11 +7185,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\",\"due_date\":\"2017-08-15\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\",\"due_date\":\"2017-08-15\",\"ticket_url\":\"https://example.atlassian.net/browse/FOO\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase jobs update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\"}' \\\n--access_token <token>"
+            "source": "phrase jobs update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -6367,6 +7224,11 @@
                     "type": "string",
                     "format": "date-time",
                     "example": "2017-08-15"
+                  },
+                  "ticket_url": {
+                    "description": "URL to a ticket for this job (e.g. Jira, Trello)",
+                    "type": "string",
+                    "example": "https://example.atlassian.net/browse/FOO"
                   }
                 }
               }
@@ -8583,6 +9445,11 @@
                     "type": "string",
                     "example": "http://example.com/hooks/phraseapp-notifications"
                   },
+                  "secret": {
+                    "description": "Webhook secret used to calculate signature. If empty, the default project secret will be used.",
+                    "type": "string",
+                    "example": "secr3t"
+                  },
                   "description": {
                     "description": "Webhook description",
                     "type": "string",
@@ -8595,6 +9462,11 @@
                   },
                   "active": {
                     "description": "Whether webhook is active or inactive",
+                    "type": "boolean",
+                    "example": null
+                  },
+                  "include_branches": {
+                    "description": "If enabled, webhook will also be triggered for events from branches of the project specified.",
                     "type": "boolean",
                     "example": null
                   }
@@ -8748,6 +9620,11 @@
                     "type": "string",
                     "example": "http://example.com/hooks/phraseapp-notifications"
                   },
+                  "secret": {
+                    "description": "Webhook secret used to calculate signature. If empty, the default project secret will be used.",
+                    "type": "string",
+                    "example": "secr3t"
+                  },
                   "description": {
                     "description": "Webhook description",
                     "type": "string",
@@ -8760,6 +9637,11 @@
                   },
                   "active": {
                     "description": "Whether webhook is active or inactive",
+                    "type": "boolean",
+                    "example": null
+                  },
+                  "include_branches": {
+                    "description": "If enabled, webhook will also be triggered for events from branches of the project specified.",
                     "type": "boolean",
                     "example": null
                   }
@@ -9190,6 +10072,156 @@
             "source": "phraseapp upload show <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
+      }
+    },
+    "/github_syncs/export": {
+      "post": {
+        "summary": "Export from Phrase to GitHub",
+        "description": "Export translations from Phrase to GitHub according to the .phraseapp.yml file within the GitHub repository.",
+        "operationId": "github_sync/export",
+        "tags": [
+          "GitHub Sync"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/github_syncs/export\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"project_id\":\"abcd1234\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "UNAVAILABLE"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "UNAVAILABLE"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "github_sync/export/parameters",
+                "properties": {
+                  "project_id": {
+                    "description": "Project ID to specify the actual project the GitHub export should be triggered in.",
+                    "type": "string",
+                    "example": "abcd1234"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/github_syncs/import": {
+      "post": {
+        "summary": "Import to Phrase from GitHub",
+        "description": "Import files to Phrase from your connected GitHub repository.",
+        "operationId": "github_sync/import",
+        "tags": [
+          "GitHub Sync"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/github_syncs/import\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"project_id\":\"abcd1234\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "UNAVAILABLE"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "UNAVAILABLE"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "github_sync/import/parameters",
+                "properties": {
+                  "project_id": {
+                    "description": "Project ID to specify the actual project the GitHub import should be triggered in.",
+                    "type": "string",
+                    "example": "abcd1234"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/gitlab_syncs": {
@@ -10469,36 +11501,121 @@
                 "type": "object",
                 "title": "project/update/parameters",
                 "properties": {
+                  "account_id": {
+                    "description": "Required if the requesting user is a member of multiple accounts. Account ID to specify the actual account the project should be created in.",
+                    "type": "string",
+                    "example": "abcd1234"
+                  },
                   "name": {
-                    "description": "Name of the project",
+                    "description": "(Optional) Name of the project",
                     "type": "string",
                     "example": "My Android Project"
                   },
                   "main_format": {
-                    "description": "Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href=\"https://help.phrase.com/help/supported-platforms-and-formats\">Format Guide</a> or our <a href=\"#formats\">Formats API Endpoint</a>.",
+                    "description": "(Optional) Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href=\"https://help.phrase.com/help/supported-platforms-and-formats\">Format Guide</a> or our <a href=\"#formats\">Formats API Endpoint</a>.",
                     "type": "string",
                     "example": "yml"
                   },
                   "shares_translation_memory": {
-                    "description": "Indicates whether the project should share the account's translation memory",
+                    "description": "(Optional) Indicates whether the project should share the account's translation memory",
                     "type": "boolean",
                     "example": true
                   },
                   "project_image": {
-                    "description": "Image to identify the project",
+                    "description": "(Optional) Image to identify the project",
                     "type": "string",
                     "format": "binary",
                     "example": "/path/to/my/project-screenshot.png"
                   },
                   "remove_project_image": {
-                    "description": "Indicates whether the project image should be deleted.",
+                    "description": "(Optional) Indicates whether the project image should be deleted.",
                     "type": "boolean",
-                    "example": null
+                    "example": false
                   },
-                  "account_id": {
-                    "description": "Account ID to specify the actual account the project should be created in. Required if the requesting user is a member of multiple accounts.",
+                  "workflow": {
+                    "description": "(Optional) Review Workflow. \"simple\" / \"review\". <a href=\"https://help.phrase.com/help/advanced-review-workflow\">Read more</a>",
                     "type": "string",
-                    "example": "abcd1234"
+                    "example": "review"
+                  },
+                  "machine_translation_enabled": {
+                    "description": "(Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "enable_branching": {
+                    "description": "(Optional) Enable branching in the project",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "protect_master_branch": {
+                    "description": "(Optional) Protect the master branch in project where branching is enabled",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "enable_all_data_type_translation_keys_for_translators": {
+                    "description": "(Optional) Otherwise, translators are not allowed to edit translations other than strings",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "enable_icu_message_format": {
+                    "description": "(Optional) We can validate and highlight your ICU messages. <a href=\"https://help.phrase.com/help/icu-message-format\">Read more</a>",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "zero_plural_form_enabled": {
+                    "description": "(Optional) Displays the input fields for the 'ZERO' plural form for every key as well although only some languages require the 'ZERO' explicitly.",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_enabled": {
+                    "description": "(Optional) Autopilot, requires machine_translation_enabled. <a href=\"https://help.phrase.com/help/autopilot\">Read more</a>",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_check_new_translation_keys": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_check_new_uploads": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_check_new_locales": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_mark_as_unverified": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_use_machine_translation": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_use_translation_memory": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "smart_suggest_enabled": {
+                    "description": "(Optional) Smart Suggest, requires machine_translation_enabled",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "smart_suggest_use_glossary": {
+                    "description": "(Optional) Requires smart_suggest_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "smart_suggest_use_machine_translation": {
+                    "description": "(Optional) Requires smart_suggest_enabled to be true",
+                    "type": "boolean",
+                    "example": true
                   }
                 }
               }
@@ -11152,6 +12269,349 @@
             }
           }
         }
+      }
+    },
+    "/projects/{project_id}/variables": {
+      "get": {
+        "summary": "List variables",
+        "description": "List all variables for the current project.",
+        "operationId": "variables/list",
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/variable"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/variables\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase variables list \\\n--project_id <project_id> \\\n--access_token <token>"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create a variable",
+        "description": "Create a new variable.",
+        "operationId": "variable/create",
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/variable"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/variables\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"MY_VARIABLE\",\"value\":\"Hello World\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase variables create \\\n--project_id <project_id> \\\n--data '{\"name\":\"MY_VARIABLE\", \"value\":\"Hello World\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "variable/create/parameters",
+                "properties": {
+                  "name": {
+                    "description": "Name of the variable",
+                    "type": "string",
+                    "example": "MY_VARIABLE"
+                  },
+                  "value": {
+                    "description": "Value of the variable",
+                    "type": "string",
+                    "example": "Hello World"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/variables/{name}": {
+      "get": {
+        "summary": "Get a single variable",
+        "description": "Get details on a single variable for a given project.",
+        "operationId": "variable/show",
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/variable"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/variables/:name\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase variables show \\\n--project_id <project_id> \\\n--name <name> \\\n--access_token <token>"
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Update a variable",
+        "description": "Update an existing variable.",
+        "operationId": "variable/update",
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/variable"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/variables/:name\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"name\":\"MY_VARIABLE\",\"value\":\"Hello World\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase variables update \\\n--project_id <project_id> \\\n--name <name> \\\n--data '{\"name\":\"MY_VARIABLE\",\"value\":\"Hello World\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "variable/update/parameters",
+                "properties": {
+                  "name": {
+                    "description": "Name of the variable",
+                    "type": "string",
+                    "example": "MY_VARIABLE"
+                  },
+                  "value": {
+                    "description": "Value of the variable",
+                    "type": "string",
+                    "example": "Hello World"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a variable",
+        "description": "Delete an existing variable.",
+        "operationId": "variable/delete",
+        "tags": [
+          "Variables"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/name"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/variables/:name\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase variables delete \\\n--project_id <project_id> \\\n--name <name> \\\n--access_token <token>"
+          }
+        ]
       }
     },
     "/projects/{project_id}/branches": {
@@ -11810,7 +13270,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/user"
+                  "$ref": "#/components/schemas/current_user"
                 }
               }
             },
@@ -11905,6 +13365,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -11972,6 +13438,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -12037,6 +13509,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -12047,11 +13525,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/members/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"role\":\"Developer\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"permissions\":{\"create_upload\":true,\"review_translations\":true}}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/members/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"role\":\"Developer\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"default_locale_codes\":[\"de\",\"en\"],\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"permissions\":{\"create_upload\":true,\"review_translations\":true}}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase members update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"Developer\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"permissions\":\"{\"create_upload\"=>true, \"review_translations\"=>true}\"}' \\\n--access_token <token>"
+            "source": "phrase members update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"Developer\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"default_locale_codes\":[\"de\",\"en\"], \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"permissions\":\"{\"create_upload\"=>true, \"review_translations\"=>true}\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -12080,6 +13558,28 @@
                     "description": "List of locale ids the user has access to.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235"
+                  },
+                  "default_locale_codes": {
+                    "description": "List of default locales for the user.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "en",
+                      "fi"
+                    ]
+                  },
+                  "space_ids": {
+                    "description": "List of spaces the user is assigned to.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234abcd1234abcd1234",
+                      "abcd1234abcd1234abcd1235"
+                    ]
                   },
                   "permissions": {
                     "description": "Additional permissions depending on member role. Available permissions are <code>create_upload</code> and <code>review_translations</code>",
@@ -12123,6 +13623,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -12146,6 +13652,104 @@
         ]
       }
     },
+    "/projects/{project_id}/members/{id}": {
+      "patch": {
+        "summary": "Update a member's project settings",
+        "description": "Update user settings in the project. Access token scope must include <code>team.manage</code>.",
+        "operationId": "member/update_settings",
+        "tags": [
+          "Members"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/member_project_detail"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/members/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"project_role\":\"Developer\",\"locale_ids\":[\"fff565db236400772368235db2c6117e\",\"fff565db236400772368235db2c6117f\"]}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase members update_settings \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"project_role\":\"Developer\",\"locale_ids\":[\"fff565db236400772368235db2c6117e\",\"fff565db236400772368235db2c6117f\"]}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "member/update_settings/parameters",
+                "properties": {
+                  "project_role": {
+                    "description": "Member role, can be any of of Manager, Developer, Translator",
+                    "type": "string",
+                    "example": "Developer"
+                  },
+                  "locale_ids": {
+                    "description": "List of locale ids the user has access to.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234abcd1234abcd1234",
+                      "abcd1234abcd1234abcd1235"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{project_id}/screenshots": {
       "get": {
         "summary": "List screenshots",
@@ -12166,6 +13770,24 @@
           },
           {
             "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "filter by key",
+            "example": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "key_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -12209,11 +13831,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshots list \\\n--project_id <project_id> \\\n--access_token <token>"
+            "source": "phrase screenshots list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -12271,11 +13893,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F name=A%20screenshot%20name \\\n  -F description=A%20screenshot%20description \\\n  -F filename=@/path/to/my/screenshot.png"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F branch=my-feature-branch \\\n  -F name=A%20screenshot%20name \\\n  -F description=A%20screenshot%20description \\\n  -F filename=@/path/to/my/screenshot.png"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshots create \\\n--project_id <project_id> \\\n--data '{\"name\":\"\"A screenshot name\"\", \"description\":\"\"A screenshot description\"\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase screenshots create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"\"A screenshot name\"\", \"description\":\"\"A screenshot description\"\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -12290,6 +13912,11 @@
                 "type": "object",
                 "title": "screenshot/create/parameters",
                 "properties": {
+                  "branch": {
+                    "description": "specify the branch to use",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  },
                   "name": {
                     "description": "Name of the screenshot",
                     "type": "string",
@@ -12330,6 +13957,15 @@
           },
           {
             "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -12367,11 +14003,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshots show \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase screenshots show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -12432,11 +14068,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -F name=A%20screenshot%20name \\\n  -F description=A%20screenshot%20description \\\n  -F filename=@/path/to/my/screenshot.png"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -F branch=my-feature-branch \\\n  -F name=A%20screenshot%20name \\\n  -F description=A%20screenshot%20description \\\n  -F filename=@/path/to/my/screenshot.png"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshots update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"name\":\"\"A screenshot name\"\", \"description\":\"\"A screenshot description\"\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase screenshots update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"\"A screenshot name\"\", \"description\":\"\"A screenshot description\"\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -12451,6 +14087,11 @@
                 "type": "object",
                 "title": "screenshot/update/parameters",
                 "properties": {
+                  "branch": {
+                    "description": "specify the branch to use",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  },
                   "name": {
                     "description": "Name of the screenshot",
                     "type": "string",
@@ -12489,6 +14130,15 @@
           },
           {
             "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -12508,11 +14158,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/screenshots/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshots delete \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase screenshots delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -13241,6 +14891,15 @@
           },
           {
             "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -13850,7 +15509,7 @@
       "delete": {
         "summary": "Delete collection of keys",
         "description": "Delete all keys matching query. Same constraints as list. Please limit the number of affected keys to about 1,000 as you might experience timeouts otherwise.",
-        "operationId": "keys/delete",
+        "operationId": "keys/delete-collection",
         "tags": [
           "Keys"
         ],
@@ -13981,9 +15640,6 @@
               },
               "X-Rate-Limit-Reset": {
                 "$ref": "#/components/headers/X-Rate-Limit-Reset"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -16790,9 +18446,6 @@
               },
               "X-Rate-Limit-Reset": {
                 "$ref": "#/components/headers/X-Rate-Limit-Reset"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -17468,7 +19121,7 @@
       "patch": {
         "summary": "Verify translations selected by query",
         "description": "Verify translations matching query.",
-        "operationId": "translations/verify",
+        "operationId": "translations/verify-collection",
         "tags": [
           "Translations"
         ],
@@ -17519,7 +19172,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations verify \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20unverified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations verify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20unverified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -17565,7 +19218,7 @@
       "patch": {
         "summary": "Mark translations selected by query as unverified",
         "description": "Mark translations matching query as unverified.",
-        "operationId": "translations/unverify",
+        "operationId": "translations/unverify-collection",
         "tags": [
           "Translations"
         ],
@@ -17616,7 +19269,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations unverify \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations unverify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -17662,7 +19315,7 @@
       "patch": {
         "summary": "Review translations selected by query",
         "description": "Review translations matching query.",
-        "operationId": "translations/review",
+        "operationId": "translations/review-collection",
         "tags": [
           "Translations"
         ],
@@ -17713,7 +19366,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations review \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%reviewed:false%20tags:feature,center'\"}' \\\n--access_token <token>"
+            "source": "phrase translations review-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%reviewed:false%20tags:feature,center'\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -17749,7 +19402,7 @@
       "patch": {
         "summary": "Set exclude from export flag on translations selected by query",
         "description": "Exclude translations matching query from locale export.",
-        "operationId": "translations/exclude",
+        "operationId": "translations/exclude-collection",
         "tags": [
           "Translations"
         ],
@@ -17800,7 +19453,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations exclude \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations exclude-collextion \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -17846,7 +19499,7 @@
       "patch": {
         "summary": "Remove exlude from import flag from translations selected by query",
         "description": "Include translations matching query in locale export.",
-        "operationId": "translations/include",
+        "operationId": "translations/include-collection",
         "tags": [
           "Translations"
         ],
@@ -17897,7 +19550,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations include \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations include-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
