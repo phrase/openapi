@@ -15,6 +15,12 @@ job_locale:
         "$ref": "./user_preview.yaml#/user_preview"
     completed:
       type: boolean
+    translation_completed_at:
+      type: string
+      format: date-time
+    review_completed_at:
+      type: string
+      format: date-time
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     job:
@@ -30,3 +36,5 @@ job_locale:
       name: English
       code: en-GB
     completed: true
+    translation_completed_at: '2017-01-28T09:52:53Z'
+    review_completed_at: '2017-01-28T09:52:53Z'
