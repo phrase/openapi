@@ -172,7 +172,8 @@ module {{moduleName}}
       post_body = opts[:body] {{#bodyParam}}|| @api_client.object_to_http_body({{#required}}{{{paramName}}}{{/required}}{{^required}}opts[:'{{{paramName}}}']{{/required}}) {{/bodyParam}}
 
       # return_type
-      return_type = opts[:return_type] {{#returnType}}|| '{{{returnType}}}' {{/returnType}}
+      return_type = opts[:return_type] || {{#returnType}}'{{{returnType}}}'{{/returnType}}{{^returnType}}'String'{{/returnType}}
+
 
       # auth_names
       auth_names = opts[:auth_names] || [{{#authMethods}}'{{name}}'{{#hasMore}}, {{/hasMore}}{{/authMethods}}]
