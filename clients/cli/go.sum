@@ -233,6 +233,8 @@ github.com/pelletier/go-toml v1.2.0 h1:T5zMGML61Wp+FlcbWjRDT7yAxhJNAiPPLOFECq181
 github.com/pelletier/go-toml v1.2.0/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=
 github.com/pelletier/go-toml v1.8.1 h1:1Nf83orprkJyknT6h7zbuEGUEjcyVlCxSUGTENmNCRM=
 github.com/pelletier/go-toml v1.8.1/go.mod h1:T2/BmBdy8dvIRq1a/8aqjN41wvWlN4lrapLU/GW4pbc=
+github.com/phrase/phrase-cli v0.0.0-20210224102111-dccd5c3f25ed h1:SYz5hL630gsFQu1LTb0qO1e+c/tdjSkiDeSRU3lAsm8=
+github.com/phrase/phrase-cli v0.0.0-20210224102111-dccd5c3f25ed/go.mod h1:mm9Uanhy399TMiFu9ynkVFxjj7wFKER49l2s9c+Cu6U=
 github.com/phrase/phrase-go v1.0.20 h1:iIHXXcRM5aqWwOh0aj/flmzsOkCBTB9iXInHB3F//LE=
 github.com/phrase/phrase-go v1.0.20/go.mod h1:kzi1yMrExYsCJuRIGM9jTkNEG2P3IN3wBfgRMZvv1Sc=
 github.com/pkg/errors v0.8.0/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
