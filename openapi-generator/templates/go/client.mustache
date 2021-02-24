@@ -388,22 +388,37 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 	if len(b) == 0 {
 		return nil
 	}
+
 	if s, ok := v.(*string); ok {
 		*s = string(b)
 		return nil
 	}
+
+	if f, ok := v.(**os.File); ok {
+		file, err := ioutil.TempFile(os.TempDir(), "phrase-locale-download-*")
+		if err != nil {
+			return err
+		}
+		file.Write(b)
+		file.Seek(0, io.SeekStart)
+		*f = file
+		return nil
+	}
+
 	if xmlCheck.MatchString(contentType) {
 		if err = xml.Unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
 	}
+
 	if jsonCheck.MatchString(contentType) {
 		if err = json.Unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
 	}
+
 	return errors.New("undefined response type")
 }
 
