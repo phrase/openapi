@@ -17,7 +17,7 @@ import (
 	"context"
 	"fmt"
 
-	phrase "github.com/phrase/phrase-go"
+	phrase "github.com/phrase/phrase-go/v2"
 )
 
 func main() {
