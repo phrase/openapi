@@ -39,7 +39,7 @@ func init{{{nickname}}}() {
 
 			cfg := api.NewConfiguration()
 			cfg.SetUserAgent(Config.UserAgent)
-			if Config.Credentials.Host !=	{
+			if Config.Credentials.Host != "" {
 				cfg.BasePath = Config.Credentials.Host
 			}
 
