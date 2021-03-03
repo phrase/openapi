@@ -20,7 +20,7 @@ team_detail:
     spaces:
       type: array
       items:
-        "$ref": "./space.yaml#/space"
+        "$ref": "./space_short.yaml#/space_short"
     users:
       type: array
       items:
