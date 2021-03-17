@@ -8,13 +8,7 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
-- account_id:
-  in: query
-  name: account_id
-  description: Filter projects by Account
-  required: false
-  schema:
-    type: string
+- "$ref": "../../parameters.yaml#/query_account_id"
 - description: Sort projects. Valid options are "name_asc", "name_desc", "updated_at_asc", "updated_at_desc", "space_asc" and "space_desc".
   example:
   name: sort_by
