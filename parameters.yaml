@@ -13,6 +13,13 @@ account_id:
   required: true
   schema:
     type: string
+query_account_id:
+  in: query
+  name: account_id
+  description: Filter by Account ID
+  required: false
+  schema:
+    type: string
 space_id:
   in: path
   name: space_id
