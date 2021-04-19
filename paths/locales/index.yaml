@@ -9,6 +9,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
+- description: Sort locales. Valid options are "name_asc", "name_desc", "default_asc", "default_desc".
+  example:
+  name: sort_by
+  in: query
+  schema:
+    type: string
 - description: specify the branch to use
   example: my-feature-branch
   name: branch
