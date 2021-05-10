@@ -3,6 +3,10 @@ branch:
   type: object
   title: branch
   properties:
+    base_project_id:
+      type: string
+    branch_project_id:
+      type: string
     name:
       type: string
     created_at:
