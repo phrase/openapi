@@ -2,5 +2,5 @@
 generatorName: typescript-fetch
 outputDir: clients/typescript
 npmName: "phrase-js"
-npmVersion: 1.1.10
+npmVersion: 1.0.11
 typescriptThreePlus: true
