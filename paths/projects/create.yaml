@@ -87,6 +87,10 @@ requestBody:
             description: When a source project ID is given, a clone of that project will be created, including all locales, keys and translations as well as the main project settings if they are not defined otherwise through the params.
             type: string
             example: abcd1234
+          workflow:
+            description: (Optional) Review Workflow. "simple" / "review". <a href="https://help.phrase.com/help/advanced-review-workflow">Read more</a>
+            type: string
+            example: review
           machine_translation_enabled:
             description: (Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest
             type: boolean
