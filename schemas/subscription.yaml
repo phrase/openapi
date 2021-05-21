@@ -1,0 +1,12 @@
+---
+subscription:
+  type: object
+  title: subscription
+  properties:
+    is_current:
+      type: boolean
+    trial_expired:
+      type: boolean
+  example:
+    is_current: true
+    trial_expired: false
