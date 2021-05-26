@@ -618,6 +618,9 @@
           "updated_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "company_logo_url": {
+            "type": "string"
           }
         },
         "example": {
@@ -626,7 +629,8 @@
           "slug": "company_account",
           "company": "My Awesome Company",
           "created_at": "2015-01-28T09:52:53Z",
-          "updated_at": "2015-01-28T09:52:53Z"
+          "updated_at": "2015-01-28T09:52:53Z",
+          "company_logo_url": "http://assets.example.com/company_logo.png"
         }
       },
       "account_details": {
@@ -638,12 +642,29 @@
             "type": "object",
             "title": "account_details",
             "properties": {
+              "subscription": {
+                "type": "object",
+                "title": "subscription",
+                "properties": {
+                  "is_current": {
+                    "type": "boolean"
+                  },
+                  "trial_expired": {
+                    "type": "boolean"
+                  }
+                },
+                "example": {
+                  "is_current": true,
+                  "trial_expired": false
+                }
+              },
               "slug": {
                 "type": "string"
               }
             },
             "example": {
-              "slug": "company-account"
+              "slug": "company-account",
+              "subscription": "subscription"
             }
           }
         ]
@@ -691,9 +712,11 @@
                   "type": "string"
                 },
                 "created_at": {
+                  "type": "string",
                   "format": "date-time"
                 },
                 "updated_at": {
+                  "type": "string",
                   "format": "date-time"
                 },
                 "projects_count": {
@@ -794,9 +817,11 @@
                   "type": "string"
                 },
                 "created_at": {
+                  "type": "string",
                   "format": "date-time"
                 },
                 "updated_at": {
+                  "type": "string",
                   "format": "date-time"
                 },
                 "projects_count": {
@@ -939,9 +964,11 @@
                   "type": "string"
                 },
                 "created_at": {
+                  "type": "string",
                   "format": "date-time"
                 },
                 "updated_at": {
+                  "type": "string",
                   "format": "date-time"
                 },
                 "projects_count": {
@@ -1501,6 +1528,36 @@
           "account": {
             "$ref": "#/components/schemas/account"
           },
+          "space": {
+            "type": "object",
+            "title": "space",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "projects_count": {
+                "type": "integer"
+              }
+            },
+            "example": {
+              "id": "2e7574e8f2372906a03110c2a7cfe671",
+              "name": "My first space",
+              "created_at": "2020-02-25T12:17:25Z",
+              "updated_at": "2020-03-13T14:46:57Z",
+              "projects_count": 2
+            }
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -1517,6 +1574,7 @@
           "main_format": "xml",
           "project_image_url": "http://assets.example.com/project.png",
           "account": "account",
+          "space": "space",
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
         }
@@ -2136,6 +2194,9 @@
           },
           "name": {
             "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         },
         "example": null
@@ -2348,7 +2409,7 @@
           "spaces": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/space"
+              "$ref": "#/components/schemas/project/properties/space"
             }
           },
           "users": {
@@ -2417,7 +2478,7 @@
           "spaces": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/space"
+              "$ref": "#/components/schemas/project/properties/space"
             }
           },
           "users": {
@@ -2616,6 +2677,14 @@
           },
           "completed": {
             "type": "boolean"
+          },
+          "translation_completed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "review_completed_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "example": {
@@ -2637,13 +2706,21 @@
             "name": "English",
             "code": "en-GB"
           },
-          "completed": true
+          "completed": true,
+          "translation_completed_at": "2017-01-28T09:52:53Z",
+          "review_completed_at": "2017-01-28T09:52:53Z"
         }
       },
       "branch": {
         "type": "object",
         "title": "branch",
         "properties": {
+          "base_project_id": {
+            "type": "string"
+          },
+          "branch_project_id": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
@@ -3095,6 +3172,15 @@
         "name": "account_id",
         "description": "Account ID",
         "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "query_account_id": {
+        "in": "query",
+        "name": "account_id",
+        "description": "Filter by Account ID",
+        "required": false,
         "schema": {
           "type": "string"
         }
@@ -5177,6 +5263,15 @@
             "$ref": "#/components/parameters/per_page"
           },
           {
+            "description": "Sort locales. Valid options are \"name_asc\", \"name_desc\", \"default_asc\", \"default_desc\".",
+            "example": null,
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "description": "specify the branch to use",
             "example": "my-feature-branch",
             "name": "branch",
@@ -5786,6 +5881,14 @@
         "responses": {
           "200": {
             "description": "OK",
+            "content": {
+              "*": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
             "headers": {
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
@@ -11205,6 +11308,18 @@
           },
           {
             "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "$ref": "#/components/parameters/query_account_id"
+          },
+          {
+            "description": "Sort projects. Valid options are \"name_asc\", \"name_desc\", \"updated_at_asc\", \"updated_at_desc\", \"space_asc\" and \"space_desc\".",
+            "example": null,
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -11361,6 +11476,91 @@
                     "description": "When a source project ID is given, a clone of that project will be created, including all locales, keys and translations as well as the main project settings if they are not defined otherwise through the params.",
                     "type": "string",
                     "example": "abcd1234"
+                  },
+                  "workflow": {
+                    "description": "(Optional) Review Workflow. \"simple\" / \"review\". <a href=\"https://help.phrase.com/help/advanced-review-workflow\">Read more</a>",
+                    "type": "string",
+                    "example": "review"
+                  },
+                  "machine_translation_enabled": {
+                    "description": "(Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "enable_branching": {
+                    "description": "(Optional) Enable branching in the project",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "protect_master_branch": {
+                    "description": "(Optional) Protect the master branch in project where branching is enabled",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "enable_all_data_type_translation_keys_for_translators": {
+                    "description": "(Optional) Otherwise, translators are not allowed to edit translations other than strings",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "enable_icu_message_format": {
+                    "description": "(Optional) We can validate and highlight your ICU messages. <a href=\"https://help.phrase.com/help/icu-message-format\">Read more</a>",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "zero_plural_form_enabled": {
+                    "description": "(Optional) Displays the input fields for the 'ZERO' plural form for every key as well although only some languages require the 'ZERO' explicitly.",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_enabled": {
+                    "description": "(Optional) Autopilot, requires machine_translation_enabled. <a href=\"https://help.phrase.com/help/autopilot\">Read more</a>",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_check_new_translation_keys": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_check_new_uploads": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_check_new_locales": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_mark_as_unverified": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_use_machine_translation": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "autotranslate_use_translation_memory": {
+                    "description": "(Optional) Requires autotranslate_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "smart_suggest_enabled": {
+                    "description": "(Optional) Smart Suggest, requires machine_translation_enabled",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "smart_suggest_use_glossary": {
+                    "description": "(Optional) Requires smart_suggest_enabled to be true",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "smart_suggest_use_machine_translation": {
+                    "description": "(Optional) Requires smart_suggest_enabled to be true",
+                    "type": "boolean",
+                    "example": true
                   }
                 }
               }
@@ -15587,7 +15787,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys delete \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--query 'mykey* translated:true' \\\n--locale_id abcd1234abcd1234abcd1234abcd1234 \\\n--access_token <token>"
+            "source": "phrase keys delete-collection \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--query 'mykey* translated:true' \\\n--locale_id abcd1234abcd1234abcd1234abcd1234 \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -19453,7 +19653,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations exclude-collextion \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations exclude-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -19590,6 +19790,375 @@
             }
           }
         }
+      }
+    },
+    "/notifications": {
+      "get": {
+        "summary": "List notifications",
+        "description": "List all notifications from the current user",
+        "operationId": "notifications/list",
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "notification",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "event_name": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "delivered_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "seen_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "data": {
+                        "type": "object"
+                      },
+                      "resource": {
+                        "type": "object"
+                      },
+                      "locale": {
+                        "$ref": "#/components/schemas/locale"
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/user_preview"
+                      },
+                      "project": {
+                        "$ref": "#/components/schemas/project"
+                      },
+                      "account": {
+                        "$ref": "#/components/schemas/account"
+                      },
+                      "group": {
+                        "type": "object",
+                        "title": "notification_group",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "event_name": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updated_at": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "example": {
+                          "id": "abcd1234cdef1234abcd1234cdef1234",
+                          "event_name": "keys:create",
+                          "created_at": "2015-01-28T09:52:53Z",
+                          "updated_at": "2015-01-28T09:52:53Z"
+                        }
+                      }
+                    },
+                    "example": {
+                      "id": "abcd1234",
+                      "event_name": "keys:create",
+                      "data": "object notification data",
+                      "resource": "object of notification resource",
+                      "locale": {
+                        "id": "abcd1234cdef1234abcd1234cdef1234",
+                        "name": "de",
+                        "code": "de-DE",
+                        "default": true,
+                        "main": false,
+                        "rtl": false,
+                        "plural_forms": [
+                          "zero",
+                          "one",
+                          "other"
+                        ],
+                        "source_locale": {
+                          "id": "abcd1234cdef1234abcd1234cdef1234",
+                          "name": "en",
+                          "code": "en-GB"
+                        },
+                        "created_at": "2015-01-28T09:52:53Z",
+                        "updated_at": "2015-01-28T09:52:53Z"
+                      },
+                      "user": {
+                        "id": "abcd1234cdef1234abcd1234cdef1234",
+                        "username": "joe.doe",
+                        "name": "Joe Doe",
+                        "email": "joe.doe@example.com"
+                      },
+                      "project": {
+                        "id": "abcd1234cdef1234abcd1234cdef1234",
+                        "name": "My Android Project",
+                        "main_format": "xml",
+                        "project_image_url": "http://assets.example.com/project.png",
+                        "account": {
+                          "id": "abcd1234",
+                          "name": "Company Account",
+                          "slug": "company_account",
+                          "company": "My Awesome Company",
+                          "created_at": "2015-01-28T09:52:53Z",
+                          "updated_at": "2015-01-28T09:52:53Z",
+                          "company_logo_url": "http://assets.example.com/company_logo.png"
+                        },
+                        "created_at": "2015-01-28T09:52:53Z",
+                        "updated_at": "2015-01-28T09:52:53Z"
+                      },
+                      "account": {
+                        "id": "abcd1234",
+                        "name": "Company Account",
+                        "slug": "company_account",
+                        "company": "My Awesome Company",
+                        "created_at": "2015-01-28T09:52:53Z",
+                        "updated_at": "2015-01-28T09:52:53Z",
+                        "company_logo_url": "http://assets.example.com/company_logo.png"
+                      },
+                      "group": {
+                        "id": "abcd1234cdef1234abcd1234cdef1234",
+                        "event_name": "keys:create",
+                        "created_at": "2015-01-28T09:52:53Z",
+                        "updated_at": "2015-01-28T09:52:53Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/notifications\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase notifications list \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp notifications list"
+          }
+        ]
+      }
+    },
+    "/notification_groups": {
+      "get": {
+        "summary": "List notification groups",
+        "description": "List all notification groups from the current user",
+        "operationId": "notification_groups/list",
+        "tags": [
+          "Notification Groups"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "notification_group_detail",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "event_name": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "latest_notification": {
+                        "$ref": "#/paths/~1notifications/get/responses/200/content/application~1json/schema/items"
+                      }
+                    },
+                    "example": {
+                      "id": "abcd1234cdef1234abcd1234cdef1234",
+                      "event_name": "keys:create",
+                      "created_at": "2015-01-28T09:52:53Z",
+                      "updated_at": "2015-01-28T09:52:53Z",
+                      "latest_notification": {
+                        "id": "abcd1234",
+                        "event_name": "keys:create",
+                        "data": "object notification data",
+                        "resource": "object of notification resource",
+                        "locale": {
+                          "id": "abcd1234cdef1234abcd1234cdef1234",
+                          "name": "de",
+                          "code": "de-DE",
+                          "default": true,
+                          "main": false,
+                          "rtl": false,
+                          "plural_forms": [
+                            "zero",
+                            "one",
+                            "other"
+                          ],
+                          "source_locale": {
+                            "id": "abcd1234cdef1234abcd1234cdef1234",
+                            "name": "en",
+                            "code": "en-GB"
+                          },
+                          "created_at": "2015-01-28T09:52:53Z",
+                          "updated_at": "2015-01-28T09:52:53Z"
+                        },
+                        "user": {
+                          "id": "abcd1234cdef1234abcd1234cdef1234",
+                          "username": "joe.doe",
+                          "name": "Joe Doe",
+                          "email": "joe.doe@example.com"
+                        },
+                        "project": {
+                          "id": "abcd1234cdef1234abcd1234cdef1234",
+                          "name": "My Android Project",
+                          "main_format": "xml",
+                          "project_image_url": "http://assets.example.com/project.png",
+                          "account": {
+                            "id": "abcd1234",
+                            "name": "Company Account",
+                            "slug": "company_account",
+                            "company": "My Awesome Company",
+                            "created_at": "2015-01-28T09:52:53Z",
+                            "updated_at": "2015-01-28T09:52:53Z",
+                            "company_logo_url": "http://assets.example.com/company_logo.png"
+                          },
+                          "created_at": "2015-01-28T09:52:53Z",
+                          "updated_at": "2015-01-28T09:52:53Z"
+                        },
+                        "account": {
+                          "id": "abcd1234",
+                          "name": "Company Account",
+                          "slug": "company_account",
+                          "company": "My Awesome Company",
+                          "created_at": "2015-01-28T09:52:53Z",
+                          "updated_at": "2015-01-28T09:52:53Z",
+                          "company_logo_url": "http://assets.example.com/company_logo.png"
+                        },
+                        "group": {
+                          "id": "abcd1234cdef1234abcd1234cdef1234",
+                          "event_name": "keys:create",
+                          "created_at": "2015-01-28T09:52:53Z",
+                          "updated_at": "2015-01-28T09:52:53Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/notification_groups\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase notification_groups list \\\n--access_token <token>"
+          },
+          {
+            "lang": "CLI v1",
+            "source": "phraseapp notification_groups list"
+          }
+        ]
       }
     }
   }
