@@ -9,4 +9,6 @@ user_preview:
       type: string
     name:
       type: string
+    email:
+      type: string
   example: 
