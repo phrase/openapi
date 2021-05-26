@@ -5,7 +5,10 @@ account_details:
   - type: object
     title: account_details
     properties:
+      subscription:
+        "$ref": "./subscription.yaml#/subscription"
       slug:
         type: string
     example:
       slug: company-account
+      subscription: subscription
