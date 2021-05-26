@@ -1,0 +1,90 @@
+---
+notification:
+  type: object
+  title: notification
+  properties:
+    id:
+      type: string
+    event_name:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    delivered_at:
+      type: string
+      format: date-time
+    seen_at:
+      type: string
+      format: date-time
+    data:
+      type: object
+    resource:
+      type: object
+    locale:
+      "$ref": "./locale.yaml#/locale"
+    user:
+      "$ref": "./user_preview.yaml#/user_preview"
+    project:
+      "$ref": "./project.yaml#/project"
+    account:
+      "$ref": "./account.yaml#/account"
+    group:
+      "$ref": "./notification_group.yaml#/notification_group"
+  example:
+    id: abcd1234
+    event_name: keys:create
+    data: object notification data
+    resource: object of notification resource
+    locale:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: de
+      code: de-DE
+      default: true
+      main: false
+      rtl: false
+      plural_forms:
+      - zero
+      - one
+      - other
+      source_locale:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: en
+        code: en-GB
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+    user:
+      id: abcd1234cdef1234abcd1234cdef1234
+      username: joe.doe
+      name: Joe Doe
+      email: joe.doe@example.com
+    project:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: My Android Project
+      main_format: xml
+      project_image_url: http://assets.example.com/project.png
+      account:
+        id: abcd1234
+        name: Company Account
+        slug: company_account
+        company: My Awesome Company
+        created_at: '2015-01-28T09:52:53Z'
+        updated_at: '2015-01-28T09:52:53Z'
+        company_logo_url: http://assets.example.com/company_logo.png
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+    account:
+      id: abcd1234
+      name: Company Account
+      slug: company_account
+      company: My Awesome Company
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+      company_logo_url: http://assets.example.com/company_logo.png
+    group:
+      id: abcd1234cdef1234abcd1234cdef1234
+      event_name: keys:create
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
