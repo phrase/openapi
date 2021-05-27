@@ -505,6 +505,18 @@
 "/notifications":
   get:
     "$ref": "./paths/notifications/index.yaml"
+"/notifications/mark_all_as_read":
+  post:
+    "$ref": "./paths/notifications/mark_all_as_read.yaml"
+"/notifications/{id}":
+  get:
+    "$ref": "./paths/notifications/show.yaml"
 "/notification_groups":
   get:
     "$ref": "./paths/notification_groups/index.yaml"
+"/notification_groups/mark_all_as_read":
+  patch:
+    "$ref": "./paths/notification_groups/mark_all_as_read.yaml"
+"/notification_groups/{id}/mark_as_read":
+  patch:
+    "$ref": "./paths/notification_groups/mark_as_read.yaml"
