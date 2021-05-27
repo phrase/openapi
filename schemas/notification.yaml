@@ -59,7 +59,6 @@ notification:
       id: abcd1234cdef1234abcd1234cdef1234
       username: joe.doe
       name: Joe Doe
-      email: joe.doe@example.com
     project:
       id: abcd1234cdef1234abcd1234cdef1234
       name: My Android Project

@@ -9,8 +9,6 @@ user:
       type: string
     name:
       type: string
-    email:
-      type: string
     position:
       type: string
     created_at:
@@ -23,7 +21,6 @@ user:
     id: abcd1234cdef1234abcd1234cdef1234
     username: joe.doe
     name: Joe Doe
-    email: joe@phrase.com
     position: Lead Developer
     created_at: '2015-01-28T09:52:53Z'
     updated_at: '2015-01-28T09:52:53Z'
