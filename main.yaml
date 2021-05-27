@@ -222,7 +222,7 @@ tags:
 
       When creating a new authorization, the new access token for this authorization will be returned in the immediate response but not later, due to security reasons. When accessing authorizations later, you will only see the last eight chars of the token in plain text (`token_last_eight`) and the SHA256 digest of the token for reference (`hashed_token`).
 
-      For instructions on how authorization in general works, see our [Auth Guide](#authentication).
+      For instructions on how authorization in general works, see our [Auth Guide](#overview--authentication).
 
       ### Scopes
 
