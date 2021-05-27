@@ -1,0 +1,44 @@
+---
+summary: Mark all notifications as read
+description: Mark all notifications of the current user as read
+operationId: notifications/mark_all_as_read
+tags:
+- Notifications
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/notification.yaml#/notification"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/notifications/mark_all_as_read" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase notifications mark_all_as_read \
+    --access_token <token>
+- lang: CLI v1
+  source: |-
+    phraseapp notifications mark_all_as_read
