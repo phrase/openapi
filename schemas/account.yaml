@@ -19,8 +19,6 @@ account:
       format: date-time
     company_logo_url:
       type: string
-    subscription:
-      "$ref": "./subscription.yaml#/subscription"
   example:
     id: abcd1234
     name: Company Account
@@ -29,4 +27,3 @@ account:
     created_at: '2015-01-28T09:52:53Z'
     updated_at: '2015-01-28T09:52:53Z'
     company_logo_url: http://assets.example.com/company_logo.png
-    subscription: subscription

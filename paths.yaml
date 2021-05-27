@@ -502,3 +502,9 @@
 "/projects/{project_id}/translations/include":
   patch:
     "$ref": "./paths/translations/batch_include.yaml"
+"/notifications":
+  get:
+    "$ref": "./paths/notifications/index.yaml"
+"/notification_groups":
+  get:
+    "$ref": "./paths/notification_groups/index.yaml"
