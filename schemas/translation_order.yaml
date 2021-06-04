@@ -5,6 +5,8 @@ translation_order:
   properties:
     id:
       type: string
+    name:
+      type: string
     lsp:
       type: string
     amount_in_cents:

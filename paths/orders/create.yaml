@@ -33,13 +33,13 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/orders" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
-      -d '{"branch":"my-feature-branch","lsp":"textmaster","source_locale_id":"abcd1234abcd1234abcd1234abcd1234","target_locale_ids":["1234abcd1234abcd1234abcd1234abcd","abcd1234abcd1234abcd1234abcd1234"],"translation_type":"premium","tag":"my-awesome-feature","message":"Please make everything sound really nice :)","styleguide_id":"1234abcd1234abcd1234abcd1234abcd","category":"C021"}' \
+      -d '{"branch":"my-feature-branch","name":"Welcome message translations","lsp":"textmaster","source_locale_id":"abcd1234abcd1234abcd1234abcd1234","target_locale_ids":["1234abcd1234abcd1234abcd1234abcd","abcd1234abcd1234abcd1234abcd1234"],"translation_type":"premium","tag":"my-awesome-feature","message":"Please make everything sound really nice :)","styleguide_id":"1234abcd1234abcd1234abcd1234abcd","category":"C021"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase orders create \
     --project_id <project_id> \
-    --data '{"branch":"my-feature-branch", "lsp":"textmaster", "source_locale_id":"abcd1234abcd1234abcd1234abcd1234", "target_locale_ids":""1234abcd1234abcd1234abcd1234abcd,abcd1234abcd1234abcd1234abcd1234"", "translation_type":"premium", "tag":"my-awesome-feature", "message":""Please make everything sound really nice :)"", "styleguide_id":"1234abcd1234abcd1234abcd1234abcd", "category":"C021"}' \
+    --data '{"branch":"my-feature-branch", "name":"Welcome message translations", "lsp":"textmaster", "source_locale_id":"abcd1234abcd1234abcd1234abcd1234", "target_locale_ids":""1234abcd1234abcd1234abcd1234abcd,abcd1234abcd1234abcd1234abcd1234"", "translation_type":"premium", "tag":"my-awesome-feature", "message":""Please make everything sound really nice :)"", "styleguide_id":"1234abcd1234abcd1234abcd1234abcd", "category":"C021"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
@@ -65,6 +65,10 @@ requestBody:
             description: specify the branch to use
             type: string
             example: my-feature-branch
+          name:
+            description: "the name of the order, default name is: Translation order from 'current datetime'"
+            type: string
+            example: "Welcome message translations"
           lsp:
             description: Name of the LSP that should process this order. Can be one of gengo, textmaster.
             type: string
@@ -100,15 +104,15 @@ requestBody:
           unverify_translations_upon_delivery:
             description: Unverify translations upon delivery.
             type: boolean
-            example: 
+            example:
           include_untranslated_keys:
             description: Order translations for keys with untranslated content in the selected target locales.
             type: boolean
-            example: 
+            example:
           include_unverified_translations:
             description: Order translations for keys with unverified content in the selected target locales.
             type: boolean
-            example: 
+            example:
           category:
             description: Category to use (required for orders processed by TextMaster).
             type: string
@@ -116,8 +120,8 @@ requestBody:
           quality:
             description: Extra proofreading option to ensure consistency in vocabulary and style. Only available for orders processed by TextMaster.
             type: boolean
-            example: 
+            example:
           priority:
             description: Indicates whether the priority option should be ordered which decreases turnaround time by 30%. Available only for orders processed by TextMaster.
             type: boolean
-            example: 
+            example:
