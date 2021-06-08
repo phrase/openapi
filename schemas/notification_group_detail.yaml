@@ -13,6 +13,8 @@ notification_group_detail:
     updated_at:
       type: string
       format: date-time
+    notifications_count:
+      type: integer
     latest_notification:
       "$ref": "./notification.yaml#/notification"
   example:
