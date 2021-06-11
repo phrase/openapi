@@ -1,7 +1,7 @@
 ---
 summary: List locales used in account
 description: List all locales used across all projects within a project.
-operationId: accounts/locales
+operationId: account/locales
 tags:
 - Locales
 parameters:
