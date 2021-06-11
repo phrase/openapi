@@ -1,0 +1,42 @@
+---
+summary: List locales used in account
+description: List all locales used across all projects within a project.
+operationId: accounts/locales
+tags:
+- Locales
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/locale_preview.yaml#/locale_preview"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:id/locales" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase accounts locales \
+    --id <id> \
+    --access_token <token>
