@@ -14,7 +14,7 @@ responses:
         schema:
           type: array
           items:
-            "$ref": "../../schemas/locale_preview.yaml#/locale_preview"
+            "$ref": "../../schemas/account_locale.yaml#/account_locale"
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
