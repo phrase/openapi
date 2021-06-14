@@ -54,7 +54,7 @@
     "$ref": "./paths/screenshot_markers/destroy.yaml"
 "/accounts/{account_id}/locales":
   get:
-    "$ref": "./paths/account_locales/index.yaml"
+    "$ref": "./paths/accounts/locales.yaml"
 "/projects/{project_id}/locales":
   get:
     "$ref": "./paths/locales/index.yaml"
