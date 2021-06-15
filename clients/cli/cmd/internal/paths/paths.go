@@ -51,14 +51,6 @@ func IsDir(path string) bool {
 	return stat.IsDir()
 }
 
-func Segments(s string) []string {
-	if s == "" {
-		return []string{}
-	}
-
-	return strings.FieldsFunc(filepath.Clean(s), func(c rune) bool { return c == filepath.Separator })
-}
-
 func IsPhraseAppYmlConfig(path string) bool {
 	return strings.Contains(filepath.Base(path), YamlConfigName)
 }
