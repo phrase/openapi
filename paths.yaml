@@ -52,6 +52,9 @@
     "$ref": "./paths/screenshot_markers/update.yaml"
   delete:
     "$ref": "./paths/screenshot_markers/destroy.yaml"
+"/accounts/{account_id}/locales":
+  get:
+    "$ref": "./paths/accounts/locales.yaml"
 "/projects/{project_id}/locales":
   get:
     "$ref": "./paths/locales/index.yaml"
