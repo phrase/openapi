@@ -68,8 +68,8 @@ requestBody:
               Find more examples <a href="#overview--usage-examples">here</a>.
             type: string
             example: mykey* translated:true
-          locale_id:
-            description: Locale used to determine the translation state of a key when filtering for untranslated or translated keys.
+          target_locale_id:
+            description: Locale used to exlcude or include keys.
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
           tags:
