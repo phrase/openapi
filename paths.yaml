@@ -392,6 +392,12 @@
 "/projects/{project_id}/keys/untag":
   patch:
     "$ref": "./paths/keys/untag.yaml"
+"/projects/{project_id}/keys/exclude":
+  patch:
+    "$ref": "./paths/keys/exclude.yaml"
+"/projects/{project_id}/keys/include":
+  patch:
+    "$ref": "./paths/keys/include.yaml"
 "/projects/{project_id}/orders":
   get:
     "$ref": "./paths/orders/index.yaml"
