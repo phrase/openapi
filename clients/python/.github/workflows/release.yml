@@ -9,28 +9,23 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      -
-        name: Version
+      - name: Version
         id: version
         run: |
           echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-      -
-        name: Set up Python 3.8
+      - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      -
-        name: Build package
+      - name: Build package
         run: bash ./.github/workflows/release.sh -xe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.version.outputs.VERSION }}
-      -
-        name: Publish a Python distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@master
+      - name: Publish a Python distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@bea5cda687c2b79989126d589ef4411bedce0195 # pin@master
         with:
           user: __token__
           password: ${{ secrets.PYPI_TOKEN }}
