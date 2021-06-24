@@ -55,6 +55,9 @@
 "/accounts/{account_id}/locales":
   get:
     "$ref": "./paths/accounts/locales.yaml"
+"/accounts/{account_id}/search":
+  post:
+    "$ref": "./paths/accounts/search.yaml"
 "/projects/{project_id}/locales":
   get:
     "$ref": "./paths/locales/index.yaml"
