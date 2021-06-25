@@ -1,9 +1,9 @@
 ---
 summary: Search across projects
 description: Search for keys and translations in all account projects
-operationId: account/search
+operationId: search/in_account
 tags:
-- Accounts
+- Search
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
@@ -39,13 +39,13 @@ x-code-samples:
       -F per_page=25 \
 - lang: CLI v2
   source: |-
-    phrase accounts search \
+    phrase search in_account \
     --account_id <account_id> \
-    --data '{"query":"keyword","locale_code": "de","page": "1","per_page": "25"}' \
+    --data '{"query":"keyword","locale_code": "de","page": 1,"per_page": 25}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
-    phraseapp accounts search <account_id> \
+    phraseapp search in_account <account_id> \
     --query <keyword> \
     --locale_code <locale code> \
     --page <page> \
@@ -56,7 +56,7 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: account/search/parameters
+        title: search/in_account/parameters
         properties:
           query:
             description: Search query
@@ -68,9 +68,9 @@ requestBody:
             example: de_DE
           page:
             description: Page
-            type: string
+            type: integer
             example: 1
           per_page:
             description: Number of results per page
-            type: string
+            type: integer
             example: 25
