@@ -17,7 +17,7 @@ parameters:
     type: string
 - description: Filter projects. Valid options are "favorite".
   example: 'favorite,other_filter,filter'
-  name: filter
+  name: filters
   in: query
   schema:
     type: string
