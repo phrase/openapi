@@ -15,8 +15,8 @@ parameters:
   in: query
   schema:
     type: string
-- description: Filter projects. Valid options are "favorite".
-  example: 'favorite,other_filter,filter'
+- description: Filter projects. Valid options are "favorites".
+  example: 'favorites,other_filter,filter'
   name: filters
   in: query
   schema:
