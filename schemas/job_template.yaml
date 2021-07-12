@@ -1,0 +1,43 @@
+---
+job_template:
+  type: object
+  title: job_template
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    briefing:
+      type: string
+    due_date:
+      type: string
+      format: date-time
+    state:
+      type: string
+    ticket_url:
+      type: string
+    project:
+      "$ref": "./project_short.yaml#/project_short"
+    branch:
+      "$ref": "./branch_name.yaml#/branch_name"
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: 626ea67628690c73ac86ac81eec2d185
+    name: Translations for new Feature
+    briefing: Some instructions for the translators
+    due_date: '2017-02-28T09:52:53Z'
+    state: completed
+    ticket_url: 'https://example.atlassian.net/browse/FOO'
+    created_at: '2017-01-28T09:52:53Z'
+    updated_at: '2017-01-28T09:52:53Z'
+    project:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: My Android Project
+      main_format: xml
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'

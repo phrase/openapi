@@ -3,7 +3,7 @@ summary: Delete a job template
 description: Delete an existing job template.
 operationId: job_template/delete
 tags:
-- Job templates
+- Job Templates
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"

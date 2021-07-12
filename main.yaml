@@ -93,6 +93,8 @@ tags:
     description: Everything about Teams
   - name: Jobs
   - name: Job Locales
+  - name: Job Templates
+  - name: Job Template Locales
   - name: Comments
   - name: Branches
     description: |
@@ -286,6 +288,8 @@ x-tagGroups:
       - Spaces
       - Jobs
       - Job Locales
+      - Job Templates
+      - Job Template Locales
       - Comments
       - Branches
   - name: Quality

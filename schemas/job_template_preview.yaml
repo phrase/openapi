@@ -1,0 +1,12 @@
+---
+job_template_preview:
+  type: object
+  title: job_template_preview
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    state:
+      type: string
+  example: 

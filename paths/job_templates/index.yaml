@@ -3,7 +3,7 @@ summary: List job templates
 description: List all job templates for the given project.
 operationId: job_templates/list
 tags:
-- job templates
+- Job Templates
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"

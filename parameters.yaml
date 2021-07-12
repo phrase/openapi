@@ -55,6 +55,13 @@ job_id:
   required: true
   schema:
     type: string
+job_template_id:
+  in: path
+  name: job_template_id
+  description: Job Template ID
+  required: true
+  schema:
+    type: string
 distribution_id:
   in: path
   name: distribution_id

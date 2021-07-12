@@ -69,7 +69,7 @@ func UploadCleanup(client *phrase.APIClient, cmd *UploadCleanupCommand) error {
 
 		q := "ids:" + strings.Join(ids, ",")
 		keysDeletelocalVarOptionals := phrase.KeysDeleteCollectionOpts{
-			Q: optional.NewString(q),
+			Q:      optional.NewString(q),
 			Branch: optional.NewString(cmd.Branch),
 		}
 		affected, _, err := client.KeysApi.KeysDeleteCollection(Auth, cmd.Config.DefaultProjectID, &keysDeletelocalVarOptionals)
