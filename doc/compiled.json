@@ -8009,16 +8009,6 @@
                       "briefing": {
                         "type": "string"
                       },
-                      "due_date": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "state": {
-                        "type": "string"
-                      },
-                      "ticket_url": {
-                        "type": "string"
-                      },
                       "project": {
                         "$ref": "#/components/schemas/project_short"
                       },
@@ -8038,9 +8028,6 @@
                       "id": "626ea67628690c73ac86ac81eec2d185",
                       "name": "Translations for new Feature",
                       "briefing": "Some instructions for the translators",
-                      "due_date": "2017-02-28T09:52:53Z",
-                      "state": "completed",
-                      "ticket_url": "https://example.atlassian.net/browse/FOO",
                       "created_at": "2017-01-28T09:52:53Z",
                       "updated_at": "2017-01-28T09:52:53Z",
                       "project": {
@@ -8135,12 +8122,6 @@
                           "items": {
                             "$ref": "#/components/schemas/locale_preview"
                           }
-                        },
-                        "keys": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/key_preview"
-                          }
                         }
                       },
                       "example": {
@@ -8155,12 +8136,6 @@
                             "id": "abcd1234cdef1234abcd1234cdef1234",
                             "name": "English",
                             "code": "en-GB"
-                          }
-                        ],
-                        "keys": [
-                          {
-                            "id": "dbcd1234cdef1234abcd1234cdef1234",
-                            "name": "greeting.hello"
                           }
                         ]
                       }
@@ -8194,11 +8169,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\",\"due_date\":\"2017-08-15\",\"ticket_url\":\"https://example.atlassian.net/browse/FOO\",\"tags\":[\"myUploadTag\"],\"translation_key_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\",\"tags\":[\"myUploadTag\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\", \"tags\":\"\"myUploadTag\"\", \"translation_key_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase job templates create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"tags\":\"\"myUploadTag\"\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -8228,17 +8203,6 @@
                     "type": "string",
                     "example": "de-DE"
                   },
-                  "due_date": {
-                    "description": "Date the job template should be finished",
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2017-08-15"
-                  },
-                  "ticket_url": {
-                    "description": "URL to a ticket for this job template (e.g. Jira, Trello)",
-                    "type": "string",
-                    "example": "https://example.atlassian.net/browse/FOO"
-                  },
                   "tags": {
                     "description": "tags of keys that should be included within the job template",
                     "type": "array",
@@ -8247,16 +8211,6 @@
                     },
                     "example": [
                       "myUploadTag"
-                    ]
-                  },
-                  "translation_key_ids": {
-                    "description": "ids of keys that should be included within the job template",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "example": [
-                      "abcd1234cdef1234abcd1234cdef1234"
                     ]
                   }
                 }
@@ -8394,11 +8348,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\",\"due_date\":\"2017-08-15\",\"ticket_url\":\"https://example.atlassian.net/browse/FOO\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\"}' \\\n--access_token <token>"
+            "source": "phrase job templates update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -8427,17 +8381,6 @@
                     "description": "Briefing for the translators",
                     "type": "string",
                     "example": "de-DE"
-                  },
-                  "due_date": {
-                    "description": "Date the job template should be finished",
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2017-08-15"
-                  },
-                  "ticket_url": {
-                    "description": "URL to a ticket for this job template (e.g. Jira, Trello)",
-                    "type": "string",
-                    "example": "https://example.atlassian.net/browse/FOO"
                   }
                 }
               }
@@ -13157,7 +13100,7 @@
         }
       }
     },
-    "/projects/{project_id}/job_templates/{job_id}/locales": {
+    "/projects/{project_id}/job_templates/{job_template_id}/locales": {
       "get": {
         "summary": "List job template locales",
         "description": "List all job template locales for a given job template.",
@@ -13199,7 +13142,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_id%7D~1locales/post/responses/201/content/application~1json/schema"
+                    "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_template_id%7D~1locales/post/responses/201/content/application~1json/schema"
                   }
                 }
               }
@@ -13283,9 +13226,6 @@
                         },
                         "name": {
                           "type": "string"
-                        },
-                        "state": {
-                          "type": "string"
                         }
                       },
                       "example": null
@@ -13298,25 +13238,13 @@
                       "items": {
                         "$ref": "#/components/schemas/user_preview"
                       }
-                    },
-                    "completed": {
-                      "type": "boolean"
-                    },
-                    "translation_completed_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "review_completed_at": {
-                      "type": "string",
-                      "format": "date-time"
                     }
                   },
                   "example": {
                     "id": "626ea67628690c73ac86ac81eec2d185",
                     "job_template": {
                       "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "name": "My Job Template 1",
-                      "state": "completed"
+                      "name": "My Job Template 1"
                     },
                     "users": [
                       {
@@ -13329,10 +13257,7 @@
                       "id": "abcd1234cdef1234abcd1234cdef1234",
                       "name": "English",
                       "code": "en-GB"
-                    },
-                    "completed": true,
-                    "translation_completed_at": "2017-01-28T09:52:53Z",
-                    "review_completed_at": "2017-01-28T09:52:53Z"
+                    }
                   }
                 }
               }
@@ -13362,7 +13287,7 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_template_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
@@ -13392,7 +13317,7 @@
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
                   "user_ids": {
-                    "description": "Array of user ids to be assigned to the job locale",
+                    "description": "Array of user ids to be assigned to the job template locale",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -13445,7 +13370,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_id%7D~1locales/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_template_id%7D~1locales/post/responses/201/content/application~1json/schema"
                 }
               }
             },
@@ -13474,7 +13399,7 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_template_id/locale/:id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locale/:id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
@@ -13515,7 +13440,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_id%7D~1locales/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_template_id%7D~1locales/post/responses/201/content/application~1json/schema"
                 }
               }
             },
@@ -13544,7 +13469,7 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_template_id/locales/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
@@ -13574,7 +13499,7 @@
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
                   "user_ids": {
-                    "description": "Array of user ids to be assigned to the job locale",
+                    "description": "Array of user ids to be assigned to the job template locale",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -13636,7 +13561,7 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_template_id/locales/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",

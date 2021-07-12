@@ -283,7 +283,7 @@
 "/projects/{project_id}/jobs/{job_id}/locales/{id}/reopen":
   post:
     "$ref": "./paths/job_locales/reopen.yaml"
-"/projects/{project_id}/job_templates/{job_id}/locales":
+"/projects/{project_id}/job_templates/{job_template_id}/locales":
   get:
     "$ref": "./paths/job_template_locales/index.yaml"
   post:

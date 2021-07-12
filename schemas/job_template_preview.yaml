@@ -7,6 +7,4 @@ job_template_preview:
       type: string
     name:
       type: string
-    state:
-      type: string
   example: 

@@ -13,20 +13,11 @@ job_template_locale:
       type: array
       items:
         "$ref": "./user_preview.yaml#/user_preview"
-    completed:
-      type: boolean
-    translation_completed_at:
-      type: string
-      format: date-time
-    review_completed_at:
-      type: string
-      format: date-time
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     job_template:
       id: abcd1234cdef1234abcd1234cdef1234
       name: My Job Template 1
-      state: completed
     users:
     - id: abcd1234cdef1234abcd1234cdef1234
       username: joe.doe
@@ -35,6 +26,3 @@ job_template_locale:
       id: abcd1234cdef1234abcd1234cdef1234
       name: English
       code: en-GB
-    completed: true
-    translation_completed_at: '2017-01-28T09:52:53Z'
-    review_completed_at: '2017-01-28T09:52:53Z'

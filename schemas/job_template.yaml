@@ -9,13 +9,6 @@ job_template:
       type: string
     briefing:
       type: string
-    due_date:
-      type: string
-      format: date-time
-    state:
-      type: string
-    ticket_url:
-      type: string
     project:
       "$ref": "./project_short.yaml#/project_short"
     branch:
@@ -30,9 +23,6 @@ job_template:
     id: 626ea67628690c73ac86ac81eec2d185
     name: Translations for new Feature
     briefing: Some instructions for the translators
-    due_date: '2017-02-28T09:52:53Z'
-    state: completed
-    ticket_url: 'https://example.atlassian.net/browse/FOO'
     created_at: '2017-01-28T09:52:53Z'
     updated_at: '2017-01-28T09:52:53Z'
     project:

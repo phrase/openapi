@@ -34,14 +34,14 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/job_templates/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
-      -d '{"branch":"my-feature-branch","name":"de","briefing":"de-DE","due_date":"2017-08-15","ticket_url":"https://example.atlassian.net/browse/FOO"}' \
+      -d '{"branch":"my-feature-branch","name":"de","briefing":"de-DE"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase job templates update \
     --project_id <project_id> \
     --id <id> \
-    --data '{"branch":"my-feature-branch", "name":"de", "briefing":"de-DE", "due_date":"2017-08-15", "ticket_url":"https://example.atlassian.net/browse/FOO"}' \
+    --data '{"branch":"my-feature-branch", "name":"de", "briefing":"de-DE"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
@@ -70,12 +70,3 @@ requestBody:
             description: Briefing for the translators
             type: string
             example: de-DE
-          due_date:
-            description: Date the job template should be finished
-            type: string
-            format: date-time
-            example: '2017-08-15'
-          ticket_url:
-            description: URL to a ticket for this job template (e.g. Jira, Trello)
-            type: string
-            example: 'https://example.atlassian.net/browse/FOO'

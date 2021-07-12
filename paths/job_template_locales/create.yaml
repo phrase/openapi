@@ -31,7 +31,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_template_id/locales" \
+    curl "https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"branch":"my-feature-branch","locale_id":"abcd1234cdef1234abcd1234cdef1234","user_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
@@ -66,7 +66,7 @@ requestBody:
             type: string
             example: abcd1234cdef1234abcd1234cdef1234
           user_ids:
-            description: Array of user ids to be assigned to the job locale
+            description: Array of user ids to be assigned to the job template locale
             type: array
             items:
               type: string

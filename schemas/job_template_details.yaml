@@ -13,10 +13,6 @@ job_template_details:
         type: array
         items:
           "$ref": "./locale_preview.yaml#/locale_preview"
-      keys:
-        type: array
-        items:
-          "$ref": "./key_preview.yaml#/key_preview"
     example:
       owner:
         id: abcd1234cdef1234abcd1234cdef1234
@@ -27,6 +23,3 @@ job_template_details:
       - id: abcd1234cdef1234abcd1234cdef1234
         name: English
         code: en-GB
-      keys:
-      - id: dbcd1234cdef1234abcd1234cdef1234
-        name: greeting.hello
