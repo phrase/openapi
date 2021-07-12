@@ -1,0 +1,81 @@
+---
+summary: Update a job template
+description: Update an existing job template.
+operationId: job_template/update
+tags:
+- Job Templates
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/job_template_details.yaml#/job_template_details"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/job_templates/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"branch":"my-feature-branch","name":"de","briefing":"de-DE","due_date":"2017-08-15","ticket_url":"https://example.atlassian.net/browse/FOO"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase job templates update \
+    --project_id <project_id> \
+    --id <id> \
+    --data '{"branch":"my-feature-branch", "name":"de", "briefing":"de-DE", "due_date":"2017-08-15", "ticket_url":"https://example.atlassian.net/browse/FOO"}' \
+    --access_token <token>
+- lang: CLI v1
+  source: |-
+    phraseapp job template update <project_id> <id> \
+    --branch my-feature-branch \
+    --name de \
+    --briefing de-DE \
+    --due-date 2017-08-15
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: job_template/update/parameters
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          name:
+            description: Job template name
+            type: string
+            example: de
+          briefing:
+            description: Briefing for the translators
+            type: string
+            example: de-DE
+          due_date:
+            description: Date the job template should be finished
+            type: string
+            format: date-time
+            example: '2017-08-15'
+          ticket_url:
+            description: URL to a ticket for this job template (e.g. Jira, Trello)
+            type: string
+            example: 'https://example.atlassian.net/browse/FOO'

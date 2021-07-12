@@ -1,0 +1,54 @@
+---
+summary: Get a single job template locale
+description: Get a single job template locale for a given job template.
+operationId: job_template_locale/show
+tags:
+- Job Template Locales
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/job_template_id"
+- "$ref": "../../parameters.yaml#/id"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/job_template_locale.yaml#/job_template_locale"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_template_id/locale/:id?branch=my-feature-branch" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase job_template_locales show \
+    --project_id <project_id> \
+    --job_template_id <job_template_id> \
+    --id <id> \
+    --branch my-feature-branch \
+    --access_token <token>
+- lang: CLI v1
+  source: |-
+    phraseapp job_template_locale show <project_id> <job_template_id> <id> \
+    --branch my-feature-branch

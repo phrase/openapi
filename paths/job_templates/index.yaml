@@ -1,0 +1,80 @@
+---
+summary: List job templates
+description: List all job templates for the given project.
+operationId: job_templates/list
+tags:
+- job templates
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/page"
+- "$ref": "../../parameters.yaml#/per_page"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+- description: filter by user owning job template
+  example: abcd1234cdef1234abcd1234cdef1234
+  name: owned_by
+  in: query
+  schema:
+    type: string
+- description: filter by user assigned to job template
+  example: abcd1234cdef1234abcd1234cdef1234
+  name: assigned_to
+  in: query
+  schema:
+    type: string
+- description: filter by state of job template Valid states are <code>draft</code>, <code>in_progress</code>, <code>completed</code>
+  example: completed
+  name: state
+  in: query
+  schema:
+    type: string
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/job_template.yaml#/job_template"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/job_templates?branch=my-feature-branch&owned_by=abcd1234cdef1234abcd1234cdef1234&assigned_to=abcd1234cdef1234abcd1234cdef1234&state=completed" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase job templates list \
+    --project_id <project_id> \
+    --branch my-feature-branch \
+    --owned_by abcd1234cdef1234abcd1234cdef1234 \
+    --assigned_to abcd1234cdef1234abcd1234cdef1234 \
+    --state completed \
+    --access_token <token>
+- lang: CLI v1
+  source: |-
+    phraseapp job templates list <project_id> \
+    --branch my-feature-branch \
+    --owned-by abcd1234cdef1234abcd1234cdef1234 \
+    --assigned-to abcd1234cdef1234abcd1234cdef1234 \
+    --state completed

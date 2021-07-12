@@ -1,0 +1,74 @@
+---
+summary: Create a job template locale
+description: Create a new job template locale.
+operationId: job_template_locales/create
+tags:
+- Job Template Locales
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/job_template_id"
+responses:
+  '201':
+    description: Created
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/job_template_locale.yaml#/job_template_locale"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_template_id/locales" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"branch":"my-feature-branch","locale_id":"abcd1234cdef1234abcd1234cdef1234","user_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase job_template_locales create \
+    --project_id <project_id> \
+    --job_template_id <job_template_id> \
+    --data '{"branch":"my-feature-branch", "locale_id":"abcd1234cdef1234abcd1234cdef1234", "user_ids":""abcd1234cdef1234abcd1234cdef1234""}' \
+    --access_token <token>
+- lang: CLI v1
+  source: |-
+    phraseapp job_template_locales create <project_id> <job_template_id> \
+    --branch my-feature-branch \
+    --locale-id abcd1234cdef1234abcd1234cdef1234 \
+    --user-ids "abcd1234cdef1234abcd1234cdef1234"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: job_template_locales/create/parameters
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          locale_id:
+            description: locale id
+            type: string
+            example: abcd1234cdef1234abcd1234cdef1234
+          user_ids:
+            description: Array of user ids to be assigned to the job locale
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
