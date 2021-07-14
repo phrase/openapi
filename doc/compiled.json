@@ -8026,8 +8026,8 @@
                     },
                     "example": {
                       "id": "626ea67628690c73ac86ac81eec2d185",
-                      "name": "Translations for new Feature",
-                      "briefing": "Some instructions for the translators",
+                      "name": "template",
+                      "briefing": "text",
                       "created_at": "2017-01-28T09:52:53Z",
                       "updated_at": "2017-01-28T09:52:53Z",
                       "project": {
@@ -8114,8 +8114,8 @@
                         "owner": {
                           "$ref": "#/components/schemas/user_preview"
                         },
-                        "job_template_tag_name": {
-                          "type": "string"
+                        "creator": {
+                          "$ref": "#/components/schemas/user_preview"
                         },
                         "locales": {
                           "type": "array",
@@ -8130,7 +8130,11 @@
                           "username": "joe.doe",
                           "name": "Joe Doe"
                         },
-                        "job_template_tag_name": "Job_Template_123",
+                        "creator": {
+                          "id": "abcd1234cdef1234abcd1234cdef1234",
+                          "username": "joe.doe",
+                          "name": "Joe Doe"
+                        },
                         "locales": [
                           {
                             "id": "abcd1234cdef1234abcd1234cdef1234",
@@ -8169,15 +8173,15 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\",\"tags\":[\"myUploadTag\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"template\",\"briefing\":\"text\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"tags\":\"\"myUploadTag\"\"}' \\\n--access_token <token>"
+            "source": "phrase job templates create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp job template create <project_id> \\\n--branch my-feature-branch \\\n--name de \\\n--briefing de-DE \\\n--due-date 2017-08-15 \\\n--tags \"myUploadTag\" \\\n--translation-key-ids \"abcd1234cdef1234abcd1234cdef1234\""
+            "source": "phraseapp job template create <project_id> \\\n--branch my-feature-branch \\\n--name template \\\n--briefing text \\"
           }
         ],
         "requestBody": {
@@ -8196,24 +8200,17 @@
                   "name": {
                     "description": "Job template name",
                     "type": "string",
-                    "example": "de"
+                    "example": "template"
                   },
                   "briefing": {
                     "description": "Briefing for the translators",
                     "type": "string",
-                    "example": "de-DE"
-                  },
-                  "tags": {
-                    "description": "tags of keys that should be included within the job template",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "example": [
-                      "myUploadTag"
-                    ]
+                    "example": "text"
                   }
-                }
+                },
+                "required": [
+                  "name"
+                ]
               }
             }
           }

@@ -7,8 +7,8 @@ job_template_details:
     properties:
       owner:
         "$ref": "./user_preview.yaml#/user_preview"
-      job_template_tag_name:
-        type: string
+      creator:
+        "$ref": "./user_preview.yaml#/user_preview"
       locales:
         type: array
         items:
@@ -18,7 +18,10 @@ job_template_details:
         id: abcd1234cdef1234abcd1234cdef1234
         username: joe.doe
         name: Joe Doe
-      job_template_tag_name: Job_Template_123
+      creator:
+        id: abcd1234cdef1234abcd1234cdef1234
+        username: joe.doe
+        name: Joe Doe
       locales:
       - id: abcd1234cdef1234abcd1234cdef1234
         name: English
