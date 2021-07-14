@@ -8209,7 +8209,8 @@
                   }
                 },
                 "required": [
-                  "name"
+                  "name",
+                  "branch"
                 ]
               }
             }
@@ -8345,15 +8346,15 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"briefing\":\"de-DE\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"template\",\"briefing\":\"text\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\"}' \\\n--access_token <token>"
+            "source": "phrase job templates update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp job template update <project_id> <id> \\\n--branch my-feature-branch \\\n--name de \\\n--briefing de-DE \\\n--due-date 2017-08-15"
+            "source": "phraseapp job template update <project_id> <id> \\\n--branch my-feature-branch \\\n--name template \\\n--briefing text \\\n--due-date 2017-08-15"
           }
         ],
         "requestBody": {
@@ -8372,14 +8373,18 @@
                   "name": {
                     "description": "Job template name",
                     "type": "string",
-                    "example": "de"
+                    "example": "template"
                   },
                   "briefing": {
                     "description": "Briefing for the translators",
                     "type": "string",
-                    "example": "de-DE"
+                    "example": "text"
                   }
-                }
+                },
+                "required": [
+                  "name",
+                  "branch"
+                ]
               }
             }
           }
