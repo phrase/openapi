@@ -17,7 +17,7 @@ job_template_locale:
     id: 626ea67628690c73ac86ac81eec2d185
     job_template:
       id: abcd1234cdef1234abcd1234cdef1234
-      name: My Job Template 1
+      name: template
     users:
     - id: abcd1234cdef1234abcd1234cdef1234
       username: joe.doe

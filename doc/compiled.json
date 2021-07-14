@@ -13237,7 +13237,7 @@
                     "id": "626ea67628690c73ac86ac81eec2d185",
                     "job_template": {
                       "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "name": "My Job Template 1"
+                      "name": "template"
                     },
                     "users": [
                       {
@@ -13315,11 +13315,13 @@
                     "items": {
                       "type": "string"
                     },
-                    "example": [
-                      "abcd1234cdef1234abcd1234cdef1234"
-                    ]
+                    "example": "abcd1234cdef1234abcd1234cdef1234"
                   }
-                }
+                },
+                "required": [
+                  "locale_id",
+                  "branch"
+                ]
               }
             }
           }
