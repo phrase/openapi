@@ -3249,6 +3249,15 @@
           "type": "string"
         }
       },
+      "job_template_locale_id": {
+        "in": "path",
+        "name": "job_template_locale_id",
+        "description": "Job Template Locale ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
       "distribution_id": {
         "in": "path",
         "name": "distribution_id",
@@ -8200,8 +8209,7 @@
                   }
                 },
                 "required": [
-                  "name",
-                  "branch"
+                  "name"
                 ]
               }
             }
@@ -8373,8 +8381,7 @@
                   }
                 },
                 "required": [
-                  "name",
-                  "branch"
+                  "name"
                 ]
               }
             }
@@ -13315,7 +13322,9 @@
                     "items": {
                       "type": "string"
                     },
-                    "example": "abcd1234cdef1234abcd1234cdef1234"
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
                   }
                 },
                 "required": [
@@ -13328,7 +13337,7 @@
         }
       }
     },
-    "/projects/{project_id}/job_templates/{job_template_id}/locale/{id}": {
+    "/projects/{project_id}/job_templates/{job_template_id}/locale/{job_template_locale_id}": {
       "get": {
         "summary": "Get a single job template locale",
         "description": "Get a single job template locale for a given job template.",
@@ -13347,7 +13356,7 @@
             "$ref": "#/components/parameters/job_template_id"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/job_template_locale_id"
           },
           {
             "description": "specify the branch to use",
@@ -13394,20 +13403,20 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locale/:id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locale/:job_template_locale_id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales show \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_template_locales show \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp job_template_locale show <project_id> <job_template_id> <id> \\\n--branch my-feature-branch"
+            "source": "phraseapp job_template_locale show <project_id> <job_template_id> <job_template_locale_id> \\\n--branch my-feature-branch"
           }
         ]
       }
     },
-    "/projects/{project_id}/job_templates/{job_template_id}/locales/{id}": {
+    "/projects/{project_id}/job_templates/{job_template_id}/locales/{job_template_locale_id}": {
       "patch": {
         "summary": "Update a job template locale",
         "description": "Update an existing job template locale.",
@@ -13426,7 +13435,7 @@
             "$ref": "#/components/parameters/job_template_id"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/job_template_locale_id"
           }
         ],
         "responses": {
@@ -13464,15 +13473,15 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp job_template_locale update <project_id> <job_template_id> <id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\""
+            "source": "phraseapp job_template_locale update <project_id> <job_template_id> <job_template_locale_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -13527,7 +13536,7 @@
             "$ref": "#/components/parameters/job_template_id"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/job_template_locale_id"
           },
           {
             "description": "specify the branch to use",
@@ -13556,15 +13565,15 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales delete \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_template_locales delete \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp job_template_locale delete <project_id> <job_template_id> <id> \\\n--branch my-feature-branch"
+            "source": "phraseapp job_template_locale delete <project_id> <job_template_id> <job_template_locale_id> \\\n--branch my-feature-branch"
           }
         ]
       }

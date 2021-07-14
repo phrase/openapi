@@ -69,4 +69,3 @@ requestBody:
             example: text
         required:
           - name
-          - branch

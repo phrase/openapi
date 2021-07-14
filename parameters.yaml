@@ -62,6 +62,13 @@ job_template_id:
   required: true
   schema:
     type: string
+job_template_locale_id:
+  in: path
+  name: job_template_locale_id
+  description: Job Template Locale ID
+  required: true
+  schema:
+    type: string
 distribution_id:
   in: path
   name: distribution_id
