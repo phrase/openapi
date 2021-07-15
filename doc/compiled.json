@@ -13328,8 +13328,7 @@
                   }
                 },
                 "required": [
-                  "locale_id",
-                  "branch"
+                  "locale_id"
                 ]
               }
             }
@@ -13510,7 +13509,10 @@
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
                   }
-                }
+                },
+                "required": [
+                  "locale_id"
+                ]
               }
             }
           }
