@@ -288,10 +288,9 @@
     "$ref": "./paths/job_template_locales/index.yaml"
   post:
     "$ref": "./paths/job_template_locales/create.yaml"
-"/projects/{project_id}/job_templates/{job_template_id}/locale/{job_template_locale_id}":
+"/projects/{project_id}/job_templates/{job_template_id}/locales/{job_template_locale_id}":
   get:
     "$ref": "./paths/job_template_locales/show.yaml"
-"/projects/{project_id}/job_templates/{job_template_id}/locales/{job_template_locale_id}":
   patch:
     "$ref": "./paths/job_template_locales/update.yaml"
   delete:
