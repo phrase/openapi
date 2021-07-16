@@ -15,6 +15,14 @@ parameters:
   in: query
   schema:
     type: string
+- description: Filter projects. Valid options are ["favorites"].
+  example: 'favorites'
+  name: filters
+  in: query
+  schema:
+    type: array
+    items:
+      type: string
 responses:
   '200':
     description: OK
