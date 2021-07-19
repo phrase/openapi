@@ -8057,10 +8057,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job templates list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job templates list <project_id> \\\n--branch my-feature-branch \\"
           }
         ]
       },
@@ -8160,10 +8156,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job templates create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job template create <project_id> \\\n--branch my-feature-branch \\\n--name template \\\n--briefing text \\"
           }
         ],
         "requestBody": {
@@ -8267,10 +8259,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job templates show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job template show <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -8332,10 +8320,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job templates update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job template update <project_id> <id> \\\n--branch my-feature-branch \\\n--name template \\\n--briefing text \\\n--due-date 2017-08-15"
           }
         ],
         "requestBody": {
@@ -8419,10 +8403,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job templates delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job template delete <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -13174,10 +13154,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_template_locales list \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_template_locales list <project_id> <job_template_id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -13303,10 +13279,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_template_locales create \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\", \"reviewer_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_template_locales create <project_id> <job_template_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\"\n--reviewer-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -13428,10 +13400,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_template_locales show \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_template_locale show <project_id> <job_template_id> <job_template_locale_id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -13496,10 +13464,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\", \"reviewer_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_template_locale update <project_id> <job_template_id> <job_template_locale_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\"\n--reviewer-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -13601,10 +13565,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_template_locales delete \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_template_locale delete <project_id> <job_template_id> <job_template_locale_id> \\\n--branch my-feature-branch"
           }
         ]
       }
