@@ -12,7 +12,7 @@ job_template_locale:
     users:
       type: array
       items:
-        "$ref": "./user_preview.yaml#/user_preview"
+        "$ref": "./job_template_user_preview.yaml#/job_template_user_preview"
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     job_template:
@@ -22,6 +22,7 @@ job_template_locale:
     - id: abcd1234cdef1234abcd1234cdef1234
       username: joe.doe
       name: Joe Doe
+      role: translator
     locale:
       id: abcd1234cdef1234abcd1234cdef1234
       name: English

@@ -13248,7 +13248,23 @@
                     "users": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/user_preview"
+                        "type": "object",
+                        "title": "job_template_user_preview",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "username": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "role": {
+                            "type": "string"
+                          }
+                        },
+                        "example": null
                       }
                     }
                   },
@@ -13262,7 +13278,8 @@
                       {
                         "id": "abcd1234cdef1234abcd1234cdef1234",
                         "username": "joe.doe",
-                        "name": "Joe Doe"
+                        "name": "Joe Doe",
+                        "role": "translator"
                       }
                     ],
                     "locale": {
@@ -13299,15 +13316,15 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"reviewer_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales create \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase job_template_locales create \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\", \"reviewer_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp job_template_locales create <project_id> <job_template_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\""
+            "source": "phraseapp job_template_locales create <project_id> <job_template_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\"\n--reviewer-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -13330,6 +13347,16 @@
                   },
                   "user_ids": {
                     "description": "Array of user ids to be assigned to the job template locale",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "reviewer_ids": {
+                    "description": "Array of reviewer ids to be assigned to the job template locale",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -13482,15 +13509,15 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"reviewer_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\", \"reviewer_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp job_template_locale update <project_id> <job_template_id> <job_template_locale_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\""
+            "source": "phraseapp job_template_locale update <project_id> <job_template_id> <job_template_locale_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\"\n--reviewer-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -13513,6 +13540,16 @@
                   },
                   "user_ids": {
                     "description": "Array of user ids to be assigned to the job template locale",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "reviewer_ids": {
+                    "description": "Array of reviewer ids to be assigned to the job template locale",
                     "type": "array",
                     "items": {
                       "type": "string"

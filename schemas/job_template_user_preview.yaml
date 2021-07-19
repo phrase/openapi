@@ -1,0 +1,14 @@
+---
+job_template_user_preview:
+  type: object
+  title: job_template_user_preview
+  properties:
+    id:
+      type: string
+    username:
+      type: string
+    name:
+      type: string
+    role:
+      type: string
+  example: 
