@@ -46,7 +46,7 @@ x-code-samples:
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
-    phrase job templates list \
+    phrase job_templates list \
     --project_id <project_id> \
     --branch my-feature-branch \
     --access_token <token>

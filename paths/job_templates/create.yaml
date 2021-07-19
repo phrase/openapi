@@ -37,7 +37,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase job templates create \
+    phrase job_templates create \
     --project_id <project_id> \
     --data '{"branch":"my-feature-branch", "name":"template", "briefing":"text"}' \
     --access_token <token>

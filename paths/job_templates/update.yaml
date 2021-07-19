@@ -38,7 +38,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase job templates update \
+    phrase job_templates update \
     --project_id <project_id> \
     --id <id> \
     --data '{"branch":"my-feature-branch", "name":"template", "briefing":"text"}' \

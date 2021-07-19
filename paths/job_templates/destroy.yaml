@@ -33,7 +33,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase job templates delete \
+    phrase job_templates delete \
     --project_id <project_id> \
     --id <id> \
     --branch my-feature-branch \
