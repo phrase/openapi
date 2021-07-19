@@ -126,6 +126,18 @@
     "$ref": "./paths/jobs/add_keys.yaml"
   delete:
     "$ref": "./paths/jobs/remove_keys.yaml"
+"/projects/{project_id}/job_templates":
+  get:
+    "$ref": "./paths/job_templates/index.yaml"
+  post:
+    "$ref": "./paths/job_templates/create.yaml"
+"/projects/{project_id}/job_templates/{id}":
+  get:
+    "$ref": "./paths/job_templates/show.yaml"
+  patch:
+    "$ref": "./paths/job_templates/update.yaml"
+  delete:
+    "$ref": "./paths/job_templates/destroy.yaml"
 "/accounts/{account_id}/glossaries":
   get:
     "$ref": "./paths/glossaries/index.yaml"
@@ -271,6 +283,18 @@
 "/projects/{project_id}/jobs/{job_id}/locales/{id}/reopen":
   post:
     "$ref": "./paths/job_locales/reopen.yaml"
+"/projects/{project_id}/job_templates/{job_template_id}/locales":
+  get:
+    "$ref": "./paths/job_template_locales/index.yaml"
+  post:
+    "$ref": "./paths/job_template_locales/create.yaml"
+"/projects/{project_id}/job_templates/{job_template_id}/locales/{job_template_locale_id}":
+  get:
+    "$ref": "./paths/job_template_locales/show.yaml"
+  patch:
+    "$ref": "./paths/job_template_locales/update.yaml"
+  delete:
+    "$ref": "./paths/job_template_locales/destroy.yaml"
 "/projects/{project_id}/variables":
   get:
     "$ref": "./paths/variables/index.yaml"
