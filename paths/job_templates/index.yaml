@@ -15,18 +15,6 @@ parameters:
   in: query
   schema:
     type: string
-- description: filter by user owning job template
-  example: abcd1234cdef1234abcd1234cdef1234
-  name: owned_by
-  in: query
-  schema:
-    type: string
-- description: filter by user assigned to job template
-  example: abcd1234cdef1234abcd1234cdef1234
-  name: assigned_to
-  in: query
-  schema:
-    type: string
 responses:
   '200':
     description: OK
@@ -54,19 +42,15 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/job_templates?branch=my-feature-branch&owned_by=abcd1234cdef1234abcd1234cdef1234&assigned_to=abcd1234cdef1234abcd1234cdef1234" \
+    curl "https://api.phrase.com/v2/projects/:project_id/job_templates?branch=my-feature-branch" \
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
     phrase job templates list \
     --project_id <project_id> \
     --branch my-feature-branch \
-    --owned_by abcd1234cdef1234abcd1234cdef1234 \
-    --assigned_to abcd1234cdef1234abcd1234cdef1234 \
     --access_token <token>
 - lang: CLI v1
   source: |-
     phraseapp job templates list <project_id> \
     --branch my-feature-branch \
-    --owned-by abcd1234cdef1234abcd1234cdef1234 \
-    --assigned-to abcd1234cdef1234abcd1234cdef1234 \
