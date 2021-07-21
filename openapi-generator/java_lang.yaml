@@ -2,9 +2,9 @@
 generatorName: java
 outputDir: clients/java
 apiPackage: com.phrase.client.api
-artifactId: phraseJava
+artifactId: phrase-java
 artifactUrl: https://developers.phrase.com
-artifactVersion: 1.1.0
+artifactVersion: 1.1.2
 developerEmail: support@phrase.com
 developerName: Phrase
 developerOrganization: Phrase.com
