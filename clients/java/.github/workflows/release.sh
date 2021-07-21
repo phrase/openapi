@@ -48,7 +48,7 @@ else
 fi
 
 echo "Uploading ${file}"
-file=build/libs/phraseJava-${VERSION}.jar
+file=build/libs/phrase-java-${VERSION}.jar
 asset="https://uploads.github.com/repos/phrase/phrase-java/releases/${release_id}/assets?name=$(basename "$file")&access_token=${GITHUB_TOKEN}"
 curl --data-binary @"$file" -H "Content-Type: application/octet-stream" $asset > /dev/null
 echo Hash: $(sha256sum $file)
