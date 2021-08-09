@@ -66,6 +66,10 @@ requestBody:
             description: Job name
             type: string
             example: de
+          source_locale_id:
+            description: The API id of the source language
+            type: string
+            example: abcd1234cdef1234abcd1234cdef1234
           briefing:
             description: Briefing for the translators
             type: string
