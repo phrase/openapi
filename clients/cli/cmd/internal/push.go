@@ -23,7 +23,7 @@ type PushCommand struct {
 	Wait               bool
 	Branch             string
 	UseLocalBranchName bool
-    Tag                string
+	Tag                string
 }
 
 func (cmd *PushCommand) Run() error {
