@@ -102,6 +102,12 @@ parameters:
   in: query
   schema:
     type: string
+- description: Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a <code>tag</code> parameter indicating a specific job.
+  example:
+  name: source_locale_id
+  in: query
+  schema:
+    type: string
 responses:
   '200':
     description: OK
