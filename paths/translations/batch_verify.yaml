@@ -60,6 +60,10 @@ requestBody:
             description: specify the branch to use
             type: string
             example: my-feature-branch
+          locale_id:
+            description: specify the locale of the translations to be verified
+            type: string
+            example: fc2f11dd6a658fa9652f6f0a9ebee688
           q:
             description: |
               Specify a query to find translations by content (including wildcards).<br><br>
@@ -74,11 +78,3 @@ requestBody:
               Find more examples <a href="#overview--usage-examples">here</a>.
             type: string
             example: PhraseApp*%20unverified:true%20tags:feature,center
-          sort:
-            description: 'Sort criteria. Can be one of: key_name, created_at, updated_at.'
-            type: string
-            example: updated_at
-          order:
-            description: 'Order direction. Can be one of: asc, desc.'
-            type: string
-            example: desc
