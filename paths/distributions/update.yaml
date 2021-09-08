@@ -34,14 +34,14 @@ x-code-samples:
     curl "https://api.phrase.com/v2/accounts/:account_id/distributions/:id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
-      -d '{"name":"My Android Distribution","project_id":"abcd1234abcd1234abcd1234","platforms":["android","ios"],"format_options":"{xml:{enclose_in_cdata:'1'}}","fallback_to_non_regional_locale":true,"fallback_to_default_locale":true,"use_last_reviewed_version":true}' \
+      -d '{"name":"My Android Distribution","project_id":"abcd1234abcd1234abcd1234","platforms":["android","ios"],"locale_ids":["fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234"],"format_options":"{xml:{enclose_in_cdata:'1'}}","fallback_to_non_regional_locale":true,"fallback_to_default_locale":true,"use_last_reviewed_version":true}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase distributions update \
     --account_id <account_id> \
     --id <id> \
-    --data '{"name":""My Android Distribution"", "project_id":"abcd1234abcd1234abcd1234", "platforms":""android,ios"", "format_options":""{xml:{enclose_in_cdata:'1'}}"", "fallback_to_non_regional_locale":"true", "fallback_to_default_locale":"true", "use_last_reviewed_version":"true"}' \
+    --data '{"name":""My Android Distribution"", "project_id":"abcd1234abcd1234abcd1234", "platforms":""android,ios"", "locale_ids":""fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234"", "format_options":""{xml:{enclose_in_cdata:'1'}}"", "fallback_to_non_regional_locale":"true", "fallback_to_default_locale":"true", "use_last_reviewed_version":"true"}' \
     --access_token <token>
 - lang: CLI v1
   source: |-
@@ -77,6 +77,14 @@ requestBody:
             example:
             - android
             - ios
+          locale_ids:
+            description: List of locale ids that will be part of distribution releases
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
+            - fff565db236400772368235db2c6117e
           format_options:
             description: Additional formatting and render options. Only <code>enclose_in_cdata</code> is available for platform <code>android</code>.
             type: object
