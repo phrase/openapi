@@ -49,3 +49,7 @@ https://github.com/phrase/phrase-cli
 [https://swagger.io/specification/#specification](https://swagger.io/specification/#specification)
 
 [https://swagger.io/docs/specification/about/](https://swagger.io/docs/specification/about/)
+
+## Get help / support
+
+Please contact [support@phrase.com](mailto:support@phrase.com?subject=[GitHub]%20openapi) and we can take more direct action toward finding a solution.
