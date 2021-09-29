@@ -241,7 +241,7 @@
         "type": "apiKey",
         "in": "header",
         "name": "Authorization",
-        "description": "Enter your token in the format **token TOKEN**"
+        "description": "Enter your token in the format `token TOKEN`"
       },
       "Basic": {
         "type": "http",
@@ -2613,6 +2613,9 @@
               "job_tag_name": {
                 "type": "string"
               },
+              "source_locale": {
+                "$ref": "#/components/schemas/locale_preview"
+              },
               "locales": {
                 "type": "array",
                 "items": {
@@ -2633,6 +2636,13 @@
                 "name": "Joe Doe"
               },
               "job_tag_name": "Job_123",
+              "source_locale": [
+                {
+                  "id": "abcd1234cdef1234abcd1234cdef1235",
+                  "name": "de-DE",
+                  "code": "de-DE"
+                }
+              ],
               "locales": [
                 {
                   "id": "abcd1234cdef1234abcd1234cdef1234",
@@ -4351,11 +4361,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/invitations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"email\":\"example@mail.com\",\"role\":\"Developer\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"default_locale_codes\":[\"de\",\"en\"],\"permissions\":{\"create_upload\":true,\"review_translations\":true}}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/invitations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"email\":\"example@mail.com\",\"role\":\"Developer\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"team_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"default_locale_codes\":[\"de\",\"en\"],\"permissions\":{\"create_upload\":true,\"review_translations\":true}}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase invitations create \\\n--account_id <account_id> \\\n--data '{\"email\":\"example@mail.com\", \"role\":\"Developer\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true, \"review_translations\"=>true}\"}' \\\n--access_token <token>"
+            "source": "phrase invitations create \\\n--account_id <account_id> \\\n--data '{\"email\":\"example@mail.com\", \"role\":\"Developer\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"team_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true, \"review_translations\"=>true}\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -4392,6 +4402,17 @@
                   },
                   "space_ids": {
                     "description": "List of spaces the user is assigned to.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234abcd1234abcd1234",
+                      "abcd1234abcd1234abcd1235"
+                    ]
+                  },
+                  "team_ids": {
+                    "description": "List of teams the user is assigned to.",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -4561,11 +4582,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/invitations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"role\":\"Invitiation role\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"default_locale_codes\":[\"de\",\"en\"],\"permissions\":{\"create_upload\":true}}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/invitations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"role\":\"Invitiation role\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"team_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"default_locale_codes\":[\"de\",\"en\"],\"permissions\":{\"create_upload\":true}}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase invitations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"\"Invitiation role\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true}\"}' \\\n--access_token <token>"
+            "source": "phrase invitations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"\"Invitiation role\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"team_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true}\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -4597,6 +4618,17 @@
                   },
                   "space_ids": {
                     "description": "List of spaces the user is assigned to.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234abcd1234abcd1234",
+                      "abcd1234abcd1234abcd1235"
+                    ]
+                  },
+                  "team_ids": {
+                    "description": "List of teams the user is assigned to.",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -5280,6 +5312,9 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/id"
           },
           {
             "$ref": "#/components/parameters/page"
@@ -5996,6 +6031,15 @@
             "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.",
             "example": null,
             "name": "fallback_locale_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a <code>tag</code> parameter indicating a specific job.",
+            "example": null,
+            "name": "source_locale_id",
             "in": "query",
             "schema": {
               "type": "string"
@@ -7142,6 +7186,11 @@
                     "type": "string",
                     "example": "de"
                   },
+                  "source_locale_id": {
+                    "description": "The API id of the source language",
+                    "type": "string",
+                    "example": "abcd1234cdef1234abcd1234cdef1234"
+                  },
                   "briefing": {
                     "description": "Briefing for the translators",
                     "type": "string",
@@ -8056,7 +8105,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_templates list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ]
       },
@@ -8155,7 +8204,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
+            "source": "phrase job_templates create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -8258,7 +8307,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_templates show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ]
       },
@@ -8319,7 +8368,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
+            "source": "phrase job_templates update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -8402,7 +8451,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job templates delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_templates delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ]
       }
@@ -20662,15 +20711,15 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/translations/verify\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"q\":\"PhraseApp*%20unverified:true%20tags:feature,center\",\"sort\":\"updated_at\",\"order\":\"desc\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/translations/verify\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"q\":\"PhraseApp*%20unverified:true%20tags:feature,center\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations verify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20unverified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations verify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20unverified:true%20tags:feature,center'\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
-            "source": "phraseapp translations verify <project_id> \\\n--branch my-feature-branch \\\n--query 'PhraseApp*%20unverified:true%20tags:feature,center' \\\n--sort updated_at \\\n--order desc"
+            "source": "phraseapp translations verify <project_id> \\\n--branch my-feature-branch \\\n--query 'PhraseApp*%20unverified:true%20tags:feature,center' \\"
           }
         ],
         "requestBody": {
@@ -20686,20 +20735,15 @@
                     "type": "string",
                     "example": "my-feature-branch"
                   },
+                  "locale_id": {
+                    "description": "specify the locale of the translations to be verified",
+                    "type": "string",
+                    "example": "fc2f11dd6a658fa9652f6f0a9ebee688"
+                  },
                   "q": {
                     "description": "Specify a query to find translations by content (including wildcards).<br><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
                     "type": "string",
                     "example": "PhraseApp*%20unverified:true%20tags:feature,center"
-                  },
-                  "sort": {
-                    "description": "Sort criteria. Can be one of: key_name, created_at, updated_at.",
-                    "type": "string",
-                    "example": "updated_at"
-                  },
-                  "order": {
-                    "description": "Order direction. Can be one of: asc, desc.",
-                    "type": "string",
-                    "example": "desc"
                   }
                 }
               }
