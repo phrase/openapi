@@ -536,7 +536,7 @@ use {{invokerPackage}}\ObjectSerializer;
             $formParams['{{baseName}}'] = \GuzzleHttp\Psr7\Utils::tryFopen(ObjectSerializer::toFormValue(${{paramName}}), 'rb');
             {{/isFile}}
             {{^isFile}}
-            $formParams['{{baseName}}'] = ObjectSerializer::toFormValue(${{paramName}});
+            $this->formParamsAppend($formParams, '{{baseName}}', ${{paramName}});
             {{/isFile}}
         }
         {{/formParams}}
@@ -664,6 +664,21 @@ use {{invokerPackage}}\ObjectSerializer;
         }
 
         return $options;
+    }
+    /**
+     * Append to form params, handle object params
+     */
+    protected function formParamsAppend(&$formParams, $name, $value)
+    {
+        if (is_object($value)) {
+            foreach ((array) $value as $k => $v) {
+                $formParams[$name.'['.$k.']'] = ObjectSerializer::toFormValue($v);
+            }
+
+            return;
+        }
+
+        $formParams[$name] = ObjectSerializer::toFormValue($value);
     }
 }
 {{/operations}}
