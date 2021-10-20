@@ -2,7 +2,7 @@
 generatorName: go
 outputDir: clients/go
 packageName: phrase
-packageVersion: 2.1.0
+packageVersion: 2.1.1
 gitUserId: phrase
 gitRepoId: phrase-go
 httpUserAgent: Phrase go
