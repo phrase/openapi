@@ -13,6 +13,10 @@ distribution:
       type: array
       items:
         type: string
+    locales:
+      type: array
+      items:
+        "$ref": "./locale_preview.yaml#/locale_preview"
     releases:
       type: array
       items:

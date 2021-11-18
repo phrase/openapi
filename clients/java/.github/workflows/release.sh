@@ -34,9 +34,9 @@ EOF
 }
 
 echo "Create release $VERSION"
-api_url="https://api.github.com/repos/phrase/phrase-java/releases?access_token=${GITHUB_TOKEN}"
-response="$(curl --data "$(create_release_data)" ${api_url})"
-release_id=$(echo $response | python -c "import sys, json; print(json.load(sys.stdin)['id'])")
+api_url="https://api.github.com/repos/phrase/phrase-java/releases"
+response="$(curl -H "Authorization: token ${GITHUB_TOKEN}" --data "$(create_release_data)" ${api_url})"
+release_id=$(echo $response | python -c "import sys, json; print(json.load(sys.stdin).get('id', ''))")
 
 if [ -z "$release_id" ]
 then
@@ -49,8 +49,8 @@ fi
 
 echo "Uploading ${file}"
 file=build/libs/phrase-java-${VERSION}.jar
-asset="https://uploads.github.com/repos/phrase/phrase-java/releases/${release_id}/assets?name=$(basename "$file")&access_token=${GITHUB_TOKEN}"
-curl --data-binary @"$file" -H "Content-Type: application/octet-stream" $asset > /dev/null
+asset="https://uploads.github.com/repos/phrase/phrase-java/releases/${release_id}/assets?name=$(basename "$file")"
+curl --data-binary @"$file" -H "Authorization: token ${GITHUB_TOKEN}" -H "Content-Type: application/octet-stream" $asset > /dev/null
 echo Hash: $(sha256sum $file)
 
 

@@ -181,7 +181,7 @@ func (source *Source) uploadFile(client *phrase.APIClient, localeFile *LocaleFil
 		v += localeFile.Tag
 		params.Tags = optional.NewString(v)
 	}
-        
+
 	if tag != "" {
 		var v string
 		if params.Tags.IsSet() {
@@ -189,8 +189,8 @@ func (source *Source) uploadFile(client *phrase.APIClient, localeFile *LocaleFil
 		}
 		v += tag
 		params.Tags = optional.NewString(v)
-    	}
-	
+	}
+
 	if branch != "" {
 		params.Branch = optional.NewString(branch)
 	}
