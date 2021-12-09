@@ -1,0 +1,59 @@
+---
+summary: Review a job locale
+description: Marked Job locale as reviewed.
+operationId: job_locale/complete_review
+tags:
+- Job Locales
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/job_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/job_locale.yaml#/job_locale"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:id/complete_review" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"branch":"my-feature-branch"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase job_locales complete \
+    --project_id <project_id> \
+    --job_id <job_id> \
+    --id <id> \
+    --data '{"branch":"my-feature-branch"}' \
+    --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: job_locale/complete_review/parameters
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
