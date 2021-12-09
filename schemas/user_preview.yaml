@@ -9,4 +9,6 @@ user_preview:
       type: string
     name:
       type: string
-  example: 
+    role:
+      type: string
+  example:

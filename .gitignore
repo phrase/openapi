@@ -4,3 +4,4 @@ doc/*.css.map
 doc/*.js
 tmp/
 node_modules/
+.DS_Store
