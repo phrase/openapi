@@ -2717,12 +2717,14 @@
             "name": "My Job 1",
             "state": "completed"
           },
-          "users": {
-            "id": "abcd1234cdef1234abcd1234cdef1234",
-            "username": "joe.doe",
-            "name": "Joe Doe",
-            "role": "translator"
-          },
+          "users": [
+            {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "username": "joe.doe",
+              "name": "Joe Doe",
+              "role": "translator"
+            }
+          ],
           "locale": {
             "id": "abcd1234cdef1234abcd1234cdef1234",
             "name": "English",
@@ -13099,7 +13101,7 @@
     "/projects/{project_id}/jobs/{job_id}/locales/{id}/complete_review": {
       "post": {
         "summary": "Review a job locale",
-        "description": "Marked Job locale as reviewed.",
+        "description": "Mark job locale as reviewed.",
         "operationId": "job_locale/complete_review",
         "tags": [
           "Job Locales"

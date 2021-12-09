@@ -28,7 +28,7 @@ job_locale:
       name: My Job 1
       state: completed
     users:
-      id: abcd1234cdef1234abcd1234cdef1234
+    - id: abcd1234cdef1234abcd1234cdef1234
       username: joe.doe
       name: Joe Doe
       role: "translator"

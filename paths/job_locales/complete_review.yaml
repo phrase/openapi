@@ -1,6 +1,6 @@
 ---
 summary: Review a job locale
-description: Marked Job locale as reviewed.
+description: Mark job locale as reviewed.
 operationId: job_locale/complete_review
 tags:
 - Job Locales
