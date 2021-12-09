@@ -3,7 +3,7 @@
 .nav-bar {
   top: 0;
   border-right: solid 1px #EFEFEF;
-  
+
   > div:first-child {
     padding: 0!important;
 
@@ -200,7 +200,7 @@ table:not(.m-table) {
 
 .table-title.top-gap {
   --font-size-small: #{$fontSize5};
-  
+
   margin-top: $spacing3;
   display: inline-block;
   text-transform: lowercase;

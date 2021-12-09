@@ -30,6 +30,9 @@
       "Token": []
     },
     {
+      "bearerAuth": []
+    },
+    {
       "Basic": []
     }
   ],
@@ -242,6 +245,11 @@
         "in": "header",
         "name": "Authorization",
         "description": "Enter your token in the format `token TOKEN`"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       },
       "Basic": {
         "type": "http",
