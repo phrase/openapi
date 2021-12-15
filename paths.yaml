@@ -1,5 +1,8 @@
 ---
 
+"/icu/skeleton":
+  post:
+    "$ref": "./paths/icu/skeleton.yaml"
 "/formats":
   get:
     "$ref": "./paths/formats/index.yaml"
