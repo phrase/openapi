@@ -1,0 +1,11 @@
+---
+skeleton:
+  type: object
+  title: skeleton
+  properties:
+    locale_code:
+      type: string
+      description: "Object keys are dynamic and based on requested locale codes, see example."
+  example:
+    en: "{number, plural, one {} other {}}"
+    de: "{number, plural, one {} other {}}"
