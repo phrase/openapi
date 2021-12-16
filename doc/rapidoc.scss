@@ -79,9 +79,26 @@
   }
 }
 
-.nav-bar-path {
+div.nav-bar-path {
   margin-left: 12px;
+
+  &.active {
+    --nav-accent-color: #{$colorPrimaryBorder};
+  }
 }
+
+div.nav-bar-h2 {
+  &.active {
+    --nav-accent-color: #{$colorPrimaryBorder};
+  }
+}
+
+div.nav-bar-tag {
+  &.active {
+    --nav-accent-color: #{$colorPrimaryBorder};
+  }
+}
+
 
 .nav-scroll .nav-bar-section {
   font-size: $fontSize4;
@@ -269,6 +286,11 @@ table.m-table {
   pre {
     margin-top: 0;
     border-radius: 0 $borderRadius2 $borderRadius2;
+    background-color: $colorDarkGrey;
+
+    code {
+      color: $colorLightGrey;
+    }
   }
 }
 

@@ -45,21 +45,3 @@ rapi-doc::part(btn-search) {
 rapi-doc::part(textbox-nav-filter) {
   --nav-accent-color: #dadada;
 }
-
-.nav-bar-h2 {
-  padding: $spacing4;
-  border-left: $spacing2 solid transparent;
-  display: block;
-  font-size: $fontSize4;
-  font-family: $fontPrimary;
-  color: $colorPrimaryForeground;
-  text-decoration: none;
-
-  &:first-child {
-    margin-top: $spacing8;
-  }
-
-  &:hover, &:focus, &:active {
-    background-color: $colorPrimaryBorder;
-  }
-}
