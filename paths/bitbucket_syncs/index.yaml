@@ -46,7 +46,3 @@ x-code-samples:
     phrase bitbucket_sync list \
     --account_id abcd1234 \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp bitbucket_syncs list \
-    --account-id abcd1234

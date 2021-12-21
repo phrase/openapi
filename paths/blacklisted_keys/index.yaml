@@ -49,5 +49,3 @@ x-code-samples:
     phrase blacklisted_keys list \
     --project_id <project_id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp blacklisted_keys list <project_id>

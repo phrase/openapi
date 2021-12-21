@@ -41,10 +41,6 @@ x-code-samples:
     --project_id <project_id> \
     --data '{"name":"'date.formats.*'"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp blacklisted_key create <project_id> \
-    --name 'date.formats.*'
 requestBody:
   required: true
   content:
