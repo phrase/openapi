@@ -3,7 +3,7 @@
   "info": {
     "title": "Phrase API Reference",
     "version": "2.0.0",
-    "description": "Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform. The API allows you to import locale files, download locale files, tag keys or interact in other ways with the localization data stored in Phrase for your account.\n\n## API Endpoint\n\n```\nhttps://api.phrase.com/v2/\n```\n\nThe API is only accessible via HTTPS, the base URL is <code>https://api.phrase.com/</code>, and the current version is <code>v2</code> which results in the base URL for all requests: <code>https://api.phrase.com/v2/</code>.\n\n## Usage\n\n[curl](http://curl.haxx.se/) is used primarily to send requests to Phrase in the examples. On most you'll find a second variant using the [Phrase API v2 client](https://phrase.com/cli/) that might be more convenient to handle. For further information check its [documentation](https://help.phrase.com/help/phrase-in-your-terminal).\n\n## Use of HTTP Verbs\n\nPhrase API v2 tries to use the appropriate HTTP verb for accessing each endpoint according to REST specification where possible:\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Verb</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\">GET</td>\n        <td class=\"basic-table__cell\">Retrieve one or multiple resources</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">POST</td>\n        <td class=\"basic-table__cell\">Create a resource</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">PUT</td>\n        <td class=\"basic-table__cell\">Update a resource</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">PATCH</td>\n        <td class=\"basic-table__cell\">Update a resource (partially)</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">DELETE</td>\n        <td class=\"basic-table__cell\">Delete a resource</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n\n## Identification via User-Agent\n\nYou must include the User-Agent header with the name of your application or project. It might be a good idea to include some sort of contact information  as well, so that we can get in touch if necessary (e.g. to warn you about Rate-Limiting or badly formed requests). Examples of excellent User-Agent headers:\n\n```\nUser-Agent: Example Mobile App (example@phrase.com)\nUser-Agent: ACME Inc Python Client (http://example.com/contact)\n```\n\nIf you don't send this header, you will receive a response with 400 Bad Request.\n\n\n## Lists\n\nWhen you request a list of resources, the API will typically only return an array of resources including their most important attributes. For a detailed representation of the resource you should request its detailed representation.\n\nLists are usually [paginated](#pagination).\n\n\n## Parameters\n\nMany endpoints support additional parameters, e.g. for pagination. When passing them in a GET request you can send them as HTTP query string parameters:\n\n```\n$ curl -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects?page=2\"\n```\n\nWhen performing a POST, PUT, PATCH or DELETE request, we recommend sending parameters that are not already included in the URL, as JSON body:\n\n```\n$ curl -H 'Content-Type: application/json' -d '{\"name\":\"My new project\"}' -u EMAIL_OR_ACCESS_TOKEN https://api.phrase.com/v2/projects\n```\n\nEncoding parameters as JSON means better support for types (boolean, integer) and usually better readability. Don't forget to set the correct Content-Type for your request.\n\n*The Content-Type header is omitted in some of the following examples for better readbility.*\n\n\n## Errors\n\n\n### Request Errors\n\nIf a request contains invalid JSON or is missing a required parameter (besides resource attributes), the status `400 Bad Request` is returned:\n\n```\n{\n  \"message\": \"JSON could not be parsed\"\n}\n```\n\n\n### Validation Errors\n\nWhen the validation for a resource fails, the status `422 Unprocessable Entity` is returned, along with information on the affected fields:\n\n```\n{\n  \"message\": \"Validation Failed\",\n  \"errors\": [\n    {\n      \"resource\": \"Project\",\n      \"field\": \"name\",\n      \"message\": \"can't be blank\"\n    }\n  ]\n}\n```\n\n\n## Date Format\n\nTimes and dates are returned and expected in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) date format:\n\n```\nYYYY-MM-DDTHH:MM:SSZ\n```\n\nInstead of 'Z' for UTC time zone you can specify your time zone's locale offset using the following notation:\n\n```\nYYYY-MM-DDTHH:MM:SS¬±hh:mm\n```\n\nExample for CET (1 hour behind UTC):\n\n```\n2015-03-31T13:00+01:00\n```\n\nPlease note that in HTTP headers, we will use the appropriate recommended date formats instead of ISO 8601.\n\n\n## Authentication\n\nThere are two different ways to authenticate when performing API requests:\n\n* E-Mail and password\n* Oauth Access Token\n\n\n### E-Mail and password\n\nTo get started easily, you can use HTTP Basic authentication with your email and password:\n\n```\n$ curl -u username:password \"https://api.phrase.com/v2/projects\"\n```\n\n\n### OAuth via Access Tokens\n\nYou can create and manage access tokens in your [profile settings](https://app.phrase.com/settings/oauth_access_tokens) in Translation Center or via the [Authorizations API](#tag--Authorizations).\n\nSimply pass the access token as the username of your request:\n\n```\n$ curl -u ACCESS_TOKEN: \"https://api.phrase.com/v2/projects\"\n```\n\nor send the access token via the `Authorization` header field:\n\n```\n$ curl -H \"Authorization: token ACCESS_TOKEN\" https://api.phrase.com/v2/projects\n```\n\n#### Send via parameter\n\nAs JSONP (and other) requests cannot send HTTP Basic Auth credentials, a special query parameter `access_token` can be used:\n\n```\ncurl \"https://api.phrase.com/v2/projects?access_token=ACCESS_TOKEN\"\n```\n\nYou should only use this transport method if sending the authentication via header or Basic authentication is not possible.\n\n### Two-Factor-Authentication\n\nUsers with Two-Factor-Authentication enabled have to send a valid token along their request with certain authentication methods (such as Basic authentication). The necessity of a Two-Factor-Authentication token is indicated by the `X-PhraseApp-OTP: required; :MFA-type` header in the response. The `:MFA-type`field indicates the source of the token, e.g. `app` (refers to your Authenticator application):\n\n```\nX-PhraseApp-OTP: required; app\n```\n\nTo provide a Two-Factor-Authentication token you can simply send it in the header of the request:\n\n```\ncurl -H \"X-PhraseApp-OTP: MFA-TOKEN\" -u EMAIL https://api.phrase.com/v2/projects\n```\n\nSince Two-Factor-Authentication tokens usually expire quickly, we recommend using an alternative authentication method such as OAuth access tokens.\n\n### Multiple Accounts\n\nSome endpoints require the account ID to be specified if the authenticated user is a member of multiple accounts. You can find the eight-digit account ID inside <a href=\"https://app.phrase.com/\" target=\"_blank\">Translation Center</a> by switching to the desired account and then visiting the account details page. If required, you can specify the account just like a normal parameter within the request.\n\n## Pagination\n\nEndpoints that return a list or resources will usually return paginated results and include 25 items by default. To access further pages, use the `page` parameter:\n\n```\n$ curl -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects?page=2\"\n```\n\nSome endpoints also allow a custom page size by using the `per_page` parameter:\n\n```\n$ curl -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects?page=2&per_page=50\"\n```\n\nUnless specified otherwise in the description of the respective endpoint, `per_page` allows you to specify a page size up to 100 items.\n\n\n## Link-Headers\n\nWe provide you with pagination URLs in the [Link Header field](http://tools.ietf.org/html/rfc5988). Make use of this information to avoid building pagination URLs yourself.\n\n```\nLink: <https://api.phrase.com/v2/projects?page=1>; rel=\"first\", <https://api.phrase.com/v2/projects?page=3>; rel=\"prev\", <https://api.phrase.com/v2/projects?page=5>; rel=\"next\", <https://api.phrase.com/v2/projects?page=9>; rel=\"last\"\n```\n\nPossible `rel` values are:\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Value</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\">next</td>\n        <td class=\"basic-table__cell\">URL of the next page of results</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">last</td>\n        <td class=\"basic-table__cell\">URL of the last page of results</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">first</td>\n        <td class=\"basic-table__cell\">URL of the first page of results</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">prev</td>\n        <td class=\"basic-table__cell\">URL of the previous page of results</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n## Rate Limiting\n\nAll API endpoints are subject to rate limiting to ensure good performance for all customers. The rate limit is calculated per user:\n\n* 1000 requests per 5 minutes\n* 4 concurrent (parallel) requests\n\nFor your convenience we send information on the current rate limit within the response headers:\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Header</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\" style=\"white-space: nowrap;\"><code>X-Rate-Limit-Limit</code></td>\n        <td class=\"basic-table__cell\">Number of max requests allowed in the current time period</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\" style=\"white-space: nowrap;\"><code>X-Rate-Limit-Remaining</code></td>\n        <td class=\"basic-table__cell\">Number of remaining requests in the current time period</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\" style=\"white-space: nowrap;\"><code>X-Rate-Limit-Reset</code></td>\n        <td class=\"basic-table__cell\">Timestamp of end of current time period as UNIX timestamp</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\nIf you should run into the rate limit, you will receive the HTTP status code `429: Too many requests`.\n\nIf you should need higher rate limits, [contact us](https://phrase.com/contact).\n\n\n## Conditional GET requests / HTTP Caching\n\n<div class=\"alert alert-info\"><p><strong>Note:</strong> Conditional GET requests are currently only supported for <a href=\"#locales_download\">locales#download</a> and <a href=\"#translations_index\">translations#index</a></p></div>\n\nWe will return an ETag or Last-Modified header with most GET requests. When you request a resource we recommend to store this value and submit them on subsequent requests as `If-Modified-Since` and `If-None-Match` headers. If the resource has not changed in the meantime, we will return the status `304 Not Modified` instead of rendering and returning the resource again. In most cases this is less time-consuming and makes your application/integration faster.\n\nPlease note that all conditional requests that return a response with status 304 don't count against your rate limits.\n\n```\n$ curl -i -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download\"\nHTTP/1.1 200 OK\nETag: \"abcd1234abcdefefabcd1234efab1234\"\nLast-Modified: Wed, 28 Jan 2015 15:31:30 UTC\nStatus: 200 OK\n\n$ curl -i -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download\" -H 'If-None-Match: \"abcd1234abcdefefabcd1234efab1234\"'\nHTTP/1.1 304 Not Modified\nETag: \"abcd1234abcdefefabcd1234efab1234\"\nLast-Modified: Wed, 28 Jan 2015 15:31:30 UTC\nStatus: 304 Not Modified\n\n$ curl -i -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download\" -H \"If-Modified-Since: Wed, 28 Jan 2015 15:31:30 UTC\"\nHTTP/1.1 304 Not Modified\nLast-Modified: Wed, 28 Jan 2015 15:31:30 UTC\nStatus: 304 Not Modified\n```\n\n\n## JSONP\n\nThe Phrase API supports [JSONP](http://en.wikipedia.org/wiki/JSONP) for all GET requests in order to deal with cross-domain request issues. Just send a `?callback` parameter along with the request to specify the Javascript function name to be called with the response content:\n\n```\n$ curl \"https://api.phrase.com/v2/projects?callback=myFunction\"\n```\n\nThe response will include the normal output for that endpoint, along with a `meta` section including header data:\n\n```\nmyFunction({\n  {\n    \"meta\": {\n      \"status\": 200,\n      ...\n    },\n    \"data\": [\n      {\n        \"id\": \"1234abcd1234abc1234abcd1234abc\"\n        ...\n      }\n    ]\n  }\n});\n```\n\nTo authenticate a JSONP request, you can send a valid [access token](#overview--oauth-via-access-tokens) as the `?access_token` parameter along the request:\n\n```\n$ curl \"https://api.phrase.com/v2/projects?callback=myFunction&access_token=ACCESS-TOKEN\"\n```\n\n<div class=\"section resource\">\n\n<div id=\"examples\" class=\"resource__section resource__section--head\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n## Usage examples\n\nLearn how to work more efficiently with Phrase API v2 with these\nworkflow-oriented examples.\n\n</div>\n\n</div>\n\n<div id=\"examples_excluded_translations\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find excluded translations with a certain content\n\n    GET /v2/projects/:project_id/translations\n\nList excluded translations for the given project which start with the\nterm `PhraseApp`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>sort</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />\nDefault: key_name</td>\n</tr>\n<tr class=\"even\">\n<td><code>order</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Order direction. Can be one of: asc, desc.<br />\nDefault: asc</td>\n</tr>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to find translations by content (including wildcards).<br />\n<br />\nThe following qualifiers are supported in the query:<br />\n\n<ul>\n<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>tags:XYZ</code> for tags on the translation</li>\n<li><code>unverified:{true|false}</code> for verification status</li>\n<li><code>reviewed:{true|false}</code> for reviewed status</li>\n<li><code>excluded:{true|false}</code> for exclusion status</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/translations?sort=updated_at&order=desc&q=PhraseApp*%20excluded:true\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase translations list \\\n--project_id <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp* excluded:true' \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp translations list <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp* excluded:true'\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_unverified_translations\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find unverified translations with a certain content\n\n    GET /v2/projects/:project_id/translations\n\nList unverified translations for the given project which start with the\nterm `PhraseApp` and are not verified.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>sort</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />\nDefault: key_name</td>\n</tr>\n<tr class=\"even\">\n<td><code>order</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Order direction. Can be one of: asc, desc.<br />\nDefault: asc</td>\n</tr>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to find translations by content (including wildcards).<br />\n<br />\nThe following qualifiers are supported in the query:<br />\n\n<ul>\n<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>tags:XYZ</code> for tags on the translation</li>\n<li><code>unverified:{true|false}</code> for verification status</li>\n<li><code>reviewed:{true|false}</code> for reviewed status</li>\n<li><code>excluded:{true|false}</code> for exclusion status</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/translations?sort=updated_at&order=desc&q=PhraseApp*%20unverified:true\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase translations list \\\n--project_id <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp* unverified:true' \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp translations list <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp* unverified:true'\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_verify_translations\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Verify translations selected by query\n\n    PATCH /v2/projects/:project_id/translations/verify\n\nVerify all translations that are matching the query `my dog`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to find translations by content (including wildcards).<br />\n<br />\nThe following qualifiers are supported in the query:<br />\n\n<ul>\n<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>tags:XYZ</code> for tags on the translation</li>\n<li><code>unverified:{true|false}</code> for verification status</li>\n<li><code>reviewed:{true|false}</code> for reviewed status</li>\n<li><code>excluded:{true|false}</code> for exclusion status</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n<tr class=\"even\">\n<td><code>sort</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />\nDefault: key_name</td>\n</tr>\n<tr class=\"odd\">\n<td><code>order</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Order direction. Can be one of: asc, desc.<br />\nDefault: asc</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/translations/verify\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"q\":\"my dog unverified:true\",\"sort\":\"updated_at\",\"order\":\"desc\"}' \\\n  -H 'Content-Type: application/json'\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase translations verify \\\n--project_id <project_id> \\\n--data '{\"query\":\"\"my dog unverified:true\"\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp translations verify <project_id> \\\n--query \"my dog unverified:true\" \\\n--sort updated_at \\\n--order desc\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_updated_keys\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find recently updated keys\n\n    GET /v2/projects/:project_id/keys\n\nFind updated keys with with the `updated_at` qualifier like\n`updated_at:>=2013-02-21T00:00:00Z`. This example returns keys that have\nbeen updated on or after 2013-02-21.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>sort</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Sort by field. Can be one of: name, created_at, updated_at.<br />\nDefault: name</td>\n</tr>\n<tr class=\"even\">\n<td><code>order</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Order direction. Can be one of: asc, desc.<br />\nDefault: asc</td>\n</tr>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n<tr class=\"even\">\n<td><code>locale_id</code></td>\n<td></td>\n<td></td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?sort=updated_at&order=desc&q=updated_at:%3E=2013-02-21T00:00:00Z&locale_id=abcd1234abcd1234abcd1234abcd1234\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query \"updated_at:>=2013-02-21T00:00:00Z\" \\\n--locale_id abcd1234abcd1234abcd1234abcd1234 \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp keys list <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query \"updated_at:>=2013-02-21T00:00:00Z\" \\\n--locale-id abcd1234abcd1234abcd1234abcd1234\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_tagged_keys\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find keys with a certain tag\n\n    GET /v2/projects/:project_id/keys\n\nKeys with certain tags can be filtered with the qualifier `tags:`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?q=tags:admin\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--query \"tags:admin\" \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp keys list <project_id> \\\n--query \"tags:admin\"\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_tag\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Add tags to collection of keys\n\n    PATCH /v2/projects/:project_id/keys/tag\n\nAdd the tags `landing-page` and `release-1.2` to all keys that start\nwith `dog` and are translated in the locale\n`abcd1234abcd1234abcd1234abcd1234`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n<tr class=\"even\">\n<td><code>tags</code></td>\n<td><code>string</code></td>\n<td>Tag or comma-separated list of tags to add to the matching collection of keys</td>\n</tr>\n<tr class=\"odd\">\n<td><code>locale_id</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>id</code></td>\n<td>Locale used to determine the translation state of a key when filtering for untranslated or translated keys.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys/tag\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"q\":\"dog* translated:true\",\"tags\":\"landing-page,release-1.2\",\"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n  -H 'Content-Type: application/json'\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys tag \\\n--project_id <project_id> \\\n--data '{\"query\":\"'dog* translated:true'\", \"tags\":\"landing-page,release-1.2\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp keys tag <project_id> \\\n--query 'dog* translated:true' \\\n--tags landing-page,release-1.2 \\\n--locale-id abcd1234abcd1234abcd1234abcd1234\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_untag\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Remove tags from collection of keys\n\n    PATCH /v2/projects/:project_id/keys/untag\n\nRemove the tags `landing-page` and `release-1.2` from all keys that\nstart with `dog` and are translated in the locale\n`abcd1234abcd1234abcd1234abcd1234`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n<tr class=\"even\">\n<td><code>tags</code></td>\n<td><code>string</code></td>\n<td>Tag or comma-separated list of tags to remove from the matching collection of keys</td>\n</tr>\n<tr class=\"odd\">\n<td><code>locale_id</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>id</code></td>\n<td>Locale used to determine the translation state of a key when filtering for untranslated or translated keys.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys/untag\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"q\":\"dog* translated:true\",\"tags\":\"landing-page,release-1.2\",\"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n  -H 'Content-Type: application/json'\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys untag \\\n--project_id <project_id> \\\n--data '{\"query\":\"'dog* translated:true'\", \"tags\":\"landing-page,release-1.2\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp keys untag <project_id> \\\n--query 'dog* translated:true' \\\n--tags landing-page,release-1.2 \\\n--locale-id abcd1234abcd1234abcd1234abcd1234\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_broad_match\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find keys with broad text match\n\n    GET /v2/projects/:project_id/keys\n\nExample query `my dog`\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n#### Matches\n\n<span class=\"result-match\">**My dog** is lazy\n</span> <span class=\"result-match\">**my dog** is lazy\n</span> <span class=\"result-match\">angry **dog** in **my** house</span>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?q=my%20dog\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--query \"my dog\" \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp keys list <project_id> \\\n--query \"my dog\"\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_exact_match\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find keys with exact text match\n\n    GET /v2/projects/:project_id/keys\n\nExample query `\"my dog is lazy\"` (note backslashes before any whitespace\ncharacter in the example query)\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n#### Matches\n\n~~My dog is lazy~~\n<span class=\"result-match\">**my dog is lazy**\n</span> ~~angry dog in my house~~\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?q=name:my%5C%20dog%5C%20is%5C%20lazy\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--query \"name:my\\ dog\\ is\\ lazy\" \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp keys list <project_id> \\\n--query \"name:my\\ dog\\ is\\ lazy\"\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_wildcard_match\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find keys with wildcard character matching\n\n    GET /v2/projects/:project_id/keys\n\nExample query `*dog is*`\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n#### Matches\n\n<span class=\"result-match\">My **dog is** lazy\n</span> <span class=\"result-match\">my **dog is** lazy\n</span> ~~angry dog in my house~~\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?q=*dog%20is*\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--query '*dog is*' \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp keys list <project_id> \\\n--query '*dog is*'\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_xlsx_upload\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Upload an Excel file with several translations\n\n    POST /v2/projects/:project_id/uploads\n\nSuppose you have an excel file where the 'A' column contains the key\nnames, the 'B' column contains English translations, the 'C' column\ncontains German translations and the 'D' column contains comments.\nFurthermore, the actual content starts in the second row, since the\nfirst row is reserved for a header. You can upload this file and import\nall translations at once\\!\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n| Name                                | Type     | Description                                                 |\n| ----------------------------------- | -------- | ----------------------------------------------------------- |\n| `file`                              | `file`   | File to be imported                                         |\n| `file_format`                       | `string` | File format. Auto-detected when possible and not specified. |\n| `locale_mapping[en]`                | `string` | Name of the column containing translations for locale en.   |\n| `locale_mapping[de]`                | `string` | Name of the column containing translations for locale de.   |\n| `format_options[comment_column]`    | `string` | Name of the column containing descriptions for keys.        |\n| `format_options[tag_column]`        | `string` | Name of the column containing tags for keys.                |\n| `format_options[key_name_column]`   | `string` | Name of the column containing the names of the keys.        |\n| `format_options[first_content_row]` | `string` | Name of the first row containing actual translations.       |\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/uploads\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F file=@/path/to/my/file.xlsx \\\n  -F file_format=xlsx \\\n  -F locale_mapping[en]=B \\\n  -F locale_mapping[de]=C \\\n  -F format_options[comment_column]=D \\\n  -F format_options[tag_column]=E \\\n  -F format_options[key_name_column]=A \\\n  -F format_options[first_content_row]=2\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase uploads create \\\n--project_id <project_id> \\\n--file /path/to/my/file.xlsx \\\n--file_format xlsx \\\n--locale_id abcd1234cdef1234abcd1234cdef1234 \\\n--tags awesome-feature,needs-proofreading \\\n--locale_mapping '{\"en\": \"B\", \"de\": \"C\"}' \\\n--format_options '{\"comment_column\": \"D\", \"tag_column\": \"E\", \"key_name_column\": \"A\", \"first_content_row\": \"2\"}' \\\n--access_token <token>\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v1\">\n\n``` language-bash\nphraseapp upload create <project_id> \\\n--file /path/to/my/file.xlsx \\\n--file-format xlsx \\\n--locale-mapping[en] B \\\n--locale-mapping[de] C \\\n--format-options[comment-column] D \\\n--format-options[tag-column] E \\\n--format-options[key-name-column] A \\\n--format-options[first-content-row] 2\n```\n\n</div>\n\n</div>\n\n</div>\n\n</div>\n",
+    "description": "Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform. The API allows you to import locale files, download locale files, tag keys or interact in other ways with the localization data stored in Phrase for your account.\n\n## API Endpoint\n\n```\nhttps://api.phrase.com/v2/\n```\n\nThe API is only accessible via HTTPS, the base URL is <code>https://api.phrase.com/</code>, and the current version is <code>v2</code> which results in the base URL for all requests: <code>https://api.phrase.com/v2/</code>.\n\n## Usage\n\n[curl](http://curl.haxx.se/) is used primarily to send requests to Phrase in the examples. On most you'll find a second variant using the [Phrase API v2 client](https://phrase.com/cli/) that might be more convenient to handle. For further information check its [documentation](https://help.phrase.com/help/phrase-in-your-terminal).\n\n## Use of HTTP Verbs\n\nPhrase API v2 tries to use the appropriate HTTP verb for accessing each endpoint according to REST specification where possible:\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Verb</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\">GET</td>\n        <td class=\"basic-table__cell\">Retrieve one or multiple resources</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">POST</td>\n        <td class=\"basic-table__cell\">Create a resource</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">PUT</td>\n        <td class=\"basic-table__cell\">Update a resource</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">PATCH</td>\n        <td class=\"basic-table__cell\">Update a resource (partially)</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">DELETE</td>\n        <td class=\"basic-table__cell\">Delete a resource</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n\n## Identification via User-Agent\n\nYou must include the User-Agent header with the name of your application or project. It might be a good idea to include some sort of contact information  as well, so that we can get in touch if necessary (e.g. to warn you about Rate-Limiting or badly formed requests). Examples of excellent User-Agent headers:\n\n```\nUser-Agent: Example Mobile App (example@phrase.com)\nUser-Agent: ACME Inc Python Client (http://example.com/contact)\n```\n\nIf you don't send this header, you will receive a response with 400 Bad Request.\n\n\n## Lists\n\nWhen you request a list of resources, the API will typically only return an array of resources including their most important attributes. For a detailed representation of the resource you should request its detailed representation.\n\nLists are usually [paginated](#pagination).\n\n\n## Parameters\n\nMany endpoints support additional parameters, e.g. for pagination. When passing them in a GET request you can send them as HTTP query string parameters:\n\n```\n$ curl -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects?page=2\"\n```\n\nWhen performing a POST, PUT, PATCH or DELETE request, we recommend sending parameters that are not already included in the URL, as JSON body:\n\n```\n$ curl -H 'Content-Type: application/json' -d '{\"name\":\"My new project\"}' -u EMAIL_OR_ACCESS_TOKEN https://api.phrase.com/v2/projects\n```\n\nEncoding parameters as JSON means better support for types (boolean, integer) and usually better readability. Don't forget to set the correct Content-Type for your request.\n\n*The Content-Type header is omitted in some of the following examples for better readbility.*\n\n\n## Errors\n\n\n### Request Errors\n\nIf a request contains invalid JSON or is missing a required parameter (besides resource attributes), the status `400 Bad Request` is returned:\n\n```\n{\n  \"message\": \"JSON could not be parsed\"\n}\n```\n\n\n### Validation Errors\n\nWhen the validation for a resource fails, the status `422 Unprocessable Entity` is returned, along with information on the affected fields:\n\n```\n{\n  \"message\": \"Validation Failed\",\n  \"errors\": [\n    {\n      \"resource\": \"Project\",\n      \"field\": \"name\",\n      \"message\": \"can't be blank\"\n    }\n  ]\n}\n```\n\n\n## Date Format\n\nTimes and dates are returned and expected in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) date format:\n\n```\nYYYY-MM-DDTHH:MM:SSZ\n```\n\nInstead of 'Z' for UTC time zone you can specify your time zone's locale offset using the following notation:\n\n```\nYYYY-MM-DDTHH:MM:SS¬±hh:mm\n```\n\nExample for CET (1 hour behind UTC):\n\n```\n2015-03-31T13:00+01:00\n```\n\nPlease note that in HTTP headers, we will use the appropriate recommended date formats instead of ISO 8601.\n\n\n## Authentication\n\nThere are two different ways to authenticate when performing API requests:\n\n* E-Mail and password\n* Oauth Access Token\n\n\n### E-Mail and password\n\nTo get started easily, you can use HTTP Basic authentication with your email and password:\n\n```\n$ curl -u username:password \"https://api.phrase.com/v2/projects\"\n```\n\n\n### OAuth via Access Tokens\n\nYou can create and manage access tokens in your [profile settings](https://app.phrase.com/settings/oauth_access_tokens) in Translation Center or via the [Authorizations API](#tag--Authorizations).\n\nSimply pass the access token as the username of your request:\n\n```\n$ curl -u ACCESS_TOKEN: \"https://api.phrase.com/v2/projects\"\n```\n\nor send the access token via the `Authorization` header field:\n\n```\n$ curl -H \"Authorization: token ACCESS_TOKEN\" https://api.phrase.com/v2/projects\n```\n\n#### Send via parameter\n\nAs JSONP (and other) requests cannot send HTTP Basic Auth credentials, a special query parameter `access_token` can be used:\n\n```\ncurl \"https://api.phrase.com/v2/projects?access_token=ACCESS_TOKEN\"\n```\n\nYou should only use this transport method if sending the authentication via header or Basic authentication is not possible.\n\n### Two-Factor-Authentication\n\nUsers with Two-Factor-Authentication enabled have to send a valid token along their request with certain authentication methods (such as Basic authentication). The necessity of a Two-Factor-Authentication token is indicated by the `X-PhraseApp-OTP: required; :MFA-type` header in the response. The `:MFA-type`field indicates the source of the token, e.g. `app` (refers to your Authenticator application):\n\n```\nX-PhraseApp-OTP: required; app\n```\n\nTo provide a Two-Factor-Authentication token you can simply send it in the header of the request:\n\n```\ncurl -H \"X-PhraseApp-OTP: MFA-TOKEN\" -u EMAIL https://api.phrase.com/v2/projects\n```\n\nSince Two-Factor-Authentication tokens usually expire quickly, we recommend using an alternative authentication method such as OAuth access tokens.\n\n### Multiple Accounts\n\nSome endpoints require the account ID to be specified if the authenticated user is a member of multiple accounts. You can find the eight-digit account ID inside <a href=\"https://app.phrase.com/\" target=\"_blank\">Translation Center</a> by switching to the desired account and then visiting the account details page. If required, you can specify the account just like a normal parameter within the request.\n\n## Pagination\n\nEndpoints that return a list or resources will usually return paginated results and include 25 items by default. To access further pages, use the `page` parameter:\n\n```\n$ curl -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects?page=2\"\n```\n\nSome endpoints also allow a custom page size by using the `per_page` parameter:\n\n```\n$ curl -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects?page=2&per_page=50\"\n```\n\nUnless specified otherwise in the description of the respective endpoint, `per_page` allows you to specify a page size up to 100 items.\n\n\n## Link-Headers\n\nWe provide you with pagination URLs in the [Link Header field](http://tools.ietf.org/html/rfc5988). Make use of this information to avoid building pagination URLs yourself.\n\n```\nLink: <https://api.phrase.com/v2/projects?page=1>; rel=\"first\", <https://api.phrase.com/v2/projects?page=3>; rel=\"prev\", <https://api.phrase.com/v2/projects?page=5>; rel=\"next\", <https://api.phrase.com/v2/projects?page=9>; rel=\"last\"\n```\n\nPossible `rel` values are:\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Value</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\">next</td>\n        <td class=\"basic-table__cell\">URL of the next page of results</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">last</td>\n        <td class=\"basic-table__cell\">URL of the last page of results</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">first</td>\n        <td class=\"basic-table__cell\">URL of the first page of results</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\">prev</td>\n        <td class=\"basic-table__cell\">URL of the previous page of results</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n## Rate Limiting\n\nAll API endpoints are subject to rate limiting to ensure good performance for all customers. The rate limit is calculated per user:\n\n* 1000 requests per 5 minutes\n* 4 concurrent (parallel) requests\n\nFor your convenience we send information on the current rate limit within the response headers:\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Header</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\" style=\"white-space: nowrap;\"><code>X-Rate-Limit-Limit</code></td>\n        <td class=\"basic-table__cell\">Number of max requests allowed in the current time period</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\" style=\"white-space: nowrap;\"><code>X-Rate-Limit-Remaining</code></td>\n        <td class=\"basic-table__cell\">Number of remaining requests in the current time period</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\" style=\"white-space: nowrap;\"><code>X-Rate-Limit-Reset</code></td>\n        <td class=\"basic-table__cell\">Timestamp of end of current time period as UNIX timestamp</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\nIf you should run into the rate limit, you will receive the HTTP status code `429: Too many requests`.\n\nIf you should need higher rate limits, [contact us](https://phrase.com/contact).\n\n\n## Conditional GET requests / HTTP Caching\n\n<div class=\"alert alert-info\"><p><strong>Note:</strong> Conditional GET requests are currently only supported for <a href=\"#locales_download\">locales#download</a> and <a href=\"#translations_index\">translations#index</a></p></div>\n\nWe will return an ETag or Last-Modified header with most GET requests. When you request a resource we recommend to store this value and submit them on subsequent requests as `If-Modified-Since` and `If-None-Match` headers. If the resource has not changed in the meantime, we will return the status `304 Not Modified` instead of rendering and returning the resource again. In most cases this is less time-consuming and makes your application/integration faster.\n\nPlease note that all conditional requests that return a response with status 304 don't count against your rate limits.\n\n```\n$ curl -i -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download\"\nHTTP/1.1 200 OK\nETag: \"abcd1234abcdefefabcd1234efab1234\"\nLast-Modified: Wed, 28 Jan 2015 15:31:30 UTC\nStatus: 200 OK\n\n$ curl -i -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download\" -H 'If-None-Match: \"abcd1234abcdefefabcd1234efab1234\"'\nHTTP/1.1 304 Not Modified\nETag: \"abcd1234abcdefefabcd1234efab1234\"\nLast-Modified: Wed, 28 Jan 2015 15:31:30 UTC\nStatus: 304 Not Modified\n\n$ curl -i -u EMAIL_OR_ACCESS_TOKEN \"https://api.phrase.com/v2/projects/1234abcd1234abcdefefabcd1234efab/locales/en/download\" -H \"If-Modified-Since: Wed, 28 Jan 2015 15:31:30 UTC\"\nHTTP/1.1 304 Not Modified\nLast-Modified: Wed, 28 Jan 2015 15:31:30 UTC\nStatus: 304 Not Modified\n```\n\n\n## JSONP\n\nThe Phrase API supports [JSONP](http://en.wikipedia.org/wiki/JSONP) for all GET requests in order to deal with cross-domain request issues. Just send a `?callback` parameter along with the request to specify the Javascript function name to be called with the response content:\n\n```\n$ curl \"https://api.phrase.com/v2/projects?callback=myFunction\"\n```\n\nThe response will include the normal output for that endpoint, along with a `meta` section including header data:\n\n```\nmyFunction({\n  {\n    \"meta\": {\n      \"status\": 200,\n      ...\n    },\n    \"data\": [\n      {\n        \"id\": \"1234abcd1234abc1234abcd1234abc\"\n        ...\n      }\n    ]\n  }\n});\n```\n\nTo authenticate a JSONP request, you can send a valid [access token](#overview--oauth-via-access-tokens) as the `?access_token` parameter along the request:\n\n```\n$ curl \"https://api.phrase.com/v2/projects?callback=myFunction&access_token=ACCESS-TOKEN\"\n```\n\n<div class=\"section resource\">\n\n<div id=\"examples\" class=\"resource__section resource__section--head\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n## Usage examples\n\nLearn how to work more efficiently with Phrase API v2 with these\nworkflow-oriented examples.\n\n</div>\n\n</div>\n\n<div id=\"examples_excluded_translations\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find excluded translations with a certain content\n\n    GET /v2/projects/:project_id/translations\n\nList excluded translations for the given project which start with the\nterm `PhraseApp`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>sort</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />\nDefault: key_name</td>\n</tr>\n<tr class=\"even\">\n<td><code>order</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Order direction. Can be one of: asc, desc.<br />\nDefault: asc</td>\n</tr>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to find translations by content (including wildcards).<br />\n<br />\nThe following qualifiers are supported in the query:<br />\n\n<ul>\n<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>tags:XYZ</code> for tags on the translation</li>\n<li><code>unverified:{true|false}</code> for verification status</li>\n<li><code>reviewed:{true|false}</code> for reviewed status</li>\n<li><code>excluded:{true|false}</code> for exclusion status</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/translations?sort=updated_at&order=desc&q=PhraseApp*%20excluded:true\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase translations list \\\n--project_id <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp* excluded:true' \\\n--access_token <token>\n```\n\n</div>\n\n\n</div>\n\n</div>\n\n<div id=\"examples_unverified_translations\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find unverified translations with a certain content\n\n    GET /v2/projects/:project_id/translations\n\nList unverified translations for the given project which start with the\nterm `PhraseApp` and are not verified.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>sort</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />\nDefault: key_name</td>\n</tr>\n<tr class=\"even\">\n<td><code>order</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Order direction. Can be one of: asc, desc.<br />\nDefault: asc</td>\n</tr>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to find translations by content (including wildcards).<br />\n<br />\nThe following qualifiers are supported in the query:<br />\n\n<ul>\n<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>tags:XYZ</code> for tags on the translation</li>\n<li><code>unverified:{true|false}</code> for verification status</li>\n<li><code>reviewed:{true|false}</code> for reviewed status</li>\n<li><code>excluded:{true|false}</code> for exclusion status</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/translations?sort=updated_at&order=desc&q=PhraseApp*%20unverified:true\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase translations list \\\n--project_id <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp* unverified:true' \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_verify_translations\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Verify translations selected by query\n\n    PATCH /v2/projects/:project_id/translations/verify\n\nVerify all translations that are matching the query `my dog`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to find translations by content (including wildcards).<br />\n<br />\nThe following qualifiers are supported in the query:<br />\n\n<ul>\n<li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>tags:XYZ</code> for tags on the translation</li>\n<li><code>unverified:{true|false}</code> for verification status</li>\n<li><code>reviewed:{true|false}</code> for reviewed status</li>\n<li><code>excluded:{true|false}</code> for exclusion status</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n<tr class=\"even\">\n<td><code>sort</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Sort criteria. Can be one of: key_name, created_at, updated_at.<br />\nDefault: key_name</td>\n</tr>\n<tr class=\"odd\">\n<td><code>order</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Order direction. Can be one of: asc, desc.<br />\nDefault: asc</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/translations/verify\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"q\":\"my dog unverified:true\",\"sort\":\"updated_at\",\"order\":\"desc\"}' \\\n  -H 'Content-Type: application/json'\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase translations verify \\\n--project_id <project_id> \\\n--data '{\"query\":\"\"my dog unverified:true\"\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_updated_keys\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find recently updated keys\n\n    GET /v2/projects/:project_id/keys\n\nFind updated keys with with the `updated_at` qualifier like\n`updated_at:>=2013-02-21T00:00:00Z`. This example returns keys that have\nbeen updated on or after 2013-02-21.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>sort</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Sort by field. Can be one of: name, created_at, updated_at.<br />\nDefault: name</td>\n</tr>\n<tr class=\"even\">\n<td><code>order</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Order direction. Can be one of: asc, desc.<br />\nDefault: asc</td>\n</tr>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n<tr class=\"even\">\n<td><code>locale_id</code></td>\n<td></td>\n<td></td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?sort=updated_at&order=desc&q=updated_at:%3E=2013-02-21T00:00:00Z&locale_id=abcd1234abcd1234abcd1234abcd1234\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--sort updated_at \\\n--order desc \\\n--query \"updated_at:>=2013-02-21T00:00:00Z\" \\\n--locale_id abcd1234abcd1234abcd1234abcd1234 \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_tagged_keys\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find keys with a certain tag\n\n    GET /v2/projects/:project_id/keys\n\nKeys with certain tags can be filtered with the qualifier `tags:`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?q=tags:admin\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--query \"tags:admin\" \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_tag\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Add tags to collection of keys\n\n    PATCH /v2/projects/:project_id/keys/tag\n\nAdd the tags `landing-page` and `release-1.2` to all keys that start\nwith `dog` and are translated in the locale\n`abcd1234abcd1234abcd1234abcd1234`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n<tr class=\"even\">\n<td><code>tags</code></td>\n<td><code>string</code></td>\n<td>Tag or comma-separated list of tags to add to the matching collection of keys</td>\n</tr>\n<tr class=\"odd\">\n<td><code>locale_id</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>id</code></td>\n<td>Locale used to determine the translation state of a key when filtering for untranslated or translated keys.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys/tag\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"q\":\"dog* translated:true\",\"tags\":\"landing-page,release-1.2\",\"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n  -H 'Content-Type: application/json'\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys tag \\\n--project_id <project_id> \\\n--data '{\"query\":\"'dog* translated:true'\", \"tags\":\"landing-page,release-1.2\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_untag\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Remove tags from collection of keys\n\n    PATCH /v2/projects/:project_id/keys/untag\n\nRemove the tags `landing-page` and `release-1.2` from all keys that\nstart with `dog` and are translated in the locale\n`abcd1234abcd1234abcd1234abcd1234`.\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n<tr class=\"even\">\n<td><code>tags</code></td>\n<td><code>string</code></td>\n<td>Tag or comma-separated list of tags to remove from the matching collection of keys</td>\n</tr>\n<tr class=\"odd\">\n<td><code>locale_id</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>id</code></td>\n<td>Locale used to determine the translation state of a key when filtering for untranslated or translated keys.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys/untag\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"q\":\"dog* translated:true\",\"tags\":\"landing-page,release-1.2\",\"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n  -H 'Content-Type: application/json'\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys untag \\\n--project_id <project_id> \\\n--data '{\"query\":\"'dog* translated:true'\", \"tags\":\"landing-page,release-1.2\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_broad_match\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find keys with broad text match\n\n    GET /v2/projects/:project_id/keys\n\nExample query `my dog`\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n#### Matches\n\n<span class=\"result-match\">**My dog** is lazy\n</span> <span class=\"result-match\">**my dog** is lazy\n</span> <span class=\"result-match\">angry **dog** in **my** house</span>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?q=my%20dog\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--query \"my dog\" \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_exact_match\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find keys with exact text match\n\n    GET /v2/projects/:project_id/keys\n\nExample query `\"my dog is lazy\"` (note backslashes before any whitespace\ncharacter in the example query)\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n#### Matches\n\n~~My dog is lazy~~\n<span class=\"result-match\">**my dog is lazy**\n</span> ~~angry dog in my house~~\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?q=name:my%5C%20dog%5C%20is%5C%20lazy\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--query \"name:my\\ dog\\ is\\ lazy\" \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_wildcard_match\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Find keys with wildcard character matching\n\n    GET /v2/projects/:project_id/keys\n\nExample query `*dog is*`\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n<table>\n<colgroup>\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n<col style=\"width: 33%\" />\n</colgroup>\n<thead>\n<tr class=\"header\">\n<th>Name</th>\n<th>Type</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td><code>q</code><br />\n<span class=\"small\">optional</span></td>\n<td><code>string</code></td>\n<td>Specify a query to do broad search for keys by name (including wildcards).<br />\n<br />\nThe following qualifiers are also supported in the search term:<br />\n\n<ul>\n<li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace (\"\\\")</li>\n<li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n<li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n<li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n<li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.</td>\n</tr>\n</tbody>\n</table>\n\n</div>\n\n#### Matches\n\n<span class=\"result-match\">My **dog is** lazy\n</span> <span class=\"result-match\">my **dog is** lazy\n</span> ~~angry dog in my house~~\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/keys?q=*dog%20is*\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase keys list \\\n--project_id <project_id> \\\n--query '*dog is*' \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n<div id=\"examples_xlsx_upload\" class=\"resource__section\" data-target=\"page.section\">\n\n<div class=\"resource__copy\">\n\n### Upload an Excel file with several translations\n\n    POST /v2/projects/:project_id/uploads\n\nSuppose you have an excel file where the 'A' column contains the key\nnames, the 'B' column contains English translations, the 'C' column\ncontains German translations and the 'D' column contains comments.\nFurthermore, the actual content starts in the second row, since the\nfirst row is reserved for a header. You can upload this file and import\nall translations at once\\!\n\n#### Parameters\n\n<div class=\"table-responsive\">\n\n| Name                                | Type     | Description                                                 |\n| ----------------------------------- | -------- | ----------------------------------------------------------- |\n| `file`                              | `file`   | File to be imported                                         |\n| `file_format`                       | `string` | File format. Auto-detected when possible and not specified. |\n| `locale_mapping[en]`                | `string` | Name of the column containing translations for locale en.   |\n| `locale_mapping[de]`                | `string` | Name of the column containing translations for locale de.   |\n| `format_options[comment_column]`    | `string` | Name of the column containing descriptions for keys.        |\n| `format_options[tag_column]`        | `string` | Name of the column containing tags for keys.                |\n| `format_options[key_name_column]`   | `string` | Name of the column containing the names of the keys.        |\n| `format_options[first_content_row]` | `string` | Name of the first row containing actual translations.       |\n\n</div>\n\n</div>\n\n<div class=\"resource__code\">\n\n#### Example Request\n\n<div class=\"code-section\" data-target=\"technology-switch.example\" data-technology=\"curl\">\n\n``` language-bash\ncurl \"https://api.phrase.com/v2/projects/:project_id/uploads\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F file=@/path/to/my/file.xlsx \\\n  -F file_format=xlsx \\\n  -F locale_mapping[en]=B \\\n  -F locale_mapping[de]=C \\\n  -F format_options[comment_column]=D \\\n  -F format_options[tag_column]=E \\\n  -F format_options[key_name_column]=A \\\n  -F format_options[first_content_row]=2\n```\n\n</div>\n\n<div class=\"code-section hidden\" data-target=\"technology-switch.example\" data-technology=\"cli v2\">\n\n``` language-bash\nphrase uploads create \\\n--project_id <project_id> \\\n--file /path/to/my/file.xlsx \\\n--file_format xlsx \\\n--locale_id abcd1234cdef1234abcd1234cdef1234 \\\n--tags awesome-feature,needs-proofreading \\\n--locale_mapping '{\"en\": \"B\", \"de\": \"C\"}' \\\n--format_options '{\"comment_column\": \"D\", \"tag_column\": \"E\", \"key_name_column\": \"A\", \"first_content_row\": \"2\"}' \\\n--access_token <token>\n```\n\n</div>\n\n</div>\n\n</div>\n\n</div>\n",
     "contact": {
       "name": "Phrase Support",
       "url": "https://developers.phrase.com/api/",
@@ -3710,10 +3710,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase formats list \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp formats list"
           }
         ]
       }
@@ -3809,10 +3805,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase documents list \\\n--project_id <project_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "UNAVAILABLE"
           }
         ]
       }
@@ -3858,10 +3850,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase documents delete \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "UNAVAILABLE"
           }
         ]
       }
@@ -3934,10 +3922,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase styleguides list \\\n--project_id <project_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp styleguides list <project_id>"
           }
         ]
       },
@@ -3996,10 +3980,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase styleguides create \\\n--project_id <project_id> \\\n--data '{\"title\":\"\"Web application style guide\"\", \"audience\":\"customer-facing\", \"target_audience\":\"teenager\", \"grammatical_person\":\"first_person_singular\", \"vocabulary_type\":\"technical\", \"business\":\"\"We are a travel site that helps customers find the best hotels and flights.\"\", \"company_branding\":\"\"ACME Inc. should never be translated.\"\", \"formatting\":\"\"Never use capital letters\"\", \"glossary_terms\":\"\"Appartement, cabin, loft\"\", \"grammar_consistency\":\"\", \"literal_translation\":\"Neutral\", \"overall_tone\":\"\"Tone should be fun and light\"\", \"samples\":\"\"http://www.myexample.com/my/document/path/to/samples.pdf\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp styleguide create <project_id> \\\n--title \"Web application style guide\" \\\n--audience customer-facing \\\n--target-audience teenager \\\n--grammatical-person first_person_singular \\\n--vocabulary-type technical \\\n--business \"We are a travel site that helps customers find the best hotels and flights.\" \\\n--company-branding \"ACME Inc. should never be translated.\" \\\n--formatting \"Never use capital letters\" \\\n--glossary-terms \"Appartement, cabin, loft\" \\\n--grammar-consistency  \\\n--literal-translation Neutral \\\n--overall-tone \"Tone should be fun and light\" \\\n--samples \"http://www.myexample.com/my/document/path/to/samples.pdf\""
           }
         ],
         "requestBody": {
@@ -4141,10 +4121,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase styleguides show \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp styleguide show <project_id> <id>"
           }
         ]
       },
@@ -4206,10 +4182,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase styleguides update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"title\":\"\"Web application style guide\"\", \"audience\":\"customer-facing\", \"target_audience\":\"teenager\", \"grammatical_person\":\"first_person_singular\", \"vocabulary_type\":\"technical\", \"business\":\"\"We are a travel site that helps customers find the best hotels and flights.\"\", \"company_branding\":\"\"ACME Inc. should never be translated.\"\", \"formatting\":\"\"Never use capital letters\"\", \"glossary_terms\":\"\"Appartement, cabin, loft\"\", \"grammar_consistency\":\"\", \"literal_translation\":\"Neutral\", \"overall_tone\":\"\"Tone should be fun and light\"\", \"samples\":\"\"http://www.myexample.com/my/document/path/to/samples.pdf\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp styleguide update <project_id> <id> \\\n--title \"Web application style guide\" \\\n--audience customer-facing \\\n--target-audience teenager \\\n--grammatical-person first_person_singular \\\n--vocabulary-type technical \\\n--business \"We are a travel site that helps customers find the best hotels and flights.\" \\\n--company-branding \"ACME Inc. should never be translated.\" \\\n--formatting \"Never use capital letters\" \\\n--glossary-terms \"Appartement, cabin, loft\" \\\n--grammar-consistency  \\\n--literal-translation Neutral \\\n--overall-tone \"Tone should be fun and light\" \\\n--samples \"http://www.myexample.com/my/document/path/to/samples.pdf\""
           }
         ],
         "requestBody": {
@@ -4331,10 +4303,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase styleguides delete \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp styleguide delete <project_id> <id>"
           }
         ]
       }
@@ -4413,10 +4381,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase invitations list \\\n--account_id <account_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp invitations list <account_id>"
           }
         ]
       },
@@ -4484,10 +4448,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase invitations create \\\n--account_id <account_id> \\\n--data '{\"email\":\"example@mail.com\", \"role\":\"Developer\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"team_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true, \"review_translations\"=>true}\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp invitation create <account_id> \\\n--email example@mail.com \\\n--role Developer \\\n--project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \\\n--locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \\\n--permissions {\"create_upload\"=>true, \"review_translations\"=>true}"
           }
         ],
         "requestBody": {
@@ -4634,10 +4594,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase invitations show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp invitation show <account_id> <id>"
           }
         ]
       },
@@ -4705,10 +4661,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase invitations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"\"Invitiation role\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"team_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true}\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp invitation update <account_id> <id> \\\n--role \"Invitiation role\" \\\n--project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \\\n--locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \\\n--permissions {\"create_upload\"=>true}"
           }
         ],
         "requestBody": {
@@ -4829,10 +4781,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase invitations delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp invitation delete <account_id> <id>"
           }
         ]
       }
@@ -4902,10 +4850,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase invitations resend \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp invitation resend <account_id> <id>"
           }
         ]
       }
@@ -5088,10 +5032,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshot_markers list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot_markers list <project_id> <id>"
           }
         ]
       }
@@ -5167,10 +5107,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshot_markers show \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot_marker show <project_id> <screenshot_id> <id>"
           }
         ]
       }
@@ -5234,10 +5170,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshot_markers create \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\":\"\"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot_marker create <project_id> <screenshot_id> \\\n--key-id abcd1234abcd1234abcd1234abcd1234 \\\n--presentation \"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\""
           }
         ],
         "requestBody": {
@@ -5327,10 +5259,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshot_markers update \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\":\"\"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot_marker update <project_id> <screenshot_id> \\\n--key-id abcd1234abcd1234abcd1234abcd1234 \\\n--presentation \"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\""
           }
         ],
         "requestBody": {
@@ -5411,10 +5339,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshot_markers delete \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot_marker delete <project_id> <screenshot_id>"
           }
         ]
       }
@@ -5604,10 +5528,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase locales list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp locales list <project_id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -5666,10 +5586,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase locales create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"code\":\"de-DE\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp locale create <project_id> \\\n--branch my-feature-branch \\\n--name de \\\n--code de-DE \\\n--source-locale-id abcd1234abcd1234abcd1234abcd1234"
           }
         ],
         "requestBody": {
@@ -5805,10 +5721,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase locales show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp locale show <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -5870,10 +5782,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase locales update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"code\":\"de-DE\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp locale update <project_id> <id> \\\n--branch my-feature-branch \\\n--name de \\\n--code de-DE \\\n--source-locale-id abcd1234abcd1234abcd1234abcd1234"
           }
         ],
         "requestBody": {
@@ -5989,10 +5897,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase locales delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp locale delete <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -6205,10 +6109,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase locales download \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--file_format yml \\\n--tags feature1,feature2 \\\n--tag feature \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp locale download <project_id> <id> \\\n--branch my-feature-branch \\\n--file-format yml \\\n--tags feature1,feature2 \\\n--tag feature"
           }
         ]
       }
@@ -6281,10 +6181,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase distributions list \\\n--account_id <account_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp distributions list <account_id>"
           }
         ]
       },
@@ -6343,10 +6239,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase distributions create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My Android Distribution\"\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\":\"\"android,ios\"\", \"locale_ids\":[\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"], \"format_options\":\"\"{xml:{enclose_in_cdata:'1'}}\"\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp distribution create <account_id> \\\n--name \"My Android Distribution\" \\\n--project-id abcd1234abcd1234abcd1234 \\\n--platforms \"android,ios\" \\\n--format-options \"{xml:{enclose_in_cdata:'1'}}\" \\\n--fallback-to-non-regional-locale true \\\n--fallback-to-default-locale true \\\n--use-last-reviewed-version true"
           }
         ],
         "requestBody": {
@@ -6478,10 +6370,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase distributions show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp distribution show <account_id> <id>"
           }
         ]
       },
@@ -6543,10 +6431,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase distributions update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"My Android Distribution\"\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\":\"\"android,ios\"\", \"locale_ids\":\"\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"\", \"format_options\":\"\"{xml:{enclose_in_cdata:'1'}}\"\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp distribution update <account_id> <id> \\\n--name \"My Android Distribution\" \\\n--project-id abcd1234abcd1234abcd1234 \\\n--platforms \"android,ios\" \\\n--format-options \"{xml:{enclose_in_cdata:'1'}}\" \\\n--fallback-to-non-regional-locale true \\\n--fallback-to-default-locale true \\\n--use-last-reviewed-version true"
           }
         ],
         "requestBody": {
@@ -6658,10 +6542,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase distributions delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp distribution delete <account_id> <id>"
           }
         ]
       }
@@ -6737,10 +6617,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase releases list \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp releases list <account_id> <distribution_id>"
           }
         ]
       },
@@ -6802,10 +6678,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase releases create \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--data '{\"description\":\"\"My first Release\"\", \"platforms\":\"\"android,ios\"\", \"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp release create <account_id> <distribution_id> \\\n--description \"My first Release\" \\\n--platforms \"android,ios\" \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -6917,10 +6789,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase releases show \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp release show <account_id> <distribution_id> <id>"
           }
         ]
       },
@@ -6985,10 +6853,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase releases update \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--data '{\"description\":\"\"My first Release\"\", \"platforms\":\"\"android,ios\"\", \"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp release update <account_id> <distribution_id> <id> \\\n--description \"My first Release\" \\\n--platforms \"android,ios\" \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -7069,10 +6933,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase releases delete \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp release delete <account_id> <distribution_id> <id>"
           }
         ]
       }
@@ -7139,10 +6999,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase releases publish \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp release publish <account_id> <distribution_id> <id>"
           }
         ]
       }
@@ -7251,10 +7107,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--owned_by abcd1234cdef1234abcd1234cdef1234 \\\n--assigned_to abcd1234cdef1234abcd1234cdef1234 \\\n--state completed \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp jobs list <project_id> \\\n--branch my-feature-branch \\\n--owned-by abcd1234cdef1234abcd1234cdef1234 \\\n--assigned-to abcd1234cdef1234abcd1234cdef1234 \\\n--state completed"
           }
         ]
       },
@@ -7313,10 +7165,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\", \"tags\":\"\"myUploadTag\"\", \"translation_key_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job create <project_id> \\\n--branch my-feature-branch \\\n--name de \\\n--briefing de-DE \\\n--due-date 2017-08-15 \\\n--tags \"myUploadTag\" \\\n--translation-key-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -7552,10 +7400,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job show <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -7617,10 +7461,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job update <project_id> <id> \\\n--branch my-feature-branch \\\n--name de \\\n--briefing de-DE \\\n--due-date 2017-08-15"
           }
         ],
         "requestBody": {
@@ -7712,10 +7552,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job delete <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -7779,10 +7615,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs start \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job start <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -7864,10 +7696,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs complete \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job complete <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -7949,10 +7777,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs reopen \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job reopen <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -8034,10 +7858,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs keys \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"translation_key_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job keys create <project_id> <id> \\\n--branch my-feature-branch \\\n--translation-key-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -8132,10 +7952,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase jobs keys \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--translation_key_ids \"abcd1234cdef1234abcd1234cdef1234\" \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job keys delete <project_id> <id> \\\n--branch my-feature-branch \\\n--translation-key-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ]
       }
@@ -8675,10 +8491,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossaries list \\\n--account_id <account_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossaries list <account_id>"
           }
         ]
       },
@@ -8737,10 +8549,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossaries create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My glossary\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":\"\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary create <account_id> \\\n--name \"My glossary\" \\\n--project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \\\n--space-ids \"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\""
           }
         ],
         "requestBody": {
@@ -8838,10 +8646,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossaries show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary show <account_id> <id>"
           }
         ]
       },
@@ -8903,10 +8707,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossaries update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"My glossary\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":\"\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary update <account_id> <id> \\\n--name \"My glossary\" \\\n--project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \\\n--space-ids \"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\""
           }
         ],
         "requestBody": {
@@ -8984,10 +8784,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossaries delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary delete <account_id> <id>"
           }
         ]
       }
@@ -9057,10 +8853,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase authorizations list"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp authorizations list"
           }
         ]
       },
@@ -9116,10 +8908,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase authorizations create \\\n--data '{\"note\":\"\"My Deploy Script\"\", \"scopes\":\"\"read,write\"\", \"expires_at\":\"\"2015-03-30T09:52:53Z\"\"}'"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp authorization create \\\n--note \"My Deploy Script\" \\\n--scopes \"read,write\" \\\n--expires-at \"2015-03-30T09:52:53Z\""
           }
         ],
         "requestBody": {
@@ -9215,10 +9003,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase authorizations show \\\n--id <id>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp authorization show <id>"
           }
         ]
       },
@@ -9277,10 +9061,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase authorizations update \\\n--id <id> \\\n--data '{\"note\":\"\"My Deploy Script\"\", \"scopes\":\"\"read,write\"\", \"expires_at\":\"\"2015-03-30T09:52:53Z\"\"}'"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp authorization update <id> \\\n--note \"My Deploy Script\" \\\n--scopes \"read,write\" \\\n--expires-at \"2015-03-30T09:52:53Z\""
           }
         ],
         "requestBody": {
@@ -9356,10 +9136,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase authorizations delete \\\n--id <id>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp authorization delete <id>"
           }
         ]
       }
@@ -9432,10 +9208,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase bitbucket_sync list \\\n--account_id abcd1234 \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp bitbucket_syncs list \\\n--account-id abcd1234"
           }
         ]
       }
@@ -9496,10 +9268,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase bitbucket_sync export \\\n--id <id> \\\n--data '{\"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp bitbucket_sync export <id> \\\n--account-id abcd1234"
           }
         ],
         "requestBody": {
@@ -9571,10 +9339,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase bitbucket_sync import \\\n--id <id> \\\n--data '{\"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp bitbucket_sync import <id> \\\n--account-id abcd1234"
           }
         ],
         "requestBody": {
@@ -9677,10 +9441,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase comments list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp comments list <project_id> <key_id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -9742,10 +9502,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase comments create \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"message\":\"\"Some message...\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp comment create <project_id> <key_id> \\\n--branch my-feature-branch \\\n--message \"Some message...\""
           }
         ],
         "requestBody": {
@@ -9844,10 +9600,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase comments show \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp comment show <project_id> <key_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -9912,10 +9664,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase comments update \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"message\":\"\"Some message...\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp comment update <project_id> <key_id> <id> \\\n--branch my-feature-branch \\\n--message \"Some message...\""
           }
         ],
         "requestBody": {
@@ -9994,10 +9742,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase comments delete \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp comment delete <project_id> <key_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -10046,10 +9790,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase comments mark \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp comment mark read <project_id> <key_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -10123,10 +9863,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase comments mark \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp comment mark unread <project_id> <key_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -10182,10 +9918,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase comments mark \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp comment mark check <project_id> <key_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -10258,10 +9990,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase webhooks list \\\n--project_id <project_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp webhooks list <project_id>"
           }
         ]
       },
@@ -10320,10 +10048,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase webhooks create \\\n--project_id <project_id> \\\n--data '{\"callback_url\":\"\"http://example.com/hooks/phraseapp-notifications\"\", \"description\":\"\"My webhook for chat notifications\"\", \"events\":\"\"locales:create,translations:update\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp webhook create <project_id> \\\n--callback-url \"http://example.com/hooks/phraseapp-notifications\" \\\n--description \"My webhook for chat notifications\" \\\n--events \"locales:create,translations:update\""
           }
         ],
         "requestBody": {
@@ -10430,10 +10154,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase webhooks show \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp webhook show <project_id> <id>"
           }
         ]
       },
@@ -10495,10 +10215,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase webhooks update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"callback_url\":\"\"http://example.com/hooks/phraseapp-notifications\"\", \"description\":\"\"My webhook for chat notifications\"\", \"events\":\"\"locales:create,translations:update\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp webhook update <project_id> <id> \\\n--callback-url \"http://example.com/hooks/phraseapp-notifications\" \\\n--description \"My webhook for chat notifications\" \\\n--events \"locales:create,translations:update\""
           }
         ],
         "requestBody": {
@@ -10585,10 +10301,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase webhooks delete \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp webhook delete <project_id> <id>"
           }
         ]
       }
@@ -10645,10 +10357,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase webhooks test \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp webhook test <project_id> <id>"
           }
         ]
       }
@@ -10709,10 +10417,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase uploads create \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--file /path/to/my/file.json \\\n--file_format json \\\n--locale_id abcd1234cdef1234abcd1234cdef1234 \\\n--tags awesome-feature,needs-proofreading \\\n--locale_mapping '{\"en\": \"2\"}' \\\n--format_options '{\"foo\": \"bar\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp upload create <project_id> \\\n--branch my-feature-branch \\\n--file /path/to/my/file.json \\\n--file-format json \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--tags awesome-feature,needs-proofreading \\\n--locale-mapping \"{\"en\": \"2\"}\" \\\n--format-options \"{\"foo\": \"bar\"}\""
           }
         ],
         "requestBody": {
@@ -10884,10 +10588,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase uploads list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp uploads list <project_id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -10960,10 +10660,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase uploads show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp upload show <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -11016,10 +10712,6 @@
           },
           {
             "lang": "CLI v2",
-            "source": "UNAVAILABLE"
-          },
-          {
-            "lang": "CLI v1",
             "source": "UNAVAILABLE"
           }
         ],
@@ -11091,10 +10783,6 @@
           },
           {
             "lang": "CLI v2",
-            "source": "UNAVAILABLE"
-          },
-          {
-            "lang": "CLI v1",
             "source": "UNAVAILABLE"
           }
         ],
@@ -11186,10 +10874,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase gitlab_syncs list \\\n--account_id abcd1234 \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp gitlab_sync list \\\n--account-id abcd1234"
           }
         ]
       }
@@ -11259,10 +10943,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase gitlab_syncs show \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp gitlab_sync show <id> \\\n--account-id abcd1234"
           }
         ]
       },
@@ -11357,10 +11037,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase gitlab_syncs update \\\n--id <id> \\\n--data '{\"account_id\":\"abcd1234\", \"phrase_project_code\":\"3456abcd\", \"gitlab_project_id\":\"12345\", \"gitlab_branch_name\":\"feature-development\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp gitlab_sync update <id> \\\n--account-id abcd1234 \\\n--phrase-project-code 3456abcd \\\n--gitlab-project-id 12345 \\\n--gitlab-branch-name feature-development"
           }
         ]
       },
@@ -11410,10 +11086,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase gitlab_syncs delete \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp gitlab_sync delete <id> \\\n--account-id abcd1234"
           }
         ]
       }
@@ -11480,10 +11152,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase gitlab_syncs import \\\n--gitlab_sync_id <gitlab_sync_id> \\\n--data '{\"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp gitlab_sync import <gitlab_sync_id> \\\n--account-id abcd1234"
           }
         ],
         "requestBody": {
@@ -11562,10 +11230,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase gitlab_syncs export \\\n--gitlab_sync_id <gitlab_sync_id> \\\n--data '{\"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp gitlab_sync export <gitlab_sync_id> \\\n--account-id abcd1234"
           }
         ],
         "requestBody": {
@@ -11665,10 +11329,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase gitlab_syncs history \\\n--gitlab_sync_id <gitlab_sync_id> \\\n--account_id abcd1234 \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp gitlab_sync history <gitlab_sync_id> \\\n--account-id abcd1234"
           }
         ]
       }
@@ -11753,10 +11413,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase versions list \\\n--project_id <project_id> \\\n--translation_id <translation_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp versions list <project_id> <translation_id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -11832,10 +11488,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase versions show \\\n--project_id <project_id> \\\n--translation_id <translation_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp version show <project_id> <translation_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -11902,10 +11554,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossary_term_translations create \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--term_id <term_id> \\\n--data '{\"locale_code\":\"en-US\", \"content\":\"\"My translated term\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary_term_translation create <account_id> <glossary_id> <term_id> \\\n--locale-code en-US \\\n--content \"My translated term\""
           }
         ],
         "requestBody": {
@@ -11998,10 +11646,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossary_term_translations update \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--term_id <term_id> \\\n--id <id> \\\n--data '{\"locale_code\":\"en-US\", \"content\":\"\"My translated term\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary_term_translation update <account_id> <glossary_id> <term_id> <id> \\\n--locale-code en-US \\\n--content \"My translated term\""
           }
         ],
         "requestBody": {
@@ -12074,10 +11718,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossary_term_translations delete \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--term_id <term_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary_term_translation delete <account_id> <glossary_id> <term_id> <id>"
           }
         ]
       }
@@ -12171,10 +11811,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase projects list \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp projects list"
           }
         ]
       },
@@ -12230,10 +11866,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase projects create \\\n--data '{\"name\":\"\"My Android Project\"\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\", \"project_image\":\"/path/to/my/project-screenshot.png\", \"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp project create \\\n--name \"My Android Project\" \\\n--main-format yml \\\n--shares-translation-memory true \\\n--project-image /path/to/my/project-screenshot.png \\\n--account-id abcd1234"
           }
         ],
         "requestBody": {
@@ -12428,10 +12060,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase projects show \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp project show <id>"
           }
         ]
       },
@@ -12490,10 +12118,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase projects update \\\n--id <id> \\\n--data '{\"name\":\"\"My Android Project\"\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\", \"project_image\":\"/path/to/my/project-screenshot.png\", \"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp project update <id> \\\n--name \"My Android Project\" \\\n--main-format yml \\\n--shares-translation-memory true \\\n--project-image /path/to/my/project-screenshot.png \\\n--account-id abcd1234"
           }
         ],
         "requestBody": {
@@ -12663,10 +12287,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase projects delete \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp project delete <id>"
           }
         ]
       }
@@ -12751,10 +12371,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_locales list \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_locales list <project_id> <job_id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -12816,10 +12432,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_locales create \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_locales create <project_id> <job_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -12938,10 +12550,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_locales show \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_locale show <project_id> <job_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -13008,10 +12616,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_locales update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_locale update <project_id> <job_id> <id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--user-ids \"abcd1234cdef1234abcd1234cdef1234\""
           }
         ],
         "requestBody": {
@@ -13110,10 +12714,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_locales delete \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_locale delete <project_id> <job_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -13180,10 +12780,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_locales complete \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_locale complete <project_id> <job_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -13352,10 +12948,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase job_locales reopen \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp job_locale reopen <project_id> <job_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -14284,10 +13876,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase branches list \\\n--project_id <project_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp branches list <project_id>"
           }
         ]
       },
@@ -14346,10 +13934,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase branches create \\\n--project_id <project_id> \\\n--data '{\"name\":\"my-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp branch create <project_id> \\\n--name my-branch"
           }
         ],
         "requestBody": {
@@ -14431,10 +14015,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase branches show \\\n--project_id <project_id> \\\n--name <name> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp branch show <project_id> <name>"
           }
         ]
       },
@@ -14496,10 +14076,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase branches update \\\n--project_id <project_id> \\\n--name <name> \\\n--data '{\"name\":\"my-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp branch update <project_id> <name> \\\n--name my-branch"
           }
         ],
         "requestBody": {
@@ -14561,10 +14137,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase branches delete \\\n--project_id <project_id> \\\n--name <name> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp branch delete <project_id> <name>"
           }
         ]
       }
@@ -14621,10 +14193,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase branches merge \\\n--project_id <project_id> \\\n--name <name> \\\n--data '{\"strategy\":\"use_master\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp branch merge <project_id> <name> \\\n--strategy use_master"
           }
         ],
         "requestBody": {
@@ -14708,10 +14276,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase branches compare \\\n--project_id <project_id> \\\n--name <name> \\\n--name my-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp branch compare <project_id> <name> \\\n--name my-branch"
           }
         ]
       }
@@ -14781,10 +14345,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase accounts list \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp accounts list"
           }
         ]
       }
@@ -14845,10 +14405,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase accounts show \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp account show <id>"
           }
         ]
       }
@@ -14906,10 +14462,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase shows user \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp show user"
           }
         ]
       }
@@ -14988,10 +14540,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase members list \\\n--account_id <account_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp members list <account_id>"
           }
         ]
       }
@@ -15061,10 +14609,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase members show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp member show <account_id> <id>"
           }
         ]
       },
@@ -15132,10 +14676,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase members update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"Developer\", \"strategy\":\"set\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"default_locale_codes\":[\"de\",\"en\"], \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"permissions\":\"{\"create_upload\"=>true, \"review_translations\"=>true}\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp member update <account_id> <id> \\\n--role Developer \\\n--project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \\\n--locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \\\n--permissions {\"create_upload\"=>true, \"review_translations\"=>true}"
           }
         ],
         "requestBody": {
@@ -15251,10 +14791,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase members delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp member delete <account_id> <id>"
           }
         ]
       }
@@ -15443,10 +14979,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshots list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshots list <project_id>"
           }
         ]
       },
@@ -15505,10 +15037,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshots create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"\"A screenshot name\"\", \"description\":\"\"A screenshot description\"\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot create <project_id> \\\n--name \"A screenshot name\" \\\n--description \"A screenshot description\" \\\n--filename /path/to/my/screenshot.png"
           }
         ],
         "requestBody": {
@@ -15615,10 +15143,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshots show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot show <project_id> <id>"
           }
         ]
       },
@@ -15680,10 +15204,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshots update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"\"A screenshot name\"\", \"description\":\"\"A screenshot description\"\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot update <project_id> <id> \\\n--name \"A screenshot name\" \\\n--description \"A screenshot description\" \\\n--filename /path/to/my/screenshot.png"
           }
         ],
         "requestBody": {
@@ -15770,10 +15290,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase screenshots delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp screenshot delete <project_id> <id>"
           }
         ]
       }
@@ -15849,10 +15365,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossary_terms list \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary_terms list <account_id> <glossary_id>"
           }
         ]
       },
@@ -15914,10 +15426,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossary_terms create \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--data '{\"term\":\"MyCompany\", \"description\":\"\"Use this when refering to our company\"\", \"translatable\":\"true\", \"case_sensitive\":\"true\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary_term create <account_id> <glossary_id> \\\n--term MyCompany \\\n--description \"Use this when refering to our company\" \\\n--translatable true \\\n--case-sensitive true"
           }
         ],
         "requestBody": {
@@ -16017,10 +15525,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossary_terms show \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary_term show <account_id> <glossary_id> <id>"
           }
         ]
       },
@@ -16085,10 +15589,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossary_terms update \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--id <id> \\\n--data '{\"term\":\"MyCompany\", \"description\":\"\"Use this when refering to our company\"\", \"translatable\":\"true\", \"case_sensitive\":\"true\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary_term update <account_id> <glossary_id> <id> \\\n--term MyCompany \\\n--description \"Use this when refering to our company\" \\\n--translatable true \\\n--case-sensitive true"
           }
         ],
         "requestBody": {
@@ -16168,10 +15668,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase glossary_terms delete \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp glossary_term delete <account_id> <glossary_id> <id>"
           }
         ]
       }
@@ -16253,10 +15749,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase tags list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp tags list <project_id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -16315,10 +15807,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase tags create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"my-feature\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp tag create <project_id> \\\n--branch my-feature-branch \\\n--name my-feature"
           }
         ],
         "requestBody": {
@@ -16414,10 +15902,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase tags show \\\n--project_id <project_id> \\\n--name <name> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp tag show <project_id> <name> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -16470,10 +15954,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase tags delete \\\n--project_id <project_id> \\\n--name <name> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp tag delete <project_id> <name> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -16555,10 +16035,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase blacklisted_keys list \\\n--project_id <project_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp blacklisted_keys list <project_id>"
           }
         ]
       },
@@ -16617,10 +16093,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase blacklisted_keys create \\\n--project_id <project_id> \\\n--data '{\"name\":\"'date.formats.*'\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp blacklisted_key create <project_id> \\\n--name 'date.formats.*'"
           }
         ],
         "requestBody": {
@@ -16702,10 +16174,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase blacklisted_keys show \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp blacklisted_key show <project_id> <id>"
           }
         ]
       },
@@ -16767,10 +16235,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase blacklisted_keys update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"name\":\"'date.formats.*'\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp blacklisted_key update <project_id> <id> \\\n--name 'date.formats.*'"
           }
         ],
         "requestBody": {
@@ -16832,10 +16296,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase blacklisted_keys delete \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp blacklisted_key delete <project_id> <id>"
           }
         ]
       }
@@ -16953,10 +16413,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'mykey* translated:true' \\\n--locale_id abcd1234abcd1234abcd1234abcd1234 \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp keys list <project_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'mykey* translated:true' \\\n--locale-id abcd1234abcd1234abcd1234abcd1234"
           }
         ]
       },
@@ -17015,10 +16471,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\":\"\"Some description worth knowing...\"\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp key create <project_id> \\\n--branch my-feature-branch \\\n--name home.index.headline \\\n--description \"Some description worth knowing...\" \\\n--name-plural home.index.headlines \\\n--data-type number \\\n--tags awesome-feature,needs-proofreading \\\n--max-characters-allowed 140 \\\n--screenshot /path/to/my/screenshot.png"
           }
         ],
         "requestBody": {
@@ -17195,10 +16647,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys delete-collection \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--query 'mykey* translated:true' \\\n--locale_id abcd1234abcd1234abcd1234abcd1234 \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp keys delete <project_id> \\\n--branch my-feature-branch \\\n--query 'mykey* translated:true' \\\n--locale-id abcd1234abcd1234abcd1234abcd1234"
           }
         ]
       }
@@ -17268,10 +16716,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys search \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"sort\":\"updated_at\", \"order\":\"desc\", \"query\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp keys search <project_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'mykey* translated:true' \\\n--locale-id abcd1234abcd1234abcd1234abcd1234"
           }
         ],
         "requestBody": {
@@ -17382,10 +16826,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp key show <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -17447,10 +16887,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\":\"\"Some description worth knowing...\"\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp key update <project_id> <id> \\\n--branch my-feature-branch \\\n--name home.index.headline \\\n--description \"Some description worth knowing...\" \\\n--name-plural home.index.headlines \\\n--data-type number \\\n--tags awesome-feature,needs-proofreading \\\n--max-characters-allowed 140 \\\n--screenshot /path/to/my/screenshot.png"
           }
         ],
         "requestBody": {
@@ -17594,10 +17030,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp key delete <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -17658,10 +17090,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys tag \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp keys tag <project_id> \\\n--branch my-feature-branch \\\n--query 'mykey* translated:true' \\\n--locale-id abcd1234abcd1234abcd1234abcd1234 \\\n--tags landing-page,release-1.2"
           }
         ],
         "requestBody": {
@@ -17755,10 +17183,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase keys untag \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp keys untag <project_id> \\\n--branch my-feature-branch \\\n--query 'mykey* translated:true' \\\n--locale-id abcd1234abcd1234abcd1234abcd1234 \\\n--tags landing-page,release-1.2"
           }
         ],
         "requestBody": {
@@ -18059,10 +17483,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase orders list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp orders list <project_id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -18121,10 +17541,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase orders create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"Welcome message translations\", \"lsp\":\"textmaster\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"target_locale_ids\":\"\"1234abcd1234abcd1234abcd1234abcd,abcd1234abcd1234abcd1234abcd1234\"\", \"translation_type\":\"premium\", \"tag\":\"my-awesome-feature\", \"message\":\"\"Please make everything sound really nice :)\"\", \"styleguide_id\":\"1234abcd1234abcd1234abcd1234abcd\", \"category\":\"C021\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp order create <project_id> \\\n--branch my-feature-branch \\\n--lsp textmaster \\\n--source-locale-id abcd1234abcd1234abcd1234abcd1234 \\\n--target-locale-ids \"1234abcd1234abcd1234abcd1234abcd,abcd1234abcd1234abcd1234abcd1234\" \\\n--translation-type premium \\\n--tag my-awesome-feature \\\n--message \"Please make everything sound really nice :)\" \\\n--styleguide-id 1234abcd1234abcd1234abcd1234abcd \\\n--category C021"
           }
         ],
         "requestBody": {
@@ -18291,10 +17707,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase orders show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp order show <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -18347,10 +17759,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase orders delete \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp order delete <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       }
@@ -18414,10 +17822,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase orders confirm \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp order confirm <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -18508,10 +17912,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase spaces list \\\n--account_id <account_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp spaces list <account_id>"
           }
         ]
       },
@@ -18570,10 +17970,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase spaces create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My Android Projects\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp space create <account_id> \\\n--name \"My Android Projects\""
           }
         ],
         "requestBody": {
@@ -18655,10 +18051,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase spaces show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp space show <account_id> <id>"
           }
         ]
       },
@@ -18720,10 +18112,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase spaces update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"My Android Projects\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp space update <account_id> <id> \\\n--name \"My Android Projects\""
           }
         ],
         "requestBody": {
@@ -18785,10 +18173,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase spaces delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp space delete <account_id> <id>"
           }
         ]
       }
@@ -18864,10 +18248,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase spaces projects_list \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp spaces projects list <account_id> <space_id>"
           }
         ]
       },
@@ -18922,10 +18302,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase spaces projects_create \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp spaces projects create <account_id> <space_id> \\\n--id a4b3c2d1"
           }
         ],
         "requestBody": {
@@ -18992,10 +18368,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase spaces projects_delete \\\n--account_id <account_id> \\\n--space_id <space_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp spaces projects delete <account_id> <space_id> <id>"
           }
         ]
       }
@@ -19068,10 +18440,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams list \\\n--account_id <account_id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       },
@@ -19130,10 +18498,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"German Translators\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The Teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -19215,10 +18579,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       },
@@ -19280,10 +18640,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"German Translators\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -19345,10 +18701,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       }
@@ -19405,10 +18757,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams projects_create \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -19475,10 +18823,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams projects_delete \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       }
@@ -19535,10 +18879,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams spaces_create \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -19605,10 +18945,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams spaces_delete \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       }
@@ -19665,10 +19001,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams users_create \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--data '{\"id\":\"a4b3c2d1\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ],
         "requestBody": {
@@ -19735,10 +19067,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase teams users_delete \\\n--account_id <account_id> \\\n--team_id <team_id> \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "The teams feature is not supported by our CLI v1"
           }
         ]
       }
@@ -19847,10 +19175,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations list <project_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'"
           }
         ]
       },
@@ -19909,10 +19233,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"key_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"content\":\"\"My translation\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translation create <project_id> \\\n--branch my-feature-branch \\\n--locale-id abcd1234cdef1234abcd1234cdef1234 \\\n--key-id abcd1234cdef1234abcd1234cdef1234 \\\n--content \"My translation\""
           }
         ],
         "requestBody": {
@@ -20077,10 +19397,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations by_locale \\\n--project_id <project_id> \\\n--locale_id <locale_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations by_locale <project_id> <locale_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'"
           }
         ]
       }
@@ -20192,10 +19508,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations by_key \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations by_key <project_id> <key_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'"
           }
         ]
       }
@@ -20265,10 +19577,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations search \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"sort\":\"updated_at\", \"order\":\"desc\", \"query\":\"'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations search <project_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'"
           }
         ],
         "requestBody": {
@@ -20374,10 +19682,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations show \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translation show <project_id> <id> \\\n--branch my-feature-branch"
           }
         ]
       },
@@ -20439,10 +19743,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"content\":\"\"My translation\"\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translation update <project_id> <id> \\\n--branch my-feature-branch \\\n--content \"My translation\""
           }
         ],
         "requestBody": {
@@ -20549,10 +19849,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations verify \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translation verify <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -20634,10 +19930,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations unverify \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translation unverify <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -20719,10 +20011,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations review \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translation review <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -20804,10 +20092,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations exclude \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translation exclude <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -20889,10 +20173,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations include \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translation include <project_id> <id> \\\n--branch my-feature-branch"
           }
         ],
         "requestBody": {
@@ -20971,10 +20251,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations verify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20unverified:true%20tags:feature,center'\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations verify <project_id> \\\n--branch my-feature-branch \\\n--query 'PhraseApp*%20unverified:true%20tags:feature,center' \\"
           }
         ],
         "requestBody": {
@@ -21063,10 +20339,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations unverify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations unverify <project_id> \\\n--branch my-feature-branch \\\n--query 'PhraseApp*%20verified:true%20tags:feature,center' \\\n--sort updated_at \\\n--order desc"
           }
         ],
         "requestBody": {
@@ -21160,10 +20432,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations review-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%reviewed:false%20tags:feature,center'\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations review <project_id> \\\n--branch my-feature-branch \\\n--query 'PhraseApp*%reviewed:false%20tags:feature,center'"
           }
         ],
         "requestBody": {
@@ -21247,10 +20515,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations exclude-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations exclude <project_id> \\\n--branch my-feature-branch \\\n--query 'PhraseApp*%20verified:true%20tags:feature,center' \\\n--sort updated_at \\\n--order desc"
           }
         ],
         "requestBody": {
@@ -21344,10 +20608,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase translations include-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp translations include <project_id> \\\n--branch my-feature-branch \\\n--query 'PhraseApp*%20verified:true%20tags:feature,center' \\\n--sort updated_at \\\n--order desc"
           }
         ],
         "requestBody": {
@@ -21450,10 +20710,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase notifications list \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp notifications list"
           }
         ]
       }
@@ -21514,10 +20770,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase notifications mark_all_as_read \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp notifications mark_all_as_read"
           }
         ]
       }
@@ -21716,10 +20968,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase notifications show \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp notifications show <id>"
           }
         ]
       }
@@ -21789,10 +21037,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase notification_groups list \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp notification_groups list"
           }
         ]
       }
@@ -21853,10 +21097,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase notification_groups mark_all_as_read \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp notification_groups mark_all_as_read"
           }
         ]
       }
@@ -22009,10 +21249,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase notification_groups mark_as_read \\\n--id <id> \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp notification_groups mark_as_read <id>"
           }
         ]
       }
@@ -22199,10 +21435,6 @@
           {
             "lang": "CLI v2",
             "source": "phrase search in_account \\\n--account_id <account_id> \\\n--data '{\"query\":\"keyword\",\"locale_code\": \"de\",\"page\": 1,\"per_page\": 25}' \\\n--access_token <token>"
-          },
-          {
-            "lang": "CLI v1",
-            "source": "phraseapp search in_account <account_id> \\\n--query <keyword> \\\n--locale_code <locale code> \\\n--page <page> \\\n--per_page <per_page> \\"
           }
         ],
         "requestBody": {
