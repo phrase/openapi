@@ -69,6 +69,14 @@ requestBody:
             example:
             - android
             - ios
+          locale_ids:
+            description: List of locale ids that will be included in the release. If empty, distribution locales will be used
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
+            - fff565db236400772368235db2c6117e
           branch:
             description: Branch used for release
             type: string

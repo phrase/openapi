@@ -1,5 +1,8 @@
 ---
 
+"/icu/skeleton":
+  post:
+    "$ref": "./paths/icu/skeleton.yaml"
 "/formats":
   get:
     "$ref": "./paths/formats/index.yaml"
@@ -280,6 +283,9 @@
 "/projects/{project_id}/jobs/{job_id}/locales/{id}/complete":
   post:
     "$ref": "./paths/job_locales/complete.yaml"
+"/projects/{project_id}/jobs/{job_id}/locales/{id}/complete_review":
+  post:
+    "$ref": "./paths/job_locales/complete_review.yaml"
 "/projects/{project_id}/jobs/{job_id}/locales/{id}/reopen":
   post:
     "$ref": "./paths/job_locales/reopen.yaml"

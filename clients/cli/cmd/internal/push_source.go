@@ -181,11 +181,11 @@ func (source *Source) uploadFile(client *phrase.APIClient, localeFile *LocaleFil
 		v += localeFile.Tag
 		params.Tags = optional.NewString(v)
 	}
-        
+
 	if tag != "" {
-        params.Tags = optional.NewString(tag)
-    }
-	
+		params.Tags = optional.NewString(tag)
+	}
+
 	if branch != "" {
 		params.Branch = optional.NewString(branch)
 	}

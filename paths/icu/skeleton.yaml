@@ -1,0 +1,68 @@
+---
+summary: Build icu skeletons
+description: Returns icu skeletons for multiple locale codes based on a source content.
+operationId: icu/skeleton
+tags:
+- ICU
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/icu.yaml#/skeleton"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/icu/skeleton" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"content":"{number, plural, one {One} other {%{n}}}","locale_codes":["en"],"zero_form_enabled": true}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase icu skeleton \
+    --data '{"content":"{number, plural, one {One} other {%{n}}}","locale_codes":["en"],"zero_form_enabled": true}' \
+    --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: icu/skeleton/parameters
+        properties:
+          content:
+            description: Source content
+            type: string
+            example: "{number, plural, one {One} other {%{n}}}"
+          locale_codes:
+            description: Locale codes
+            type: array
+            items:
+              type: string
+              example: en
+            example:
+              - en
+          zero_form_enabled:
+            description: Indicates whether the zero form should be included or excluded in the returned skeletons
+            type: boolean
+            example:
+

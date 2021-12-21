@@ -2219,6 +2219,9 @@
           },
           "name": {
             "type": "string"
+          },
+          "role": {
+            "type": "string"
           }
         },
         "example": null
@@ -2726,7 +2729,8 @@
             {
               "id": "abcd1234cdef1234abcd1234cdef1234",
               "username": "joe.doe",
-              "name": "Joe Doe"
+              "name": "Joe Doe",
+              "role": "translator"
             }
           ],
           "locale": {
@@ -2858,6 +2862,12 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "locales": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/locale_preview"
             }
           },
           "releases": {
@@ -6228,11 +6238,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"My Android Distribution\",\"project_id\":\"abcd1234abcd1234abcd1234\",\"platforms\":[\"android\",\"ios\"],\"format_options\":\"{xml:{enclose_in_cdata:'1'}}\",\"fallback_to_non_regional_locale\":true,\"fallback_to_default_locale\":true,\"use_last_reviewed_version\":true}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"My Android Distribution\",\"project_id\":\"abcd1234abcd1234abcd1234\",\"platforms\":[\"android\",\"ios\"],\"locale_ids\":[\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"],\"format_options\":\"{xml:{enclose_in_cdata:'1'}}\",\"fallback_to_non_regional_locale\":true,\"fallback_to_default_locale\":true,\"use_last_reviewed_version\":true}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase distributions create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My Android Distribution\"\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\":\"\"android,ios\"\", \"format_options\":\"\"{xml:{enclose_in_cdata:'1'}}\"\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase distributions create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My Android Distribution\"\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\":\"\"android,ios\"\", \"locale_ids\":[\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"], \"format_options\":\"\"{xml:{enclose_in_cdata:'1'}}\"\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -6266,6 +6276,17 @@
                     "example": [
                       "android",
                       "ios"
+                    ]
+                  },
+                  "locale_ids": {
+                    "description": "List of locale ids that will be part of distribution releases",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234",
+                      "fff565db236400772368235db2c6117e"
                     ]
                   },
                   "format_options": {
@@ -6417,11 +6438,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"name\":\"My Android Distribution\",\"project_id\":\"abcd1234abcd1234abcd1234\",\"platforms\":[\"android\",\"ios\"],\"format_options\":\"{xml:{enclose_in_cdata:'1'}}\",\"fallback_to_non_regional_locale\":true,\"fallback_to_default_locale\":true,\"use_last_reviewed_version\":true}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"name\":\"My Android Distribution\",\"project_id\":\"abcd1234abcd1234abcd1234\",\"platforms\":[\"android\",\"ios\"],\"locale_ids\":[\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"],\"format_options\":\"{xml:{enclose_in_cdata:'1'}}\",\"fallback_to_non_regional_locale\":true,\"fallback_to_default_locale\":true,\"use_last_reviewed_version\":true}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase distributions update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"My Android Distribution\"\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\":\"\"android,ios\"\", \"format_options\":\"\"{xml:{enclose_in_cdata:'1'}}\"\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase distributions update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"My Android Distribution\"\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\":\"\"android,ios\"\", \"locale_ids\":\"\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"\", \"format_options\":\"\"{xml:{enclose_in_cdata:'1'}}\"\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
           },
           {
             "lang": "CLI v1",
@@ -6455,6 +6476,17 @@
                     "example": [
                       "android",
                       "ios"
+                    ]
+                  },
+                  "locale_ids": {
+                    "description": "List of locale ids that will be part of distribution releases",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234",
+                      "fff565db236400772368235db2c6117e"
                     ]
                   },
                   "format_options": {
@@ -6698,6 +6730,17 @@
                     "example": [
                       "android",
                       "ios"
+                    ]
+                  },
+                  "locale_ids": {
+                    "description": "List of locale ids that will be included in the release. If empty, distribution locales will be used",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234",
+                      "fff565db236400772368235db2c6117e"
                     ]
                   },
                   "branch": {
@@ -12698,7 +12741,17 @@
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
                   "user_ids": {
-                    "description": "Array of user ids to be assigned to the job locale",
+                    "description": "Array of user ids to be assigned to the job locale as translators",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "reviewer_ids": {
+                    "description": "Array of reviewer ids to be assigned to the job locale as reviewers",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -12888,6 +12941,16 @@
                     "example": [
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
+                  },
+                  "reviewer_ids": {
+                    "description": "Array of reviewer ids to be assigned to the job locale as reviewers",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
                   }
                 }
               }
@@ -13030,6 +13093,90 @@
               "schema": {
                 "type": "object",
                 "title": "job_locale/complete/parameters",
+                "properties": {
+                  "branch": {
+                    "description": "specify the branch to use",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/jobs/{job_id}/locales/{id}/complete_review": {
+      "post": {
+        "summary": "Review a job locale",
+        "description": "Mark job locale as reviewed.",
+        "operationId": "job_locale/complete_review",
+        "tags": [
+          "Job Locales"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/job_locale"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:id/complete_review\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_locales complete \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "job_locale/complete_review/parameters",
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",

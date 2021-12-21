@@ -122,3 +122,5 @@ schemas:
     "$ref": schemas/screenshot_marker.yaml#/screenshot_marker
   variable:
     "$ref": schemas/variable.yaml#/variable
+  icu:
+    "$ref": schemas/icu.yaml#/skeleton
