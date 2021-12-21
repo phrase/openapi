@@ -3184,6 +3184,20 @@
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
         }
+      },
+      "icu": {
+        "type": "object",
+        "title": "skeleton",
+        "properties": {
+          "locale_code": {
+            "type": "string",
+            "description": "Object keys are dynamic and based on requested locale codes, see example."
+          }
+        },
+        "example": {
+          "en": "{number, plural, one {} other {}}",
+          "de": "{number, plural, one {} other {}}"
+        }
       }
     },
     "parameters": {
@@ -3543,6 +3557,100 @@
     }
   },
   "paths": {
+    "/icu/skeleton": {
+      "post": {
+        "summary": "Build icu skeletons",
+        "description": "Returns icu skeletons for multiple locale codes based on a source content.",
+        "operationId": "icu/skeleton",
+        "tags": [
+          "ICU"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/icu"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/icu/skeleton\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"content\":\"{number, plural, one {One} other {%{n}}}\",\"locale_codes\":[\"en\"],\"zero_form_enabled\": true}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase icu skeleton \\\n--data '{\"content\":\"{number, plural, one {One} other {%{n}}}\",\"locale_codes\":[\"en\"],\"zero_form_enabled\": true}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "icu/skeleton/parameters",
+                "properties": {
+                  "content": {
+                    "description": "Source content",
+                    "type": "string",
+                    "example": "{number, plural, one {One} other {%{n}}}"
+                  },
+                  "locale_codes": {
+                    "description": "Locale codes",
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "en"
+                    },
+                    "example": [
+                      "en"
+                    ]
+                  },
+                  "zero_form_enabled": {
+                    "description": "Indicates whether the zero form should be included or excluded in the returned skeletons",
+                    "type": "boolean",
+                    "example": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/formats": {
       "get": {
         "summary": "List formats",
