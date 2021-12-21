@@ -31,5 +31,3 @@ x-code-samples:
     --space_id <space_id> \
     --id <id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp spaces projects delete <account_id> <space_id> <id>

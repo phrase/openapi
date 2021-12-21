@@ -52,16 +52,6 @@ x-code-samples:
     --locale_mapping '{"en": "2"}' \
     --format_options '{"foo": "bar"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp upload create <project_id> \
-    --branch my-feature-branch \
-    --file /path/to/my/file.json \
-    --file-format json \
-    --locale-id abcd1234cdef1234abcd1234cdef1234 \
-    --tags awesome-feature,needs-proofreading \
-    --locale-mapping "{"en": "2"}" \
-    --format-options "{"foo": "bar"}"
 requestBody:
   required: true
   content:
@@ -94,28 +84,28 @@ requestBody:
           update_translations:
             description: Indicates whether existing translations should be updated with the file content.
             type: boolean
-            example: 
+            example:
           update_descriptions:
             description: Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.
             type: boolean
-            example: 
+            example:
           convert_emoji:
             description: This option is obsolete. Providing the option will cause a bad request error.
             type: boolean
-            example: 
+            example:
             deprecated: true
           skip_upload_tags:
             description: Indicates whether the upload should not create upload tags.
             type: boolean
-            example: 
+            example:
           skip_unverification:
             description: Indicates whether the upload should unverify updated translations.
             type: boolean
-            example: 
+            example:
           file_encoding:
             description: Enforces a specific encoding on the file contents. Valid options are "UTF-8", "UTF-16" and "ISO-8859-1".
             type: string
-            example: 
+            example:
           locale_mapping:
             description: Optional, format specific mapping between locale names and the columns the translations to those locales are contained in.
             type: object
@@ -129,8 +119,8 @@ requestBody:
           autotranslate:
             description: If set, translations for the uploaded language will be fetched automatically.
             type: boolean
-            example: 
+            example:
           mark_reviewed:
             description: Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow (currently beta) is enabled for the project.
             type: boolean
-            example: 
+            example:

@@ -49,17 +49,6 @@ x-code-samples:
     --id <id> \
     --data '{"branch":"my-feature-branch", "name":"home.index.headline", "description":""Some description worth knowing..."", "name_plural":"home.index.headlines", "data_type":"number", "tags":"awesome-feature,needs-proofreading", "max_characters_allowed":"140", "screenshot":"/path/to/my/screenshot.png"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp key update <project_id> <id> \
-    --branch my-feature-branch \
-    --name home.index.headline \
-    --description "Some description worth knowing..." \
-    --name-plural home.index.headlines \
-    --data-type number \
-    --tags awesome-feature,needs-proofreading \
-    --max-characters-allowed 140 \
-    --screenshot /path/to/my/screenshot.png
 requestBody:
   required: true
   content:
@@ -83,7 +72,7 @@ requestBody:
           plural:
             description: Indicates whether key supports pluralization
             type: boolean
-            example: 
+            example:
           name_plural:
             description: Plural name for the key (used in some file formats, e.g. Gettext)
             type: string
@@ -109,25 +98,25 @@ requestBody:
           remove_screenshot:
             description: Indicates whether the screenshot will be deleted. This parameter is deprecated. Please use the Screenshots endpoint instead.
             type: boolean
-            example: 
+            example:
             deprecated: true
           unformatted:
             description: Indicates whether the key should be exported as "unformatted". Supported by Android XML and other formats.
             type: boolean
-            example: 
+            example:
           xml_space_preserve:
             description: Indicates whether the key should be exported with "xml:space=preserve". Supported by several XML-based formats.
             type: boolean
-            example: 
+            example:
           original_file:
             description: Original file attribute. Used in some formats, e.g. XLIFF.
             type: string
-            example: 
+            example:
           localized_format_string:
             description: NSStringLocalizedFormatKey attribute. Used in .stringsdict format.
             type: string
-            example: 
+            example:
           localized_format_key:
             description: NSStringLocalizedFormatKey attribute. Used in .stringsdict format.
             type: string
-            example: 
+            example:

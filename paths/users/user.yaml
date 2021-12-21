@@ -35,5 +35,3 @@ x-code-samples:
   source: |-
     phrase shows user \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp show user

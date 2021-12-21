@@ -43,11 +43,6 @@ x-code-samples:
     --screenshot_id <screenshot_id> \
     --data '{"branch":"my-feature-branch", "key_id":"abcd1234abcd1234abcd1234abcd1234", "presentation":""{ "x": 100, "y": 100, "w": 100, "h": 100 }""}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp screenshot_marker update <project_id> <screenshot_id> \
-    --key-id abcd1234abcd1234abcd1234abcd1234 \
-    --presentation "{ "x": 100, "y": 100, "w": 100, "h": 100 }"
 requestBody:
   required: true
   content:

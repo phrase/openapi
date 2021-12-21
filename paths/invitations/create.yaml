@@ -47,14 +47,6 @@ x-code-samples:
     --account_id <account_id> \
     --data '{"email":"example@mail.com", "role":"Developer", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"],"team_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"], "default_locale_codes":["de","en"], "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp invitation create <account_id> \
-    --email example@mail.com \
-    --role Developer \
-    --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
-    --locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
-    --permissions {"create_upload"=>true, "review_translations"=>true}
 requestBody:
   required: true
   content:

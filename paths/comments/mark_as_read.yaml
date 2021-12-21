@@ -34,10 +34,6 @@ x-code-samples:
     --id <id> \
     --data '{"branch":"my-feature-branch"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp comment mark read <project_id> <key_id> <id> \
-    --branch my-feature-branch
 requestBody:
   required: true
   content:

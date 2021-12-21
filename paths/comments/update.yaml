@@ -45,11 +45,6 @@ x-code-samples:
     --id <id> \
     --data '{"branch":"my-feature-branch", "message":""Some message...""}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp comment update <project_id> <key_id> <id> \
-    --branch my-feature-branch \
-    --message "Some message..."
 requestBody:
   required: true
   content:

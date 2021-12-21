@@ -43,5 +43,3 @@ x-code-samples:
     phrase branches list \
     --project_id <project_id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp branches list <project_id>

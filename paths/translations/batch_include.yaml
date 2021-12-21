@@ -41,13 +41,6 @@ x-code-samples:
     --project_id <project_id> \
     --data '{"branch":"my-feature-branch", "query":"'PhraseApp*%20verified:true%20tags:feature,center'", "sort":"updated_at", "order":"desc"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp translations include <project_id> \
-    --branch my-feature-branch \
-    --query 'PhraseApp*%20verified:true%20tags:feature,center' \
-    --sort updated_at \
-    --order desc
 requestBody:
   required: true
   content:

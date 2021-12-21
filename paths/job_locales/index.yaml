@@ -52,7 +52,3 @@ x-code-samples:
     --job_id <job_id> \
     --branch my-feature-branch \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp job_locales list <project_id> <job_id> \
-    --branch my-feature-branch

@@ -52,5 +52,3 @@ x-code-samples:
     --branch my-feature-branch \
     --id <id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp screenshot_markers list <project_id> <id>

@@ -1386,22 +1386,6 @@ phrase uploads create \
 
 </div>
 
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp upload create <project_id> \
---file /path/to/my/file.xlsx \
---file-format xlsx \
---locale-mapping[en] B \
---locale-mapping[de] C \
---format-options[comment-column] D \
---format-options[tag-column] E \
---format-options[key-name-column] A \
---format-options[first-content-row] 2
-```
-
-</div>
-
 </div>
 
 </div>

@@ -30,5 +30,3 @@ x-code-samples:
     --project_id <project_id> \
     --id <id> \
     --access_token <token>
-- lang: CLI v1
-  source: UNAVAILABLE

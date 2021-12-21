@@ -43,12 +43,6 @@ x-code-samples:
     --distribution_id <distribution_id> \
     --data '{"description":""My first Release"", "platforms":""android,ios"", "branch":"my-feature-branch"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp release create <account_id> <distribution_id> \
-    --description "My first Release" \
-    --platforms "android,ios" \
-    --branch my-feature-branch
 requestBody:
   required: true
   content:

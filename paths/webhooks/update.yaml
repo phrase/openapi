@@ -43,12 +43,6 @@ x-code-samples:
     --id <id> \
     --data '{"callback_url":""http://example.com/hooks/phraseapp-notifications"", "description":""My webhook for chat notifications"", "events":""locales:create,translations:update""}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp webhook update <project_id> <id> \
-    --callback-url "http://example.com/hooks/phraseapp-notifications" \
-    --description "My webhook for chat notifications" \
-    --events "locales:create,translations:update"
 requestBody:
   required: true
   content:

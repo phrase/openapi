@@ -39,6 +39,3 @@ x-code-samples:
     phrase notification_groups mark_as_read \
     --id <id> \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp notification_groups mark_as_read <id>

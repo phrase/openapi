@@ -56,5 +56,3 @@ x-code-samples:
   source: |-
     phrase projects list \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp projects list

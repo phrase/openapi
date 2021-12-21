@@ -39,8 +39,6 @@ x-code-samples:
     --team_id <team_id> \
     --data '{"id":"a4b3c2d1"}' \
     --access_token <token>
-- lang: CLI v1
-  source: The teams feature is not supported by our CLI v1
 requestBody:
   required: true
   content:

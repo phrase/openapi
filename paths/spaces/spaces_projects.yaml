@@ -45,5 +45,3 @@ x-code-samples:
     --account_id <account_id> \
     --space_id <space_id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp spaces projects list <account_id> <space_id>

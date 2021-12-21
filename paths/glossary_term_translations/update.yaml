@@ -47,11 +47,6 @@ x-code-samples:
     --id <id> \
     --data '{"locale_code":"en-US", "content":""My translated term""}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp glossary_term_translation update <account_id> <glossary_id> <term_id> <id> \
-    --locale-code en-US \
-    --content "My translated term"
 requestBody:
   required: true
   content:
