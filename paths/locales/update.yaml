@@ -43,13 +43,6 @@ x-code-samples:
     --id <id> \
     --data '{"branch":"my-feature-branch", "name":"de", "code":"de-DE", "source_locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp locale update <project_id> <id> \
-    --branch my-feature-branch \
-    --name de \
-    --code de-DE \
-    --source-locale-id abcd1234abcd1234abcd1234abcd1234
 requestBody:
   required: true
   content:
@@ -73,15 +66,15 @@ requestBody:
           default:
             description: Indicates whether locale is the default locale. If set to true, the previous default locale the project is no longer the default locale.
             type: boolean
-            example: 
+            example:
           main:
             description: Indicates whether locale is a main locale. Main locales are part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Verification System</a> feature.
             type: boolean
-            example: 
+            example:
           rtl:
             description: Indicates whether locale is a RTL (Right-to-Left) locale.
             type: boolean
-            example: 
+            example:
           source_locale_id:
             description: Source locale. Can be the name or public id of the locale. Preferred is the public id.
             type: string
@@ -89,12 +82,12 @@ requestBody:
           unverify_new_translations:
             description: Indicates that new translations for this locale should be marked as unverified. Part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Advanced Workflows</a> feature.
             type: boolean
-            example: 
+            example:
           unverify_updated_translations:
             description: Indicates that updated translations for this locale should be marked as unverified. Part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Advanced Workflows</a> feature.
             type: boolean
-            example: 
+            example:
           autotranslate:
             description: If set, translations for this locale will be fetched automatically, right after creation.
             type: boolean
-            example: 
+            example:

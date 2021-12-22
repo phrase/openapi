@@ -43,8 +43,6 @@ x-code-samples:
     --id <id> \
     --data '{"name":""German Translators""}' \
     --access_token <token>
-- lang: CLI v1
-  source: The teams feature is not supported by our CLI v1
 requestBody:
   required: true
   content:

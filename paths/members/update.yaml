@@ -47,13 +47,6 @@ x-code-samples:
       --id <id> \
       --data '{"role":"Developer", "strategy":"set", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "default_locale_codes":["de","en"], "space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"], "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
       --access_token <token>
-  - lang: CLI v1
-    source: |-
-      phraseapp member update <account_id> <id> \
-      --role Developer \
-      --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
-      --locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
-      --permissions {"create_upload"=>true, "review_translations"=>true}
 requestBody:
   required: true
   content:

@@ -41,10 +41,6 @@ x-code-samples:
     --account_id <account_id> \
     --data '{"name":""My Android Projects""}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp space create <account_id> \
-    --name "My Android Projects"
 requestBody:
   required: true
   content:

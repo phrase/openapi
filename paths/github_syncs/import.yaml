@@ -35,9 +35,6 @@ x-code-samples:
 - lang: CLI v2
   source: |-
     UNAVAILABLE
-- lang: CLI v1
-  source: |-
-    UNAVAILABLE
 requestBody:
   required: true
   content:

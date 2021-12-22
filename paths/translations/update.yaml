@@ -43,11 +43,6 @@ x-code-samples:
     --id <id> \
     --data '{"branch":"my-feature-branch", "content":""My translation""}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp translation update <project_id> <id> \
-    --branch my-feature-branch \
-    --content "My translation"
 requestBody:
   required: true
   content:
@@ -67,16 +62,16 @@ requestBody:
           plural_suffix:
             description: 'Plural suffix. Can be one of: zero, one, two, few, many, other. Must be specified if the key associated to the translation is pluralized.'
             type: string
-            example: 
+            example:
           unverified:
             description: Indicates whether translation is unverified. Part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Advanced Workflows</a> feature.
             type: boolean
-            example: 
+            example:
           excluded:
             description: Indicates whether translation is excluded.
             type: boolean
-            example: 
+            example:
           autotranslate:
             description: Indicates whether the translation should be auto-translated. Responses with status 422 if provided for translation within a non-default locale or the project does not have the Autopilot feature enabled.
             type: boolean
-            example: 
+            example:

@@ -43,22 +43,6 @@ x-code-samples:
     --id <id> \
     --data '{"title":""Web application style guide"", "audience":"customer-facing", "target_audience":"teenager", "grammatical_person":"first_person_singular", "vocabulary_type":"technical", "business":""We are a travel site that helps customers find the best hotels and flights."", "company_branding":""ACME Inc. should never be translated."", "formatting":""Never use capital letters"", "glossary_terms":""Appartement, cabin, loft"", "grammar_consistency":"", "literal_translation":"Neutral", "overall_tone":""Tone should be fun and light"", "samples":""http://www.myexample.com/my/document/path/to/samples.pdf""}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp styleguide update <project_id> <id> \
-    --title "Web application style guide" \
-    --audience customer-facing \
-    --target-audience teenager \
-    --grammatical-person first_person_singular \
-    --vocabulary-type technical \
-    --business "We are a travel site that helps customers find the best hotels and flights." \
-    --company-branding "ACME Inc. should never be translated." \
-    --formatting "Never use capital letters" \
-    --glossary-terms "Appartement, cabin, loft" \
-    --grammar-consistency  \
-    --literal-translation Neutral \
-    --overall-tone "Tone should be fun and light" \
-    --samples "http://www.myexample.com/my/document/path/to/samples.pdf"
 requestBody:
   required: true
   content:

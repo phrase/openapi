@@ -44,14 +44,6 @@ x-code-samples:
     --id <id> \
     --data '{"name":""My Android Project"", "main_format":"yml", "shares_translation_memory":"true", "project_image":"/path/to/my/project-screenshot.png", "account_id":"abcd1234"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp project update <id> \
-    --name "My Android Project" \
-    --main-format yml \
-    --shares-translation-memory true \
-    --project-image /path/to/my/project-screenshot.png \
-    --account-id abcd1234
 requestBody:
   required: true
   content:

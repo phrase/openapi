@@ -38,5 +38,3 @@ x-code-samples:
     --screenshot_id <screenshot_id> \
     --branch my-feature-branch \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp screenshot_marker delete <project_id> <screenshot_id>

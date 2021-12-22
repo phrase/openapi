@@ -47,13 +47,6 @@ x-code-samples:
     --id <id> \
     --data '{"role":""Invitiation role"", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"],"team_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"], "default_locale_codes":["de","en"], "permissions":"{"create_upload"=>true}"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp invitation update <account_id> <id> \
-    --role "Invitiation role" \
-    --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
-    --locale-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
-    --permissions {"create_upload"=>true}
 requestBody:
   required: true
   content:

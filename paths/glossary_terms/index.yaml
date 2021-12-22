@@ -45,5 +45,3 @@ x-code-samples:
     --account_id <account_id> \
     --glossary_id <glossary_id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp glossary_terms list <account_id> <glossary_id>

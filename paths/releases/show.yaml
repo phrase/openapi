@@ -41,5 +41,3 @@ x-code-samples:
     --distribution_id <distribution_id> \
     --id <id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp release show <account_id> <distribution_id> <id>

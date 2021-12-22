@@ -31,5 +31,3 @@ x-code-samples:
     --distribution_id <distribution_id> \
     --id <id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp release delete <account_id> <distribution_id> <id>

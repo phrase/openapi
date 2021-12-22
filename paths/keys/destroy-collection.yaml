@@ -72,9 +72,3 @@ x-code-samples:
     --query 'mykey* translated:true' \
     --locale_id abcd1234abcd1234abcd1234abcd1234 \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp keys delete <project_id> \
-    --branch my-feature-branch \
-    --query 'mykey* translated:true' \
-    --locale-id abcd1234abcd1234abcd1234abcd1234

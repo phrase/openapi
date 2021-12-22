@@ -471,16 +471,6 @@ phrase translations list \
 
 </div>
 
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp translations list <project_id> \
---sort updated_at \
---order desc \
---query 'PhraseApp* excluded:true'
-```
-
-</div>
 
 </div>
 
@@ -580,17 +570,6 @@ phrase translations list \
 
 </div>
 
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp translations list <project_id> \
---sort updated_at \
---order desc \
---query 'PhraseApp* unverified:true'
-```
-
-</div>
-
 </div>
 
 </div>
@@ -685,17 +664,6 @@ phrase translations verify \
 --project_id <project_id> \
 --data '{"query":""my dog unverified:true"", "sort":"updated_at", "order":"desc"}' \
 --access_token <token>
-```
-
-</div>
-
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp translations verify <project_id> \
---query "my dog unverified:true" \
---sort updated_at \
---order desc
 ```
 
 </div>
@@ -805,18 +773,6 @@ phrase keys list \
 
 </div>
 
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp keys list <project_id> \
---sort updated_at \
---order desc \
---query "updated_at:>=2013-02-21T00:00:00Z" \
---locale-id abcd1234abcd1234abcd1234abcd1234
-```
-
-</div>
-
 </div>
 
 </div>
@@ -894,15 +850,6 @@ phrase keys list \
 --project_id <project_id> \
 --query "tags:admin" \
 --access_token <token>
-```
-
-</div>
-
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp keys list <project_id> \
---query "tags:admin"
 ```
 
 </div>
@@ -1004,17 +951,6 @@ phrase keys tag \
 
 </div>
 
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp keys tag <project_id> \
---query 'dog* translated:true' \
---tags landing-page,release-1.2 \
---locale-id abcd1234abcd1234abcd1234abcd1234
-```
-
-</div>
-
 </div>
 
 </div>
@@ -1112,17 +1048,6 @@ phrase keys untag \
 
 </div>
 
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp keys untag <project_id> \
---query 'dog* translated:true' \
---tags landing-page,release-1.2 \
---locale-id abcd1234abcd1234abcd1234abcd1234
-```
-
-</div>
-
 </div>
 
 </div>
@@ -1206,15 +1131,6 @@ phrase keys list \
 --project_id <project_id> \
 --query "my dog" \
 --access_token <token>
-```
-
-</div>
-
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp keys list <project_id> \
---query "my dog"
 ```
 
 </div>
@@ -1307,15 +1223,6 @@ phrase keys list \
 
 </div>
 
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp keys list <project_id> \
---query "name:my\ dog\ is\ lazy"
-```
-
-</div>
-
 </div>
 
 </div>
@@ -1403,15 +1310,6 @@ phrase keys list \
 
 </div>
 
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp keys list <project_id> \
---query '*dog is*'
-```
-
-</div>
-
 </div>
 
 </div>
@@ -1484,22 +1382,6 @@ phrase uploads create \
 --locale_mapping '{"en": "B", "de": "C"}' \
 --format_options '{"comment_column": "D", "tag_column": "E", "key_name_column": "A", "first_content_row": "2"}' \
 --access_token <token>
-```
-
-</div>
-
-<div class="code-section hidden" data-target="technology-switch.example" data-technology="cli v1">
-
-``` language-bash
-phraseapp upload create <project_id> \
---file /path/to/my/file.xlsx \
---file-format xlsx \
---locale-mapping[en] B \
---locale-mapping[de] C \
---format-options[comment-column] D \
---format-options[tag-column] E \
---format-options[key-name-column] A \
---format-options[first-content-row] 2
 ```
 
 </div>

@@ -52,7 +52,3 @@ x-code-samples:
     --key_id <key_id> \
     --branch my-feature-branch \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp comments list <project_id> <key_id> \
-    --branch my-feature-branch

@@ -52,7 +52,3 @@ x-code-samples:
     --translation_id <translation_id> \
     --branch my-feature-branch \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp versions list <project_id> <translation_id> \
-    --branch my-feature-branch

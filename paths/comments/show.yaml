@@ -48,7 +48,3 @@ x-code-samples:
     --id <id> \
     --branch my-feature-branch \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp comment show <project_id> <key_id> <id> \
-    --branch my-feature-branch

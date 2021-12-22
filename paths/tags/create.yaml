@@ -41,11 +41,6 @@ x-code-samples:
     --project_id <project_id> \
     --data '{"branch":"my-feature-branch", "name":"my-feature"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp tag create <project_id> \
-    --branch my-feature-branch \
-    --name my-feature
 requestBody:
   required: true
   content:

@@ -46,7 +46,3 @@ x-code-samples:
     phrase gitlab_syncs list \
     --account_id abcd1234 \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp gitlab_sync list \
-    --account-id abcd1234

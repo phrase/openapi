@@ -27,5 +27,3 @@ x-code-samples:
     phrase projects delete \
     --id <id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp project delete <id>

@@ -43,12 +43,6 @@ x-code-samples:
     --project_id <project_id> \
     --data '{"branch":"my-feature-branch", "name":""A screenshot name"", "description":""A screenshot description"", "filename":"/path/to/my/screenshot.png"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp screenshot create <project_id> \
-    --name "A screenshot name" \
-    --description "A screenshot description" \
-    --filename /path/to/my/screenshot.png
 requestBody:
   required: true
   content:

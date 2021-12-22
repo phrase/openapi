@@ -41,5 +41,3 @@ x-code-samples:
   source: |-
     phrase notification_groups list \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp notification_groups list

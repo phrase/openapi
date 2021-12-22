@@ -39,5 +39,3 @@ x-code-samples:
     --project_id <project_id> \
     --name <name> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp branch show <project_id> <name>

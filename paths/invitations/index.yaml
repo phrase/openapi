@@ -47,5 +47,3 @@ x-code-samples:
     phrase invitations list \
     --account_id <account_id> \
     --access_token <token>
-- lang: CLI v1
-  source: phraseapp invitations list <account_id>

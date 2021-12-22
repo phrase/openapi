@@ -43,13 +43,6 @@ x-code-samples:
     --account_id <account_id> \
     --data '{"query":"keyword","locale_code": "de","page": 1,"per_page": 25}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp search in_account <account_id> \
-    --query <keyword> \
-    --locale_code <locale code> \
-    --page <page> \
-    --per_page <per_page> \
 requestBody:
   required: true
   content:

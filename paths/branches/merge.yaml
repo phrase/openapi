@@ -39,10 +39,6 @@ x-code-samples:
     --name <name> \
     --data '{"strategy":"use_master"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp branch merge <project_id> <name> \
-    --strategy use_master
 requestBody:
   required: true
   content:

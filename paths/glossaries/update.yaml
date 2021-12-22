@@ -43,12 +43,6 @@ x-code-samples:
     --id <id> \
     --data '{"name":""My glossary"", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "space_ids":""abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235""}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp glossary update <account_id> <id> \
-    --name "My glossary" \
-    --project-ids abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235 \
-    --space-ids "abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235"
 requestBody:
   required: true
   content:

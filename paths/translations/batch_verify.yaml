@@ -41,11 +41,6 @@ x-code-samples:
     --project_id <project_id> \
     --data '{"branch":"my-feature-branch", "query":"'PhraseApp*%20unverified:true%20tags:feature,center'"}' \
     --access_token <token>
-- lang: CLI v1
-  source: |-
-    phraseapp translations verify <project_id> \
-    --branch my-feature-branch \
-    --query 'PhraseApp*%20unverified:true%20tags:feature,center' \
 requestBody:
   required: true
   content:
