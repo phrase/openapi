@@ -35,62 +35,40 @@
   ],
   "tags": [
     {
-      "name": "Projects"
+      "name": "Accounts"
     },
     {
-      "name": "Locales"
+      "name": "Authorizations",
+      "description": "The endpoints provided by the Authorizations API are **only accessible via Basic authentication with email and password**.\n\nWhen creating a new authorization, the new access token for this authorization will be returned in the immediate response but not later, due to security reasons. When accessing authorizations later, you will only see the last eight chars of the token in plain text (`token_last_eight`) and the SHA256 digest of the token for reference (`hashed_token`).\n\nFor instructions on how authorization in general works, see our [Auth Guide](#overview--authentication).\n\n### Scopes\n\nWhen creating or updating an OAuth authorization, you can define a list of scopes to limit the access that can be performed by that authorization.\n\n#### Available Scopes\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Scope</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>read</code></td>\n        <td class=\"basic-table__cell\">Read projects, locales, keys, translations, orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>write</code></td>\n        <td class=\"basic-table__cell\">Write projects, locales, keys, translations but not orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>orders.create</code></td>\n        <td class=\"basic-table__cell\">Create and confirm orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>team.manage</code></td>\n        <td class=\"basic-table__cell\">Manage invitations and members</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
     },
     {
-      "name": "Keys"
-    },
-    {
-      "name": "Translations"
-    },
-    {
-      "name": "Uploads",
-      "description": "### Formats\n\nWe support all common localization file formats. For a detailed overview, see our [Format Guide](https://help.phrase.com/help/supported-platforms-and-formats).\n\n### Processing\n\nUploads will be processed asynchronously and thus the data might not be imported yet although the upload is completed. Therefore we recommend to evaluate the returned <code>state</code> field for information on the import progress.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>initialized</code></td>\n        <td class=\"basic-table__cell\">Data received.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting_for_preview</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for preview to be finished.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for processing.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>processing</code></td>\n        <td class=\"basic-table__cell\">Upload is being processed, data is currently imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>success</code></td>\n        <td class=\"basic-table__cell\">Upload is complete and all data is imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>error</code></td>\n        <td class=\"basic-table__cell\">Upload or import process failed.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
-    },
-    {
-      "name": "Documents"
-    },
-    {
-      "name": "Tags"
+      "name": "Bitbucket Sync"
     },
     {
       "name": "Blacklisted Keys"
-    },
-    {
-      "name": "Versions / History"
-    },
-    {
-      "name": "Spaces",
-      "description": "Everything about Space"
-    },
-    {
-      "name": "Teams",
-      "description": "Everything about Teams"
-    },
-    {
-      "name": "Jobs"
-    },
-    {
-      "name": "Job Locales"
-    },
-    {
-      "name": "Job Templates"
-    },
-    {
-      "name": "Job Template Locales"
-    },
-    {
-      "name": "Comments"
     },
     {
       "name": "Branches",
       "description": "### Branch creation\n\nBranches will be created asynchronously. State of branch creation is returned as state.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>initialized</code></td>\n        <td class=\"basic-table__cell\">Data received.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>processing</code></td>\n        <td class=\"basic-table__cell\">Branch is currently creating.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>success</code></td>\n        <td class=\"basic-table__cell\">Branch was created successfully</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>error</code></td>\n        <td class=\"basic-table__cell\">Branch creation failed.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
     },
     {
-      "name": "Quality"
+      "name": "Comments"
+    },
+    {
+      "name": "Distributions",
+      "description": "<div class=\"alert alert-info\">\n  Note: Distributions API is still in beta and might be subject to change.\n  Distributions are part of Over The Air which is available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Lite, Pro and Exclusive plans</a>.\n</div>\n"
+    },
+    {
+      "name": "Documents"
+    },
+    {
+      "name": "Formats"
+    },
+    {
+      "name": "GitHub Sync"
+    },
+    {
+      "name": "GitLab Sync"
     },
     {
       "name": "Glossaries",
@@ -105,58 +83,93 @@
       "description": "<div class=\"alert alert-info\">\n  Note: Glossary API is still in beta and might be subject to change.\n  Glossaries are available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Pro Plan and higher</a>.\n</div>\n"
     },
     {
-      "name": "Bitbucket Sync"
-    },
-    {
-      "name": "GitHub Sync"
-    },
-    {
-      "name": "GitLab Sync"
-    },
-    {
-      "name": "Webhooks"
-    },
-    {
-      "name": "Distributions",
-      "description": "<div class=\"alert alert-info\">\n  Note: Distributions API is still in beta and might be subject to change.\n  Distributions are part of Over The Air which is available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Lite, Pro and Exclusive plans</a>.\n</div>\n"
-    },
-    {
-      "name": "Releases",
-      "description": "<div class=\"alert alert-info\">\n  Note: Releases API is still in beta and might be subject to change.\n  Releases are part of Over The Air which is available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Lite, Pro and Exclusive plans</a>.\n</div>\n"
-    },
-    {
-      "name": "Orders",
-      "description": "### List of categories [TextMaster]\n\nWhen ordering translations from TextMaster, you need to specify a category ID along with your order. See this list for information on the category ID and their equivalent description.\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Category ID</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr><td class=\"basic-table__cell\">C001</td><td class=\"basic-table__cell\">Agriculture</td></tr>\n      <tr><td class=\"basic-table__cell\">C002</td><td class=\"basic-table__cell\">Aerospace</td></tr>\n      <tr><td class=\"basic-table__cell\">C003</td><td class=\"basic-table__cell\">Animals/Pets/Plants</td></tr>\n      <tr><td class=\"basic-table__cell\">C004</td><td class=\"basic-table__cell\">Arts/Culture/Literature</td></tr>\n      <tr><td class=\"basic-table__cell\">C005</td><td class=\"basic-table__cell\">Automotive/Transportation</td></tr>\n      <tr><td class=\"basic-table__cell\">C006</td><td class=\"basic-table__cell\">Computers/Technology/Software</td></tr>\n      <tr><td class=\"basic-table__cell\">C007</td><td class=\"basic-table__cell\">Telecom</td></tr>\n      <tr><td class=\"basic-table__cell\">C008</td><td class=\"basic-table__cell\">Real Estate/Construction/Building</td></tr>\n      <tr><td class=\"basic-table__cell\">C009</td><td class=\"basic-table__cell\">Consumer Goods</td></tr>\n      <tr><td class=\"basic-table__cell\">C010</td><td class=\"basic-table__cell\">Education</td></tr>\n      <tr><td class=\"basic-table__cell\">C011</td><td class=\"basic-table__cell\">Entertainment</td></tr>\n      <tr><td class=\"basic-table__cell\">C012</td><td class=\"basic-table__cell\">Ecology/Environment</td></tr>\n      <tr><td class=\"basic-table__cell\">C013</td><td class=\"basic-table__cell\">Health/Biotechnology/Pharma</td></tr>\n      <tr><td class=\"basic-table__cell\">C014</td><td class=\"basic-table__cell\">Internet</td></tr>\n      <tr><td class=\"basic-table__cell\">C015</td><td class=\"basic-table__cell\">Policy/Government/Public</td></tr>\n      <tr><td class=\"basic-table__cell\">C016</td><td class=\"basic-table__cell\">Publishing/Media/Communication</td></tr>\n      <tr><td class=\"basic-table__cell\">C017</td><td class=\"basic-table__cell\">Religion</td></tr>\n      <tr><td class=\"basic-table__cell\">C018</td><td class=\"basic-table__cell\">Food/Beverages</td></tr>\n      <tr><td class=\"basic-table__cell\">C019</td><td class=\"basic-table__cell\">Retail</td></tr>\n      <tr><td class=\"basic-table__cell\">C020</td><td class=\"basic-table__cell\">Fashion/Luxury/Textiles</td></tr>\n      <tr><td class=\"basic-table__cell\">C021</td><td class=\"basic-table__cell\">Travel/Tourism</td></tr>\n      <tr><td class=\"basic-table__cell\">C022</td><td class=\"basic-table__cell\">Natural Resources/Energy</td></tr>\n      <tr><td class=\"basic-table__cell\">C023</td><td class=\"basic-table__cell\">Banking/Financial Services/Insurance</td></tr>\n      <tr><td class=\"basic-table__cell\">C024</td><td class=\"basic-table__cell\">Legal Affairs/Tax/Law</td></tr>\n      <tr><td class=\"basic-table__cell\">C025</td><td class=\"basic-table__cell\">Raw Materials/Industrial Goods</td></tr>\n      <tr><td class=\"basic-table__cell\">C026</td><td class=\"basic-table__cell\">Lifestyle/Leisure/Hobbies</td></tr>\n      <tr><td class=\"basic-table__cell\">C027</td><td class=\"basic-table__cell\">Sports</td></tr>\n      <tr><td class=\"basic-table__cell\">C028</td><td class=\"basic-table__cell\">Home/Family/Friends/Children</td></tr>\n      <tr><td class=\"basic-table__cell\">C029</td><td class=\"basic-table__cell\">Economy/Financial Markets</td></tr>\n      <tr><td class=\"basic-table__cell\">C030</td><td class=\"basic-table__cell\">Science</td></tr>\n      <tr><td class=\"basic-table__cell\">C031</td><td class=\"basic-table__cell\">Human Resources/Employment</td></tr>\n      <tr><td class=\"basic-table__cell\">C032</td><td class=\"basic-table__cell\">Adult (Pornography, Violence, etc.)</td></tr>\n    </tbody>\n  </table>\n</div>\n"
-    },
-    {
-      "name": "Style guides"
-    },
-    {
-      "name": "Authorizations",
-      "description": "The endpoints provided by the Authorizations API are **only accessible via Basic authentication with email and password**.\n\nWhen creating a new authorization, the new access token for this authorization will be returned in the immediate response but not later, due to security reasons. When accessing authorizations later, you will only see the last eight chars of the token in plain text (`token_last_eight`) and the SHA256 digest of the token for reference (`hashed_token`).\n\nFor instructions on how authorization in general works, see our [Auth Guide](#overview--authentication).\n\n### Scopes\n\nWhen creating or updating an OAuth authorization, you can define a list of scopes to limit the access that can be performed by that authorization.\n\n#### Available Scopes\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Scope</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>read</code></td>\n        <td class=\"basic-table__cell\">Read projects, locales, keys, translations, orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>write</code></td>\n        <td class=\"basic-table__cell\">Write projects, locales, keys, translations but not orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>orders.create</code></td>\n        <td class=\"basic-table__cell\">Create and confirm orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>team.manage</code></td>\n        <td class=\"basic-table__cell\">Manage invitations and members</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
-    },
-    {
-      "name": "Users"
-    },
-    {
-      "name": "Accounts"
-    },
-    {
-      "name": "Members",
-      "description": "With the members endpoints you can do basic [team and user management](https://help.phrase.com/help/user-management) via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.\n"
+      "name": "ICU"
     },
     {
       "name": "Invitations",
       "description": "With the invitation endpoint you can [manage and invite users](https://help.phrase.com/help/user-management) to Phrase via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.\n"
     },
     {
-      "name": "Screenshots"
+      "name": "Job Locales"
+    },
+    {
+      "name": "Job Template Locales"
+    },
+    {
+      "name": "Job Templates"
+    },
+    {
+      "name": "Jobs"
+    },
+    {
+      "name": "Keys"
+    },
+    {
+      "name": "Locales"
+    },
+    {
+      "name": "Members",
+      "description": "With the members endpoints you can do basic [team and user management](https://help.phrase.com/help/user-management) via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.\n"
+    },
+    {
+      "name": "Notifications"
+    },
+    {
+      "name": "Notification Groups"
+    },
+    {
+      "name": "Orders",
+      "description": "### List of categories [TextMaster]\n\nWhen ordering translations from TextMaster, you need to specify a category ID along with your order. See this list for information on the category ID and their equivalent description.\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Category ID</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr><td class=\"basic-table__cell\">C001</td><td class=\"basic-table__cell\">Agriculture</td></tr>\n      <tr><td class=\"basic-table__cell\">C002</td><td class=\"basic-table__cell\">Aerospace</td></tr>\n      <tr><td class=\"basic-table__cell\">C003</td><td class=\"basic-table__cell\">Animals/Pets/Plants</td></tr>\n      <tr><td class=\"basic-table__cell\">C004</td><td class=\"basic-table__cell\">Arts/Culture/Literature</td></tr>\n      <tr><td class=\"basic-table__cell\">C005</td><td class=\"basic-table__cell\">Automotive/Transportation</td></tr>\n      <tr><td class=\"basic-table__cell\">C006</td><td class=\"basic-table__cell\">Computers/Technology/Software</td></tr>\n      <tr><td class=\"basic-table__cell\">C007</td><td class=\"basic-table__cell\">Telecom</td></tr>\n      <tr><td class=\"basic-table__cell\">C008</td><td class=\"basic-table__cell\">Real Estate/Construction/Building</td></tr>\n      <tr><td class=\"basic-table__cell\">C009</td><td class=\"basic-table__cell\">Consumer Goods</td></tr>\n      <tr><td class=\"basic-table__cell\">C010</td><td class=\"basic-table__cell\">Education</td></tr>\n      <tr><td class=\"basic-table__cell\">C011</td><td class=\"basic-table__cell\">Entertainment</td></tr>\n      <tr><td class=\"basic-table__cell\">C012</td><td class=\"basic-table__cell\">Ecology/Environment</td></tr>\n      <tr><td class=\"basic-table__cell\">C013</td><td class=\"basic-table__cell\">Health/Biotechnology/Pharma</td></tr>\n      <tr><td class=\"basic-table__cell\">C014</td><td class=\"basic-table__cell\">Internet</td></tr>\n      <tr><td class=\"basic-table__cell\">C015</td><td class=\"basic-table__cell\">Policy/Government/Public</td></tr>\n      <tr><td class=\"basic-table__cell\">C016</td><td class=\"basic-table__cell\">Publishing/Media/Communication</td></tr>\n      <tr><td class=\"basic-table__cell\">C017</td><td class=\"basic-table__cell\">Religion</td></tr>\n      <tr><td class=\"basic-table__cell\">C018</td><td class=\"basic-table__cell\">Food/Beverages</td></tr>\n      <tr><td class=\"basic-table__cell\">C019</td><td class=\"basic-table__cell\">Retail</td></tr>\n      <tr><td class=\"basic-table__cell\">C020</td><td class=\"basic-table__cell\">Fashion/Luxury/Textiles</td></tr>\n      <tr><td class=\"basic-table__cell\">C021</td><td class=\"basic-table__cell\">Travel/Tourism</td></tr>\n      <tr><td class=\"basic-table__cell\">C022</td><td class=\"basic-table__cell\">Natural Resources/Energy</td></tr>\n      <tr><td class=\"basic-table__cell\">C023</td><td class=\"basic-table__cell\">Banking/Financial Services/Insurance</td></tr>\n      <tr><td class=\"basic-table__cell\">C024</td><td class=\"basic-table__cell\">Legal Affairs/Tax/Law</td></tr>\n      <tr><td class=\"basic-table__cell\">C025</td><td class=\"basic-table__cell\">Raw Materials/Industrial Goods</td></tr>\n      <tr><td class=\"basic-table__cell\">C026</td><td class=\"basic-table__cell\">Lifestyle/Leisure/Hobbies</td></tr>\n      <tr><td class=\"basic-table__cell\">C027</td><td class=\"basic-table__cell\">Sports</td></tr>\n      <tr><td class=\"basic-table__cell\">C028</td><td class=\"basic-table__cell\">Home/Family/Friends/Children</td></tr>\n      <tr><td class=\"basic-table__cell\">C029</td><td class=\"basic-table__cell\">Economy/Financial Markets</td></tr>\n      <tr><td class=\"basic-table__cell\">C030</td><td class=\"basic-table__cell\">Science</td></tr>\n      <tr><td class=\"basic-table__cell\">C031</td><td class=\"basic-table__cell\">Human Resources/Employment</td></tr>\n      <tr><td class=\"basic-table__cell\">C032</td><td class=\"basic-table__cell\">Adult (Pornography, Violence, etc.)</td></tr>\n    </tbody>\n  </table>\n</div>\n"
+    },
+    {
+      "name": "Projects"
+    },
+    {
+      "name": "Quality"
+    },
+    {
+      "name": "Releases",
+      "description": "<div class=\"alert alert-info\">\n  Note: Releases API is still in beta and might be subject to change.\n  Releases are part of Over The Air which is available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Lite, Pro and Exclusive plans</a>.\n</div>\n"
+    },
+    {
+      "name": "Search"
     },
     {
       "name": "Screenshot Markers"
     },
     {
-      "name": "Formats"
+      "name": "Screenshots"
+    },
+    {
+      "name": "Spaces"
+    },
+    {
+      "name": "Style guides"
+    },
+    {
+      "name": "Tags"
+    },
+    {
+      "name": "Teams"
+    },
+    {
+      "name": "Translations"
+    },
+    {
+      "name": "Uploads",
+      "description": "### Formats\n\nWe support all common localization file formats. For a detailed overview, see our [Format Guide](https://help.phrase.com/help/supported-platforms-and-formats).\n\n### Processing\n\nUploads will be processed asynchronously and thus the data might not be imported yet although the upload is completed. Therefore we recommend to evaluate the returned <code>state</code> field for information on the import progress.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>initialized</code></td>\n        <td class=\"basic-table__cell\">Data received.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting_for_preview</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for preview to be finished.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for processing.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>processing</code></td>\n        <td class=\"basic-table__cell\">Upload is being processed, data is currently imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>success</code></td>\n        <td class=\"basic-table__cell\">Upload is complete and all data is imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>error</code></td>\n        <td class=\"basic-table__cell\">Upload or import process failed.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "Variables"
+    },
+    {
+      "name": "Versions / History"
+    },
+    {
+      "name": "Webhooks"
     }
   ],
   "x-tagGroups": [
