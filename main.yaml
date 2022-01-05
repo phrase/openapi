@@ -27,6 +27,7 @@ servers:
 
 security:
   - Token: []
+  - bearerAuth: []
   - Basic: []
 
 tags:
@@ -332,7 +333,11 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: Enter your token in the format **token TOKEN**
+      description: Enter your token in the format `token TOKEN`
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
     Basic:
       type: http
       scheme: basic

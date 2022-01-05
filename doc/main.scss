@@ -11,43 +11,37 @@
 }
 
 .nav-logo {
-  flex-grow: 1;
-  background: $colorAccentBackground;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $colorAccentBackground;
 
   &__img {
     display: block;
-    margin: 0 auto;
-    padding: $spacing6 0;
     height: 22px;
+    padding: 0 0 16px 0;
   }
+}
 
-  &--header {
-    @media (min-width: 768px) {
-      display: none;
-    }
+.footer {
+  text-align: center;
+  padding: 8px 0;
+
+  &__link {
+    font-size: 12px;
+    padding: 0 10px;
+    color: $colorAccentBackground;
   }
 }
 
 rapi-doc {
-  --nav-accent-color: #{$colorPrimaryBorder};
+  --nav-accent-color: #{$colorPrimaryForeground};
   --nav-hover-bg-color: #{$colorPrimaryBorder};
-  min-width: 320px !important; /* override weird rapidoc styling */
 }
 
-.nav-bar-h2 {
-  padding: $spacing4;
-  border-left: $spacing2 solid transparent;
-  display: block;
-  font-size: $fontSize4;
-  font-family: $fontPrimary;
-  color: $colorPrimaryForeground;
-  text-decoration: none;
-
-  &:first-child {
-    margin-top: $spacing8;
-  }
-
-  &:hover, &:focus, &:active {
-    background-color: $colorPrimaryBorder;
-  }
+rapi-doc::part(btn-search) {
+  padding: 8px;
+}
+rapi-doc::part(textbox-nav-filter) {
+  --nav-accent-color: #dadada;
 }

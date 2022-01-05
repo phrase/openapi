@@ -3,7 +3,7 @@
 .nav-bar {
   top: 0;
   border-right: solid 1px #EFEFEF;
-  
+
   > div:first-child {
     padding: 0!important;
 
@@ -79,9 +79,26 @@
   }
 }
 
-.nav-bar-path {
+div.nav-bar-path {
   margin-left: 12px;
+
+  &.active {
+    --nav-accent-color: #{$colorPrimaryBorder};
+  }
 }
+
+div.nav-bar-h2 {
+  &.active {
+    --nav-accent-color: #{$colorPrimaryBorder};
+  }
+}
+
+div.nav-bar-tag {
+  &.active {
+    --nav-accent-color: #{$colorPrimaryBorder};
+  }
+}
+
 
 .nav-scroll .nav-bar-section {
   font-size: $fontSize4;
@@ -200,7 +217,7 @@ table:not(.m-table) {
 
 .table-title.top-gap {
   --font-size-small: #{$fontSize5};
-  
+
   margin-top: $spacing3;
   display: inline-block;
   text-transform: lowercase;
@@ -269,6 +286,11 @@ table.m-table {
   pre {
     margin-top: 0;
     border-radius: 0 $borderRadius2 $borderRadius2;
+    background-color: $colorDarkGrey;
+
+    code {
+      color: $colorLightGrey;
+    }
   }
 }
 

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./favicon-32x32.png?v=1" rel="icon" sizes="32x32" type="image/png">
     <link href="./favicon-16x16.png?v=1" rel="icon" sizes="16x16" type="image/png">
-    <link rel="preload" href="rapidoc.css" as="style">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous">
     <link rel="preload" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600:latin,cyrillic&display=swap" as="style">
     <script type="text/javascript">
@@ -17,19 +16,21 @@
       })(window,document,'script','dataLayer','GTM-K85N4R');
     </script>
     <script type="module" src="./rapidoc-min.js" defer></script>
-    <script src="./main.js" defer></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600:latin,cyrillic&display=swap" rel="stylesheet">
     <link href="./main.css" type="text/css" rel="stylesheet">
+    <script src="./main.js" defer></script>
   </head>
   <body>
     <rapi-doc
       spec-url="./compiled.json?v=TIME"
       allow-spec-url-load="false"
       allow-spec-file-load="false"
-      allow-authentication="false"
-      allow-try="false"
+      allow-authentication="true"
+      allow-try="true"
+      allow-server-selection="false"
       show-header="false"
       render-style="focused"
+      on-nav-tag-click="show-description"
       info-description-headings-in-navbar="true"
       text-color="#242424"
       primary-color="#0091EB"
@@ -41,16 +42,19 @@
       nav-item-spacing="relaxed"
       schema-style="table"
       schema-expand-level="1"
+      theme="light"
     >
-      <div class="nav-logo nav-logo--header"><img class="nav-logo__img" src="./phrase-logo.png" /></div>
-      <div slot="nav-logo" class="nav-logo nav-logo--nav-bar"><img class="nav-logo__img" src="./phrase-logo.png" /></div>
-      <div slot="nav-bar-footer">
-        <a class="nav-bar-h2" href="https://app.phrase.com/signup" target="_blank">Try Phrase</a>
-        <a class="nav-bar-h2" href="https://help.phrase.com/help" target="_blank">Help Center</a>
-        <a class="nav-bar-h2" href="https://status.phrase.com/" target="_blank">System Status</a>
-        <a class="nav-bar-h2" href="https://phrase.com/privacy/" target="_blank">Privacy</a>
-        <a class="nav-bar-h2" href="https://phrase.com/terms/" target="_blank">Terms</a>
-        <a class="nav-bar-h2" href="https://phrase.com/imprint/" target="_blank">Imprint</a>
+
+      <div slot="nav-logo" class="nav-logo">
+        <img class="nav-logo__img" src="./phrase-logo.png" />
+      </div>
+      <div slot="footer" class="footer">
+        <a class="footer__link" href="https://app.phrase.com/signup" target="_blank">Try Phrase</a>
+        <a class="footer__link" href="https://help.phrase.com/help" target="_blank">Help Center</a>
+        <a class="footer__link" href="https://status.phrase.com/" target="_blank">System Status</a>
+        <a class="footer__link" href="https://phrase.com/privacy/" target="_blank">Privacy</a>
+        <a class="footer__link" href="https://phrase.com/terms/" target="_blank">Terms</a>
+        <a class="footer__link" href="https://phrase.com/imprint/" target="_blank">Imprint</a>
       </div>
     </rapi-doc>
   </body>
