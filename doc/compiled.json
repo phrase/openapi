@@ -2236,7 +2236,7 @@
           "name": {
             "type": "string"
           },
-          "role": {
+          "gravatar_uid": {
             "type": "string"
           }
         },
