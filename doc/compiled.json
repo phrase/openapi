@@ -1593,6 +1593,9 @@
               "projects_count": 2
             }
           },
+          "point_of_contact": {
+            "$ref": "#/components/schemas/user_preview"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"

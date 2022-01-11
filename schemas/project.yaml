@@ -17,6 +17,8 @@ project:
       "$ref": "./account.yaml#/account"
     space:
       "$ref": "./space_short.yaml#/space_short"
+    point_of_contact:
+      "$ref": "./user_preview.yaml#/user_preview"
     created_at:
       type: string
       format: date-time
