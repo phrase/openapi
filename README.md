@@ -23,7 +23,7 @@ and visit `localhost:8080` to see documentation.
 
 You can also lint your changes by `$ npm run lint`
 
-## Generated repositories 
+## Generated repositories
 
 https://github.com/phrase/phrase-go
 
