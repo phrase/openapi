@@ -1,7 +1,7 @@
 ---
 project_locales:
   allOf:
-  - "$ref": "./project_short.yaml#/project_short"
+  - "$ref": "./project_member_specific.yaml#/project_member_specific"
   - type: object
     title: project_locales
     properties:
