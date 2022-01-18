@@ -1,0 +1,40 @@
+---
+summary: Lock a job
+description: If you are the job owner, you may lock a job using this API request.
+operationId: job/lock
+tags:
+- Jobs
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+responses:
+  '204':
+    "$ref": "../../responses.yaml#/204"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:id/lock" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"branch":"my-feature-branch"' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase jobs lock \
+    --project_id <project_id> \
+    --id <id> \
+    --branch my-feature-branch \
+    --access_token <token>
