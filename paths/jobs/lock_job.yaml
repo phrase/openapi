@@ -1,7 +1,7 @@
 ---
 summary: Lock a job
 description: If you are the job owner, you may lock a job using this API request.
-operationId: job/keys/lock
+operationId: job/lock
 tags:
 - Jobs
 parameters:

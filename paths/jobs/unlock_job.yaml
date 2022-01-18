@@ -1,7 +1,7 @@
 ---
 summary: Unlock a job
 description: If you are the job owner, you may unlock a locked job using this API request.
-operationId: job/keys/unlock
+operationId: job/unlock
 tags:
 - Jobs
 parameters:
