@@ -61,6 +61,10 @@ requestBody:
               example: en
             example:
               - en
+          keep_content:
+            description: Keep the content and add missing plural forms for each locale
+            type: boolean
+            example:
           zero_form_enabled:
             description: Indicates whether the zero form should be included or excluded in the returned skeletons
             type: boolean
