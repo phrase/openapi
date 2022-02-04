@@ -16652,6 +16652,11 @@
                     "type": "boolean",
                     "example": null
                   },
+                  "default_translation_content": {
+                    "description": "Creates a translation in the default locale with the specified content",
+                    "type": "string",
+                    "example": "Default translation content"
+                  },
                   "xml_space_preserve": {
                     "description": "Indicates whether the key should be exported with \"xml:space=preserve\". Supported by several XML-based formats.",
                     "type": "boolean",
