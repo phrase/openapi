@@ -7912,6 +7912,114 @@
         }
       }
     },
+    "/projects/{project_id}/jobs/{id}/lock": {
+      "post": {
+        "summary": "Lock a job",
+        "description": "If you are the job owner, you may lock a job using this API request.",
+        "operationId": "job/lock",
+        "tags": [
+          "Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:id/lock\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\"' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase jobs lock \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/jobs/{id}/unlock": {
+      "post": {
+        "summary": "Unlock a job",
+        "description": "If you are the job owner, you may unlock a locked job using this API request.",
+        "operationId": "job/unlock",
+        "tags": [
+          "Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:id/unlock\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\"' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase jobs unlock \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
     "/projects/{project_id}/jobs/{id}/keys": {
       "post": {
         "summary": "Add keys to job",
