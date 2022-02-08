@@ -124,6 +124,12 @@
 "/projects/{project_id}/jobs/{id}/reopen":
   post:
     "$ref": "./paths/jobs/reopen.yaml"
+"/projects/{project_id}/jobs/{id}/lock":
+  post:
+    "$ref": "./paths/jobs/lock.yaml"
+"/projects/{project_id}/jobs/{id}/unlock":
+  post:
+    "$ref": "./paths/jobs/unlock.yaml"
 "/projects/{project_id}/jobs/{id}/keys":
   post:
     "$ref": "./paths/jobs/add_keys.yaml"
