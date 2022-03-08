@@ -7338,6 +7338,11 @@
                     "example": [
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
+                  },
+                  "job_template_id": {
+                    "description": "id of a job template you would like to model the created job after. Any manually added parameters will take preference over template attributes.",
+                    "type": "string",
+                    "example": "abcd1234cdef1234abcd1234cdef1234"
                   }
                 }
               }
