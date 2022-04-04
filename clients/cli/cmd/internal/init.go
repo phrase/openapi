@@ -153,12 +153,7 @@ func (cmd *InitCommand) selectProject() error {
 
 	fmt.Print("Loading projects... ")
 	spinner.While(func() {
-
-		localVarOptionals := phrase.ProjectsListOpts{
-			Page:    optional.NewInt32(int32(1)),
-			PerPage: optional.NewInt32(int32(25)),
-		}
-		projects, _, err := client.ProjectsApi.ProjectsList(Auth, &localVarOptionals)
+		projects, _, err := Projects(Auth)
 		taskResult <- projects
 		taskErr <- err
 	})
