@@ -98,6 +98,8 @@ schemas:
     "$ref": schemas/team.yaml#/team
   team_detail:
     "$ref": schemas/team_detail.yaml#/team_detail
+  team_short:
+    "$ref": schemas/team_short.yaml#/team_short
   job:
     "$ref": schemas/job.yaml#/job
   job_details:
