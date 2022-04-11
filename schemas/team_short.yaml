@@ -1,7 +1,7 @@
 ---
 team_short:
   type: object
-  title: team
+  title: team_short
   properties:
     id:
       type: string

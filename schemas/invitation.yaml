@@ -19,6 +19,10 @@ invitation:
       type: array
       items:
         "$ref": "./locale_preview.yaml#/locale_preview"
+    teams:
+      type: array
+      items:
+        "$ref": "./team_short.yaml#/team_short"
     default_locale_codes:
       type: array
       items:
@@ -41,24 +45,7 @@ invitation:
     spaces:
       type: array
       items:
-        type: object
-        properties:
-          id:
-            type: string
-          name:
-            type: string
-          created_at:
-            type: string
-            format: date-time
-          updated_at:
-            type: string
-            format: date-time
-          projects_count:
-            type: integer
-    teams:
-      type: array
-      items:
-        "$ref": "./team_short.yaml#/team_short"
+        "$ref": "./space_short.yaml#/space_short"
     project_role:
       type: array
       items:
