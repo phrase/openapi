@@ -7,7 +7,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/antihax/optional"
 	"github.com/phrase/phrase-cli/cmd/internal/paths"
 	"github.com/phrase/phrase-cli/cmd/internal/print"
 	"github.com/phrase/phrase-cli/cmd/internal/prompt"
@@ -153,7 +152,7 @@ func (cmd *InitCommand) selectProject() error {
 
 	fmt.Print("Loading projects... ")
 	spinner.While(func() {
-		projects, _, err := Projects(Auth)
+		projects, _, err := Projects(client)
 		taskResult <- projects
 		taskErr <- err
 	})
