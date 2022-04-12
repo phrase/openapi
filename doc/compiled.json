@@ -45,7 +45,7 @@
       "name": "Bitbucket Sync"
     },
     {
-      "name": "Blacklisted Keys"
+      "name": "Blocked Keys"
     },
     {
       "name": "Branches",
@@ -55,8 +55,7 @@
       "name": "Comments"
     },
     {
-      "name": "Distributions",
-      "description": "<div class=\"alert alert-info\">\n  Note: Distributions API is still in beta and might be subject to change.\n  Distributions are part of Over The Air which is available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Lite, Pro and Exclusive plans</a>.\n</div>\n"
+      "name": "Distributions"
     },
     {
       "name": "Documents"
@@ -71,16 +70,13 @@
       "name": "GitLab Sync"
     },
     {
-      "name": "Glossaries",
-      "description": "<div class=\"alert alert-info\">\n  Note: Glossary API is still in beta and might be subject to change.\n  Glossaries are available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Pro Plan and higher</a>.\n</div>\n"
+      "name": "Glossaries"
     },
     {
-      "name": "Glossary Terms",
-      "description": "<div class=\"alert alert-info\">\n  Note: Glossary API is still in beta and might be subject to change.\n  Glossaries are available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Pro Plan and higher</a>.\n</div>\n"
+      "name": "Glossary Terms"
     },
     {
-      "name": "Glossary Term Translations",
-      "description": "<div class=\"alert alert-info\">\n  Note: Glossary API is still in beta and might be subject to change.\n  Glossaries are available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Pro Plan and higher</a>.\n</div>\n"
+      "name": "Glossary Term Translations"
     },
     {
       "name": "ICU"
@@ -182,7 +178,7 @@
         "Translations",
         "Uploads",
         "Tags",
-        "Blacklisted Keys",
+        "Blocked Keys",
         "Versions / History"
       ]
     },
@@ -738,30 +734,7 @@
           "teams": {
             "type": "array",
             "items": {
-              "type": "object",
-              "title": "team",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "created_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              },
-              "example": {
-                "id": "2e7574e8f2372906a03110c2a7cfe671",
-                "name": "My first Team",
-                "created_at": "2020-02-25T12:17:25Z",
-                "updated_at": "2020-03-13T14:46:57Z"
-              }
+              "$ref": "#/components/schemas/team_short"
             }
           },
           "spaces": {
@@ -999,6 +972,12 @@
               "$ref": "#/components/schemas/locale_preview"
             }
           },
+          "teams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/team_short"
+            }
+          },
           "default_locale_codes": {
             "type": "array",
             "items": {
@@ -1029,32 +1008,7 @@
           "spaces": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "created_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "projects_count": {
-                  "type": "integer"
-                }
-              }
-            }
-          },
-          "teams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/member/properties/teams/items"
+              "$ref": "#/components/schemas/project/properties/space"
             }
           },
           "project_role": {
@@ -2642,6 +2596,32 @@
               "updated_at": "2015-01-28T09:52:53Z"
             }
           ]
+        }
+      },
+      "team_short": {
+        "type": "object",
+        "title": "team_short",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "2e7574e8f2372906a03110c2a7cfe671",
+          "name": "My first Team",
+          "created_at": "2020-02-25T12:17:25Z",
+          "updated_at": "2020-03-13T14:46:57Z"
         }
       },
       "job": {
@@ -16187,10 +16167,10 @@
     "/projects/{project_id}/blacklisted_keys": {
       "get": {
         "summary": "List blacklisted keys",
-        "description": "List all rules for blacklisting keys for the given project.",
+        "description": "List all rules for blocking keys for the given project.",
         "operationId": "blacklisted_keys/list",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
@@ -16266,10 +16246,10 @@
       },
       "post": {
         "summary": "Create a blacklisted key",
-        "description": "Create a new rule for blacklisting keys.",
+        "description": "Create a new rule for blocking keys.",
         "operationId": "blacklisted_key/create",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
@@ -16330,7 +16310,7 @@
                 "title": "blacklisted_key/create/parameters",
                 "properties": {
                   "name": {
-                    "description": "Blacklisted key name",
+                    "description": "Blocked key name",
                     "type": "string",
                     "example": "date.formats.*"
                   }
@@ -16344,10 +16324,10 @@
     "/projects/{project_id}/blacklisted_keys/{id}": {
       "get": {
         "summary": "Get a single blacklisted key",
-        "description": "Get details on a single rule for blacklisting keys for a given project.",
+        "description": "Get details on a single rule for blocking keys for a given project.",
         "operationId": "blacklisted_key/show",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
@@ -16405,10 +16385,10 @@
       },
       "patch": {
         "summary": "Update a blacklisted key",
-        "description": "Update an existing rule for blacklisting keys.",
+        "description": "Update an existing rule for blocking keys.",
         "operationId": "blacklisted_key/update",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
@@ -16472,7 +16452,7 @@
                 "title": "blacklisted_key/update/parameters",
                 "properties": {
                   "name": {
-                    "description": "Blacklisted key name",
+                    "description": "Blocked key name",
                     "type": "string",
                     "example": "date.formats.*"
                   }
@@ -16484,10 +16464,10 @@
       },
       "delete": {
         "summary": "Delete a blacklisted key",
-        "description": "Delete an existing rule for blacklisting keys.",
+        "description": "Delete an existing rule for blocking keys.",
         "operationId": "blacklisted_key/delete",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {

@@ -1,9 +1,9 @@
 ---
 summary: List blacklisted keys
-description: List all rules for blacklisting keys for the given project.
+description: List all rules for blocking keys for the given project.
 operationId: blacklisted_keys/list
 tags:
-- Blacklisted Keys
+- Blocked Keys
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
