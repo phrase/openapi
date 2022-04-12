@@ -3,7 +3,7 @@ summary: List term bases
 description: "List all term bases (previously: glossaries) the current user has access to."
 operationId: glossaries/list
 tags:
-- Glossaries
+- Term base
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

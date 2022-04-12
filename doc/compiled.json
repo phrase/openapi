@@ -70,13 +70,13 @@
       "name": "GitLab Sync"
     },
     {
-      "name": "Glossaries"
+      "name": "Term bases"
     },
     {
-      "name": "Glossary Terms"
+      "name": "Terms in term base"
     },
     {
-      "name": "Glossary Term Translations"
+      "name": "Term base translations"
     },
     {
       "name": "ICU"
@@ -197,9 +197,9 @@
     {
       "name": "Quality",
       "tags": [
-        "Glossaries",
-        "Glossary Terms",
-        "Glossary Term Translations"
+        "Term bases",
+        "Terms in term base",
+        "Term base translations"
       ]
     },
     {
@@ -8631,11 +8631,11 @@
     },
     "/accounts/{account_id}/glossaries": {
       "get": {
-        "summary": "List glossaries",
-        "description": "List all glossaries the current user has access to.",
+        "summary": "List term bases",
+        "description": "List all term bases (previously: glossaries) the current user has access to.",
         "operationId": "glossaries/list",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8701,11 +8701,11 @@
         ]
       },
       "post": {
-        "summary": "Create a glossary",
-        "description": "Create a new glossary.",
+        "summary": "Create a term base",
+        "description": "Create a new term base (previously: glossary).",
         "operationId": "glossary/create",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8750,11 +8750,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/glossaries\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"My glossary\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/glossaries\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"My term base\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossaries create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My glossary\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":\"\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"\"}' \\\n--access_token <token>"
+            "source": "phrase glossaries create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My term base\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":\"\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -8795,11 +8795,11 @@
     },
     "/accounts/{account_id}/glossaries/{id}": {
       "get": {
-        "summary": "Get a single glossary",
-        "description": "Get details on a single glossary.",
+        "summary": "Get a single term base",
+        "description": "Get details on a single term base (previously: glossary).",
         "operationId": "glossary/show",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8856,11 +8856,11 @@
         ]
       },
       "patch": {
-        "summary": "Update a glossary",
-        "description": "Update an existing glossary.",
+        "summary": "Update a term base",
+        "description": "Update an existing term base (previously: glossary).",
         "operationId": "glossary/update",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8951,11 +8951,11 @@
         }
       },
       "delete": {
-        "summary": "Delete a glossary",
-        "description": "Delete an existing glossary.",
+        "summary": "Delete a term base",
+        "description": "Delete an existing term base (previously: glossary).",
         "operationId": "glossary/delete",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -11542,7 +11542,7 @@
     "/projects/{project_id}/translations/{translation_id}/versions": {
       "get": {
         "summary": "List all versions",
-        "description": "List all versions for the given translation.",
+        "description": "List all changes done to a given translation.",
         "operationId": "versions/list",
         "tags": [
           "Versions / History"
@@ -11700,11 +11700,11 @@
     },
     "/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations": {
       "post": {
-        "summary": "Create a glossary term translation",
-        "description": "Create a new glossary term translation.",
+        "summary": "Create a translation for a term",
+        "description": "Create a new translation for a term in a term base (previously: glossary).",
         "operationId": "glossary_term_translation/create",
         "tags": [
-          "Glossary Term Translations"
+          "Term base translations"
         ],
         "parameters": [
           {
@@ -11789,11 +11789,11 @@
     },
     "/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations/{id}": {
       "patch": {
-        "summary": "Update a glossary term translation",
-        "description": "Update an existing glossary term translation.",
+        "summary": "Update a translation for a term",
+        "description": "Update an existing translation for a term in a term base (previously: glossary).",
         "operationId": "glossary_term_translation/update",
         "tags": [
-          "Glossary Term Translations"
+          "Term base translations"
         ],
         "parameters": [
           {
@@ -11879,11 +11879,11 @@
         }
       },
       "delete": {
-        "summary": "Delete a glossary term translation",
-        "description": "Delete an existing glossary term translation.",
+        "summary": "Delete a translation for a term",
+        "description": "Delete an existing translation of a term in a term base (previously: glossary).",
         "operationId": "glossary_term_translation/delete",
         "tags": [
-          "Glossary Term Translations"
+          "Term base translation"
         ],
         "parameters": [
           {
@@ -15502,11 +15502,11 @@
     },
     "/accounts/{account_id}/glossaries/{glossary_id}/terms": {
       "get": {
-        "summary": "List glossary terms",
-        "description": "List all glossary terms the current user has access to.",
+        "summary": "List terms",
+        "description": "List all terms in term bases (previously: glossary) that the current user has access to.",
         "operationId": "glossary_terms/list",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -15575,11 +15575,11 @@
         ]
       },
       "post": {
-        "summary": "Create a glossary term",
-        "description": "Create a new glossary term.",
+        "summary": "Create a term",
+        "description": "Create a new term in a term base (previously: glossary).",
         "operationId": "glossary_term/create",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -15671,11 +15671,11 @@
     },
     "/accounts/{account_id}/glossaries/{glossary_id}/terms/{id}": {
       "get": {
-        "summary": "Get a single glossary term",
-        "description": "Get details on a single glossary term.",
+        "summary": "Get a single term",
+        "description": "Get details for a single term in the term base (previously: glossary).",
         "operationId": "glossary_term/show",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -15735,11 +15735,11 @@
         ]
       },
       "patch": {
-        "summary": "Update a glossary term",
-        "description": "Update an existing glossary term.",
+        "summary": "Update a term",
+        "description": "Update an existing term in a term base (previously: glossary).",
         "operationId": "glossary_term/update",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -15832,11 +15832,11 @@
         }
       },
       "delete": {
-        "summary": "Delete a glossary term",
-        "description": "Delete an existing glossary term.",
+        "summary": "Delete a term",
+        "description": "Delete an existing term in a term base (previously: glossary).",
         "operationId": "glossary_term/delete",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
