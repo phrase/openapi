@@ -1,9 +1,9 @@
 ---
-summary: Delete a glossary term
-description: Delete an existing glossary term.
+summary: Delete a term
+description: "Delete an existing term in a term base (previously: glossary)."
 operationId: glossary_term/delete
 tags:
-- Glossary Terms
+- Terms in term base
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

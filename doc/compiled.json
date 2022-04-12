@@ -45,7 +45,7 @@
       "name": "Bitbucket Sync"
     },
     {
-      "name": "Blacklisted Keys"
+      "name": "Blocked Keys"
     },
     {
       "name": "Branches",
@@ -55,8 +55,7 @@
       "name": "Comments"
     },
     {
-      "name": "Distributions",
-      "description": "<div class=\"alert alert-info\">\n  Note: Distributions API is still in beta and might be subject to change.\n  Distributions are part of Over The Air which is available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Lite, Pro and Exclusive plans</a>.\n</div>\n"
+      "name": "Distributions"
     },
     {
       "name": "Documents"
@@ -71,16 +70,13 @@
       "name": "GitLab Sync"
     },
     {
-      "name": "Glossaries",
-      "description": "<div class=\"alert alert-info\">\n  Note: Glossary API is still in beta and might be subject to change.\n  Glossaries are available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Pro Plan and higher</a>.\n</div>\n"
+      "name": "Term bases"
     },
     {
-      "name": "Glossary Terms",
-      "description": "<div class=\"alert alert-info\">\n  Note: Glossary API is still in beta and might be subject to change.\n  Glossaries are available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Pro Plan and higher</a>.\n</div>\n"
+      "name": "Terms in term base"
     },
     {
-      "name": "Glossary Term Translations",
-      "description": "<div class=\"alert alert-info\">\n  Note: Glossary API is still in beta and might be subject to change.\n  Glossaries are available in the <a href=\"https://phrase.com/pricing/\" target=\"_blank\">Pro Plan and higher</a>.\n</div>\n"
+      "name": "Term base translations"
     },
     {
       "name": "ICU"
@@ -182,7 +178,7 @@
         "Translations",
         "Uploads",
         "Tags",
-        "Blacklisted Keys",
+        "Blocked Keys",
         "Versions / History"
       ]
     },
@@ -201,9 +197,9 @@
     {
       "name": "Quality",
       "tags": [
-        "Glossaries",
-        "Glossary Terms",
-        "Glossary Term Translations"
+        "Term bases",
+        "Terms in term base",
+        "Term base translations"
       ]
     },
     {
@@ -738,30 +734,7 @@
           "teams": {
             "type": "array",
             "items": {
-              "type": "object",
-              "title": "team",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "created_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              },
-              "example": {
-                "id": "2e7574e8f2372906a03110c2a7cfe671",
-                "name": "My first Team",
-                "created_at": "2020-02-25T12:17:25Z",
-                "updated_at": "2020-03-13T14:46:57Z"
-              }
+              "$ref": "#/components/schemas/team_short"
             }
           },
           "spaces": {
@@ -999,6 +972,12 @@
               "$ref": "#/components/schemas/locale_preview"
             }
           },
+          "teams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/team_short"
+            }
+          },
           "default_locale_codes": {
             "type": "array",
             "items": {
@@ -1029,32 +1008,7 @@
           "spaces": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "created_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "projects_count": {
-                  "type": "integer"
-                }
-              }
-            }
-          },
-          "teams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/member/properties/teams/items"
+              "$ref": "#/components/schemas/project/properties/space"
             }
           },
           "project_role": {
@@ -2642,6 +2596,32 @@
               "updated_at": "2015-01-28T09:52:53Z"
             }
           ]
+        }
+      },
+      "team_short": {
+        "type": "object",
+        "title": "team_short",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "2e7574e8f2372906a03110c2a7cfe671",
+          "name": "My first Team",
+          "created_at": "2020-02-25T12:17:25Z",
+          "updated_at": "2020-03-13T14:46:57Z"
         }
       },
       "job": {
@@ -8651,11 +8631,11 @@
     },
     "/accounts/{account_id}/glossaries": {
       "get": {
-        "summary": "List glossaries",
-        "description": "List all glossaries the current user has access to.",
+        "summary": "List term bases",
+        "description": "List all term bases (previously: glossaries) the current user has access to.",
         "operationId": "glossaries/list",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8721,11 +8701,11 @@
         ]
       },
       "post": {
-        "summary": "Create a glossary",
-        "description": "Create a new glossary.",
+        "summary": "Create a term base",
+        "description": "Create a new term base (previously: glossary).",
         "operationId": "glossary/create",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8770,11 +8750,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/glossaries\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"My glossary\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/glossaries\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"My term base\",\"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\",\"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossaries create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My glossary\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":\"\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"\"}' \\\n--access_token <token>"
+            "source": "phrase glossaries create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My term base\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":\"\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -8815,11 +8795,11 @@
     },
     "/accounts/{account_id}/glossaries/{id}": {
       "get": {
-        "summary": "Get a single glossary",
-        "description": "Get details on a single glossary.",
+        "summary": "Get a single term base",
+        "description": "Get details on a single term base (previously: glossary).",
         "operationId": "glossary/show",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8876,11 +8856,11 @@
         ]
       },
       "patch": {
-        "summary": "Update a glossary",
-        "description": "Update an existing glossary.",
+        "summary": "Update a term base",
+        "description": "Update an existing term base (previously: glossary).",
         "operationId": "glossary/update",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8971,11 +8951,11 @@
         }
       },
       "delete": {
-        "summary": "Delete a glossary",
-        "description": "Delete an existing glossary.",
+        "summary": "Delete a term base",
+        "description": "Delete an existing term base (previously: glossary).",
         "operationId": "glossary/delete",
         "tags": [
-          "Glossaries"
+          "Term base"
         ],
         "parameters": [
           {
@@ -11562,7 +11542,7 @@
     "/projects/{project_id}/translations/{translation_id}/versions": {
       "get": {
         "summary": "List all versions",
-        "description": "List all versions for the given translation.",
+        "description": "List all changes done to a given translation.",
         "operationId": "versions/list",
         "tags": [
           "Versions / History"
@@ -11720,11 +11700,11 @@
     },
     "/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations": {
       "post": {
-        "summary": "Create a glossary term translation",
-        "description": "Create a new glossary term translation.",
+        "summary": "Create a translation for a term",
+        "description": "Create a new translation for a term in a term base (previously: glossary).",
         "operationId": "glossary_term_translation/create",
         "tags": [
-          "Glossary Term Translations"
+          "Term base translations"
         ],
         "parameters": [
           {
@@ -11809,11 +11789,11 @@
     },
     "/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations/{id}": {
       "patch": {
-        "summary": "Update a glossary term translation",
-        "description": "Update an existing glossary term translation.",
+        "summary": "Update a translation for a term",
+        "description": "Update an existing translation for a term in a term base (previously: glossary).",
         "operationId": "glossary_term_translation/update",
         "tags": [
-          "Glossary Term Translations"
+          "Term base translations"
         ],
         "parameters": [
           {
@@ -11899,11 +11879,11 @@
         }
       },
       "delete": {
-        "summary": "Delete a glossary term translation",
-        "description": "Delete an existing glossary term translation.",
+        "summary": "Delete a translation for a term",
+        "description": "Delete an existing translation of a term in a term base (previously: glossary).",
         "operationId": "glossary_term_translation/delete",
         "tags": [
-          "Glossary Term Translations"
+          "Term base translation"
         ],
         "parameters": [
           {
@@ -15522,11 +15502,11 @@
     },
     "/accounts/{account_id}/glossaries/{glossary_id}/terms": {
       "get": {
-        "summary": "List glossary terms",
-        "description": "List all glossary terms the current user has access to.",
+        "summary": "List terms",
+        "description": "List all terms in term bases (previously: glossary) that the current user has access to.",
         "operationId": "glossary_terms/list",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -15595,11 +15575,11 @@
         ]
       },
       "post": {
-        "summary": "Create a glossary term",
-        "description": "Create a new glossary term.",
+        "summary": "Create a term",
+        "description": "Create a new term in a term base (previously: glossary).",
         "operationId": "glossary_term/create",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -15691,11 +15671,11 @@
     },
     "/accounts/{account_id}/glossaries/{glossary_id}/terms/{id}": {
       "get": {
-        "summary": "Get a single glossary term",
-        "description": "Get details on a single glossary term.",
+        "summary": "Get a single term",
+        "description": "Get details for a single term in the term base (previously: glossary).",
         "operationId": "glossary_term/show",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -15755,11 +15735,11 @@
         ]
       },
       "patch": {
-        "summary": "Update a glossary term",
-        "description": "Update an existing glossary term.",
+        "summary": "Update a term",
+        "description": "Update an existing term in a term base (previously: glossary).",
         "operationId": "glossary_term/update",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -15852,11 +15832,11 @@
         }
       },
       "delete": {
-        "summary": "Delete a glossary term",
-        "description": "Delete an existing glossary term.",
+        "summary": "Delete a term",
+        "description": "Delete an existing term in a term base (previously: glossary).",
         "operationId": "glossary_term/delete",
         "tags": [
-          "Glossary Terms"
+          "Terms in term base"
         ],
         "parameters": [
           {
@@ -16187,10 +16167,10 @@
     "/projects/{project_id}/blacklisted_keys": {
       "get": {
         "summary": "List blacklisted keys",
-        "description": "List all rules for blacklisting keys for the given project.",
+        "description": "List all rules for blocking keys for the given project.",
         "operationId": "blacklisted_keys/list",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
@@ -16266,10 +16246,10 @@
       },
       "post": {
         "summary": "Create a blacklisted key",
-        "description": "Create a new rule for blacklisting keys.",
+        "description": "Create a new rule for blocking keys.",
         "operationId": "blacklisted_key/create",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
@@ -16330,7 +16310,7 @@
                 "title": "blacklisted_key/create/parameters",
                 "properties": {
                   "name": {
-                    "description": "Blacklisted key name",
+                    "description": "Blocked key name",
                     "type": "string",
                     "example": "date.formats.*"
                   }
@@ -16344,10 +16324,10 @@
     "/projects/{project_id}/blacklisted_keys/{id}": {
       "get": {
         "summary": "Get a single blacklisted key",
-        "description": "Get details on a single rule for blacklisting keys for a given project.",
+        "description": "Get details on a single rule for blocking keys for a given project.",
         "operationId": "blacklisted_key/show",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
@@ -16405,10 +16385,10 @@
       },
       "patch": {
         "summary": "Update a blacklisted key",
-        "description": "Update an existing rule for blacklisting keys.",
+        "description": "Update an existing rule for blocking keys.",
         "operationId": "blacklisted_key/update",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
@@ -16472,7 +16452,7 @@
                 "title": "blacklisted_key/update/parameters",
                 "properties": {
                   "name": {
-                    "description": "Blacklisted key name",
+                    "description": "Blocked key name",
                     "type": "string",
                     "example": "date.formats.*"
                   }
@@ -16484,10 +16464,10 @@
       },
       "delete": {
         "summary": "Delete a blacklisted key",
-        "description": "Delete an existing rule for blacklisting keys.",
+        "description": "Delete an existing rule for blocking keys.",
         "operationId": "blacklisted_key/delete",
         "tags": [
-          "Blacklisted Keys"
+          "Blocked Keys"
         ],
         "parameters": [
           {
