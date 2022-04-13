@@ -111,15 +111,13 @@ tags:
           </tbody>
         </table>
       </div>
+  - name: Changes / Versions
   - name: Comments
   - name: Distributions
   - name: Documents
   - name: Formats
   - name: GitHub Sync
   - name: GitLab Sync
-  - name: Term bases
-  - name: Terms in term base
-  - name: Term base translations
   - name: ICU
   - name: Invitations
     description: |
@@ -200,6 +198,9 @@ tags:
   - name: Style guides
   - name: Tags
   - name: Teams
+  - name: Term bases
+  - name: Terms in term base
+  - name: Term base translations
   - name: Translations
   - name: Uploads
     description: |
@@ -251,7 +252,6 @@ tags:
       </div>
   - name: Users
   - name: Variables
-  - name: Versions / History
   - name: Webhooks
 
 x-tagGroups:
@@ -264,7 +264,7 @@ x-tagGroups:
       - Uploads
       - Tags
       - Blocked Keys
-      - Versions / History
+      - Changes / Versions
   - name: Workflows
     tags:
       - Spaces

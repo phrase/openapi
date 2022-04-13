@@ -1,5 +1,5 @@
 ---
-summary: Create a blacklisted key
+summary: Create a blocked key
 description: Create a new rule for blocking keys.
 operationId: blacklisted_key/create
 tags:
