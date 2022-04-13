@@ -1,5 +1,5 @@
 ---
-summary: Delete a blacklisted key
+summary: Delete a blocked key
 description: Delete an existing rule for blocking keys.
 operationId: blacklisted_key/delete
 tags:
