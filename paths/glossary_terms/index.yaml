@@ -1,9 +1,9 @@
 ---
-summary: List terms
-description: "List all terms in term bases (previously: glossary) that the current user has access to."
+summary: List glossary terms
+description: List all glossary terms the current user has access to.
 operationId: glossary_terms/list
 tags:
-- Terms in term base
+- Glossary Terms
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

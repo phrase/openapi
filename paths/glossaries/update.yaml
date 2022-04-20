@@ -1,9 +1,9 @@
 ---
-summary: Update a term base
-description: "Update an existing term base (previously: glossary)."
+summary: Update a glossary
+description: Update an existing glossary.
 operationId: glossary/update
 tags:
-- Term base
+- Glossaries
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

@@ -1,9 +1,9 @@
 ---
 summary: Get a single blacklisted key
-description: Get details on a single rule for blocking keys for a given project.
+description: Get details on a single rule for blacklisting keys for a given project.
 operationId: blacklisted_key/show
 tags:
-- Blocked Keys
+- Blacklisted Keys
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
