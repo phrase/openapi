@@ -74,7 +74,7 @@ tags:
         </table>
       </div>
   - name: Bitbucket Sync
-  - name: Blocked Keys
+  - name: Blacklisted Keys
   - name: Branches
     description: |
       ### Branch creation
@@ -111,13 +111,35 @@ tags:
           </tbody>
         </table>
       </div>
-  - name: Changes / Versions
   - name: Comments
   - name: Distributions
+    description: |
+      <div class="alert alert-info">
+        Note: Distributions API is still in beta and might be subject to change.
+        Distributions are part of Over The Air which is available in the <a href="https://phrase.com/pricing/" target="_blank">Lite, Pro and Exclusive plans</a>.
+      </div>
   - name: Documents
   - name: Formats
   - name: GitHub Sync
   - name: GitLab Sync
+  - name: Glossaries
+    description: |
+      <div class="alert alert-info">
+        Note: Glossary API is still in beta and might be subject to change.
+        Glossaries are available in the <a href="https://phrase.com/pricing/" target="_blank">Pro Plan and higher</a>.
+      </div>
+  - name: Glossary Terms
+    description: |
+      <div class="alert alert-info">
+        Note: Glossary API is still in beta and might be subject to change.
+        Glossaries are available in the <a href="https://phrase.com/pricing/" target="_blank">Pro Plan and higher</a>.
+      </div>
+  - name: Glossary Term Translations
+    description: |
+      <div class="alert alert-info">
+        Note: Glossary API is still in beta and might be subject to change.
+        Glossaries are available in the <a href="https://phrase.com/pricing/" target="_blank">Pro Plan and higher</a>.
+      </div>
   - name: ICU
   - name: Invitations
     description: |
@@ -198,9 +220,6 @@ tags:
   - name: Style guides
   - name: Tags
   - name: Teams
-  - name: Term bases
-  - name: Terms in term base
-  - name: Term base translations
   - name: Translations
   - name: Uploads
     description: |
@@ -252,6 +271,7 @@ tags:
       </div>
   - name: Users
   - name: Variables
+  - name: Versions / History
   - name: Webhooks
 
 x-tagGroups:
@@ -263,8 +283,8 @@ x-tagGroups:
       - Translations
       - Uploads
       - Tags
-      - Blocked Keys
-      - Changes / Versions
+      - Blacklisted Keys
+      - Versions / History
   - name: Workflows
     tags:
       - Spaces
@@ -276,9 +296,9 @@ x-tagGroups:
       - Branches
   - name: Quality
     tags:
-      - Term bases
-      - Terms in term base
-      - Term base translations
+      - Glossaries
+      - Glossary Terms
+      - Glossary Term Translations
   - name: Integrations
     tags:
       - Bitbucket Sync

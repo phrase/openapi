@@ -1,9 +1,9 @@
 ---
-summary: Delete a translation for a term
-description: "Delete an existing translation of a term in a term base (previously: glossary)."
+summary: Delete a glossary term translation
+description: Delete an existing glossary term translation.
 operationId: glossary_term_translation/delete
 tags:
-- Term base translations
+- Glossary Term Translations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

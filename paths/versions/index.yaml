@@ -1,9 +1,9 @@
 ---
 summary: List all versions
-description: List all changes done to a given translation.
+description: List all versions for the given translation.
 operationId: versions/list
 tags:
-- Changes / Versions
+- Versions / History
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"

@@ -3,7 +3,7 @@ summary: Get a single version
 description: Get details on a single version.
 operationId: version/show
 tags:
-- Changes / Versions
+- Versions / History
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"

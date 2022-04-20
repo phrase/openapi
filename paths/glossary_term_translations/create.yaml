@@ -1,9 +1,9 @@
 ---
-summary: Create a translation for a term
-description: "Create a new translation for a term in a term base (previously: glossary)."
+summary: Create a glossary term translation
+description: Create a new glossary term translation.
 operationId: glossary_term_translation/create
 tags:
-- Term base translations
+- Glossary Term Translations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
