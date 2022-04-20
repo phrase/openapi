@@ -1,5 +1,5 @@
 ---
-summary: List blocked keys
+summary: List blacklisted keys
 description: List all rules for blocking keys for the given project.
 operationId: blacklisted_keys/list
 tags:

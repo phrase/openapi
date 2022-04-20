@@ -1,5 +1,5 @@
 ---
-summary: Update a blocked key
+summary: Update a blacklisted key
 description: Update an existing rule for blocking keys.
 operationId: blacklisted_key/update
 tags:

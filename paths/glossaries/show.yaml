@@ -3,7 +3,7 @@ summary: Get a single term base
 description: "Get details on a single term base (previously: glossary)."
 operationId: glossary/show
 tags:
-- Term bases
+- Term base
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

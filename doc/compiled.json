@@ -52,9 +52,6 @@
       "description": "### Branch creation\n\nBranches will be created asynchronously. State of branch creation is returned as state.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>initialized</code></td>\n        <td class=\"basic-table__cell\">Data received.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>processing</code></td>\n        <td class=\"basic-table__cell\">Branch is currently creating.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>success</code></td>\n        <td class=\"basic-table__cell\">Branch was created successfully</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>error</code></td>\n        <td class=\"basic-table__cell\">Branch creation failed.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
     },
     {
-      "name": "Changes / Versions"
-    },
-    {
       "name": "Comments"
     },
     {
@@ -71,6 +68,15 @@
     },
     {
       "name": "GitLab Sync"
+    },
+    {
+      "name": "Term bases"
+    },
+    {
+      "name": "Terms in term base"
+    },
+    {
+      "name": "Term base translations"
     },
     {
       "name": "ICU"
@@ -143,15 +149,6 @@
       "name": "Teams"
     },
     {
-      "name": "Term bases"
-    },
-    {
-      "name": "Terms in term base"
-    },
-    {
-      "name": "Term base translations"
-    },
-    {
       "name": "Translations"
     },
     {
@@ -163,6 +160,9 @@
     },
     {
       "name": "Variables"
+    },
+    {
+      "name": "Versions / History"
     },
     {
       "name": "Webhooks"
@@ -179,7 +179,7 @@
         "Uploads",
         "Tags",
         "Blocked Keys",
-        "Changes / Versions"
+        "Versions / History"
       ]
     },
     {
@@ -8635,7 +8635,7 @@
         "description": "List all term bases (previously: glossaries) the current user has access to.",
         "operationId": "glossaries/list",
         "tags": [
-          "Term bases"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8705,7 +8705,7 @@
         "description": "Create a new term base (previously: glossary).",
         "operationId": "glossary/create",
         "tags": [
-          "Term bases"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8799,7 +8799,7 @@
         "description": "Get details on a single term base (previously: glossary).",
         "operationId": "glossary/show",
         "tags": [
-          "Term bases"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8860,7 +8860,7 @@
         "description": "Update an existing term base (previously: glossary).",
         "operationId": "glossary/update",
         "tags": [
-          "Term bases"
+          "Term base"
         ],
         "parameters": [
           {
@@ -8955,7 +8955,7 @@
         "description": "Delete an existing term base (previously: glossary).",
         "operationId": "glossary/delete",
         "tags": [
-          "Term bases"
+          "Term base"
         ],
         "parameters": [
           {
@@ -11545,7 +11545,7 @@
         "description": "List all changes done to a given translation.",
         "operationId": "versions/list",
         "tags": [
-          "Changes / Versions"
+          "Versions / History"
         ],
         "parameters": [
           {
@@ -11629,7 +11629,7 @@
         "description": "Get details on a single version.",
         "operationId": "version/show",
         "tags": [
-          "Changes / Versions"
+          "Versions / History"
         ],
         "parameters": [
           {
@@ -11883,7 +11883,7 @@
         "description": "Delete an existing translation of a term in a term base (previously: glossary).",
         "operationId": "glossary_term_translation/delete",
         "tags": [
-          "Term base translations"
+          "Term base translation"
         ],
         "parameters": [
           {
@@ -16166,7 +16166,7 @@
     },
     "/projects/{project_id}/blacklisted_keys": {
       "get": {
-        "summary": "List blocked keys",
+        "summary": "List blacklisted keys",
         "description": "List all rules for blocking keys for the given project.",
         "operationId": "blacklisted_keys/list",
         "tags": [
@@ -16245,7 +16245,7 @@
         ]
       },
       "post": {
-        "summary": "Create a blocked key",
+        "summary": "Create a blacklisted key",
         "description": "Create a new rule for blocking keys.",
         "operationId": "blacklisted_key/create",
         "tags": [
@@ -16323,7 +16323,7 @@
     },
     "/projects/{project_id}/blacklisted_keys/{id}": {
       "get": {
-        "summary": "Get a single blocked key",
+        "summary": "Get a single blacklisted key",
         "description": "Get details on a single rule for blocking keys for a given project.",
         "operationId": "blacklisted_key/show",
         "tags": [
@@ -16384,7 +16384,7 @@
         ]
       },
       "patch": {
-        "summary": "Update a blocked key",
+        "summary": "Update a blacklisted key",
         "description": "Update an existing rule for blocking keys.",
         "operationId": "blacklisted_key/update",
         "tags": [
@@ -16463,7 +16463,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a blocked key",
+        "summary": "Delete a blacklisted key",
         "description": "Delete an existing rule for blocking keys.",
         "operationId": "blacklisted_key/delete",
         "tags": [
