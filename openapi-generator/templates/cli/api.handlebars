@@ -49,29 +49,59 @@ func init{{{nickname}}}() {
 			if Config.Credentials.TFA && Config.Credentials.TFAToken != "" {
 				localVarOptionals.XPhraseAppOTP = optional.NewString(Config.Credentials.TFAToken)
 			}{{/hasOptionalParams}}
-			{{#allParams}}{{^required}}{{#isPrimitiveType}}if params.IsSet(helpers.ToSnakeCase("{{{paramName}}}")) {
-			{{#startsWith paramName "fileFormat"}}	localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#required}}params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/required}}{{^required}}optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))){{/required}}{{else}}{{#startsWith paramName "file"}}	file, err := os.Open(params.GetString(helpers.ToSnakeCase("file")))
-				localVarOptionals.File = optional.NewInterface(file)
 
-				if err != nil {
-					HandleError(err)
-				}{{else}}	localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#required}}params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/required}}{{^required}}optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))){{/required}}{{/startsWith}}{{/startsWith}}
-			}{{/isPrimitiveType}}{{^isPrimitiveType}}{{^isModel}}if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
-				var {{paramName}} map[string]interface{}
-				if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))), &{{paramName}}); err != nil {
-					HandleError(err)
-				}
-				localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface({{paramName}})
-			}{{/isModel}}{{/isPrimitiveType}}{{/required}}
-			{{/allParams}}
-			{{#allParams}}{{#required}}{{#isPrimitiveType}}{{paramName}} := params.Get{{{capitalizeFirst dataType}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")){{/isPrimitiveType}}
-			{{^isPrimitiveType}}{{#isModel}}{{paramName}} := api.{{{dataType}}}{}
-			if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
-				HandleError(err)
-			}
-			if Config.Debug {
-				fmt.Printf("%+v\n", {{paramName}})
-			}{{/isModel}}{{/isPrimitiveType}}{{/required}}{{/allParams}}
+
+			{{#allParams~}}
+				{{#required~}}
+					{{#isPrimitiveType~}}
+						{{paramName}} := params.Get{{{capitalizeFirst dataType}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))
+					{{else~}}
+						{{#isModel~}}
+							{{paramName}} := api.{{{dataType}}}{}
+							if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
+								HandleError(err)
+							}
+							if Config.Debug {
+								fmt.Printf("%+v\n", {{paramName}})
+							}
+						{{else~}}
+							if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
+								var {{paramName}} map[string]interface{}
+								if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))),
+								&{{paramName}}); err != nil {
+									HandleError(err)
+							}
+							localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface({{paramName}})
+						{{/isModel~}}
+					{{/isPrimitiveType~}}
+				{{else~}}
+					{{#if (or (eq paramName "file") (eq paramName "filename"))~}}
+						if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
+							file, err := os.Open(params.GetString(helpers.ToSnakeCase("{{paramName}}")))
+							localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface(file)
+							if err != nil {
+								HandleError(err)
+							}
+						}
+					{{else~}}
+						{{#isPrimitiveType~}}
+							if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
+								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")))
+							}
+						{{else~}}
+							var {{paramName}} map[string]interface{}
+							if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
+								HandleError(err)
+							}
+
+							if Config.Debug {
+								fmt.Printf("%+v\n", {{paramName}})
+							}
+						{{/isPrimitiveType~}}
+					{{/if}}
+				{{/required~}}
+			{{/allParams~}}
+
 			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
 
 			if err != nil {

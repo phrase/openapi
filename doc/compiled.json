@@ -738,30 +738,7 @@
           "teams": {
             "type": "array",
             "items": {
-              "type": "object",
-              "title": "team",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "created_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              },
-              "example": {
-                "id": "2e7574e8f2372906a03110c2a7cfe671",
-                "name": "My first Team",
-                "created_at": "2020-02-25T12:17:25Z",
-                "updated_at": "2020-03-13T14:46:57Z"
-              }
+              "$ref": "#/components/schemas/team_short"
             }
           },
           "spaces": {
@@ -999,6 +976,12 @@
               "$ref": "#/components/schemas/locale_preview"
             }
           },
+          "teams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/team_short"
+            }
+          },
           "default_locale_codes": {
             "type": "array",
             "items": {
@@ -1029,32 +1012,7 @@
           "spaces": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "created_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "projects_count": {
-                  "type": "integer"
-                }
-              }
-            }
-          },
-          "teams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/member/properties/teams/items"
+              "$ref": "#/components/schemas/project/properties/space"
             }
           },
           "project_role": {
@@ -2642,6 +2600,32 @@
               "updated_at": "2015-01-28T09:52:53Z"
             }
           ]
+        }
+      },
+      "team_short": {
+        "type": "object",
+        "title": "team_short",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "2e7574e8f2372906a03110c2a7cfe671",
+          "name": "My first Team",
+          "created_at": "2020-02-25T12:17:25Z",
+          "updated_at": "2020-03-13T14:46:57Z"
         }
       },
       "job": {
@@ -15262,13 +15246,13 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshots create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"\"A screenshot name\"\", \"description\":\"\"A screenshot description\"\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase screenshots create \\\n--project_id <project_id> \\\n--branch \"my-feature-branch\" --name \"A screenshot name\" --description \"A screenshot description\" --filename \"/path/to/my/screenshot.png\" \\\n--access_token <token>"
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "title": "screenshot/create/parameters",

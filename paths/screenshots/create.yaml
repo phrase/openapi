@@ -41,12 +41,12 @@ x-code-samples:
   source: |-
     phrase screenshots create \
     --project_id <project_id> \
-    --data '{"branch":"my-feature-branch", "name":""A screenshot name"", "description":""A screenshot description"", "filename":"/path/to/my/screenshot.png"}' \
+    --branch "my-feature-branch" --name "A screenshot name" --description "A screenshot description" --filename "/path/to/my/screenshot.png" \
     --access_token <token>
 requestBody:
   required: true
   content:
-    application/json:
+    multipart/form-data:
       schema:
         type: object
         title: screenshot/create/parameters
