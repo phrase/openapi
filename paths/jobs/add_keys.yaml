@@ -41,7 +41,7 @@ x-code-samples:
     phrase jobs keys \
     --project_id <project_id> \
     --id <id> \
-    --data '{"branch":"my-feature-branch", "translation_key_ids":""abcd1234cdef1234abcd1234cdef1234""}' \
+    --data '{"branch":"my-feature-branch", "translation_key_ids": "abcd1234cdef1234abcd1234cdef1234"}' \
     --access_token <token>
 requestBody:
   required: true

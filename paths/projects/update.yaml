@@ -42,7 +42,7 @@ x-code-samples:
   source: |-
     phrase projects update \
     --id <id> \
-    --data '{"name":""My Android Project"", "main_format":"yml", "shares_translation_memory":"true", "project_image":"/path/to/my/project-screenshot.png", "account_id":"abcd1234"}' \
+    --data '{"name": "My Android Project", "main_format":"yml", "shares_translation_memory":"true", "project_image":"/path/to/my/project-screenshot.png", "account_id":"abcd1234"}' \
     --access_token <token>
 requestBody:
   required: true

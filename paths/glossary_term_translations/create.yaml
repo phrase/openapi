@@ -43,7 +43,7 @@ x-code-samples:
     --account_id <account_id> \
     --glossary_id <glossary_id> \
     --term_id <term_id> \
-    --data '{"locale_code":"en-US", "content":""My translated term""}' \
+    --data '{"locale_code":"en-US", "content": "My translated term"}' \
     --access_token <token>
 requestBody:
   required: true
