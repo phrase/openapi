@@ -43,7 +43,7 @@ x-code-samples:
     --project_id <project_id> \
     --key_id <key_id> \
     --id <id> \
-    --data '{"branch":"my-feature-branch", "message":""Some message...""}' \
+    --data '{"branch":"my-feature-branch", "message": "Some message..."}' \
     --access_token <token>
 requestBody:
   required: true

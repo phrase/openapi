@@ -41,7 +41,7 @@ x-code-samples:
     phrase glossaries update \
     --account_id <account_id> \
     --id <id> \
-    --data '{"name":""My glossary"", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "space_ids":""abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235""}' \
+    --data '{"name": "My glossary", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "space_ids": "abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235"}' \
     --access_token <token>
 requestBody:
   required: true

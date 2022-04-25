@@ -41,7 +41,7 @@ x-code-samples:
     phrase translations update \
     --project_id <project_id> \
     --id <id> \
-    --data '{"branch":"my-feature-branch", "content":""My translation""}' \
+    --data '{"branch":"my-feature-branch", "content": "My translation"}' \
     --access_token <token>
 requestBody:
   required: true

@@ -1782,7 +1782,7 @@
               "business": "We are a travel site that helps customers find the best hotels and flights.",
               "company_branding": "ACME Inc. should never be translated.",
               "formatting": "Never use capital letters",
-              "glossary_terms": "Appartement, cabin, loft",
+              "glossary_terms": "Apartment, cabin, loft",
               "grammar_consistency": "",
               "literal_translation": "Neutral",
               "overall_tone": "Tone should be fun and light",
@@ -4072,11 +4072,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/styleguides\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"title\":\"Web application style guide\",\"audience\":\"customer-facing\",\"target_audience\":\"teenager\",\"grammatical_person\":\"first_person_singular\",\"vocabulary_type\":\"technical\",\"business\":\"We are a travel site that helps customers find the best hotels and flights.\",\"company_branding\":\"ACME Inc. should never be translated.\",\"formatting\":\"Never use capital letters\",\"glossary_terms\":\"Appartement, cabin, loft\",\"grammar_consistency\":\"\",\"literal_translation\":\"Neutral\",\"overall_tone\":\"Tone should be fun and light\",\"samples\":\"http://www.myexample.com/my/document/path/to/samples.pdf\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/styleguides\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"title\":\"Web application style guide\",\"audience\":\"customer-facing\",\"target_audience\":\"teenager\",\"grammatical_person\":\"first_person_singular\",\"vocabulary_type\":\"technical\",\"business\":\"We are a travel site that helps customers find the best hotels and flights.\",\"company_branding\":\"ACME Inc. should never be translated.\",\"formatting\":\"Never use capital letters\",\"glossary_terms\":\"Apartment, cabin, loft\",\"grammar_consistency\":\",\"literal_translation\":\"Neutral\",\"overall_tone\":\"Tone should be fun and light\",\"samples\":\"http://www.myexample.com/my/document/path/to/samples.pdf\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase styleguides create \\\n--project_id <project_id> \\\n--data '{\"title\":\"\"Web application style guide\"\", \"audience\":\"customer-facing\", \"target_audience\":\"teenager\", \"grammatical_person\":\"first_person_singular\", \"vocabulary_type\":\"technical\", \"business\":\"\"We are a travel site that helps customers find the best hotels and flights.\"\", \"company_branding\":\"\"ACME Inc. should never be translated.\"\", \"formatting\":\"\"Never use capital letters\"\", \"glossary_terms\":\"\"Appartement, cabin, loft\"\", \"grammar_consistency\":\"\", \"literal_translation\":\"Neutral\", \"overall_tone\":\"\"Tone should be fun and light\"\", \"samples\":\"\"http://www.myexample.com/my/document/path/to/samples.pdf\"\"}' \\\n--access_token <token>"
+            "source": "phrase styleguides create \\\n--project_id <project_id> \\\n--data '{\"title\": \"Web application style guide\", \"audience\":\"customer-facing\", \"target_audience\":\"teenager\", \"grammatical_person\":\"first_person_singular\", \"vocabulary_type\":\"technical\", \"business\": \"We are a travel site that helps customers find the best hotels and flights.\", \"company_branding\": \"ACME Inc. should never be translated.\", \"formatting\": \"Never use capital letters\", \"glossary_terms\": \"Apartment, cabin, loft\", \"grammar_consistency\":\", \"literal_translation\":\"Neutral\", \"overall_tone\": \"Tone should be fun and light\", \"samples\": \"http://www.myexample.com/my/document/path/to/samples.pdf\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -4130,7 +4130,7 @@
                   "glossary_terms": {
                     "description": "List of terms and/or phrases that need to be translated consistently.",
                     "type": "string",
-                    "example": "Appartement, cabin, loft"
+                    "example": "Apartment, cabin, loft"
                   },
                   "grammar_consistency": {
                     "description": "Formal or informal pronouns, consistent conjugation, grammatical gender",
@@ -4274,11 +4274,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/styleguides/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"title\":\"Web application style guide\",\"audience\":\"customer-facing\",\"target_audience\":\"teenager\",\"grammatical_person\":\"first_person_singular\",\"vocabulary_type\":\"technical\",\"business\":\"We are a travel site that helps customers find the best hotels and flights.\",\"company_branding\":\"ACME Inc. should never be translated.\",\"formatting\":\"Never use capital letters\",\"glossary_terms\":\"Appartement, cabin, loft\",\"grammar_consistency\":\"\",\"literal_translation\":\"Neutral\",\"overall_tone\":\"Tone should be fun and light\",\"samples\":\"http://www.myexample.com/my/document/path/to/samples.pdf\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/styleguides/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"title\":\"Web application style guide\",\"audience\":\"customer-facing\",\"target_audience\":\"teenager\",\"grammatical_person\":\"first_person_singular\",\"vocabulary_type\":\"technical\",\"business\":\"We are a travel site that helps customers find the best hotels and flights.\",\"company_branding\":\"ACME Inc. should never be translated.\",\"formatting\":\"Never use capital letters\",\"glossary_terms\":\"Apartment, cabin, loft\",\"grammar_consistency\":\",\"literal_translation\":\"Neutral\",\"overall_tone\":\"Tone should be fun and light\",\"samples\":\"http://www.myexample.com/my/document/path/to/samples.pdf\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase styleguides update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"title\":\"\"Web application style guide\"\", \"audience\":\"customer-facing\", \"target_audience\":\"teenager\", \"grammatical_person\":\"first_person_singular\", \"vocabulary_type\":\"technical\", \"business\":\"\"We are a travel site that helps customers find the best hotels and flights.\"\", \"company_branding\":\"\"ACME Inc. should never be translated.\"\", \"formatting\":\"\"Never use capital letters\"\", \"glossary_terms\":\"\"Appartement, cabin, loft\"\", \"grammar_consistency\":\"\", \"literal_translation\":\"Neutral\", \"overall_tone\":\"\"Tone should be fun and light\"\", \"samples\":\"\"http://www.myexample.com/my/document/path/to/samples.pdf\"\"}' \\\n--access_token <token>"
+            "source": "phrase styleguides update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"title\": \"Web application style guide\", \"audience\":\"customer-facing\", \"target_audience\":\"teenager\", \"grammatical_person\":\"first_person_singular\", \"vocabulary_type\":\"technical\", \"business\": \"We are a travel site that helps customers find the best hotels and flights.\", \"company_branding\": \"ACME Inc. should never be translated.\", \"formatting\": \"Never use capital letters\", \"glossary_terms\": \"Apartment, cabin, loft\", \"grammar_consistency\":\", \"literal_translation\":\"Neutral\", \"overall_tone\": \"Tone should be fun and light\", \"samples\": \"http://www.myexample.com/my/document/path/to/samples.pdf\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -4332,7 +4332,7 @@
                   "glossary_terms": {
                     "description": "List of terms and/or phrases that need to be translated consistently.",
                     "type": "string",
-                    "example": "Appartement, cabin, loft"
+                    "example": "Apartment, cabin, loft"
                   },
                   "grammar_consistency": {
                     "description": "Formal or informal pronouns, consistent conjugation, grammatical gender",
@@ -4757,7 +4757,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase invitations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\":\"\"Invitiation role\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"team_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true}\"}' \\\n--access_token <token>"
+            "source": "phrase invitations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"role\": \"Invitiation role\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"locale_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"],\"team_ids\":[\"abcd1234abcd1234abcd1234\",\"abcd1234abcd1234abcd1235\"], \"default_locale_codes\":[\"de\",\"en\"], \"permissions\":\"{\"create_upload\"=>true}\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -5266,7 +5266,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshot_markers create \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\":\"\"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"\"}' \\\n--access_token <token>"
+            "source": "phrase screenshot_markers create \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\": \"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -5355,7 +5355,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshot_markers update \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\":\"\"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"\"}' \\\n--access_token <token>"
+            "source": "phrase screenshot_markers update \\\n--project_id <project_id> \\\n--screenshot_id <screenshot_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"key_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"presentation\": \"{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -6335,7 +6335,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase distributions create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My Android Distribution\"\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\":\"\"android,ios\"\", \"locale_ids\":[\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"], \"format_options\":\"\"{xml:{enclose_in_cdata:'1'}}\"\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase distributions create \\\n--account_id <account_id> \\\n--data '{\"name\": \"My Android Distribution\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\": \"android,ios\", \"locale_ids\":[\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"], \"format_options\": \"{xml:{enclose_in_cdata:'1'}}\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -6527,7 +6527,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase distributions update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"My Android Distribution\"\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\":\"\"android,ios\"\", \"locale_ids\":\"\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"\", \"format_options\":\"\"{xml:{enclose_in_cdata:'1'}}\"\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase distributions update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\": \"My Android Distribution\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\": \"android,ios\", \"locale_ids\": \"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\", \"format_options\": \"{xml:{enclose_in_cdata:'1'}}\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -6774,7 +6774,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase releases create \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--data '{\"description\":\"\"My first Release\"\", \"platforms\":\"\"android,ios\"\", \"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
+            "source": "phrase releases create \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--data '{\"description\": \"My first Release\", \"platforms\": \"android,ios\", \"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -6949,7 +6949,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase releases update \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--data '{\"description\":\"\"My first Release\"\", \"platforms\":\"\"android,ios\"\", \"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
+            "source": "phrase releases update \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--data '{\"description\": \"My first Release\", \"platforms\": \"android,ios\", \"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -7261,7 +7261,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase jobs create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\", \"tags\":\"\"myUploadTag\"\", \"translation_key_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase jobs create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\", \"tags\": \"myUploadTag\", \"translation_key_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -8067,7 +8067,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase jobs keys \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"translation_key_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase jobs keys \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"translation_key_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -8758,7 +8758,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossaries create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My glossary\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":\"\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"\"}' \\\n--access_token <token>"
+            "source": "phrase glossaries create \\\n--account_id <account_id> \\\n--data '{\"name\": \"My glossary\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\": \"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -8916,7 +8916,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossaries update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"My glossary\"\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\":\"\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"\"}' \\\n--access_token <token>"
+            "source": "phrase glossaries update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\": \"My glossary\", \"project_ids\":\"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\", \"space_ids\": \"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -9117,7 +9117,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase authorizations create \\\n--data '{\"note\":\"\"My Deploy Script\"\", \"scopes\":\"\"read,write\"\", \"expires_at\":\"\"2015-03-30T09:52:53Z\"\"}'"
+            "source": "phrase authorizations create \\\n--data '{\"note\": \"My Deploy Script\", \"scopes\": \"read,write\", \"expires_at\": \"2015-03-30T09:52:53Z\"}'"
           }
         ],
         "requestBody": {
@@ -9270,7 +9270,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase authorizations update \\\n--id <id> \\\n--data '{\"note\":\"\"My Deploy Script\"\", \"scopes\":\"\"read,write\"\", \"expires_at\":\"\"2015-03-30T09:52:53Z\"\"}'"
+            "source": "phrase authorizations update \\\n--id <id> \\\n--data '{\"note\": \"My Deploy Script\", \"scopes\": \"read,write\", \"expires_at\": \"2015-03-30T09:52:53Z\"}'"
           }
         ],
         "requestBody": {
@@ -9711,7 +9711,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments create \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"message\":\"\"Some message...\"\"}' \\\n--access_token <token>"
+            "source": "phrase comments create \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"message\": \"Some message...\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -9873,7 +9873,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments update \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"message\":\"\"Some message...\"\"}' \\\n--access_token <token>"
+            "source": "phrase comments update \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"message\": \"Some message...\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -10257,7 +10257,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase webhooks create \\\n--project_id <project_id> \\\n--data '{\"callback_url\":\"\"http://example.com/hooks/phraseapp-notifications\"\", \"description\":\"\"My webhook for chat notifications\"\", \"events\":\"\"locales:create,translations:update\"\"}' \\\n--access_token <token>"
+            "source": "phrase webhooks create \\\n--project_id <project_id> \\\n--data '{\"callback_url\": \"http://example.com/hooks/phraseapp-notifications\", \"description\": \"My webhook for chat notifications\", \"events\": \"locales:create,translations:update\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -10424,7 +10424,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase webhooks update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"callback_url\":\"\"http://example.com/hooks/phraseapp-notifications\"\", \"description\":\"\"My webhook for chat notifications\"\", \"events\":\"\"locales:create,translations:update\"\"}' \\\n--access_token <token>"
+            "source": "phrase webhooks update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"callback_url\": \"http://example.com/hooks/phraseapp-notifications\", \"description\": \"My webhook for chat notifications\", \"events\": \"locales:create,translations:update\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -11763,7 +11763,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossary_term_translations create \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--term_id <term_id> \\\n--data '{\"locale_code\":\"en-US\", \"content\":\"\"My translated term\"\"}' \\\n--access_token <token>"
+            "source": "phrase glossary_term_translations create \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--term_id <term_id> \\\n--data '{\"locale_code\":\"en-US\", \"content\": \"My translated term\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -11855,7 +11855,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossary_term_translations update \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--term_id <term_id> \\\n--id <id> \\\n--data '{\"locale_code\":\"en-US\", \"content\":\"\"My translated term\"\"}' \\\n--access_token <token>"
+            "source": "phrase glossary_term_translations update \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--term_id <term_id> \\\n--id <id> \\\n--data '{\"locale_code\":\"en-US\", \"content\": \"My translated term\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -12075,7 +12075,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase projects create \\\n--data '{\"name\":\"\"My Android Project\"\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\", \"project_image\":\"/path/to/my/project-screenshot.png\", \"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase projects create \\\n--data '{\"name\": \"My Android Project\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\", \"project_image\":\"/path/to/my/project-screenshot.png\", \"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -12327,7 +12327,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase projects update \\\n--id <id> \\\n--data '{\"name\":\"\"My Android Project\"\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\", \"project_image\":\"/path/to/my/project-screenshot.png\", \"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase projects update \\\n--id <id> \\\n--data '{\"name\": \"My Android Project\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\", \"project_image\":\"/path/to/my/project-screenshot.png\", \"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -12641,7 +12641,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_locales create \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase job_locales create \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -12825,7 +12825,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_locales update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase job_locales update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -13384,7 +13384,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales create \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\", \"reviewer_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase job_template_locales create \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -13569,7 +13569,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\", \"reviewer_ids\":\"\"abcd1234cdef1234abcd1234cdef1234\"\"}' \\\n--access_token <token>"
+            "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -15413,7 +15413,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase screenshots update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"\"A screenshot name\"\", \"description\":\"\"A screenshot description\"\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase screenshots update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\": \"A screenshot name\", \"description\": \"A screenshot description\", \"filename\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -15635,7 +15635,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossary_terms create \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--data '{\"term\":\"MyCompany\", \"description\":\"\"Use this when refering to our company\"\", \"translatable\":\"true\", \"case_sensitive\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase glossary_terms create \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--data '{\"term\":\"MyCompany\", \"description\": \"Use this when refering to our company\", \"translatable\":\"true\", \"case_sensitive\":\"true\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -15798,7 +15798,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossary_terms update \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--id <id> \\\n--data '{\"term\":\"MyCompany\", \"description\":\"\"Use this when refering to our company\"\", \"translatable\":\"true\", \"case_sensitive\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase glossary_terms update \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--id <id> \\\n--data '{\"term\":\"MyCompany\", \"description\": \"Use this when refering to our company\", \"translatable\":\"true\", \"case_sensitive\":\"true\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -16680,7 +16680,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\":\"\"Some description worth knowing...\"\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase keys create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -17101,7 +17101,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\":\"\"Some description worth knowing...\"\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase keys update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -17755,7 +17755,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase orders create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"Welcome message translations\", \"lsp\":\"textmaster\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"target_locale_ids\":\"\"1234abcd1234abcd1234abcd1234abcd,abcd1234abcd1234abcd1234abcd1234\"\", \"translation_type\":\"premium\", \"tag\":\"my-awesome-feature\", \"message\":\"\"Please make everything sound really nice :)\"\", \"styleguide_id\":\"1234abcd1234abcd1234abcd1234abcd\", \"category\":\"C021\"}' \\\n--access_token <token>"
+            "source": "phrase orders create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"Welcome message translations\", \"lsp\":\"textmaster\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"target_locale_ids\": \"1234abcd1234abcd1234abcd1234abcd,abcd1234abcd1234abcd1234abcd1234\", \"translation_type\":\"premium\", \"tag\":\"my-awesome-feature\", \"message\": \"Please make everything sound really nice :)\", \"styleguide_id\":\"1234abcd1234abcd1234abcd1234abcd\", \"category\":\"C021\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -18184,7 +18184,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase spaces create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"My Android Projects\"\"}' \\\n--access_token <token>"
+            "source": "phrase spaces create \\\n--account_id <account_id> \\\n--data '{\"name\": \"My Android Projects\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -18326,7 +18326,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase spaces update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"My Android Projects\"\"}' \\\n--access_token <token>"
+            "source": "phrase spaces update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\": \"My Android Projects\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -18712,7 +18712,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase teams create \\\n--account_id <account_id> \\\n--data '{\"name\":\"\"German Translators\"\"}' \\\n--access_token <token>"
+            "source": "phrase teams create \\\n--account_id <account_id> \\\n--data '{\"name\": \"German Translators\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -18854,7 +18854,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase teams update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"\"German Translators\"\"}' \\\n--access_token <token>"
+            "source": "phrase teams update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\": \"German Translators\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -19447,7 +19447,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"key_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"content\":\"\"My translation\"\"}' \\\n--access_token <token>"
+            "source": "phrase translations create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"key_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"content\": \"My translation\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -19957,7 +19957,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"content\":\"\"My translation\"\"}' \\\n--access_token <token>"
+            "source": "phrase translations update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"content\": \"My translation\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {

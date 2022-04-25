@@ -41,7 +41,7 @@ x-code-samples:
     phrase screenshot_markers update \
     --project_id <project_id> \
     --screenshot_id <screenshot_id> \
-    --data '{"branch":"my-feature-branch", "key_id":"abcd1234abcd1234abcd1234abcd1234", "presentation":""{ "x": 100, "y": 100, "w": 100, "h": 100 }""}' \
+    --data '{"branch":"my-feature-branch", "key_id":"abcd1234abcd1234abcd1234abcd1234", "presentation": "{ "x": 100, "y": 100, "w": 100, "h": 100 }"}' \
     --access_token <token>
 requestBody:
   required: true

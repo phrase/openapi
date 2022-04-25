@@ -43,7 +43,7 @@ x-code-samples:
     --account_id <account_id> \
     --glossary_id <glossary_id> \
     --id <id> \
-    --data '{"term":"MyCompany", "description":""Use this when refering to our company"", "translatable":"true", "case_sensitive":"true"}' \
+    --data '{"term":"MyCompany", "description": "Use this when refering to our company", "translatable":"true", "case_sensitive":"true"}' \
     --access_token <token>
 requestBody:
   required: true

@@ -39,7 +39,7 @@ x-code-samples:
   source: |-
     phrase spaces create \
     --account_id <account_id> \
-    --data '{"name":""My Android Projects""}' \
+    --data '{"name": "My Android Projects"}' \
     --access_token <token>
 requestBody:
   required: true

@@ -33,13 +33,13 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/styleguides" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
-      -d '{"title":"Web application style guide","audience":"customer-facing","target_audience":"teenager","grammatical_person":"first_person_singular","vocabulary_type":"technical","business":"We are a travel site that helps customers find the best hotels and flights.","company_branding":"ACME Inc. should never be translated.","formatting":"Never use capital letters","glossary_terms":"Appartement, cabin, loft","grammar_consistency":"","literal_translation":"Neutral","overall_tone":"Tone should be fun and light","samples":"http://www.myexample.com/my/document/path/to/samples.pdf"}' \
+      -d '{"title":"Web application style guide","audience":"customer-facing","target_audience":"teenager","grammatical_person":"first_person_singular","vocabulary_type":"technical","business":"We are a travel site that helps customers find the best hotels and flights.","company_branding":"ACME Inc. should never be translated.","formatting":"Never use capital letters","glossary_terms":"Apartment, cabin, loft","grammar_consistency":","literal_translation":"Neutral","overall_tone":"Tone should be fun and light","samples":"http://www.myexample.com/my/document/path/to/samples.pdf"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase styleguides create \
     --project_id <project_id> \
-    --data '{"title":""Web application style guide"", "audience":"customer-facing", "target_audience":"teenager", "grammatical_person":"first_person_singular", "vocabulary_type":"technical", "business":""We are a travel site that helps customers find the best hotels and flights."", "company_branding":""ACME Inc. should never be translated."", "formatting":""Never use capital letters"", "glossary_terms":""Appartement, cabin, loft"", "grammar_consistency":"", "literal_translation":"Neutral", "overall_tone":""Tone should be fun and light"", "samples":""http://www.myexample.com/my/document/path/to/samples.pdf""}' \
+    --data '{"title": "Web application style guide", "audience":"customer-facing", "target_audience":"teenager", "grammatical_person":"first_person_singular", "vocabulary_type":"technical", "business": "We are a travel site that helps customers find the best hotels and flights.", "company_branding": "ACME Inc. should never be translated.", "formatting": "Never use capital letters", "glossary_terms": "Apartment, cabin, loft", "grammar_consistency":", "literal_translation":"Neutral", "overall_tone": "Tone should be fun and light", "samples": "http://www.myexample.com/my/document/path/to/samples.pdf"}' \
     --access_token <token>
 requestBody:
   required: true
@@ -84,7 +84,7 @@ requestBody:
           glossary_terms:
             description: List of terms and/or phrases that need to be translated consistently.
             type: string
-            example: Appartement, cabin, loft
+            example: Apartment, cabin, loft
           grammar_consistency:
             description: Formal or informal pronouns, consistent conjugation, grammatical gender
             type: string

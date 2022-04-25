@@ -37,7 +37,7 @@ x-code-samples:
 - lang: CLI v2
   source: |-
     phrase authorizations create \
-    --data '{"note":""My Deploy Script"", "scopes":""read,write"", "expires_at":""2015-03-30T09:52:53Z""}'
+    --data '{"note": "My Deploy Script", "scopes": "read,write", "expires_at": "2015-03-30T09:52:53Z"}'
 requestBody:
   required: true
   content:

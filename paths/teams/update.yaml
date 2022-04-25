@@ -41,7 +41,7 @@ x-code-samples:
     phrase teams update \
     --account_id <account_id> \
     --id <id> \
-    --data '{"name":""German Translators""}' \
+    --data '{"name": "German Translators"}' \
     --access_token <token>
 requestBody:
   required: true

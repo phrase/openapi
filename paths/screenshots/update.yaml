@@ -43,7 +43,7 @@ x-code-samples:
     phrase screenshots update \
     --project_id <project_id> \
     --id <id> \
-    --data '{"branch":"my-feature-branch", "name":""A screenshot name"", "description":""A screenshot description"", "filename":"/path/to/my/screenshot.png"}' \
+    --data '{"branch":"my-feature-branch", "name": "A screenshot name", "description": "A screenshot description", "filename":"/path/to/my/screenshot.png"}' \
     --access_token <token>
 requestBody:
   required: true

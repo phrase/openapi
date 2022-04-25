@@ -39,7 +39,7 @@ x-code-samples:
   source: |-
     phrase teams create \
     --account_id <account_id> \
-    --data '{"name":""German Translators""}' \
+    --data '{"name": "German Translators"}' \
     --access_token <token>
 requestBody:
   required: true
