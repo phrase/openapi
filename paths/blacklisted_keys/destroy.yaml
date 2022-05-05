@@ -1,9 +1,9 @@
 ---
-summary: Delete a blacklisted key
-description: Delete an existing rule for blacklisting keys.
+summary: Delete a blocked key
+description: Delete an existing rule for blocking keys.
 operationId: blacklisted_key/delete
 tags:
-- Blacklisted Keys
+- Blocked Keys
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"

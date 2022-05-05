@@ -1,6 +1,6 @@
 '!include': 'shared.yaml'
 packageName: Org.Phrase
-packageVersion: 1.0.0
+packageVersion: 2.0.0
 
 artifactUrl: https://developers.phrase.com
 developerEmail: support@phrase.com

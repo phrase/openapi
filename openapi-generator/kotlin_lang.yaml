@@ -2,7 +2,7 @@
 generatorName: kotlin
 outputDir: clients/java
 artifactId: phrase
-artifactVersion: 1.0.0
+artifactVersion: 2.0.0
 groupId: com.phrase
 packageName: com.phrase.client
 sourceFolder: src/main/phrase

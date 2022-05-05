@@ -1,9 +1,9 @@
 ---
-summary: Create a glossary term
-description: Create a new glossary term.
+summary: Create a term
+description: "Create a new term in a term base (previously: glossary)."
 operationId: glossary_term/create
 tags:
-- Glossary Terms
+- Terms in term base
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

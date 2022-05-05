@@ -1,9 +1,9 @@
 ---
-summary: Create a blacklisted key
-description: Create a new rule for blacklisting keys.
+summary: Create a blocked key
+description: Create a new rule for blocking keys.
 operationId: blacklisted_key/create
 tags:
-- Blacklisted Keys
+- Blocked Keys
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
@@ -50,6 +50,6 @@ requestBody:
         title: blacklisted_key/create/parameters
         properties:
           name:
-            description: Blacklisted key name
+            description: Blocked key name
             type: string
             example: date.formats.*
