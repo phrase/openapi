@@ -35,14 +35,12 @@ x-code-samples:
       -X PATCH \
       -F name=My%20Android%20Project \
       -F main_format=yml \
-      -F shares_translation_memory=true \
-      -F project_image=@/path/to/my/project-screenshot.png \
-      -F account_id=abcd1234
+      -F shares_translation_memory=true
 - lang: CLI v2
   source: |-
     phrase projects update \
     --id <id> \
-    --data '{"name": "My Android Project", "main_format":"yml", "shares_translation_memory":"true", "project_image":"/path/to/my/project-screenshot.png", "account_id":"abcd1234"}' \
+    --data '{"name": "My Android Project", "main_format":"yml", "shares_translation_memory":true}' \
     --access_token <token>
 requestBody:
   required: true
