@@ -6335,7 +6335,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase distributions create \\\n--account_id <account_id> \\\n--data '{\"name\": \"My Android Distribution\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\": \"android,ios\", \"locale_ids\":[\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"], \"format_options\": \"{xml:{enclose_in_cdata:'1'}}\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase distributions create \\\n--account_id <account_id> \\\n--data '{\"name\": \"My Android Distribution\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\": \"android,ios\", \"locale_ids\":[\"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\"], \"format_options\": \"{xml:{enclose_in_cdata:'1'}}\", \"fallback_to_non_regional_locale\":true, \"fallback_to_default_locale\":true, \"use_last_reviewed_version\":true}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -6527,7 +6527,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase distributions update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\": \"My Android Distribution\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\": \"android,ios\", \"locale_ids\": \"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\", \"format_options\": \"{xml:{enclose_in_cdata:'1'}}\", \"fallback_to_non_regional_locale\":\"true\", \"fallback_to_default_locale\":\"true\", \"use_last_reviewed_version\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase distributions update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\": \"My Android Distribution\", \"project_id\":\"abcd1234abcd1234abcd1234\", \"platforms\": \"android,ios\", \"locale_ids\": \"fff565db236400772368235db2c6117e,abcd1234cdef1234abcd1234cdef1234\", \"format_options\": \"{xml:{enclose_in_cdata:'1'}}\", \"fallback_to_non_regional_locale\":true, \"fallback_to_default_locale\":true, \"use_last_reviewed_version\":true}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -12071,11 +12071,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F name=My%20Android%20Project \\\n  -F main_format=yml \\\n  -F shares_translation_memory=true \\\n  -F project_image=@/path/to/my/project-screenshot.png \\\n  -F account_id=abcd1234"
+            "source": "curl \"https://api.phrase.com/v2/projects\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F name=My%20Android%20Project \\\n  -F main_format=yml \\\n  -F shares_translation_memory=true"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase projects create \\\n--data '{\"name\": \"My Android Project\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\", \"project_image\":\"/path/to/my/project-screenshot.png\", \"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase projects create \\\n--data '{\"name\": \"My Android Project\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -12323,11 +12323,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -F name=My%20Android%20Project \\\n  -F main_format=yml \\\n  -F shares_translation_memory=true \\\n  -F project_image=@/path/to/my/project-screenshot.png \\\n  -F account_id=abcd1234"
+            "source": "curl \"https://api.phrase.com/v2/projects/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -F name=My%20Android%20Project \\\n  -F main_format=yml \\\n  -F shares_translation_memory=true"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase projects update \\\n--id <id> \\\n--data '{\"name\": \"My Android Project\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\", \"project_image\":\"/path/to/my/project-screenshot.png\", \"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase projects update \\\n--id <id> \\\n--data '{\"name\": \"My Android Project\", \"main_format\":\"yml\", \"shares_translation_memory\":true}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -15635,7 +15635,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossary_terms create \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--data '{\"term\":\"MyCompany\", \"description\": \"Use this when refering to our company\", \"translatable\":\"true\", \"case_sensitive\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase glossary_terms create \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--data '{\"term\":\"MyCompany\", \"description\": \"Use this when refering to our company\", \"translatable\":true, \"case_sensitive\":true}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -15798,7 +15798,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase glossary_terms update \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--id <id> \\\n--data '{\"term\":\"MyCompany\", \"description\": \"Use this when refering to our company\", \"translatable\":\"true\", \"case_sensitive\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase glossary_terms update \\\n--account_id <account_id> \\\n--glossary_id <glossary_id> \\\n--id <id> \\\n--data '{\"term\":\"MyCompany\", \"description\": \"Use this when refering to our company\", \"translatable\":true, \"case_sensitive\":true}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
