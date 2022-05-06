@@ -3,7 +3,7 @@ summary: Update a translation for a term
 description: "Update an existing translation for a term in a term base (previously: glossary)."
 operationId: glossary_term_translation/update
 tags:
-- Term base translations
+- Glossary Term Translations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
