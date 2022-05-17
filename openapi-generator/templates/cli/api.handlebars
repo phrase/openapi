@@ -88,16 +88,25 @@ func init{{{nickname}}}() {
 							if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
 								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")))
 							}
-						{{else~}}
+						{{/isPrimitiveType~}}
+						{{#isModel~}}
 							var {{paramName}} map[string]interface{}
 							if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
 								HandleError(err)
 							}
-
 							if Config.Debug {
 								fmt.Printf("%+v\n", {{paramName}})
 							}
-						{{/isPrimitiveType~}}
+						{{/isModel~}}
+						{{^isPrimitiveType}}{{^isModel}}
+							if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
+								var {{paramName}} map[string]interface{}
+								if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))), &{{paramName}}); err != nil {
+									HandleError(err)
+								}
+								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface({{paramName}})
+							}
+						{{/isModel}}{{/isPrimitiveType}}
 					{{/if}}
 				{{/required~}}
 			{{/allParams~}}
