@@ -144,6 +144,7 @@ tags:
   - name: Invitations
     description: |
       With the invitation endpoint you can [manage and invite users](https://help.phrase.com/help/user-management) to Phrase via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
+  - name: Job Comments
   - name: Job Locales
   - name: Job Template Locales
   - name: Job Templates
@@ -289,6 +290,7 @@ x-tagGroups:
     tags:
       - Spaces
       - Jobs
+      - Job Comments
       - Job Locales
       - Job Templates
       - Job Template Locales
