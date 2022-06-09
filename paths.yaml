@@ -568,7 +568,7 @@
 "/accounts/{account_id}/search":
   post:
     "$ref": "./paths/search/in_account.yaml"
-"/projects/{project_id}/jobs/{job_id}/comments/{job_comment_id}":
+"/projects/{project_id}/jobs/{job_id}/comments/{id}":
   get:
     "$ref": "./paths/job_comments/show.yaml"
   patch:
