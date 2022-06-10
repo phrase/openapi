@@ -90,6 +90,9 @@
       "description": "With the invitation endpoint you can [manage and invite users](https://help.phrase.com/help/user-management) to Phrase via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.\n"
     },
     {
+      "name": "Job Comments"
+    },
+    {
       "name": "Job Locales"
     },
     {
@@ -191,6 +194,7 @@
       "tags": [
         "Spaces",
         "Jobs",
+        "Job Comments",
         "Job Locales",
         "Job Templates",
         "Job Template Locales",
@@ -21679,6 +21683,416 @@
                     "description": "Number of results per page",
                     "type": "integer",
                     "example": 25
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/jobs/{job_id}/comments/{job_comment_id}": {
+      "get": {
+        "summary": "Get a single job comment",
+        "description": "Get details on a single job comment.",
+        "operationId": "job_comment/show",
+        "tags": [
+          "Job Comments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1jobs~1%7Bjob_id%7D~1comments/post/responses/201/content/application~1json/schema"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments/:id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase comments show \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Update a job comment",
+        "description": "Update an existing job comment.",
+        "operationId": "job_comment/update",
+        "tags": [
+          "Job Comments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1jobs~1%7Bjob_id%7D~1comments/post/responses/201/content/application~1json/schema"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"message\":\"Some message...\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase comments update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"message\": \"Some message...\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "job_comment/update/parameters",
+                "properties": {
+                  "message": {
+                    "description": "Comment message",
+                    "type": "string",
+                    "example": "Some message..."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a job comment",
+        "description": "Delete an existing job comment.",
+        "operationId": "job_comment/delete",
+        "tags": [
+          "Job Comments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase comments delete \\\n--project_id <project_id> \\\n--job_id <key_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/jobs/{job_id}/comments": {
+      "get": {
+        "summary": "List job comments",
+        "description": "List all comments for a job.",
+        "operationId": "job_comments/list",
+        "tags": [
+          "Job Comments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1jobs~1%7Bjob_id%7D~1comments/post/responses/201/content/application~1json/schema"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase comments list \\\n--project_id <project_id> \\\n--job_id <key_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create a job comment",
+        "description": "Create a new comment for a job.",
+        "operationId": "job_comment/create",
+        "tags": [
+          "Job Comments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "job_comment",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "job_id": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "$ref": "#/components/schemas/user_preview"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "mentioned_users": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/user_preview"
+                      }
+                    }
+                  },
+                  "example": {
+                    "id": "abcd1234cdef1234abcd1234cdef1234",
+                    "message": "Some message...",
+                    "job_id": "abcd1234cdef1234abcd1234cdef1234",
+                    "user": {
+                      "id": "abcd1234cdef1234abcd1234cdef1234",
+                      "username": "joe.doe",
+                      "name": "Joe Doe"
+                    },
+                    "created_at": "2015-01-28T09:52:53Z",
+                    "updated_at": "2015-01-28T09:52:53Z"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"message\":\"Some message...\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase comments create \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--data '{\"message\": \"Some message...\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "job_comment/create/parameters",
+                "properties": {
+                  "message": {
+                    "description": "Job comment message",
+                    "type": "string",
+                    "example": "Some message..."
                   }
                 }
               }

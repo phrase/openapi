@@ -568,3 +568,15 @@
 "/accounts/{account_id}/search":
   post:
     "$ref": "./paths/search/in_account.yaml"
+"/projects/{project_id}/jobs/{job_id}/comments/{id}":
+  get:
+    "$ref": "./paths/job_comments/show.yaml"
+  patch:
+    "$ref": "./paths/job_comments/update.yaml"
+  delete:
+    "$ref": "./paths/job_comments/destroy.yaml"
+"/projects/{project_id}/jobs/{job_id}/comments":
+  get:
+    "$ref": "./paths/job_comments/index.yaml"
+  post:
+    "$ref": "./paths/job_comments/create.yaml"
