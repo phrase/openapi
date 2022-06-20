@@ -5677,11 +5677,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"code\":\"de-DE\",\"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"code\":\"de-DE\",\"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"fallback_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase locales create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"code\":\"de-DE\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase locales create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"code\":\"de-DE\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"fallback_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -5724,6 +5724,11 @@
                   },
                   "source_locale_id": {
                     "description": "Source locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "type": "string",
+                    "example": "abcd1234abcd1234abcd1234abcd1234"
+                  },
+                  "fallback_locale_id": {
+                    "description": "Fallback locale. Can be the name or public id of the locale. Preferred is the public id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -5920,6 +5925,11 @@
                   },
                   "source_locale_id": {
                     "description": "Source locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "type": "string",
+                    "example": "abcd1234abcd1234abcd1234abcd1234"
+                  },
+                  "fallback_locale_id": {
+                    "description": "Fallback locale. Can be the name or public id of the locale. Preferred is the public id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -21686,7 +21696,7 @@
         }
       }
     },
-    "/projects/{project_id}/jobs/{job_id}/comments/{job_comment_id}": {
+    "/projects/{project_id}/jobs/{job_id}/comments/{id}": {
       "get": {
         "summary": "Get a single job comment",
         "description": "Get details on a single job comment.",
