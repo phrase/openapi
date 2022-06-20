@@ -1,6 +1,6 @@
 ---
 summary: List all versions
-description: List all versions for the given translation.
+description: List all changes done to a given translation.
 operationId: versions/list
 tags:
 - Versions / History

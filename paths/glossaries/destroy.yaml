@@ -1,6 +1,6 @@
 ---
-summary: Delete a glossary
-description: Delete an existing glossary.
+summary: Delete a term base
+description: "Delete an existing term base (previously: glossary)."
 operationId: glossary/delete
 tags:
 - Glossaries

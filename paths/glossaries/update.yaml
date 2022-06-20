@@ -1,6 +1,6 @@
 ---
-summary: Update a glossary
-description: Update an existing glossary.
+summary: Update a term base
+description: "Update an existing term base (previously: glossary)."
 operationId: glossary/update
 tags:
 - Glossaries

@@ -1,6 +1,6 @@
 ---
-summary: List glossaries
-description: List all glossaries the current user has access to.
+summary: List term bases
+description: "List all term bases (previously: glossaries) the current user has access to."
 operationId: glossaries/list
 tags:
 - Glossaries

@@ -1,6 +1,6 @@
 ---
-summary: Get a single glossary term
-description: Get details on a single glossary term.
+summary: Get a single term
+description: "Get details for a single term in the term base (previously: glossary)."
 operationId: glossary_term/show
 tags:
 - Glossary Terms
