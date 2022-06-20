@@ -79,6 +79,10 @@ requestBody:
             description: Source locale. Can be the name or public id of the locale. Preferred is the public id.
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
+          fallback_locale_id:
+            description: Fallback locale. Can be the name or public id of the locale. Preferred is the public id.
+            type: string
+            example: abcd1234abcd1234abcd1234abcd1234
           unverify_new_translations:
             description: Indicates that new translations for this locale should be marked as unverified. Part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Advanced Workflows</a> feature.
             type: boolean
