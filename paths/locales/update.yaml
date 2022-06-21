@@ -80,7 +80,7 @@ requestBody:
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
           fallback_locale_id:
-            description: Fallback locale. Can be the name or public id of the locale. Preferred is the public id.
+            description: Fallback locale for empty translations. Can be a locale name or id.
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
           unverify_new_translations:

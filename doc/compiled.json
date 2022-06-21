@@ -5728,7 +5728,7 @@
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "fallback_locale_id": {
-                    "description": "Fallback locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Fallback locale for empty translations. Can be a locale name or id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -5929,7 +5929,7 @@
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "fallback_locale_id": {
-                    "description": "Fallback locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Fallback locale for empty translations. Can be a locale name or id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -6395,6 +6395,11 @@
                     },
                     "example": "{xml:{enclose_in_cdata:'1'}}"
                   },
+                  "fallback_locales_enabled": {
+                    "description": "Use fallback locale if there is no translation in the current locale.",
+                    "type": "boolean",
+                    "example": true
+                  },
                   "fallback_to_non_regional_locale": {
                     "description": "Indicates whether to fallback to non regional locale when locale can not be found",
                     "type": "boolean",
@@ -6586,6 +6591,11 @@
                       "type": "string"
                     },
                     "example": "{xml:{enclose_in_cdata:'1'}}"
+                  },
+                  "fallback_locales_enabled": {
+                    "description": "Use fallback locale if there is no translation in the current locale.",
+                    "type": "boolean",
+                    "example": true
                   },
                   "fallback_to_non_regional_locale": {
                     "description": "Indicates whether to fallback to non regional locale when locale can not be found",
