@@ -1372,6 +1372,9 @@
           "source_locale": {
             "$ref": "#/components/schemas/locale_preview"
           },
+          "fallback_locale": {
+            "$ref": "#/components/schemas/locale_preview"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -1394,6 +1397,11 @@
             "other"
           ],
           "source_locale": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "en",
+            "code": "en-GB"
+          },
+          "fallback_locale": {
             "id": "abcd1234cdef1234abcd1234cdef1234",
             "name": "en",
             "code": "en-GB"
