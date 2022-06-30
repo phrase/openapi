@@ -81,6 +81,10 @@ requestBody:
             additionalProperties:
               type: string
             example: "{xml:{enclose_in_cdata:'1'}}"
+          fallback_locales_enabled:
+            description: Use fallback locale if there is no translation in the current locale.
+            type: boolean
+            example: true
           fallback_to_non_regional_locale:
             description: Indicates whether to fallback to non regional locale when locale can not be found
             type: boolean

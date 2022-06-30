@@ -1372,6 +1372,9 @@
           "source_locale": {
             "$ref": "#/components/schemas/locale_preview"
           },
+          "fallback_locale": {
+            "$ref": "#/components/schemas/locale_preview"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -1394,6 +1397,11 @@
             "other"
           ],
           "source_locale": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "en",
+            "code": "en-GB"
+          },
+          "fallback_locale": {
             "id": "abcd1234cdef1234abcd1234cdef1234",
             "name": "en",
             "code": "en-GB"
@@ -5677,11 +5685,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"code\":\"de-DE\",\"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"name\":\"de\",\"code\":\"de-DE\",\"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"fallback_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase locales create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"code\":\"de-DE\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase locales create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"code\":\"de-DE\", \"source_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"fallback_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -5724,6 +5732,11 @@
                   },
                   "source_locale_id": {
                     "description": "Source locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "type": "string",
+                    "example": "abcd1234abcd1234abcd1234abcd1234"
+                  },
+                  "fallback_locale_id": {
+                    "description": "Fallback locale for empty translations. Can be a locale name or id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -5920,6 +5933,11 @@
                   },
                   "source_locale_id": {
                     "description": "Source locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "type": "string",
+                    "example": "abcd1234abcd1234abcd1234abcd1234"
+                  },
+                  "fallback_locale_id": {
+                    "description": "Fallback locale for empty translations. Can be a locale name or id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -6385,6 +6403,11 @@
                     },
                     "example": "{xml:{enclose_in_cdata:'1'}}"
                   },
+                  "fallback_locales_enabled": {
+                    "description": "Use fallback locale if there is no translation in the current locale.",
+                    "type": "boolean",
+                    "example": true
+                  },
                   "fallback_to_non_regional_locale": {
                     "description": "Indicates whether to fallback to non regional locale when locale can not be found",
                     "type": "boolean",
@@ -6576,6 +6599,11 @@
                       "type": "string"
                     },
                     "example": "{xml:{enclose_in_cdata:'1'}}"
+                  },
+                  "fallback_locales_enabled": {
+                    "description": "Use fallback locale if there is no translation in the current locale.",
+                    "type": "boolean",
+                    "example": true
                   },
                   "fallback_to_non_regional_locale": {
                     "description": "Indicates whether to fallback to non regional locale when locale can not be found",
@@ -21686,7 +21714,7 @@
         }
       }
     },
-    "/projects/{project_id}/jobs/{job_id}/comments/{job_comment_id}": {
+    "/projects/{project_id}/jobs/{job_id}/comments/{id}": {
       "get": {
         "summary": "Get a single job comment",
         "description": "Get details on a single job comment.",

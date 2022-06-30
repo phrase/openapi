@@ -21,6 +21,8 @@ locale:
         type: string
     source_locale:
       "$ref": "./locale_preview.yaml#/locale_preview"
+    fallback_locale:
+      "$ref": "./locale_preview.yaml#/locale_preview"
     created_at:
       type: string
       format: date-time
@@ -39,6 +41,10 @@ locale:
     - one
     - other
     source_locale:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: en
+      code: en-GB
+    fallback_locale:
       id: abcd1234cdef1234abcd1234cdef1234
       name: en
       code: en-GB
