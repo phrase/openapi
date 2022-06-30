@@ -2,4 +2,4 @@
 generatorName: go
 outputDir: clients/cli
 packageName: phrase
-packageVersion: 2.4.11
+packageVersion: 2.4.12
