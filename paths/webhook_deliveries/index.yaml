@@ -1,0 +1,46 @@
+---
+summary: List webhook deliveries
+description: List all webhook deliveries for the given webhook_id.
+operationId: webhook_deliveries/list
+tags:
+- Webhook delivery, Webhook
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/webhook_id"
+- "$ref": "../../parameters.yaml#/before_id"
+- "$ref": "../../parameters.yaml#/response_status_code"
+
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/webhook_delivery.yaml#/webhook_delivery"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/webhooks/webhook_id/deliveries" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase webhooks list \
+    --webhook_id <webhook_id> \
+    --access_token <token>

@@ -1,0 +1,22 @@
+---
+webhook_delivery:
+  type: object
+  title: webhook delivery
+  properties:
+    identifier:
+      type: string
+    webhook_id:
+      type: string
+    response_status_code:
+      type: integer
+    delivered_at:
+      type: string
+      format: date-time
+    duration_ms:
+      type: integer
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time

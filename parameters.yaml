@@ -150,3 +150,24 @@ per_page:
   schema:
     type: integer
   example: 25
+webhook_id:
+  in: path
+  name: webhook_id
+  description: Webhook ID
+  required: true
+  schema:
+    type: string
+before_id:
+  in: path
+  name: before_id
+  description: ID to filter all deliveries before the Webhook with Before ID
+  required: true
+  schema:
+    type: string
+response_status_code:
+  in: path
+  name: response_status_code
+  description: Response Status Code
+  required: true
+  schema:
+    type: string
