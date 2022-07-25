@@ -150,3 +150,17 @@ per_page:
   schema:
     type: integer
   example: 25
+webhook_id:
+  in: path
+  name: webhook_id
+  description: Webhook ID
+  required: true
+  schema:
+    type: string
+response_status_codes:
+  in: query
+  name: response_status_codes
+  description: List of Response Status Codes
+  required: false
+  schema:
+    type: string

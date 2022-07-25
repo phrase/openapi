@@ -168,6 +168,9 @@
     },
     {
       "name": "Webhooks"
+    },
+    {
+      "name": "Webhook Deliveries"
     }
   ],
   "x-tagGroups": [
@@ -2412,6 +2415,36 @@
           "updated_at": "2015-01-28T09:52:53Z"
         }
       },
+      "webhook_delivery": {
+        "type": "object",
+        "title": "webhook delivery",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "webhook_id": {
+            "type": "string"
+          },
+          "response_status_code": {
+            "type": "integer"
+          },
+          "delivered_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration_ms": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "space": {
         "type": "object",
         "title": "space",
@@ -3493,6 +3526,24 @@
           "type": "integer"
         },
         "example": 25
+      },
+      "webhook_id": {
+        "in": "path",
+        "name": "webhook_id",
+        "description": "Webhook ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "response_status_codes": {
+        "in": "query",
+        "name": "response_status_codes",
+        "description": "List of Response Status Codes",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "responses": {
@@ -22122,6 +22173,216 @@
             }
           }
         }
+      }
+    },
+    "/projects/{project_id}/webhooks/{webhook_id}/deliveries": {
+      "get": {
+        "summary": "List webhook deliveries",
+        "description": "List all webhook deliveries for the given webhook_id.",
+        "operationId": "webhook_deliveries/list",
+        "tags": [
+          "Webhook Deliveries"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/webhook_id"
+          },
+          {
+            "$ref": "#/components/parameters/response_status_codes"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/webhook_delivery"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/webhooks/:webhook_id/deliveries?response_status_codes=401%2C404\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase webhooks list \\\n--project_id <project_id> \\\n--webhook_id <webhook_id> \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/webhooks/{webhook_id}/deliveries/{id}": {
+      "get": {
+        "summary": "Get a single webhook delivery",
+        "description": "Get all information about a single webhook delivery for the given ID.",
+        "operationId": "webhook_deliveries/show",
+        "tags": [
+          "Webhook Deliveries"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/webhook_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/webhook_delivery"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/webhooks/:webhook_id/deliveries/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase webhook deliveries show \\\n--project_id <project_id> \\\n--webhook_id <webhook_id> \\\n--id <delivery_id> \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/webhooks/{webhook_id}/deliveries/{id}/redeliver": {
+      "post": {
+        "summary": "Redeliver a single webhook delivery",
+        "description": "Trigger an individual webhook delivery to be redelivered.",
+        "operationId": "webhook_deliveries/redeliver",
+        "tags": [
+          "Webhook Deliveries"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/webhook_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/webhook_delivery"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/webhooks/:webhook_id/deliveries/:id/redeliver\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase webhook deliveries show \\\n--project_id <project_id> \\\n--webhook_id <webhook_id> \\\n--id <delivery_id> \\\n--access_token <token>"
+          }
+        ]
       }
     }
   }

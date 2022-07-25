@@ -580,3 +580,12 @@
     "$ref": "./paths/job_comments/index.yaml"
   post:
     "$ref": "./paths/job_comments/create.yaml"
+"/projects/{project_id}/webhooks/{webhook_id}/deliveries":
+  get:
+    "$ref": "./paths/webhook_deliveries/index.yaml"
+"/projects/{project_id}/webhooks/{webhook_id}/deliveries/{id}":
+  get:
+    "$ref": "./paths/webhook_deliveries/show.yaml"
+"/projects/{project_id}/webhooks/{webhook_id}/deliveries/{id}/redeliver":
+  post:
+    "$ref": "./paths/webhook_deliveries/redeliver.yaml"
