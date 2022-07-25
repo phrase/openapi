@@ -3,11 +3,11 @@ webhook_delivery:
   type: object
   title: webhook delivery
   properties:
-    identifier:
+    id:
       type: string
     webhook_id:
       type: string
-    response_status_codes:
+    response_status_code:
       type: integer
     delivered_at:
       type: string
