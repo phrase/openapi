@@ -3537,10 +3537,10 @@
         }
       },
       "response_status_codes": {
-        "in": "path",
+        "in": "query",
         "name": "response_status_codes",
         "description": "List of Response Status Codes",
-        "required": true,
+        "required": false,
         "schema": {
           "type": "string"
         }
