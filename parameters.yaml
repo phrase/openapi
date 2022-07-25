@@ -157,17 +157,10 @@ webhook_id:
   required: true
   schema:
     type: string
-before_id:
+response_status_codes:
   in: path
-  name: before_id
-  description: ID to filter all deliveries before the Webhook with Before ID
-  required: true
-  schema:
-    type: string
-response_status_code:
-  in: path
-  name: response_status_code
-  description: Response Status Code
+  name: response_status_codes
+  description: List of Response Status Codes
   required: true
   schema:
     type: string

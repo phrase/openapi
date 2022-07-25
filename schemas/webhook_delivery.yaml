@@ -7,7 +7,7 @@ webhook_delivery:
       type: string
     webhook_id:
       type: string
-    response_status_code:
+    response_status_codes:
       type: integer
     delivered_at:
       type: string

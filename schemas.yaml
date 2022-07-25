@@ -92,6 +92,8 @@ schemas:
     "$ref": schemas/current_user.yaml#/user
   webhook:
     "$ref": schemas/webhook.yaml#/webhook
+  webhook_delivery:
+    "$ref": schemas/webhook_delivery.yaml#/webhook_delivery
   space:
     "$ref": schemas/space.yaml#/space
   team:
