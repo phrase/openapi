@@ -22250,7 +22250,7 @@
     "/projects/{project_id}/webhooks/{webhook_id}/deliveries/{id}": {
       "get": {
         "summary": "Get a single webhook delivery",
-        "description": "Get all information about a single webhook delivery for the given webhook_delivery_id.",
+        "description": "Get all information about a single webhook delivery for the given ID.",
         "operationId": "webhook_deliveries/show",
         "tags": [
           "Webhook Deliveries"
