@@ -1,12 +1,19 @@
 Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform. The API allows you to import locale files, download locale files, tag keys or interact in other ways with the localization data stored in Phrase for your account.
 
-## API Endpoint
+## API Endpoints
 
+### EU datacenter
 ```
 https://api.phrase.com/v2/
 ```
 
-The API is only accessible via HTTPS, the base URL is <code>https://api.phrase.com/</code>, and the current version is <code>v2</code> which results in the base URL for all requests: <code>https://api.phrase.com/v2/</code>.
+### US datacenter
+
+```
+https://api.us.app.phrase.com/v2
+```
+
+The API is only accessible via HTTPS and the current version is <code>v2</code>, which results in a base URL like: <code>https://api.phrase.com/v2/</code> depending on the datacenter.
 
 ## Usage
 
