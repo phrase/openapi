@@ -94,6 +94,10 @@ func getUserAgent() string {
 	return agent
 }
 
+func (c *Configuration) SetBasePath(newBasePath string) {
+	c.BasePath = newBasePath
+}
+
 func (c *Configuration) SetUserAgent(additionalUserAgent string) {
 	c.UserAgent = getUserAgent() + additionalUserAgent
 }
