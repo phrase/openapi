@@ -41,11 +41,12 @@ func main() {
 }
 ```
 
-# Using US Datacenter
-In order to use the US Datacenter for your requests, set the `BasePath` of the configuration to `"https://us.api.phrase.com/v2"` like so:
+{{>../shared/datacenters}}
+### Specifying US Datacenter
+Set the `BasePath` of the configuration like so:
 
 ```
-cfg.SetBasePath("https://us.api.phrase.com/v2")
+client.ChangeBasePath("https://app.us.phrase.com/api/v2/")
 ```
 
 ## Documentation for API Endpoints
