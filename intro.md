@@ -8,12 +8,6 @@ https://api.phrase.com/v2/
 
 The API is only accessible via HTTPS, the base URL is <code>https://api.phrase.com/</code>, and the current version is <code>v2</code> which results in the base URL for all requests: <code>https://api.phrase.com/v2/</code>.
 
-# US Datacenter
-
-```
-https://us.api.phrase.com/v2/
-```
-
 ## Usage
 
 [curl](http://curl.haxx.se/) is used primarily to send requests to Phrase in the examples. On most you'll find a second variant using the [Phrase API v2 client](https://phrase.com/cli/) that might be more convenient to handle. For further information check its [documentation](https://help.phrase.com/help/phrase-in-your-terminal).
