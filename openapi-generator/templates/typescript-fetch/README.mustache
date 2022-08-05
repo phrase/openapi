@@ -143,17 +143,15 @@ let requestParameters = {
 spaceApi.spacesList(requestParameters).then(function (data) {console.log(data)})
 ```
 
+{{>../shared/datacenters}}
+### Specifying US Datacenter
+```
+const configuration = new Configuration({basePath: 'https://app.us.phrase.com/api/v2/'})
+```
+
 ## API Endpoints
 
 All URIs are relative to *{{basePath}}*
-
-# US Datacenter
-
-You can use the US Datacenter by specifying a different base path in the config:
-
-```
-const configuration = new Configuration({basePath: 'https://us.api.phrase.com/v2'})
-```
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

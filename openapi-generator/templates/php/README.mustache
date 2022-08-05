@@ -93,8 +93,11 @@ try {
 ?>
 ```
 
-# Using US Datacenter
-Just set the host like `$config = {{{invokerPackage}}}\Configuration::getDefaultConfiguration()->setHost('https://us.api.phrase.com/v2');`.
+{{>../shared/datacenters}}
+### Specifying US Datacenter
+```
+$config = {{{invokerPackage}}}\Configuration::getDefaultConfiguration()->setHost('https://app.us.phrase.com/api/v2/');
+```
 
 ## Documentation For Authorization
 
