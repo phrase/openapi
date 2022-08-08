@@ -17,14 +17,11 @@ IMAGE_PREFIX=phrase/phrase-cli
 IMAGE=${IMAGE_PREFIX}:${VERSION}
 IMAGE_LATEST=${IMAGE_PREFIX}:latest
 
-echo build docker image ${IMAGE}
-docker build --tag ${IMAGE} -f ./Dockerfile .
+echo build docker image ${IMAGE} and ${IMAGE_LATEST}
+docker build --tag ${IMAGE} --tag ${IMAGE_LATEST} -f ./Dockerfile .
 
 echo push image ${IMAGE}
 docker push ${IMAGE}
-
-echo build docker image ${IMAGE_LATEST}
-docker build --tag ${IMAGE_LATEST} -f ./Dockerfile .
 
 echo push image ${IMAGE_LATEST}
 docker push ${IMAGE_LATEST}
