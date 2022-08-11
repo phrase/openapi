@@ -30,14 +30,14 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/branches/:name/merge" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
-      -d '{"strategy":"use_master"}' \
+      -d '{"strategy":"use_main"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase branches merge \
     --project_id <project_id> \
     --name <name> \
-    --data '{"strategy":"use_master"}' \
+    --data '{"strategy":"use_main"}' \
     --access_token <token>
 requestBody:
   required: true
@@ -48,6 +48,6 @@ requestBody:
         title: branch/merge/parameters
         properties:
           strategy:
-            description: strategy used for merge blocking, use_master or use_branch
+            description: strategy used for merge blocking, use_main or use_branch
             type: string
-            example: use_master
+            example: use_main
