@@ -93,6 +93,13 @@ try {
 ?>
 ```
 
+{{>../shared/datacenters}}
+### Specifying US Datacenter
+You can use the US datacenter by setting the following:
+```
+$config = {{{invokerPackage}}}\Configuration::getDefaultConfiguration()->setHost('https://api.us.app.phrase.com/v2/');
+```
+
 ## Documentation For Authorization
 
 {{^authMethods}}
