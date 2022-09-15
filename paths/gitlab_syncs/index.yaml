@@ -1,6 +1,6 @@
 ---
 summary: List GitLab syncs
-description: List all GitLab Sync Settings for which synchronisation with Phrase and GitLab is activated.
+description: List all GitLab Sync Settings for which synchronisation with Phrase Strings and GitLab is activated.
 operationId: gitlab_sync/list
 tags:
 - GitLab Sync

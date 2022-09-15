@@ -1,6 +1,6 @@
 ---
-summary: Export from Phrase to GitLab
-description: Export translations from Phrase to GitLab according to the .phraseapp.yml file within the GitLab repository.
+summary: Export from Phrase Strings to GitLab
+description: Export translations from Phrase Strings to GitLab according to the .phraseapp.yml file within the GitLab repository.
 operationId: gitlab_sync/export
 tags:
 - GitLab Sync

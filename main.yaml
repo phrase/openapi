@@ -1,7 +1,7 @@
 openapi: 3.0.3
 
 info:
-  title: Phrase API Reference
+  title: Phrase Strings API Reference
   version: 2.0.0
   description:
     $ref: './intro.md'
@@ -12,9 +12,9 @@ info:
     email: support@phrase.com
 
   x-logo:
-    url: "https://developers.phrase.com/images/phrase-logo.png"
-    backgroundColor: "#0091eb"
-    altText: "Phrase"
+    url: "https://developers.phrase.com/images/phrase-logo.svg"
+    backgroundColor: "#03eab3"
+    altText: "Phrase Strings"
 
   termsOfService: 'https://phrase.com/terms/'
 
@@ -123,7 +123,7 @@ tags:
   - name: ICU
   - name: Invitations
     description: |
-      With the invitation endpoint you can [manage and invite users](https://help.phrase.com/help/user-management) to Phrase via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
+      With the invitation endpoint you can [manage and invite users](https://support.phrase.com/hc/en-us/articles/5709742418716) to Phrase Strings via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
   - name: Job Comments
   - name: Job Locales
   - name: Job Template Locales
@@ -133,7 +133,7 @@ tags:
   - name: Locales
   - name: Members
     description: |
-      With the members endpoints you can do basic [team and user management](https://help.phrase.com/help/user-management) via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
+      With the members endpoints you can do basic [team and user management](https://support.phrase.com/hc/en-us/articles/5709742418716) via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
   - name: Notifications
   - name: Notification Groups
   - name: Orders
@@ -201,7 +201,7 @@ tags:
     description: |
       ### Formats
 
-      We support all common localization file formats. For a detailed overview, see our [Format Guide](https://help.phrase.com/help/supported-platforms-and-formats).
+      We support all common localization file formats. For a detailed overview, see our [Format Guide](https://support.phrase.com/hc/en-us/articles/5784070560412).
 
       ### Processing
 

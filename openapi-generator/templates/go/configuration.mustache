@@ -87,7 +87,7 @@ func ClientVersion() string {
 }
 
 func getUserAgent() string {
-	agent := "{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Phrase go{{/httpUserAgent}} (" + ClientVersion() + ")"
+	agent := "{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}Phrase Strings go{{/httpUserAgent}} (" + ClientVersion() + ")"
 	if ua := os.Getenv("PHRASE_USER_AGENT"); ua != "" {
 		agent = ua + "; " + agent
 	}
