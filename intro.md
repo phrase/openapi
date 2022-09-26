@@ -2,12 +2,12 @@ Phrase is a translation management platform for software projects. You can colla
 
 ## API Endpoints
 
-### EU datacenter
+### EU data center
 ```
 https://api.phrase.com/v2/
 ```
 
-### US datacenter
+### US data center
 
 ```
 https://api.us.app.phrase.com/v2
@@ -15,21 +15,6 @@ https://api.us.app.phrase.com/v2
 
 The API is only accessible via HTTPS and the current version is <code>v2</code>, which results in a base URL like: <code>https://api.phrase.com/v2/</code> depending on the datacenter.
 
-## Datacenters
-
-The API is only accessible via HTTPS and the current version is <code>v2</code>, which results in a URL like: <code>https://api.phrase.com/v2/</code> depending on the datacenter.
-
-### EU Datacenter
-```
-https://api.phrase.com/v2/
-```
-
-This is the default datacenter.
-
-### US Datacenter
-```
-https://api.us.app.phrase.com/v2/
-```
 
 ## Usage
 
