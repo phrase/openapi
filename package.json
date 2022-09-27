@@ -32,7 +32,7 @@
   "devDependencies": {
     "@apidevtools/swagger-cli": "^4.0.3",
     "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
-    "husky": "^4.2.5",
+    "husky": "^4.3.8",
     "sass": "^1.26.10",
     "terser": "^4.8.1",
     "typescript": "^3.9.6"
