@@ -1,6 +1,6 @@
 ---
-summary: Import to Phrase from Bitbucket
-description: Import translations from Bitbucket to Phrase according to the .phraseapp.yml file within the Bitbucket repository.
+summary: Import to Phrase Strings from Bitbucket
+description: Import translations from Bitbucket to Phrase Strings according to the .phraseapp.yml file within the Bitbucket repository.
 operationId: bitbucket_sync/import
 tags:
 - Bitbucket Sync

@@ -13,7 +13,7 @@ parameters:
   in: query
   schema:
     type: string
-- description: Code of the related Phrase Project.
+- description: Code of the related Phrase Strings Project.
   example: 3456abcd
   name: phrase_project_code
   in: query

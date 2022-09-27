@@ -152,9 +152,9 @@ func (cfg *Config) UnmarshalYAML(unmarshal func(i interface{}) error) error {
 	return nil
 }
 
-const cfgValueErrStr = "configuration key %q has invalid value: %T\nsee https://help.phrase.com/articles/2185247-configuration"
-const cfgKeyErrStr = "configuration key %q has invalid type: %T\nsee https://help.phrase.com/articles/2185247-configuration"
-const cfgInvalidKeyErrStr = "configuration key %q unknown\nsee https://help.phrase.com/articles/2185247-configuration"
+const cfgValueErrStr = "configuration key %q has invalid value: %T\nsee https://support.phrase.com/hc/en-us/sections/5784132012828"
+const cfgKeyErrStr = "configuration key %q has invalid type: %T\nsee https://support.phrase.com/hc/en-us/sections/5784132012828"
+const cfgInvalidKeyErrStr = "configuration key %q unknown\nsee https://support.phrase.com/hc/en-us/sections/5784132012828"
 
 func ValidateIsString(k string, v interface{}) (string, error) {
 	s, ok := v.(string)

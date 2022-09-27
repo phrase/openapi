@@ -5,4 +5,4 @@ packageName: phrase
 packageVersion: 2.6.0
 gitUserId: phrase
 gitRepoId: phrase-go
-httpUserAgent: Phrase go
+httpUserAgent: Phrase Strings go

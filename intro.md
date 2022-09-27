@@ -1,4 +1,4 @@
-Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform. The API allows you to import locale files, download locale files, tag keys or interact in other ways with the localization data stored in Phrase for your account.
+Phrase Strings is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform. The API allows you to import locale files, download locale files, tag keys or interact in other ways with the localization data stored in Phrase Strings for your account.
 
 ## API Endpoints
 
@@ -18,11 +18,11 @@ The API is only accessible via HTTPS and the current version is <code>v2</code>,
 
 ## Usage
 
-[curl](http://curl.haxx.se/) is used primarily to send requests to Phrase in the examples. On most you'll find a second variant using the [Phrase API v2 client](https://phrase.com/cli/) that might be more convenient to handle. For further information check its [documentation](https://help.phrase.com/help/phrase-in-your-terminal).
+[curl](http://curl.haxx.se/) is used primarily to send requests to Phrase Strings in the examples. On most you'll find a second variant using the [Phrase Strings API v2 client](https://phrase.com/cli/) that might be more convenient to handle. For further information check its [documentation](https://support.phrase.com/hc/en-us/articles/5808300599068).
 
 ## Use of HTTP Verbs
 
-Phrase API v2 tries to use the appropriate HTTP verb for accessing each endpoint according to REST specification where possible:
+Phrase Strings API v2 tries to use the appropriate HTTP verb for accessing each endpoint according to REST specification where possible:
 
 <div class="table-responsive">
   <table class="basic-table">
@@ -339,7 +339,7 @@ Status: 304 Not Modified
 
 ## JSONP
 
-The Phrase API supports [JSONP](http://en.wikipedia.org/wiki/JSONP) for all GET requests in order to deal with cross-domain request issues. Just send a `?callback` parameter along with the request to specify the Javascript function name to be called with the response content:
+The Phrase Strings API supports [JSONP](http://en.wikipedia.org/wiki/JSONP) for all GET requests in order to deal with cross-domain request issues. Just send a `?callback` parameter along with the request to specify the Javascript function name to be called with the response content:
 
 ```
 $ curl "https://api.phrase.com/v2/projects?callback=myFunction"
@@ -378,7 +378,7 @@ $ curl "https://api.phrase.com/v2/projects?callback=myFunction&access_token=ACCE
 
 ## Usage examples
 
-Learn how to work more efficiently with Phrase API v2 with these
+Learn how to work more efficiently with Phrase Strings API v2 with these
 workflow-oriented examples.
 
 </div>

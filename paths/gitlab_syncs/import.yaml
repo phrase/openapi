@@ -1,6 +1,6 @@
 ---
 summary: Import from GitLab to Phrase
-description: Import translations from GitLab to Phrase according to the .phraseapp.yml file within the GitLab repository.
+description: Import translations from GitLab to Phrase Strings according to the .phraseapp.yml file within the GitLab repository.
 operationId: gitlab_sync/import
 tags:
 - GitLab Sync

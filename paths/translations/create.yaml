@@ -70,7 +70,7 @@ requestBody:
             type: string
             example:
           unverified:
-            description: Indicates whether translation is unverified. Part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Advanced Workflows</a> feature.
+            description: Indicates whether translation is unverified. Part of the <a href="https://support.phrase.com/hc/en-us/articles/5784094755484" target="_blank">Advanced Workflows</a> feature.
             type: boolean
             example:
           excluded:

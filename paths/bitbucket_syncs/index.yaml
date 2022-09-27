@@ -1,6 +1,6 @@
 ---
 summary: List Bitbucket syncs
-description: List all Bitbucket repositories for which synchronisation with Phrase is activated.
+description: List all Bitbucket repositories for which synchronisation with Phrase Strings is activated.
 operationId: bitbucket_syncs/list
 tags:
 - Bitbucket Sync

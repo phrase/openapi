@@ -1,6 +1,6 @@
 ---
-summary: Export from Phrase to GitHub
-description: Export translations from Phrase to GitHub according to the .phraseapp.yml file within the GitHub repository.
+summary: Export from Phrase Strings to GitHub
+description: Export translations from Phrase Strings to GitHub according to the .phraseapp.yml file within the GitHub repository.
 operationId: github_sync/export
 tags:
 - GitHub Sync

@@ -53,7 +53,7 @@ requestBody:
             type: string
             example: My Android Project
           main_format:
-            description: Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href="https://help.phrase.com/help/supported-platforms-and-formats">Format Guide</a> or our <a href="#formats">Formats API Endpoint</a>.
+            description: Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href="https://support.phrase.com/hc/en-us/articles/5784070560412">Format Guide</a> or our <a href="#formats">Formats API Endpoint</a>.
             type: string
             example: yml
           shares_translation_memory:
@@ -78,7 +78,7 @@ requestBody:
             type: string
             example: abcd1234
           workflow:
-            description: (Optional) Review Workflow. "simple" / "review". <a href="https://help.phrase.com/help/advanced-review-workflow">Read more</a>
+            description: (Optional) Review Workflow. "simple" / "review". <a href="https://support.phrase.com/hc/en-us/articles/5784094755484">Read more</a>
             type: string
             example: review
           machine_translation_enabled:
@@ -98,7 +98,7 @@ requestBody:
             type: boolean
             example: true
           enable_icu_message_format:
-            description: (Optional) We can validate and highlight your ICU messages. <a href="https://help.phrase.com/help/icu-message-format">Read more</a>
+            description: (Optional) We can validate and highlight your ICU messages. <a href="https://support.phrase.com/hc/en-us/articles/5822319545116">Read more</a>
             type: boolean
             example: true
           zero_plural_form_enabled:
@@ -106,7 +106,7 @@ requestBody:
             type: boolean
             example: true
           autotranslate_enabled:
-            description: (Optional) Autopilot, requires machine_translation_enabled. <a href="https://help.phrase.com/help/autopilot">Read more</a>
+            description: (Optional) Autopilot, requires machine_translation_enabled. <a href="https://support.phrase.com/hc/en-us/articles/5822187934364">Read more</a>
             type: boolean
             example: true
           autotranslate_check_new_translation_keys:

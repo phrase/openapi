@@ -1,7 +1,7 @@
 {
   "name": "phrase-api-reference",
   "version": "2.0.0",
-  "description": "Phrase is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform.",
+  "description": "Phrase Strings is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform.",
   "scripts": {
     "start": "make",
     "docs": "make docs",

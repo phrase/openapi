@@ -1,6 +1,6 @@
 ---
-summary: Import to Phrase from GitHub
-description: Import files to Phrase from your connected GitHub repository.
+summary: Import to Phrase Strings from GitHub
+description: Import files to Phrase Strings from your connected GitHub repository.
 operationId: github_sync/import
 tags:
 - GitHub Sync

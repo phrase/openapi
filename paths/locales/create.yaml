@@ -66,7 +66,7 @@ requestBody:
             type: boolean
             example:
           main:
-            description: Indicates whether locale is a main locale. Main locales are part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Verification System</a> feature.
+            description: Indicates whether locale is a main locale. Main locales are part of the <a href="https://support.phrase.com/hc/en-us/articles/5784094755484" target="_blank">Verification System</a> feature.
             type: boolean
             example:
           rtl:
@@ -82,11 +82,11 @@ requestBody:
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
           unverify_new_translations:
-            description: Indicates that new translations for this locale should be marked as unverified. Part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Advanced Workflows</a> feature.
+            description: Indicates that new translations for this locale should be marked as unverified. Part of the <a href="https://support.phrase.com/hc/en-us/articles/5784094755484" target="_blank">Advanced Workflows</a> feature.
             type: boolean
             example:
           unverify_updated_translations:
-            description: Indicates that updated translations for this locale should be marked as unverified. Part of the <a href="https://help.phrase.com/help/verification-and-proofreading" target="_blank">Advanced Workflows</a> feature.
+            description: Indicates that updated translations for this locale should be marked as unverified. Part of the <a href="https://support.phrase.com/hc/en-us/articles/5784094755484" target="_blank">Advanced Workflows</a> feature.
             type: boolean
             example:
           autotranslate:
