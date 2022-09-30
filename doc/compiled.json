@@ -18814,7 +18814,7 @@
         }
       }
     },
-    "/accounts/{account_id}/teams/{team_id}": {
+    "/accounts/{account_id}/teams/{id}": {
       "get": {
         "summary": "Get Team",
         "description": "Show the specified Team.",

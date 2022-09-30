@@ -472,7 +472,7 @@
     "$ref": "./paths/teams/index.yaml"
   post:
     "$ref": "./paths/teams/create.yaml"
-"/accounts/{account_id}/teams/{team_id}":
+"/accounts/{account_id}/teams/{id}":
   get:
     "$ref": "./paths/teams/show.yaml"
   patch:
