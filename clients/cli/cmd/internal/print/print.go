@@ -29,30 +29,42 @@ const phrase_logo = `
 `
 
 func PhraseLogo() {
-	WithColor(ct.Cyan, "message", phrase_logo)
+	WithColor(ct.Cyan, phrase_logo)
 }
 
 func Success(msg string, args ...interface{}) {
-	WithColor(ct.Green, "message", msg, args...)
+	WithColor(ct.Green, formatSuccessMessage(msg, args...))
 }
 
 func Failure(msg string, args ...interface{}) {
-	WithColor(ct.Red, "failure", msg, args...)
+	WithColor(ct.Red, formatFailureMessage(msg, args...))
 }
 
-func WithColor(color ct.Color, mapKey string, msg string, args ...interface{}) {
-	fprintWithColor(os.Stdout, color, mapKey, msg, args...)
+func WithColor(color ct.Color, msg string) {
+	fprintWithColor(os.Stdout, color, msg)
 }
 
 func Error(err error) {
-	fprintWithColor(os.Stderr, ct.Red, "error", "ERROR: %s", err)
+	fprintWithColor(os.Stderr, ct.Red, formatErrorMessage("ERROR: %s", err))
 }
 
-func fprintWithColor(w io.Writer, color ct.Color, mapKey string, msg string, args ...interface{}) {
+func fprintWithColor(w io.Writer, color ct.Color, msg string) {
 	ct.Foreground(color, true)
-	fmt.Fprintf(w, formatMessage(mapKey, msg, args...))
+	fmt.Fprintf(w, msg)
 	fmt.Fprintln(w)
 	ct.ResetColor()
+}
+
+func formatSuccessMessage(msg string, args ...interface{}) {
+	formatMessage("message", msg, args...)
+}
+
+func formatFailureMessage(msg string, args ...interface{}) {
+	formatMessage("failure", msg, args...)
+}
+
+func formatErrorMessage(msg string, args ...interface{}) {
+	formatMessage("error", msg, args...)
 }
 
 func formatMessage(mapKey string, msg string, args ...interface{}) {
