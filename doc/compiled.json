@@ -5499,7 +5499,7 @@
         ]
       }
     },
-    "/accounts/{account_id}/locales": {
+    "/accounts/{id}/locales": {
       "get": {
         "summary": "List locales used in account",
         "description": "List all locales unique by locale code used across all projects within an account.",
