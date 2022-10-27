@@ -55,6 +55,10 @@ func init() {
 	viper.BindPFlag("tfa", rootCmd.PersistentFlags().Lookup("tfa"))
 	viper.SetDefault("tfa", false)
 
+	rootCmd.PersistentFlags().BoolVarP(&Config.NoUpdateCheck, "no-update-check", "", false, "mute update checking")
+	viper.BindPFlag("no-update-check", rootCmd.PersistentFlags().Lookup("no-update-check"))
+	viper.SetDefault("no-update-check", false)
+
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./.phrase.yml fallback to $HOME/.phrase.yml)")
 }
 
@@ -136,6 +140,10 @@ func initConfig() {
 		fmt.Printf("%+v\n", config)
 	}
 
+	if Config.NoUpdateCheck {
+		config.NoUpdateCheck = Config.NoUpdateCheck
+	}
+
 	Config = config
 }
 
@@ -177,7 +185,9 @@ func checkUpdate() {
 		os.Stderr,
 	)
 
-	updateChecker.Check()
+	if !Config.NoUpdateCheck {
+		updateChecker.Check()
+	}
 }
 
 func HandleError(msg interface{}) {
