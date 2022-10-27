@@ -23,7 +23,6 @@ type Credentials struct {
 type Config struct {
 	Credentials
 	Debug bool
-	NoUpdateCheck bool
 
 	Page    *int
 	PerPage *int
@@ -127,17 +126,16 @@ func configPath() (string, error) {
 func (cfg *Config) UnmarshalYAML(unmarshal func(i interface{}) error) error {
 	m := map[string]interface{}{}
 	err := ParseYAMLToMap(unmarshal, map[string]interface{}{
-		"access_token": 	 &cfg.Credentials.Token,
-		"host":         	 &cfg.Credentials.Host,
-		"debug":        	 &cfg.Debug,
-		"no_update_check": &cfg.NoUpdateCheck,
-		"page":         	 &cfg.Page,
-		"per_page":     	 &cfg.PerPage,
-		"project_id":   	 &cfg.DefaultProjectID,
-		"file_format":  	 &cfg.DefaultFileFormat,
-		"push":         	 &cfg.Sources,
-		"pull":         	 &cfg.Targets,
-		"defaults":     	 &m,
+		"access_token": &cfg.Credentials.Token,
+		"host":         &cfg.Credentials.Host,
+		"debug":        &cfg.Debug,
+		"page":         &cfg.Page,
+		"per_page":     &cfg.PerPage,
+		"project_id":   &cfg.DefaultProjectID,
+		"file_format":  &cfg.DefaultFileFormat,
+		"push":         &cfg.Sources,
+		"pull":         &cfg.Targets,
+		"defaults":     &m,
 	})
 	if err != nil {
 		return err
