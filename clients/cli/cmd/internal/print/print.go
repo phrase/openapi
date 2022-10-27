@@ -50,7 +50,9 @@ func Error(err error) {
 
 func fprintWithColor(w io.Writer, color ct.Color, msg string, args ...interface{}) {
 	ct.Foreground(color, true)
-	fmt.Fprintf(w, msg, args...)
+	msg_string := fmt.Sprintf(msg, args...)
+	msg_json, _ := json.Marshal(msg_string)
+	fmt.Fprintf(w, string(msg_json))
 	fmt.Fprintln(w)
 	ct.ResetColor()
 }
