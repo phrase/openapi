@@ -54,6 +54,15 @@ func fprintWithColor(w io.Writer, color ct.Color, msg string, args ...interface{
 	ct.ResetColor()
 }
 
+// delegate printing to supplied print fn
+func PrintWithFn(f fn, msg string, args ...interface{}) {
+	if Config.Json {
+		f(stringifyJsonMessage(msg, args...))
+	} else {
+		f(msg, args...)
+	}
+}
+
 func stringifyJsonMessage(msg string, args ...interface{}) {
 	msg_string := fmt.Sprintf(msg, args...)
 	msg_json, _ := json.Marshal(msg_string)
