@@ -50,9 +50,13 @@ func Error(err error) {
 
 func fprintWithColor(w io.Writer, color ct.Color, msg string, args ...interface{}) {
 	ct.Foreground(color, true)
+	fmt.Fprintln(w, stringifyJsonMessage(msg, args...))
+	ct.ResetColor()
+}
+
+func stringifyJsonMessage(msg string, args ...interface{}) {
 	msg_string := fmt.Sprintf(msg, args...)
 	msg_json, _ := json.Marshal(msg_string)
-	fmt.Fprintf(w, string(msg_json))
-	fmt.Fprintln(w)
-	ct.ResetColor()
+
+	return string(msg_json)
 }
