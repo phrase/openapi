@@ -136,12 +136,12 @@ func initConfig() {
 		config.Credentials.TFA = Config.Credentials.TFA
 	}
 
-	if config.Debug {
-		fmt.Printf("%+v\n", config)
-	}
-
 	if Config.NoUpdateCheck {
 		config.NoUpdateCheck = Config.NoUpdateCheck
+	}
+
+	if config.Debug {
+		fmt.Printf("%+v\n", config)
 	}
 
 	Config = config
