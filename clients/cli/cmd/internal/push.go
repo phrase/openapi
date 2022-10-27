@@ -47,7 +47,7 @@ func (cmd *PushCommand) Run() error {
 
 	formatMap, err := formatsByApiName(client)
 	if err != nil {
-		return fmt.Errorf("Error retrieving format list from Phrase: %s", err)
+		return fmt.Errorf(print.formatErrorMessage("Error retrieving format list from Phrase: %s", err))
 	}
 
 	for _, source := range sources {
@@ -57,7 +57,7 @@ func (cmd *PushCommand) Run() error {
 		}
 
 		if source.Format == nil {
-			return fmt.Errorf("Format %q of source %q is not supported by Phrase!", formatName, source.File)
+			return fmt.Errorf(print.formatErrorMessage("Format %q of source %q is not supported by Phrase!", formatName, source.File))
 		}
 	}
 
@@ -96,7 +96,7 @@ func (cmd *PushCommand) Run() error {
 				taskResult := make(chan string, 1)
 				taskErr := make(chan error, 1)
 
-				fmt.Printf("Waiting for branch %s is created!", branch.Name)
+				fmt.Printf(print.formatSuccessMessage("Waiting for branch %s is created!", branch.Name))
 				spinner.While(func() {
 					branchCreateResult, err := getBranchCreateResult(client, projectId, &branch)
 					taskResult <- branchCreateResult
@@ -146,7 +146,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 	}
 
 	for _, localeFile := range localeFiles {
-		fmt.Printf("Uploading %s... ", localeFile.RelPath())
+		fmt.Printf(print.formatSuccessMessage("Uploading %s... ", localeFile.RelPath()))
 
 		if localeFile.shouldCreateLocale(source, branch) {
 			localeDetails, err := source.createLocale(client, localeFile, branch)
@@ -155,7 +155,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 				localeFile.Code = localeDetails.Code
 				localeFile.Name = localeDetails.Name
 			} else {
-				fmt.Printf("failed to create locale: %s\n", err)
+				fmt.Printf(print.formatErrorMessage("failed to create locale: %s\n", err))
 				continue
 			}
 		}
@@ -171,7 +171,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 			taskResult := make(chan string, 1)
 			taskErr := make(chan error, 1)
 
-			fmt.Printf("Upload Id: %s, filename: %s succeeded. Waiting for your file to be processed... ", upload.Id, upload.Filename)
+			fmt.Printf(print.formatSuccessMessage("Upload Id: %s, filename: %s succeeded. Waiting for your file to be processed... ", upload.Id, upload.Filename))
 			spinner.While(func() {
 				result, err := getUploadResult(client, source.ProjectID, upload, branch)
 				taskResult <- result
@@ -190,12 +190,12 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 				print.Failure("There was an error processing %s. Your changes were not saved online.", localeFile.RelPath())
 			}
 		} else {
-			fmt.Println("done!")
-			fmt.Printf("Check upload Id: %s, filename: %s for information about processing results.\n", upload.Id, upload.Filename)
+			fmt.Println(print.formatSuccessMessage("done!"))
+			fmt.Printf(print.formatSuccessMessage("Check upload Id: %s, filename: %s for information about processing results.\n", upload.Id, upload.Filename))
 		}
 
 		if Debug {
-			fmt.Fprintln(os.Stderr, strings.Repeat("-", 10))
+			fmt.Fprintln(os.Stderr, print.formatSuccessMessage(strings.Repeat("-", 10)))
 		}
 	}
 
@@ -247,8 +247,10 @@ func (source *Source) LocaleFiles() (LocaleFiles, error) {
 
 		if Debug {
 			fmt.Printf(
-				"Code:%q, Name:%q, Id:%q, Tag:%q\n",
-				localeFile.Code, localeFile.Name, localeFile.ID, localeFile.Tag,
+				print.stringifyJsonMessage(
+					"Code:%q, Name:%q, Id:%q, Tag:%q\n",
+					localeFile.Code, localeFile.Name, localeFile.ID, localeFile.Tag,
+				)
 			)
 		}
 
@@ -260,7 +262,7 @@ func (source *Source) LocaleFiles() (LocaleFiles, error) {
 		if err != nil {
 			abs = source.File
 		}
-		return nil, fmt.Errorf("Could not find any files on your system that matches: '%s'", abs)
+		return nil, fmt.Errorf(print.stringifyJsonMessage("Could not find any files on your system that matches: '%s'", abs))
 	}
 
 	return localeFiles, nil

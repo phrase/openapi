@@ -114,7 +114,7 @@ func (cmd *InitCommand) Run() error {
 
 func (cmd *InitCommand) askForToken() error {
 	print.PhraseLogo()
-	fmt.Println("phrase.com API Client Setup")
+	fmt.Println(print.formatMessage("message", "phrase.com API Client Setup"))
 	fmt.Println()
 
 	token := ""
@@ -157,7 +157,7 @@ func (cmd *InitCommand) selectProject() error {
 	Config = &cmd.Config
 	client := newClient()
 
-	fmt.Print("Loading projects... ")
+	fmt.Print(print.formatSuccessMessage("Loading projects... "))
 	spinner.While(func() {
 		projects, _, err := Projects(client)
 		taskResult <- projects
@@ -168,31 +168,31 @@ func (cmd *InitCommand) selectProject() error {
 	projects := <-taskResult
 	if err := <-taskErr; err != nil {
 		if strings.Contains(err.Error(), "401") {
-			return fmt.Errorf("%s is not a valid access token. It may be revoked or missing the read or write scope. Please create a new token and try again.", cmd.Credentials.Token)
+			return fmt.Errorf(print.formatErrorMessage("%s is not a valid access token. It may be revoked or missing the read or write scope. Please create a new token and try again.", cmd.Credentials.Token))
 		}
 		return err
 	}
 
 	if len(projects) == 0 {
-		fmt.Println("Since you don't have any projects yet, a new one will be created.")
+		fmt.Println(print.formatSuccessMessage("Since you don't have any projects yet, a new one will be created."))
 		return cmd.newProject()
 	}
 
 	for i, project := range projects {
-		fmt.Printf("%2d: %s (Id: %s)\n", i+1, project.Name, project.Id)
+		fmt.Printf(print.formatSuccessMessage("%2d: %s (Id: %s)\n", i+1, project.Name, project.Id))
 	}
-	fmt.Printf("%2d: Create new project\n", len(projects)+1)
+	fmt.Printf(print.formatSuccessMessage("%2d: Create new project\n", len(projects)+1))
 
 	selection := 0
 	var err error
 	for {
-		err = prompt.P(fmt.Sprintf("Select project: (%v-%v)", 1, len(projects)+1), &selection)
+		err = prompt.P(fmt.Sprintf(print.formatSuccessMessage("Select project: (%v-%v)", 1, len(projects)+1), &selection))
 		if err != nil {
 			continue
 		}
 
 		if selection < 1 || selection > len(projects)+1 {
-			print.Failure("Please select a project from the list by specifying its position in the list, e.g. 2 for the second project.")
+			print.Failure(print.formatFailureMessage("Please select a project from the list by specifying its position in the list, e.g. 2 for the second project."))
 			continue
 		}
 
@@ -228,7 +228,7 @@ func (cmd *InitCommand) newProject() error {
 	data, _, err := cmd.client.ProjectsApi.ProjectCreate(Auth, params, &phrase.ProjectCreateOpts{})
 	if err != nil {
 		if strings.Contains(err.Error(), "401") {
-			return fmt.Errorf("Your access token %s is not valid for the 'write' scope. Please create a new Access Token with read and write scope.", cmd.Credentials.Token)
+			return fmt.Errorf(print.formatErrorMessage("Your access token %s is not valid for the 'write' scope. Please create a new Access Token with read and write scope.", cmd.Credentials.Token))
 		}
 		return err
 	}
@@ -257,7 +257,7 @@ func (cmd *InitCommand) selectFormat() error {
 	}
 
 	for i, format := range formats {
-		fmt.Printf("%2d: %s - %s, file extension: %s\n", i+1, format.ApiName, format.Name, format.Extension)
+		fmt.Printf(print.formatSuccessMessage("%2d: %s - %s, file extension: %s\n", i+1, format.ApiName, format.Name, format.Extension))
 	}
 
 	promptText := fmt.Sprintf("Select the format to use for language files you download from Phrase Strings (%v-%v", 1, len(formats))
