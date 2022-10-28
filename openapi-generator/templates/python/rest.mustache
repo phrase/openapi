@@ -38,6 +38,15 @@ class RESTResponse(io.IOBase):
         """Returns a given response header."""
         return self.urllib3_response.getheader(name, default)
 
+    def getencoding(self):
+        """Returns charset encoding returned by the server."""
+        encoding = 'utf-8'
+        content_type = self.getheader('Content-Type')
+        if content_type:
+            m = re.search(r'charset=(\S+)', content_type)
+            if m: encoding = m.group(1)
+
+        return encoding
 
 class RESTClientObject(object):
 
@@ -212,13 +221,7 @@ class RESTClientObject(object):
             # In the python 3, the response.data is bytes.
             # we need to decode it to string.
             if six.PY3:
-                encoding = 'utf-8'
-                content_type = r.getheader('Content-Type')
-                if content_type:
-                    m = re.search(r'charset=(\S+)', content_type)
-                    if m: encoding = m.group(1)
-
-                r.data = r.data.decode(encoding)
+                r.data = r.data.decode(r.getencoding())
 
             # log response body
             logger.debug("response body: %s", r.data)
