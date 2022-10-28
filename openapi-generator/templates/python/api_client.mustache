@@ -572,12 +572,18 @@ class ApiClient(object):
                                  content_disposition).group(1)
             path = os.path.join(os.path.dirname(path), filename)
 
+        encoding = 'utf-8'
+        content_type = response.getheader('Content-Type')
+        if content_type:
+            m = re.search(r'charset=(\S+)', content_type)
+            if m: encoding = m.group(1)
+
         # In Python 3 response.data is a string
         if six.PY3:
-            with open(path, "w", encoding="utf-8") as f:
+            with open(path, "w", encoding=encoding) as f:
                 f.write(response.data)
         else:
-            with open(path, "wb", encoding="utf-8") as f:
+            with open(path, "wb", encoding=encoding) as f:
                 f.write(response.data)
 
         return path
