@@ -574,10 +574,10 @@ class ApiClient(object):
 
         # In Python 3 response.data is a string
         if six.PY3:
-            with open(path, "w") as f:
+            with open(path, "w", encoding=response.getencoding()) as f:
                 f.write(response.data)
         else:
-            with open(path, "wb") as f:
+            with open(path, "wb", encoding=response.getencoding()) as f:
                 f.write(response.data)
 
         return path
