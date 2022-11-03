@@ -59,9 +59,9 @@ func init() {
 	viper.BindPFlag("no-update-check", rootCmd.PersistentFlags().Lookup("no-update-check"))
 	viper.SetDefault("no-update-check", false)
 
-	rootCmd.PersistentFlags().BoolVarP(&Config.Json, "json", "", false, "return output as json")
-	viper.BindPFlag("json", rootCmd.PersistentFlags().Lookup("json"))
-	viper.SetDefault("json", false)
+	rootCmd.PersistentFlags().BoolVarP(&Config.OnlyJsonOutput, "only-json-output", "json", false, "return output as json")
+	viper.BindPFlag("only-json-output", rootCmd.PersistentFlags().Lookup("only-json-output"))
+	viper.SetDefault("only-json-output", false)
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./.phrase.yml fallback to $HOME/.phrase.yml)")
 }
