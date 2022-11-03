@@ -114,7 +114,7 @@ func (cmd *InitCommand) Run() error {
 
 func (cmd *InitCommand) askForToken() error {
 	print.PhraseLogo()
-	fmt.Println(print.formatMessage("message", "phrase.com API Client Setup"))
+	fmt.Println(msgformatter.Success("phrase.com API Client Setup"))
 	fmt.Println()
 
 	token := ""
@@ -157,7 +157,7 @@ func (cmd *InitCommand) selectProject() error {
 	Config = &cmd.Config
 	client := newClient()
 
-	fmt.Print(print.formatSuccessMessage("Loading projects... "))
+	fmt.Print(msgformatter.Succcess("Loading projects... "))
 	spinner.While(func() {
 		projects, _, err := Projects(client)
 		taskResult <- projects
@@ -168,25 +168,25 @@ func (cmd *InitCommand) selectProject() error {
 	projects := <-taskResult
 	if err := <-taskErr; err != nil {
 		if strings.Contains(err.Error(), "401") {
-			return fmt.Errorf(print.formatErrorMessage("%s is not a valid access token. It may be revoked or missing the read or write scope. Please create a new token and try again.", cmd.Credentials.Token))
+			return fmt.Errorf(msgformatter.Error("%s is not a valid access token. It may be revoked or missing the read or write scope. Please create a new token and try again.", cmd.Credentials.Token))
 		}
 		return err
 	}
 
 	if len(projects) == 0 {
-		fmt.Println(print.formatSuccessMessage("Since you don't have any projects yet, a new one will be created."))
+		fmt.Println(msgformatter.Success("Since you don't have any projects yet, a new one will be created."))
 		return cmd.newProject()
 	}
 
 	for i, project := range projects {
-		fmt.Printf(print.formatSuccessMessage("%2d: %s (Id: %s)\n", i+1, project.Name, project.Id))
+		fmt.Printf(msgformatter.Success("%2d: %s (Id: %s)\n", i+1, project.Name, project.Id))
 	}
-	fmt.Printf(print.formatSuccessMessage("%2d: Create new project\n", len(projects)+1))
+	fmt.Printf(msgformatter.Success("%2d: Create new project\n", len(projects)+1))
 
 	selection := 0
 	var err error
 	for {
-		err = prompt.P(fmt.Sprintf(print.formatSuccessMessage("Select project: (%v-%v)", 1, len(projects)+1), &selection))
+		err = prompt.P(msgformatter.Success("Select project: (%v-%v)", 1, len(projects)+1), &selection))
 		if err != nil {
 			continue
 		}
@@ -323,12 +323,12 @@ func (cmd *InitCommand) configureSources() error {
 }
 
 func (cmd *InitCommand) configureTargets() error {
-	fmt.Println("Enter the path to which to download language files from Phrase.")
-	fmt.Printf("For documentation, see %s#pull\n", shared.DocsConfigUrl)
+	fmt.Println(msgformatter.Success("Enter the path to which to download language files from Phrase."))
+	fmt.Printf(msgformatter.Success("For documentation, see %s#pull\n", shared.DocsConfigUrl))
 
 	pullPath := ""
 	for {
-		err := prompt.WithDefault("Target file path:", &pullPath, cmd.FileFormat.DefaultFile)
+		err := prompt.WithDefault(msgformatter.Success("Target file path:"), &pullPath, cmd.FileFormat.DefaultFile)
 		if err != nil {
 			return err
 		}
@@ -379,12 +379,12 @@ func (cmd *InitCommand) writeConfig() error {
 	print.Success("For advanced configuration options, take a look at the documentation: " + shared.DocsConfigUrl)
 	print.Success("You can now use the push & pull commands in your workflow:")
 	fmt.Println()
-	fmt.Println("$ phrase push")
-	fmt.Println("$ phrase pull")
+	fmt.Println(msgformatter.Success("$ phrase push"))
+	fmt.Println(msgformatter.Success("$ phrase pull"))
 	fmt.Println()
 
 	pushNow := ""
-	_ = prompt.WithDefault("Do you want to upload your locales now for the first time? (y/n)", &pushNow, "y")
+	_ = prompt.WithDefault(msgformatter.Success("Do you want to upload your locales now for the first time? (y/n)"), &pushNow, "y")
 	if pushNow == "y" {
 		err = firstPush()
 		if err != nil {
@@ -400,7 +400,7 @@ func (cmd *InitCommand) writeConfig() error {
 func firstPush() error {
 	config, err := phrase.ReadConfig("")
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error: %s\n", err)
+		fmt.Fprintf(os.Stderr, msgformatter.Error("Error: %s\n", err))
 		os.Exit(2)
 	}
 	cmd := &PushCommand{Config: *config}

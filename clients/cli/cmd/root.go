@@ -199,6 +199,6 @@ func checkUpdate() {
 }
 
 func HandleError(msg interface{}) {
-	fmt.Println(print.formatErrorMessage("Error", msg)
+	fmt.Println(msgformatter.Error("Error", msg))
 	os.Exit(1)
 }
