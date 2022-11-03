@@ -55,7 +55,7 @@ func init() {
 	viper.BindPFlag("tfa", rootCmd.PersistentFlags().Lookup("tfa"))
 	viper.SetDefault("tfa", false)
 
-	rootCmd.PersistentFlags().BoolVarP(&Config.NoUpdateCheck, "no-update-check", "", false, "mute update checking")
+	rootCmd.PersistentFlags().BoolVarP(&Config.NoUpdateCheck, "no-update-check", "nuc", false, "mute update checking")
 	viper.BindPFlag("no-update-check", rootCmd.PersistentFlags().Lookup("no-update-check"))
 	viper.SetDefault("no-update-check", false)
 
