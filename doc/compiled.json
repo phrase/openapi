@@ -20956,6 +20956,15 @@
           },
           {
             "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "Include only unseen notifications",
+            "example": true,
+            "name": "unseen",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
