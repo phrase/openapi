@@ -3520,7 +3520,7 @@
       "per_page": {
         "in": "query",
         "name": "per_page",
-        "description": "allows you to specify a page size up to 100 items, 25 by default",
+        "description": "Limit on the number of objects to be returned, between 1 and 100. 25 by default",
         "required": false,
         "allowEmptyValue": false,
         "schema": {
