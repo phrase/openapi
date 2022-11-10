@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -190,7 +189,7 @@ func checkUpdate() {
 	updateChecker.Check()
 }
 
-func HandleError(msg error) {
-	print.Error(errors.New(fmt.Sprint(msg)))
+func HandleError(err error) {
+	print.Error(err)
 	os.Exit(1)
 }
