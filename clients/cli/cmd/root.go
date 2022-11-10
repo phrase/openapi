@@ -2,12 +2,13 @@ package cmd
 
 import (
 	"context"
-	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
 
 	"github.com/bgentry/speakeasy"
+	"github.com/phrase/phrase-cli/cmd/internal/print"
 	"github.com/phrase/phrase-cli/cmd/internal/shared"
 	"github.com/phrase/phrase-cli/cmd/internal/updatechecker"
 	"github.com/phrase/phrase-go/v2"
@@ -189,17 +190,7 @@ func checkUpdate() {
 	updateChecker.Check()
 }
 
-type ErrorMessage struct {
-	Error string `json:"error"`
-}
-
-func HandleError(msg interface{}) {
-	if shared.BatchMode {
-		errorMsg := &ErrorMessage{Error: fmt.Sprint(msg)}
-		encodedJson, _ := json.Marshal(errorMsg)
-		fmt.Println(string(encodedJson))
-	} else {
-		fmt.Println("Error:", msg)
-	}
+func HandleError(msg error) {
+	print.Error(errors.New(fmt.Sprint(msg)))
 	os.Exit(1)
 }
