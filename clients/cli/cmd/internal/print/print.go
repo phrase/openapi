@@ -43,9 +43,10 @@ func PhraseLogo() {
 	WithColor(ct.Cyan, phrase_logo)
 }
 
-func NonBatchPrint(msg string) {
+// Prints the argument if the command is started in non-batch mode
+func NonBatchPrintf(msg string, args ...interface{}) {
 	if !shared.BatchMode {
-		fmt.Print(msg)
+		fmt.Print(fmt.Sprintf(msg, args...))
 	}
 }
 

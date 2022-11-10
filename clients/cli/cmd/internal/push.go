@@ -100,7 +100,7 @@ func (cmd *PushCommand) Run() error {
 				taskResult := make(chan string, 1)
 				taskErr := make(chan error, 1)
 
-				print.NonBatchPrint(fmt.Sprintf("Waiting for branch %s is created!", branch.Name))
+				print.NonBatchPrintf("Waiting for branch %s is created!", branch.Name)
 				spinner.While(func() {
 					branchCreateResult, err := getBranchCreateResult(client, projectId, &branch)
 					taskResult <- branchCreateResult
@@ -150,7 +150,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 	}
 
 	for _, localeFile := range localeFiles {
-		print.NonBatchPrint(fmt.Sprintf("Uploading %s... ", localeFile.RelPath()))
+		print.NonBatchPrintf("Uploading %s... ", localeFile.RelPath())
 
 		if localeFile.shouldCreateLocale(source, branch) {
 			localeDetails, err := source.createLocale(client, localeFile, branch)
@@ -159,7 +159,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 				localeFile.Code = localeDetails.Code
 				localeFile.Name = localeDetails.Name
 			} else {
-				print.NonBatchPrint(fmt.Sprintf("failed to create locale: %s\n", err))
+				print.NonBatchPrintf("failed to create locale: %s\n", err)
 				continue
 			}
 		}
@@ -170,18 +170,18 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 		}
 
 		if waitForResults {
-			print.NonBatchPrint("\n")
+			print.NonBatchPrintf("\n")
 
 			taskResult := make(chan string, 1)
 			taskErr := make(chan error, 1)
 
-			print.NonBatchPrint(fmt.Sprintf("Upload Id: %s, filename: %s succeeded. Waiting for your file to be processed... ", upload.Id, upload.Filename))
+			print.NonBatchPrintf("Upload Id: %s, filename: %s succeeded. Waiting for your file to be processed... ", upload.Id, upload.Filename)
 			spinner.While(func() {
 				result, err := getUploadResult(client, source.ProjectID, upload, branch)
 				taskResult <- result
 				taskErr <- err
 			})
-			print.NonBatchPrint("\n")
+			print.NonBatchPrintf("\n")
 
 			if err := <-taskErr; err != nil {
 				return err
@@ -194,7 +194,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 				print.Failure("There was an error processing %s. Your changes were not saved online.", localeFile.RelPath())
 			}
 		} else {
-			print.NonBatchPrint(fmt.Sprintf("done!\nCheck upload Id: %s, filename: %s for information about processing results.\n", upload.Id, upload.Filename))
+			print.NonBatchPrintf("done!\nCheck upload Id: %s, filename: %s for information about processing results.\n", upload.Id, upload.Filename)
 		}
 
 		if Debug {
