@@ -1,12 +1,15 @@
 package internal
 
 import (
+	"errors"
 	"fmt"
 	"sort"
 	"strings"
 
 	"github.com/antihax/optional"
+	"github.com/phrase/phrase-cli/cmd/internal/print"
 	prompt "github.com/phrase/phrase-cli/cmd/internal/prompt"
+	"github.com/phrase/phrase-cli/cmd/internal/shared"
 	"github.com/phrase/phrase-go/v2"
 )
 
@@ -39,7 +42,7 @@ func UploadCleanup(client *phrase.APIClient, cmd *UploadCleanupCommand) error {
 	}
 
 	if len(keys) == 0 {
-		fmt.Println("There were no keys unmentioned in that upload.")
+		print.Success("There were no keys unmentioned in that upload.")
 		return nil
 	}
 
@@ -52,6 +55,9 @@ func UploadCleanup(client *phrase.APIClient, cmd *UploadCleanupCommand) error {
 		}
 
 		if !cmd.Confirm {
+			if shared.BatchMode {
+				return errors.New("Can't ask for confirmation in batch mode. Aborting")
+			}
 			fmt.Println("You are about to delete the following key(s) from your project:")
 			sort.Strings(names)
 			fmt.Println(strings.Join(names, "\n"))
@@ -79,7 +85,7 @@ func UploadCleanup(client *phrase.APIClient, cmd *UploadCleanupCommand) error {
 			return err
 		}
 
-		fmt.Printf("%d key(s) successfully deleted.\n", affected.RecordsAffected)
+		print.Success(fmt.Sprintf("%d key(s) successfully deleted.\n", affected.RecordsAffected))
 
 		keysListLocalVarOptionals.Page = optional.NewInt32(keysListLocalVarOptionals.Page.Value() + 1)
 

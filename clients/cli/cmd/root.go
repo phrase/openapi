@@ -2,11 +2,13 @@ package cmd
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
 
 	"github.com/bgentry/speakeasy"
+	"github.com/phrase/phrase-cli/cmd/internal/shared"
 	"github.com/phrase/phrase-cli/cmd/internal/updatechecker"
 	"github.com/phrase/phrase-go/v2"
 	api "github.com/phrase/phrase-go/v2"
@@ -54,6 +56,10 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&Config.Credentials.TFA, "tfa", "", false, "use Two-Factor Authentication")
 	viper.BindPFlag("tfa", rootCmd.PersistentFlags().Lookup("tfa"))
 	viper.SetDefault("tfa", false)
+
+	rootCmd.PersistentFlags().BoolVarP(&shared.BatchMode, "batch", "B", false, "batch mode: no interactivity, no warnings, only JSON output")
+	viper.BindPFlag("batch", rootCmd.PersistentFlags().Lookup("batch"))
+	viper.SetDefault("batch", false)
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./.phrase.yml fallback to $HOME/.phrase.yml)")
 }
@@ -170,6 +176,9 @@ func Auth() context.Context {
 }
 
 func checkUpdate() {
+	if shared.BatchMode {
+		return
+	}
 	var updateChecker = updatechecker.New(
 		PHRASE_CLIENT_VERSION,
 		filepath.Join(os.TempDir(), ".phrase.version"),
@@ -180,7 +189,17 @@ func checkUpdate() {
 	updateChecker.Check()
 }
 
+type ErrorMessage struct {
+	Error string `json:"error"`
+}
+
 func HandleError(msg interface{}) {
-	fmt.Println("Error:", msg)
+	if shared.BatchMode {
+		errorMsg := &ErrorMessage{Error: fmt.Sprint(msg)}
+		encodedJson, _ := json.Marshal(errorMsg)
+		fmt.Println(string(encodedJson))
+	} else {
+		fmt.Println("Error:", msg)
+	}
 	os.Exit(1)
 }
