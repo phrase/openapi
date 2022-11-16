@@ -78,6 +78,7 @@ requestBody:
                 <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
               </ul>
               Find more examples <a href="#overview--usage-examples">here</a>.
+              Please note: If <code>tags</code> are added to filter the search, the search will be limited to a maximum of 65,536 tagged keys.
             type: string
             example: mykey* translated:true
           locale_id:
