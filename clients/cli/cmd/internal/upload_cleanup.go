@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"sort"
@@ -85,7 +86,7 @@ func UploadCleanup(client *phrase.APIClient, cmd *UploadCleanupCommand) error {
 			return err
 		}
 
-		print.Success(fmt.Sprintf("%d key(s) successfully deleted.\n", affected.RecordsAffected))
+		outputAffected(affected)
 
 		keysListLocalVarOptionals.Page = optional.NewInt32(keysListLocalVarOptionals.Page.Value() + 1)
 
@@ -96,4 +97,16 @@ func UploadCleanup(client *phrase.APIClient, cmd *UploadCleanupCommand) error {
 	}
 
 	return nil
+}
+
+func outputAffected(affected phrase.AffectedResources) {
+	if shared.BatchMode {
+		jsonBuf, jsonErr := json.MarshalIndent(affected, "", " ")
+		if jsonErr != nil {
+			print.Error(jsonErr)
+		}
+		fmt.Printf("%s\n", string(jsonBuf))
+	} else {
+		print.Success("%d key(s) successfully deleted.\n", affected.RecordsAffected)
+	}
 }

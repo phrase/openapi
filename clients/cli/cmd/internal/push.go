@@ -2,6 +2,7 @@ package internal
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -194,7 +195,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 				print.Failure("There was an error processing %s. Your changes were not saved online.", localeFile.RelPath())
 			}
 		} else {
-			print.NonBatchPrintf("done!\nCheck upload Id: %s, filename: %s for information about processing results.\n", upload.Id, upload.Filename)
+			outputUpload(upload)
 		}
 
 		if Debug {
@@ -203,6 +204,18 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 	}
 
 	return nil
+}
+
+func outputUpload(upload *phrase.Upload) {
+	if shared.BatchMode {
+		jsonBuf, jsonErr := json.MarshalIndent(upload, "", " ")
+		if jsonErr != nil {
+			print.Error(jsonErr)
+		}
+		fmt.Printf("%s\n", string(jsonBuf))
+	} else {
+		fmt.Printf("done!\nCheck upload Id: %s, filename: %s for information about processing results.\n", upload.Id, upload.Filename)
+	}
 }
 
 func formatsByApiName(client *phrase.APIClient) (map[string]*phrase.Format, error) {
