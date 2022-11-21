@@ -52,3 +52,4 @@ x-code-samples:
     --branch my-feature-branch \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'

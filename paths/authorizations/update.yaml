@@ -65,3 +65,4 @@ requestBody:
             type: string
             format: date-time
             example: '2015-03-30T09:52:53Z'
+x-cli-version: '2.5'

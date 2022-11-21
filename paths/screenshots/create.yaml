@@ -68,3 +68,4 @@ requestBody:
             type: string
             format: binary
             example: "/path/to/my/screenshot.png"
+x-cli-version: '2.5'

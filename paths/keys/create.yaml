@@ -122,3 +122,4 @@ requestBody:
             description: NSStringLocalizedFormatKey attribute. Used in .stringsdict format.
             type: string
             example:
+x-cli-version: '2.5'

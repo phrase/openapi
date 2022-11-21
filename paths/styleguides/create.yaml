@@ -101,3 +101,4 @@ requestBody:
             description: Provide links to sample product pages, FAQ pages, etc. to give the translator a point of reference. You can also provide past translations. Even snippets or short paragraphs are helpful for maintaining consistency.
             type: string
             example: http://www.myexample.com/my/document/path/to/samples.pdf
+x-cli-version: '2.5'

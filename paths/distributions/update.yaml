@@ -97,3 +97,4 @@ requestBody:
             description: Use last reviewed instead of latest translation in a project
             type: boolean
             example: true
+x-cli-version: '2.5'

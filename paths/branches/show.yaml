@@ -39,3 +39,4 @@ x-code-samples:
     --project_id <project_id> \
     --name <name> \
     --access_token <token>
+x-cli-version: '2.5'

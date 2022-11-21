@@ -71,4 +71,5 @@ requestBody:
           ticket_url:
             description: URL to a ticket for this job (e.g. Jira, Trello)
             type: string
-            example: 'https://example.atlassian.net/browse/FOO'
+            example: https://example.atlassian.net/browse/FOO
+x-cli-version: '2.5'

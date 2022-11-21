@@ -93,3 +93,4 @@ requestBody:
             description: If set, translations for this locale will be fetched automatically, right after creation.
             type: boolean
             example:
+x-cli-version: '2.5'

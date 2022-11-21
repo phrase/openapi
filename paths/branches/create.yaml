@@ -53,3 +53,4 @@ requestBody:
             description: Name of the branch
             type: string
             example: my-branch
+x-cli-version: '2.5'

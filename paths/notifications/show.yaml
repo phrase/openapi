@@ -41,3 +41,4 @@ x-code-samples:
     phrase notifications show \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'

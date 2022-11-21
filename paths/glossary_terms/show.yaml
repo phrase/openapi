@@ -1,6 +1,6 @@
 ---
 summary: Get a single term
-description: "Get details for a single term in the term base (previously: glossary)."
+description: 'Get details for a single term in the term base (previously: glossary).'
 operationId: glossary_term/show
 tags:
 - Glossary Terms
@@ -41,3 +41,4 @@ x-code-samples:
     --glossary_id <glossary_id> \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'

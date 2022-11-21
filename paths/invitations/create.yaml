@@ -103,3 +103,4 @@ requestBody:
             example:
               create_upload: true
               review_translations: true
+x-cli-version: '2.5'

@@ -53,3 +53,4 @@ requestBody:
             description: Account ID to specify the actual account the GitLab Sync should be created in. Required if the requesting user is a member of multiple accounts.
             type: string
             example: abcd1234
+x-cli-version: '2.5'

@@ -63,3 +63,4 @@ requestBody:
             description: Presentation details of the screenshot marker in JSON format.<br/><br/>Each Screenshot Marker is represented as a rectangular shaped highlight box with the name of the specified Key attached. You can specify the marker position on the screenshot (<code>x</code>-axis and <code>y</code>-axis in pixels) from the top left corner of the screenshot and the dimensions of the marker itself (<code>w</code> and <code>h</code> in pixels).
             type: string
             example: '{ "x": 100, "y": 100, "w": 100, "h": 100 }'
+x-cli-version: '2.5'

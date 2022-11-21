@@ -31,3 +31,4 @@ x-code-samples:
     --team_id <team_id> \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'

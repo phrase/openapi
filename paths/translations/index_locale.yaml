@@ -83,3 +83,4 @@ x-code-samples:
     --order desc \
     --query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center' \
     --access_token <token>
+x-cli-version: '2.5'

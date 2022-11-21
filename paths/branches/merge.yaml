@@ -51,3 +51,4 @@ requestBody:
             description: strategy used for merge blocking, use_main or use_branch
             type: string
             example: use_main
+x-cli-version: '2.5'

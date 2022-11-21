@@ -64,4 +64,5 @@ requestBody:
             type: string
             example: text
         required:
-          - name
+        - name
+x-cli-version: '2.5'

@@ -98,3 +98,4 @@ requestBody:
               type: string
             example:
               create_upload: true
+x-cli-version: '2.5'

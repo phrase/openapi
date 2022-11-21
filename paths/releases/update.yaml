@@ -69,3 +69,4 @@ requestBody:
             description: Branch used for release
             type: string
             example: my-feature-branch
+x-cli-version: '2.5'

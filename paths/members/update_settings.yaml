@@ -67,3 +67,4 @@ requestBody:
             example:
             - abcd1234abcd1234abcd1234
             - abcd1234abcd1234abcd1235
+x-cli-version: '2.5'

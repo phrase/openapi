@@ -54,9 +54,9 @@ requestBody:
             type: string
             example: my-feature-branch
           name:
-            description: "the name of the order, default name is: Translation order from 'current datetime'"
+            description: 'the name of the order, default name is: Translation order from ''current datetime'''
             type: string
-            example: "Welcome message translations"
+            example: Welcome message translations
           lsp:
             description: Name of the LSP that should process this order. Can be one of gengo, textmaster.
             type: string
@@ -113,3 +113,4 @@ requestBody:
             description: Indicates whether the priority option should be ordered which decreases turnaround time by 30%. Available only for orders processed by TextMaster.
             type: boolean
             example:
+x-cli-version: '2.5'

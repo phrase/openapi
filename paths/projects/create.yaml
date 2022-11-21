@@ -82,19 +82,19 @@ requestBody:
             type: string
             example: review
           machine_translation_enabled:
-            description: (Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest
+            description: "(Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest"
             type: boolean
             example: true
           enable_branching:
-            description: (Optional) Enable branching in the project
+            description: "(Optional) Enable branching in the project"
             type: boolean
             example: true
           protect_master_branch:
-            description: (Optional) Protect the master branch in project where branching is enabled
+            description: "(Optional) Protect the master branch in project where branching is enabled"
             type: boolean
             example: true
           enable_all_data_type_translation_keys_for_translators:
-            description: (Optional) Otherwise, translators are not allowed to edit translations other than strings
+            description: "(Optional) Otherwise, translators are not allowed to edit translations other than strings"
             type: boolean
             example: true
           enable_icu_message_format:
@@ -102,7 +102,7 @@ requestBody:
             type: boolean
             example: true
           zero_plural_form_enabled:
-            description: (Optional) Displays the input fields for the 'ZERO' plural form for every key as well although only some languages require the 'ZERO' explicitly.
+            description: "(Optional) Displays the input fields for the 'ZERO' plural form for every key as well although only some languages require the 'ZERO' explicitly."
             type: boolean
             example: true
           autotranslate_enabled:
@@ -110,38 +110,39 @@ requestBody:
             type: boolean
             example: true
           autotranslate_check_new_translation_keys:
-            description: (Optional) Requires autotranslate_enabled to be true
+            description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
           autotranslate_check_new_uploads:
-            description: (Optional) Requires autotranslate_enabled to be true
+            description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
           autotranslate_check_new_locales:
-            description: (Optional) Requires autotranslate_enabled to be true
+            description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
           autotranslate_mark_as_unverified:
-            description: (Optional) Requires autotranslate_enabled to be true
+            description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
           autotranslate_use_machine_translation:
-            description: (Optional) Requires autotranslate_enabled to be true
+            description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
           autotranslate_use_translation_memory:
-            description: (Optional) Requires autotranslate_enabled to be true
+            description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
           smart_suggest_enabled:
-            description: (Optional) Smart Suggest, requires machine_translation_enabled
+            description: "(Optional) Smart Suggest, requires machine_translation_enabled"
             type: boolean
             example: true
           smart_suggest_use_glossary:
-            description: (Optional) Requires smart_suggest_enabled to be true
+            description: "(Optional) Requires smart_suggest_enabled to be true"
             type: boolean
             example: true
           smart_suggest_use_machine_translation:
-            description: (Optional) Requires smart_suggest_enabled to be true
+            description: "(Optional) Requires smart_suggest_enabled to be true"
             type: boolean
             example: true
+x-cli-version: '2.5'

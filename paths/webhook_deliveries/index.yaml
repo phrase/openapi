@@ -9,7 +9,6 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/webhook_id"
 - "$ref": "../../parameters.yaml#/response_status_codes"
-
 responses:
   '200':
     description: OK
@@ -45,3 +44,4 @@ x-code-samples:
     --project_id <project_id> \
     --webhook_id <webhook_id> \
     --access_token <token>
+x-cli-version: '2.5'

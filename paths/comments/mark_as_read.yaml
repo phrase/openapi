@@ -46,3 +46,4 @@ requestBody:
             description: specify the branch to use
             type: string
             example: my-feature-branch
+x-cli-version: '2.5'

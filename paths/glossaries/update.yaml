@@ -1,6 +1,6 @@
 ---
 summary: Update a term base
-description: "Update an existing term base (previously: glossary)."
+description: 'Update an existing term base (previously: glossary).'
 operationId: glossary/update
 tags:
 - Glossaries
@@ -67,3 +67,4 @@ requestBody:
             example:
             - abcd1234abcd1234abcd1234
             - abcd1234abcd1234abcd1235
+x-cli-version: '2.5'

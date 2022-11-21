@@ -60,7 +60,7 @@ requestBody:
               type: string
               example: en
             example:
-              - en
+            - en
           keep_content:
             description: Keep the content and add missing plural forms for each locale
             type: boolean
@@ -69,4 +69,4 @@ requestBody:
             description: Indicates whether the zero form should be included or excluded in the returned skeletons
             type: boolean
             example:
-
+x-cli-version: '2.5'

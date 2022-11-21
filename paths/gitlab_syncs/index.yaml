@@ -46,3 +46,4 @@ x-code-samples:
     phrase gitlab_syncs list \
     --account_id abcd1234 \
     --access_token <token>
+x-cli-version: '2.5'

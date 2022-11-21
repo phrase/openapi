@@ -73,3 +73,4 @@ requestBody:
             description: If enabled, webhook will also be triggered for events from branches of the project specified.
             type: boolean
             example:
+x-cli-version: '2.5'

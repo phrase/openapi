@@ -60,10 +60,11 @@ requestBody:
             type: string
             example: Developer
           locale_ids:
-            description: 'List of locale ids the user has access to.'
+            description: List of locale ids the user has access to.
             type: array
             items:
               type: string
             example:
             - abcd1234abcd1234abcd1234
             - abcd1234abcd1234abcd1235
+x-cli-version: '2.5'

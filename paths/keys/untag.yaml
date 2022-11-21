@@ -76,3 +76,4 @@ requestBody:
             description: Tag or comma-separated list of tags to remove from the matching collection of keys
             type: string
             example: landing-page,release-1.2
+x-cli-version: '2.5'

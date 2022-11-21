@@ -1,6 +1,6 @@
 ---
 summary: Create a term base
-description: "Create a new term base (previously: glossary)."
+description: 'Create a new term base (previously: glossary).'
 operationId: glossary/create
 tags:
 - Glossaries
@@ -65,3 +65,4 @@ requestBody:
             example:
             - abcd1234abcd1234abcd1234
             - abcd1234abcd1234abcd1235
+x-cli-version: '2.5'

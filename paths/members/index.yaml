@@ -47,3 +47,4 @@ x-code-samples:
     phrase members list \
     --account_id <account_id> \
     --access_token <token>
+x-cli-version: '2.5'

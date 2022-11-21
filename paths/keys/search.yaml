@@ -84,3 +84,4 @@ requestBody:
             description: Locale used to determine the translation state of a key when filtering for untranslated or translated keys.
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
+x-cli-version: '2.5'

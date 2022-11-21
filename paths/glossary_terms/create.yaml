@@ -1,6 +1,6 @@
 ---
 summary: Create a term
-description: "Create a new term in a term base (previously: glossary)."
+description: 'Create a new term in a term base (previously: glossary).'
 operationId: glossary_term/create
 tags:
 - Glossary Terms
@@ -67,3 +67,4 @@ requestBody:
             description: Indicates whether the term is case sensitive
             type: boolean
             example: true
+x-cli-version: '2.5'
