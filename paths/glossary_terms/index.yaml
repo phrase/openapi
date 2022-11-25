@@ -1,6 +1,6 @@
 ---
 summary: List terms
-description: "List all terms in term bases (previously: glossary) that the current user has access to."
+description: 'List all terms in term bases (previously: glossary) that the current user has access to.'
 operationId: glossary_terms/list
 tags:
 - Glossary Terms
@@ -45,3 +45,4 @@ x-code-samples:
     --account_id <account_id> \
     --glossary_id <glossary_id> \
     --access_token <token>
+x-cli-version: '2.5'

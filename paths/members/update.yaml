@@ -3,13 +3,13 @@ summary: Update a member
 description: Update user permissions in the account. Developers and translators need <code>project_ids</code> and <code>locale_ids</code> assigned to access them. Access token scope must include <code>team.manage</code>.
 operationId: member/update
 tags:
-  - Members
+- Members
 parameters:
-  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-  - "$ref": "../../parameters.yaml#/account_id"
-  - "$ref": "../../parameters.yaml#/id"
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
 responses:
-  "200":
+  '200':
     description: OK
     content:
       application/json:
@@ -22,31 +22,31 @@ responses:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
       X-Rate-Limit-Reset:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
-  "400":
+  '400':
     "$ref": "../../responses.yaml#/400"
-  "401":
+  '401':
     "$ref": "../../responses.yaml#/401"
-  "403":
+  '403':
     "$ref": "../../responses.yaml#/403"
-  "404":
+  '404':
     "$ref": "../../responses.yaml#/404"
-  "429":
+  '429':
     "$ref": "../../responses.yaml#/429"
 x-code-samples:
-  - lang: Curl
-    source: |-
-      curl "https://api.phrase.com/v2/accounts/:account_id/members/:id" \
-        -u USERNAME_OR_ACCESS_TOKEN \
-        -X PATCH \
-        -d '{"role":"Developer","strategy":"set","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","default_locale_codes":["de","en"],"space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"],"permissions":{"create_upload":true,"review_translations":true}}' \
-        -H 'Content-Type: application/json'
-  - lang: CLI v2
-    source: |-
-      phrase members update \
-      --account_id <account_id> \
-      --id <id> \
-      --data '{"role":"Developer", "strategy":"set", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "default_locale_codes":["de","en"], "space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"], "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
-      --access_token <token>
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/members/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"role":"Developer","strategy":"set","project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235","default_locale_codes":["de","en"],"space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"],"permissions":{"create_upload":true,"review_translations":true}}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase members update \
+    --account_id <account_id> \
+    --id <id> \
+    --data '{"role":"Developer", "strategy":"set", "project_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "locale_ids":"abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235", "default_locale_codes":["de","en"], "space_ids":["abcd1234abcd1234abcd1234","abcd1234abcd1234abcd1235"], "permissions":"{"create_upload"=>true, "review_translations"=>true}"}' \
+    --access_token <token>
 requestBody:
   required: true
   content:
@@ -64,7 +64,7 @@ requestBody:
             type: string
             example: Developer
           project_ids:
-            description: "List of project ids the user has access to. "
+            description: 'List of project ids the user has access to. '
             type: string
             example: abcd1234abcd1234abcd1234,abcd1234abcd1234abcd1235
           locale_ids:
@@ -77,16 +77,16 @@ requestBody:
             items:
               type: string
             example:
-              - en
-              - fi
+            - en
+            - fi
           space_ids:
             description: List of spaces the user is assigned to.
             type: array
             items:
               type: string
             example:
-              - abcd1234abcd1234abcd1234
-              - abcd1234abcd1234abcd1235
+            - abcd1234abcd1234abcd1234
+            - abcd1234abcd1234abcd1235
           permissions:
             description: Additional permissions depending on member role. Available permissions are <code>create_upload</code> and <code>review_translations</code>
             type: object
@@ -95,3 +95,4 @@ requestBody:
             example:
               create_upload: true
               review_translations: true
+x-cli-version: '2.5'

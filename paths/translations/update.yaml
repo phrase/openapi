@@ -75,3 +75,4 @@ requestBody:
             description: Indicates whether the translation should be auto-translated. Responses with status 422 if provided for translation within a non-default locale or the project does not have the Autopilot feature enabled.
             type: boolean
             example:
+x-cli-version: '2.5'

@@ -35,3 +35,4 @@ x-code-samples:
   source: |-
     phrase shows user \
     --access_token <token>
+x-cli-version: '2.5'

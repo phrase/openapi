@@ -1,6 +1,6 @@
 ---
 summary: Delete a translation for a term
-description: "Delete an existing translation of a term in a term base (previously: glossary)."
+description: 'Delete an existing translation of a term in a term base (previously: glossary).'
 operationId: glossary_term_translation/delete
 tags:
 - Glossary Term Translations
@@ -33,3 +33,4 @@ x-code-samples:
     --term_id <term_id> \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'

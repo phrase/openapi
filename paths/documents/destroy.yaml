@@ -30,3 +30,4 @@ x-code-samples:
     --project_id <project_id> \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'

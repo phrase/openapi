@@ -51,3 +51,4 @@ requestBody:
             description: Project ID to add to the Team
             type: string
             example: a4b3c2d1
+x-cli-version: '2.5'

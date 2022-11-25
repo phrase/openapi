@@ -144,3 +144,4 @@ x-code-samples:
     --tags feature1,feature2 \
     --tag feature \
     --access_token <token>
+x-cli-version: '2.5'

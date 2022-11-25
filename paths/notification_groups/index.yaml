@@ -41,3 +41,4 @@ x-code-samples:
   source: |-
     phrase notification_groups list \
     --access_token <token>
+x-cli-version: '2.5'

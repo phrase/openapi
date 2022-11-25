@@ -26,3 +26,4 @@ x-code-samples:
   source: |-
     phrase authorizations delete \
     --id <id>
+x-cli-version: '2.5'

@@ -55,3 +55,4 @@ requestBody:
             description: Job comment message
             type: string
             example: Some message...
+x-cli-version: '2.5'

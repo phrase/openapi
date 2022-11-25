@@ -36,3 +36,4 @@ x-code-samples:
     --id <id> \
     --account_id abcd1234 \
     --access_token <token>
+x-cli-version: '2.5'

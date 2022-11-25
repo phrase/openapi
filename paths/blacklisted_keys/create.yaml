@@ -53,3 +53,4 @@ requestBody:
             description: Blocked key name
             type: string
             example: date.formats.*
+x-cli-version: '2.5'

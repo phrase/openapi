@@ -37,3 +37,4 @@ x-code-samples:
     phrase accounts show \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'

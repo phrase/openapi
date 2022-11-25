@@ -67,3 +67,4 @@ requestBody:
             description: Number of results per page
             type: integer
             example: 25
+x-cli-version: '2.5'

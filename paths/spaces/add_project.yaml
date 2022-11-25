@@ -51,3 +51,4 @@ requestBody:
             description: Project ID to add or to the Space
             type: string
             example: a4b3c2d1
+x-cli-version: '2.5'

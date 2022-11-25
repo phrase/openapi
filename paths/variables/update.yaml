@@ -59,3 +59,4 @@ requestBody:
             description: Value of the variable
             type: string
             example: Hello World
+x-cli-version: '2.5'

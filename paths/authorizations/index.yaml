@@ -39,3 +39,4 @@ x-code-samples:
       -u USERNAME
 - lang: CLI v2
   source: phrase authorizations list
+x-cli-version: '2.5'

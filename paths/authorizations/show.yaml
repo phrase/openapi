@@ -36,3 +36,4 @@ x-code-samples:
   source: |-
     phrase authorizations show \
     --id <id>
+x-cli-version: '2.5'

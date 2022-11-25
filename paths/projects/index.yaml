@@ -16,7 +16,7 @@ parameters:
   schema:
     type: string
 - description: Filter projects. Valid options are ["favorites"].
-  example: 'favorites'
+  example: favorites
   name: filters
   in: query
   schema:
@@ -56,3 +56,4 @@ x-code-samples:
   source: |-
     phrase projects list \
     --access_token <token>
+x-cli-version: '2.5'

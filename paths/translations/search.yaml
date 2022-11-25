@@ -79,3 +79,4 @@ requestBody:
               Find more examples <a href="#overview--usage-examples">here</a>.
             type: string
             example: PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center
+x-cli-version: '2.5'

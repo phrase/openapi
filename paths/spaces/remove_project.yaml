@@ -31,3 +31,4 @@ x-code-samples:
     --space_id <space_id> \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'

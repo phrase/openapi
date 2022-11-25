@@ -41,4 +41,4 @@ x-code-samples:
   source: |-
     phrase accounts list \
     --access_token <token>
-
+x-cli-version: '2.5'

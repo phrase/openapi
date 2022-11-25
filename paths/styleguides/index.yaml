@@ -43,3 +43,4 @@ x-code-samples:
     phrase styleguides list \
     --project_id <project_id> \
     --access_token <token>
+x-cli-version: '2.5'

@@ -75,3 +75,4 @@ requestBody:
             description: 'Order direction. Can be one of: asc, desc.'
             type: string
             example: desc
+x-cli-version: '2.5'

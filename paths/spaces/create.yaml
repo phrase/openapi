@@ -53,3 +53,4 @@ requestBody:
             description: Name of the space
             type: string
             example: My Android Projects
+x-cli-version: '2.5'

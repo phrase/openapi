@@ -33,8 +33,7 @@ x-code-samples:
       -d '{"project_id":"abcd1234"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
-  source: |-
-    UNAVAILABLE
+  source: UNAVAILABLE
 requestBody:
   required: true
   content:
@@ -47,3 +46,4 @@ requestBody:
             description: Project ID to specify the actual project the GitHub export should be triggered in.
             type: string
             example: abcd1234
+x-cli-version: '2.5'

@@ -40,3 +40,4 @@ x-code-samples:
     --job_template_locale_id <job_template_locale_id> \
     --branch my-feature-branch \
     --access_token <token>
+x-cli-version: '2.5'

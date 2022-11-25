@@ -53,3 +53,4 @@ requestBody:
             description: Name of the team
             type: string
             example: German Translators
+x-cli-version: '2.5'

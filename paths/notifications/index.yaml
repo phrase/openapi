@@ -47,3 +47,4 @@ x-code-samples:
   source: |-
     phrase notifications list \
     --access_token <token>
+x-cli-version: '2.5'

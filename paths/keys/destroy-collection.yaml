@@ -72,3 +72,4 @@ x-code-samples:
     --query 'mykey* translated:true' \
     --locale_id abcd1234abcd1234abcd1234abcd1234 \
     --access_token <token>
+x-cli-version: '2.5'

@@ -1,6 +1,6 @@
 ---
 summary: Delete a term base
-description: "Delete an existing term base (previously: glossary)."
+description: 'Delete an existing term base (previously: glossary).'
 operationId: glossary/delete
 tags:
 - Glossaries
@@ -29,3 +29,4 @@ x-code-samples:
     --account_id <account_id> \
     --id <id> \
     --access_token <token>
+x-cli-version: '2.5'
