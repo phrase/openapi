@@ -30,6 +30,7 @@ parameters:
     type: string
 - description: |
     Specify a query to find translations by content (including wildcards).<br><br>
+    <strong style="font-size: 14px;">Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</strong><br>
     The following qualifiers are supported in the query:<br>
     <ul>
       <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>

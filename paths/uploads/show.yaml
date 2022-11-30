@@ -1,5 +1,5 @@
 ---
-summary: View upload details
+summary: Get a single upload
 description: View details and summary for a single upload.
 operationId: upload/show
 tags:

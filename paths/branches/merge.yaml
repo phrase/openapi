@@ -1,6 +1,6 @@
 ---
 summary: Merge a branch
-description: Merge an existing branch.
+description: 'Merge an existing branch. <br><strong style="font-size: 14px;">Note: Merging a branch may take several minutes depending on diff size.</strong>'
 operationId: branch/merge
 tags:
 - Branches

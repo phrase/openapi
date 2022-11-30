@@ -433,6 +433,7 @@ Default: asc</td>
 <span class="small">optional</span></td>
 <td><code>string</code></td>
 <td>Specify a query to find translations by content (including wildcards).<br />
+<strong style="font-size: 14px;">Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</strong>
 <br />
 The following qualifiers are supported in the query:<br />
 
@@ -532,6 +533,7 @@ Default: asc</td>
 <span class="small">optional</span></td>
 <td><code>string</code></td>
 <td>Specify a query to find translations by content (including wildcards).<br />
+<strong style="font-size: 14px;">Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</strong>
 <br />
 The following qualifiers are supported in the query:<br />
 
@@ -615,6 +617,7 @@ Verify all translations that are matching the query `my dog`.
 <span class="small">optional</span></td>
 <td><code>string</code></td>
 <td>Specify a query to find translations by content (including wildcards).<br />
+<strong style="font-size: 14px;">Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</strong>
 <br />
 The following qualifiers are supported in the query:<br />
 

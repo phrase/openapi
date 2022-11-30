@@ -1,6 +1,6 @@
 ---
 summary: Export from Phrase Strings to Bitbucket
-description: Export translations from Phrase Strings to Bitbucket according to the .phraseapp.yml file within the Bitbucket Repository.
+description: 'Export translations from Phrase Strings to Bitbucket according to the .phraseapp.yml file within the Bitbucket Repository. <br><strong style="font-size: 14px;">Note: Export is done asynchronously and may take several seconds depending on the project size.</strong>'
 operationId: bitbucket_sync/export
 tags:
 - Bitbucket Sync

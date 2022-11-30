@@ -1,6 +1,6 @@
 ---
 summary: Create a branch
-description: Create a new branch.
+description: 'Create a new branch. <br><strong style="font-size: 14px;">Note: Creating a new branch may take several minutes depending on the project size.</strong>'
 operationId: branch/create
 tags:
 - Branches
