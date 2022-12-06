@@ -1,5 +1,5 @@
 ---
-summary: Revoke exclusion of a translation in export
+summary: Include a translation
 description: Remove exclude from export flag from an existing translation.
 operationId: translation/include
 tags:
