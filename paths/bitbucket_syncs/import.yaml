@@ -1,6 +1,6 @@
 ---
 summary: Import to Phrase Strings from Bitbucket
-description: 'Import translations from Bitbucket to Phrase Strings according to the .phraseapp.yml file within the Bitbucket repository. <br><strong style="font-size: 14px;">Note: Import is done asynchronously and may take several seconds depending on the project size.</strong>'
+description: 'Import translations from Bitbucket to Phrase Strings according to the .phraseapp.yml file within the Bitbucket repository. <br><br><i>Note: Import is done asynchronously and may take several seconds depending on the project size.</i>'
 operationId: bitbucket_sync/import
 tags:
 - Bitbucket Sync

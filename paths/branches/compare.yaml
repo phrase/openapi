@@ -1,6 +1,6 @@
 ---
 summary: Compare branches
-description: 'Compare branch with main branch. <br><strong style="font-size: 14px;">Note: Comparing a branch may take several minutes depending on the project size.</strong>'
+description: 'Compare branch with main branch. <br><br><i>Note: Comparing a branch may take several minutes depending on the project size.</i>'
 operationId: branch/compare
 tags:
 - Branches

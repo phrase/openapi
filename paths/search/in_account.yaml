@@ -1,6 +1,6 @@
 ---
 summary: Search across projects
-description: 'Search for keys and translations in all account projects <br><strong style="font-size: 14px;">Note: Search is limited to 10000 results and may not include recently updated data depending on the project sizes.</strong>'
+description: 'Search for keys and translations in all account projects <br><br><i>Note: Search is limited to 10000 results and may not include recently updated data depending on the project sizes.</i>'
 operationId: search/in_account
 tags:
 - Search

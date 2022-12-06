@@ -1,6 +1,6 @@
 ---
 summary: Import to Phrase Strings from GitHub
-description: 'Import files to Phrase Strings from your connected GitHub repository. <br><strong style="font-size: 14px;">Note: Import is done asynchronously and may take several seconds depending on the project size.</strong>'
+description: 'Import files to Phrase Strings from your connected GitHub repository. <br><br><i>Note: Import is done asynchronously and may take several seconds depending on the project size.</i>'
 operationId: github_sync/import
 tags:
 - GitHub Sync
