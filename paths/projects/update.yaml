@@ -3,12 +3,12 @@ summary: Update a project
 description: Update an existing project.
 operationId: project/update
 tags:
-- Projects
+  - Projects
 parameters:
-- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-- "$ref": "../../parameters.yaml#/id"
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/id"
 responses:
-  '200':
+  "200":
     description: OK
     content:
       application/json:
@@ -21,27 +21,27 @@ responses:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
       X-Rate-Limit-Reset:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
-  '400':
+  "400":
     "$ref": "../../responses.yaml#/400"
-  '404':
+  "404":
     "$ref": "../../responses.yaml#/404"
-  '429':
+  "429":
     "$ref": "../../responses.yaml#/429"
 x-code-samples:
-- lang: Curl
-  source: |-
-    curl "https://api.phrase.com/v2/projects/:id" \
-      -u USERNAME_OR_ACCESS_TOKEN \
-      -X PATCH \
-      -F name=My%20Android%20Project \
-      -F main_format=yml \
-      -F shares_translation_memory=true
-- lang: CLI v2
-  source: |-
-    phrase projects update \
-    --id <id> \
-    --data '{"name": "My Android Project", "main_format":"yml", "shares_translation_memory":true}' \
-    --access_token <token>
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:id" \
+        -u USERNAME_OR_ACCESS_TOKEN \
+        -X PATCH \
+        -F name=My%20Android%20Project \
+        -F main_format=yml \
+        -F shares_translation_memory=true
+  - lang: CLI v2
+    source: |-
+      phrase projects update \
+      --id <id> \
+      --data '{"name": "My Android Project", "main_format":"yml", "shares_translation_memory":true}' \
+      --access_token <token>
 requestBody:
   required: true
   content:
@@ -59,7 +59,7 @@ requestBody:
             type: string
             example: My Android Project
           main_format:
-            description: (Optional) Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href="https://support.phrase.com/hc/en-us/articles/5784070560412">Format Guide</a> or our <a href="#formats">Formats API Endpoint</a>.
+            description: (Optional) Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href="https://support.phrase.com/hc/en-us/sections/6111343326364">Format Guide</a> or our <a href="#formats">Formats API Endpoint</a>.
             type: string
             example: yml
           shares_translation_memory:
@@ -143,4 +143,4 @@ requestBody:
             description: "(Optional) Requires smart_suggest_enabled to be true"
             type: boolean
             example: true
-x-cli-version: '2.5'
+x-cli-version: "2.5"

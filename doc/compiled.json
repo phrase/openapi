@@ -155,7 +155,7 @@
     },
     {
       "name": "Uploads",
-      "description": "### Formats\n\nWe support all common localization file formats. For a detailed overview, see our [Format Guide](https://support.phrase.com/hc/en-us/articles/5784070560412).\n\n### Processing\n\nUploads will be processed asynchronously and thus the data might not be imported yet although the upload is completed. Therefore we recommend to evaluate the returned <code>state</code> field for information on the import progress.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>initialized</code></td>\n        <td class=\"basic-table__cell\">Data received.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting_for_preview</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for preview to be finished.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for processing.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>processing</code></td>\n        <td class=\"basic-table__cell\">Upload is being processed, data is currently imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>success</code></td>\n        <td class=\"basic-table__cell\">Upload is complete and all data is imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>error</code></td>\n        <td class=\"basic-table__cell\">Upload or import process failed.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+      "description": "### Formats\n\nWe support all common localization file formats. For a detailed overview, see our [Format Guide](https://support.phrase.com/hc/en-us/sections/6111343326364).\n\n### Processing\n\nUploads will be processed asynchronously and thus the data might not be imported yet although the upload is completed. Therefore we recommend to evaluate the returned <code>state</code> field for information on the import progress.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>initialized</code></td>\n        <td class=\"basic-table__cell\">Data received.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting_for_preview</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for preview to be finished.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>waiting</code></td>\n        <td class=\"basic-table__cell\">Upload is waiting for processing.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>processing</code></td>\n        <td class=\"basic-table__cell\">Upload is being processed, data is currently imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>success</code></td>\n        <td class=\"basic-table__cell\">Upload is complete and all data is imported.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>error</code></td>\n        <td class=\"basic-table__cell\">Upload or import process failed.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
     },
     {
       "name": "Users"
@@ -6122,7 +6122,7 @@
             }
           },
           {
-            "description": "File format name. See the <a href=\"https://support.phrase.com/hc/en-us/articles/5784070560412\">format guide</a> for all supported file formats.",
+            "description": "File format name. See the <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">format guide</a> for all supported file formats.",
             "example": "yml",
             "name": "file_format",
             "in": "query",
@@ -6196,7 +6196,7 @@
             }
           },
           {
-            "description": "Additional formatting and render options. See the <a href=\"https://support.phrase.com/hc/en-us/articles/5784070560412\">format guide</a> for a list of options available for each format. Specify format options like this: <code>...&format_options[foo]=bar</code>",
+            "description": "Additional formatting and render options. See the <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">format guide</a> for a list of options available for each format. Specify format options like this: <code>...&format_options[foo]=bar</code>",
             "example": null,
             "name": "format_options",
             "in": "query",
@@ -12273,7 +12273,7 @@
                     "example": "My Android Project"
                   },
                   "main_format": {
-                    "description": "Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href=\"https://support.phrase.com/hc/en-us/articles/5784070560412\">Format Guide</a> or our <a href=\"#formats\">Formats API Endpoint</a>.",
+                    "description": "Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">Format Guide</a> or our <a href=\"#formats\">Formats API Endpoint</a>.",
                     "type": "string",
                     "example": "yml"
                   },
@@ -12532,7 +12532,7 @@
                     "example": "My Android Project"
                   },
                   "main_format": {
-                    "description": "(Optional) Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href=\"https://support.phrase.com/hc/en-us/articles/5784070560412\">Format Guide</a> or our <a href=\"#formats\">Formats API Endpoint</a>.",
+                    "description": "(Optional) Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">Format Guide</a> or our <a href=\"#formats\">Formats API Endpoint</a>.",
                     "type": "string",
                     "example": "yml"
                   },

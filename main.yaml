@@ -4,7 +4,7 @@ info:
   title: Phrase Strings API Reference
   version: 2.0.0
   description:
-    $ref: './intro.md'
+    $ref: "./intro.md"
 
   contact:
     name: Phrase Support
@@ -16,7 +16,7 @@ info:
     backgroundColor: "#03eab3"
     altText: "Phrase Strings"
 
-  termsOfService: 'https://phrase.com/terms/'
+  termsOfService: "https://phrase.com/terms/"
 
   license:
     name: MIT
@@ -201,7 +201,7 @@ tags:
     description: |
       ### Formats
 
-      We support all common localization file formats. For a detailed overview, see our [Format Guide](https://support.phrase.com/hc/en-us/articles/5784070560412).
+      We support all common localization file formats. For a detailed overview, see our [Format Guide](https://support.phrase.com/hc/en-us/sections/6111343326364).
 
       ### Processing
 
