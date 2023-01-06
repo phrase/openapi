@@ -56,6 +56,10 @@ requestBody:
             description: Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href="https://support.phrase.com/hc/en-us/sections/6111343326364">Format Guide</a> or our <a href="#formats">Formats API Endpoint</a>.
             type: string
             example: yml
+          media:
+            description: (Optional) Main technology stack used in the project
+            type: string
+            example: Python
           shares_translation_memory:
             description: Indicates whether the project should share the account's translation memory
             type: boolean
@@ -71,6 +75,10 @@ requestBody:
             example:
           account_id:
             description: Account ID to specify the actual account the project should be created in. Required if the requesting user is a member of multiple accounts.
+            type: string
+            example: abcd1234
+          point_of_contact:
+            description:  (Optional) User ID of the point of contact for the project.
             type: string
             example: abcd1234
           source_project_id:
