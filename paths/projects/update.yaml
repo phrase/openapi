@@ -67,9 +67,7 @@ requestBody:
             type: string
             example: yml
           media:
-            description: (Optional) Main technology stack used in the project
-            type: string
-            example: Python
+            "$ref": "create.yaml#/requestBody/content/application~1json/schema/properties/media"
           shares_translation_memory:
             description: "(Optional) Indicates whether the project should share the account's translation memory"
             type: boolean

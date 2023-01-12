@@ -12555,9 +12555,7 @@
                     "example": "yml"
                   },
                   "media": {
-                    "description": "(Optional) Main technology stack used in the project",
-                    "type": "string",
-                    "example": "Python"
+                    "$ref": "#/paths/~1projects/post/requestBody/content/application~1json/schema/properties/media"
                   },
                   "shares_translation_memory": {
                     "description": "(Optional) Indicates whether the project should share the account's translation memory",
