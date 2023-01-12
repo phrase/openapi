@@ -149,6 +149,7 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 
 	if localeFile.Tag != "" {
 		localVarOptionals.Tags = optional.NewString(localeFile.Tag)
+		localVarOptionals.Tag = optional.EmptyString()
 	}
 
 	if Debug {
