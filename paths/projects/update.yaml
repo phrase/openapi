@@ -59,7 +59,7 @@ requestBody:
             type: string
             example: My Android Project
           point_of_contact:
-            description: (Optional) User ID of the point of contact for the project. Pass `nil` to unset.
+            description: (Optional) User ID of the point of contact for the project. Pass `null` to unset.
             type: string
             example: abcd1234
           main_format:
