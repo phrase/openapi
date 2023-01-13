@@ -13,6 +13,8 @@ project:
       type: string
     project_image_url:
       type: string
+    media:
+      type: string
     account:
       "$ref": "./account.yaml#/account"
     space:

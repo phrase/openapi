@@ -31,8 +31,6 @@ https://github.com/phrase/phrase-java
 
 https://github.com/phrase/phrase-js
 
-https://github.com/phrase/phrase-kotlin
-
 https://github.com/phrase/phrase-php
 
 https://github.com/phrase/phrase-python

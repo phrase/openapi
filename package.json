@@ -12,11 +12,8 @@
     "generate.go": "make lint bundle go",
     "generate.typescript": "make lint bundle typescript",
     "generate.python": "make lint bundle python",
-    "generate.swift": "make lint bundle swift",
     "generate.java": "make lint bundle java",
-    "generate.kotlin": "make lint bundle kotlin",
     "generate.php": "make lint bundle php",
-    "generate.csharp": "make lint bundle csharp",
     "generate.cli": "make lint bundle cli"
   },
   "repository": {
