@@ -149,4 +149,4 @@ requestBody:
             description: "(Optional) Requires smart_suggest_enabled to be true"
             type: boolean
             example: true
-x-cli-version: "2.5"
+x-cli-version: "2.6.3"
