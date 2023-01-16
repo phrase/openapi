@@ -21,7 +21,7 @@ echo build docker image "${IMAGE}" and ${IMAGE_LATEST}
 
 mkdir -p dist/linux
 cp dist/phrase_linux_amd64 dist/linux/amd64
-cp dist/phrase_linux_amd64 dist/linux/arm64
+cp dist/phrase_linux_arm64 dist/linux/arm64
 
 docker buildx build --tag "${IMAGE}" --tag ${IMAGE_LATEST} --platform linux/amd64,linux/arm64 -f ./Dockerfile --push .
 
