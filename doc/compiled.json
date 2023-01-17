@@ -3347,6 +3347,28 @@
           "type": "string"
         }
       },
+      "If-Modified-Since": {
+        "description": "Last modified condition, see <a href=\"#overview--conditional-get-requests--http-caching\">Conditional GET requests / HTTP Caching</a> (optional)",
+        "explode": false,
+        "in": "header",
+        "name": "If-Modified-Since",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "style": "simple"
+      },
+      "If-None-Match": {
+        "description": "ETag condition, see <a href=\"#overview--conditional-get-requests--http-caching\">Conditional GET requests / HTTP Caching</a> (optional)",
+        "explode": false,
+        "in": "header",
+        "name": "If-None-Match",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "style": "simple"
+      },
       "account_id": {
         "in": "path",
         "name": "account_id",
@@ -6108,6 +6130,12 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/If-Modified-Since"
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
           },
           {
             "$ref": "#/components/parameters/project_id"
@@ -12406,7 +12434,7 @@
             }
           }
         },
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.6.3"
       }
     },
     "/projects/{id}": {
@@ -12663,7 +12691,7 @@
             }
           }
         },
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.6.3"
       },
       "delete": {
         "summary": "Delete a project",
@@ -19590,6 +19618,12 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/If-Modified-Since"
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
           },
           {
             "$ref": "#/components/parameters/project_id"

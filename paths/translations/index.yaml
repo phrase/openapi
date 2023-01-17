@@ -6,6 +6,8 @@ tags:
 - Translations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/If-Modified-Since"
+- "$ref": "../../parameters.yaml#/If-None-Match"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
