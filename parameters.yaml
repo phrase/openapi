@@ -6,6 +6,24 @@ X-PhraseApp-OTP:
   allowEmptyValue: false
   schema:
     type: string
+If-Modified-Since:
+  description: 'Last modified condition, see <a href="#overview--conditional-get-requests--http-caching">Conditional GET requests / HTTP Caching</a> (optional)'
+  explode: false
+  in: header
+  name: If-Modified-Since
+  required: false
+  schema:
+    type: string
+  style: simple
+If-None-Match:
+  description: 'ETag condition, see <a href="#overview--conditional-get-requests--http-caching">Conditional GET requests / HTTP Caching</a> (optional)'
+  explode: false
+  in: header
+  name: If-None-Match
+  required: false
+  schema:
+    type: string
+  style: simple
 account_id:
   in: path
   name: account_id
