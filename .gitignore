@@ -1,4 +1,7 @@
 clients/
+!clients/cli/
+clients/cli/api_*.go
+
 doc/*.css
 doc/*.css.map
 doc/*.js
