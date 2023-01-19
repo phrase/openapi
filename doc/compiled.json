@@ -6335,7 +6335,7 @@
             "source": "phrase locales download \\\n--project_id <project_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--file_format yml \\\n--tags feature1,feature2 \\\n--tag feature \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.6.4"
       }
     },
     "/accounts/{account_id}/distributions": {
@@ -6918,7 +6918,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase releases create \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--data '{\"description\": \"My first Release\", \"platforms\": \"android,ios\", \"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
+            "source": "phrase releases create \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--data '{\"description\": \"My first Release\", \"platforms\": [\"android\", \"ios\"], \"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -19719,7 +19719,7 @@
             "source": "phrase translations list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--sort updated_at \\\n--order desc \\\n--query 'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center' \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.6.4"
       },
       "post": {
         "summary": "Create a translation",
