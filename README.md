@@ -23,7 +23,9 @@ and visit `localhost:8080` to see documentation.
 
 You can also lint your changes by `$ npm run lint`
 
-## Generated repositories
+## Workflow
+
+The following repositories are generated upon pushing to this one:
 
 https://github.com/phrase/phrase-go
 
@@ -37,8 +39,11 @@ https://github.com/phrase/phrase-python
 
 https://github.com/phrase/phrase-ruby
 
-
 https://github.com/phrase/phrase-cli
+
+### Deployment diagram
+
+![Deployment diagram](docs/openapi%20workflow.svg)
 
 ## Specification
 
