@@ -27,19 +27,17 @@
   },
   "homepage": "https://developers.phrase.com/api/",
   "devDependencies": {
-    "@apidevtools/swagger-cli": "^4.0.3",
-    "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
+    "@apidevtools/swagger-cli": "^4.0.4",
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "husky": "^4.3.8",
     "sass": "^1.26.10",
     "terser": "^4.8.1",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "http-server": "^0.12.3"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint"
     }
-  },
-  "dependencies": {
-    "http-server": "^0.12.3"
   }
 }
