@@ -14,6 +14,7 @@ lint:
 	# make bundle
 	# npx openapi-generator-cli validate -i tmp/compiled.yaml
 bundle:
+	npx swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json
 	npx swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml
 watch_bundle:
 	make lint
