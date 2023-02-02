@@ -112,6 +112,10 @@ schemas:
     "$ref": schemas/job_locale.yaml#/job_locale
   job_template:
     "$ref": schemas/job_template.yaml#/job_template
+  job_template_details:
+    "$ref": schemas/job_template_details.yaml#/job_template_details
+  job_comment:
+    "$ref": schemas/job_comment.yaml#/job_comment
   branch:
     "$ref": schemas/branch.yaml#/branch
   distribution_preview:
@@ -130,3 +134,7 @@ schemas:
     "$ref": schemas/variable.yaml#/variable
   icu:
     "$ref": schemas/icu.yaml#/skeleton
+  notification:
+    "$ref": schemas/notification.yaml#/notification
+  notification_group:
+    "$ref": schemas/notification_group.yaml#/notification_group

@@ -1,21 +1,21 @@
 ---
 summary: Get a single job template
 description: Get details on a single job template for a given project.
-operationId: job_template/show
+operationId: job_templates/show
 tags:
-- Job Templates
+  - Job Templates
 parameters:
-- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-- "$ref": "../../parameters.yaml#/project_id"
-- "$ref": "../../parameters.yaml#/id"
-- description: specify the branch to use
-  example: my-feature-branch
-  name: branch
-  in: query
-  schema:
-    type: string
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/project_id"
+  - "$ref": "../../parameters.yaml#/id"
+  - description: specify the branch to use
+    example: my-feature-branch
+    name: branch
+    in: query
+    schema:
+      type: string
 responses:
-  '200':
+  "200":
     description: OK
     content:
       application/json:
@@ -28,22 +28,22 @@ responses:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
       X-Rate-Limit-Reset:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
-  '400':
+  "400":
     "$ref": "../../responses.yaml#/400"
-  '404':
+  "404":
     "$ref": "../../responses.yaml#/404"
-  '429':
+  "429":
     "$ref": "../../responses.yaml#/429"
 x-code-samples:
-- lang: Curl
-  source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/job_templates/:id?branch=my-feature-branch" \
-      -u USERNAME_OR_ACCESS_TOKEN
-- lang: CLI v2
-  source: |-
-    phrase job_templates show \
-    --project_id <project_id> \
-    --id <id> \
-    --branch my-feature-branch \
-    --access_token <token>
-x-cli-version: '2.5'
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:project_id/job_templates/:id?branch=my-feature-branch" \
+        -u USERNAME_OR_ACCESS_TOKEN
+  - lang: CLI v2
+    source: |-
+      phrase job_templates show \
+      --project_id <project_id> \
+      --id <id> \
+      --branch my-feature-branch \
+      --access_token <token>
+x-cli-version: "2.5"
