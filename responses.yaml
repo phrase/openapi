@@ -2,79 +2,79 @@
   description: OK
   headers:
     X-Rate-Limit-Limit:
-      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
     X-Rate-Limit-Remaining:
-      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
-      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 201:
   description: The resource has been created
   headers:
     X-Rate-Limit-Limit:
-      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
     X-Rate-Limit-Remaining:
-      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
-      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 204:
   description: The resource was deleted successfully.
   headers:
     X-Rate-Limit-Limit:
-      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
     X-Rate-Limit-Remaining:
-      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
-      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 400:
   description: Bad request
   headers:
     X-Rate-Limit-Limit:
-      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
     X-Rate-Limit-Remaining:
-      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
-      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 401:
   description: Unauthorized
 403:
   description: Forbidden
   headers:
     X-Rate-Limit-Limit:
-      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
     X-Rate-Limit-Remaining:
-      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
-      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 404:
   description: Not Found
   headers:
     X-Rate-Limit-Limit:
-      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
     X-Rate-Limit-Remaining:
-      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
-      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 422:
   description: Unprocessable entity
   content:
     application/json:
       schema:
-        $ref: './schemas/errors.yaml#/errors'
+        $ref: "./schemas/errors.yaml#/errors"
   headers:
     X-Rate-Limit-Limit:
-      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
     X-Rate-Limit-Remaining:
-      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
-      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 429:
   description: Rate Limiting
   headers:
     X-Rate-Limit-Limit:
-      $ref: './headers.yaml#/X-Rate-Limit-Limit'
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
     X-Rate-Limit-Remaining:
-      $ref: './headers.yaml#/X-Rate-Limit-Remaining'
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
-      $ref: './headers.yaml#/X-Rate-Limit-Reset'
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 503:
   description: Server error

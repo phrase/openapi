@@ -2871,6 +2871,204 @@
           "review_completed_at": "2017-01-28T09:52:53Z"
         }
       },
+      "job_template": {
+        "type": "object",
+        "title": "job_template",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "briefing": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/project_short"
+          },
+          "branch": {
+            "$ref": "#/components/schemas/job/properties/branch"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "626ea67628690c73ac86ac81eec2d185",
+          "name": "template",
+          "briefing": "text",
+          "created_at": "2017-01-28T09:52:53Z",
+          "updated_at": "2017-01-28T09:52:53Z",
+          "project": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "My Android Project",
+            "main_format": "xml",
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z"
+          }
+        }
+      },
+      "job_template_details": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/job_template"
+          },
+          {
+            "type": "object",
+            "title": "job_template_details",
+            "properties": {
+              "owner": {
+                "$ref": "#/components/schemas/user_preview"
+              },
+              "creator": {
+                "$ref": "#/components/schemas/user_preview"
+              },
+              "locales": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/locale_preview"
+                }
+              }
+            },
+            "example": {
+              "owner": {
+                "id": "abcd1234cdef1234abcd1234cdef1234",
+                "username": "joe.doe",
+                "name": "Joe Doe"
+              },
+              "creator": {
+                "id": "abcd1234cdef1234abcd1234cdef1234",
+                "username": "joe.doe",
+                "name": "Joe Doe"
+              },
+              "locales": [
+                {
+                  "id": "abcd1234cdef1234abcd1234cdef1234",
+                  "name": "English",
+                  "code": "en-GB"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "job_template_locales": {
+        "type": "object",
+        "title": "job_template_locale",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "job_template": {
+            "type": "object",
+            "title": "job_template_preview",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "example": null
+          },
+          "locale": {
+            "$ref": "#/components/schemas/locale_preview"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "title": "job_template_user_preview",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                }
+              },
+              "example": null
+            }
+          }
+        },
+        "example": {
+          "id": "626ea67628690c73ac86ac81eec2d185",
+          "job_template": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "template"
+          },
+          "users": [
+            {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "username": "joe.doe",
+              "name": "Joe Doe",
+              "role": "translator"
+            }
+          ],
+          "locale": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "English",
+            "code": "en-GB"
+          }
+        }
+      },
+      "job_comment": {
+        "type": "object",
+        "title": "job_comment",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "job_id": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/user_preview"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "mentioned_users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_preview"
+            }
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "message": "Some message...",
+          "job_id": "abcd1234cdef1234abcd1234cdef1234",
+          "user": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "username": "joe.doe",
+            "name": "Joe Doe"
+          },
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z"
+        }
+      },
       "branch": {
         "type": "object",
         "title": "branch",
@@ -3333,6 +3531,239 @@
         "example": {
           "en": "{number, plural, one {} other {}}",
           "de": "{number, plural, one {} other {}}"
+        }
+      },
+      "notification": {
+        "type": "object",
+        "title": "notification",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "event_name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "delivered_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "seen_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "data": {
+            "type": "object"
+          },
+          "resource": {
+            "type": "object"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/locale"
+          },
+          "user": {
+            "$ref": "#/components/schemas/user_preview"
+          },
+          "project": {
+            "$ref": "#/components/schemas/project"
+          },
+          "account": {
+            "$ref": "#/components/schemas/account"
+          },
+          "group": {
+            "$ref": "#/components/schemas/notification_group"
+          }
+        },
+        "example": {
+          "id": "abcd1234",
+          "event_name": "keys:create",
+          "data": "object notification data",
+          "resource": "object of notification resource",
+          "locale": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "de",
+            "code": "de-DE",
+            "default": true,
+            "main": false,
+            "rtl": false,
+            "plural_forms": [
+              "zero",
+              "one",
+              "other"
+            ],
+            "source_locale": {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "en",
+              "code": "en-GB"
+            },
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z"
+          },
+          "user": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "username": "joe.doe",
+            "name": "Joe Doe"
+          },
+          "project": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "My Android Project",
+            "main_format": "xml",
+            "project_image_url": "http://assets.example.com/project.png",
+            "account": {
+              "id": "abcd1234",
+              "name": "Company Account",
+              "slug": "company_account",
+              "company": "My Awesome Company",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z",
+              "company_logo_url": "http://assets.example.com/company_logo.png"
+            },
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z"
+          },
+          "account": {
+            "id": "abcd1234",
+            "name": "Company Account",
+            "slug": "company_account",
+            "company": "My Awesome Company",
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z",
+            "company_logo_url": "http://assets.example.com/company_logo.png"
+          },
+          "group": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "event_name": "keys:create",
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z"
+          }
+        }
+      },
+      "notification_group": {
+        "type": "object",
+        "title": "notification_group",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "event_name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "event_name": "keys:create",
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z"
+        }
+      },
+      "notification_group_detail": {
+        "type": "object",
+        "title": "notification_group_detail",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "event_name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "notifications_count": {
+            "type": "integer"
+          },
+          "latest_notification": {
+            "$ref": "#/components/schemas/notification"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "event_name": "keys:create",
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z",
+          "latest_notification": {
+            "id": "abcd1234",
+            "event_name": "keys:create",
+            "data": "object notification data",
+            "resource": "object of notification resource",
+            "locale": {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "de",
+              "code": "de-DE",
+              "default": true,
+              "main": false,
+              "rtl": false,
+              "plural_forms": [
+                "zero",
+                "one",
+                "other"
+              ],
+              "source_locale": {
+                "id": "abcd1234cdef1234abcd1234cdef1234",
+                "name": "en",
+                "code": "en-GB"
+              },
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z"
+            },
+            "user": {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "username": "joe.doe",
+              "name": "Joe Doe"
+            },
+            "project": {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "My Android Project",
+              "main_format": "xml",
+              "project_image_url": "http://assets.example.com/project.png",
+              "account": {
+                "id": "abcd1234",
+                "name": "Company Account",
+                "slug": "company_account",
+                "company": "My Awesome Company",
+                "created_at": "2015-01-28T09:52:53Z",
+                "updated_at": "2015-01-28T09:52:53Z",
+                "company_logo_url": "http://assets.example.com/company_logo.png"
+              },
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z"
+            },
+            "account": {
+              "id": "abcd1234",
+              "name": "Company Account",
+              "slug": "company_account",
+              "company": "My Awesome Company",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z",
+              "company_logo_url": "http://assets.example.com/company_logo.png"
+            },
+            "group": {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "event_name": "keys:create",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z"
+            }
+          }
         }
       }
     },
@@ -8367,47 +8798,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "title": "job_template",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "briefing": {
-                        "type": "string"
-                      },
-                      "project": {
-                        "$ref": "#/components/schemas/project_short"
-                      },
-                      "branch": {
-                        "$ref": "#/components/schemas/job/properties/branch"
-                      },
-                      "created_at": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "updated_at": {
-                        "type": "string",
-                        "format": "date-time"
-                      }
-                    },
-                    "example": {
-                      "id": "626ea67628690c73ac86ac81eec2d185",
-                      "name": "template",
-                      "briefing": "text",
-                      "created_at": "2017-01-28T09:52:53Z",
-                      "updated_at": "2017-01-28T09:52:53Z",
-                      "project": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "name": "My Android Project",
-                        "main_format": "xml",
-                        "created_at": "2015-01-28T09:52:53Z",
-                        "updated_at": "2015-01-28T09:52:53Z"
-                      }
-                    }
+                    "$ref": "#/components/schemas/job_template"
                   }
                 }
               }
@@ -8470,48 +8861,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates/get/responses/200/content/application~1json/schema/items"
-                    },
-                    {
-                      "type": "object",
-                      "title": "job_template_details",
-                      "properties": {
-                        "owner": {
-                          "$ref": "#/components/schemas/user_preview"
-                        },
-                        "creator": {
-                          "$ref": "#/components/schemas/user_preview"
-                        },
-                        "locales": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/locale_preview"
-                          }
-                        }
-                      },
-                      "example": {
-                        "owner": {
-                          "id": "abcd1234cdef1234abcd1234cdef1234",
-                          "username": "joe.doe",
-                          "name": "Joe Doe"
-                        },
-                        "creator": {
-                          "id": "abcd1234cdef1234abcd1234cdef1234",
-                          "username": "joe.doe",
-                          "name": "Joe Doe"
-                        },
-                        "locales": [
-                          {
-                            "id": "abcd1234cdef1234abcd1234cdef1234",
-                            "name": "English",
-                            "code": "en-GB"
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                  "$ref": "#/components/schemas/job_template_details"
                 }
               }
             },
@@ -8585,7 +8935,7 @@
       "get": {
         "summary": "Get a single job template",
         "description": "Get details on a single job template for a given project.",
-        "operationId": "job_template/show",
+        "operationId": "job_templates/show",
         "tags": [
           "Job Templates"
         ],
@@ -8615,7 +8965,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/job_template_details"
                 }
               }
             },
@@ -8677,7 +9027,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/job_template_details"
                 }
               }
             },
@@ -12583,7 +12933,9 @@
                     "example": "yml"
                   },
                   "media": {
-                    "$ref": "#/paths/~1projects/post/requestBody/content/application~1json/schema/properties/media"
+                    "description": "(Optional) Main technology stack used in the project. It affects for example the suggested placeholder style. Predefined values include: `Ruby`, `JavaScript`, `AngularJS`, `React`, `iOS`, `Android`, `Python`, `PHP`, `Java`, `Go`, `Windows Phone`, `Rails`, `Node.js`, `.NET`, `Django`, `Symfony`, `Yii Framework`, `Zend Framework`, `Apple App Store Description`, `Google Play Description`, but it can also take any other value.",
+                    "type": "string",
+                    "example": "Python"
                   },
                   "shares_translation_memory": {
                     "description": "(Optional) Indicates whether the project should share the account's translation memory",
@@ -13464,7 +13816,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_template_id%7D~1locales/post/responses/201/content/application~1json/schema"
+                    "$ref": "#/components/schemas/job_template_locales"
                   }
                 }
               }
@@ -13530,71 +13882,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "job_template_locale",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "job_template": {
-                      "type": "object",
-                      "title": "job_template_preview",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        }
-                      },
-                      "example": null
-                    },
-                    "locale": {
-                      "$ref": "#/components/schemas/locale_preview"
-                    },
-                    "users": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "title": "job_template_user_preview",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "username": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "role": {
-                            "type": "string"
-                          }
-                        },
-                        "example": null
-                      }
-                    }
-                  },
-                  "example": {
-                    "id": "626ea67628690c73ac86ac81eec2d185",
-                    "job_template": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "name": "template"
-                    },
-                    "users": [
-                      {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "username": "joe.doe",
-                        "name": "Joe Doe",
-                        "role": "translator"
-                      }
-                    ],
-                    "locale": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "name": "English",
-                      "code": "en-GB"
-                    }
-                  }
+                  "$ref": "#/components/schemas/job_template_locales"
                 }
               }
             },
@@ -13716,7 +14004,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_template_id%7D~1locales/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/job_template_locales"
                 }
               }
             },
@@ -13781,7 +14069,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1job_templates~1%7Bjob_template_id%7D~1locales/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/job_template_locales"
                 }
               }
             },
@@ -21240,7 +21528,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1notifications~1%7Bid%7D/get/responses/200/content/application~1json/schema"
+                    "$ref": "#/components/schemas/notification"
                   }
                 }
               }
@@ -21304,7 +21592,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1notifications~1%7Bid%7D/get/responses/200/content/application~1json/schema"
+                    "$ref": "#/components/schemas/notification"
                   }
                 }
               }
@@ -21366,139 +21654,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "notification",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "event_name": {
-                      "type": "string"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "delivered_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "seen_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "data": {
-                      "type": "object"
-                    },
-                    "resource": {
-                      "type": "object"
-                    },
-                    "locale": {
-                      "$ref": "#/components/schemas/locale"
-                    },
-                    "user": {
-                      "$ref": "#/components/schemas/user_preview"
-                    },
-                    "project": {
-                      "$ref": "#/components/schemas/project"
-                    },
-                    "account": {
-                      "$ref": "#/components/schemas/account"
-                    },
-                    "group": {
-                      "type": "object",
-                      "title": "notification_group",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "event_name": {
-                          "type": "string"
-                        },
-                        "created_at": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "updated_at": {
-                          "type": "string",
-                          "format": "date-time"
-                        }
-                      },
-                      "example": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "event_name": "keys:create",
-                        "created_at": "2015-01-28T09:52:53Z",
-                        "updated_at": "2015-01-28T09:52:53Z"
-                      }
-                    }
-                  },
-                  "example": {
-                    "id": "abcd1234",
-                    "event_name": "keys:create",
-                    "data": "object notification data",
-                    "resource": "object of notification resource",
-                    "locale": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "name": "de",
-                      "code": "de-DE",
-                      "default": true,
-                      "main": false,
-                      "rtl": false,
-                      "plural_forms": [
-                        "zero",
-                        "one",
-                        "other"
-                      ],
-                      "source_locale": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "name": "en",
-                        "code": "en-GB"
-                      },
-                      "created_at": "2015-01-28T09:52:53Z",
-                      "updated_at": "2015-01-28T09:52:53Z"
-                    },
-                    "user": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "username": "joe.doe",
-                      "name": "Joe Doe"
-                    },
-                    "project": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "name": "My Android Project",
-                      "main_format": "xml",
-                      "project_image_url": "http://assets.example.com/project.png",
-                      "account": {
-                        "id": "abcd1234",
-                        "name": "Company Account",
-                        "slug": "company_account",
-                        "company": "My Awesome Company",
-                        "created_at": "2015-01-28T09:52:53Z",
-                        "updated_at": "2015-01-28T09:52:53Z",
-                        "company_logo_url": "http://assets.example.com/company_logo.png"
-                      },
-                      "created_at": "2015-01-28T09:52:53Z",
-                      "updated_at": "2015-01-28T09:52:53Z"
-                    },
-                    "account": {
-                      "id": "abcd1234",
-                      "name": "Company Account",
-                      "slug": "company_account",
-                      "company": "My Awesome Company",
-                      "created_at": "2015-01-28T09:52:53Z",
-                      "updated_at": "2015-01-28T09:52:53Z",
-                      "company_logo_url": "http://assets.example.com/company_logo.png"
-                    },
-                    "group": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "event_name": "keys:create",
-                      "created_at": "2015-01-28T09:52:53Z",
-                      "updated_at": "2015-01-28T09:52:53Z"
-                    }
-                  }
+                  "$ref": "#/components/schemas/notification"
                 }
               }
             },
@@ -21570,7 +21726,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1notification_groups~1%7Bid%7D~1mark_as_read/patch/responses/200/content/application~1json/schema"
+                    "$ref": "#/components/schemas/notification_group_detail"
                   }
                 }
               }
@@ -21634,7 +21790,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1notification_groups~1%7Bid%7D~1mark_as_read/patch/responses/200/content/application~1json/schema"
+                    "$ref": "#/components/schemas/notification_group_detail"
                   }
                 }
               }
@@ -21696,99 +21852,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "notification_group_detail",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "event_name": {
-                      "type": "string"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "notifications_count": {
-                      "type": "integer"
-                    },
-                    "latest_notification": {
-                      "$ref": "#/paths/~1notifications~1%7Bid%7D/get/responses/200/content/application~1json/schema"
-                    }
-                  },
-                  "example": {
-                    "id": "abcd1234cdef1234abcd1234cdef1234",
-                    "event_name": "keys:create",
-                    "created_at": "2015-01-28T09:52:53Z",
-                    "updated_at": "2015-01-28T09:52:53Z",
-                    "latest_notification": {
-                      "id": "abcd1234",
-                      "event_name": "keys:create",
-                      "data": "object notification data",
-                      "resource": "object of notification resource",
-                      "locale": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "name": "de",
-                        "code": "de-DE",
-                        "default": true,
-                        "main": false,
-                        "rtl": false,
-                        "plural_forms": [
-                          "zero",
-                          "one",
-                          "other"
-                        ],
-                        "source_locale": {
-                          "id": "abcd1234cdef1234abcd1234cdef1234",
-                          "name": "en",
-                          "code": "en-GB"
-                        },
-                        "created_at": "2015-01-28T09:52:53Z",
-                        "updated_at": "2015-01-28T09:52:53Z"
-                      },
-                      "user": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "username": "joe.doe",
-                        "name": "Joe Doe"
-                      },
-                      "project": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "name": "My Android Project",
-                        "main_format": "xml",
-                        "project_image_url": "http://assets.example.com/project.png",
-                        "account": {
-                          "id": "abcd1234",
-                          "name": "Company Account",
-                          "slug": "company_account",
-                          "company": "My Awesome Company",
-                          "created_at": "2015-01-28T09:52:53Z",
-                          "updated_at": "2015-01-28T09:52:53Z",
-                          "company_logo_url": "http://assets.example.com/company_logo.png"
-                        },
-                        "created_at": "2015-01-28T09:52:53Z",
-                        "updated_at": "2015-01-28T09:52:53Z"
-                      },
-                      "account": {
-                        "id": "abcd1234",
-                        "name": "Company Account",
-                        "slug": "company_account",
-                        "company": "My Awesome Company",
-                        "created_at": "2015-01-28T09:52:53Z",
-                        "updated_at": "2015-01-28T09:52:53Z",
-                        "company_logo_url": "http://assets.example.com/company_logo.png"
-                      },
-                      "group": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "event_name": "keys:create",
-                        "created_at": "2015-01-28T09:52:53Z",
-                        "updated_at": "2015-01-28T09:52:53Z"
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/notification_group_detail"
                 }
               }
             },
@@ -22084,7 +22148,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1jobs~1%7Bjob_id%7D~1comments/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/job_comment"
                 }
               }
             },
@@ -22149,7 +22213,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1jobs~1%7Bjob_id%7D~1comments/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/job_comment"
                 }
               }
             },
@@ -22298,7 +22362,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1projects~1%7Bproject_id%7D~1jobs~1%7Bjob_id%7D~1comments/post/responses/201/content/application~1json/schema"
+                    "$ref": "#/components/schemas/job_comment"
                   }
                 }
               }
@@ -22364,48 +22428,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "job_comment",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "job_id": {
-                      "type": "string"
-                    },
-                    "user": {
-                      "$ref": "#/components/schemas/user_preview"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "mentioned_users": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/user_preview"
-                      }
-                    }
-                  },
-                  "example": {
-                    "id": "abcd1234cdef1234abcd1234cdef1234",
-                    "message": "Some message...",
-                    "job_id": "abcd1234cdef1234abcd1234cdef1234",
-                    "user": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "username": "joe.doe",
-                      "name": "Joe Doe"
-                    },
-                    "created_at": "2015-01-28T09:52:53Z",
-                    "updated_at": "2015-01-28T09:52:53Z"
-                  }
+                  "$ref": "#/components/schemas/job_comment"
                 }
               }
             },
