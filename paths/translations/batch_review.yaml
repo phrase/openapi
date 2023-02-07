@@ -39,7 +39,7 @@ x-code-samples:
   source: |-
     phrase translations review-collection \
     --project_id <project_id> \
-    --data '{"branch":"my-feature-branch", "query":"'PhraseApp*%reviewed:false%20tags:feature,center'"}' \
+    --data '{"branch":"my-feature-branch", "q":"'PhraseApp*%reviewed:false%20tags:feature,center'"}' \
     --access_token <token>
 requestBody:
   required: true

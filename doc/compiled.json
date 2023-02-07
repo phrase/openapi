@@ -17507,7 +17507,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys search \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"sort\":\"updated_at\", \"order\":\"desc\", \"query\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase keys search \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"sort\":\"updated_at\", \"order\":\"desc\", \"q\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -17885,7 +17885,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys tag \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
+            "source": "phrase keys tag \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -17979,7 +17979,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys untag \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
+            "source": "phrase keys untag \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'mykey* translated:true'\", \"locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -18073,7 +18073,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys exclude \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'mykey* translated:true'\", \"target_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
+            "source": "phrase keys exclude \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'mykey* translated:true'\", \"target_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -18167,7 +18167,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys include \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'mykey* translated:true'\", \"target_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
+            "source": "phrase keys include \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'mykey* translated:true'\", \"target_locale_id\":\"abcd1234abcd1234abcd1234abcd1234\", \"tags\":\"landing-page,release-1.2\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -20410,7 +20410,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations search \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"sort\":\"updated_at\", \"order\":\"desc\", \"query\":\"'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'\"}' \\\n--access_token <token>"
+            "source": "phrase translations search \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"sort\":\"updated_at\", \"order\":\"desc\", \"q\":\"'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -21092,7 +21092,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations verify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20unverified:true%20tags:feature,center'\"}' \\\n--access_token <token>"
+            "source": "phrase translations verify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'PhraseApp*%20unverified:true%20tags:feature,center'\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -21181,7 +21181,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations unverify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations unverify-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -21275,7 +21275,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations review-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%reviewed:false%20tags:feature,center'\"}' \\\n--access_token <token>"
+            "source": "phrase translations review-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'PhraseApp*%reviewed:false%20tags:feature,center'\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -21359,7 +21359,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations exclude-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations exclude-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -21453,7 +21453,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase translations include-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"query\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
+            "source": "phrase translations include-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'PhraseApp*%20verified:true%20tags:feature,center'\", \"sort\":\"updated_at\", \"order\":\"desc\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -22072,7 +22072,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase search in_account \\\n--account_id <account_id> \\\n--data '{\"query\":\"keyword\",\"locale_code\": \"de\",\"page\": 1,\"per_page\": 25}' \\\n--access_token <token>"
+            "source": "phrase search in_account \\\n--account_id <account_id> \\\n--data '{\"q\":\"keyword\",\"locale_code\": \"de\",\"page\": 1,\"per_page\": 25}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {

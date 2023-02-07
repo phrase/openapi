@@ -43,7 +43,7 @@ x-code-samples:
   source: |-
     phrase translations search \
     --project_id <project_id> \
-    --data '{"branch":"my-feature-branch", "sort":"updated_at", "order":"desc", "query":"'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'"}' \
+    --data '{"branch":"my-feature-branch", "sort":"updated_at", "order":"desc", "q":"'PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center'"}' \
     --access_token <token>
 requestBody:
   required: true
