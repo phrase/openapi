@@ -43,7 +43,7 @@ x-code-samples:
   source: |-
     phrase keys search \
     --project_id <project_id> \
-    --data '{"branch":"my-feature-branch", "sort":"updated_at", "order":"desc", "query":"'mykey* translated:true'", "locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
+    --data '{"branch":"my-feature-branch", "sort":"updated_at", "order":"desc", "q":"'mykey* translated:true'", "locale_id":"abcd1234abcd1234abcd1234abcd1234"}' \
     --access_token <token>
 requestBody:
   required: true

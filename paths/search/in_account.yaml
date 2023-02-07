@@ -41,7 +41,7 @@ x-code-samples:
   source: |-
     phrase search in_account \
     --account_id <account_id> \
-    --data '{"query":"keyword","locale_code": "de","page": 1,"per_page": 25}' \
+    --data '{"q":"keyword","locale_code": "de","page": 1,"per_page": 25}' \
     --access_token <token>
 requestBody:
   required: true
