@@ -589,3 +589,15 @@
 "/projects/{project_id}/webhooks/{webhook_id}/deliveries/{id}/redeliver":
   post:
     "$ref": "./paths/webhook_deliveries/redeliver.yaml"
+"/accounts/{account_id}/job_templates":
+  get:
+    "$ref": "./paths/organization_job_templates/index.yaml"
+  post:
+    "$ref": "./paths/organization_job_templates/create.yaml"
+"/accounts/{account_id}/job_templates/{id}":
+  get:
+    "$ref": "./paths/organization_job_templates/show.yaml"
+  patch:
+    "$ref": "./paths/organization_job_templates/update.yaml"
+  delete:
+    "$ref": "./paths/organization_job_templates/destroy.yaml"

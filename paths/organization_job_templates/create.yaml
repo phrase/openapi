@@ -1,0 +1,62 @@
+---
+summary: Create an organization job template
+description: Create a new organization job template.
+operationId: organization_job_template/create
+tags:
+- Organization Job Templates
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+responses:
+  '201':
+    description: Created
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/organization_job_template_details.yaml#/organization_job_template_details"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/job_templates" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"name":"template","briefing":"text"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase organization_job_templates create \
+    --account_id <account_id> \
+    --data '{"name":"template", "briefing":"text"}' \
+    --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: organization_job_template/create/parameters
+        properties:
+          name:
+            description: Job template name
+            type: string
+            example: template
+          briefing:
+            description: Briefing for the translators
+            type: string
+            example: text
+        required:
+        - name
+x-cli-version: "2.6.7"

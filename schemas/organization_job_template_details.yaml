@@ -1,0 +1,28 @@
+---
+organization_job_template_details:
+  allOf:
+  - "$ref": "./organization_job_template.yaml#/organization_job_template"
+  - type: object
+    title: organization_job_template_details
+    properties:
+      owner:
+        "$ref": "./user_preview.yaml#/user_preview"
+      creator:
+        "$ref": "./user_preview.yaml#/user_preview"
+      locales:
+        type: array
+        items:
+          "$ref": "./locale_preview.yaml#/locale_preview"
+    example:
+      owner:
+        id: abcd1234cdef1234abcd1234cdef1234
+        username: joe.doe
+        name: Joe Doe
+      creator:
+        id: abcd1234cdef1234abcd1234cdef1234
+        username: joe.doe
+        name: Joe Doe
+      locales:
+      - id: abcd1234cdef1234abcd1234cdef1234
+        name: English
+        code: en-GB
