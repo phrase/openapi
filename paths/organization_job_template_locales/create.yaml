@@ -38,7 +38,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase job_template_locales create \
+    phrase organization_job_template_locales create \
     --account_id <account_id> \
     --job_template_id <job_template_id> \
     --data '{"locale_name": "de-1", "locale_code: "de-DE", "user_ids": "abcd1234cdef1234abcd1234cdef1234", "reviewer_ids": "abcd1234cdef1234abcd1234cdef1234", "translator_team_ids": "abcd1234cdef1234abcd1234cdef1234"}' \
