@@ -186,6 +186,7 @@ tags:
           </tbody>
         </table>
       </div>
+  - name: Organization Job Template Locales
   - name: Organization Job Templates
   - name: Projects
   - name: Quality
@@ -272,6 +273,7 @@ x-tagGroups:
       - Job Templates
       - Job Template Locales
       - Organization Job Templates
+      - Organization Job Template Locales
       - Comments
       - Branches
   - name: Quality
