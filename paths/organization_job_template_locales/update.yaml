@@ -35,7 +35,7 @@ x-code-samples:
     curl "https://api.phrase.com/v2/accounts/:account_id/job_templates/:job_template_id/locales/:job_template_locale_id" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
-      -d '{"locale_name":"de-1","locale_code:"de-DE","user_ids":["abcd1234cdef1234abcd1234cdef1234"],"reviewer_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
+      -d '{"locale_name":"de-1","locale_code:"de-DE","user_ids":["abcd1234cdef1234abcd1234cdef1234"],"reviewer_ids":["abcd1234cdef1234abcd1234cdef1234"],"translator_team_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
@@ -43,7 +43,7 @@ x-code-samples:
     --account_id <account_id> \
     --job_template_id <job_template_id> \
     --job_template_locale_id <job_template_locale_id> \
-    --data '{"locale_name": "de-1", "locale_code: "de-DE", "user_ids": "abcd1234cdef1234abcd1234cdef1234", "reviewer_ids": "abcd1234cdef1234abcd1234cdef1234"}' \
+    --data '{"locale_name": "de-1", "locale_code: "de-DE", "user_ids": "abcd1234cdef1234abcd1234cdef1234", "reviewer_ids": "abcd1234cdef1234abcd1234cdef1234","translator_team_ids": "abcd1234cdef1234abcd1234cdef1234"}' \
     --access_token <token>
 requestBody:
   required: true
@@ -70,6 +70,20 @@ requestBody:
             - abcd1234cdef1234abcd1234cdef1234
           reviewer_ids:
             description: Array of reviewer ids to be assigned to the job template locale
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
+          translatior_team_ids:
+            description: Array of team ids to be assigned to the job locale as translators
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
+          reviewer_team_ids:
+            description: Array of team ids to be assigned to the job locale as reviewers
             type: array
             items:
               type: string
