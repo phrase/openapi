@@ -1,7 +1,7 @@
 ---
-job_template_user_preview:
+locale_user_preview:
   type: object
-  title: job_template_user_preview
+  title: locale_user_preview
   properties:
     id:
       type: string
@@ -11,4 +11,4 @@ job_template_user_preview:
       type: string
     role:
       type: string
-  example: 
+  example:

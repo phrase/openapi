@@ -1,0 +1,12 @@
+---
+locale_team_preview:
+  type: object
+  title: locale_team_preview
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    role:
+      type: string
+  example:

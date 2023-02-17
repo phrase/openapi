@@ -34,14 +34,14 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
-      -d '{"branch":"my-feature-branch","locale_id":"abcd1234cdef1234abcd1234cdef1234","user_ids":["abcd1234cdef1234abcd1234cdef1234"], "team_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
+      -d '{"branch":"my-feature-branch","locale_id":"abcd1234cdef1234abcd1234cdef1234","user_ids":["abcd1234cdef1234abcd1234cdef1234"], "translation_team_ids":["abcd1234cdef1234abcd1234cdef1234"]}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase job_locales create \
     --project_id <project_id> \
     --job_id <job_id> \
-    --data '{"branch":"my-feature-branch", "locale_id":"abcd1234cdef1234abcd1234cdef1234", "user_ids": "abcd1234cdef1234abcd1234cdef1234", "team_ids": "abcd1234cdef1234abcd1234cdef1234"}' \
+    --data '{"branch":"my-feature-branch", "locale_id":"abcd1234cdef1234abcd1234cdef1234", "user_ids": "abcd1234cdef1234abcd1234cdef1234", "translation_team_ids": "abcd1234cdef1234abcd1234cdef1234"}' \
     --access_token <token>
 requestBody:
   required: true
@@ -73,7 +73,7 @@ requestBody:
               type: string
             example:
             - abcd1234cdef1234abcd1234cdef1234
-          team_ids:
+          translation_team_ids:
             description: Array of team ids to be assigned to the job locale as translators
             type: array
             items:
@@ -87,4 +87,6 @@ requestBody:
               type: string
             example:
             - abcd1234cdef1234abcd1234cdef1234
-x-cli-version: '2.5'
+        required:
+        - locale_id
+x-cli-version: '2.6.7'

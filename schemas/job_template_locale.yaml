@@ -12,7 +12,11 @@ job_template_locale:
     users:
       type: array
       items:
-        "$ref": "./job_template_user_preview.yaml#/job_template_user_preview"
+        "$ref": "./locale_user_preview.yaml#/locale_user_preview"
+    teams:
+      type: array
+      items:
+        "$ref": "./locale_team_preview.yaml#/locale_team_preview"
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     job_template:
@@ -23,6 +27,10 @@ job_template_locale:
       username: joe.doe
       name: Joe Doe
       role: translator
+    teams:
+    - id: abcd1234cdef1234abcd1234cdef1234
+      name: Joe's team
+      role: "translator"
     locale:
       id: abcd1234cdef1234abcd1234cdef1234
       name: English
