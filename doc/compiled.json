@@ -13263,11 +13263,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"translation_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"translator_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_locales create \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translation_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
+            "source": "phrase job_locales create \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translator_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -13308,7 +13308,7 @@
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
                   },
-                  "translation_team_ids": {
+                  "translator_team_ids": {
                     "description": "Array of team ids to be assigned to the job locale as translators",
                     "type": "array",
                     "items": {
@@ -13472,11 +13472,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"translation_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"translator_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_locales update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"team_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translation_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
+            "source": "phrase job_locales update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"team_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translator_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -13517,7 +13517,7 @@
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
                   },
-                  "translation_team_ids": {
+                  "translator_team_ids": {
                     "description": "Array of team ids to be assigned to the job locale as translators",
                     "type": "array",
                     "items": {
@@ -13993,11 +13993,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"reviewer_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"translation_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"reviewer_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"translator_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales create \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translation_team_ids\":\"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
+            "source": "phrase job_template_locales create \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translator_team_ids\":\"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -14038,7 +14038,7 @@
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
                   },
-                  "translation_team_ids": {
+                  "translator_team_ids": {
                     "description": "Array of team ids to be assigned to the job locale as translators",
                     "type": "array",
                     "items": {
@@ -14200,11 +14200,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"reviewer_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"translation_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"reviewer_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"], \"translator_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translation_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
+            "source": "phrase job_template_locales update \\\n--project_id <project_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"locale_id\":\"abcd1234cdef1234abcd1234cdef1234\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translator_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -14245,7 +14245,7 @@
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
                   },
-                  "translation_team_ids": {
+                  "translator_team_ids": {
                     "description": "Array of team ids to be assigned to the job locale as translators",
                     "type": "array",
                     "items": {
