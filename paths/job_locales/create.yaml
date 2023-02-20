@@ -89,4 +89,4 @@ requestBody:
             - abcd1234cdef1234abcd1234cdef1234
         required:
         - locale_id
-x-cli-version: '2.6.7'
+x-cli-version: '2.6.8'
