@@ -1468,6 +1468,41 @@
           }
         ]
       },
+      "locale_user_preview": {
+        "type": "object",
+        "title": "locale_user_preview",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "example": null
+      },
+      "locale_team_preview": {
+        "type": "object",
+        "title": "locale_team_preview",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "example": null
+      },
       "upload": {
         "type": "object",
         "title": "upload",
@@ -2831,42 +2866,13 @@
           "users": {
             "type": "array",
             "items": {
-              "type": "object",
-              "title": "locale_user_preview",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "username": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "role": {
-                  "type": "string"
-                }
-              },
-              "example": null
+              "$ref": "#/components/schemas/locale_user_preview"
             }
           },
           "teams": {
             "type": "array",
             "items": {
-              "type": "object",
-              "title": "locale_team_preview",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "role": {
-                  "type": "string"
-                }
-              },
-              "example": null
+              "$ref": "#/components/schemas/locale_team_preview"
             }
           },
           "completed": {
@@ -3026,13 +3032,13 @@
           "users": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/job_locale/properties/users/items"
+              "$ref": "#/components/schemas/locale_user_preview"
             }
           },
           "teams": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/job_locale/properties/teams/items"
+              "$ref": "#/components/schemas/locale_team_preview"
             }
           }
         },
