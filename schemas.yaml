@@ -50,6 +50,10 @@ schemas:
     "$ref": schemas/locale_statistics.yaml#/locale_statistics
   locale_details:
     "$ref": schemas/locale_details.yaml#/locale_details
+  locale_user_preview:
+    "$ref": schemas/locale_user_preview.yaml#/locale_user_preview
+  locale_team_preview:
+    "$ref": schemas/locale_team_preview.yaml#/locale_team_preview
   upload:
     "$ref": schemas/upload.yaml#/upload
   format:
