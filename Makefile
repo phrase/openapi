@@ -11,8 +11,8 @@ run:
 	@echo Client libraries generated, check clients directory.
 lint:
 	npx swagger-cli validate main.yaml
-	# make bundle
-	# npx openapi-generator-cli validate -i tmp/compiled.yaml
+	make bundle
+	bash ./lint.sh
 bundle:
 	npx swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json
 	npx swagger-cli bundle -t yaml -w 300 main.yaml > tmp/compiled.yaml
