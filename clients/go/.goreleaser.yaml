@@ -1,0 +1,3 @@
+# building a library, so avoid "main function not defined" error:
+builds:
+- skip: true
