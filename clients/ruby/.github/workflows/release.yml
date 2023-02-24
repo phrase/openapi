@@ -11,12 +11,12 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       -
         name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@d3c9825d67b0d8720afdfdde5af56c79fdb38d16 # pin@v1.138.0
         with:
-          ruby-version: '2.6'
+          ruby-version: '3.2'
       -
         name: Version
         id: version
