@@ -41,7 +41,7 @@ jobs:
         run: |
           npm install
           npm run generate.go
-          cd clients/go && go install ./...
+          cd clients/go && go build
 
   compile-cli:
     runs-on: ubuntu-latest
@@ -61,4 +61,4 @@ jobs:
         run: |
           npm install
           npm run generate.cli
-          cd clients/cli && go install ./...
+          cd clients/cli && go build
