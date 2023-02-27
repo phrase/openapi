@@ -22931,7 +22931,7 @@
             "source": "phrase organization_job_templates list \\\n--account_id <account_id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       },
       "post": {
         "summary": "Create an organization job template",
@@ -23057,7 +23057,7 @@
             }
           }
         },
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       }
     },
     "/accounts/{account_id}/job_templates/{id}": {
@@ -23121,7 +23121,7 @@
             "source": "phrase organization_job_templates show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       },
       "patch": {
         "summary": "Update an organization job template",
@@ -23209,7 +23209,7 @@
             }
           }
         },
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       },
       "delete": {
         "summary": "Delete an organization job template",
@@ -23253,7 +23253,7 @@
             "source": "phrase organization_job_templates delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       }
     },
     "/accounts/{account_id}/job_templates/{job_template_id}/locales": {
@@ -23329,7 +23329,7 @@
             "source": "phrase organization_job_template_locales list \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       },
       "post": {
         "summary": "Create an organization job template locale",
@@ -23388,7 +23388,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_template_locales create \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"locale_name\": \"de-1\", \"locale_code: \"de-DE\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translator_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
+            "source": "phrase organization_job_template_locales create \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"locale_name\": \"de-1\", \"locale_code: \"de-DE\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translator_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -23429,7 +23429,7 @@
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
                   },
-                  "translatior_team_ids": {
+                  "translator_team_ids": {
                     "description": "Array of team ids to be assigned to the job locale as translators",
                     "type": "array",
                     "items": {
@@ -23458,7 +23458,7 @@
             }
           }
         },
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       }
     },
     "/accounts/{account_id}/job_templates/{job_template_id}/locales/{job_template_locale_id}": {
@@ -23525,7 +23525,7 @@
             "source": "phrase organization_job_template_locales show \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       },
       "patch": {
         "summary": "Update an organization job template locale",
@@ -23628,7 +23628,7 @@
                       "abcd1234cdef1234abcd1234cdef1234"
                     ]
                   },
-                  "translatior_team_ids": {
+                  "translator_team_ids": {
                     "description": "Array of team ids to be assigned to the job locale as translators",
                     "type": "array",
                     "items": {
@@ -23653,7 +23653,7 @@
             }
           }
         },
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       },
       "delete": {
         "summary": "Delete an organization job template locale",
@@ -23700,7 +23700,7 @@
             "source": "phrase organization_job_template_locales delete \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.6.7"
+        "x-cli-version": "2.6.9"
       }
     }
   }

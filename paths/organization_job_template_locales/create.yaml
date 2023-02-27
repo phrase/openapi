@@ -73,7 +73,7 @@ requestBody:
               type: string
             example:
             - abcd1234cdef1234abcd1234cdef1234
-          translator_team_ids_ids:
+          translator_team_ids:
             description: Array of team ids to be assigned to the job locale as translators
             type: array
             items:
