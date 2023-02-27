@@ -3848,6 +3848,50 @@
           "created_at": "2017-01-28T09:52:53Z",
           "updated_at": "2017-01-28T09:52:53Z"
         }
+      },
+      "organization_job_template_details": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/organization_job_template"
+          },
+          {
+            "type": "object",
+            "title": "organization_job_template_details",
+            "properties": {
+              "owner": {
+                "$ref": "#/components/schemas/user_preview"
+              },
+              "creator": {
+                "$ref": "#/components/schemas/user_preview"
+              },
+              "locales": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/locale_preview"
+                }
+              }
+            },
+            "example": {
+              "owner": {
+                "id": "abcd1234cdef1234abcd1234cdef1234",
+                "username": "joe.doe",
+                "name": "Joe Doe"
+              },
+              "creator": {
+                "id": "abcd1234cdef1234abcd1234cdef1234",
+                "username": "joe.doe",
+                "name": "Joe Doe"
+              },
+              "locales": [
+                {
+                  "id": "abcd1234cdef1234abcd1234cdef1234",
+                  "name": "English",
+                  "code": "en-GB"
+                }
+              ]
+            }
+          }
+        ]
       }
     },
     "parameters": {
@@ -22954,48 +22998,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/organization_job_template"
-                    },
-                    {
-                      "type": "object",
-                      "title": "organization_job_template_details",
-                      "properties": {
-                        "owner": {
-                          "$ref": "#/components/schemas/user_preview"
-                        },
-                        "creator": {
-                          "$ref": "#/components/schemas/user_preview"
-                        },
-                        "locales": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/locale_preview"
-                          }
-                        }
-                      },
-                      "example": {
-                        "owner": {
-                          "id": "abcd1234cdef1234abcd1234cdef1234",
-                          "username": "joe.doe",
-                          "name": "Joe Doe"
-                        },
-                        "creator": {
-                          "id": "abcd1234cdef1234abcd1234cdef1234",
-                          "username": "joe.doe",
-                          "name": "Joe Doe"
-                        },
-                        "locales": [
-                          {
-                            "id": "abcd1234cdef1234abcd1234cdef1234",
-                            "name": "English",
-                            "code": "en-GB"
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                  "$ref": "#/components/schemas/organization_job_template_details"
                 }
               }
             },
@@ -23085,7 +23088,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1accounts~1%7Baccount_id%7D~1job_templates/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/organization_job_template_details"
                 }
               }
             },
@@ -23147,7 +23150,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1accounts~1%7Baccount_id%7D~1job_templates/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/organization_job_template_details"
                 }
               }
             },

@@ -148,3 +148,5 @@ schemas:
     "$ref": schemas/notification_group_detail.yaml#/notification_group_detail
   organization_job_template:
     "$ref": schemas/organization_job_template.yaml#/organization_job_template
+  organization_job_template_details:
+    "$ref": schemas/organization_job_template_details.yaml#/organization_job_template_details
