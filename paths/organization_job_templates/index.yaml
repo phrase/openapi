@@ -43,4 +43,4 @@ x-code-samples:
       phrase organization_job_templates list \
       --account_id <account_id> \
       --access_token <token>
-x-cli-version: "2.6.9"
+x-cli-version: "2.7.0"

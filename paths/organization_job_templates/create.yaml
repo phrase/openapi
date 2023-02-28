@@ -59,4 +59,4 @@ requestBody:
             example: text
         required:
         - name
-x-cli-version: "2.6.9"
+x-cli-version: "2.7.0"

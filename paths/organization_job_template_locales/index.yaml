@@ -45,4 +45,4 @@ x-code-samples:
     --account_id <account_id> \
     --job_template_id <job_template_id> \
     --access_token <token>
-x-cli-version: "2.6.9"
+x-cli-version: "2.7.0"
