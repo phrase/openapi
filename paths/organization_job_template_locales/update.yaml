@@ -3,7 +3,7 @@ summary: Update an organization job template locale
 description: Update an existing organization job template locale.
 operationId: organization_job_template_locale/update
 tags:
-- OrganizationJob Template Locales
+- Organization Job Template Locales
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

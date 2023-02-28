@@ -23535,7 +23535,7 @@
         "description": "Update an existing organization job template locale.",
         "operationId": "organization_job_template_locale/update",
         "tags": [
-          "OrganizationJob Template Locales"
+          "Organization Job Template Locales"
         ],
         "parameters": [
           {
