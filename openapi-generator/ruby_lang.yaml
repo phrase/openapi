@@ -3,7 +3,7 @@ generatorName: ruby
 outputDir: clients/ruby
 moduleName: Phrase
 gemName: phrase
-gemVersion: 2.8.7
+gemVersion: 2.9.0
 gemDescription: 'Phrase Strings is a translation management platform for software projects.'
 gemSummary: 'You can collaborate on language file translation with your team or order translations through our platform. The API allows you to import locale files, download locale files, tag keys or interact in other ways with the localization data stored in Phrase Strings for your account.'
 gemRequiredRubyVersion: '>= 2.6.0'

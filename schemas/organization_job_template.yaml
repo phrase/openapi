@@ -1,0 +1,23 @@
+---
+organization_job_template:
+  type: object
+  title: organization_job_template
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    briefing:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  example:
+    id: 626ea67628690c73ac86ac81eec2d185
+    name: template
+    briefing: text
+    created_at: "2017-01-28T09:52:53Z"
+    updated_at: "2017-01-28T09:52:53Z"
