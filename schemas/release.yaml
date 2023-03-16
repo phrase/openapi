@@ -25,6 +25,10 @@ release:
       type: array
       items:
         "$ref": "./locale_preview.yaml#/locale_preview"
+    tags:
+      type: array
+      items:
+        type: string
     project:
       "$ref": "./project_short.yaml#/project_short"
     created_at:
@@ -40,16 +44,16 @@ release:
       id: abcd1234cdef1234abcd1234cdef1234
       name: My Android Project
       main_format: xml
-      created_at: '2015-01-28T09:52:53Z'
-      updated_at: '2015-01-28T09:52:53Z'
+      created_at: "2015-01-28T09:52:53Z"
+      updated_at: "2015-01-28T09:52:53Z"
     platforms:
-    - android
+      - android
     environments:
-    - development
-    - production
+      - development
+      - production
     locales:
-    - id: abcd1234cdef1234abcd1234cdef1234
-      name: English
-      code: en-GB
-    created_at: '2015-01-28T09:52:53Z'
-    updated_at: '2015-01-28T09:52:53Z'
+      - id: abcd1234cdef1234abcd1234cdef1234
+        name: English
+        code: en-GB
+    created_at: "2015-01-28T09:52:53Z"
+    updated_at: "2015-01-28T09:52:53Z"
