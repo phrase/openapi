@@ -4398,13 +4398,18 @@
                     "description": "Indicates whether the zero form should be included or excluded in the returned skeletons",
                     "type": "boolean",
                     "example": null
+                  },
+                  "cldr_version": {
+                    "description": "Strings supports two CLDR variants, when it comes to pluralization rules. \\\nYou can choose which one you want to use when constructing the skeletons. Possible values \\\nare `legacy` and `cldr_41`. Default value is `legacy`.",
+                    "type": "string",
+                    "example": "cldr_41"
                   }
                 }
               }
             }
           }
         },
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.9"
       }
     },
     "/formats": {
