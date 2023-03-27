@@ -3,13 +3,13 @@ summary: Create a release
 description: Create a new release.
 operationId: release/create
 tags:
-- Releases
+  - Releases
 parameters:
-- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-- "$ref": "../../parameters.yaml#/account_id"
-- "$ref": "../../parameters.yaml#/distribution_id"
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/account_id"
+  - "$ref": "../../parameters.yaml#/distribution_id"
 responses:
-  '201':
+  "201":
     description: Created
     content:
       application/json:
@@ -22,27 +22,27 @@ responses:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
       X-Rate-Limit-Reset:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
-  '400':
+  "400":
     "$ref": "../../responses.yaml#/400"
-  '404':
+  "404":
     "$ref": "../../responses.yaml#/404"
-  '429':
+  "429":
     "$ref": "../../responses.yaml#/429"
 x-code-samples:
-- lang: Curl
-  source: |-
-    curl "https://api.phrase.com/v2/accounts/:account_id/distributions/:distribution_id/releases" \
-      -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST \
-      -d '{"description":"My first Release","platforms":["android","ios"],"branch":"my-feature-branch"}' \
-      -H 'Content-Type: application/json'
-- lang: CLI v2
-  source: |-
-    phrase releases create \
-    --account_id <account_id> \
-    --distribution_id <distribution_id> \
-    --data '{"description": "My first Release", "platforms": ["android", "ios"], "branch":"my-feature-branch"}' \
-    --access_token <token>
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/accounts/:account_id/distributions/:distribution_id/releases" \
+        -u USERNAME_OR_ACCESS_TOKEN \
+        -X POST \
+        -d '{"description":"My first Release","platforms":["android","ios"],"branch":"my-feature-branch"}' \
+        -H 'Content-Type: application/json'
+  - lang: CLI v2
+    source: |-
+      phrase releases create \
+      --account_id <account_id> \
+      --distribution_id <distribution_id> \
+      --data '{"description": "My first Release", "platforms": ["android", "ios"], "branch":"my-feature-branch"}' \
+      --access_token <token>
 requestBody:
   required: true
   content:
@@ -61,18 +61,26 @@ requestBody:
             items:
               type: string
             example:
-            - android
-            - ios
+              - android
+              - ios
           locale_ids:
             description: List of locale ids that will be included in the release. If empty, distribution locales will be used
             type: array
             items:
               type: string
             example:
-            - abcd1234cdef1234abcd1234cdef1234
-            - fff565db236400772368235db2c6117e
+              - abcd1234cdef1234abcd1234cdef1234
+              - fff565db236400772368235db2c6117e
+          tags:
+            description: Only include tagged keys in the release. For a key to be included it must be tagged with all tags provided
+            type: array
+            items:
+              type: string
+            example:
+              - android
+              - feature1
           branch:
             description: Branch used for release
             type: string
             example: my-feature-branch
-x-cli-version: '2.5'
+x-cli-version: "2.8"

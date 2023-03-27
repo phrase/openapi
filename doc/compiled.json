@@ -121,6 +121,12 @@
       "description": "### List of categories [TextMaster]\n\nWhen ordering translations from TextMaster, you need to specify a category ID along with your order. See this list for information on the category ID and their equivalent description.\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Category ID</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr><td class=\"basic-table__cell\">C001</td><td class=\"basic-table__cell\">Agriculture</td></tr>\n      <tr><td class=\"basic-table__cell\">C002</td><td class=\"basic-table__cell\">Aerospace</td></tr>\n      <tr><td class=\"basic-table__cell\">C003</td><td class=\"basic-table__cell\">Animals/Pets/Plants</td></tr>\n      <tr><td class=\"basic-table__cell\">C004</td><td class=\"basic-table__cell\">Arts/Culture/Literature</td></tr>\n      <tr><td class=\"basic-table__cell\">C005</td><td class=\"basic-table__cell\">Automotive/Transportation</td></tr>\n      <tr><td class=\"basic-table__cell\">C006</td><td class=\"basic-table__cell\">Computers/Technology/Software</td></tr>\n      <tr><td class=\"basic-table__cell\">C007</td><td class=\"basic-table__cell\">Telecom</td></tr>\n      <tr><td class=\"basic-table__cell\">C008</td><td class=\"basic-table__cell\">Real Estate/Construction/Building</td></tr>\n      <tr><td class=\"basic-table__cell\">C009</td><td class=\"basic-table__cell\">Consumer Goods</td></tr>\n      <tr><td class=\"basic-table__cell\">C010</td><td class=\"basic-table__cell\">Education</td></tr>\n      <tr><td class=\"basic-table__cell\">C011</td><td class=\"basic-table__cell\">Entertainment</td></tr>\n      <tr><td class=\"basic-table__cell\">C012</td><td class=\"basic-table__cell\">Ecology/Environment</td></tr>\n      <tr><td class=\"basic-table__cell\">C013</td><td class=\"basic-table__cell\">Health/Biotechnology/Pharma</td></tr>\n      <tr><td class=\"basic-table__cell\">C014</td><td class=\"basic-table__cell\">Internet</td></tr>\n      <tr><td class=\"basic-table__cell\">C015</td><td class=\"basic-table__cell\">Policy/Government/Public</td></tr>\n      <tr><td class=\"basic-table__cell\">C016</td><td class=\"basic-table__cell\">Publishing/Media/Communication</td></tr>\n      <tr><td class=\"basic-table__cell\">C017</td><td class=\"basic-table__cell\">Religion</td></tr>\n      <tr><td class=\"basic-table__cell\">C018</td><td class=\"basic-table__cell\">Food/Beverages</td></tr>\n      <tr><td class=\"basic-table__cell\">C019</td><td class=\"basic-table__cell\">Retail</td></tr>\n      <tr><td class=\"basic-table__cell\">C020</td><td class=\"basic-table__cell\">Fashion/Luxury/Textiles</td></tr>\n      <tr><td class=\"basic-table__cell\">C021</td><td class=\"basic-table__cell\">Travel/Tourism</td></tr>\n      <tr><td class=\"basic-table__cell\">C022</td><td class=\"basic-table__cell\">Natural Resources/Energy</td></tr>\n      <tr><td class=\"basic-table__cell\">C023</td><td class=\"basic-table__cell\">Banking/Financial Services/Insurance</td></tr>\n      <tr><td class=\"basic-table__cell\">C024</td><td class=\"basic-table__cell\">Legal Affairs/Tax/Law</td></tr>\n      <tr><td class=\"basic-table__cell\">C025</td><td class=\"basic-table__cell\">Raw Materials/Industrial Goods</td></tr>\n      <tr><td class=\"basic-table__cell\">C026</td><td class=\"basic-table__cell\">Lifestyle/Leisure/Hobbies</td></tr>\n      <tr><td class=\"basic-table__cell\">C027</td><td class=\"basic-table__cell\">Sports</td></tr>\n      <tr><td class=\"basic-table__cell\">C028</td><td class=\"basic-table__cell\">Home/Family/Friends/Children</td></tr>\n      <tr><td class=\"basic-table__cell\">C029</td><td class=\"basic-table__cell\">Economy/Financial Markets</td></tr>\n      <tr><td class=\"basic-table__cell\">C030</td><td class=\"basic-table__cell\">Science</td></tr>\n      <tr><td class=\"basic-table__cell\">C031</td><td class=\"basic-table__cell\">Human Resources/Employment</td></tr>\n      <tr><td class=\"basic-table__cell\">C032</td><td class=\"basic-table__cell\">Adult (Pornography, Violence, etc.)</td></tr>\n    </tbody>\n  </table>\n</div>\n"
     },
     {
+      "name": "Organization Job Template Locales"
+    },
+    {
+      "name": "Organization Job Templates"
+    },
+    {
       "name": "Projects"
     },
     {
@@ -196,6 +202,8 @@
         "Job Locales",
         "Job Templates",
         "Job Template Locales",
+        "Organization Job Templates",
+        "Organization Job Template Locales",
         "Comments",
         "Branches"
       ]
@@ -3335,6 +3343,12 @@
               "type": "string"
             }
           },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "project": {
             "$ref": "#/components/schemas/project_short"
           },
@@ -3366,6 +3380,10 @@
           "locale_codes": [
             "de",
             "en"
+          ],
+          "tags": [
+            "android",
+            "feature1"
           ],
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
@@ -3406,6 +3424,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/locale_preview"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           },
           "project": {
@@ -3810,6 +3834,80 @@
             }
           }
         }
+      },
+      "organization_job_template": {
+        "type": "object",
+        "title": "organization_job_template",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "briefing": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "626ea67628690c73ac86ac81eec2d185",
+          "name": "template",
+          "briefing": "text",
+          "created_at": "2017-01-28T09:52:53Z",
+          "updated_at": "2017-01-28T09:52:53Z"
+        }
+      },
+      "organization_job_template_details": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/organization_job_template"
+          },
+          {
+            "type": "object",
+            "title": "organization_job_template_details",
+            "properties": {
+              "owner": {
+                "$ref": "#/components/schemas/user_preview"
+              },
+              "creator": {
+                "$ref": "#/components/schemas/user_preview"
+              },
+              "locales": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/locale_preview"
+                }
+              }
+            },
+            "example": {
+              "owner": {
+                "id": "abcd1234cdef1234abcd1234cdef1234",
+                "username": "joe.doe",
+                "name": "Joe Doe"
+              },
+              "creator": {
+                "id": "abcd1234cdef1234abcd1234cdef1234",
+                "username": "joe.doe",
+                "name": "Joe Doe"
+              },
+              "locales": [
+                {
+                  "id": "abcd1234cdef1234abcd1234cdef1234",
+                  "name": "English",
+                  "code": "en-GB"
+                }
+              ]
+            }
+          }
+        ]
       }
     },
     "parameters": {
@@ -4300,13 +4398,18 @@
                     "description": "Indicates whether the zero form should be included or excluded in the returned skeletons",
                     "type": "boolean",
                     "example": null
+                  },
+                  "cldr_version": {
+                    "description": "Strings supports two CLDR variants, when it comes to pluralization rules. \\\nYou can choose which one you want to use when constructing the skeletons. Possible values \\\nare `legacy` and `cldr_41`. Default value is `legacy`.",
+                    "type": "string",
+                    "example": "cldr_41"
                   }
                 }
               }
             }
           }
         },
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.9"
       }
     },
     "/formats": {
@@ -7432,6 +7535,17 @@
                       "fff565db236400772368235db2c6117e"
                     ]
                   },
+                  "tags": {
+                    "description": "Only include tagged keys in the release. For a key to be included it must be tagged with all tags provided",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "android",
+                      "feature1"
+                    ]
+                  },
                   "branch": {
                     "description": "Branch used for release",
                     "type": "string",
@@ -7442,7 +7556,7 @@
             }
           }
         },
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.8"
       }
     },
     "/accounts/{account_id}/distributions/{distribution_id}/releases/{id}": {
@@ -22821,6 +22935,807 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/accounts/{account_id}/job_templates": {
+      "get": {
+        "summary": "List organization job templates",
+        "description": "List all job templates for the given account.",
+        "operationId": "organization_job_templates/list",
+        "tags": [
+          "Organization Job Templates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/organization_job_template"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_templates list \\\n--account_id <account_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.7.0"
+      },
+      "post": {
+        "summary": "Create an organization job template",
+        "description": "Create a new organization job template.",
+        "operationId": "organization_job_template/create",
+        "tags": [
+          "Organization Job Templates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/organization_job_template_details"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"template\",\"briefing\":\"text\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_templates create \\\n--account_id <account_id> \\\n--data '{\"name\":\"template\", \"briefing\":\"text\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "organization_job_template/create/parameters",
+                "properties": {
+                  "name": {
+                    "description": "Job template name",
+                    "type": "string",
+                    "example": "template"
+                  },
+                  "briefing": {
+                    "description": "Briefing for the translators",
+                    "type": "string",
+                    "example": "text"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.7.0"
+      }
+    },
+    "/accounts/{account_id}/job_templates/{id}": {
+      "get": {
+        "summary": "Get a single organization job template",
+        "description": "Get details on a single organization job template for a given account.",
+        "operationId": "organization_job_templates/show",
+        "tags": [
+          "Organization Job Templates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/organization_job_template_details"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_templates show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.7.0"
+      },
+      "patch": {
+        "summary": "Update an organization job template",
+        "description": "Update an existing organization job template.",
+        "operationId": "organization_job_template/update",
+        "tags": [
+          "Organization Job Templates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/organization_job_template_details"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_templates update \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "organization_job_template/update/parameters",
+                "properties": {
+                  "name": {
+                    "description": "Job template name",
+                    "type": "string",
+                    "example": "template"
+                  },
+                  "briefing": {
+                    "description": "Briefing for the translators",
+                    "type": "string",
+                    "example": "text"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.7.0"
+      },
+      "delete": {
+        "summary": "Delete an organization job template",
+        "description": "Delete an existing organization job template.",
+        "operationId": "organization_job_template/delete",
+        "tags": [
+          "Organization Job Templates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_templates delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.7.0"
+      }
+    },
+    "/accounts/{account_id}/job_templates/{job_template_id}/locales": {
+      "get": {
+        "summary": "List organization job template locales",
+        "description": "List all job template locales for a given organization job template.",
+        "operationId": "organization_job_template_locales/list",
+        "tags": [
+          "Organization Job Template Locales"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_template_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/job_template_locales"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates/:job_template_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_template_locales list \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.7.0"
+      },
+      "post": {
+        "summary": "Create an organization job template locale",
+        "description": "Create a new organization job template locale.",
+        "operationId": "organization_job_template_locales/create",
+        "tags": [
+          "Organization Job Template Locales"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_template_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/job_template_locales"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates/:job_template_id/locales\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"locale_name\":\"de-1\",\"locale_code:\"de-DE\",user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"reviewer_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"translator_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_template_locales create \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--data '{\"locale_name\": \"de-1\", \"locale_code: \"de-DE\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"translator_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "organization_job_template_locales/create/parameters",
+                "properties": {
+                  "locale_name": {
+                    "description": "locale name",
+                    "type": "string",
+                    "example": "de-1"
+                  },
+                  "locale_code": {
+                    "description": "locale code",
+                    "type": "string",
+                    "example": "de-DE"
+                  },
+                  "user_ids": {
+                    "description": "Array of user ids to be assigned to the job template locale",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "reviewer_ids": {
+                    "description": "Array of reviewer ids to be assigned to the job template locale",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "translator_team_ids": {
+                    "description": "Array of team ids to be assigned to the job locale as translators",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "reviewer_team_ids": {
+                    "description": "Array of team ids to be assigned to the job locale as reviewers",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  }
+                },
+                "required": [
+                  "locale_name",
+                  "locale_code"
+                ]
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.7.0"
+      }
+    },
+    "/accounts/{account_id}/job_templates/{job_template_id}/locales/{job_template_locale_id}": {
+      "get": {
+        "summary": "Get a single organization job template locale",
+        "description": "Get a single job template locale for a given organization job template.",
+        "operationId": "organization_job_template_locale/show",
+        "tags": [
+          "Organization Job Template Locales"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_template_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_template_locale_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/job_template_locales"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_template_locales show \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.7.0"
+      },
+      "patch": {
+        "summary": "Update an organization job template locale",
+        "description": "Update an existing organization job template locale.",
+        "operationId": "organization_job_template_locale/update",
+        "tags": [
+          "Organization Job Template Locales"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_template_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_template_locale_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/job_template_locales"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"locale_name\":\"de-1\",\"locale_code:\"de-DE\",\"user_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"reviewer_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"],\"translator_team_ids\":[\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_template_locales update \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--data '{\"locale_name\": \"de-1\", \"locale_code: \"de-DE\", \"user_ids\": \"abcd1234cdef1234abcd1234cdef1234\", \"reviewer_ids\": \"abcd1234cdef1234abcd1234cdef1234\",\"translator_team_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "organization_job_template_locale/update/parameters",
+                "properties": {
+                  "locale_name": {
+                    "description": "locale name",
+                    "type": "string",
+                    "example": "de-1"
+                  },
+                  "locale_code": {
+                    "description": "locale code",
+                    "type": "string",
+                    "example": "de-DE"
+                  },
+                  "user_ids": {
+                    "description": "Array of user ids to be assigned to the job template locale",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "reviewer_ids": {
+                    "description": "Array of reviewer ids to be assigned to the job template locale",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "translator_team_ids": {
+                    "description": "Array of team ids to be assigned to the job locale as translators",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "reviewer_team_ids": {
+                    "description": "Array of team ids to be assigned to the job locale as reviewers",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.7.0"
+      },
+      "delete": {
+        "summary": "Delete an organization job template locale",
+        "description": "Delete an existing organization job template locale.",
+        "operationId": "organization_job_template_locale/delete",
+        "tags": [
+          "Organization Job Template Locales"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_template_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_template_locale_id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/job_templates/:job_template_id/locales/:job_template_locale_id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase organization_job_template_locales delete \\\n--account_id <account_id> \\\n--job_template_id <job_template_id> \\\n--job_template_locale_id <job_template_locale_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.7.0"
       }
     }
   }

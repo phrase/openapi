@@ -589,3 +589,28 @@
 "/projects/{project_id}/webhooks/{webhook_id}/deliveries/{id}/redeliver":
   post:
     "$ref": "./paths/webhook_deliveries/redeliver.yaml"
+"/accounts/{account_id}/job_templates":
+  get:
+    "$ref": "./paths/organization_job_templates/index.yaml"
+  post:
+    "$ref": "./paths/organization_job_templates/create.yaml"
+"/accounts/{account_id}/job_templates/{id}":
+  get:
+    "$ref": "./paths/organization_job_templates/show.yaml"
+  patch:
+    "$ref": "./paths/organization_job_templates/update.yaml"
+  delete:
+    "$ref": "./paths/organization_job_templates/destroy.yaml"
+"/accounts/{account_id}/job_templates/{job_template_id}/locales":
+  get:
+    "$ref": "./paths/organization_job_template_locales/index.yaml"
+  post:
+    "$ref": "./paths/organization_job_template_locales/create.yaml"
+"/accounts/{account_id}/job_templates/{job_template_id}/locales/{job_template_locale_id}":
+  get:
+    "$ref": "./paths/organization_job_template_locales/show.yaml"
+  patch:
+    "$ref": "./paths/organization_job_template_locales/update.yaml"
+  delete:
+    "$ref": "./paths/organization_job_template_locales/destroy.yaml"
+  

@@ -43,22 +43,22 @@ jobs:
           npm run generate.go
           cd clients/go && go build
 
-  compile-cli:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.19.6
-      - name: Build
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm install
-          npm run generate.cli
-          cd clients/cli && go build
+  # compile-cli:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout 🛎️
+  #       uses: actions/checkout@v3
+  #       with:
+  #         persist-credentials: false
+  #     - name: Set up Go
+  #       uses: actions/setup-go@v2
+  #       with:
+  #         go-version: 1.19.6
+  #     - name: Build
+  #       env:
+  #         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       run: |
+  #         npm install
+  #         npm run generate.cli
+  #         cd clients/cli && go build
