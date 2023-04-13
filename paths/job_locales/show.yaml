@@ -38,7 +38,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locale/:id?branch=my-feature-branch" \
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:id?branch=my-feature-branch" \
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
@@ -48,4 +48,4 @@ x-code-samples:
     --id <id> \
     --branch my-feature-branch \
     --access_token <token>
-x-cli-version: '2.6.8'
+x-cli-version: '2.9.0'
