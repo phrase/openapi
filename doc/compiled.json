@@ -13532,7 +13532,7 @@
             "source": "phrase job_locales show \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.6.8"
+        "x-cli-version": "2.9.0"
       },
       "patch": {
         "summary": "Update a job locale",
