@@ -13459,7 +13459,7 @@
         "x-cli-version": "2.6.8"
       }
     },
-    "/projects/{project_id}/jobs/{job_id}/locale/{id}": {
+    "/projects/{project_id}/jobs/{job_id}/locales/{id}": {
       "get": {
         "summary": "Get a single job locale",
         "description": "Get a single job locale for a given job.",
@@ -13525,7 +13525,7 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locale/:id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:id?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
@@ -13533,9 +13533,7 @@
           }
         ],
         "x-cli-version": "2.6.8"
-      }
-    },
-    "/projects/{project_id}/jobs/{job_id}/locales/{id}": {
+      },
       "patch": {
         "summary": "Update a job locale",
         "description": "Update an existing job locale.",
