@@ -22418,7 +22418,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments show \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_comments show \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"
@@ -22483,7 +22483,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"message\": \"Some message...\"}' \\\n--access_token <token>"
+            "source": "phrase job_comments update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"message\": \"Some message...\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -22557,7 +22557,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments delete \\\n--project_id <project_id> \\\n--job_id <key_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_comments delete \\\n--project_id <project_id> \\\n--job_id <key_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"
@@ -22636,7 +22636,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments list \\\n--project_id <project_id> \\\n--job_id <key_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_comments list \\\n--project_id <project_id> \\\n--job_id <key_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"
@@ -22698,7 +22698,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments create \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--data '{\"message\": \"Some message...\"}' \\\n--access_token <token>"
+            "source": "phrase job_comments create \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--data '{\"message\": \"Some message...\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {

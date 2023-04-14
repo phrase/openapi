@@ -39,7 +39,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase comments update \
+    phrase job_comments update \
     --project_id <project_id> \
     --job_id <job_id> \
     --id <id> \
