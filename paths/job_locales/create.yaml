@@ -1,6 +1,6 @@
 ---
-summary: Create a job locale
-description: Create a new job locale.
+summary: Add a target locale to a job
+description: Adds a target locale to a job.
 operationId: job_locales/create
 tags:
 - Job Locales
@@ -56,7 +56,7 @@ requestBody:
             type: string
             example: my-feature-branch
           locale_id:
-            description: locale id
+            description: ID of a locale to be added
             type: string
             example: abcd1234cdef1234abcd1234cdef1234
           user_ids:

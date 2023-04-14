@@ -1,6 +1,6 @@
 ---
-summary: Delete a job locale
-description: Delete an existing job locale.
+summary: Remove a target locale from a job
+description: Removes a target locale from a job.
 operationId: job_locale/delete
 tags:
 - Job Locales
