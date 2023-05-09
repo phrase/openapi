@@ -121,7 +121,7 @@ requestBody:
             type: boolean
             example:
           mark_reviewed:
-            description: Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow (currently beta) is enabled for the project.
+            description: Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow is enabled for the project.
             type: boolean
             example:
 x-cli-version: '2.5'

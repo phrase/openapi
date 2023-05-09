@@ -92,7 +92,7 @@ parameters:
     in: query
     schema:
       type: boolean
-  - description: If set to true the last reviewed version of a translation is used. This is only available if the review workflow (currently in beta) is enabled for the project.
+  - description: If set to true the last reviewed version of a translation is used. This is only available if the review workflow is enabled for the project.
     example:
     name: use_last_reviewed_version
     in: query
