@@ -58,7 +58,13 @@ requestBody:
             type: string
             example: abcd1234abcd1234abcd1234
           platforms:
-            description: List of platforms the distribution should support.
+            description: |-
+              List of platforms the distribution should support.
+              Valid values are:
+              * `android`
+              * `ios`
+              * `flutter`
+              * `i18next`
             type: array
             items:
               type: string
