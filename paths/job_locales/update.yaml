@@ -1,6 +1,6 @@
 ---
-summary: Update a job locale
-description: Update an existing job locale.
+summary: Update a job target locale
+description: Update an existing job target locale.
 operationId: job_locale/update
 tags:
 - Job Locales
@@ -58,7 +58,7 @@ requestBody:
             type: string
             example: my-feature-branch
           locale_id:
-            description: locale id
+            description: ID of a target locale to update
             type: string
             example: abcd1234cdef1234abcd1234cdef1234
           user_ids:

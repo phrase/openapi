@@ -1,6 +1,6 @@
 ---
-summary: Get a single job locale
-description: Get a single job locale for a given job.
+summary: Show single job target locale
+description: Get a single target locale for a given job.
 operationId: job_locale/show
 tags:
 - Job Locales

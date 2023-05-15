@@ -13248,8 +13248,8 @@
     },
     "/projects/{project_id}/jobs/{job_id}/locales": {
       "get": {
-        "summary": "List job locales",
-        "description": "List all job locales for a given job.",
+        "summary": "List job target locales",
+        "description": "List all target locales for a given job.",
         "operationId": "job_locales/list",
         "tags": [
           "Job Locales"
@@ -13331,8 +13331,8 @@
         "x-cli-version": "2.5"
       },
       "post": {
-        "summary": "Create a job locale",
-        "description": "Create a new job locale.",
+        "summary": "Add a target locale to a job",
+        "description": "Adds a target locale to a job.",
         "operationId": "job_locales/create",
         "tags": [
           "Job Locales"
@@ -13404,7 +13404,7 @@
                     "example": "my-feature-branch"
                   },
                   "locale_id": {
-                    "description": "locale id",
+                    "description": "ID of a locale to be added",
                     "type": "string",
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
@@ -13461,8 +13461,8 @@
     },
     "/projects/{project_id}/jobs/{job_id}/locales/{id}": {
       "get": {
-        "summary": "Get a single job locale",
-        "description": "Get a single job locale for a given job.",
+        "summary": "Show single job target locale",
+        "description": "Get a single target locale for a given job.",
         "operationId": "job_locale/show",
         "tags": [
           "Job Locales"
@@ -13535,8 +13535,8 @@
         "x-cli-version": "2.9.0"
       },
       "patch": {
-        "summary": "Update a job locale",
-        "description": "Update an existing job locale.",
+        "summary": "Update a job target locale",
+        "description": "Update an existing job target locale.",
         "operationId": "job_locale/update",
         "tags": [
           "Job Locales"
@@ -13611,7 +13611,7 @@
                     "example": "my-feature-branch"
                   },
                   "locale_id": {
-                    "description": "locale id",
+                    "description": "ID of a target locale to update",
                     "type": "string",
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
@@ -13663,8 +13663,8 @@
         "x-cli-version": "2.6.8"
       },
       "delete": {
-        "summary": "Delete a job locale",
-        "description": "Delete an existing job locale.",
+        "summary": "Remove a target locale from a job",
+        "description": "Removes a target locale from a job.",
         "operationId": "job_locale/delete",
         "tags": [
           "Job Locales"

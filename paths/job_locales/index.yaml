@@ -1,6 +1,6 @@
 ---
-summary: List job locales
-description: List all job locales for a given job.
+summary: List job target locales
+description: List all target locales for a given job.
 operationId: job_locales/list
 tags:
 - Job Locales
