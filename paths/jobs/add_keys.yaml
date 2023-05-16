@@ -38,7 +38,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase jobs keys \
+    phrase jobs keys_create \
     --project_id <project_id> \
     --id <id> \
     --data '{"branch":"my-feature-branch", "translation_key_ids": "abcd1234cdef1234abcd1234cdef1234"}' \
