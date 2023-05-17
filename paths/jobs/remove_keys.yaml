@@ -42,7 +42,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase jobs keys \
+    phrase jobs keys_delete \
     --project_id <project_id> \
     --id <id> \
     --branch my-feature-branch \
