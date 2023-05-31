@@ -1,4 +1,5 @@
 {
+  ".": "2.0.0",
   "clients/java": "1.9.0",
   "clients/python": "1.9.0"
 }
