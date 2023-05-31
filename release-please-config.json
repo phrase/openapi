@@ -2,7 +2,7 @@
   "bootstrap-sha": "d61f1d95bd90cb5a70e55c0046346e5db293757e",
   "packages": {
     ".": {},
-    "clients/java": {
+    "openapi-generator/templates/java": {
       "release-type": "maven",
       "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": false,
@@ -11,7 +11,7 @@
       "prerelease": false
     },
     "openapi-generator/templates/python": {
-      "release-type": "python",
+      "release-type": "simple",
       "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": false,
       "bump-patch-for-minor-pre-major": false,

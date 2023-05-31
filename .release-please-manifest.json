@@ -1,5 +1,5 @@
 {
   ".": "2.0.0",
-  "clients/java": "1.9.0",
+  "openapi-generator/templates/java": "1.9.0",
   "openapi-generator/templates/python": "1.9.0"
 }

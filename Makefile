@@ -39,7 +39,7 @@ go:
 typescript:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g typescript-fetch -o clients/typescript -t ./openapi-generator/templates/typescript-fetch -c ./openapi-generator/typescript_lang.yaml
 python:
-	openapi-generator-cli generate -i tmp/compiled.yaml -g python -o clients/python -t ./openapi-generator/templates/python -c ./openapi-generator/python_lang.yaml
+	openapi-generator-cli generate -i tmp/compiled.yaml -g python -o clients/python -c ./openapi-generator/python_lang.yaml
 java:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g java -o clients/java -t ./openapi-generator/templates/java -c ./openapi-generator/java_lang.yaml
 php:
