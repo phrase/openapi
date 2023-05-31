@@ -10,7 +10,7 @@
       "draft": false,
       "prerelease": false
     },
-    "clients/python": {
+    "clients/python/phrase_api": {
       "release-type": "python",
       "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": false,
