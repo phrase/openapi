@@ -1,4 +1,5 @@
 {
+  "bootstrap-sha": "d61f1d95bd90cb5a70e55c0046346e5db293757e",
   "packages": {
     "clients/java": {
       "release-type": "maven",
