@@ -5,3 +5,4 @@ packageName: phrase
 gitUserId: phrase
 gitRepoId: phrase-go
 httpUserAgent: Phrase Strings go
+templateDir: "openapi-generator/templates/go"

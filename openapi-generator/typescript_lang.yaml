@@ -3,3 +3,4 @@ generatorName: typescript-fetch
 outputDir: clients/typescript
 npmName: "phrase-js"
 typescriptThreePlus: true
+templateDir: "openapi-generator/templates/typescript-fetch"

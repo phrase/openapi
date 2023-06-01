@@ -2,3 +2,4 @@
 generatorName: go
 outputDir: clients/cli
 packageName: phrase
+templateDir: "openapi-generator/templates/cli"

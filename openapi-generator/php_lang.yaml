@@ -5,3 +5,4 @@ invokerPackage: Phrase
 gitUserId: phrase
 gitRepoId: phrase-php
 packageName: phrase-php
+templateDir: "openapi-generator/templates/php"
