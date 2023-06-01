@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - master
+name: Run Release Please
+jobs:
+  release-please-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-python.json
+          manifest-file: release-please/manifest-python.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
+  release-please-java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-java.json
+          manifest-file: release-please/manifest-java.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
