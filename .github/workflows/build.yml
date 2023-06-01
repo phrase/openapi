@@ -153,7 +153,6 @@ jobs:
           npm run generate.python
           git clone https://$API_TOKEN_GITHUB@github.com/phrase/phrase-python.git clones/python &> /dev/null
           rsync -avI --delete --exclude='.git/' clients/python/ clones/python
-          cp openapi-generator/templates/python/CHANGELOG.md clones/python/
           cd clones/python
           git status --verbose
           if [ -n "$(git status --porcelain)" ]; then

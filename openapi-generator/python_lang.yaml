@@ -7,6 +7,3 @@ packageUrl: "https://github.com/phrase/phrase-python"
 gitUserId: phrase
 gitRepoId: phrase-python
 templateDir: "openapi-generator/templates/python"
-# The following section unfortunately requires openapi-generator v5. In the meantime we need to copy the file(s) manually
-# files:
-#   CHANGELOG.md: {}
