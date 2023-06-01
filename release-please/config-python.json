@@ -1,6 +1,5 @@
 {
   "bootstrap-sha": "ade97a80edd1f7435a53003fa6b0f356d3938352",
-  "pull-request-title-pattern": "chore: Python release ${branch}",
   "exclude-paths": [
     "openapi-generator/templates/cli",
     "openapi-generator/templates/go",
