@@ -1,0 +1,31 @@
+{
+  "bootstrap-sha": "ade97a80edd1f7435a53003fa6b0f356d3938352",
+  "exclude-paths": [
+    "openapi-generator/templates/cli",
+    "openapi-generator/templates/go",
+    "openapi-generator/templates/python",
+    "openapi-generator/templates/php",
+    "openapi-generator/templates/ruby-client",
+    "openapi-generator/templates/typescript-fetch",
+    "clients/cli",
+    "clients/go",
+    "clients/python",
+    "clients/php",
+    "clients/ruby",
+    "clients/typescript"
+  ],
+  "include-component-in-tag": true,
+  "packages": {
+    ".": {
+      "component": "java",
+      "release-type": "simple",
+      "version-file": "openapi-generator/templates/java/version.mustache",
+      "changelog-path": "clients/java/CHANGELOG.md",
+      "bump-minor-pre-major": false,
+      "bump-patch-for-minor-pre-major": false,
+      "draft": false,
+      "prerelease": false
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}

@@ -1,0 +1,32 @@
+{
+  "bootstrap-sha": "ade97a80edd1f7435a53003fa6b0f356d3938352",
+  "pull-request-title-pattern": "chore: Python release ${branch}",
+  "exclude-paths": [
+    "openapi-generator/templates/cli",
+    "openapi-generator/templates/go",
+    "openapi-generator/templates/java",
+    "openapi-generator/templates/php",
+    "openapi-generator/templates/ruby-client",
+    "openapi-generator/templates/typescript-fetch",
+    "clients/cli",
+    "clients/go",
+    "clients/java",
+    "clients/php",
+    "clients/ruby",
+    "clients/typescript"
+  ],
+  "include-component-in-tag": true,
+  "packages": {
+    ".": {
+      "component": "python",
+      "release-type": "simple",
+      "version-file": "openapi-generator/templates/python/version.mustache",
+      "changelog-path": "clients/python/CHANGELOG.md",
+      "bump-minor-pre-major": false,
+      "bump-patch-for-minor-pre-major": false,
+      "draft": false,
+      "prerelease": false
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}
