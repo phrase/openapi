@@ -27,7 +27,14 @@
       "component": "ruby",
       "release-type": "simple",
       "version-file": "openapi-generator/templates/ruby-client/version.txt.mustache",
-      "changelog-path": "clients/ruby/CHANGELOG.md"
+      "changelog-path": "clients/ruby/CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "yaml",
+          "path": "openapi-generator/ruby_lang.yaml",
+          "jsonpath": "$.gemVersion"
+        }
+      ]
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"

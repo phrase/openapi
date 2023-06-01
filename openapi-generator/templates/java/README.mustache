@@ -47,7 +47,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>{{{groupId}}}</groupId>
   <artifactId>{{{artifactId}}}</artifactId>
-  <version>{{{> version}}}</version>
+  <version>{{{artifactVersion}}}</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "{{{groupId}}}:{{{artifactId}}}:{{{> version}}}"
+compile "{{{groupId}}}:{{{artifactId}}}:{{{artifactVersion}}}"
 ```
 
 ### Others
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/{{{artifactId}}}-{{{> version}}}.jar`
+- `target/{{{artifactId}}}-{{{artifactVersion}}}.jar`
 - `target/lib/*.jar`
 
 ### Github package repository

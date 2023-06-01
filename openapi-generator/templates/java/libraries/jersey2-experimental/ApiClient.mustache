@@ -158,7 +158,7 @@ public class ApiClient {
     this.dateFormat = new RFC3339DateFormat();
 
     // Set default User-Agent.
-    setUserAgent("{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}OpenAPI-Generator/{{{> version}}}/java{{/httpUserAgent}}");
+    setUserAgent("{{#httpUserAgent}}{{{.}}}{{/httpUserAgent}}{{^httpUserAgent}}OpenAPI-Generator/{{{artifactVersion}}}/java{{/httpUserAgent}}");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();
@@ -987,7 +987,7 @@ public class ApiClient {
     Map<String, String> allHeaderParams = new HashMap<>();
     allHeaderParams.putAll(defaultHeaderMap);
     allHeaderParams.putAll(headerParams);
-
+   
     // update different parameters (e.g. headers) for authentication
     updateParamsForAuth(authNames, queryParams, allHeaderParams, cookieParams, serializeToString(body, formParams, contentType), method, target.getUri());
 

@@ -18,7 +18,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = '{{groupId}}'
-version = '{{> version}}'
+version = '{{artifactVersion}}'
 
 repositories {
     maven { url "https://repo1.maven.org/maven2" }
@@ -122,7 +122,7 @@ if(hasProperty('target') && target == 'android') {
        main = System.getProperty('mainClass')
        classpath = sourceSets.main.runtimeClasspath
     }
-
+    
     task sourcesJar(type: Jar, dependsOn: classes) {
         classifier = 'sources'
         from sourceSets.main.allSource

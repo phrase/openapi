@@ -27,7 +27,14 @@
       "component": "go",
       "release-type": "simple",
       "version-file": "openapi-generator/templates/go/version.mustache",
-      "changelog-path": "clients/go/CHANGELOG.md"
+      "changelog-path": "clients/go/CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "yaml",
+          "path": "openapi-generator/go_lang.yaml",
+          "jsonpath": "$.packageVersion"
+        }
+      ]
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"

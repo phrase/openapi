@@ -27,7 +27,14 @@
       "component": "typescript",
       "release-type": "simple",
       "version-file": "openapi-generator/templates/typescript-fetch/version.mustache",
-      "changelog-path": "clients/typescript/CHANGELOG.md"
+      "changelog-path": "clients/typescript/CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "yaml",
+          "path": "openapi-generator/typescript_lang.yaml",
+          "jsonpath": "$.npmVersion"
+        }
+      ]
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
