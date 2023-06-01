@@ -30,7 +30,7 @@
       "changelog-path": "clients/python/CHANGELOG.md",
       "extra-files": [
         {
-          "type": "json",
+          "type": "yaml",
           "path": "openapi-generator/python_lang.yaml",
           "jsonpath": "$.packageVersion"
         }
