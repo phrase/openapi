@@ -1,18 +1,18 @@
 {
   "bootstrap-sha": "ade97a80edd1f7435a53003fa6b0f356d3938352",
   "packages": {
-    ".": {},
-    "openapi-generator/templates/java": {
-      "release-type": "maven",
-      "changelog-path": "CHANGELOG.md",
-      "bump-minor-pre-major": false,
-      "bump-patch-for-minor-pre-major": false,
-      "draft": false,
-      "prerelease": false
-    },
-    "openapi-generator/templates/python": {
+    ".": {
       "release-type": "simple",
-      "changelog-path": "CHANGELOG.md",
+      "version-file": "openapi-generator/templates/python/version.mustache",
+      "changelog-path": "clients/python/CHANGELOG.md",
+      "exclude-paths": [
+        "openapi-generator/templates/cli",
+        "openapi-generator/templates/go",
+        "openapi-generator/templates/java",
+        "openapi-generator/templates/php",
+        "openapi-generator/templates/ruby-client",
+        "openapi-generator/templates/typescript-fetch"
+      ],
       "bump-minor-pre-major": false,
       "bump-patch-for-minor-pre-major": false,
       "draft": false,
