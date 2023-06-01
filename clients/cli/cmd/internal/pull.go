@@ -251,18 +251,20 @@ func (target *Target) createLocaleFiles(remoteLocale *phrase.Locale) (LocaleFile
 }
 
 func waitForRateLimit(rate phrase.Rate) {
-	var duration = time.Until(rate.Reset.Time)
+	endTime := rate.Reset.Time.Add(5 * time.Second)
+	duration := time.Until(endTime)
 	message := "\rRate limit exceeded. Download will resume in %d seconds"
-	seconds := int64(time.Until(rate.Reset.Time).Seconds())
+	seconds := int64(time.Until(endTime).Seconds())
 	fmt.Printf(message, seconds)
 	counter := int64(1)
 	ticker := time.NewTicker(1 * time.Second)
 	for range ticker.C {
 		counter++
-		seconds = int64(time.Until(rate.Reset.Time).Seconds())
+		seconds = int64(time.Until(endTime).Seconds())
 		fmt.Printf(message, seconds)
 		if counter > int64(duration/time.Second) {
 			ticker.Stop()
+			fmt.Println()
 			break
 		}
 	}
