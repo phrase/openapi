@@ -1,10 +1,10 @@
-'!include': 'shared.yaml'
+'!include': shared.yaml
 generatorName: python
 outputDir: clients/python
 packageName: phrase_api
 projectName: phrase-api
-packageVersion: 1.9.0
-packageUrl: "https://github.com/phrase/phrase-python"
+packageVersion: 1.10.0
+packageUrl: https://github.com/phrase/phrase-python
 gitUserId: phrase
 gitRepoId: phrase-python
-templateDir: "openapi-generator/templates/python"
+templateDir: openapi-generator/templates/python
