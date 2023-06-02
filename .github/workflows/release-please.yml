@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - tsi-1713-release-please
 name: Run Release Please
 jobs:
   release-please-python:
@@ -13,6 +13,7 @@ jobs:
           command: manifest
           config-file: release-please/config-python.json
           manifest-file: release-please/manifest-python.json
+          default-branch: tsi-1713-release-please
       - run: echo "A release was created."
         if: ${{ steps.release.outputs.releases_created }}
   release-please-java:
@@ -24,6 +25,7 @@ jobs:
           command: manifest
           config-file: release-please/config-java.json
           manifest-file: release-please/manifest-java.json
+          default-branch: tsi-1713-release-please
       - run: echo "A release was created."
         if: ${{ steps.release.outputs.releases_created }}
   release-please-typescript:
@@ -35,6 +37,7 @@ jobs:
           command: manifest
           config-file: release-please/config-typescript.json
           manifest-file: release-please/manifest-typescript.json
+          default-branch: tsi-1713-release-please
       - run: echo "A release was created."
         if: ${{ steps.release.outputs.releases_created }}
   release-please-go:
@@ -46,6 +49,7 @@ jobs:
           command: manifest
           config-file: release-please/config-go.json
           manifest-file: release-please/manifest-go.json
+          default-branch: tsi-1713-release-please
       - run: echo "A release was created."
         if: ${{ steps.release.outputs.releases_created }}
   release-please-cli:
@@ -57,6 +61,7 @@ jobs:
           command: manifest
           config-file: release-please/config-cli.json
           manifest-file: release-please/manifest-cli.json
+          default-branch: tsi-1713-release-please
       - run: echo "A release was created."
         if: ${{ steps.release.outputs.releases_created }}
   release-please-ruby:
@@ -68,6 +73,7 @@ jobs:
           command: manifest
           config-file: release-please/config-ruby.json
           manifest-file: release-please/manifest-ruby.json
+          default-branch: tsi-1713-release-please
       - run: echo "A release was created."
         if: ${{ steps.release.outputs.releases_created }}
   release-please-php:
@@ -79,5 +85,6 @@ jobs:
           command: manifest
           config-file: release-please/config-php.json
           manifest-file: release-please/manifest-php.json
+          default-branch: tsi-1713-release-please
       - run: echo "A release was created."
         if: ${{ steps.release.outputs.releases_created }}
