@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - tsi-1713-release-please
+      - master
 name: Run Release Please
 jobs:
   release-please-python:
