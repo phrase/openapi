@@ -1,9 +1,9 @@
-'!include': 'shared.yaml'
+'!include': shared.yaml
 generatorName: php
 outputDir: clients/php
 invokerPackage: Phrase
-artifactVersion: 1.9.0
+artifactVersion: 1.10.0
 gitUserId: phrase
 gitRepoId: phrase-php
 packageName: phrase-php
-templateDir: "openapi-generator/templates/php"
+templateDir: openapi-generator/templates/php
