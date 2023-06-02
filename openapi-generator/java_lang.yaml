@@ -1,10 +1,10 @@
-'!include': 'shared.yaml'
+'!include': shared.yaml
 generatorName: java
 outputDir: clients/java
 apiPackage: com.phrase.client.api
 artifactId: phrase-java
 artifactUrl: https://developers.phrase.com
-artifactVersion: 1.9.0
+artifactVersion: 1.10.0
 developerEmail: support@phrase.com
 developerName: Phrase
 developerOrganization: Phrase.com
@@ -19,4 +19,4 @@ scmDeveloperConnection: scm:git:git@github.com:phrase/openapi.git
 scmUrl: https://github.com/phrase/openapi
 java8: true
 dateLibrary: java8
-templateDir: "openapi-generator/templates/java"
+templateDir: openapi-generator/templates/java
