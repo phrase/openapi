@@ -1,27 +1,18 @@
 # OpenAPI specification for Phrase
 
-## Requirements
+## Commands
 
-`$ npm install`
+* `npm install` installs the dependencies
+* `npm start` builds API clients
+* `npm run docs` generates API documentation in HTML
+* `npm run watch` starts a local server which you can reach at http://localhost:8080
+* `npm run lint` lints your changes
 
-## Builing API clients
+## Contribution
 
-`$ npm start`
+This project relies on [conventional commits](https://www.conventionalcommits.org) used by [release-please](https://github.com/googleapis/release-please) to generate proper changelogs and increment versions of the generated client libraries affected by the PR. Please use [appropriate prefixes](https://kapeli.com/cheat_sheets/Conventional_Commits.docset/Contents/Resources/Documents/index) when giving titles to your PRs as they decide whether there will be a version bump and changelog entry.
 
-## Generate API documentation in HTML
-
-`$ npm run docs`
-
-## Making changes
-
-To make it easier to work with documentation run
-
-`$ npm run watch`
-
-and visit `localhost:8080` to see documentation.
-
-
-You can also lint your changes by `$ npm run lint`
+These changelogs and version bumps are generated as a separate pull requests (one for each client library) and currently need to be merged manually.
 
 ## Workflow
 
