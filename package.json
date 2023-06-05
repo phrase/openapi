@@ -29,11 +29,12 @@
   "devDependencies": {
     "@apidevtools/swagger-cli": "^4.0.4",
     "@openapitools/openapi-generator-cli": "^2.5.2",
+    "http-server": "^0.12.3",
     "husky": "^8.0.3",
+    "release-please": "^15.10.5",
     "sass": "^1.26.10",
     "terser": "^4.8.1",
-    "typescript": "^3.9.6",
-    "http-server": "^0.12.3"
+    "typescript": "^3.9.6"
   },
   "husky": {
     "hooks": {

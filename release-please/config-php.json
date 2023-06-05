@@ -1,0 +1,41 @@
+{
+  "bootstrap-sha": "ade97a80edd1f7435a53003fa6b0f356d3938352",
+  "exclude-paths": [
+    "README.md",
+    "*.json",
+    ".github",
+    "doc",
+    "docs",
+    "output",
+    "release-please",
+    "openapi-generator/templates/cli",
+    "openapi-generator/templates/go",
+    "openapi-generator/templates/java",
+    "openapi-generator/templates/python",
+    "openapi-generator/templates/ruby-client",
+    "openapi-generator/templates/typescript-fetch",
+    "clients/cli",
+    "clients/go",
+    "clients/java",
+    "clients/python",
+    "clients/ruby",
+    "clients/typescript"
+  ],
+  "include-component-in-tag": true,
+  "packages": {
+    ".": {
+      "component": "php",
+      "release-type": "simple",
+      "version-file": "openapi-generator/templates/php/version.mustache",
+      "changelog-path": "clients/php/CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "yaml",
+          "path": "openapi-generator/php_lang.yaml",
+          "jsonpath": "$.artifactVersion"
+        }
+      ]
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}

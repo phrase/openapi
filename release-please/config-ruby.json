@@ -1,0 +1,41 @@
+{
+  "bootstrap-sha": "ade97a80edd1f7435a53003fa6b0f356d3938352",
+  "exclude-paths": [
+    "README.md",
+    "*.json",
+    ".github",
+    "doc",
+    "docs",
+    "output",
+    "release-please",
+    "openapi-generator/templates/cli",
+    "openapi-generator/templates/go",
+    "openapi-generator/templates/java",
+    "openapi-generator/templates/python",
+    "openapi-generator/templates/php",
+    "openapi-generator/templates/typescript-fetch",
+    "clients/cli",
+    "clients/go",
+    "clients/java",
+    "clients/python",
+    "clients/php",
+    "clients/typescript"
+  ],
+  "include-component-in-tag": true,
+  "packages": {
+    ".": {
+      "component": "ruby",
+      "release-type": "simple",
+      "version-file": "openapi-generator/templates/ruby-client/version.txt.mustache",
+      "changelog-path": "clients/ruby/CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "yaml",
+          "path": "openapi-generator/ruby_lang.yaml",
+          "jsonpath": "$.gemVersion"
+        }
+      ]
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}

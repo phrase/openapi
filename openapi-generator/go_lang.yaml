@@ -6,3 +6,4 @@ packageVersion: 2.10.1
 gitUserId: phrase
 gitRepoId: phrase-go
 httpUserAgent: Phrase Strings go
+templateDir: "openapi-generator/templates/go"

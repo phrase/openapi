@@ -7,3 +7,4 @@ packageVersion: 1.9.0
 packageUrl: "https://github.com/phrase/phrase-python"
 gitUserId: phrase
 gitRepoId: phrase-python
+templateDir: "openapi-generator/templates/python"

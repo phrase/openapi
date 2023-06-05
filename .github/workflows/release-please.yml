@@ -1,0 +1,83 @@
+on:
+  push:
+    branches:
+      - master
+name: Run Release Please
+jobs:
+  release-please-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-python.json
+          manifest-file: release-please/manifest-python.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
+  release-please-java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-java.json
+          manifest-file: release-please/manifest-java.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
+  release-please-typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-typescript.json
+          manifest-file: release-please/manifest-typescript.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
+  release-please-go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-go.json
+          manifest-file: release-please/manifest-go.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
+  release-please-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-cli.json
+          manifest-file: release-please/manifest-cli.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
+  release-please-ruby:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-ruby.json
+          manifest-file: release-please/manifest-ruby.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
+  release-please-php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          config-file: release-please/config-php.json
+          manifest-file: release-please/manifest-php.json
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}

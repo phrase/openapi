@@ -13,3 +13,4 @@ gemAuthor: Phrase
 gemAuthorEmail: 'support@phrase.com'
 gitUserId: phrase
 gitRepoId: phrase-ruby
+templateDir: "openapi-generator/templates/ruby-client"

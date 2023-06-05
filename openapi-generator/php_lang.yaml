@@ -6,3 +6,4 @@ artifactVersion: 1.9.0
 gitUserId: phrase
 gitRepoId: phrase-php
 packageName: phrase-php
+templateDir: "openapi-generator/templates/php"
