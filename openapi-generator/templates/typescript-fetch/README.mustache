@@ -73,7 +73,7 @@ npm install PATH_TO_GENERATED_PACKAGE --save
 
 Please follow the [installation](#installation) procedure and then run the following code:
 
-```typescript
+```javascript
 import {Configuration, SpacesApi} from "{{npmName}}"
 
 const configuration = new Configuration({apiKey: 'token API_TOKEN'})
@@ -93,7 +93,7 @@ This package is using window and FormData so make sure to have polyfills for it
 
 here is the example package.json
 
-```
+```json
 {
   "name": "openapi_typescript_test",
   "version": "1.0.0",
@@ -120,7 +120,7 @@ here is the example package.json
 
 and you can use it as follows
 
-```
+```javascript
 import {Configuration, SpacesApi} from "phrase-js"
 var FormData = require("form-data")
 var fetch = require("node-fetch")
@@ -141,6 +141,22 @@ let requestParameters = {
 }
 
 spaceApi.spacesList(requestParameters).then(function (data) {console.log(data)})
+```
+
+### Upload
+
+```javascript
+const uploadsApi = new UploadsApi(configuration)
+const file = fs.createReadStream('example.json')
+
+let requestParameters = {
+  projectId: 'YOUR_PROJECT_ID',
+  localeId: 'YOUR_LOCALE_ID',
+  file: file,
+  fileFormat: 'json'
+}
+
+uploadsApi.uploadCreate(requestParameters).then(function (data) { console.log(data) })
 ```
 
 {{>../shared/datacenters}}
