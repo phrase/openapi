@@ -5,6 +5,7 @@ apply plugin: 'java'
 {{/sourceFolder}}
 
 apply plugin: 'java-library'
+apply plugin: 'signing'
 apply plugin: 'maven-publish'
 
 group = '{{groupId}}'
@@ -13,16 +14,19 @@ version = '{{artifactVersion}}'
 buildscript {
     repositories {
         maven { url "https://repo1.maven.org/maven2" }
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.+'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
-
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
 repositories {
-    jcenter()
+    mavenCentral()
 }
 {{#sourceFolder}}
 sourceSets {
@@ -123,7 +127,7 @@ if(hasProperty('target') && target == 'android') {
     // }
 
     task execute(type:JavaExec) {
-       main = System.getProperty('mainClass')
+       mainClass = System.getProperty('mainClass')
        classpath = sourceSets.main.runtimeClasspath
     }
 }
@@ -153,21 +157,60 @@ javadoc {
     options.tags = [ "http.response.details:a:Http Response Details" ]
 }
 
-publishing {
-  publications {
-    myLibrary(MavenPublication) {
-      from components.java
-    }
-  }
+signing {
+    def signingKey = System.getenv("GPG_KEY")
+    useInMemoryPgpKeys(signingKey, "")
+    sign(publishing.publications)
+}
 
-  repositories {
-    maven {
-      name = "GitHubPackages"
-      url = "https://maven.pkg.github.com/phrase/phrase-java"
-      credentials {
-        username = System.getenv("GITHUB_ACTOR")
-        password = System.getenv("GITHUB_TOKEN")
-      }
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            from components.java
+
+            pom {
+                name.set("{{artifactId}}")
+                description.set("{{artifactDescription}}")
+                url.set("{{artifactUrl}}")
+                licenses {
+                    license {
+                        name.set("{{licenseName}}")
+                        url.set("{{licenseUrl}}")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("{{developerName}}")
+                        name.set("{{developerName}}")
+                        email.set("{{developerEmail}}")
+                    }
+                }
+                scm {
+                    connection.set("{{scmConnection}}")
+                    developerConnection.set("{{scmDeveloperConnection}}")
+                    url.set("{{scmUrl}}")
+                }
+            }
+
+        }
     }
-  }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username = System.getenv("OSSRH_USER")
+                password = System.getenv("OSSRH_PASSWORD")
+            }
+        }
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/phrase/phrase-java"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }

@@ -5,6 +5,7 @@ apiPackage: com.phrase.client.api
 artifactId: phrase-java
 artifactUrl: https://developers.phrase.com
 artifactVersion: 1.9.0
+artifactDescription: Java Client for Phrase Strings API
 developerEmail: support@phrase.com
 developerName: Phrase
 developerOrganization: Phrase.com
