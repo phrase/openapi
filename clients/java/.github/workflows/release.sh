@@ -10,13 +10,6 @@ echo "Build release $VERSION"
 
 # -----------
 
-echo "Setting up version"
-sed -e "s/1.0.0/${VERSION}/g" ./build.gradle > ./build.gradle.tmp
-rm ./build.gradle
-mv ./build.gradle.tmp ./build.gradle
-
-# -----------
-
 gradle wrapper
 ./gradlew check assemble
 
@@ -53,8 +46,7 @@ asset="https://uploads.github.com/repos/phrase/phrase-java/releases/${release_id
 curl --data-binary @"$file" -H "Authorization: token ${GITHUB_TOKEN}" -H "Content-Type: application/octet-stream" $asset > /dev/null
 echo Hash: $(sha256sum $file)
 
-
-echo "Pushing the built jar to GitHub Package Registry"
-gradle publish
+echo "Pushing the built jar to GitHub Package Registry and Maven Central"
+gradle publish closeAndReleaseSonatypeStagingRepository
 
 echo "Release successful"
