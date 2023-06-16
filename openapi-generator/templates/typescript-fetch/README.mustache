@@ -89,7 +89,7 @@ spaceApi.spacesList(requestParameters).then(function (data) { console.log(data) 
 
 ## Getting Started in Node.js
 
-This package is using window and FormData so make sure to have polyfills for it
+This package is using `fetch` and `FormData` so make sure to have polyfills for it
 
 here is the example package.json
 
@@ -126,12 +126,12 @@ var FormData = require("form-data")
 var fetch = require("node-fetch")
 
 const globalAny: any = global;
-globalAny.window = {
-  fetch
-}
 globalAny.FormData = FormData
 
-const configuration = new Configuration({apiKey: 'token API_TOKEN'})
+const configuration = new Configuration({
+  apiKey: 'token API_TOKEN',
+  fetchApi: fetch
+})
 
 const spaceApi = new SpacesApi(configuration)
 
