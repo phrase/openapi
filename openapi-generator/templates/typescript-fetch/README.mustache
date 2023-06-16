@@ -125,7 +125,6 @@ import {Configuration, SpacesApi} from "phrase-js"
 var FormData = require("form-data")
 var fetch = require("node-fetch")
 
-
 const globalAny: any = global;
 globalAny.window = {
   fetch
@@ -149,7 +148,7 @@ spaceApi.spacesList(requestParameters).then(function (data) {console.log(data)})
 const uploadsApi = new UploadsApi(configuration)
 const file = fs.createReadStream('example.json')
 
-let requestParameters = {
+const requestParameters = {
   projectId: 'YOUR_PROJECT_ID',
   localeId: 'YOUR_LOCALE_ID',
   file: file,
@@ -157,6 +156,23 @@ let requestParameters = {
 }
 
 uploadsApi.uploadCreate(requestParameters).then(function (data) { console.log(data) })
+```
+
+In Node.js >= 18 there is `fetch` built-in, but you need to prepare the arguments slightly differently:
+
+```javascript
+const fs = require("fs");
+const { File } = require('buffer');
+
+const buf = await fs.readFileSync(filePath);
+const file = new File([buf], filePath);
+
+const requestParams = {
+  projectId: 'YOUR_PROJECT_ID',
+  localeId: 'YOUR_LOCALE_ID',
+  file: file,
+  fileFormat: 'json'
+};
 ```
 
 {{>../shared/datacenters}}
