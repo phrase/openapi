@@ -11,6 +11,7 @@ jobs:
         id: release
         with:
           command: manifest
+          token: ${{secrets.GH_ACCESS_TOKEN}}
           config-file: release-please/config-python.json
           manifest-file: release-please/manifest-python.json
       - run: echo "A release was created."
@@ -22,6 +23,7 @@ jobs:
         id: release
         with:
           command: manifest
+          token: ${{secrets.GH_ACCESS_TOKEN}}
           config-file: release-please/config-java.json
           manifest-file: release-please/manifest-java.json
       - run: echo "A release was created."
@@ -33,6 +35,7 @@ jobs:
         id: release
         with:
           command: manifest
+          token: ${{secrets.GH_ACCESS_TOKEN}}
           config-file: release-please/config-typescript.json
           manifest-file: release-please/manifest-typescript.json
       - run: echo "A release was created."
@@ -44,6 +47,7 @@ jobs:
         id: release
         with:
           command: manifest
+          token: ${{secrets.GH_ACCESS_TOKEN}}
           config-file: release-please/config-go.json
           manifest-file: release-please/manifest-go.json
       - run: echo "A release was created."
@@ -55,6 +59,7 @@ jobs:
         id: release
         with:
           command: manifest
+          token: ${{secrets.GH_ACCESS_TOKEN}}
           config-file: release-please/config-cli.json
           manifest-file: release-please/manifest-cli.json
       - run: echo "A release was created."
@@ -66,6 +71,7 @@ jobs:
         id: release
         with:
           command: manifest
+          token: ${{secrets.GH_ACCESS_TOKEN}}
           config-file: release-please/config-ruby.json
           manifest-file: release-please/manifest-ruby.json
       - run: echo "A release was created."
@@ -77,6 +83,7 @@ jobs:
         id: release
         with:
           command: manifest
+          token: ${{secrets.GH_ACCESS_TOKEN}}
           config-file: release-please/config-php.json
           manifest-file: release-please/manifest-php.json
       - run: echo "A release was created."
