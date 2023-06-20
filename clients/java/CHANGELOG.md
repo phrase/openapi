@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.3](https://github.com/phrase/openapi/compare/java-v1.9.2...java-v1.9.3) (2023-06-20)
+
+
+### Bug Fixes
+
+* **java:** Support multiline GPG key [TSI-1816] ([#346](https://github.com/phrase/openapi/issues/346)) ([5796fee](https://github.com/phrase/openapi/commit/5796feef0839ac1dcdfb542e394f110218f7ccc0))
+
 ## [1.9.2](https://github.com/phrase/openapi/compare/java-v1.9.1...java-v1.9.2) (2023-06-20)
 
 
