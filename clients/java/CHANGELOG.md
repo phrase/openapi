@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.4](https://github.com/phrase/openapi/compare/java-v1.9.3...java-v1.9.4) (2023-06-20)
+
+
+### Bug Fixes
+
+* **java:** Pass multiline key using quotes ([#349](https://github.com/phrase/openapi/issues/349)) ([2375b28](https://github.com/phrase/openapi/commit/2375b28a91e721495066fd8d2aa64ef1b4cc834a))
+
 ## [1.9.3](https://github.com/phrase/openapi/compare/java-v1.9.2...java-v1.9.3) (2023-06-20)
 
 
