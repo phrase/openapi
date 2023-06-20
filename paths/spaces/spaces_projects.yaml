@@ -1,5 +1,5 @@
 ---
-summary: List Projects in Space
+summary: List Projects
 description: List all projects for the specified Space.
 operationId: spaces/projects/list
 tags:
