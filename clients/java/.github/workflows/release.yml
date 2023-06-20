@@ -28,3 +28,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.version.outputs.VERSION }}
+          GPG_KEY: ${{ steps.version.outputs.GPG_KEY }}
+          OSSRH_USER: ${{ steps.version.outputs.OSSRH_USER }}
+          OSSRH_PASSWORD: ${{ steps.version.outputs.OSSRH_PASSWORD }}
