@@ -1,5 +1,5 @@
 ---
-summary: Remove Project
+summary: Remove Project from Space
 description: Removes a specified project from the specified space.
 operationId: spaces/projects/delete
 tags:

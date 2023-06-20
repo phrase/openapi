@@ -1,5 +1,5 @@
 ---
-summary: Remove Project
+summary: Remove Project from Team
 description: Removes a specified project from the specified team.
 operationId: teams/projects/delete
 tags:

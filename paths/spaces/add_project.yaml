@@ -1,5 +1,5 @@
 ---
-summary: Add Project
+summary: Add Project to Space
 description: Adds an existing project to the space.
 operationId: spaces/projects/create
 tags:

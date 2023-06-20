@@ -1,5 +1,5 @@
 ---
-summary: Add Project
+summary: Add Project to Team
 description: Adds an existing project to the team.
 operationId: teams/projects/create
 tags:
