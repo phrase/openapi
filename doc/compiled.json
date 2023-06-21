@@ -19226,7 +19226,7 @@
     },
     "/accounts/{account_id}/spaces/{space_id}/projects": {
       "get": {
-        "summary": "List Projects",
+        "summary": "List Projects in Space",
         "description": "List all projects for the specified Space.",
         "operationId": "spaces/projects/list",
         "tags": [
@@ -19300,7 +19300,7 @@
         "x-cli-version": "2.5"
       },
       "post": {
-        "summary": "Add Project",
+        "summary": "Add Project to Space",
         "description": "Adds an existing project to the space.",
         "operationId": "spaces/projects/create",
         "tags": [
@@ -19375,7 +19375,7 @@
     },
     "/accounts/{account_id}/spaces/{space_id}/projects/{id}": {
       "delete": {
-        "summary": "Remove Project",
+        "summary": "Remove Project from Space",
         "description": "Removes a specified project from the specified space.",
         "operationId": "spaces/projects/delete",
         "tags": [
@@ -19762,7 +19762,7 @@
     },
     "/accounts/{account_id}/teams/{team_id}/projects": {
       "post": {
-        "summary": "Add Project",
+        "summary": "Add Project to Team",
         "description": "Adds an existing project to the team.",
         "operationId": "teams/projects/create",
         "tags": [
@@ -19837,7 +19837,7 @@
     },
     "/accounts/{account_id}/teams/{team_id}/projects/{id}": {
       "delete": {
-        "summary": "Remove Project",
+        "summary": "Remove Project from Team",
         "description": "Removes a specified project from the specified team.",
         "operationId": "teams/projects/delete",
         "tags": [
