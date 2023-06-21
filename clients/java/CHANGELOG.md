@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.5](https://github.com/phrase/openapi/compare/java-v1.9.4...java-v1.9.5) (2023-06-21)
+
+
+### Bug Fixes
+
+* **java:** Use useGpgCmd instead of in memory key ([#351](https://github.com/phrase/openapi/issues/351)) ([ac93b39](https://github.com/phrase/openapi/commit/ac93b39973a089888ec1c236a333cde72d6b6ed3))
+
 ## [1.9.4](https://github.com/phrase/openapi/compare/java-v1.9.3...java-v1.9.4) (2023-06-20)
 
 
