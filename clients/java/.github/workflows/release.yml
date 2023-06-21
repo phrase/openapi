@@ -23,11 +23,16 @@ jobs:
         run: |
           echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
       -
+        name: Install GPG key
+        id: install-gpg-key
+        run: |
+          # Install gpg secret key
+          cat <(echo -e "${{ secrets.GPG_KEY }}") | gpg --batch --import
+      -
         name: Release Package
         run: bash ./.github/workflows/release.sh -xe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.version.outputs.VERSION }}
-          GPG_KEY: "${{ secrets.GPG_KEY }}"
-          OSSRH_USER: ${{ secrets.OSSRH_USER }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          OSSRH_USER: "${{ secrets.OSSRH_USER }}"
+          OSSRH_PASSWORD: "${{ secrets.OSSRH_PASSWORD }}"
