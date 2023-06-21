@@ -28,13 +28,11 @@ jobs:
         run: |
           # Install gpg secret key
           cat <(echo -e "${{ secrets.GPG_KEY }}") | gpg --batch --import
-          # Verify gpg secret key
-          gpg --list-secret-keys --keyid-format LONG
       -
         name: Release Package
         run: bash ./.github/workflows/release.sh -xe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.version.outputs.VERSION }}
-          OSSRH_USER: ${{ secrets.OSSRH_USER }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          OSSRH_USER: "${{ secrets.OSSRH_USER }}"
+          OSSRH_PASSWORD: "${{ secrets.OSSRH_PASSWORD }}"
