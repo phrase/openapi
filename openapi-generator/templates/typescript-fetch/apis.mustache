@@ -238,7 +238,11 @@ export class {{classname}} extends runtime.BaseAPI {
         {{/isListContainer}}
         {{^isListContainer}}
         if (requestParameters.{{paramName}} !== undefined) {
-            formParams.append('{{baseName}}', requestParameters.{{paramName}} as any);
+            this.flattenDeepParams({
+                {{paramName}}: requestParameters.{{paramName}}
+            }).forEach(([name, value]) => {
+                formParams.append(name, value as any);
+            });
         }
 
         {{/isListContainer}}

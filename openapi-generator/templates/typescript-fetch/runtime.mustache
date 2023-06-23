@@ -98,6 +98,22 @@ export class BaseAPI {
         next.middleware = this.middleware.slice();
         return next;
     }
+
+    protected flattenDeepParams(obj: any, prefix?: string): any[] {
+        var res: any[] = [];
+        if (obj?.constructor === Array) {
+          obj.forEach(value => {
+            res = res.concat(this.flattenDeepParams(value, `${prefix}[]`));
+          });
+        } else if (obj?.constructor === Object) {
+          for (const key in obj) {
+            res = res.concat(this.flattenDeepParams(obj[key], prefix ? `${prefix}[${key}]` : key));
+          }
+        } else {
+          res = [[prefix, obj]];
+        }
+        return res;
+    }
 };
 
 export class RequiredError extends Error {
