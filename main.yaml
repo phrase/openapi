@@ -112,6 +112,7 @@ tags:
         </table>
       </div>
   - name: Comments
+  - name: Custom Metadata Labels
   - name: Distributions
   - name: Documents
   - name: Formats
@@ -262,6 +263,7 @@ x-tagGroups:
       - Translations
       - Uploads
       - Tags
+      - Custom Metadata Labels
       - Blacklisted Keys
       - Versions / History
   - name: Workflows
