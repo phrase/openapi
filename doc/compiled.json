@@ -61,6 +61,9 @@
       "name": "Comment Replies"
     },
     {
+      "name": "Custom Metadata Labels"
+    },
+    {
       "name": "Distributions"
     },
     {
@@ -201,6 +204,7 @@
         "Translations",
         "Uploads",
         "Tags",
+        "Custom Metadata Labels",
         "Blacklisted Keys",
         "Versions / History"
       ]
@@ -5978,6 +5982,139 @@
           {
             "lang": "CLI v2",
             "source": "phrase styleguides delete \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.5"
+      }
+    },
+    "/accounts/{account_id}/custom_metadata_labels": {
+      "get": {
+        "summary": "List custom_metadata_labels",
+        "description": "List all custom_metadata_labels for an account.",
+        "operationId": "custom_metadata_labels/list",
+        "tags": [
+          "CustomMetadataLabels"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "custom_metadata_label",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "data_type": {
+                        "type": "string"
+                      },
+                      "user": {
+                        "$ref": "#/components/schemas/user_preview"
+                      },
+                      "account": {
+                        "$ref": "#/components/schemas/account"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "example": {
+                      "id": "abcd1234cdef1234abcd1234cdef1234",
+                      "name": "Character Age",
+                      "description": "Age of character in seconds",
+                      "data_type": "Text value",
+                      "user": {
+                        "id": "abcd1234cdef1234abcd1234cdef1234",
+                        "username": "joe.doe",
+                        "name": "Joe Doe"
+                      },
+                      "account": {
+                        "id": "abcd1234",
+                        "name": "Company Account",
+                        "slug": "company_account",
+                        "company": "My Awesome Company",
+                        "created_at": "2015-01-28T09:52:53Z",
+                        "updated_at": "2015-01-28T09:52:53Z",
+                        "company_logo_url": "http://assets.example.com/company_logo.png"
+                      },
+                      "created_at": "2015-01-28T09:52:53Z",
+                      "updated_at": "2015-01-28T09:52:53Z"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:id/custom_metadata_labels?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_labels list \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"
