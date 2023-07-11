@@ -14,6 +14,16 @@ This project relies on [conventional commits](https://www.conventionalcommits.or
 
 These changelogs and version bumps are generated as a separate pull requests (one for each client library) and currently need to be merged manually.
 
+### Example
+
+You added an endpoint in Phrase Strings. In this project you do the following:
+
+1. Add newly added schema (if any) to `/schemas/` directory
+2. Add new endpoints to `/paths/` directory and reference it in `paths.yaml`
+3. `npm start` to re-build the clients
+4. `npm run docs` to generate the documentation (and verify it in action using `npm run watch`)
+5. Open a PR with an informative title (e.g. `feat(api): Add an API endpoint for cat pics`)
+
 ## Workflow
 
 The following repositories are generated upon pushing to this one:
