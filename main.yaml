@@ -114,7 +114,7 @@ tags:
   - name: Comments
   - name: Comment Reactions
   - name: Comment Replies
-  - name: Custom Metadata Labels
+  - name: Custom Metadata
   - name: Distributions
   - name: Documents
   - name: Figma Attachments
