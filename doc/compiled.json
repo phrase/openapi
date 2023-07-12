@@ -6039,7 +6039,16 @@
                         "type": "string"
                       },
                       "data_type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "boolean",
+                          "date",
+                          "link",
+                          "multi_select",
+                          "number",
+                          "single_select",
+                          "text"
+                        ]
                       },
                       "user": {
                         "$ref": "#/components/schemas/user_preview"

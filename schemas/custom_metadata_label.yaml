@@ -11,6 +11,14 @@ custom_metadata_label:
       type: string
     data_type:
       type: string
+      enum:
+        - boolean
+        - date
+        - link
+        - multi_select
+        - number
+        - single_select
+        - text
     user:
       "$ref": "./user_preview.yaml#/user_preview"
     account:
