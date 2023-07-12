@@ -6126,7 +6126,7 @@
             "source": "phrase custom_metadata_labels list \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.9"
       }
     },
     "/accounts/{account_id}/invitations": {
