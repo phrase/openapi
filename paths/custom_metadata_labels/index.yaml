@@ -3,7 +3,7 @@ summary: List custom_metadata_labels
 description: List all custom_metadata_labels for an account.
 operationId: custom_metadata_labels/list
 tags:
-- CustomMetadataLabels
+- Custom Metadata
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

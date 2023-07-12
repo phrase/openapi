@@ -5086,7 +5086,7 @@
         "description": "List all custom_metadata_labels for an account.",
         "operationId": "custom_metadata_labels/list",
         "tags": [
-          "CustomMetadataLabels"
+          "Custom Metadata"
         ],
         "parameters": [
           {
