@@ -5987,7 +5987,7 @@
         "x-cli-version": "2.5"
       }
     },
-    "/accounts/{account_id}/custom_metadata_labels": {
+    "/accounts/{account_id}/custom_metadata/labels": {
       "get": {
         "summary": "List custom_metadata_labels",
         "description": "List all custom_metadata_labels for an account.",
