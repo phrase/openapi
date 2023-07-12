@@ -55,7 +55,7 @@
       "name": "Comments"
     },
     {
-      "name": "Custom Metadata Labels"
+      "name": "Custom Metadata"
     },
     {
       "name": "Distributions"
@@ -5093,7 +5093,7 @@
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/account_id"
           },
           {
             "$ref": "#/components/parameters/page"
@@ -5212,11 +5212,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:id/custom_metadata_labels?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase custom_metadata_labels list \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase custom_metadata_labels list \\\n--account_id <account_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.9"
