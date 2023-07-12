@@ -24,7 +24,7 @@
     "$ref": "./paths/styleguides/update.yaml"
   delete:
     "$ref": "./paths/styleguides/destroy.yaml"
-"/accounts/{account_id}/custom_metadata_labels":
+"/accounts/{account_id}/custom_metadata/labels":
   get:
     "$ref": "./paths/custom_metadata_labels/index.yaml"
 "/accounts/{account_id}/invitations":
