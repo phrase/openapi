@@ -5989,8 +5989,8 @@
     },
     "/accounts/{account_id}/custom_metadata/labels": {
       "get": {
-        "summary": "List custom_metadata_labels",
-        "description": "List all custom_metadata_labels for an account.",
+        "summary": "List labels",
+        "description": "List all custom metadata labels for an account.",
         "operationId": "custom_metadata_labels/list",
         "tags": [
           "Custom Metadata"
