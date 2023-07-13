@@ -698,6 +698,72 @@
           }
         }
       },
+      "custom_metadata_label": {
+        "type": "object",
+        "title": "custom_metadata_label",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "data_type": {
+            "type": "string",
+            "enum": [
+              "boolean",
+              "date",
+              "link",
+              "multi_select",
+              "number",
+              "single_select",
+              "text"
+            ]
+          },
+          "user": {
+            "$ref": "#/components/schemas/user_preview"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/project_short"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "name": "Character Age",
+          "description": "Age of character in seconds",
+          "data_type": "Text value",
+          "user": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "username": "joe.doe",
+            "name": "Joe Doe"
+          },
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z",
+          "projects": [
+            {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "My Android Project",
+              "main_format": "xml",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z"
+            }
+          ]
+        }
+      },
       "key_preview": {
         "type": "object",
         "title": "key_preview",
@@ -6058,64 +6124,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "title": "custom_metadata_label",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "data_type": {
-                        "type": "string",
-                        "enum": [
-                          "boolean",
-                          "date",
-                          "link",
-                          "multi_select",
-                          "number",
-                          "single_select",
-                          "text"
-                        ]
-                      },
-                      "user": {
-                        "$ref": "#/components/schemas/user_preview"
-                      },
-                      "created_at": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "updated_at": {
-                        "type": "string",
-                        "format": "date-time"
-                      }
-                    },
-                    "example": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "name": "Character Age",
-                      "description": "Age of character in seconds",
-                      "data_type": "Text value",
-                      "user": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
-                        "username": "joe.doe",
-                        "name": "Joe Doe"
-                      },
-                      "account": {
-                        "id": "abcd1234",
-                        "name": "Company Account",
-                        "slug": "company_account",
-                        "company": "My Awesome Company",
-                        "created_at": "2015-01-28T09:52:53Z",
-                        "updated_at": "2015-01-28T09:52:53Z",
-                        "company_logo_url": "http://assets.example.com/company_logo.png"
-                      },
-                      "created_at": "2015-01-28T09:52:53Z",
-                      "updated_at": "2015-01-28T09:52:53Z"
-                    }
+                    "$ref": "#/components/schemas/custom_metadata_label"
                   }
                 }
               }
