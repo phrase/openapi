@@ -1,6 +1,9 @@
 ---
 summary: List labels
-description: List all custom metadata labels for an account.
+description: |
+  List all custom metadata labels for an account.
+
+  This endpoint is only available to accounts with advanced plans or above.
 operationId: custom_metadata_labels/list
 tags:
 - Custom Metadata
