@@ -6030,6 +6030,24 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "description": "Sort criteria. Can be one of: key_name, created_at, updated_at.",
+            "example": "updated_at",
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Order direction. Can be one of: asc, desc.",
+            "example": "desc",
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
