@@ -63,12 +63,17 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels?branch=my-feature-branch" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels?branch=my-feature-branch&page=1&per_page=10&project_ids=%5B1,2,3%5D&sort=created_at&order=desc" \
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
     phrase custom_metadata_labels list \
     --account_id <account_id> \
     --branch my-feature-branch \
+    --page 1 \
+    --per_page 10 \
+    --project_ids [1,2,3] \
+    --sort created_at \
+    --order desc \
     --access_token <token>
 x-cli-version: '2.9'
