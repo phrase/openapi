@@ -5178,9 +5178,6 @@
                       "user": {
                         "$ref": "#/components/schemas/user_preview"
                       },
-                      "account": {
-                        "$ref": "#/components/schemas/account"
-                      },
                       "created_at": {
                         "type": "string",
                         "format": "date-time"
