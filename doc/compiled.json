@@ -6016,6 +6016,20 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "description": "ids of projects that the labels belong to",
+            "example": [
+              "abcd1234cdef1234abcd1234cdef1234"
+            ],
+            "name": "project_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {
