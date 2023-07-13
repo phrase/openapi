@@ -1,6 +1,6 @@
 ---
-summary: Get a single custom_metadata_label
-description: Get details of a single custom_metadata_label.
+summary: Get a single label
+description: Get details of a single custom metadata label.
 operationId: custom_metadata_label/show
 tags:
 - Custom Metadata
