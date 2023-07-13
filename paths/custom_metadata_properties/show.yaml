@@ -3,7 +3,7 @@ summary: Get a single custom_metadata_label
 description: Get details of a single custom_metadata_label.
 operationId: custom_metadata_label/show
 tags:
-- CustomMetadataLabels
+- Custom Metadata
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
