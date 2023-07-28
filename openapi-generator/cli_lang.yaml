@@ -1,6 +1,6 @@
-'!include': 'shared.yaml'
+'!include': shared.yaml
 generatorName: go
 outputDir: clients/cli
 packageName: phrase
-packageVersion: 2.8.2
-templateDir: "openapi-generator/templates/cli"
+packageVersion: 2.8.3
+templateDir: openapi-generator/templates/cli
