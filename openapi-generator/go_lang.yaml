@@ -1,9 +1,9 @@
-'!include': 'shared.yaml'
+'!include': shared.yaml
 generatorName: go
 outputDir: clients/go
 packageName: phrase
-packageVersion: 2.10.1
+packageVersion: 2.10.2
 gitUserId: phrase
 gitRepoId: phrase-go
 httpUserAgent: Phrase Strings go
-templateDir: "openapi-generator/templates/go"
+templateDir: openapi-generator/templates/go
