@@ -503,7 +503,7 @@
         "title": "gitlab_sync_history",
         "properties": {
           "status": {
-            "type": "integer"
+            "type": "string"
           },
           "action": {
             "type": "string"
