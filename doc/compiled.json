@@ -8011,7 +8011,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase jobs create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\", \"tags\": \"myUploadTag\", \"translation_key_ids\": \"abcd1234cdef1234abcd1234cdef1234\"}' \\\n--access_token <token>"
+            "source": "phrase jobs create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"de\", \"briefing\":\"de-DE\", \"due_date\":\"2017-08-15\", \"ticket_url\":\"https://example.atlassian.net/browse/FOO\", \"tags\": [\"myUploadTag\"], \"translation_key_ids\": [\"abcd1234cdef1234abcd1234cdef1234\"]}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
