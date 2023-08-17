@@ -18,6 +18,8 @@ schemas:
     "$ref": schemas/blacklisted_key.yaml#/blacklisted_key
   comment:
     "$ref": schemas/comment.yaml#/comment
+  comment_reaction:
+    "$ref": schemas/comment_reaction.yaml#/comment_reaction
   key_preview:
     "$ref": schemas/key_preview.yaml#/key_preview
   affected_count:
