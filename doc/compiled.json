@@ -11003,6 +11003,15 @@
           },
           {
             "$ref": "#/components/parameters/comment_id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
