@@ -10982,7 +10982,7 @@
             "source": "phrase reactions list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.9"
       },
       "post": {
         "summary": "Create a reaction",
@@ -11059,7 +11059,7 @@
             "source": "phrase reactions create \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.9"
       }
     },
     "/projects/{project_id}/keys/{key_id}/comments/{comment_id}/reactions/{id}": {
@@ -11141,7 +11141,7 @@
             "source": "phrase reactions show \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.9"
       },
       "delete": {
         "summary": "Delete a reaction",
@@ -11203,7 +11203,7 @@
             "source": "phrase reactions delete \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.9"
       }
     },
     "/projects/{project_id}/webhooks": {
