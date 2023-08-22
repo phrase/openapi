@@ -112,6 +112,7 @@ tags:
         </table>
       </div>
   - name: Comments
+  - name: Comment Reactions
   - name: Distributions
   - name: Documents
   - name: Formats
@@ -275,6 +276,7 @@ x-tagGroups:
       - Organization Job Templates
       - Organization Job Template Locales
       - Comments
+      - Comment Reactions
       - Branches
   - name: Quality
     tags:

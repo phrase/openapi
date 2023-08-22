@@ -199,6 +199,16 @@
     "$ref": "./paths/comments/unmark_as_read.yaml"
   get:
     "$ref": "./paths/comments/check_if_read.yaml"
+"/projects/{project_id}/keys/{key_id}/comments/{comment_id}/reactions":
+  get:
+    "$ref": "./paths/comment_reactions/index.yaml"
+  post:
+    "$ref": "./paths/comment_reactions/create.yaml"
+"/projects/{project_id}/keys/{key_id}/comments/{comment_id}/reactions/{id}":
+  get:
+    "$ref": "./paths/comment_reactions/show.yaml"
+  delete:
+    "$ref": "./paths/comment_reactions/destroy.yaml"
 "/projects/{project_id}/webhooks":
   get:
     "$ref": "./paths/webhooks/index.yaml"

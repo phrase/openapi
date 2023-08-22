@@ -55,6 +55,9 @@
       "name": "Comments"
     },
     {
+      "name": "Comment Reactions"
+    },
+    {
       "name": "Distributions"
     },
     {
@@ -205,6 +208,7 @@
         "Organization Job Templates",
         "Organization Job Template Locales",
         "Comments",
+        "Comment Reactions",
         "Branches"
       ]
     },
@@ -612,6 +616,48 @@
           },
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
+        }
+      },
+      "comment_reaction": {
+        "type": "object",
+        "title": "comment_reaction",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "emoji": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "comment": {
+            "$ref": "#/components/schemas/comment"
+          },
+          "user": {
+            "$ref": "#/components/schemas/user_preview"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "emoji": "🔥",
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z",
+          "comment": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "message": "Some comment...",
+            "name": "Joe Doe"
+          },
+          "user": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "username": "joe.doe",
+            "name": "Joe Doe"
+          }
         }
       },
       "key_preview": {
@@ -4065,6 +4111,15 @@
         "in": "path",
         "name": "glossary_id",
         "description": "Glossary ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "comment_id": {
+        "in": "path",
+        "name": "comment_id",
+        "description": "Comment ID",
         "required": true,
         "schema": {
           "type": "string"
@@ -10837,6 +10892,318 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/projects/{project_id}/keys/{key_id}/comments/{comment_id}/reactions": {
+      "get": {
+        "summary": "List reactions",
+        "description": "List all reactions for a comment.",
+        "operationId": "reactions/list",
+        "tags": [
+          "Comment Reactions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id"
+          },
+          {
+            "$ref": "#/components/parameters/comment_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/comment_reaction"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/reactions\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X GET \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase reactions list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      },
+      "post": {
+        "summary": "Create a reaction",
+        "description": "Create a new reaction for a comment.",
+        "operationId": "reaction/create",
+        "tags": [
+          "Comment Reactions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id"
+          },
+          {
+            "$ref": "#/components/parameters/comment_id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/comment_reaction"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/reactions/\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase reactions create \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      }
+    },
+    "/projects/{project_id}/keys/{key_id}/comments/{comment_id}/reactions/{id}": {
+      "get": {
+        "summary": "Get a single reaction",
+        "description": "Get details on a single reaction.",
+        "operationId": "reaction/show",
+        "tags": [
+          "Comment Reactions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id"
+          },
+          {
+            "$ref": "#/components/parameters/comment_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/comment_reaction"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/reactions/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X GET \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase reactions show \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      },
+      "delete": {
+        "summary": "Delete a reaction",
+        "description": "Delete an existing reaction.",
+        "operationId": "reaction/delete",
+        "tags": [
+          "Comment Reactions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id"
+          },
+          {
+            "$ref": "#/components/parameters/comment_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/reactions/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase reactions delete \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
       }
     },
     "/projects/{project_id}/webhooks": {

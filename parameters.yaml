@@ -115,6 +115,13 @@ glossary_id:
   required: true
   schema:
     type: string
+comment_id:
+  in: path
+  name: comment_id
+  description: Comment ID
+  required: true
+  schema:
+    type: string
 term_id:
   in: path
   name: term_id
