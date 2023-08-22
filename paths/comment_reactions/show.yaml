@@ -3,7 +3,7 @@ summary: Get a single reaction
 description: Get details on a single reaction.
 operationId: reaction/show
 tags:
-- Comment reactions
+- Comment Reactions
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"

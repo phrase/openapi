@@ -55,7 +55,7 @@
       "name": "Comments"
     },
     {
-      "name": "Comment reactions"
+      "name": "Comment Reactions"
     },
     {
       "name": "Distributions"
@@ -208,7 +208,7 @@
         "Organization Job Templates",
         "Organization Job Template Locales",
         "Comments",
-        "Comment reactions",
+        "Comment Reactions",
         "Branches"
       ]
     },
@@ -10900,7 +10900,7 @@
         "description": "List all reactions for a comment.",
         "operationId": "reactions/list",
         "tags": [
-          "Comment reactions"
+          "Comment Reactions"
         ],
         "parameters": [
           {
@@ -10989,7 +10989,7 @@
         "description": "Create a new reaction for a comment.",
         "operationId": "reaction/create",
         "tags": [
-          "Comment reactions"
+          "Comment Reactions"
         ],
         "parameters": [
           {
@@ -11068,7 +11068,7 @@
         "description": "Get details on a single reaction.",
         "operationId": "reaction/show",
         "tags": [
-          "Comment reactions"
+          "Comment Reactions"
         ],
         "parameters": [
           {
@@ -11148,7 +11148,7 @@
         "description": "Delete an existing reaction.",
         "operationId": "reaction/delete",
         "tags": [
-          "Comment reactions"
+          "Comment Reactions"
         ],
         "parameters": [
           {

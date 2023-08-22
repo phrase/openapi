@@ -3,7 +3,7 @@ summary: List reactions
 description: List all reactions for a comment.
 operationId: reactions/list
 tags:
-- Comment reactions
+- Comment Reactions
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"

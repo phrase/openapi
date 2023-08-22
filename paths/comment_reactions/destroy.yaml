@@ -3,7 +3,7 @@ summary: Delete a reaction
 description: Delete an existing reaction.
 operationId: reaction/delete
 tags:
-- Comment reactions
+- Comment Reactions
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
