@@ -15,11 +15,13 @@ parameters:
   schema:
     type: string
 - description: specify the locales for the comment
-  example: ["someId", "otherId"]
+  example: someId
   name: locale_ids
   in: query
   schema:
     type: array
+    items:
+      type: string
 responses:
   '201':
     description: Created

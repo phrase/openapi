@@ -10458,14 +10458,14 @@
           },
           {
             "description": "specify the locales for the comment",
-            "example": [
-              "someId",
-              "otherId"
-            ],
+            "example": "someId",
             "name": "locale_ids",
             "in": "query",
             "schema": {
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -11345,7 +11345,7 @@
             "source": "phrase replies list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--data '{\"branch\":\"my-feature-branch\"]}' \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.9"
+        "x-cli-version": "2.10"
       },
       "post": {
         "summary": "Create a reply",
@@ -11431,7 +11431,7 @@
             "source": "phrase replies create \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"message\": \"Some message...\"]}' \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.9"
+        "x-cli-version": "2.10"
       }
     },
     "/projects/{project_id}/keys/{key_id}/comments/{comment_id}/replies/{id}": {
@@ -11513,7 +11513,7 @@
             "source": "phrase replies show \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"]}' \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.9"
+        "x-cli-version": "2.10"
       },
       "delete": {
         "summary": "Delete a reply",
@@ -11575,7 +11575,7 @@
             "source": "phrase replies delete \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"]}' \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.9"
+        "x-cli-version": "2.10"
       }
     },
     "/projects/{project_id}/keys/{key_id}/comments/{comment_id}/replies/{id}/mark_as_read": {
@@ -11639,7 +11639,7 @@
             "source": "phrase replies mark_as_read \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"]}' \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.9"
+        "x-cli-version": "2.10"
       }
     },
     "/projects/{project_id}/keys/{key_id}/comments/{comment_id}/replies/{id}/mark_as_unread": {
@@ -11703,7 +11703,7 @@
             "source": "phrase replies mark_as_unread \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"]}' \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.9"
+        "x-cli-version": "2.10"
       }
     },
     "/projects/{project_id}/webhooks": {
