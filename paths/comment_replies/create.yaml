@@ -1,0 +1,62 @@
+---
+summary: Create a reply
+description: Create a new reply for a comment.
+operationId: reply/create
+tags:
+- Comment Replies
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/key_id"
+- "$ref": "../../parameters.yaml#/comment_id"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+- description: specify the message for the comment
+  example: some message...
+  name: message
+  in: query
+  schema:
+    type: string
+responses:
+  '201':
+    description: Created
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/comment.yaml#/comment"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies/" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"branch":"my-feature-branch", "message":"Some message..."}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase replies create \
+    --project_id <project_id> \
+    --key_id <key_id> \
+    --comment_id <comment_id> \
+    --data '{"branch":"my-feature-branch", "message": "Some message..."]}' \
+    --access_token <token>
+x-cli-version: '2.9'
