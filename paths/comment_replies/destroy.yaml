@@ -44,4 +44,4 @@ x-code-samples:
     --id <id> \
     --data '{"branch":"my-feature-branch"]}' \
     --access_token <token>
-x-cli-version: '2.9'
+x-cli-version: '2.10'

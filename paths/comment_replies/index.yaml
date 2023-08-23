@@ -59,4 +59,4 @@ x-code-samples:
     --comment_id <comment_id> \
     --data '{"branch":"my-feature-branch"]}' \
     --access_token <token>
-x-cli-version: '2.9'
+x-cli-version: '2.10'
