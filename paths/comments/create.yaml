@@ -8,6 +8,18 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/key_id"
+- description: specify the message for the comment
+  example: some message...
+  name: message
+  in: query
+  schema:
+    type: string
+- description: specify the locales for the comment
+  example: ["someId", "otherId"]
+  name: locale_ids
+  in: query
+  schema:
+    type: array
 responses:
   '201':
     description: Created
@@ -34,7 +46,7 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
-      -d '{"branch":"my-feature-branch","message":"Some message...", "locale_ids": ["someId"]}' \
+      -d '{"branch":"my-feature-branch", "message":"Some message...", "locale_ids": ["someId"]}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-

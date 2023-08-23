@@ -15,6 +15,12 @@ parameters:
   in: query
   schema:
     type: string
+- description: specify the emoji for the reaction
+  example: 👍
+  name: emoji
+  in: query
+  schema:
+    type: string
 responses:
   '201':
     description: Created
@@ -43,7 +49,7 @@ x-code-samples:
     curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/reactions/" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X DELETE \
-      -d '{"branch":"my-feature-branch"}' \
+      -d '{"branch":"my-feature-branch", "emoji": "👍"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
@@ -51,6 +57,6 @@ x-code-samples:
     --project_id <project_id> \
     --key_id <key_id> \
     --comment_id <comment_id> \
-    --branch my-feature-branch \
+    --data '{"branch":"my-feature-branch", "emoji": "👍"]}' \
     --access_token <token>
 x-cli-version: '2.9'
