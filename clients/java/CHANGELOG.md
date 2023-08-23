@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.10.0](https://github.com/phrase/openapi/compare/java-v1.9.6...java-v1.10.0) (2023-08-22)
+
+
+### Features
+
+* **TSE-950:** Document comment_reactions endpoints ([#380](https://github.com/phrase/openapi/issues/380)) ([f230244](https://github.com/phrase/openapi/commit/f230244e6e9c069b18edc4c35dd5e290fd14793b))
+
+
+### Bug Fixes
+
+* **schemas:** Fix gitlab_sync type mismatch ([#373](https://github.com/phrase/openapi/issues/373)) ([1cb1f65](https://github.com/phrase/openapi/commit/1cb1f650598c68afee6e2cd7c3c4ede1484aba35))
+
 ## [1.9.6](https://github.com/phrase/openapi/compare/java-v1.9.5...java-v1.9.6) (2023-07-28)
 
 
