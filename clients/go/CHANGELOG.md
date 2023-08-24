@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.0](https://github.com/phrase/openapi/compare/go-v2.11.0...go-v2.12.0) (2023-08-24)
+
+
+### Features
+
+* **API:** Introduce comment replies endpoints ([#383](https://github.com/phrase/openapi/issues/383)) ([71351ac](https://github.com/phrase/openapi/commit/71351ac285f4f49976092e176c77b09f3485eb65))
+
 ## [2.11.0](https://github.com/phrase/openapi/compare/go-v2.10.3...go-v2.11.0) (2023-08-22)
 
 
