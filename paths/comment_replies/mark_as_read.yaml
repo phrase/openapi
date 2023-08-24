@@ -1,0 +1,47 @@
+---
+summary: Mark a reply as read
+description: Mark a reply as read.
+operationId: reply/mark_as_read
+tags:
+- Comment Replies
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/key_id"
+- "$ref": "../../parameters.yaml#/comment_id"
+- "$ref": "../../parameters.yaml#/id"
+- description: specify the branch to use
+  example: my-feature-branch
+  name: branch
+  in: query
+  schema:
+    type: string
+responses:
+  '204':
+    "$ref": "../../responses.yaml#/204"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies/:id/mark_as_read" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"branch":"my-feature-branch"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase replies mark_as_read \
+    --project_id <project_id> \
+    --key_id <key_id> \
+    --comment_id <comment_id> \
+    --id <id> \
+    --data '{"branch":"my-feature-branch"]}' \
+    --access_token <token>
+x-cli-version: '2.10'

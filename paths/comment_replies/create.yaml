@@ -1,9 +1,9 @@
 ---
-summary: Create a reaction
-description: Create a new reaction for a comment.
-operationId: reaction/create
+summary: Create a reply
+description: Create a new reply for a comment.
+operationId: reply/create
 tags:
-- Comment Reactions
+- Comment Replies
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
@@ -15,9 +15,9 @@ parameters:
   in: query
   schema:
     type: string
-- description: specify the emoji for the reaction
-  example: 👍
-  name: emoji
+- description: specify the message for the comment
+  example: some message...
+  name: message
   in: query
   schema:
     type: string
@@ -27,7 +27,7 @@ responses:
     content:
       application/json:
         schema:
-          "$ref": "../../schemas/comment_reaction.yaml#/comment_reaction"
+          "$ref": "../../schemas/comment.yaml#/comment"
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
@@ -46,17 +46,17 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/reactions/" \
+    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies/" \
       -u USERNAME_OR_ACCESS_TOKEN \
-      -X DELETE \
-      -d '{"branch":"my-feature-branch", "emoji": "👍"}' \
+      -X POST \
+      -d '{"branch":"my-feature-branch", "message":"Some message..."}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase reactions create \
+    phrase replies create \
     --project_id <project_id> \
     --key_id <key_id> \
     --comment_id <comment_id> \
-    --data '{"branch":"my-feature-branch", "emoji": "👍"]}' \
+    --data '{"branch":"my-feature-branch", "message": "Some message..."]}' \
     --access_token <token>
-x-cli-version: '2.9'
+x-cli-version: '2.10'

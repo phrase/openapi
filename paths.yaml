@@ -209,6 +209,22 @@
     "$ref": "./paths/comment_reactions/show.yaml"
   delete:
     "$ref": "./paths/comment_reactions/destroy.yaml"
+"/projects/{project_id}/keys/{key_id}/comments/{comment_id}/replies":
+  get:
+    "$ref": "./paths/comment_replies/index.yaml"
+  post:
+    "$ref": "./paths/comment_replies/create.yaml"
+"/projects/{project_id}/keys/{key_id}/comments/{comment_id}/replies/{id}":
+  get:
+    "$ref": "./paths/comment_replies/show.yaml"
+  delete:
+    "$ref": "./paths/comment_replies/destroy.yaml"
+"/projects/{project_id}/keys/{key_id}/comments/{comment_id}/replies/{id}/mark_as_read":
+  patch:
+    "$ref": "./paths/comment_replies/mark_as_read.yaml"
+"/projects/{project_id}/keys/{key_id}/comments/{comment_id}/replies/{id}/mark_as_unread":
+  patch:
+    "$ref": "./paths/comment_replies/mark_as_unread.yaml"
 "/projects/{project_id}/webhooks":
   get:
     "$ref": "./paths/webhooks/index.yaml"

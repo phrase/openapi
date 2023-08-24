@@ -113,6 +113,7 @@ tags:
       </div>
   - name: Comments
   - name: Comment Reactions
+  - name: Comment Replies
   - name: Distributions
   - name: Documents
   - name: Formats
@@ -277,6 +278,7 @@ x-tagGroups:
       - Organization Job Template Locales
       - Comments
       - Comment Reactions
+      - Comment Replies
       - Branches
   - name: Quality
     tags:
