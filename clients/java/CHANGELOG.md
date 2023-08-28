@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/phrase/openapi/compare/java-v1.11.0...java-v1.12.0) (2023-08-28)
+
+
+### Features
+
+* **API:** Document new query parameters ([#393](https://github.com/phrase/openapi/issues/393)) ([770515a](https://github.com/phrase/openapi/commit/770515a9628122955bb3919405babf9392684eb9))
+
 ## [1.11.0](https://github.com/phrase/openapi/compare/java-v1.10.0...java-v1.11.0) (2023-08-24)
 
 
