@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.13.0](https://github.com/phrase/openapi/compare/go-v2.12.0...go-v2.13.0) (2023-08-28)
+
+
+### Features
+
+* **API:** Document new query parameters ([#393](https://github.com/phrase/openapi/issues/393)) ([770515a](https://github.com/phrase/openapi/commit/770515a9628122955bb3919405babf9392684eb9))
+
+
+### Bug Fixes
+
+* **go:** Update goreleaser config ([#394](https://github.com/phrase/openapi/issues/394)) ([580c1ed](https://github.com/phrase/openapi/commit/580c1ed00304e5ea0dd87a3131499cbd26c095bd))
+
 ## [2.12.0](https://github.com/phrase/openapi/compare/go-v2.11.0...go-v2.12.0) (2023-08-24)
 
 
