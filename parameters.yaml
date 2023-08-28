@@ -136,6 +136,13 @@ locale_id:
   required: true
   schema:
     type: string
+locale_id_as_id:
+  in: path
+  name: id
+  description: Locale ID or locale name
+  required: true
+  schema:
+    type: string
 gitlab_sync_id:
   in: path
   name: gitlab_sync_id

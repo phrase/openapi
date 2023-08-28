@@ -4164,6 +4164,15 @@
           "type": "string"
         }
       },
+      "locale_id_as_id": {
+        "in": "path",
+        "name": "id",
+        "description": "Locale ID or locale name",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
       "gitlab_sync_id": {
         "in": "path",
         "name": "gitlab_sync_id",
@@ -6544,7 +6553,7 @@
             "$ref": "#/components/parameters/project_id"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/locale_id_as_id"
           },
           {
             "description": "specify the branch to use",
@@ -6615,7 +6624,7 @@
             "$ref": "#/components/parameters/project_id"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/locale_id_as_id"
           }
         ],
         "responses": {
@@ -6745,7 +6754,7 @@
             "$ref": "#/components/parameters/project_id"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/locale_id_as_id"
           },
           {
             "description": "specify the branch to use",
@@ -6806,7 +6815,7 @@
             "$ref": "#/components/parameters/project_id"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/locale_id_as_id"
           },
           {
             "description": "specify the branch to use",
