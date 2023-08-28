@@ -17,6 +17,20 @@ parameters:
   in: query
   schema:
     type: string
+- description: Search query for comment messages
+  example: Some comment content
+  name: query
+  in: query
+  schema:
+    type: string
+- description: Specify the filter for the comments
+  name: filters
+  in: query
+  schema:
+    type: array
+    example: [read, unread]
+    items:
+      type: string
 responses:
   '200':
     description: OK
@@ -46,10 +60,9 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies" \
+    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies?branch=my-feature-branch&filters=unread&query=something" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X GET \
-      -d '{"branch":"my-feature-branch"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
@@ -57,6 +70,30 @@ x-code-samples:
     --project_id <project_id> \
     --key_id <key_id> \
     --comment_id <comment_id> \
-    --data '{"branch":"my-feature-branch"]}' \
+    --branch "my-feature-branch" \
+    --filters unread \
+    --query "Some comment content" \
     --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: replies/list/parameters
+        properties:
+          branch:
+            description: Specify the branch to use
+            type: string
+            example: my-feature-branch
+          query:
+            description: Search query for comment messages
+            type: string
+            example: Some comment content
+          filters:
+            description: Specify filters to find comments by
+            type: array
+            items:
+              type: string
+            example: [read, unread]
 x-cli-version: '2.10'
