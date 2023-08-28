@@ -10463,7 +10463,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"filters\": [\"unread\", \"read\"], \"query\": \"Some comment content\", \"locale_ids\": [\"someId\"] }' \\\n--access_token <token>"
+            "source": "phrase comments list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--branch \"my-feature-branch\" \\\n--filters unread \\\n--query \"Some comment content\" \\\n--locale_ids someId \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -11449,7 +11449,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase replies list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"filters\": [\"unread\", \"read\"], \"query\": \"Some comment content\"}' \\\n--access_token <token>"
+            "source": "phrase replies list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--branch \"my-feature-branch\" \\\n--filters unread \\\n--query \"Some comment content\" \\\n--access_token <token>"
           }
         ],
         "requestBody": {

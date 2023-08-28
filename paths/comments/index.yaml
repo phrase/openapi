@@ -75,7 +75,10 @@ x-code-samples:
     phrase comments list \
     --project_id <project_id> \
     --key_id <key_id> \
-    --data '{"branch":"my-feature-branch", "filters": ["unread", "read"], "query": "Some comment content", "locale_ids": ["someId"] }' \
+    --branch "my-feature-branch" \
+    --filters unread \
+    --query "Some comment content" \
+    --locale_ids someId \
     --access_token <token>
 requestBody:
   required: true

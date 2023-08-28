@@ -71,7 +71,9 @@ x-code-samples:
     --project_id <project_id> \
     --key_id <key_id> \
     --comment_id <comment_id> \
-    --data '{"branch":"my-feature-branch", "filters": ["unread", "read"], "query": "Some comment content"}' \
+    --branch "my-feature-branch" \
+    --filters unread \
+    --query "Some comment content" \
     --access_token <token>
 requestBody:
   required: true
