@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.15.0](https://github.com/phrase/openapi/compare/ruby-v2.14.0...ruby-v2.15.0) (2023-08-28)
+
+
+### Features
+
+* **API:** Document new query parameters ([#393](https://github.com/phrase/openapi/issues/393)) ([770515a](https://github.com/phrase/openapi/commit/770515a9628122955bb3919405babf9392684eb9))
+
 ## [2.14.0](https://github.com/phrase/openapi/compare/ruby-v2.13.0...ruby-v2.14.0) (2023-08-24)
 
 
