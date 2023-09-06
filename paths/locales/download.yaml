@@ -9,7 +9,7 @@ parameters:
   - "$ref": "../../parameters.yaml#/If-Modified-Since"
   - "$ref": "../../parameters.yaml#/If-None-Match"
   - "$ref": "../../parameters.yaml#/project_id"
-  - "$ref": "../../parameters.yaml#/id"
+  - "$ref": "../../parameters.yaml#/locale_id_as_id"
   - description: specify the branch to use
     example: my-feature-branch
     name: branch
