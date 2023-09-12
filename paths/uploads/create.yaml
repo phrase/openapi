@@ -124,4 +124,9 @@ requestBody:
             description: Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow is enabled for the project.
             type: boolean
             example:
+          tag_only_affected_keys:
+            description: Indicates whether only keys affected (created or updated) by the upload should be tagged. The default is `false`
+            type: boolean
+            default: false
+            example:
 x-cli-version: '2.5'
