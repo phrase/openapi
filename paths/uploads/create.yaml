@@ -129,4 +129,4 @@ requestBody:
             type: boolean
             default: false
             example:
-x-cli-version: '2.5'
+x-cli-version: '2.12'

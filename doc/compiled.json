@@ -12457,7 +12457,7 @@
             }
           }
         },
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.12"
       },
       "get": {
         "summary": "List uploads",
