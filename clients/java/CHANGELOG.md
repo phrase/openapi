@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.0](https://github.com/phrase/openapi/compare/java-v1.12.0...java-v1.13.0) (2023-09-12)
+
+
+### Features
+
+* Optionally tag only affected keys on upload [TSI-2041] ([#412](https://github.com/phrase/openapi/issues/412)) ([e8f958e](https://github.com/phrase/openapi/commit/e8f958e91469c2542f44ab68469c933688958383))
+* **TSI-1946:** Add reviewed_at to translations ([#396](https://github.com/phrase/openapi/issues/396)) ([3e663d9](https://github.com/phrase/openapi/commit/3e663d971a99a816f0165dd6653a9a1e8a87c95e))
+
 ## [1.12.0](https://github.com/phrase/openapi/compare/java-v1.11.0...java-v1.12.0) (2023-08-28)
 
 
