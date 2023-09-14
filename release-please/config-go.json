@@ -39,7 +39,8 @@
           "type": "yaml",
           "path": "openapi-generator/go_lang.yaml",
           "jsonpath": "$.packageVersion"
-        }
+        },
+        "clients/cli/go.mod"
       ]
     }
   },
