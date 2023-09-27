@@ -141,6 +141,10 @@ div.tag.title {
   text-transform: none;
 }
 
+.m-markdown {
+  --font-size-regular: #{$fontSize4};
+}
+
 .section-gap--read-mode {
   --font-size-regular: #{$fontSize5};
   --font-size-small: #{$fontSize4};
