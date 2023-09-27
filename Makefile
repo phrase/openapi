@@ -24,7 +24,7 @@ watch_scss:
 watch_ts:
 	npx tsc --watch ./doc/main.ts --outFile ./doc/main.js
 serve:
-	npx http-server doc
+	npx http-server doc -c-1 -p 8080
 docs: lint bundle
 	npx sass -s compressed ./doc/main.scss:./doc/main.css ./doc/rapidoc.scss:./doc/rapidoc.css
 	npx tsc ./doc/main.ts --outFile ./doc/main.js
