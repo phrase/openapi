@@ -66,6 +66,13 @@ key_id:
   required: true
   schema:
     type: string
+figma_attachment_id:
+  in: path
+  name: figma_attachment_id
+  description: Figma attachment ID
+  required: true
+  schema:
+    type: string
 job_id:
   in: path
   name: job_id

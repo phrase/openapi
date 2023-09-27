@@ -1,0 +1,54 @@
+---
+summary: List Figma attachments
+description: List all Figma attachments for the given project
+operationId: figma_attachments/list
+tags:
+  - Figma attachments
+parameters:
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/project_id"
+  - "$ref": "../../parameters.yaml#/page"
+  - "$ref": "../../parameters.yaml#/per_page"
+  - description: specify the branch to use
+    example: my-feature-branch
+    name: branch
+    in: query
+    schema:
+      type: string
+responses:
+  "200":
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/figma_attachment.yaml#/figma_attachment"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+  "400":
+    "$ref": "../../responses.yaml#/400"
+  "404":
+    "$ref": "../../responses.yaml#/404"
+  "429":
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:project_id/figma_attachments?branch=my-feature-branch" \
+        -X GET \
+        -u USERNAME_OR_ACCESS_TOKEN
+  - lang: CLI v2
+    source: |-
+      phrase figma_attachments list \
+      --project_id <project_id> \
+      --branch my-feature-branch \
+      --access_token <token>
+x-cli-version: "2.13"

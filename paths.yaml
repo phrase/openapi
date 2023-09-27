@@ -1,5 +1,4 @@
 ---
-
 "/icu/skeleton":
   post:
     "$ref": "./paths/icu/skeleton.yaml"
@@ -12,6 +11,24 @@
 "/projects/{project_id}/documents/{id}":
   delete:
     "$ref": "./paths/documents/destroy.yaml"
+"/projects/{project_id}/figma_attachments":
+  get:
+    "$ref": "./paths/figma_attachments/index.yaml"
+  post:
+    "$ref": "./paths/figma_attachments/create.yaml"
+"/projects/{project_id}/figma_attachments/{id}":
+  get:
+    "$ref": "./paths/figma_attachments/show.yaml"
+  patch:
+    "$ref": "./paths/figma_attachments/update.yaml"
+  delete:
+    "$ref": "./paths/figma_attachments/destroy.yaml"
+"/projects/{project_id}/figma_attachments/{figma_attachment_id}/keys":
+  post:
+    "$ref": "./paths/figma_attachment_keys/create.yaml"
+"/projects/{project_id}/figma_attachments/{figma_attachment_id}/keys/{id}":
+  delete:
+    "$ref": "./paths/figma_attachment_keys/destroy.yaml"
 "/projects/{project_id}/styleguides":
   get:
     "$ref": "./paths/styleguides/index.yaml"
