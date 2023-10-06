@@ -1,6 +1,10 @@
-clients/
-!clients/cli/
-clients/cli/api_*.go
+clients/go/
+clients/java/
+clients/php/
+clients/python/
+clients/ruby/
+clients/typescript/
+clients/cli/cmd/api_*.go
 
 doc/*.css
 doc/*.css.map
