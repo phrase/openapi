@@ -5,6 +5,7 @@ clients/python/
 clients/ruby/
 clients/typescript/
 clients/cli/cmd/api_*.go
+clients/cli/phrase-cli
 
 doc/*.css
 doc/*.css.map
