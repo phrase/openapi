@@ -17,6 +17,7 @@ clients/ruby/docs
 clients/ruby/lib
 clients/ruby/spec/api/*
 !clients/ruby/spec/api/locales_api_spec.rb
+!clients/ruby/spec/api/uploads_api_spec.rb
 
 clients/typescript/
 clients/cli/cmd/api_*.go
