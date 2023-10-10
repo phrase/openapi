@@ -1,0 +1,22 @@
+name: Run RSpec tests
+on: [push]
+jobs:
+  run-rspec-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: |
+          npm install
+          npm run generate.ruby
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.1
+          # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
+          working-directory: ./clients/ruby
+      - name: Run tests
+        run: |
+          cd ./clients/ruby
+          bundle exec rspec
