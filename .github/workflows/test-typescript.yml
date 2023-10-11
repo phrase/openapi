@@ -1,0 +1,14 @@
+name: Run Typescipt Tests
+on: [push]
+jobs:
+  jest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: |
+          npm install
+          npm run generate.typescript
+          cd ./clients/typescript
+          npm install
+          npm run test
