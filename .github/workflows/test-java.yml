@@ -12,5 +12,6 @@ jobs:
     - name: Run Gradle Tests
       uses: gradle/gradle-build-action@v2
       with:
+        gradle-version: 7.1.1
         build-root-directory: ./clients/java
         arguments: test
