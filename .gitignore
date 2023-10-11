@@ -32,6 +32,7 @@ clients/java/src/main
 clients/java/src/test/java/com/phrase/client/model
 clients/java/src/test/java/com/phrase/client/api/*
 !clients/java/src/test/java/com/phrase/client/api/LocalesApiTest.java
+!clients/java/src/test/java/com/phrase/client/api/UploadsApiTest.java
 
 clients/typescript/
 clients/cli/cmd/api_*.go
