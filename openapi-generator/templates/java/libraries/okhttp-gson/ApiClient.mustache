@@ -654,6 +654,21 @@ public class ApiClient {
         }
     }
 
+    public List<Pair> mappedParameterToPairs(String name, Map<String, String> parameter){
+        List<Pair> params = new ArrayList<Pair>();
+        StringBuilder builder = new StringBuilder();
+
+        for(Map.Entry<String, String> entry : parameter.entrySet()){
+            String key = builder.append(name).append("[").append(entry.getKey()).append("]");
+            String value = entry.getValue();
+
+            params.add(new Pair(key, parameterToString(value)));
+        }
+
+        return params;
+    }
+
+
     /**
      * Formats the specified query parameter to a list containing a single {@code Pair} object.
      *
