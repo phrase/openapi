@@ -10,5 +10,5 @@ jobs:
           npm install
           npm run generate.typescript
           cd ./clients/typescript
-          npm ci
+          npm install
           npm test
