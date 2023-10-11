@@ -4,8 +4,7 @@ import { Configuration } from '../src/runtime';
 const FormData = require("form-data")
 const fs = require("fs");
 
-const globalAny: any = global;
-globalAny.FormData = FormData;
+global.FormData = FormData;
 
 const getMockFetch = (jsonResponse, textResponse) => jest.fn(() => Promise.resolve({
   json: () => Promise.resolve(jsonResponse),
