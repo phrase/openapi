@@ -9,9 +9,8 @@ jobs:
       with:
         distribution: temurin
         java-version: 11
-
-    - name: Setup Gradle
+    - name: Run Gradle Tests
       uses: gradle/gradle-build-action@v2
-
-    - name: Execute Gradle build
-      run: ./gradlew test
+      with:
+        build-root-directory: ./clients/java
+        arguments: test
