@@ -46,7 +46,7 @@
     def self.openapi_types
       {
         {{#vars}}
-        :'{{{name}}}' => :'{{{dataType}}}'{{^-last}},{{/-last}}
+        :'{{{name}}}' => :'{{^isDateTime}}{{{dataType}}}{{/isDateTime}}{{#isDateTime}}DateTime{{/isDateTime}}'{{^-last}},{{/-last}}
         {{/vars}}
       }
     end
