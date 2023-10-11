@@ -5145,7 +5145,7 @@
       "post": {
         "summary": "Attach the Figma attachment to a key",
         "description": "Attach the Figma attachment to a key",
-        "operationId": "figma_attachment_key/create",
+        "operationId": "figma_attachment/attach_to_key",
         "tags": [
           "Key's Figma attachments"
         ],
@@ -5193,7 +5193,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase figma_attachment_key create \\\n--project_id <project_id> \\\n--figma_attachment_id <figma_attachment_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase figma_attachment attach_to_key \\\n--project_id <project_id> \\\n--figma_attachment_id <figma_attachment_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.13"
@@ -5203,7 +5203,7 @@
       "delete": {
         "summary": "Detach the Figma attachment from a key",
         "description": "Detach the Figma attachment from a key",
-        "operationId": "figma_attachment_key/delete",
+        "operationId": "figma_attachment/detach_from_key",
         "tags": [
           "Key's Figma attachments"
         ],
@@ -5251,7 +5251,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase figma_attachment_key delete \\\n--project_id <project_id> \\\n--figma_attachment_id <figma_attachment_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase figma_attachment detach_from_key \\\n--project_id <project_id> \\\n--figma_attachment_id <figma_attachment_id> \\\n--id <id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.13"

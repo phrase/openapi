@@ -1,7 +1,7 @@
 ---
 summary: Attach the Figma attachment to a key
 description: Attach the Figma attachment to a key
-operationId: figma_attachment_key/create
+operationId: figma_attachment/attach_to_key
 tags:
   - Key's Figma attachments
 parameters:
@@ -35,7 +35,7 @@ x-code-samples:
         -H 'Content-Type: application/json'
   - lang: CLI v2
     source: |-
-      phrase figma_attachment_key create \
+      phrase figma_attachment attach_to_key \
       --project_id <project_id> \
       --figma_attachment_id <figma_attachment_id> \
       --id <id> \

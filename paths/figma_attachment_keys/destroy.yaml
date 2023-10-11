@@ -1,7 +1,7 @@
 ---
 summary: Detach the Figma attachment from a key
 description: Detach the Figma attachment from a key
-operationId: figma_attachment_key/delete
+operationId: figma_attachment/detach_from_key
 tags:
   - Key's Figma attachments
 parameters:
@@ -34,7 +34,7 @@ x-code-samples:
         -H 'Content-Type: application/json'
   - lang: CLI v2
     source: |-
-      phrase figma_attachment_key delete \
+      phrase figma_attachment detach_from_key \
       --project_id <project_id> \
       --figma_attachment_id <figma_attachment_id> \
       --id <id> \
