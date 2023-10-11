@@ -1,4 +1,4 @@
-name: Run Typescipt Tests
+name: Run Typescript Tests
 on: [push]
 jobs:
   jest:
