@@ -39,7 +39,6 @@ clients/typescript/src
 clients/typescript/package.json
 clients/typescript/package-lock.json
 clients/typescript/README.md
-clients/typescript/jest.config.js
 clients/typescript/tsconfig.json
 
 clients/cli/cmd/api_*.go
