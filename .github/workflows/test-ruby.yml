@@ -1,7 +1,7 @@
-name: Run RSpec tests
+name: Run Ruby Tests
 on: [push]
 jobs:
-  run-rspec-tests:
+  rspec:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
