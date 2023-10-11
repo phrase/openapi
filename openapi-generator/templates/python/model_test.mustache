@@ -28,6 +28,8 @@ class Test{{classname}}(unittest.TestCase):
             params are included, when True both required and
             optional params are included """
         # model = {{packageName}}.models.{{classFilename}}.{{classname}}()  # noqa: E501
+
+        """
         if include_optional :
             return {{classname}}(
 {{#vars}}
@@ -42,6 +44,7 @@ class Test{{classname}}(unittest.TestCase):
 {{/required}}
 {{/vars}}
         )
+        """
 
     def test{{classname}}(self):
         """Test {{classname}}"""
