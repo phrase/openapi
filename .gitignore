@@ -34,7 +34,13 @@ clients/java/src/test/java/com/phrase/client/api/*
 !clients/java/src/test/java/com/phrase/client/api/LocalesApiTest.java
 !clients/java/src/test/java/com/phrase/client/api/UploadsApiTest.java
 
-clients/typescript/
+clients/typescript/.*
+clients/typescript/src
+clients/typescript/package.json
+clients/typescript/package-lock.json
+clients/typescript/README.md
+clients/typescript/tsconfig.json
+
 clients/cli/cmd/api_*.go
 clients/cli/phrase-cli
 
