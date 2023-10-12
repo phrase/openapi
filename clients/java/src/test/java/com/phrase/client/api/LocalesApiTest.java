@@ -137,6 +137,10 @@ public class LocalesApiTest {
 
         mockBackend.enqueue(mockResponse);
 
+        Map<String, String> formatOptionsMap = new HashMap<>();
+        formatOptionsMap.put("omit_separator_space", "true");
+        formatOptionsMap.put("fallback_language", "en");
+
         String projectId = "MY_PROJECT_ID";
         String id = "MY_ID";
         String xPhraseAppOTP = null;
@@ -151,7 +155,7 @@ public class LocalesApiTest {
         Boolean includeTranslatedKeys = null;
         Boolean keepNotranslateTags = null;
         Boolean convertEmoji = null;
-        Object formatOptions = null;
+        Object formatOptions = formatOptionsMap;
         String encoding = null;
         Boolean skipUnverifiedTranslations = null;
         Boolean includeUnverifiedTranslations = null;
@@ -164,7 +168,7 @@ public class LocalesApiTest {
         Assert.assertEquals("Correct file contents", fileContents, body);
 
         RecordedRequest recordedRequest = mockBackend.takeRequest();
-        Assert.assertEquals("Request path", "//projects/MY_PROJECT_ID/locales/MY_ID/download", recordedRequest.getPath());
+        Assert.assertEquals("Request path", "//projects/MY_PROJECT_ID/locales/MY_ID/download?format_options[omit_separator_space]=true&format_options[fallback_language]=en", recordedRequest.getPath());
     }
 
     /**
