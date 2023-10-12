@@ -654,17 +654,24 @@ public class ApiClient {
         }
     }
 
-    public List<Pair> mappedParameterToPairs(String name, Map<String, String> parameter){
+    public List<Pair> mappedParameterToPairs(String name, Object parameter){
         List<Pair> params = new ArrayList<Pair>();
         StringBuilder builder = new StringBuilder();
 
-        for(Map.Entry<String, String> entry : parameter.entrySet()){
-            {{! String key = builder.append(name).append("[").append(entry.getKey()).append("]"); }}
-            String key = name + "[" + entry.getKey() + "]";
-            String value = entry.getValue();
+        if(parameter instanceof Map){
+            Map<String, String> mappedParameter = (Map<String, String>) parameter;
 
-            params.add(new Pair(key, parameterToString(value)));
+            for(Map.Entry<String, String> entry : mappedParameter.entrySet()){
+                System.out.println(entry);
+                {{! String key = builder.append(name).append("[").append(entry.getKey()).append("]"); }}
+                String key = name + "[" + entry.getKey() + "]";
+                String value = entry.getValue();
+
+                params.add(new Pair(key, parameterToString(value)));
+            }
+
         }
+        
 
         return params;
     }
