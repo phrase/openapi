@@ -168,7 +168,7 @@ public class LocalesApiTest {
         Assert.assertEquals("Correct file contents", fileContents, body);
 
         RecordedRequest recordedRequest = mockBackend.takeRequest();
-        Assert.assertEquals("Request path", "//projects/MY_PROJECT_ID/locales/MY_ID/download?format_options[omit_separator_space]=true&format_options[fallback_language]=en", recordedRequest.getPath());
+        Assert.assertEquals("Request path", "//projects/MY_PROJECT_ID/locales/MY_ID/download?format_options%5Bomit_separator_space%5D=true&format_options%5Bfallback_language%5D=en", recordedRequest.getPath());
     }
 
     /**

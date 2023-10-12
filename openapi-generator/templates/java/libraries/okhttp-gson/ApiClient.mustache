@@ -662,8 +662,6 @@ public class ApiClient {
             Map<String, String> mappedParameter = (Map<String, String>) parameter;
 
             for(Map.Entry<String, String> entry : mappedParameter.entrySet()){
-                System.out.println(entry);
-                {{! String key = builder.append(name).append("[").append(entry.getKey()).append("]"); }}
                 String key = name + "[" + entry.getKey() + "]";
                 String value = entry.getValue();
 
