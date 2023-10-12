@@ -13,9 +13,7 @@ jobs:
         with:
           php_version: '7.4'
           working_dir: ./clients/php
-      - uses: php-actions/phpunit@v3
-        with:
-          php_version: '7.4'
-          version: '7.4'
-          working_dir: ./clients/php
-
+      - name: Run tests
+        run: |
+          cd ./clients/php
+          ./vendor/bin/phpunit
