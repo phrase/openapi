@@ -656,7 +656,6 @@ public class ApiClient {
 
     public List<Pair> mappedParameterToPairs(String name, Object parameter){
         List<Pair> params = new ArrayList<Pair>();
-        StringBuilder builder = new StringBuilder();
 
         if(parameter instanceof Map){
             Map<String, String> mappedParameter = (Map<String, String>) parameter;
