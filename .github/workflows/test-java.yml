@@ -18,7 +18,4 @@ jobs:
       with:
         gradle-version: 7.1.1
         build-root-directory: ./clients/java
-    - name: Run tests
-      run: |
-        cd clients/java
-        ./gradlew test --info
+        args: test --info
