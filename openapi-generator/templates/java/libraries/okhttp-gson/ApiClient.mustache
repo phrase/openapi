@@ -659,7 +659,8 @@ public class ApiClient {
         StringBuilder builder = new StringBuilder();
 
         for(Map.Entry<String, String> entry : parameter.entrySet()){
-            String key = builder.append(name).append("[").append(entry.getKey()).append("]");
+            {{! String key = builder.append(name).append("[").append(entry.getKey()).append("]"); }}
+            String key = name + "[" + entry.getKey() + "]";
             String value = entry.getValue();
 
             params.add(new Pair(key, parameterToString(value)));
