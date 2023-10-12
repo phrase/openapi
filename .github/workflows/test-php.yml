@@ -1,0 +1,21 @@
+name: Run PHP Tests
+on: [push]
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: |
+          npm install
+          npm run generate.php
+      - uses: php-actions/composer@v6
+        with:
+          php-version: '7.4'
+          working-dir: ./clients/php
+      - uses: php-actions/phpunit@v3
+        with:
+          php_version: '7.4'
+          version: '7.4'
+          working_dir: ./clients/php
+
