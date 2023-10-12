@@ -6908,7 +6908,9 @@
             "schema": {
               "type": "object",
               "properties": {}
-            }
+            },
+            "style": "deepObject",
+            "explode": true
           },
           {
             "description": "Enforces a specific encoding on the file contents. Valid options are \"UTF-8\", \"UTF-16\" and \"ISO-8859-1\".",
