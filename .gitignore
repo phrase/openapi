@@ -1,5 +1,8 @@
 clients/go/
-clients/python/
+
+clients/python/*
+!clients/python/test/test_locales_api.py
+!clients/python/test/test_uploads_api.py
 
 clients/ruby/.*
 clients/ruby/Gemfile*
