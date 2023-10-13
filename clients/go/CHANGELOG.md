@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.15.0](https://github.com/phrase/openapi/compare/go-v2.14.0...go-v2.15.0) (2023-10-13)
+
+
+### Features
+
+* **API:** Implement figma attachments endpoints ([#415](https://github.com/phrase/openapi/issues/415)) ([970e612](https://github.com/phrase/openapi/commit/970e612fda620ca882a221ef541036b8d200b675))
+
 ## [2.14.0](https://github.com/phrase/openapi/compare/go-v2.13.0...go-v2.14.0) (2023-09-12)
 
 

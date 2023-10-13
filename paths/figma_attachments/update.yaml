@@ -1,0 +1,68 @@
+---
+summary: Update a Figma attachment
+description: Update an existing Figma attachment.
+operationId: figma_attachment/update
+tags:
+  - Figma attachments
+parameters:
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/project_id"
+  - "$ref": "../../parameters.yaml#/id"
+  - description: specify the branch to use
+    example: my-feature-branch
+    name: branch
+    in: query
+    schema:
+      type: string
+responses:
+  "200":
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/figma_attachment.yaml#/figma_attachment"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  "400":
+    "$ref": "../../responses.yaml#/400"
+  "404":
+    "$ref": "../../responses.yaml#/404"
+  "429":
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:project_id/figma_attachments/:id" \
+        -u USERNAME_OR_ACCESS_TOKEN \
+        -X PATCH \
+        -F branch=my-feature-branch \
+        -F url=https://figma.com/file/xxxxx/sample \
+  - lang: CLI v2
+    source: |-
+      phrase figma_attachment update \
+      --project_id <project_id> \
+      --id <id> \
+      --data '{"branch":"my-feature-branch", "url":"https://figma.com/file/xxxxx/sample" }' \
+      --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: figma_attachment/update/parameters
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          url:
+            description: Figma file url
+            type: string
+            example: https://figma.com/file/xxxxx/sample
+x-cli-version: "2.13"
