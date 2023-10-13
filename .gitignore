@@ -1,5 +1,4 @@
 clients/go/
-clients/php/
 clients/python/
 
 clients/ruby/.*
@@ -40,6 +39,19 @@ clients/typescript/package.json
 clients/typescript/package-lock.json
 clients/typescript/README.md
 clients/typescript/tsconfig.json
+
+clients/php/.*
+clients/php/composer.*
+clients/php/*.sh
+clients/php/README.md
+clients/php/phpunit.*
+clients/php/docs
+clients/php/lib
+clients/php/vendor
+clients/php/test/Model
+clients/php/test/Api/*
+!clients/php/test/Api/LocalesApiTest.php
+!clients/php/test/Api/UploadsApiTest.php
 
 clients/cli/cmd/api_*.go
 clients/cli/phrase-cli
