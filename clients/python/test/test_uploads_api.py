@@ -42,10 +42,14 @@ class TestUploadsApi(unittest.TestCase):
         project_id = "project_id_example"
         with phrase_api.ApiClient(self.configuration) as api_client:
             api_instance = phrase_api.UploadsApi(api_client)
-            api_response = api_instance.upload_create(project_id, file="./README.md", file_format="simple_json")
+            api_response = api_instance.upload_create(
+                project_id,
+                file="./test/fixtures/en.json",
+                file_format="simple_json",
+                format_options={"enable_pluralization": True}
+            )
 
-            self.assertEqual("POST", mock_post.call_args_list[0].args[0])
-            self.assertEqual("https://api.phrase.com/v2/projects/project_id_example/uploads", mock_post.call_args_list[0].args[1])
+            mock_post.assert_called_with("POST", "https://api.phrase.com/v2/projects/project_id_example/uploads", query_params=[], headers={'Accept': 'application/json', 'Content-Type': 'multipart/form-data', 'User-Agent': 'OpenAPI-Generator/1.14.0/python', 'Authorization': 'token YOUR_API_KEY'}, post_params=[('file_format', 'simple_json'), ('format_options', {'enable_pluralization': True}), ('file', ('en.json', b'{\n    "key": "value"\n}\n', 'application/json'))], body=None, _preload_content=True, _request_timeout=None)
 
             self.assertIsNotNone(api_response)
             self.assertIsInstance(api_response, phrase_api.models.upload.Upload)
