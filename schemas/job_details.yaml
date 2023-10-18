@@ -26,7 +26,7 @@ job_details:
         name: Joe Doe
       job_tag_name: Job_123
       source_locale:
-      - id: abcd1234cdef1234abcd1234cdef1235
+        id: abcd1234cdef1234abcd1234cdef1235
         name: de-DE
         code: de-DE
       locales:
