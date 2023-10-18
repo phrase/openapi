@@ -1,6 +1,6 @@
 ---
-summary: Get a single label
-description: Get details of a single custom metadata label.
+summary: Get a single property
+description: Get details of a single custom property.
 operationId: custom_metadata_label/show
 tags:
 - Custom Metadata
