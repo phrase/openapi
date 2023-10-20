@@ -5,15 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          npm install
+          npm run generate.go
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
           go-version: '1.21.0'
           working-directory: ./clients/go
-      - name: Install dependencies
-        run: go get .
-      - name: Build
-        run: go build -v ./...
       - name: Run Tests
         run: |
           cd ./clients/go/test
