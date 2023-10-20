@@ -105,7 +105,7 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 		requestUrl := httpRes.Request.URL
 		
 
-		require.NotNil(t, err)
+		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 		assert.Equal(t, "/projects/project_id_example/locales/locale_id", requestUrl.Path)
