@@ -13,8 +13,10 @@ import (
 	"context"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
+	"github.com/antihax/optional"
 	"github.com/phrase/phrase-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -23,7 +25,7 @@ import (
 func Test_phrase_UploadsApiService(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Send the mock response
-		response := `{"foo": "bar"}`
+		response := `{"id": "1", "filename": "test.json", "format": "json", "state": "valid" }`
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 
@@ -37,15 +39,26 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 	apiClient := phrase.NewAPIClient(configuration)
 
 	t.Run("Test UploadsApiService UploadCreate", func(t *testing.T) {
-		localVarOptionals := phrase.UploadCreateOpts{}
+		file, _ := os.Create("testfile.json")
+		fileFormat := optional.NewString("json")
+		fileObject := optional.NewInterface(file)
+		localeId := optional.NewString("99")
+
+		localVarOptionals := phrase.UploadCreateOpts{FileFormat: fileFormat, File: fileObject, LocaleId: localeId }
 		resp, httpRes, err := apiClient.UploadsApi.UploadCreate(context.Background(), "project_id", &localVarOptionals)
 		requestUrl := httpRes.Request.URL
+
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		assert.Equal(t, "1", resp.Id)
+		assert.Equal(t, "test.json", resp.Filename)
+		assert.Equal(t, "json", resp.Format)
 		assert.Equal(t, "/projects/project_id/uploads", requestUrl.Path)
 		assert.Equal(t, "POST", httpRes.Request.Method)
+
+		defer os.Remove("testfile.json")
 	})
 
 	t.Run("Test UploadsApiService UploadShow", func(t *testing.T) {
@@ -56,22 +69,11 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		assert.Equal(t, "1", resp.Id)
+		assert.Equal(t, "test.json", resp.Filename)
+		assert.Equal(t, "json", resp.Format)
 		assert.Equal(t, "/projects/project_id/uploads/upload_id", requestUrl.Path)
 		assert.Equal(t, "GET", httpRes.Request.Method)
-	})
-
-	t.Run("Test UploadsApiService UploadsList", func(t *testing.T) {
-
-		// t.Skip("skip test") // remove to run test
-
-		// var projectId string
-
-		// resp, httpRes, err := apiClient.UploadsApi.UploadsList(context.Background(), projectId).Execute()
-
-		// require.Nil(t, err)
-		// require.NotNil(t, resp)
-		// assert.Equal(t, 200, httpRes.StatusCode)
-
 	})
 
 }

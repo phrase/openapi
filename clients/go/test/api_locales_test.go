@@ -24,7 +24,7 @@ import (
 func Test_phrase_LocalesApiService(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Send the mock response
-		response := `{"foo": "bar"}`
+		response := `{"id":"1","name":"English","code":"DE","default":true,"main":true,"rtl":true,"plural_forms":["plural_forms"]}`
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 
@@ -36,49 +36,6 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 	configuration := phrase.NewConfiguration()
 	configuration.BasePath = server.URL
 	apiClient := phrase.NewAPIClient(configuration)
-	
-
-	t.Run("Test LocalesApiService AccountLocales", func(t *testing.T) {
-
-		// t.Skip("skip test") // remove to run test
-
-		// var id string
-
-		// resp, httpRes, err := apiClient.LocalesApi.AccountLocales(context.Background(), id).Execute()
-
-		// require.Nil(t, err)
-		// require.NotNil(t, resp)
-		// assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test LocalesApiService LocaleCreate", func(t *testing.T) {
-
-		// t.Skip("skip test") // remove to run test
-
-		// var projectId string
-
-		// resp, httpRes, err := apiClient.LocalesApi.LocaleCreate(context.Background(), projectId).Execute()
-
-		// require.Nil(t, err)
-		// require.NotNil(t, resp)
-		// assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test LocalesApiService LocaleDelete", func(t *testing.T) {
-
-		// t.Skip("skip test") // remove to run test
-
-		// var projectId string
-		// var id string
-
-		// httpRes, err := apiClient.LocalesApi.LocaleDelete(context.Background(), projectId, id).Execute()
-
-		// require.Nil(t, err)
-		// assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
 
 	t.Run("Test LocalesApiService LocaleDownload", func(t *testing.T) {
 		formatOptions := optional.NewInterface(map[string]interface{}{
@@ -108,6 +65,9 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		assert.Equal(t, "1", resp.Id)
+		assert.Equal(t, "DE", resp.Code)
+		assert.Equal(t, "English", resp.Name)
 		assert.Equal(t, "/projects/project_id_example/locales/locale_id", requestUrl.Path)
 		assert.Equal(t, "GET", httpRes.Request.Method)
 	})
@@ -122,6 +82,9 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		assert.Equal(t, "1", resp.Id)
+		assert.Equal(t, "DE", resp.Code)
+		assert.Equal(t, "English", resp.Name)
 		assert.Equal(t, "/projects/project_id_example/locales/locale_id", requestUrl.Path)
 		assert.Equal(t, "PATCH", httpRes.Request.Method)
 	})
@@ -129,10 +92,10 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 	t.Run("Test LocalesApiService LocalesList", func(t *testing.T) {
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			// Send the mock response
-			response := `[{"foo": "bar"}]`
+			response := `[{"id":"1","name":"English","code":"DE","default":true,"main":true,"rtl":true,"plural_forms":["plural_forms"]}]`
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusOK)
-	
+
 			w.Write([]byte(response))
 		}))
 	
@@ -145,11 +108,15 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 		localVarOptionals := phrase.LocalesListOpts{}
 		resp, httpRes, err := apiClient.LocalesApi.LocalesList(context.Background(), "project_id_example", &localVarOptionals)
 		requestUrl := httpRes.Request.URL
-		
+		locale := resp[0]
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		assert.Equal(t, 1, len(resp))
+		assert.Equal(t, "1", locale.Id)
+		assert.Equal(t, "DE", locale.Code)
+		assert.Equal(t, "English", locale.Name)
 		assert.Equal(t, "/projects/project_id_example/locales", requestUrl.Path)
 		assert.Equal(t, "GET", httpRes.Request.Method)
 	})
