@@ -33,6 +33,7 @@ ruby:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g ruby -o clients/ruby -c ./openapi-generator/ruby_lang.yaml
 go:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g go -o clients/go -c ./openapi-generator/go_lang.yaml
+	cd clients/go && go mod tidy
 typescript:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g typescript-fetch -o clients/typescript -c ./openapi-generator/typescript_lang.yaml
 python:
