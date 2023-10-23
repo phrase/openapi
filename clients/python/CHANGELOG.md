@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.1](https://github.com/phrase/openapi/compare/python-v1.14.0...python-v1.14.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* **python:** pass format_options correctly ([#436](https://github.com/phrase/openapi/issues/436)) ([3621400](https://github.com/phrase/openapi/commit/362140060ab90463185b3b1f729b79c08226bf55))
+
 ## [1.14.0](https://github.com/phrase/openapi/compare/python-v1.13.0...python-v1.14.0) (2023-10-13)
 
 
