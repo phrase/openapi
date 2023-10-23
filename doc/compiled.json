@@ -10967,6 +10967,15 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "description": "Order direction. Can be one of: asc, desc.",
+            "name": "order",
+            "in": "query",
+            "example": "desc",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -11010,11 +11019,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments?branch=my-feature-branch&filters=unread&query=something&locale_ids=someId\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X GET \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments?branch=my-feature-branch&filters=unread&query=something&locale_ids=someId&order=desc\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X GET \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase comments list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--branch \"my-feature-branch\" \\\n--filters unread \\\n--query \"Some comment content\" \\\n--locale_ids someId \\\n--access_token <token>"
+            "source": "phrase comments list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--branch \"my-feature-branch\" \\\n--filters unread \\\n--order desc \\\n--query \"Some comment content\" \\\n--locale_ids someId \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -11056,6 +11065,11 @@
                       "read",
                       "unread"
                     ]
+                  },
+                  "order": {
+                    "description": "Specify ordering of comments",
+                    "type": "string",
+                    "example": "desc"
                   }
                 }
               }
@@ -11950,6 +11964,15 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "description": "Order direction. Can be one of: asc, desc.",
+            "name": "order",
+            "in": "query",
+            "example": "desc",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -11996,11 +12019,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies?branch=my-feature-branch&filters=unread&query=something\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X GET \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies?branch=my-feature-branch&filters=unread&query=something&order=desc\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X GET \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase replies list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--branch \"my-feature-branch\" \\\n--filters unread \\\n--query \"Some comment content\" \\\n--access_token <token>"
+            "source": "phrase replies list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--branch \"my-feature-branch\" \\\n--filters unread \\\n--order desc \\\n--query \"Some comment content\" \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -12031,6 +12054,11 @@
                       "read",
                       "unread"
                     ]
+                  },
+                  "order": {
+                    "description": "Specify ordering of comments",
+                    "type": "string",
+                    "example": "desc"
                   }
                 }
               }
@@ -24164,6 +24192,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "description": "Order direction. Can be one of: asc, desc.",
+            "name": "order",
+            "in": "query",
+            "example": "desc",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -24207,11 +24244,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments?branch=my-feature-branch\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments?branch=my-feature-branch&order=desc\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_comments list \\\n--project_id <project_id> \\\n--job_id <key_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase job_comments list \\\n--project_id <project_id> \\\n--job_id <key_id> \\\n--branch my-feature-branch \\\n--order desc \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"

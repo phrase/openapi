@@ -31,6 +31,12 @@ parameters:
     example: [read, unread]
     items:
       type: string
+- description: 'Order direction. Can be one of: asc, desc.'
+  name: order
+  in: query
+  example: desc
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -60,7 +66,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies?branch=my-feature-branch&filters=unread&query=something" \
+    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies?branch=my-feature-branch&filters=unread&query=something&order=desc" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X GET \
       -H 'Content-Type: application/json'
@@ -72,6 +78,7 @@ x-code-samples:
     --comment_id <comment_id> \
     --branch "my-feature-branch" \
     --filters unread \
+    --order desc \
     --query "Some comment content" \
     --access_token <token>
 requestBody:
@@ -96,4 +103,8 @@ requestBody:
             items:
               type: string
             example: [read, unread]
+          order:
+            description: Specify ordering of comments
+            type: string
+            example: desc
 x-cli-version: '2.10'
