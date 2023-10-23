@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.0](https://github.com/phrase/openapi/compare/python-v1.14.1...python-v1.15.0) (2023-10-23)
+
+
+### Features
+
+* **API:** Add order param to comment list endpoints ([#441](https://github.com/phrase/openapi/issues/441)) ([441c9c4](https://github.com/phrase/openapi/commit/441c9c46169f8c5ac4e71ade09a95dab136314ef))
+
 ## [1.14.1](https://github.com/phrase/openapi/compare/python-v1.14.0...python-v1.14.1) (2023-10-23)
 
 
