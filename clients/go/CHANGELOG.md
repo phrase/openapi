@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.16.0](https://github.com/phrase/openapi/compare/go-v2.15.0...go-v2.16.0) (2023-10-23)
+
+
+### Features
+
+* **API:** Add order param to comment list endpoints ([#441](https://github.com/phrase/openapi/issues/441)) ([441c9c4](https://github.com/phrase/openapi/commit/441c9c46169f8c5ac4e71ade09a95dab136314ef))
+
 ## [2.15.0](https://github.com/phrase/openapi/compare/go-v2.14.0...go-v2.15.0) (2023-10-13)
 
 

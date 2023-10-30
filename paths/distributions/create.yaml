@@ -65,6 +65,7 @@ requestBody:
               * `ios`
               * `flutter`
               * `i18next`
+              * `rails`
             type: array
             items:
               type: string

@@ -161,8 +161,8 @@ class ApiClient(object):
         # query parameters
         if query_params:
             query_params = self.sanitize_for_serialization(query_params)
-            query_params = self.parameters_to_tuples(query_params,
-                                                     collection_formats)
+            query_params = self.parameters_to_tuples(query_params, collection_formats)
+            query_params = self.flatten_query_params(query_params)
 
         # post parameters
         if post_params or files:
@@ -472,6 +472,27 @@ class ApiClient(object):
             else:
                 new_params.append((k, v))
         return new_params
+
+    def flatten_query_params(self, params):
+        result_params = {}
+        for key, value in params:
+            if isinstance(value, dict):
+                self.flatten_dict(result_params, value, key)
+            else:
+                result_params[key] = value
+
+        return [(key, value) for (key,value) in result_params.items()]
+
+    def flatten_dict(self, params, param, namespace):
+        for key, value in param.items():
+            new_key = "{0}[{1}]".format(namespace, key)
+            if isinstance(value, dict):
+                params = self.flatten_dict(params, value, new_key)
+            else:
+                params[new_key] = value
+
+        return params
+
 
     def files_parameters(self, files=None):
         """Builds form parameters.

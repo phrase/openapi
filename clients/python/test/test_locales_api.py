@@ -54,12 +54,31 @@ class TestLocalesApi(unittest.TestCase):
         """
         pass
 
-    def test_locale_download(self):
+    @patch('urllib3.PoolManager.urlopen')
+    def test_locale_download(self, mock_get):
         """Test case for locale_download
 
         Download a locale  # noqa: E501
         """
-        pass
+
+        body = bytes('{"key":"value"}', 'utf-8')
+        mock_get.return_value = Mock(ok=True)
+        mock_get.return_value.data = body
+        mock_get.return_value.status = 200
+        mock_get.return_value.getencoding.return_value = 'utf-8'
+        mock_get.return_value.getheader.side_effect = { 'Content-Disposition': None }.get
+
+        with phrase_api.ApiClient(self.configuration) as api_client:
+            api_instance = phrase_api.api.locales_api.LocalesApi(api_client)
+            api_response = api_instance.locale_download("project_id_example", "en", file_format="simple_json", format_options={"enable_pluralization": True, "custom_metadata_columns": { "E": "text" }})
+
+            self.assertEqual("https://api.phrase.com/v2/projects/project_id_example/locales/en/download?file_format=simple_json&format_options%5Benable_pluralization%5D=True&format_options%5Bcustom_metadata_columns%5D%5BE%5D=text", mock_get.call_args_list[0].args[1])
+
+            self.assertIsNotNone(api_response)
+            file = open(api_response, "r")
+            content = file.read()
+            file.close()
+            self.assertEqual(body.decode(), content)
 
     def test_locale_show(self):
         """Test case for locale_show

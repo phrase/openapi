@@ -14,6 +14,12 @@ parameters:
   in: query
   schema:
     type: string
+- description: 'Order direction. Can be one of: asc, desc.'
+  name: order
+  in: query
+  example: desc
+  schema:
+    type: string
 responses:
   '200':
     description: OK
@@ -41,7 +47,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments?branch=my-feature-branch" \
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/comments?branch=my-feature-branch&order=desc" \
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
@@ -49,5 +55,6 @@ x-code-samples:
     --project_id <project_id> \
     --job_id <key_id> \
     --branch my-feature-branch \
+    --order desc \
     --access_token <token>
 x-cli-version: '2.5'
