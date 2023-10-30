@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.0](https://github.com/phrase/openapi/compare/java-v1.15.0...java-v1.16.0) (2023-10-30)
+
+
+### Features
+
+* Update openapi-generator to v7 ([#418](https://github.com/phrase/openapi/issues/418)) ([524626f](https://github.com/phrase/openapi/commit/524626f5e914bfef6025d0e1c2cbc7a728d08f56))
+
 ## [1.15.0](https://github.com/phrase/openapi/compare/java-v1.14.0...java-v1.15.0) (2023-10-23)
 
 
