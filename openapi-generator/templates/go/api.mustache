@@ -10,6 +10,7 @@ import (
 	_neturl "net/url"
 {{#imports}}	"{{import}}"
 {{/imports}}
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -28,7 +29,7 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts struct {
 {{^required}}
 {{#isPrimitiveType}}
 {{^isBinary}}
-	{{vendorExtensions.x-export-param-name}} optional.{{vendorExtensions.x-optional-data-type}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+	{{vendorExtensions.x-export-param-name}} optional.{{#lambda.titlecase}}{{dataType}}{{/lambda.titlecase}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/isBinary}}
 {{#isBinary}}
 	{{vendorExtensions.x-export-param-name}} optional.Interface `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
@@ -57,7 +58,7 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts struct {
  * @param optional nil or *{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts - Optional Parameters:
 {{#allParams}}
 {{^required}}
- * @param "{{vendorExtensions.x-export-param-name}}" ({{#isPrimitiveType}}{{^isBinary}}optional.{{vendorExtensions.x-optional-data-type}}{{/isBinary}}{{#isBinary}}optional.Interface of {{dataType}}{{/isBinary}}{{/isPrimitiveType}}{{^isPrimitiveType}}optional.Interface of {{dataType}}{{/isPrimitiveType}}) - {{#description}} {{{.}}}{{/description}}
+ * @param "{{vendorExtensions.x-export-param-name}}" ({{#isPrimitiveType}}{{^isBinary}}optional.{{#lambda.titlecase}}{{dataType}}{{/lambda.titlecase}}{{/isBinary}}{{#isBinary}}optional.Interface of {{dataType}}{{/isBinary}}{{/isPrimitiveType}}{{^isPrimitiveType}}optional.Interface of {{dataType}}{{/isPrimitiveType}}) - {{#description}} {{{.}}}{{/description}}
 {{/required}}
 {{/allParams}}
 {{/hasOptionalParams}}
@@ -65,7 +66,7 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts struct {
 @return {{{returnType}}}
 {{/returnType}}
 */
-func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}} {{{dataType}}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}localVarOptionals *{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts{{/hasOptionalParams}}) ({{#returnType}}{{{returnType}}}, {{/returnType}}{{^returnType}}[]byte, {{/returnType}}*APIResponse, error) {
+func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}} {{{dataType}}}{{^-last}}, {{/-last}}{{/required}}{{/allParams}}{{#hasOptionalParams}}localVarOptionals *{{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts{{/hasOptionalParams}}) ({{#returnType}}{{{returnType}}}, {{/returnType}}{{^returnType}}[]byte, {{/returnType}}*APIResponse, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.Method{{httpMethod}}
 		localVarPostBody     interface{}
@@ -337,9 +338,9 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams
 				return {{#returnType}}localVarReturnValue, {{/returnType}}{{^returnType}}nil, {{/returnType}}localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			{{#hasMore}}
+			{{^-last}}
 			return {{#returnType}}localVarReturnValue, {{/returnType}}{{^returnType}}nil, {{/returnType}}localVarHTTPResponse, newErr
-			{{/hasMore}}
+			{{/-last}}
 		{{^wildcard}}
 		}
 		{{/wildcard}}

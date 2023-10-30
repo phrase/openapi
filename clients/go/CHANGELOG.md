@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.17.0](https://github.com/phrase/openapi/compare/go-v2.16.0...go-v2.17.0) (2023-10-30)
+
+
+### Features
+
+* Update openapi-generator to v7 ([#418](https://github.com/phrase/openapi/issues/418)) ([524626f](https://github.com/phrase/openapi/commit/524626f5e914bfef6025d0e1c2cbc7a728d08f56))
+
+## [2.16.0](https://github.com/phrase/openapi/compare/go-v2.15.0...go-v2.16.0) (2023-10-23)
+
+
+### Features
+
+* **API:** Add order param to comment list endpoints ([#441](https://github.com/phrase/openapi/issues/441)) ([441c9c4](https://github.com/phrase/openapi/commit/441c9c46169f8c5ac4e71ade09a95dab136314ef))
+
 ## [2.15.0](https://github.com/phrase/openapi/compare/go-v2.14.0...go-v2.15.0) (2023-10-13)
 
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.16.0](https://github.com/phrase/openapi/compare/python-v1.15.0...python-v1.16.0) (2023-10-30)
+
+
+### Features
+
+* Update openapi-generator to v7 ([#418](https://github.com/phrase/openapi/issues/418)) ([524626f](https://github.com/phrase/openapi/commit/524626f5e914bfef6025d0e1c2cbc7a728d08f56))
+
+## [1.15.0](https://github.com/phrase/openapi/compare/python-v1.14.1...python-v1.15.0) (2023-10-23)
+
+
+### Features
+
+* **API:** Add order param to comment list endpoints ([#441](https://github.com/phrase/openapi/issues/441)) ([441c9c4](https://github.com/phrase/openapi/commit/441c9c46169f8c5ac4e71ade09a95dab136314ef))
+
+## [1.14.1](https://github.com/phrase/openapi/compare/python-v1.14.0...python-v1.14.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* **python:** pass format_options correctly ([#436](https://github.com/phrase/openapi/issues/436)) ([3621400](https://github.com/phrase/openapi/commit/362140060ab90463185b3b1f729b79c08226bf55))
+
 ## [1.14.0](https://github.com/phrase/openapi/compare/python-v1.13.0...python-v1.14.0) (2023-10-13)
 
 

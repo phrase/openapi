@@ -18,14 +18,29 @@ with {{{packageName}}}.ApiClient(configuration) as api_client:
 
     try:
     {{#summary}}    # {{{.}}}
-    {{/summary}}    {{#returnType}}api_response = {{/returnType}}api_instance.{{{operationId}}}({{#allParams}}{{#required}}{{paramName}}{{/required}}{{^required}}{{paramName}}={{paramName}}{{/required}}{{#hasMore}}, {{/hasMore}}{{/allParams}}){{#returnType}}
+    {{/summary}}    {{#returnType}}api_response = {{/returnType}}api_instance.{{{operationId}}}({{#allParams}}{{#required}}{{paramName}}{{/required}}{{^required}}{{paramName}}={{paramName}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}){{#returnType}}
         pprint(api_response){{/returnType}}
     except ApiException as e:
         print("Exception when calling {{classname}}->{{operationId}}: %s\n" % e)
     {{/-first}}{{/operation}}{{/operations}}{{/-first}}{{/apis}}{{/apiInfo}}
 ```
 
-{{>../shared/datacenters}}
+## Datacenters
+
+The API is only accessible via HTTPS and the current version is <code>v2</code>, which results in a base URL like: <code>{{{basePath}}}</code> depending on the datacenter.
+
+### EU Datacenter
+```
+{{{basePath}}}
+```
+
+This is the default datacenter.
+
+### US Datacenter
+```
+https://api.us.app.phrase.com/v2/
+```
+
 ### Specifying US Datacenter
 You can use the US datacenter by setting the following:
 ```
@@ -111,8 +126,8 @@ Class | Method | HTTP request | Description
 
 ## Author
 
-{{#apiInfo}}{{#apis}}{{^hasMore}}{{infoEmail}}
-{{/hasMore}}{{/apis}}{{/apiInfo}}
+{{#apiInfo}}{{#apis}}{{#-last}}{{infoEmail}}
+{{/-last}}{{/apis}}{{/apiInfo}}
 
 ## Get help / support
 
