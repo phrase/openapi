@@ -86,7 +86,7 @@ func init{{{nickname}}}() {
 					{{else~}}
 						{{#isPrimitiveType~}}
 							if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
-								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.New{{{vendorExtensions.x-optional-data-type}}}(params.Get{{{vendorExtensions.x-optional-data-type}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")))
+								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.New{{capitalizeFirst dataType}}(params.Get{{{capitalizeFirst dataType}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}")))
 							}
 						{{/isPrimitiveType~}}
 						{{#isModel~}}
@@ -111,7 +111,7 @@ func init{{{nickname}}}() {
 				{{/required~}}
 			{{/allParams~}}
 
-			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
+			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#unless @last}}, {{/unless}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
 
 			if err != nil {
 				switch castedError := err.(type) {
