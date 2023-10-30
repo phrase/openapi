@@ -271,7 +271,7 @@ class ApiClient(object):
         """
         # handle file downloading
         # save response body into a tmp file and return the instance
-        if response_type == "file":
+        if response_type == "bytearray":
             return self.__deserialize_file(response)
 
         # fetch data from response object
