@@ -137,6 +137,15 @@ public class LocalesApiTest {
 
         mockBackend.enqueue(mockResponse);
 
+        
+        Map<String, String> nestedFormatOptionsMap = new HashMap<>();
+        nestedFormatOptionsMap.put("nested_option", "sub_option");
+        
+        Map<String, Object> formatOptionsMap = new HashMap<>();
+        formatOptionsMap.put("omit_separator_space", "true");
+        formatOptionsMap.put("fallback_language", "en");
+        formatOptionsMap.put("more_options", nestedFormatOptionsMap);
+
         String projectId = "MY_PROJECT_ID";
         String id = "MY_ID";
         String xPhraseAppOTP = null;
@@ -151,7 +160,7 @@ public class LocalesApiTest {
         Boolean includeTranslatedKeys = null;
         Boolean keepNotranslateTags = null;
         Boolean convertEmoji = null;
-        Object formatOptions = null;
+        Object formatOptions = formatOptionsMap;
         String encoding = null;
         Boolean skipUnverifiedTranslations = null;
         Boolean includeUnverifiedTranslations = null;
@@ -164,7 +173,8 @@ public class LocalesApiTest {
         Assert.assertEquals("Correct file contents", fileContents, body);
 
         RecordedRequest recordedRequest = mockBackend.takeRequest();
-        Assert.assertEquals("Request path", "//projects/MY_PROJECT_ID/locales/MY_ID/download", recordedRequest.getPath());
+        // for some reason with deep nested query params, ordering of query params change
+        Assert.assertEquals("Request path", "//projects/MY_PROJECT_ID/locales/MY_ID/download?format_options%5Bomit_separator_space%5D=true&format_options%5Bmore_options%5D%5Bnested_option%5D=sub_option&format_options%5Bfallback_language%5D=en", recordedRequest.getPath());
     }
 
     /**
