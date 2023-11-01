@@ -100,7 +100,12 @@ public class {{classname}} {
         {{javaUtilPrefix}}List<Pair> localVarCollectionQueryParams = new {{javaUtilPrefix}}ArrayList<Pair>();
         {{#queryParams}}
         if ({{paramName}} != null) {
+            {{#isDeepObject}}
+            localVarQueryParams.addAll(localVarApiClient.mappedParameterToPairs("{{baseName}}", {{paramName}}));
+            {{/isDeepObject}}
+            {{^isDeepObject}}
             {{#collectionFormat}}localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("{{{collectionFormat}}}", {{/collectionFormat}}{{^collectionFormat}}localVarQueryParams.addAll(localVarApiClient.parameterToPair({{/collectionFormat}}"{{baseName}}", {{paramName}}));
+            {{/isDeepObject}}
         }
 
         {{/queryParams}}
