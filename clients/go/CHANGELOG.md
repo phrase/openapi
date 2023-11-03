@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.18.0](https://github.com/phrase/openapi/compare/go-v2.17.0...go-v2.18.0) (2023-11-03)
+
+
+### Features
+
+* [TSI-2083] enable format_options argument for java-client   ([#426](https://github.com/phrase/openapi/issues/426)) ([faa8cb3](https://github.com/phrase/openapi/commit/faa8cb353ba9f1030b9f7cfd46b894b4d6d26e70))
+
 ## [2.17.0](https://github.com/phrase/openapi/compare/go-v2.16.0...go-v2.17.0) (2023-10-30)
 
 
