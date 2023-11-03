@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.0](https://github.com/phrase/openapi/compare/java-v1.16.0...java-v1.17.0) (2023-11-03)
+
+
+### Features
+
+* [TSI-2083] enable format_options argument for java-client   ([#426](https://github.com/phrase/openapi/issues/426)) ([faa8cb3](https://github.com/phrase/openapi/commit/faa8cb353ba9f1030b9f7cfd46b894b4d6d26e70))
+
 ## [1.16.0](https://github.com/phrase/openapi/compare/java-v1.15.0...java-v1.16.0) (2023-10-30)
 
 
