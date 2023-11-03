@@ -41,7 +41,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase gitlab_syncs import \
+    phrase git_lab_sync import \
     --gitlab_sync_id <gitlab_sync_id> \
     --data '{"account_id":"abcd1234"}' \
     --access_token <token>
