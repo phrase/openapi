@@ -13396,7 +13396,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase gitlab_syncs list \\\n--account_id abcd1234 \\\n--access_token <token>"
+            "source": "phrase git_lab_sync list \\\n--account_id abcd1234 \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"
@@ -13466,7 +13466,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase gitlab_syncs show \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
+            "source": "phrase git_lab_sync show \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"
@@ -13561,7 +13561,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase gitlab_syncs update \\\n--id <id> \\\n--data '{\"account_id\":\"abcd1234\", \"phrase_project_code\":\"3456abcd\", \"gitlab_project_id\":\"12345\", \"gitlab_branch_name\":\"feature-development\"}' \\\n--access_token <token>"
+            "source": "phrase git_lab_sync update \\\n--id <id> \\\n--data '{\"account_id\":\"abcd1234\", \"phrase_project_code\":\"3456abcd\", \"gitlab_project_id\":\"12345\", \"gitlab_branch_name\":\"feature-development\"}' \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"
@@ -13611,7 +13611,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase gitlab_syncs delete \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
+            "source": "phrase git_lab_sync delete \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.5"
@@ -13678,7 +13678,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase gitlab_syncs import \\\n--gitlab_sync_id <gitlab_sync_id> \\\n--data '{\"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase git_lab_sync import \\\n--gitlab_sync_id <gitlab_sync_id> \\\n--data '{\"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -13757,7 +13757,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase gitlab_syncs export \\\n--gitlab_sync_id <gitlab_sync_id> \\\n--data '{\"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
+            "source": "phrase git_lab_sync export \\\n--gitlab_sync_id <gitlab_sync_id> \\\n--data '{\"account_id\":\"abcd1234\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
