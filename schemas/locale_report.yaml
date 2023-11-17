@@ -1,0 +1,33 @@
+---
+locale_report:
+  type: object
+  title: locale report
+  properties:
+    keys_count:
+      type: integer
+    translated_translations_percentage:
+      type: integer
+    unverified_translations_percentage:
+      type: integer
+    reviewed_translations_percentage:
+      type: integer
+    untranslated_keys_percentage:
+      type: integer
+    completed_translations_count:
+      type: integer
+    untranslated_keys_count:
+      type: integer
+    unverified_translations_count:
+      type: integer
+    reviewed_translations_count:
+      type: integer
+    source_word_count:
+      type: integer
+    word_count:
+      type: integer
+    word_count_unverified:
+      type: integer
+    word_count_missing:
+      type: integer
+    locale:
+      "$ref": "./locale_preview.yaml#/locale_preview"

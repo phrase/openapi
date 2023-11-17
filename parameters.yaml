@@ -136,6 +136,13 @@ term_id:
   required: true
   schema:
     type: string
+locale_code:
+  in: query
+  name: locale_code
+  description: Locale Code
+  required: false
+  schema:
+    type: string
 locale_id:
   in: path
   name: locale_id
@@ -169,6 +176,13 @@ name:
   name: name
   description: name
   required: true
+  schema:
+    type: string
+tag:
+  in: query
+  name: tag
+  description: tag
+  required: false
   schema:
     type: string
 page:

@@ -1,0 +1,54 @@
+---
+summary: List Locale Reports
+description: List all locale reports for the given project
+operationId: reports/locales/list
+tags:
+  - Reports
+parameters:
+  - "$ref": "../../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../../parameters.yaml#/project_id"
+  - "$ref": "../../../parameters.yaml#/page"
+  - "$ref": "../../../parameters.yaml#/per_page"
+  - "$ref": "../../../parameters.yaml#/locale_code"
+  - "$ref": "../../../parameters.yaml#/tag"
+  - description: specify the branch to use
+    example: my-feature-branch
+    name: branch
+    in: query
+    schema:
+      type: string
+responses:
+  "200":
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../../schemas/locale_report.yaml#/locale_report"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../../headers.yaml#/Link"
+  "400":
+    "$ref": "../../../responses.yaml#/400"
+  "404":
+    "$ref": "../../../responses.yaml#/404"
+  "429":
+    "$ref": "../../../responses.yaml#/429"
+x-code-samples:
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:project_id/reports/locales?locale_code[]=de&locale_code[]=en&branch=my-feature-branch" \
+        -X GET \
+        -u USERNAME_OR_ACCESS_TOKEN
+  - lang: CLI v2
+    source: |-
+      phrase reports locales list \
+      --project_id <project_id> \
+      --branch my-feature-branch \
+      --access_token <token>
+x-cli-version: "2.13"
