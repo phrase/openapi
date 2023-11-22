@@ -136,9 +136,9 @@ term_id:
   required: true
   schema:
     type: string
-locale_code:
+locale_codes:
   in: query
-  name: locale_code
+  name: locale_codes
   description: Locale Code
   required: false
   schema:

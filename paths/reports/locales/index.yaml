@@ -9,7 +9,7 @@ parameters:
   - "$ref": "../../../parameters.yaml#/project_id"
   - "$ref": "../../../parameters.yaml#/page"
   - "$ref": "../../../parameters.yaml#/per_page"
-  - "$ref": "../../../parameters.yaml#/locale_code"
+  - "$ref": "../../../parameters.yaml#/locale_codes"
   - "$ref": "../../../parameters.yaml#/tag"
   - description: specify the branch to use
     example: my-feature-branch
@@ -23,7 +23,9 @@ responses:
     content:
       application/json:
         schema:
-          "$ref": "../../../schemas/locale_report.yaml#/locale_report"
+          type: array
+          items:
+            "$ref": "../../../schemas/locale_report.yaml#/locale_report"
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../../headers.yaml#/X-Rate-Limit-Limit"
@@ -42,7 +44,7 @@ responses:
 x-code-samples:
   - lang: Curl
     source: |-
-      curl "https://api.phrase.com/v2/projects/:project_id/reports/locales?locale_code[]=de&locale_code[]=en&branch=my-feature-branch" \
+      curl "https://api.phrase.com/v2/projects/:project_id/reports/locales?locale_codes[]=de&locale_codes[]=en&branch=my-feature-branch" \
         -X GET \
         -u USERNAME_OR_ACCESS_TOKEN
   - lang: CLI v2
@@ -50,5 +52,6 @@ x-code-samples:
       phrase reports locales list \
       --project_id <project_id> \
       --branch my-feature-branch \
+      --locale_codes de \
       --access_token <token>
 x-cli-version: "2.13"

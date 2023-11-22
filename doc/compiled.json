@@ -4279,9 +4279,9 @@
           "type": "string"
         }
       },
-      "locale_code": {
+      "locale_codes": {
         "in": "query",
-        "name": "locale_code",
+        "name": "locale_codes",
         "description": "Locale Code",
         "required": false,
         "schema": {
@@ -4950,7 +4950,7 @@
             "$ref": "#/components/parameters/per_page"
           },
           {
-            "$ref": "#/components/parameters/locale_code"
+            "$ref": "#/components/parameters/locale_codes"
           },
           {
             "$ref": "#/components/parameters/tag"
@@ -4971,7 +4971,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/locale_report"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/locale_report"
+                  }
                 }
               }
             },
@@ -5003,11 +5006,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/reports/locales?locale_code[]=de&locale_code[]=en&branch=my-feature-branch\" \\\n  -X GET \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/reports/locales?locale_codes[]=de&locale_codes[]=en&branch=my-feature-branch\" \\\n  -X GET \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase reports locales list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase reports locales list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--locale_codes de \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.13"
