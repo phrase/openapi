@@ -11,10 +11,10 @@
 "/projects/{project_id}/documents/{id}":
   delete:
     "$ref": "./paths/documents/destroy.yaml"
-"/projects/{project_id}/reports":
+"/projects/{project_id}/report":
   get:
-    "$ref": "./paths/reports/index.yaml"
-"/projects/{project_id}/reports/locales":
+    "$ref": "./paths/reports/show.yaml"
+"/projects/{project_id}/report/locales":
   get:
     "$ref": "./paths/reports/locales/index.yaml"
 "/projects/{project_id}/figma_attachments":

@@ -4855,11 +4855,11 @@
         "x-cli-version": "2.5"
       }
     },
-    "/projects/{project_id}/reports": {
+    "/projects/{project_id}/report": {
       "get": {
         "summary": "Get Project Report",
         "description": "Get report of a single project.",
-        "operationId": "reports/show",
+        "operationId": "report/show",
         "tags": [
           "Reports"
         ],
@@ -4918,21 +4918,21 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/reports?branch=my-feature-branch\" \\\n  -X GET \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/report?branch=my-feature-branch\" \\\n  -X GET \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase reports show \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+            "source": "phrase report show \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.13"
       }
     },
-    "/projects/{project_id}/reports/locales": {
+    "/projects/{project_id}/report/locales": {
       "get": {
         "summary": "List Locale Reports",
         "description": "List all locale reports for the given project",
-        "operationId": "reports/locales/list",
+        "operationId": "report/locales/list",
         "tags": [
           "Reports"
         ],
@@ -5006,11 +5006,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/reports/locales?locale_codes[]=de&locale_codes[]=en&branch=my-feature-branch\" \\\n  -X GET \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/report/locales?locale_codes[]=de&locale_codes[]=en&branch=my-feature-branch\" \\\n  -X GET \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase reports locales list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--locale_codes de \\\n--access_token <token>"
+            "source": "phrase report locales list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--locale_codes de \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.13"

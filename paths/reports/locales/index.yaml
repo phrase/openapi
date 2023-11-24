@@ -1,7 +1,7 @@
 ---
 summary: List Locale Reports
 description: List all locale reports for the given project
-operationId: reports/locales/list
+operationId: report/locales/list
 tags:
   - Reports
 parameters:
@@ -44,12 +44,12 @@ responses:
 x-code-samples:
   - lang: Curl
     source: |-
-      curl "https://api.phrase.com/v2/projects/:project_id/reports/locales?locale_codes[]=de&locale_codes[]=en&branch=my-feature-branch" \
+      curl "https://api.phrase.com/v2/projects/:project_id/report/locales?locale_codes[]=de&locale_codes[]=en&branch=my-feature-branch" \
         -X GET \
         -u USERNAME_OR_ACCESS_TOKEN
   - lang: CLI v2
     source: |-
-      phrase reports locales list \
+      phrase report locales list \
       --project_id <project_id> \
       --branch my-feature-branch \
       --locale_codes de \
