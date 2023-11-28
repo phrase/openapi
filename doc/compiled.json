@@ -67,6 +67,9 @@
       "name": "Documents"
     },
     {
+      "name": "Figma Attachments"
+    },
+    {
       "name": "Formats"
     },
     {
@@ -140,6 +143,9 @@
     },
     {
       "name": "Releases"
+    },
+    {
+      "name": "Reports"
     },
     {
       "name": "Search"
@@ -263,6 +269,13 @@
       "name": "Misc",
       "tags": [
         "Formats"
+      ]
+    },
+    {
+      "name": "Figma Attachments",
+      "tags": [
+        "Figma attachments",
+        "Key's Figma attachments"
       ]
     }
   ],
@@ -1435,6 +1448,36 @@
           }
         ]
       },
+      "project_report": {
+        "type": "object",
+        "title": "project report",
+        "properties": {
+          "locales_count": {
+            "type": "integer"
+          },
+          "keys_count": {
+            "type": "integer"
+          },
+          "translations_count": {
+            "type": "integer"
+          },
+          "untranslated_keys_count": {
+            "type": "integer"
+          },
+          "unverified_translations_count": {
+            "type": "integer"
+          },
+          "reviewed_translations_count": {
+            "type": "integer"
+          },
+          "managed_words_count": {
+            "type": "integer"
+          },
+          "project": {
+            "$ref": "#/components/schemas/project_short"
+          }
+        }
+      },
       "locale_preview": {
         "type": "object",
         "title": "locale_preview",
@@ -1551,6 +1594,54 @@
           }
         },
         "example": null
+      },
+      "locale_report": {
+        "type": "object",
+        "title": "locale report",
+        "properties": {
+          "keys_count": {
+            "type": "integer"
+          },
+          "translated_translations_percentage": {
+            "type": "integer"
+          },
+          "unverified_translations_percentage": {
+            "type": "integer"
+          },
+          "reviewed_translations_percentage": {
+            "type": "integer"
+          },
+          "untranslated_keys_percentage": {
+            "type": "integer"
+          },
+          "completed_translations_count": {
+            "type": "integer"
+          },
+          "untranslated_keys_count": {
+            "type": "integer"
+          },
+          "unverified_translations_count": {
+            "type": "integer"
+          },
+          "reviewed_translations_count": {
+            "type": "integer"
+          },
+          "source_word_count": {
+            "type": "integer"
+          },
+          "word_count": {
+            "type": "integer"
+          },
+          "word_count_unverified": {
+            "type": "integer"
+          },
+          "word_count_missing": {
+            "type": "integer"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/locale_preview"
+          }
+        }
       },
       "locale_details": {
         "allOf": [
@@ -4188,6 +4279,15 @@
           "type": "string"
         }
       },
+      "locale_codes": {
+        "in": "query",
+        "name": "locale_codes",
+        "description": "Locale Code",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
       "locale_id": {
         "in": "path",
         "name": "locale_id",
@@ -4229,6 +4329,15 @@
         "name": "name",
         "description": "name",
         "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "tag": {
+        "in": "query",
+        "name": "tag",
+        "description": "tag",
+        "required": false,
         "schema": {
           "type": "string"
         }
@@ -4744,6 +4853,167 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/projects/{project_id}/report": {
+      "get": {
+        "summary": "Get Project Report",
+        "description": "Get report of a single project.",
+        "operationId": "report/show",
+        "tags": [
+          "Reports"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/project_report"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/report?branch=my-feature-branch\" \\\n  -X GET \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase report show \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.13"
+      }
+    },
+    "/projects/{project_id}/report/locales": {
+      "get": {
+        "summary": "List Locale Reports",
+        "description": "List all locale reports for the given project",
+        "operationId": "report/locales/list",
+        "tags": [
+          "Reports"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "$ref": "#/components/parameters/locale_codes"
+          },
+          {
+            "$ref": "#/components/parameters/tag"
+          },
+          {
+            "description": "specify the branch to use",
+            "example": "my-feature-branch",
+            "name": "branch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/locale_report"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/report/locales?locale_codes[]=de&locale_codes[]=en&branch=my-feature-branch\" \\\n  -X GET \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase report locales list \\\n--project_id <project_id> \\\n--branch my-feature-branch \\\n--locale_codes de \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.13"
       }
     },
     "/projects/{project_id}/figma_attachments": {

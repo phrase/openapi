@@ -1,0 +1,21 @@
+---
+project_report:
+  type: object
+  title: project report
+  properties:
+    locales_count:
+      type: integer
+    keys_count:
+      type: integer
+    translations_count:
+      type: integer
+    untranslated_keys_count:
+      type: integer
+    unverified_translations_count:
+      type: integer
+    reviewed_translations_count:
+      type: integer
+    managed_words_count:
+      type: integer
+    project:
+      "$ref": "./project_short.yaml#/project_short"

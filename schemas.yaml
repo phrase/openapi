@@ -46,12 +46,16 @@ schemas:
     "$ref": schemas/project_short.yaml#/project_short
   project_locales:
     "$ref": schemas/project_locales.yaml#/project_locales
+  project_report:
+    "$ref": schemas/project_report.yaml#/project_report
   locale_preview:
     "$ref": schemas/locale_preview.yaml#/locale_preview
   locale:
     "$ref": schemas/locale.yaml#/locale
   locale_statistics:
     "$ref": schemas/locale_statistics.yaml#/locale_statistics
+  locale_report:
+    "$ref": schemas/locale_report.yaml#/locale_report
   locale_details:
     "$ref": schemas/locale_details.yaml#/locale_details
   locale_user_preview:

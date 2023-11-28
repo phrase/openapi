@@ -116,6 +116,7 @@ tags:
   - name: Comment Replies
   - name: Distributions
   - name: Documents
+  - name: Figma Attachments
   - name: Formats
   - name: GitHub Sync
   - name: GitLab Sync
@@ -193,6 +194,7 @@ tags:
   - name: Projects
   - name: Quality
   - name: Releases
+  - name: Reports
   - name: Search
   - name: Screenshot Markers
   - name: Screenshots
@@ -311,6 +313,10 @@ x-tagGroups:
   - name: Misc
     tags:
       - Formats
+  - name: Figma Attachments
+    tags:
+      - Figma attachments
+      - Key's Figma attachments
 
 components:
   securitySchemes:
