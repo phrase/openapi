@@ -737,8 +737,10 @@ The following qualifiers are also supported in the search term:<br />
 
 <ul>
 <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-<li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
-<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
+<li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>
+<li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>
+<li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>
 <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
 <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
 <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
@@ -826,8 +828,10 @@ The following qualifiers are also supported in the search term:<br />
 
 <ul>
 <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-<li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
-<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
+<li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>
+<li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>
+<li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>
 <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
 <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
 <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
@@ -909,8 +913,10 @@ The following qualifiers are also supported in the search term:<br />
 
 <ul>
 <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
-<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
+<li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>
+<li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>
+<li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>
 <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
 <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
 <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
@@ -1006,8 +1012,10 @@ The following qualifiers are also supported in the search term:<br />
 
 <ul>
 <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
-<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
+<li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>
+<li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>
+<li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>
 <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
 <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
 <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
@@ -1101,8 +1109,10 @@ The following qualifiers are also supported in the search term:<br />
 
 <ul>
 <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
-<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
+<li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>
+<li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>
+<li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>
 <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
 <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
 <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
@@ -1189,8 +1199,10 @@ The following qualifiers are also supported in the search term:<br />
 
 <ul>
 <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
-<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
+<li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>
+<li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>
+<li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>
 <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
 <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
 <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
@@ -1276,8 +1288,10 @@ The following qualifiers are also supported in the search term:<br />
 
 <ul>
 <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-<li><code>name:key_name</code> for text queries on exact key names - whitespaces need to be prefixed with a backspace ("\")</li>
-<li><code>tags:tag_name</code> to filter for keys with certain tags</li>
+<li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>
+<li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>
+<li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>
+<li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>
 <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
 <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
 <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
