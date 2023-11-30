@@ -47,9 +47,9 @@
     "$ref": "./paths/styleguides/update.yaml"
   delete:
     "$ref": "./paths/styleguides/destroy.yaml"
-"/accounts/{account_id}/custom_metadata/labels":
+"/accounts/{account_id}/custom_metadata/properties":
   get:
-    "$ref": "./paths/custom_metadata_labels/index.yaml"
+    "$ref": "./paths/custom_metadata_properties/index.yaml"
 "/accounts/{account_id}/invitations":
   get:
     "$ref": "./paths/invitations/index.yaml"

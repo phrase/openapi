@@ -20,8 +20,8 @@ schemas:
     "$ref": schemas/comment.yaml#/comment
   comment_reaction:
     "$ref": schemas/comment_reaction.yaml#/comment_reaction
-  custom_metadata_label:
-    "$ref": schemas/custom_metadata_label.yaml#/custom_metadata_label
+  custom_metadata_property:
+    "$ref": schemas/custom_metadata_property.yaml#/custom_metadata_property
   key_preview:
     "$ref": schemas/key_preview.yaml#/key_preview
   affected_count:

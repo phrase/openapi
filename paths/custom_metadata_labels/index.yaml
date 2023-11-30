@@ -1,10 +1,10 @@
 ---
-summary: List labels
+summary: List properties
 description: |
-  List all custom metadata labels for an account.
+  List all custom metadata properties for an account.
 
   This endpoint is only available to accounts with advanced plans or above.
-operationId: custom_metadata_labels/list
+operationId: custom_metadata_properties/list
 tags:
 - Custom Metadata
 parameters:
@@ -18,7 +18,7 @@ parameters:
   in: query
   schema:
     type: string
-- description: ids of projects that the labels belong to
+- description: ids of projects that the properties belong to
   example:
   - abcd1234cdef1234abcd1234cdef1234
   name: project_ids
@@ -47,7 +47,7 @@ responses:
         schema:
           type: array
           items:
-            "$ref": "../../schemas/custom_metadata_label.yaml#/custom_metadata_label"
+            "$ref": "../../schemas/custom_metadata_property.yaml#/custom_metadata_property"
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
@@ -70,7 +70,7 @@ x-code-samples:
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
-    phrase custom_metadata_labels list \
+    phrase custom_metadata_properties list \
     --account_id <account_id> \
     --branch my-feature-branch \
     --page 1 \

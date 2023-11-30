@@ -267,7 +267,7 @@ x-tagGroups:
       - Translations
       - Uploads
       - Tags
-      - Custom Metadata Labels
+      - Custom Metadata Properties
       - Blacklisted Keys
       - Versions / History
   - name: Workflows

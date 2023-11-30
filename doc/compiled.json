@@ -204,7 +204,7 @@
         "Translations",
         "Uploads",
         "Tags",
-        "Custom Metadata Labels",
+        "Custom Metadata Properties",
         "Blacklisted Keys",
         "Versions / History"
       ]
@@ -698,9 +698,9 @@
           }
         }
       },
-      "custom_metadata_label": {
+      "custom_metadata_property": {
         "type": "object",
-        "title": "custom_metadata_label",
+        "title": "custom_metadata_property",
         "properties": {
           "id": {
             "type": "string"
@@ -6055,9 +6055,9 @@
     },
     "/accounts/{account_id}/custom_metadata/labels": {
       "get": {
-        "summary": "List labels",
-        "description": "List all custom metadata labels for an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
-        "operationId": "custom_metadata_labels/list",
+        "summary": "List custom metadata properties",
+        "description": "List all custom metadata properties for an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "operationId": "custom_metadata_properties/list",
         "tags": [
           "Custom Metadata"
         ],
@@ -6084,7 +6084,7 @@
             }
           },
           {
-            "description": "ids of projects that the labels belong to",
+            "description": "ids of projects that the properties belong to",
             "example": [
               "abcd1234cdef1234abcd1234cdef1234"
             ],
@@ -6124,7 +6124,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/custom_metadata_label"
+                    "$ref": "#/components/schemas/custom_metadata_properties"
                   }
                 }
               }
@@ -6161,7 +6161,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase custom_metadata_labels list \\\n--account_id <account_id> \\\n--branch my-feature-branch \\\n--page 1 \\\n--per_page 10 \\\n--project_ids [1,2,3] \\\n--sort created_at \\\n--order desc \\\n--access_token <token>"
+            "source": "phrase custom_metadata_properties list \\\n--account_id <account_id> \\\n--branch my-feature-branch \\\n--page 1 \\\n--per_page 10 \\\n--project_ids [1,2,3] \\\n--sort created_at \\\n--order desc \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.9"

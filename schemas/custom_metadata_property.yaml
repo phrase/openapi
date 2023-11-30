@@ -1,7 +1,7 @@
 ---
-custom_metadata_label:
+custom_metadata_property:
   type: object
-  title: custom_metadata_label
+  title: custom_metadata_property
   properties:
     id:
       type: string
