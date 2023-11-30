@@ -6053,9 +6053,9 @@
         "x-cli-version": "2.5"
       }
     },
-    "/accounts/{account_id}/custom_metadata/labels": {
+    "/accounts/{account_id}/custom_metadata/properties": {
       "get": {
-        "summary": "List custom metadata properties",
+        "summary": "List properties",
         "description": "List all custom metadata properties for an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
         "operationId": "custom_metadata_properties/list",
         "tags": [
@@ -6124,7 +6124,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/custom_metadata_properties"
+                    "$ref": "#/components/schemas/custom_metadata_property"
                   }
                 }
               }
