@@ -733,9 +733,6 @@
               "$ref": "#/components/schemas/project_short"
             }
           },
-          "account": {
-            "$ref": "#/components/schemas/account"
-          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -755,6 +752,8 @@
             "username": "joe.doe",
             "name": "Joe Doe"
           },
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z",
           "projects": [
             {
               "id": "abcd1234cdef1234abcd1234cdef1234",
@@ -763,18 +762,7 @@
               "created_at": "2015-01-28T09:52:53Z",
               "updated_at": "2015-01-28T09:52:53Z"
             }
-          ],
-          "account": {
-            "id": "abcd1234",
-            "name": "Company Account",
-            "slug": "company_account",
-            "company": "My Awesome Company",
-            "created_at": "2015-01-28T09:52:53Z",
-            "updated_at": "2015-01-28T09:52:53Z",
-            "company_logo_url": "http://assets.example.com/company_logo.png"
-          },
-          "created_at": "2015-01-28T09:52:53Z",
-          "updated_at": "2015-01-28T09:52:53Z"
+          ]
         }
       },
       "key_preview": {
@@ -6182,7 +6170,7 @@
       "get": {
         "summary": "Get a single property",
         "description": "Get details of a single custom property.",
-        "operationId": "custom_metadata_label/show",
+        "operationId": "custom_metadata_property/show",
         "tags": [
           "Custom Metadata"
         ],
@@ -6212,7 +6200,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/custom_metadata_label"
+                  "$ref": "#/components/schemas/custom_metadata_property"
                 }
               }
             },
