@@ -8,12 +8,6 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
 - "$ref": "../../parameters.yaml#/id"
-- description: specify the branch to use
-  example: my-feature-branch
-  name: branch
-  in: query
-  schema:
-    type: string
 responses:
   '200':
     description: OK
@@ -37,13 +31,12 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id?branch=my-feature-branch" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id" \
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
     phrase custom_metadata_labels show \
     --account_id <account_id> \
     --id <id> \
-    --branch my-feature-branch \
     --access_token <token>
 x-cli-version: '2.9'
