@@ -18,6 +18,7 @@ custom_metadata_property:
         - multi_select
         - number
         - single_select
+        - string
         - text
     user:
       "$ref": "./user_preview.yaml#/user_preview"
