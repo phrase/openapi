@@ -50,6 +50,9 @@
 "/accounts/{account_id}/custom_metadata/labels":
   get:
     "$ref": "./paths/custom_metadata_properties/index.yaml"
+"/accounts/{account_id}/custom_metadata/labels/{id}":
+  patch:
+    "$ref": "./paths/custom_metadata_properties/update.yaml"
 "/accounts/{account_id}/invitations":
   get:
     "$ref": "./paths/invitations/index.yaml"

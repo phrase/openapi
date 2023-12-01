@@ -733,6 +733,12 @@
               "$ref": "#/components/schemas/project_short"
             }
           },
+          "value_options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -744,9 +750,9 @@
         },
         "example": {
           "id": "abcd1234cdef1234abcd1234cdef1234",
-          "name": "Character Age",
-          "description": "Age of character in seconds",
-          "data_type": "Text value",
+          "name": "Nuts",
+          "description": "A healthy snack for all ages",
+          "data_type": "multi_select",
           "user": {
             "id": "abcd1234cdef1234abcd1234cdef1234",
             "username": "joe.doe",
@@ -762,6 +768,11 @@
               "created_at": "2015-01-28T09:52:53Z",
               "updated_at": "2015-01-28T09:52:53Z"
             }
+          ],
+          "value_options": [
+            "apple",
+            "banana",
+            "coconut"
           ]
         }
       },
@@ -6161,6 +6172,82 @@
           {
             "lang": "CLI v2",
             "source": "phrase custom_metadata_properties list \\\n--account_id <account_id> \\\n--data_type boolean \\\n--project_id 1 \\\n--page 1 \\\n--per_page 10 \\\n--sort created_at \\\n--order desc \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      }
+    },
+    "/accounts/{account_id}/custom_metadata/labels/{id}": {
+      "patch": {
+        "summary": "Update a property",
+        "description": "Update an existing custom metadata property.",
+        "operationId": "custom_metadata_property/update",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "ids of projects that the property belongs to",
+            "name": "project_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "abcd1234cdef1234abcd1234cdef1234"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/custom_metadata_property"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id?project_ids=%5B1,2,3%5D\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_labels show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.9"
