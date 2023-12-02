@@ -6283,11 +6283,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id?name=Fruit&description=A healthy snack for all ages&project_ids=%5B1,2,3%5D\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase custom_metadata_labels show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase custom_metadata_properties update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.9"
