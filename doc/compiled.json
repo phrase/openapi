@@ -6178,6 +6178,126 @@
       }
     },
     "/accounts/{account_id}/custom_metadata/labels/{id}": {
+      "post": {
+        "summary": "Create a property",
+        "description": "Create a new custom metadata property.",
+        "operationId": "custom_metadata_property/create",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "name of the property",
+            "example": [
+              "Fruit"
+            ],
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/data_type"
+          },
+          {
+            "description": "description of property",
+            "example": [
+              "A healthy snack for all ages"
+            ],
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "ids of projects that the property belongs to",
+            "example": [
+              "abcd1234cdef1234abcd1234cdef1234"
+            ],
+            "name": "project_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "value options of property (only applies to single or multi select properties)",
+            "example": [
+              "Apple",
+              "Banana",
+              "Coconut"
+            ],
+            "name": "value_options",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/custom_metadata_property"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_properties create \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      },
       "patch": {
         "summary": "Update a property",
         "description": "Update an existing custom metadata property.",
