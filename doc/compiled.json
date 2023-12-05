@@ -6178,6 +6178,68 @@
       }
     },
     "/accounts/{account_id}/custom_metadata/labels/{id}": {
+      "get": {
+        "summary": "Get a single property",
+        "description": "Get details of a single custom property.",
+        "operationId": "custom_metadata_property/show",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/custom_metadata_property"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_labels show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      },
       "post": {
         "summary": "Create a property",
         "description": "Create a new custom metadata property.",
