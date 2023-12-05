@@ -26,6 +26,10 @@ custom_metadata_property:
       type: array
       items:
         "$ref": "./project_short.yaml#/project_short"
+    value_options:
+      type: array
+      items:
+        type: string
     created_at:
       type: string
       format: date-time
@@ -34,9 +38,9 @@ custom_metadata_property:
       format: date-time
   example:
     id: abcd1234cdef1234abcd1234cdef1234
-    name: Character Age
-    description: Age of character in seconds
-    data_type: Text value
+    name: Nuts
+    description: A healthy snack for all ages
+    data_type: multi_select
     user:
       id: abcd1234cdef1234abcd1234cdef1234
       username: joe.doe
@@ -49,3 +53,8 @@ custom_metadata_property:
       main_format: xml
       created_at: '2015-01-28T09:52:53Z'
       updated_at: '2015-01-28T09:52:53Z'
+    value_options:
+    - apple
+    - banana
+    - coconut
+
