@@ -50,6 +50,7 @@
 "/accounts/{account_id}/custom_metadata/labels":
   get:
     "$ref": "./paths/custom_metadata_properties/index.yaml"
+<<<<<<< HEAD
 "/accounts/{account_id}/custom_metadata/labels/{id}":
   get:
     "$ref": "./paths/custom_metadata_properties/show.yaml"
@@ -57,6 +58,8 @@
     "$ref": "./paths/custom_metadata_properties/create.yaml"
   patch:
     "$ref": "./paths/custom_metadata_properties/update.yaml"
+  delete:
+    "$ref": "./paths/custom_metadata_properties/destroy.yaml"
 "/accounts/{account_id}/invitations":
   get:
     "$ref": "./paths/invitations/index.yaml"

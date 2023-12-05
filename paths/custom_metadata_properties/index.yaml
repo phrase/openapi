@@ -9,6 +9,7 @@ tags:
 - Custom Metadata
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
 - "$ref": "../../parameters.yaml#/data_type"
 - description: id of project that the properties belong to
   example:
