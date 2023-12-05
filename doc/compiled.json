@@ -6178,10 +6178,10 @@
       }
     },
     "/accounts/{account_id}/custom_metadata/labels/{id}": {
-      "get": {
-        "summary": "Get a single property",
-        "description": "Get details of a single custom property.",
-        "operationId": "custom_metadata_property/show",
+      "patch": {
+        "summary": "Update a property",
+        "description": "Update an existing custom metadata property.",
+        "operationId": "custom_metadata_property/update",
         "tags": [
           "Custom Metadata"
         ],
@@ -6194,6 +6194,58 @@
           },
           {
             "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "name of the property",
+            "example": [
+              "Fruit"
+            ],
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "description of property",
+            "example": [
+              "A healthy snack for all ages"
+            ],
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "ids of projects that the property belongs to",
+            "example": [
+              "abcd1234cdef1234abcd1234cdef1234"
+            ],
+            "name": "project_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "value options of property (only applies to single or multi select properties)",
+            "example": [
+              "Apple",
+              "Banana",
+              "Coconut"
+            ],
+            "name": "value_options",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {
@@ -6231,7 +6283,7 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id?name=Fruit&description=A healthy snack for all ages&project_ids=%5B1,2,3%5D\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           },
           {
             "lang": "CLI v2",
