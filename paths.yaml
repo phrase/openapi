@@ -50,11 +50,11 @@
 "/accounts/{account_id}/custom_metadata/labels":
   get:
     "$ref": "./paths/custom_metadata_properties/index.yaml"
+  post:
+    "$ref": "./paths/custom_metadata_properties/create.yaml"
 "/accounts/{account_id}/custom_metadata/labels/{id}":
   get:
     "$ref": "./paths/custom_metadata_properties/show.yaml"
-  post:
-    "$ref": "./paths/custom_metadata_properties/create.yaml"
   patch:
     "$ref": "./paths/custom_metadata_properties/update.yaml"
   delete:

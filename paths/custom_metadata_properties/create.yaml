@@ -7,7 +7,6 @@ tags:
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
-- "$ref": "../../parameters.yaml#/id"
 - description: name of the property
   example:
   - Fruit
@@ -68,7 +67,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"name":"Fruit","description":"A healthy snack for all ages","project_ids":["1","2","3"],"value_options":["apple","banana","coconut"]}' \
@@ -77,7 +76,6 @@ x-code-samples:
   source: |-
     phrase custom_metadata_properties create \
     --account_id <account_id> \
-    --id <id> \
     --data '{"name":"Fruit","description":"A healthy snack for all ages","project_ids":["1","2","3"],"value_options":["apple","banana","coconut"]}' \
     --access_token <token>
 x-cli-version: '2.9'
