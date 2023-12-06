@@ -4226,7 +4226,7 @@
           "type": "string"
         }
       },
-      "data_type": {
+      "custom_metadata_data_type": {
         "in": "query",
         "name": "data_type",
         "description": "Data Type of Custom Metadata Property",
@@ -6091,7 +6091,7 @@
             "$ref": "#/components/parameters/account_id"
           },
           {
-            "$ref": "#/components/parameters/data_type"
+            "$ref": "#/components/parameters/custom_metadata_data_type"
           },
           {
             "description": "id of project that the properties belong to",
@@ -6272,7 +6272,7 @@
             }
           },
           {
-            "$ref": "#/components/parameters/data_type"
+            "$ref": "#/components/parameters/custom_metadata_data_type"
           },
           {
             "description": "description of property",

@@ -31,7 +31,7 @@ account_id:
   required: true
   schema:
     type: string
-data_type:
+custom_metadata_data_type:
   in: query
   name: data_type
   description: Data Type of Custom Metadata Property

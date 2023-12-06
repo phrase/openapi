@@ -15,7 +15,7 @@ parameters:
   in: query
   schema:
     type: string
-- "$ref": "../../parameters.yaml#/data_type"
+- "$ref": "../../parameters.yaml#/custom_metadata_data_type"
 - description: description of property
   example:
   - A healthy snack for all ages
