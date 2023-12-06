@@ -57,6 +57,8 @@
     "$ref": "./paths/custom_metadata_properties/create.yaml"
   patch:
     "$ref": "./paths/custom_metadata_properties/update.yaml"
+  delete:
+    "$ref": "./paths/custom_metadata_properties/destroy.yaml"
 "/accounts/{account_id}/invitations":
   get:
     "$ref": "./paths/invitations/index.yaml"

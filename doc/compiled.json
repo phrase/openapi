@@ -6088,6 +6088,9 @@
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
           },
           {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
             "$ref": "#/components/parameters/data_type"
           },
           {
@@ -6470,6 +6473,50 @@
           {
             "lang": "CLI v2",
             "source": "phrase custom_metadata_properties update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      },
+      "delete": {
+        "summary": "Destroy property",
+        "description": "Destroy a custom metadata property of an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "operationId": "custom_metadata_properties/delete",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/labels/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X DELETE\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_properties delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.9"
