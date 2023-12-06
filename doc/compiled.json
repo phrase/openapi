@@ -6095,9 +6095,7 @@
           },
           {
             "description": "id of project that the properties belong to",
-            "example": [
-              "abcd1234cdef1234abcd1234cdef1234"
-            ],
+            "example": "abcd1234cdef1234abcd1234cdef1234",
             "name": "project_id",
             "in": "query",
             "schema": {
