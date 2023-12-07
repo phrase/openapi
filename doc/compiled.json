@@ -19897,11 +19897,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F branch=my-feature-branch \\\n  -F name=home.index.headline \\\n  -F description=Some%20description%20worth%20knowing... \\\n  -F name_plural=home.index.headlines \\\n  -F data_type=number \\\n  -F tags=awesome-feature,needs-proofreading \\\n  -F max_characters_allowed=140 \\\n  -F screenshot=@/path/to/my/screenshot.png"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F branch=my-feature-branch \\\n  -F name=home.index.headline \\\n  -F description=Some%20description%20worth%20knowing... \\\n  -F name_plural=home.index.headlines \\\n  -F data_type=number \\\n  -F tags=awesome-feature,needs-proofreading \\\n  -F max_characters_allowed=140 \\\n  -F screenshot=@/path/to/my/screenshot.png\n  -F custom_metadata[property]=value"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase keys create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\", \"custom_metadata\": {\"property\" => \"value\"}}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -19994,6 +19994,14 @@
                     "description": "NSStringLocalizedFormatKey attribute. Used in .stringsdict format.",
                     "type": "string",
                     "example": null
+                  },
+                  "custom_metadata": {
+                    "description": "Custom metadata property name and value pairs to be associated with key.",
+                    "type": "object",
+                    "example": {
+                      "fruit": "Apple",
+                      "vegetable": "Tomato"
+                    }
                   }
                 }
               }
@@ -20322,11 +20330,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -F branch=my-feature-branch \\\n  -F name=home.index.headline \\\n  -F description=Some%20description%20worth%20knowing... \\\n  -F name_plural=home.index.headlines \\\n  -F data_type=number \\\n  -F tags=awesome-feature,needs-proofreading \\\n  -F max_characters_allowed=140 \\\n  -F screenshot=@/path/to/my/screenshot.png"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -F branch=my-feature-branch \\\n  -F name=home.index.headline \\\n  -F description=Some%20description%20worth%20knowing... \\\n  -F name_plural=home.index.headlines \\\n  -F data_type=number \\\n  -F tags=awesome-feature,needs-proofreading \\\n  -F max_characters_allowed=140 \\\n  -F screenshot=@/path/to/my/screenshot.png\n  -F custom_metadata[property]=value"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase keys update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\", \"custom_metadata\": {\"property\" => \"value\"}}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -20414,6 +20422,14 @@
                     "description": "NSStringLocalizedFormatKey attribute. Used in .stringsdict format.",
                     "type": "string",
                     "example": null
+                  },
+                  "custom_metadata": {
+                    "description": "Custom metadata property name and value pairs to be associated with key.",
+                    "type": "object",
+                    "example": {
+                      "fruit": "Apple",
+                      "vegetable": "Tomato"
+                    }
                   }
                 }
               }

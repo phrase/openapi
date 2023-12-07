@@ -126,5 +126,8 @@ requestBody:
           custom_metadata:
             description: Custom metadata property name and value pairs to be associated with key.
             type: object
+            example:
+              fruit: Apple
+              vegetable: Tomato
             
 x-cli-version: '2.5'
