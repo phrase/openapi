@@ -6075,7 +6075,7 @@
         "x-cli-version": "2.5"
       }
     },
-    "/accounts/{account_id}/custom_metadata/labels": {
+    "/accounts/{account_id}/custom_metadata/properties": {
       "get": {
         "summary": "List properties",
         "description": "List all custom metadata properties for an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
@@ -6295,7 +6295,7 @@
         "x-cli-version": "2.9"
       }
     },
-    "/accounts/{account_id}/custom_metadata/labels/{id}": {
+    "/accounts/{account_id}/custom_metadata/properties/{id}": {
       "get": {
         "summary": "Get a single property",
         "description": "Get details of a single custom property.",

@@ -47,12 +47,12 @@
     "$ref": "./paths/styleguides/update.yaml"
   delete:
     "$ref": "./paths/styleguides/destroy.yaml"
-"/accounts/{account_id}/custom_metadata/labels":
+"/accounts/{account_id}/custom_metadata/properties":
   get:
     "$ref": "./paths/custom_metadata_properties/index.yaml"
   post:
     "$ref": "./paths/custom_metadata_properties/create.yaml"
-"/accounts/{account_id}/custom_metadata/labels/{id}":
+"/accounts/{account_id}/custom_metadata/properties/{id}":
   get:
     "$ref": "./paths/custom_metadata_properties/show.yaml"
   patch:
