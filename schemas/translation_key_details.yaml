@@ -23,6 +23,11 @@ translation_key_details:
         type: string
       creator:
         "$ref": "./user_preview.yaml#/user_preview"
+      custom_metadata:
+        type: object
+        title: custom_metadata
+        additionalProperties:
+          type: string
     example:
       name_plural: home.index.headlines
       comments_count: 2
@@ -37,3 +42,6 @@ translation_key_details:
         id: abcd1234cdef1234abcd1234cdef1234
         username: joe.doe
         name: Joe Doe
+      custom_metadata:
+        fruit: Apple
+        vegetable: Tomato

@@ -2389,6 +2389,13 @@
               },
               "creator": {
                 "$ref": "#/components/schemas/user_preview"
+              },
+              "custom_metadata": {
+                "type": "object",
+                "title": "custom_metadata",
+                "additionalProperties": {
+                  "type": "string"
+                }
               }
             },
             "example": {
@@ -2405,6 +2412,10 @@
                 "id": "abcd1234cdef1234abcd1234cdef1234",
                 "username": "joe.doe",
                 "name": "Joe Doe"
+              },
+              "custom_metadata": {
+                "fruit": "Apple",
+                "vegetable": "Tomato"
               }
             }
           }
