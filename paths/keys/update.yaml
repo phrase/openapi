@@ -122,7 +122,7 @@ requestBody:
             type: string
             example:
           custom_metadata:
-            description: Custom metadata property name and value pairs to be associated with key.
+            description: Updates/Creates custom metadata property name and value pairs to be associated with key. If you want to delete a custom metadata property, you can set its value to null. If you want to update a custom metadata property, you can set its value to the new value.
             type: object
             example:
               fruit: Apple
