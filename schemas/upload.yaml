@@ -13,6 +13,10 @@ upload:
       type: string
     tag:
       type: string
+    url:
+      type: string
+      description: |
+        The URL to the upload in Phrase Strings app.
     summary:
       type: object
       properties:
