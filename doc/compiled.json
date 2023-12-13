@@ -1724,6 +1724,10 @@
           "tag": {
             "type": "string"
           },
+          "url": {
+            "type": "string",
+            "description": "The URL to the upload in Phrase Strings app.\n"
+          },
           "summary": {
             "type": "object",
             "properties": {
