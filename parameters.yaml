@@ -31,6 +31,14 @@ account_id:
   required: true
   schema:
     type: string
+custom_metadata_data_type:
+  in: query
+  name: data_type
+  description: Data Type of Custom Metadata Property
+  required: false
+  schema:
+    "$ref": "./schemas/custom_metadata_data_type.yaml#/data_type"
+  example: boolean
 query_account_id:
   in: query
   name: account_id

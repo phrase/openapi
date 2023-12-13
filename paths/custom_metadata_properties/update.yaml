@@ -1,0 +1,80 @@
+---
+summary: Update a property
+description: Update an existing custom metadata property.
+operationId: custom_metadata_property/update
+tags:
+- Custom Metadata
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
+- description: name of the property
+  example:
+  - Fruit
+  name: name
+  in: query
+  schema:
+    type: string
+- description: description of property
+  example:
+  - A healthy snack for all ages
+  name: description
+  in: query
+  schema:
+    type: string
+- description: ids of projects that the property belongs to
+  example:
+    - abcd1234cdef1234abcd1234cdef1234
+  name: project_ids
+  in: query
+  schema:
+    type: array
+    items:
+      type: string
+- description: value options of property (only applies to single or multi select properties)
+  example:
+    - Apple
+    - Banana
+    - Coconut
+  name: value_options
+  in: query
+  schema:
+    type: array
+    items:
+      type: string
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/custom_metadata_property.yaml#/custom_metadata_property"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/custom_metadata/properties/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"name":"Fruit","description":"A healthy snack for all ages","project_ids":["1","2","3"],"value_options":["apple","banana","coconut"]}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase custom_metadata_properties update \
+    --account_id <account_id> \
+    --id <id> \
+    --data '{"name":"Fruit","description":"A healthy snack for all ages","project_ids":["1","2","3"],"value_options":["apple","banana","coconut"]}' \
+    --access_token <token>
+x-cli-version: '2.9'

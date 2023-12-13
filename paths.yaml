@@ -47,6 +47,18 @@
     "$ref": "./paths/styleguides/update.yaml"
   delete:
     "$ref": "./paths/styleguides/destroy.yaml"
+"/accounts/{account_id}/custom_metadata/properties":
+  get:
+    "$ref": "./paths/custom_metadata_properties/index.yaml"
+  post:
+    "$ref": "./paths/custom_metadata_properties/create.yaml"
+"/accounts/{account_id}/custom_metadata/properties/{id}":
+  get:
+    "$ref": "./paths/custom_metadata_properties/show.yaml"
+  patch:
+    "$ref": "./paths/custom_metadata_properties/update.yaml"
+  delete:
+    "$ref": "./paths/custom_metadata_properties/destroy.yaml"
 "/accounts/{account_id}/invitations":
   get:
     "$ref": "./paths/invitations/index.yaml"

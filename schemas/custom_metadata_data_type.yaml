@@ -1,0 +1,12 @@
+---
+data_type:
+  type: string
+  enum:
+    - boolean
+    - date
+    - link
+    - multi_select
+    - number
+    - single_select
+    - string
+    - text

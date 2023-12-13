@@ -61,6 +61,9 @@
       "name": "Comment Replies"
     },
     {
+      "name": "Custom Metadata"
+    },
+    {
       "name": "Distributions"
     },
     {
@@ -201,6 +204,7 @@
         "Translations",
         "Uploads",
         "Tags",
+        "Custom Metadata Properties",
         "Blacklisted Keys",
         "Versions / History"
       ]
@@ -693,6 +697,87 @@
             "name": "Joe Doe"
           }
         }
+      },
+      "custom_metadata_property": {
+        "type": "object",
+        "title": "custom_metadata_property",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "data_type": {
+            "$ref": "#/components/schemas/custom_metadata_data_type"
+          },
+          "user": {
+            "$ref": "#/components/schemas/user_preview"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/project_short"
+            }
+          },
+          "value_options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "name": "Nuts",
+          "description": "A healthy snack for all ages",
+          "data_type": "multi_select",
+          "user": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "username": "joe.doe",
+            "name": "Joe Doe"
+          },
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z",
+          "projects": [
+            {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "My Android Project",
+              "main_format": "xml",
+              "created_at": "2015-01-28T09:52:53Z",
+              "updated_at": "2015-01-28T09:52:53Z"
+            }
+          ],
+          "value_options": [
+            "apple",
+            "banana",
+            "coconut"
+          ]
+        }
+      },
+      "custom_metadata_data_type": {
+        "type": "string",
+        "enum": [
+          "boolean",
+          "date",
+          "link",
+          "multi_select",
+          "number",
+          "single_select",
+          "string",
+          "text"
+        ]
       },
       "key_preview": {
         "type": "object",
@@ -2311,6 +2396,13 @@
               },
               "creator": {
                 "$ref": "#/components/schemas/user_preview"
+              },
+              "custom_metadata": {
+                "type": "object",
+                "title": "custom_metadata",
+                "additionalProperties": {
+                  "type": "string"
+                }
               }
             },
             "example": {
@@ -2327,6 +2419,10 @@
                 "id": "abcd1234cdef1234abcd1234cdef1234",
                 "username": "joe.doe",
                 "name": "Joe Doe"
+              },
+              "custom_metadata": {
+                "fruit": "Apple",
+                "vegetable": "Tomato"
               }
             }
           }
@@ -4147,6 +4243,16 @@
         "schema": {
           "type": "string"
         }
+      },
+      "custom_metadata_data_type": {
+        "in": "query",
+        "name": "data_type",
+        "description": "Data Type of Custom Metadata Property",
+        "required": false,
+        "schema": {
+          "$ref": "#/components/schemas/custom_metadata_data_type"
+        },
+        "example": "boolean"
       },
       "query_account_id": {
         "in": "query",
@@ -5985,6 +6091,456 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/accounts/{account_id}/custom_metadata/properties": {
+      "get": {
+        "summary": "List properties",
+        "description": "List all custom metadata properties for an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "operationId": "custom_metadata_properties/list",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/custom_metadata_data_type"
+          },
+          {
+            "description": "id of project that the properties belong to",
+            "example": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "project_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "Sort criteria. Can be one of: name, data_type, created_at.",
+            "example": "updated_at",
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Order direction. Can be one of: asc, desc.",
+            "example": "desc",
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/custom_metadata_property"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/properties?data_type=boolean&project_id=1&page=1&per_page=10&sort=created_at&order=desc\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_properties list \\\n--account_id <account_id> \\\n--data_type boolean \\\n--project_id 1 \\\n--page 1 \\\n--per_page 10 \\\n--sort created_at \\\n--order desc \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      },
+      "post": {
+        "summary": "Create a property",
+        "description": "Create a new custom metadata property.",
+        "operationId": "custom_metadata_property/create",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "description": "name of the property",
+            "example": [
+              "Fruit"
+            ],
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_type",
+            "in": "query",
+            "description": "Data Type of Custom Metadata Property",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/custom_metadata_data_type"
+            },
+            "example": "boolean"
+          },
+          {
+            "description": "description of property",
+            "example": [
+              "A healthy snack for all ages"
+            ],
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "ids of projects that the property belongs to",
+            "example": [
+              "abcd1234cdef1234abcd1234cdef1234"
+            ],
+            "name": "project_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "value options of property (only applies to single or multi select properties)",
+            "example": [
+              "Apple",
+              "Banana",
+              "Coconut"
+            ],
+            "name": "value_options",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/custom_metadata_property"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/properties\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"Fruit\",\"data_type\":\"multi_select\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_properties create \\\n--account_id <account_id> \\\n--data '{\"name\":\"Fruit\",\"data_type\":\"multi_select\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      }
+    },
+    "/accounts/{account_id}/custom_metadata/properties/{id}": {
+      "get": {
+        "summary": "Get a single property",
+        "description": "Get details of a single custom property.",
+        "operationId": "custom_metadata_property/show",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/custom_metadata_property"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/properties/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_properties show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      },
+      "patch": {
+        "summary": "Update a property",
+        "description": "Update an existing custom metadata property.",
+        "operationId": "custom_metadata_property/update",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "description": "name of the property",
+            "example": [
+              "Fruit"
+            ],
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "description of property",
+            "example": [
+              "A healthy snack for all ages"
+            ],
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "ids of projects that the property belongs to",
+            "example": [
+              "abcd1234cdef1234abcd1234cdef1234"
+            ],
+            "name": "project_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "value options of property (only applies to single or multi select properties)",
+            "example": [
+              "Apple",
+              "Banana",
+              "Coconut"
+            ],
+            "name": "value_options",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/custom_metadata_property"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/properties/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_properties update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
+      },
+      "delete": {
+        "summary": "Destroy property",
+        "description": "Destroy a custom metadata property of an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "operationId": "custom_metadata_properties/delete",
+        "tags": [
+          "Custom Metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/properties/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X DELETE\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase custom_metadata_properties delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.9"
       }
     },
     "/accounts/{account_id}/invitations": {
@@ -19378,11 +19934,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F branch=my-feature-branch \\\n  -F name=home.index.headline \\\n  -F description=Some%20description%20worth%20knowing... \\\n  -F name_plural=home.index.headlines \\\n  -F data_type=number \\\n  -F tags=awesome-feature,needs-proofreading \\\n  -F max_characters_allowed=140 \\\n  -F screenshot=@/path/to/my/screenshot.png"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -F branch=my-feature-branch \\\n  -F name=home.index.headline \\\n  -F description=Some%20description%20worth%20knowing... \\\n  -F name_plural=home.index.headlines \\\n  -F data_type=number \\\n  -F tags=awesome-feature,needs-proofreading \\\n  -F max_characters_allowed=140 \\\n  -F screenshot=@/path/to/my/screenshot.png\n  -F custom_metadata[property]=value"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase keys create \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\", \"custom_metadata\": {\"property\" => \"value\"}}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -19475,6 +20031,14 @@
                     "description": "NSStringLocalizedFormatKey attribute. Used in .stringsdict format.",
                     "type": "string",
                     "example": null
+                  },
+                  "custom_metadata": {
+                    "description": "Custom metadata property name and value pairs to be associated with key.",
+                    "type": "object",
+                    "example": {
+                      "fruit": "Apple",
+                      "vegetable": "Tomato"
+                    }
                   }
                 }
               }
@@ -19803,11 +20367,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -F branch=my-feature-branch \\\n  -F name=home.index.headline \\\n  -F description=Some%20description%20worth%20knowing... \\\n  -F name_plural=home.index.headlines \\\n  -F data_type=number \\\n  -F tags=awesome-feature,needs-proofreading \\\n  -F max_characters_allowed=140 \\\n  -F screenshot=@/path/to/my/screenshot.png"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/keys/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -F branch=my-feature-branch \\\n  -F name=home.index.headline \\\n  -F description=Some%20description%20worth%20knowing... \\\n  -F name_plural=home.index.headlines \\\n  -F data_type=number \\\n  -F tags=awesome-feature,needs-proofreading \\\n  -F max_characters_allowed=140 \\\n  -F screenshot=@/path/to/my/screenshot.png\n  -F custom_metadata[property]=value"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase keys update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\"}' \\\n--access_token <token>"
+            "source": "phrase keys update \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\", \"name\":\"home.index.headline\", \"description\": \"Some description worth knowing...\", \"name_plural\":\"home.index.headlines\", \"data_type\":\"number\", \"tags\":\"awesome-feature,needs-proofreading\", \"max_characters_allowed\":\"140\", \"screenshot\":\"/path/to/my/screenshot.png\", \"custom_metadata\": {\"property\" => \"value\"}}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
@@ -19895,6 +20459,14 @@
                     "description": "NSStringLocalizedFormatKey attribute. Used in .stringsdict format.",
                     "type": "string",
                     "example": null
+                  },
+                  "custom_metadata": {
+                    "description": "Updates/Creates custom metadata property name and value pairs to be associated with key. If you want to delete a custom metadata property, you can set its value to null. If you want to update a custom metadata property, you can set its value to the new value.",
+                    "type": "object",
+                    "example": {
+                      "fruit": "Apple",
+                      "vegetable": "Tomato"
+                    }
                   }
                 }
               }
