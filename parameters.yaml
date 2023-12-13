@@ -35,9 +35,18 @@ custom_metadata_data_type:
   in: query
   name: data_type
   description: Data Type of Custom Metadata Property
-  required: false
+  required: true
   schema:
     type: string
+    enum:
+      - boolean
+      - date
+      - link
+      - multi_select
+      - number
+      - single_select
+      - string
+      - text
   example: boolean
 query_account_id:
   in: query

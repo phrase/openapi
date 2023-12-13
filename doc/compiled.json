@@ -4241,9 +4241,19 @@
         "in": "query",
         "name": "data_type",
         "description": "Data Type of Custom Metadata Property",
-        "required": false,
+        "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "boolean",
+            "date",
+            "link",
+            "multi_select",
+            "number",
+            "single_select",
+            "string",
+            "text"
+          ]
         },
         "example": "boolean"
       },
@@ -6296,11 +6306,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/properties\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/custom_metadata/properties\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"Fruit\",\"data_type\":\"multi_select\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase custom_metadata_properties create \\\n--account_id <account_id> \\\n--data '{\"name\":\"Fruit\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n--access_token <token>"
+            "source": "phrase custom_metadata_properties create \\\n--account_id <account_id> \\\n--data '{\"name\":\"Fruit\",\"data_type\":\"multi_select\",\"description\":\"A healthy snack for all ages\",\"project_ids\":[\"1\",\"2\",\"3\"],\"value_options\":[\"apple\",\"banana\",\"coconut\"]}' \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.9"
