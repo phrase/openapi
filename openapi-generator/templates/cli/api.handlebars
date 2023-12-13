@@ -70,8 +70,8 @@ func init{{{nickname}}}() {
 								if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))), &{{paramName}}); err != nil {
 									HandleError(err)
 								}
+								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface({{paramName}})
 							}
-							localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface({{paramName}})
 						{{/isModel~}}
 					{{/isPrimitiveType~}}
 				{{else~}}
