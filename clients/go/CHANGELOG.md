@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.20.0](https://github.com/phrase/openapi/compare/go-v2.19.0...go-v2.20.0) (2023-12-13)
+
+
+### Features
+
+* **API:** Add custom_metadata_filters param to locale download endpoint [TSI-2174] ([#478](https://github.com/phrase/openapi/issues/478)) ([3623478](https://github.com/phrase/openapi/commit/3623478fc1518b457ab018b5630a693081637d6e))
+* **API:** Add url field to uploads ([#481](https://github.com/phrase/openapi/issues/481)) ([7332a84](https://github.com/phrase/openapi/commit/7332a84f9958346f2fb28dee4b0353519ef466d5))
+
 ## [2.19.0](https://github.com/phrase/openapi/compare/go-v2.18.0...go-v2.19.0) (2023-11-28)
 
 
