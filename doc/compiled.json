@@ -712,7 +712,7 @@
             "type": "string"
           },
           "data_type": {
-            "$ref": "#/components/parameters/custom_metadata_data_type/schema"
+            "$ref": "#/components/schemas/custom_metadata_data_type"
           },
           "user": {
             "$ref": "#/components/schemas/user_preview"
@@ -765,6 +765,19 @@
             "coconut"
           ]
         }
+      },
+      "custom_metadata_data_type": {
+        "type": "string",
+        "enum": [
+          "boolean",
+          "date",
+          "link",
+          "multi_select",
+          "number",
+          "single_select",
+          "string",
+          "text"
+        ]
       },
       "key_preview": {
         "type": "object",
@@ -4233,17 +4246,7 @@
         "description": "Data Type of Custom Metadata Property",
         "required": false,
         "schema": {
-          "type": "string",
-          "enum": [
-            "boolean",
-            "date",
-            "link",
-            "multi_select",
-            "number",
-            "single_select",
-            "string",
-            "text"
-          ]
+          "$ref": "#/components/schemas/custom_metadata_data_type"
         },
         "example": "boolean"
       },
@@ -6220,7 +6223,7 @@
             "description": "Data Type of Custom Metadata Property",
             "required": true,
             "schema": {
-              "$ref": "#/components/parameters/custom_metadata_data_type/schema"
+              "$ref": "#/components/schemas/custom_metadata_data_type"
             },
             "example": "boolean"
           },
