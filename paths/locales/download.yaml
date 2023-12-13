@@ -112,6 +112,15 @@ parameters:
     in: query
     schema:
       type: string
+  - name: custom_metadata_filters
+    in: query
+    description: |
+      Custom metadata filters. Provide the name of the metadata field and the value to filter by. Only keys with matching metadata will be included in the download.
+    schema:
+      type: object
+      properties: {}
+    style: deepObject
+    explode: true
 responses:
   "200":
     description: OK
@@ -136,7 +145,7 @@ responses:
 x-code-samples:
   - lang: Curl
     source: |-
-      curl "https://api.phrase.com/v2/projects/:project_id/locales/:id/download?branch=my-feature-branch&file_format=yml&tags=feature1,feature2&tag=feature" \
+      curl "https://api.phrase.com/v2/projects/:project_id/locales/:id/download?branch=my-feature-branch&file_format=yml&tags=feature1,feature2&tag=feature&custom_metadata_filters[tone]=friendly" \
         -u USERNAME_OR_ACCESS_TOKEN
   - lang: CLI v2
     source: |-

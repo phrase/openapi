@@ -137,10 +137,10 @@ public class LocalesApiTest {
 
         mockBackend.enqueue(mockResponse);
 
-        
+
         Map<String, String> nestedFormatOptionsMap = new HashMap<>();
         nestedFormatOptionsMap.put("nested_option", "sub_option");
-        
+
         Map<String, Object> formatOptionsMap = new HashMap<>();
         formatOptionsMap.put("omit_separator_space", "true");
         formatOptionsMap.put("fallback_language", "en");
@@ -167,7 +167,8 @@ public class LocalesApiTest {
         Boolean useLastReviewedVersion = null;
         String fallbackLocaleId = null;
         String sourceLocaleId = null;
-        File response = api.localeDownload(projectId, id, xPhraseAppOTP, ifModifiedSince, ifNoneMatch, branch, fileFormat, tags, tag, includeEmptyTranslations, excludeEmptyZeroForms, includeTranslatedKeys, keepNotranslateTags, convertEmoji, formatOptions, encoding, skipUnverifiedTranslations, includeUnverifiedTranslations, useLastReviewedVersion, fallbackLocaleId, sourceLocaleId);
+        Object customMetadataFilters = null;
+        File response = api.localeDownload(projectId, id, xPhraseAppOTP, ifModifiedSince, ifNoneMatch, branch, fileFormat, tags, tag, includeEmptyTranslations, excludeEmptyZeroForms, includeTranslatedKeys, keepNotranslateTags, convertEmoji, formatOptions, encoding, skipUnverifiedTranslations, includeUnverifiedTranslations, useLastReviewedVersion, fallbackLocaleId, sourceLocaleId, customMetadataFilters);
 
         String fileContents = new String(java.nio.file.Files.readAllBytes(response.toPath()));
         Assert.assertEquals("Correct file contents", fileContents, body);
