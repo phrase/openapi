@@ -35,7 +35,7 @@ custom_metadata_data_type:
   in: query
   name: data_type
   description: Data Type of Custom Metadata Property
-  required: true
+  required: false
   schema:
     type: string
     enum:
