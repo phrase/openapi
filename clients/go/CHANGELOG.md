@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.21.0](https://github.com/phrase/openapi/compare/go-v2.20.0...go-v2.21.0) (2023-12-13)
+
+
+### Features
+
+* **API:** add Custom Metadata endpoints ([#474](https://github.com/phrase/openapi/issues/474)) ([d407d8b](https://github.com/phrase/openapi/commit/d407d8be5ccddec1afde14a12804a7a616f77d7a))
+
 ## [2.20.0](https://github.com/phrase/openapi/compare/go-v2.19.0...go-v2.20.0) (2023-12-13)
 
 
