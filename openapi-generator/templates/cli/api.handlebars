@@ -56,23 +56,13 @@ func init{{{nickname}}}() {
 					{{#isPrimitiveType~}}
 						{{paramName}} := params.Get{{{capitalizeFirst dataType}}}(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))
 					{{else~}}
-						{{#isModel~}}
-							{{paramName}} := api.{{{dataType}}}{}
-							if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
-								HandleError(err)
-							}
-							if Config.Debug {
-								fmt.Printf("%+v\n", {{paramName}})
-							}
-						{{else~}}
-							if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
-								var {{paramName}} map[string]interface{}
-								if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))), &{{paramName}}); err != nil {
-									HandleError(err)
-								}
-								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface({{paramName}})
-							}
-						{{/isModel~}}
+						var {{paramName}} api.{{{dataType}}}
+						if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
+							HandleError(err)
+						}
+						if Config.Debug {
+							fmt.Printf("%+v\n", {{paramName}})
+						}
 					{{/isPrimitiveType~}}
 				{{else~}}
 					{{#if (or (eq paramName "file") (eq paramName "filename"))~}}
