@@ -12,9 +12,16 @@ parameters:
   - Fruit
   name: name
   in: query
+  required: true
   schema:
     type: string
-- "$ref": "../../parameters.yaml#/custom_metadata_data_type"
+- name: data_type
+  in: query
+  description: Data Type of Custom Metadata Property
+  required: true
+  schema:
+    "$ref": "../../schemas/custom_metadata_data_type.yaml#/data_type"
+  example: boolean
 - description: description of property
   example:
   - A healthy snack for all ages

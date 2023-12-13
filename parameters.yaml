@@ -37,16 +37,7 @@ custom_metadata_data_type:
   description: Data Type of Custom Metadata Property
   required: false
   schema:
-    type: string
-    enum:
-      - boolean
-      - date
-      - link
-      - multi_select
-      - number
-      - single_select
-      - string
-      - text
+    "$ref": "./schemas/custom_metadata_data_type.yaml#/data_type"
   example: boolean
 query_account_id:
   in: query

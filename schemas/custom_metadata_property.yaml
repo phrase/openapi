@@ -10,16 +10,7 @@ custom_metadata_property:
     description:
       type: string
     data_type:
-      type: string
-      enum:
-        - boolean
-        - date
-        - link
-        - multi_select
-        - number
-        - single_select
-        - string
-        - text
+      "$ref": "./custom_metadata_data_type.yaml#/data_type"
     user:
       "$ref": "./user_preview.yaml#/user_preview"
     projects:

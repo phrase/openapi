@@ -712,17 +712,7 @@
             "type": "string"
           },
           "data_type": {
-            "type": "string",
-            "enum": [
-              "boolean",
-              "date",
-              "link",
-              "multi_select",
-              "number",
-              "single_select",
-              "string",
-              "text"
-            ]
+            "$ref": "#/components/parameters/custom_metadata_data_type/schema"
           },
           "user": {
             "$ref": "#/components/schemas/user_preview"
@@ -6219,12 +6209,20 @@
             ],
             "name": "name",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
-            "$ref": "#/components/parameters/custom_metadata_data_type"
+            "name": "data_type",
+            "in": "query",
+            "description": "Data Type of Custom Metadata Property",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/parameters/custom_metadata_data_type/schema"
+            },
+            "example": "boolean"
           },
           {
             "description": "description of property",
