@@ -191,7 +191,8 @@ jobs:
           git config --global user.name "Phrase"
           git add .
           git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
-          git push origin master
+          git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
+          git push --tags origin master
           else
           echo "  No changes, skipping."
           fi
@@ -220,7 +221,8 @@ jobs:
           git config --global user.name "Phrase"
           git add .
           git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
-          git push origin master
+          git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
+          git push --tags origin master
           else
           echo "  No changes, skipping."
           fi
