@@ -37,7 +37,7 @@ jobs:
     needs: release
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@75ed025ff3ad1d617862838b342b06d613a0ddf3 # v3.10.1
       - name: Update Homebrew formula
         uses: dawidd6/action-homebrew-bump-formula@v3
         with:
