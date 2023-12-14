@@ -210,7 +210,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 		}
 	}
 	if !noErrors {
-		return errors.New("not_all_files_processed")
+		return errors.New("not all files were uploaded successfully")
 	}
 
 	return nil
