@@ -317,6 +317,12 @@
             <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>3.14.7</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <properties>
         <java.version>{{#supportJava6}}1.6{{/supportJava6}}{{^supportJava6}}{{#java8}}1.8{{/java8}}{{^java8}}1.7{{/java8}}{{/supportJava6}}</java.version>
