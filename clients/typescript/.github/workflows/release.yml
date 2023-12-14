@@ -1,17 +1,21 @@
 # https://help.github.com/en/actions/language-and-framework-guides/publishing-nodejs-packages
-name: Package
+name: Release
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - '*'
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v4
+    - name: Create GitHub Release
+      uses: ncipollo/release-action@6c75be85e571768fa31b40abf38de58ba0397db5 # pin@v1.13.0
       with:
-        node-version: '12.x'
+        tag: ${{github.event.release.tag_name}}
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '18'
         registry-url: 'https://registry.npmjs.org/'
     - run: npm install
     - run: npm publish --access public
