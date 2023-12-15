@@ -191,6 +191,7 @@ jobs:
           git config --global user.name "Phrase"
           git add .
           git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
           else
@@ -221,6 +222,7 @@ jobs:
           git config --global user.name "Phrase"
           git add .
           git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
           else
