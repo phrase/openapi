@@ -170,7 +170,7 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 		upload, err := source.uploadFile(client, localeFile, branch, tag)
 		if err != nil {
 			if openapiError, ok := err.(phrase.GenericOpenAPIError); ok {
-				print.Warn("API response: %s", openapiError.Body())
+				print.Warn("\nAPI response: %s", openapiError.Body())
 			}
 			return err
 		}
