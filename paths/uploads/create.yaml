@@ -116,6 +116,8 @@ requestBody:
             type: object
             properties: {}
             example: '{"foo": "bar"}'
+            style: deepObject
+            explode: true
           autotranslate:
             description: If set, translations for the uploaded language will be fetched automatically.
             type: boolean

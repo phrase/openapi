@@ -163,6 +163,19 @@ func parameterToJson(obj interface{}) (string, error) {
 	return string(jsonBuf), err
 }
 
+// helper for serializing and setting mappeed parameters to query string
+func serializeMapParams(key string, value interface{}, localParams url.Values) url.Values {
+	if reflect.TypeOf(value).Kind() == reflect.Map {
+		for k, v := range value.(map[string]interface{}) {
+			paramKeyName := fmt.Sprintf("%s[%s]", key, k)
+			serializeMapParams(paramKeyName, v, localParams)
+		}
+	} else {
+		localParams.Add(key, parameterToString(value, ""))
+	}
+	return localParams
+}
+
 
 // callAPI do the request.
 func (c *APIClient) callAPI(request *http.Request) (*APIResponse, error) {
