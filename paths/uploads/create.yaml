@@ -115,8 +115,7 @@ requestBody:
             description: Additional options available for specific formats. See our format guide for complete list.
             type: object
             properties: {}
-            style: deepObject
-            explode: true
+            example: '{"foo": "bar"}'
           autotranslate:
             description: If set, translations for the uploaded language will be fetched automatically.
             type: boolean
