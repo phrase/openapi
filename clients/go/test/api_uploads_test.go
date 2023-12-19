@@ -17,7 +17,7 @@ import (
 	"testing"
 
 	"github.com/antihax/optional"
-	"github.com/phrase/phrase-go"
+	"github.com/phrase/phrase-go/v2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -44,10 +44,9 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 		fileObject := optional.NewInterface(file)
 		localeId := optional.NewString("99")
 
-		localVarOptionals := phrase.UploadCreateOpts{FileFormat: fileFormat, File: fileObject, LocaleId: localeId }
+		localVarOptionals := phrase.UploadCreateOpts{FileFormat: fileFormat, File: fileObject, LocaleId: localeId}
 		resp, httpRes, err := apiClient.UploadsApi.UploadCreate(context.Background(), "project_id", &localVarOptionals)
 		requestUrl := httpRes.Request.URL
-
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
