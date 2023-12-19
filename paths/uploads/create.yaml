@@ -113,8 +113,9 @@ requestBody:
             example: '{"en": "2"}'
           format_options:
             description: Additional options available for specific formats. See our format guide for complete list.
-            type: object
-            properties: {}
+            schema:
+              type: object
+              properties: {}
             example: '{"foo": "bar"}'
             style: deepObject
             explode: true
