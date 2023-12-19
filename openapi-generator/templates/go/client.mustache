@@ -163,7 +163,7 @@ func parameterToJson(obj interface{}) (string, error) {
 	return string(jsonBuf), err
 }
 
-// helper for serializing and setting mappeed parameters to query string
+// helper for serializing and setting mapped parameters request body
 func serializeMapParams(key string, value interface{}, localParams url.Values) url.Values {
 	if reflect.TypeOf(value).Kind() == reflect.Map {
 		for k, v := range value.(map[string]interface{}) {
