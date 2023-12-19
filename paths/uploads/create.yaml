@@ -116,7 +116,7 @@ requestBody:
             schema:
               type: object
               properties: {}
-            example: '{"foo": "bar"}'
+            example:
             style: deepObject
             explode: true
           autotranslate:
