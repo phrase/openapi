@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.21.1](https://github.com/phrase/openapi/compare/go-v2.21.0...go-v2.21.1) (2023-12-20)
+
+
+### Bug Fixes
+
+* **GO:** Fix format_option serialization when creating upload ([#498](https://github.com/phrase/openapi/issues/498)) ([7c04f1e](https://github.com/phrase/openapi/commit/7c04f1e1f9fd280f56e15520626166ab3b5b6db5))
+
 ## [2.21.0](https://github.com/phrase/openapi/compare/go-v2.20.0...go-v2.21.0) (2023-12-13)
 
 
