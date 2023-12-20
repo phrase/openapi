@@ -7,46 +7,24 @@ tags:
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
-- description: name of the property
-  example:
-  - Fruit
-  name: name
-  in: query
-  required: true
-  schema:
-    type: string
-- name: data_type
-  in: query
-  description: Data Type of Custom Metadata Property
-  required: true
-  schema:
-    "$ref": "../../schemas/custom_metadata_data_type.yaml#/data_type"
-  example: boolean
-# - description: description of property
-#   example:
-#   - A healthy snack for all ages
-#   name: description
-#   in: query
-#   schema:
-#     type: string
-# - description: ids of projects that the property belongs to
-#   example:
-#     - abcd1234cdef1234abcd1234cdef1234
-  # name: project_ids
-  # in: query
-  # schema:
-  #   type: array
-  #   items:
-  #     type: string
-  # explode: false
 requestBody:
   required: true
   content:
     application/json:
       schema:
+        required:
+        - name
+        - data_type
         type: object
         title: custom_metadata_properties/create/parameters
         properties:
+          name:
+            description: name of the property
+            example: Fruit
+            type: string
+          data_type:
+            "$ref": "../../schemas/custom_metadata_data_type.yaml#/data_type"
+
           project_ids:
             description: ids of projects that the property belongs to
             type: array

@@ -1,6 +1,7 @@
 ---
 data_type:
   type: string
+  description: data type of the property
   enum:
     - boolean
     - date
@@ -10,3 +11,4 @@ data_type:
     - single_select
     - string
     - text
+  example: string

@@ -768,6 +768,7 @@
       },
       "custom_metadata_data_type": {
         "type": "string",
+        "description": "data type of the property",
         "enum": [
           "boolean",
           "date",
@@ -777,7 +778,8 @@
           "single_select",
           "string",
           "text"
-        ]
+        ],
+        "example": "string"
       },
       "key_preview": {
         "type": "object",
@@ -6208,28 +6210,6 @@
           },
           {
             "$ref": "#/components/parameters/account_id"
-          },
-          {
-            "description": "name of the property",
-            "example": [
-              "Fruit"
-            ],
-            "name": "name",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "data_type",
-            "in": "query",
-            "description": "Data Type of Custom Metadata Property",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/custom_metadata_data_type"
-            },
-            "example": "boolean"
           }
         ],
         "requestBody": {
@@ -6237,9 +6217,21 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "name",
+                  "data_type"
+                ],
                 "type": "object",
                 "title": "custom_metadata_properties/create/parameters",
                 "properties": {
+                  "name": {
+                    "description": "name of the property",
+                    "example": "Fruit",
+                    "type": "string"
+                  },
+                  "data_type": {
+                    "$ref": "#/components/schemas/custom_metadata_data_type"
+                  },
                   "project_ids": {
                     "description": "ids of projects that the property belongs to",
                     "type": "array",

@@ -19,7 +19,7 @@ func Test_phrase_CustomMetadataApiService(t *testing.T) {
 		if err != nil {
 			panic(err)
 		}
-		assert.Equal(t, "{\"project_ids\":[\"project_id\",\"project_id2\"],\"description\":\"my description\"}\n", string(b))
+		assert.Equal(t, "{\"name\":\"my_property\",\"data_type\":\"string\",\"project_ids\":[\"project_id\",\"project_id2\"],\"description\":\"my description\"}\n", string(b))
 
 		// Send the mock response
 		w.Header().Set("Content-Type", "application/json")
@@ -37,11 +37,13 @@ func Test_phrase_CustomMetadataApiService(t *testing.T) {
 
 	t.Run("Test CustomMetadataService CustomMetadataCreate", func(t *testing.T) {
 		customMetadataPropertiesCreateParameters := phrase.CustomMetadataPropertiesCreateParameters{
+			Name:        "my_property",
+			DataType:    phrase.STRING,
 			Description: "my description",
 			ProjectIds:  []string{"project_id", "project_id2"},
 		}
 		localVarOptionals := phrase.CustomMetadataPropertyCreateOpts{}
-		resp, httpRes, err := apiClient.CustomMetadataApi.CustomMetadataPropertyCreate(context.Background(), "account_id", "my_property", phrase.STRING, customMetadataPropertiesCreateParameters, &localVarOptionals)
+		resp, httpRes, err := apiClient.CustomMetadataApi.CustomMetadataPropertyCreate(context.Background(), "account_id", customMetadataPropertiesCreateParameters, &localVarOptionals)
 		requestUrl := httpRes.Request.URL
 
 		require.Nil(t, err)
@@ -51,7 +53,7 @@ func Test_phrase_CustomMetadataApiService(t *testing.T) {
 		assert.Equal(t, "my_property", resp.Name)
 		assert.Equal(t, phrase.STRING, resp.DataType)
 		assert.Equal(t, "/accounts/account_id/custom_metadata/properties", requestUrl.Path)
-		assert.Equal(t, "data_type=string&name=my_property", requestUrl.RawQuery)
+		assert.Equal(t, "", requestUrl.RawQuery)
 		assert.Equal(t, "POST", httpRes.Request.Method)
 	})
 
