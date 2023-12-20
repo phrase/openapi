@@ -249,7 +249,7 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams
 {{^isModel}}
 	if localVarOptionals != nil && localVarOptionals.{{vendorExtensions.x-export-param-name}}.IsSet() {
 		{{#isPrimitiveType}}localVarFormParams.Add("{{baseName}}", parameterToString(localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value(), "{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}")){{/isPrimitiveType}}{{^isPrimitiveType}}for key, value := range localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value().(map[string]interface{}) {
-			localVarFormParams.Add(fmt.Sprintf("{{baseName}}[%s]", key), parameterToString(value, ""))
+			localVarFormParams = serializeMapParams(fmt.Sprintf("{{baseName}}[%s]", key), value, localVarFormParams)
 		}{{/isPrimitiveType}}
 	}
 {{/isModel}}
