@@ -2,11 +2,11 @@ package phrase
 
 import (
 	"context"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
-	"github.com/antihax/optional"
 	"github.com/phrase/phrase-go/v2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -14,6 +14,13 @@ import (
 
 func Test_phrase_CustomMetadataApiService(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Test request parameters
+		b, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			panic(err)
+		}
+		assert.Equal(t, "{\"project_ids\":[\"project_id\",\"project_id2\"],\"description\":\"my description\"}\n", string(b))
+
 		// Send the mock response
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -29,9 +36,12 @@ func Test_phrase_CustomMetadataApiService(t *testing.T) {
 	apiClient := phrase.NewAPIClient(configuration)
 
 	t.Run("Test CustomMetadataService CustomMetadataCreate", func(t *testing.T) {
+		customMetadataPropertiesCreateParameters := phrase.CustomMetadataPropertiesCreateParameters{
+			Description: "my description",
+			ProjectIds:  []string{"project_id", "project_id2"},
+		}
 		localVarOptionals := phrase.CustomMetadataPropertyCreateOpts{}
-		localVarOptionals.ProjectIds = optional.NewInterface([]string{"project_id", "project_id2"})
-		resp, httpRes, err := apiClient.CustomMetadataApi.CustomMetadataPropertyCreate(context.Background(), "account_id", "my_property", phrase.STRING, &localVarOptionals)
+		resp, httpRes, err := apiClient.CustomMetadataApi.CustomMetadataPropertyCreate(context.Background(), "account_id", "my_property", phrase.STRING, customMetadataPropertiesCreateParameters, &localVarOptionals)
 		requestUrl := httpRes.Request.URL
 
 		require.Nil(t, err)
@@ -41,7 +51,7 @@ func Test_phrase_CustomMetadataApiService(t *testing.T) {
 		assert.Equal(t, "my_property", resp.Name)
 		assert.Equal(t, phrase.STRING, resp.DataType)
 		assert.Equal(t, "/accounts/account_id/custom_metadata/properties", requestUrl.Path)
-		assert.Equal(t, "data_type=string&name=my_property&project_ids=project_id&project_ids=project_id2", requestUrl.RawQuery)
+		assert.Equal(t, "data_type=string&name=my_property", requestUrl.RawQuery)
 		assert.Equal(t, "POST", httpRes.Request.Method)
 	})
 
