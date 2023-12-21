@@ -166,8 +166,6 @@ func parameterToJson(obj interface{}) (string, error) {
 // helper for serializing and setting mapped parameters request body
 func serializeMapParams(key string, value interface{}, localParams url.Values) url.Values {
 	if reflect.TypeOf(value).Kind() == reflect.Map {
-
-		// since we allow values of type interface, type assertion is necessary
 		for k, v := range value.(map[string]interface{}) {
 			paramKeyName := fmt.Sprintf("%s[%s]", key, k)
 			serializeMapParams(paramKeyName, v, localParams)
