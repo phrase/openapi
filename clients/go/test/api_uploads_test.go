@@ -52,7 +52,7 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 
 		// setting format_options
 		formatOptions := make(map[string]interface{})
-		nestedOptions := make(map[string]interface{})
+		nestedOptions := make(map[interface{}]interface{})
 
 		nestedOptions["en"] = "f"
 		nestedOptions["de"] = "e"
