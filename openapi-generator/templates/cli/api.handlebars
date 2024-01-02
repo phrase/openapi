@@ -101,7 +101,6 @@ func init{{{nickname}}}() {
 				{{/required~}}
 			{{/allParams~}}
 
-			 // trigger API request using phrase-go client
 			data, api_response, err := client.{{classname}}.{{{nickname}}}(auth{{#hasParams}}, {{/hasParams}}{{#allParams}}{{#required}}{{paramName}}{{#unless @last}}, {{/unless}}{{/required}}{{/allParams}}{{#hasOptionalParams}}&localVarOptionals{{/hasOptionalParams}})
 
 			if err != nil {
