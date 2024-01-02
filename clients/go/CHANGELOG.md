@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.22.1](https://github.com/phrase/openapi/compare/go-v2.22.0...go-v2.22.1) (2024-01-02)
+
+
+### Bug Fixes
+
+* **CLI:** retrigger release for GO ([fca7edb](https://github.com/phrase/openapi/commit/fca7edb2bfecaeb2ed92c5f50acb8d820ef94cb0))
+* **GO:** fix type mismatch error ([fca7edb](https://github.com/phrase/openapi/commit/fca7edb2bfecaeb2ed92c5f50acb8d820ef94cb0))
+* **GO:** fix type mismatch for nested args ([#515](https://github.com/phrase/openapi/issues/515)) ([fca7edb](https://github.com/phrase/openapi/commit/fca7edb2bfecaeb2ed92c5f50acb8d820ef94cb0))
+
 ## [2.22.0](https://github.com/phrase/openapi/compare/go-v2.21.1...go-v2.22.0) (2024-01-02)
 
 
