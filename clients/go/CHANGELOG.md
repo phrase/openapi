@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.22.0](https://github.com/phrase/openapi/compare/go-v2.21.1...go-v2.22.0) (2024-01-02)
+
+
+### Features
+
+* **GO:** retrigger release for GO ([4fcf237](https://github.com/phrase/openapi/commit/4fcf237a4583190863b2b33b9710ef8a1540e1fd))
+* Retrigger release for CLI & GO ([#505](https://github.com/phrase/openapi/issues/505)) ([4fcf237](https://github.com/phrase/openapi/commit/4fcf237a4583190863b2b33b9710ef8a1540e1fd))
+
+
+### Bug Fixes
+
+* **API:** Create Custom Metadata endpoint fix [TSI-2222] ([#499](https://github.com/phrase/openapi/issues/499)) ([ce2ed94](https://github.com/phrase/openapi/commit/ce2ed9488e111fb5d9bc3810a78c47d23553c8b7))
+* **CLI:** retrigger release for CLI ([4fcf237](https://github.com/phrase/openapi/commit/4fcf237a4583190863b2b33b9710ef8a1540e1fd))
+* **GO,CLI:** Reverts retrigger Go & CLI release ([d6574c1](https://github.com/phrase/openapi/commit/d6574c12e0fa93596935706a6b4a2aaa3c7691ef))
+
 ## [2.21.1](https://github.com/phrase/openapi/compare/go-v2.21.0...go-v2.21.1) (2023-12-20)
 
 
