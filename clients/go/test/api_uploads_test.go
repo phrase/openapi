@@ -35,12 +35,12 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 			response := `{"id": "1", "filename": "test.json", "format": "json", "state": "valid" }`
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusOK)
-	
+
 			w.Write([]byte(response))
 		}))
-	
+
 		defer server.Close()
-	
+
 		configuration := phrase.NewConfiguration()
 		configuration.BasePath = server.URL
 		apiClient := phrase.NewAPIClient(configuration)
@@ -62,10 +62,9 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 
 		formatOptionsMap := optional.NewInterface(formatOptions)
 
-		localVarOptionals := phrase.UploadCreateOpts{FileFormat: fileFormat, File: fileObject, LocaleId: localeId, FormatOptions: formatOptionsMap }
+		localVarOptionals := phrase.UploadCreateOpts{FileFormat: fileFormat, File: fileObject, LocaleId: localeId, FormatOptions: formatOptionsMap}
 		resp, httpRes, err := apiClient.UploadsApi.UploadCreate(context.Background(), "project_id", &localVarOptionals)
 		requestUrl := httpRes.Request.URL
-
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -85,16 +84,16 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 			response := `{"id": "1", "filename": "test.json", "format": "json", "state": "valid" }`
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusOK)
-	
+
 			w.Write([]byte(response))
 		}))
-	
+
 		defer server.Close()
-	
+
 		configuration := phrase.NewConfiguration()
 		configuration.BasePath = server.URL
 		apiClient := phrase.NewAPIClient(configuration)
-		
+
 		localVarOptionals := phrase.UploadShowOpts{}
 		resp, httpRes, err := apiClient.UploadsApi.UploadShow(context.Background(), "project_id", "upload_id", &localVarOptionals)
 		requestUrl := httpRes.Request.URL

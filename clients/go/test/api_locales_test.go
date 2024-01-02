@@ -46,7 +46,6 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 
 		resp, httpRes, err := apiClient.LocalesApi.LocaleDownload(context.Background(), "project_id_example", "locale_id", &localeDownloadOpts)
 		requestUrl := httpRes.Request.URL
-		
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -60,7 +59,6 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 		localeShowOpts := phrase.LocaleShowOpts{}
 		resp, httpRes, err := apiClient.LocalesApi.LocaleShow(context.Background(), "project_id_example", "locale_id", &localeShowOpts)
 		requestUrl := httpRes.Request.URL
-		
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -77,7 +75,6 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 		localeUpdateParameters := phrase.LocaleUpdateParameters{}
 		resp, httpRes, err := apiClient.LocalesApi.LocaleUpdate(context.Background(), "project_id_example", "locale_id", localeUpdateParameters, &localeUpdateOpts)
 		requestUrl := httpRes.Request.URL
-		
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -98,9 +95,9 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 
 			w.Write([]byte(response))
 		}))
-	
+
 		defer server.Close()
-	
+
 		configuration := phrase.NewConfiguration()
 		configuration.BasePath = server.URL
 		apiClient := phrase.NewAPIClient(configuration)

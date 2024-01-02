@@ -54,6 +54,31 @@ https://github.com/phrase/phrase-cli
 
 [https://swagger.io/docs/specification/about/](https://swagger.io/docs/specification/about/)
 
+### Defining parameters
+
+`POST`/`PUT` requests should define parameters within `requestBody` section, like the following:
+
+```yaml
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: key/create/parameters
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          name:
+            description: Key name
+            type: string
+            example: home.index.headline
+```
+
+`parameters` section should contain only those parameters which are part of the URL (typically `project_id` and/or `account_id`)
+
 ## Get help / support
 
 Please contact [support@phrase.com](mailto:support@phrase.com?subject=[GitHub]%20openapi) and we can take more direct action toward finding a solution.

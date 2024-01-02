@@ -768,6 +768,7 @@
       },
       "custom_metadata_data_type": {
         "type": "string",
+        "description": "data type of the property",
         "enum": [
           "boolean",
           "date",
@@ -777,7 +778,8 @@
           "single_select",
           "string",
           "text"
-        ]
+        ],
+        "example": "string"
       },
       "key_preview": {
         "type": "object",
@@ -6208,71 +6210,61 @@
           },
           {
             "$ref": "#/components/parameters/account_id"
-          },
-          {
-            "description": "name of the property",
-            "example": [
-              "Fruit"
-            ],
-            "name": "name",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "data_type",
-            "in": "query",
-            "description": "Data Type of Custom Metadata Property",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/custom_metadata_data_type"
-            },
-            "example": "boolean"
-          },
-          {
-            "description": "description of property",
-            "example": [
-              "A healthy snack for all ages"
-            ],
-            "name": "description",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "ids of projects that the property belongs to",
-            "example": [
-              "abcd1234cdef1234abcd1234cdef1234"
-            ],
-            "name": "project_ids",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "description": "value options of property (only applies to single or multi select properties)",
-            "example": [
-              "Apple",
-              "Banana",
-              "Coconut"
-            ],
-            "name": "value_options",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name",
+                  "data_type"
+                ],
+                "type": "object",
+                "title": "custom_metadata_properties/create/parameters",
+                "properties": {
+                  "name": {
+                    "description": "name of the property",
+                    "example": "Fruit",
+                    "type": "string"
+                  },
+                  "data_type": {
+                    "$ref": "#/components/schemas/custom_metadata_data_type"
+                  },
+                  "project_ids": {
+                    "description": "ids of projects that the property belongs to",
+                    "type": "array",
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234",
+                      "abcd1234cdef1234abcd1234cdef4321"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "description": {
+                    "description": "description of property",
+                    "example": "A healthy snack for all ages",
+                    "type": "string"
+                  },
+                  "value_options": {
+                    "description": "value options of property (only applies to single or multi select properties)",
+                    "example": [
+                      "Apple",
+                      "Banana",
+                      "Coconut"
+                    ],
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -6400,60 +6392,54 @@
           },
           {
             "$ref": "#/components/parameters/id"
-          },
-          {
-            "description": "name of the property",
-            "example": [
-              "Fruit"
-            ],
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "description of property",
-            "example": [
-              "A healthy snack for all ages"
-            ],
-            "name": "description",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "ids of projects that the property belongs to",
-            "example": [
-              "abcd1234cdef1234abcd1234cdef1234"
-            ],
-            "name": "project_ids",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "description": "value options of property (only applies to single or multi select properties)",
-            "example": [
-              "Apple",
-              "Banana",
-              "Coconut"
-            ],
-            "name": "value_options",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "custom_metadata_properties/update/parameters",
+                "properties": {
+                  "name": {
+                    "description": "name of the property",
+                    "example": "Fruit",
+                    "type": "string"
+                  },
+                  "project_ids": {
+                    "description": "ids of projects that the property belongs to",
+                    "type": "array",
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234",
+                      "abcd1234cdef1234abcd1234cdef4321"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "description": {
+                    "description": "description of property",
+                    "example": "A healthy snack for all ages",
+                    "type": "string"
+                  },
+                  "value_options": {
+                    "description": "value options of property (only applies to single or multi select properties)",
+                    "example": [
+                      "Apple",
+                      "Banana",
+                      "Coconut"
+                    ],
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
