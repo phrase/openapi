@@ -36,6 +36,11 @@ func (cmd *PushCommand) Run() error {
 		cmd.Config.Debug = false
 		Debug = true
 	}
+
+	if cmd.Cleanup && !cmd.Wait {
+		return fmt.Errorf("You can only use the --cleanup option together with --wait")
+	}
+
 	Config = &cmd.Config
 
 	client := newClient()
@@ -214,24 +219,12 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, cleanu
 	}
 	if noErrors {
 		if waitForResults && cleanup {
-			cleanupAfterUpload(client, source.ProjectID, uploadIds)
+			return UploadCleanup(client, true, uploadIds, branch, source.ProjectID)
 		}
 	} else {
 		return errors.New("not all files were uploaded successfully")
 	}
 
-	return nil
-}
-
-func cleanupAfterUpload(client *phrase.APIClient, projectId string, uploadIds []string) error {
-	cleanupCommand := &UploadCleanupCommand{
-		Config:    *Config,
-		IDs:       uploadIds,
-		ProjectID: projectId,
-		Confirm:   true,
-		Branch:    "",
-	}
-	UploadCleanup(client, cleanupCommand)
 	return nil
 }
 
