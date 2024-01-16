@@ -1,0 +1,56 @@
+---
+quality_performance_score:
+  anyOf:
+  - type: object
+    title: error
+    description: Error field for when the request completely fails
+    properties:
+      error:
+        type: object
+        properties:
+          message:
+            type: string
+          code:
+            type: string
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          translations:
+            type: array
+            items:
+              type: object
+              properties:
+                engine:
+                  type: string
+                  description: Engine used for the translation scoring
+                score:
+                  type: number
+                  description: Quality score for the translation
+                id:
+                  type: string
+                  description: One of the translation ids passed in arguments
+      errors:
+        type: array
+        description: Array of errors for any failing translation ids
+        items:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+            id:
+              type: string
+              description: One of the translation ids passed in arguments
+  example:
+    data:
+      translations:
+        - engine: "qe_v4"
+          score: 0.78
+          id: "translation_id_1"
+        - engine: "qe_v4"
+          score: 0.95
+          id: "translation_id_2"
+    errors: []

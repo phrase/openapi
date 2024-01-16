@@ -78,3 +78,5 @@
       $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 503:
   description: Server error
+504:
+  description: Gateway timeout
