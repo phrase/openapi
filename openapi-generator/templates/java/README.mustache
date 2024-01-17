@@ -89,8 +89,7 @@ public class {{{classname}}}Example {
         // Configure API key authorization: {{{name}}}
         ApiKeyAuth {{{name}}} = (ApiKeyAuth) defaultClient.getAuthentication("{{{name}}}");
         {{{name}}}.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //{{{name}}}.setApiKeyPrefix("Token");{{/isApiKey}}{{#isOAuth}}
+        {{{name}}}.setApiKeyPrefix("token");{{/isApiKey}}{{#isOAuth}}
         // Configure OAuth2 access token for authorization: {{{name}}}
         OAuth {{{name}}} = (OAuth) defaultClient.getAuthentication("{{{name}}}");
         {{{name}}}.setAccessToken("YOUR ACCESS TOKEN");{{/isOAuth}}
