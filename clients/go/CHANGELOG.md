@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.23.0](https://github.com/phrase/openapi/compare/go-v2.22.1...go-v2.23.0) (2024-01-17)
+
+
+### Features
+
+* **api:** Add QPS endpoint and documentation ([#521](https://github.com/phrase/openapi/issues/521)) ([d22c558](https://github.com/phrase/openapi/commit/d22c558adfbb7fcd13759e388c038744914e42fa))
+
 ## [2.22.1](https://github.com/phrase/openapi/compare/go-v2.22.0...go-v2.22.1) (2024-01-02)
 
 
