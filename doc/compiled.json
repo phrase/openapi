@@ -4652,6 +4652,9 @@
       },
       "503": {
         "description": "Server error"
+      },
+      "504": {
+        "description": "Gateway timeout"
       }
     }
   },
@@ -21332,6 +21335,181 @@
           }
         },
         "x-cli-version": "2.5"
+      }
+    },
+    "/projects/{id}/quality_performance_score": {
+      "post": {
+        "summary": "Get project's translations' quality performance scores",
+        "description": "Get project's translations' quality performance scores",
+        "operationId": "projects/quality_performance_score",
+        "tags": [
+          "Quality performance score"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "title": "error",
+                      "description": "Error field for when the request completely fails",
+                      "properties": {
+                        "error": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string"
+                            },
+                            "code": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "translations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "engine": {
+                                    "type": "string",
+                                    "description": "Engine used for the translation scoring"
+                                  },
+                                  "score": {
+                                    "type": "number",
+                                    "description": "Quality score for the translation"
+                                  },
+                                  "id": {
+                                    "type": "string",
+                                    "description": "One of the translation ids passed in arguments"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array",
+                          "description": "Array of errors for any failing translation ids",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "message": {
+                                "type": "string"
+                              },
+                              "code": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string",
+                                "description": "One of the translation ids passed in arguments"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "example": {
+                    "data": {
+                      "translations": [
+                        {
+                          "engine": "qe_v4",
+                          "score": 0.78,
+                          "id": "translation_id_1"
+                        },
+                        {
+                          "engine": "qe_v4",
+                          "score": 0.95,
+                          "id": "translation_id_2"
+                        }
+                      ]
+                    },
+                    "errors": []
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "504": {
+            "$ref": "#/components/responses/504"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:id/quality_performance_score\" \\\n  -X POST \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -d '{\"translation_ids\":[\"translation_id_1\", \"translation_id_2\"]}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase projects quality_performance_score \\\n--id <id> \\\n--data '{\"translation_ids\":[\"translation_id_1\", \"translation_id_2\"]}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "translation_ids": {
+                    "description": "Translation ids you want to get the quality performance score for",
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "translation_id_1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.20"
       }
     },
     "/accounts/{account_id}/spaces": {

@@ -1,0 +1,63 @@
+---
+summary: Get project's translations' quality performance scores
+description: Get project's translations' quality performance scores
+operationId: projects/quality_performance_score
+tags:
+- Quality performance score
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/quality_performance_score.yaml#/quality_performance_score"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '401':
+    "$ref": "../../responses.yaml#/401"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '422':
+    "$ref": "../../responses.yaml#/422"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+  '504':
+    "$ref": "../../responses.yaml#/504"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:id/quality_performance_score" \
+      -X POST \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -d '{"translation_ids":["translation_id_1", "translation_id_2"]}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase projects quality_performance_score \
+    --id <id> \
+    --data '{"translation_ids":["translation_id_1", "translation_id_2"]}' \
+    --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          translation_ids:
+            description: Translation ids you want to get the quality performance score for
+            type: array
+            items:
+              type: string
+              example: translation_id_1
+x-cli-version: '2.20'
