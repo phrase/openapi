@@ -204,6 +204,7 @@ tags:
   - name: Tags
   - name: Teams
   - name: Translations
+  - name: Translation Memory
   - name: Uploads
     description: |
       ### Formats
@@ -289,6 +290,7 @@ x-tagGroups:
       - Glossaries
       - Glossary Terms
       - Glossary Term Translations
+      - Translation Memory
   - name: Integrations
     tags:
       - Bitbucket Sync

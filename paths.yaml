@@ -314,6 +314,9 @@
 "/projects/{project_id}/translations/{translation_id}/versions/{id}":
   get:
     "$ref": "./paths/versions/show.yaml"
+"/projects/{project_id}/translations/{translation_id}/translation_memory":
+  get:
+    "$ref": "./paths/translation_memory/index.yaml"
 "/accounts/{account_id}/glossaries/{glossary_id}/terms/{term_id}/translations":
   post:
     "$ref": "./paths/glossary_term_translations/create.yaml"

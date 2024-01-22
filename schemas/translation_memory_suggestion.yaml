@@ -1,0 +1,67 @@
+---
+translation_memory_suggestion:
+  type: object
+  title: translation_memory_suggestion
+  properties:
+    rating:
+      type: integer
+    key:
+      "$ref": "./translation_key.yaml#/translation_key"
+    project:
+      "$ref": "./project_short.yaml#/project_short"
+    source_translation:
+      "$ref": "./translation.yaml#/translation"
+    target_translation:
+      "$ref": "./translation.yaml#/translation"
+  example:
+    rating: 0.9
+    key:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: home.index.headline
+      plural: false
+      data_type: "STRING"
+      tags: ["foo", "bar"]
+    project:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: My Android Project
+      main_format: xml
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+    source_translation:
+      id: abcd1234cdef1234abcd1234cdef1234
+      content: My translation
+      unverified: false
+      excluded: false
+      plural_suffix: ''
+      key:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: home.index.headline
+        plural: false
+      locale:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: de
+        code: de-DE
+      placeholders:
+      - "%{count}"
+      state: translated
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+    target_translation:
+      id: abcd1234cdef1234abcd1234cdef1234
+      content: My translation
+      unverified: false
+      excluded: false
+      plural_suffix: ''
+      key:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: home.index.headline
+        plural: false
+      locale:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: de
+        code: de-DE
+      placeholders:
+      - "%{count}"
+      state: translated
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
