@@ -33,7 +33,7 @@ quality_performance_score:
                   description: One of the translation ids passed in arguments
       errors:
         type: array
-        description: Array of errors for any failing translation ids
+        description: Array of errors for any failing translation IDs
         items:
           type: object
           properties:

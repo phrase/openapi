@@ -507,7 +507,7 @@
 "/projects/{project_id}/orders/{id}/confirm":
   patch:
     "$ref": "./paths/orders/confirm.yaml"
-"/projects/{id}/quality_performance_score":
+"/projects/{project_id}/quality_performance_score":
   post:
     "$ref": "./paths/quality_performance_score/index.yaml"
 "/accounts/{account_id}/spaces":

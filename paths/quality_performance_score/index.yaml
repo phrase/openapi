@@ -1,12 +1,12 @@
 ---
-summary: Get project's translations' quality performance scores
-description: Get project's translations' quality performance scores
+summary: Get Translation Quality
+description: Retrieves the quality scores for your Strings translations. Returns a score, measured by Phrase QPS
 operationId: projects/quality_performance_score
 tags:
 - Quality performance score
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-- "$ref": "../../parameters.yaml#/id"
+- "$ref": "../../parameters.yaml#/project_id"
 responses:
   '200':
     description: OK
@@ -36,7 +36,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:id/quality_performance_score" \
+    curl "https://api.phrase.com/v2/projects/:project_id/quality_performance_score" \
       -X POST \
       -u USERNAME_OR_ACCESS_TOKEN \
       -d '{"translation_ids":["translation_id_1", "translation_id_2"]}' \
@@ -44,7 +44,7 @@ x-code-samples:
 - lang: CLI v2
   source: |-
     phrase projects quality_performance_score \
-    --id <id> \
+    --project_id <project_id> \
     --data '{"translation_ids":["translation_id_1", "translation_id_2"]}' \
     --access_token <token>
 requestBody:
