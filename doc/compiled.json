@@ -21337,10 +21337,10 @@
         "x-cli-version": "2.5"
       }
     },
-    "/projects/{id}/quality_performance_score": {
+    "/projects/{project_id}/quality_performance_score": {
       "post": {
-        "summary": "Get project's translations' quality performance scores",
-        "description": "Get project's translations' quality performance scores",
+        "summary": "Get Translation Quality",
+        "description": "Retrieves the quality scores for your Strings translations. Returns a score, measured by Phrase QPS",
         "operationId": "projects/quality_performance_score",
         "tags": [
           "Quality performance score"
@@ -21350,7 +21350,7 @@
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
           },
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/project_id"
           }
         ],
         "responses": {
@@ -21408,7 +21408,7 @@
                         },
                         "errors": {
                           "type": "array",
-                          "description": "Array of errors for any failing translation ids",
+                          "description": "Array of errors for any failing translation IDs",
                           "items": {
                             "type": "object",
                             "properties": {
@@ -21482,11 +21482,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/projects/:id/quality_performance_score\" \\\n  -X POST \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -d '{\"translation_ids\":[\"translation_id_1\", \"translation_id_2\"]}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/quality_performance_score\" \\\n  -X POST \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -d '{\"translation_ids\":[\"translation_id_1\", \"translation_id_2\"]}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase projects quality_performance_score \\\n--id <id> \\\n--data '{\"translation_ids\":[\"translation_id_1\", \"translation_id_2\"]}' \\\n--access_token <token>"
+            "source": "phrase projects quality_performance_score \\\n--project_id <project_id> \\\n--data '{\"translation_ids\":[\"translation_id_1\", \"translation_id_2\"]}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
