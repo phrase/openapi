@@ -68,6 +68,7 @@ requestBody:
             type: string
             format: date-time
             example: '2017-08-15'
+            nullable: true
           ticket_url:
             description: URL to a ticket for this job (e.g. Jira, Trello)
             type: string
