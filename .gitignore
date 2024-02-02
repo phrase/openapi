@@ -1,3 +1,5 @@
+clients/go/
+
 clients/python/*
 !clients/python/test/test_locales_api.py
 !clients/python/test/test_uploads_api.py
@@ -64,17 +66,3 @@ tmp/
 node_modules/
 .DS_Store
 clients/cli/README.md
-
-clients/go/*.go
-clients/go/README.md
-clients/go/git_push.sh
-clients/go/go.mod
-clients/go/go.sum
-clients/go/.gitignore
-clients/go/.openapi-generator
-clients/go/api/*
-clients/go/docs
-clients/go/test/*
-!clients/go/test/api_locales_test.go
-!clients/go/test/api_uploads_test.go
-!clients/go/test/api_jobs_test.go
