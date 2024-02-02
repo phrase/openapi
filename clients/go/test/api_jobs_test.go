@@ -33,7 +33,7 @@ func Test_phrase_JobsApiService(t *testing.T) {
 
             // Access the values from the JSON payload
             assert.Equal(t, requestBody["name"], "createjobactionb1")
-			assert.Equal(t, requestBody["due_date"], <nil>)
+			assert.Equal(t, requestBody["due_date"], nil)
 
 			// Send the mock response
 			response := `{"id": "1", "name": "createjobactionb1", "code": "123abc", "state": "draft", "user_id": "1" }`
