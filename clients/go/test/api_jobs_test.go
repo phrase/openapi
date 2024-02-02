@@ -26,13 +26,13 @@ func Test_phrase_JobsApiService(t *testing.T) {
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			// assert request body
 			var requestBody map[string]interface{}
-            decoder := json.NewDecoder(r.Body)
-            if err := decoder.Decode(&requestBody); err != nil {
-                t.Fatal(err)
-            }
+			decoder := json.NewDecoder(r.Body)
+			if err := decoder.Decode(&requestBody); err != nil {
+				t.Fatal(err)
+			}
 
-            // Access the values from the JSON payload
-            assert.Equal(t, requestBody["name"], "createjobactionb1")
+			// Access the values from the JSON payload
+			assert.Equal(t, requestBody["name"], "createjobactionb1")
 			assert.Equal(t, requestBody["due_date"], nil)
 
 			// Send the mock response
