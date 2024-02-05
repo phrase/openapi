@@ -12,6 +12,7 @@ job:
     due_date:
       type: string
       format: date-time
+      nullable: true
     state:
       type: string
     ticket_url:
