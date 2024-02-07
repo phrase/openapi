@@ -6133,6 +6133,15 @@
             "$ref": "#/components/parameters/per_page"
           },
           {
+            "description": "query to find a property by name",
+            "example": "character_name",
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "description": "Sort criteria. Can be one of: name, data_type, created_at.",
             "example": "updated_at",
             "name": "sort",
