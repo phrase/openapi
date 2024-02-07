@@ -4,7 +4,7 @@ outputDir: clients/java
 apiPackage: com.phrase.client.api
 artifactId: phrase-java
 artifactUrl: https://developers.phrase.com
-artifactVersion: 1.19.2
+artifactVersion: 1.20.0
 artifactDescription: Java Client for Phrase Strings API
 developerEmail: support@phrase.com
 developerName: Phrase
