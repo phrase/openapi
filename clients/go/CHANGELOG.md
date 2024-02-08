@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.24.0](https://github.com/phrase/openapi/compare/go-v2.23.2...go-v2.24.0) (2024-02-07)
+
+
+### Features
+
+* add query param for properties ([#542](https://github.com/phrase/openapi/issues/542)) ([b4e12d0](https://github.com/phrase/openapi/commit/b4e12d04fd2916351f9201e1e6de504143ecc9aa))
+
 ## [2.23.2](https://github.com/phrase/openapi/compare/go-v2.23.1...go-v2.23.2) (2024-02-05)
 
 
