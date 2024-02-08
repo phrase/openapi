@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.0](https://github.com/phrase/openapi/compare/java-v1.19.2...java-v1.20.0) (2024-02-07)
+
+
+### Features
+
+* add query param for properties ([#542](https://github.com/phrase/openapi/issues/542)) ([b4e12d0](https://github.com/phrase/openapi/commit/b4e12d04fd2916351f9201e1e6de504143ecc9aa))
+
 ## [1.19.2](https://github.com/phrase/openapi/compare/java-v1.19.1...java-v1.19.2) (2024-02-05)
 
 
