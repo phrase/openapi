@@ -59,6 +59,10 @@ requestBody:
       schema:
         type: object
         title: upload/create/parameters
+        required:
+          - file
+          - file_format
+          - locale_id
         properties:
           branch:
             description: specify the branch to use
