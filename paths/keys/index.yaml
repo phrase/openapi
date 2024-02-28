@@ -70,6 +70,8 @@ responses:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
       Link:
         "$ref": "../../headers.yaml#/Link"
+      Pagination:
+        "$ref": "../../headers.yaml#/Pagination"
   '400':
     "$ref": "../../responses.yaml#/400"
   '404':

@@ -22,3 +22,31 @@ X-Rate-Limit-Reset:
   description: The number of seconds left in the current period
   schema:
     type: integer
+Pagination:
+  description: Pagination details for navigating through a collection of resources, provided in JSON format.
+  schema:
+    type: object
+    properties:
+      total_count:
+        description: Total count of items in the collection.
+        type: integer
+        example: 10
+      total_pages_count:
+        description: Total number of pages available for the collection.
+        type: integer
+        example: 2
+      current_page:
+        description: The current page number.
+        type: integer
+        example: 1
+      current_per_page:
+        description: Number of items currently displayed per page.
+        type: integer
+        example: 5
+      previous_page:
+        description: Page number of the previous page, if available.
+        type: integer
+      next_page:
+        description: Page number of the next page, if available.
+        type: integer
+        example: 2
