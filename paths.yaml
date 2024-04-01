@@ -676,3 +676,13 @@
     "$ref": "./paths/organization_job_template_locales/update.yaml"
   delete:
     "$ref": "./paths/organization_job_template_locales/destroy.yaml"
+"/projects/{project_id}/keys/{id}/key_links":
+  delete:
+    "$ref": "./paths/key_links/batch_destroy.yaml"
+  get:
+    "$ref": "./paths/key_links/index.yaml"
+  post:
+    "$ref": "./paths/key_links/create.yaml"
+"/projects/{project_id}/keys/{id}/key_links/{child_key_id}":
+  delete:
+    "$ref": "./paths/key_links/destroy.yaml"

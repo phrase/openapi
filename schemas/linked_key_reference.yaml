@@ -1,0 +1,36 @@
+linked_key_reference:
+  type: object
+  properties:
+    created_at:
+      type: string
+      format: date-time
+      description: The timestamp when the link was created.
+    updated_at:
+      type: string
+      format: date-time
+      description: The timestamp when the link was last updated.
+    created_by:
+      $ref: "./user_preview.yaml#/user_preview"
+      description: The user who created the link.
+    updated_by:
+      $ref: "./user_preview.yaml#/user_preview"
+      description: The user who last updated the link.
+    account:
+      $ref: "./account.yaml#/account"
+      description: The account associated with the link.
+    parent:
+      $ref: "./key_preview.yaml#/key_preview"
+      description: The parent translation key in the link.
+    children:
+      type: array
+      items:
+        $ref: "./key_preview.yaml#/key_preview"
+      description: The child translation keys linked to the parent.
+  required:
+    - created_at
+    - updated_at
+    - created_by
+    - updated_by
+    - account
+    - parent
+    - children
