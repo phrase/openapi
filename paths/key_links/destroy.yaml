@@ -1,14 +1,14 @@
 ---
 summary: Unlink a child key from a parent key
 description: Unlinks a single child key from a given parent key.
-operationId: linked_keys/destroy
+operationId: key_links/destroy
 tags:
 - Linked Keys
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
 - in: path
-  name: linked_key_id
+  name: child_key_id
   required: true
   description: The ID of the child key to unlink.
   schema:

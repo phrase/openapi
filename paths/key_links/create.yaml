@@ -1,7 +1,7 @@
 ---
 summary: Link child keys to a parent key
 description: Creates links between a given parent key and one or more child keys.
-operationId: linked_keys/create
+operationId: key_links/create
 tags:
 - Linked Keys
 parameters:
@@ -15,7 +15,7 @@ requestBody:
         required:
         - child_key_ids
         type: object
-        title: linked_keys/create/parameters
+        title: key_links/create/parameters
         properties:
           child_key_ids:
             description: The IDs of the child keys to link to the parent key. Can be left empty, to only mark the given translation-key as parent
@@ -30,6 +30,6 @@ responses:
     content:
       application/json:
         schema:
-          "$ref": "../../schemas/linked_key_reference.yaml#/linked_key_reference"
+          "$ref": "../../schemas/key_link_reference.yaml#/key_link_reference"
   '422':
     "$ref": "../../responses.yaml#/422"

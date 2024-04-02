@@ -162,5 +162,5 @@ schemas:
     "$ref": schemas/organization_job_template.yaml#/organization_job_template
   organization_job_template_details:
     "$ref": schemas/organization_job_template_details.yaml#/organization_job_template_details
-  linked_key_reference:
-    "$ref": schemas/linked_key_reference.yaml#/linked_key_reference
+  key_link_reference:
+    "$ref": schemas/key_link_reference.yaml#/key_link_reference

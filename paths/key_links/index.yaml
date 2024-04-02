@@ -1,7 +1,7 @@
 ---
 summary: Retrieve all child keys linked to a specific parent key
 description: Returns detailed information about a parent key, including its linked child keys.
-operationId: linked_keys/index
+operationId: key_links/index
 tags:
 - Linked Keys
 parameters:
@@ -13,7 +13,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "../../schemas/linked_key_reference.yaml#/linked_key_reference"
+          $ref: "../../schemas/key_link_reference.yaml#/key_link_reference"
   '400':
     description: Bad Request
     content:

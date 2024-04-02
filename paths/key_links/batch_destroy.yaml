@@ -1,6 +1,6 @@
 summary: Batch unlink child keys from a parent key
 description: Unlinks multiple child keys from a given parent key in a single operation.
-operationId: linked_keys/batch_destroy
+operationId: key_links/batch_destroy
 tags:
 - Linked Keys
 parameters:
@@ -20,7 +20,7 @@ requestBody:
         required:
         - child_key_ids
         type: object
-        title: linked_keys/batch_destroy/parameters
+        title: key_links/batch_destroy/parameters
         properties:
           child_key_ids:
             description: The IDs of the child keys to unlink from the parent key.

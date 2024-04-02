@@ -4241,7 +4241,7 @@
           }
         ]
       },
-      "linked_key_reference": {
+      "key_link_reference": {
         "type": "object",
         "properties": {
           "created_at": {
@@ -26627,7 +26627,7 @@
       "delete": {
         "summary": "Batch unlink child keys from a parent key",
         "description": "Unlinks multiple child keys from a given parent key in a single operation.",
-        "operationId": "linked_keys/batch_destroy",
+        "operationId": "key_links/batch_destroy",
         "tags": [
           "Linked Keys"
         ],
@@ -26657,7 +26657,7 @@
                   "child_key_ids"
                 ],
                 "type": "object",
-                "title": "linked_keys/batch_destroy/parameters",
+                "title": "key_links/batch_destroy/parameters",
                 "properties": {
                   "child_key_ids": {
                     "description": "The IDs of the child keys to unlink from the parent key.",
@@ -26687,7 +26687,7 @@
       "get": {
         "summary": "Retrieve all child keys linked to a specific parent key",
         "description": "Returns detailed information about a parent key, including its linked child keys.",
-        "operationId": "linked_keys/index",
+        "operationId": "key_links/index",
         "tags": [
           "Linked Keys"
         ],
@@ -26705,7 +26705,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/linked_key_reference"
+                  "$ref": "#/components/schemas/key_link_reference"
                 }
               }
             }
@@ -26733,7 +26733,7 @@
       "post": {
         "summary": "Link child keys to a parent key",
         "description": "Creates links between a given parent key and one or more child keys.",
-        "operationId": "linked_keys/create",
+        "operationId": "key_links/create",
         "tags": [
           "Linked Keys"
         ],
@@ -26754,7 +26754,7 @@
                   "child_key_ids"
                 ],
                 "type": "object",
-                "title": "linked_keys/create/parameters",
+                "title": "key_links/create/parameters",
                 "properties": {
                   "child_key_ids": {
                     "description": "The IDs of the child keys to link to the parent key. Can be left empty, to only mark the given translation-key as parent",
@@ -26778,7 +26778,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/linked_key_reference"
+                  "$ref": "#/components/schemas/key_link_reference"
                 }
               }
             }
@@ -26793,7 +26793,7 @@
       "delete": {
         "summary": "Unlink a child key from a parent key",
         "description": "Unlinks a single child key from a given parent key.",
-        "operationId": "linked_keys/destroy",
+        "operationId": "key_links/destroy",
         "tags": [
           "Linked Keys"
         ],
@@ -26806,7 +26806,7 @@
           },
           {
             "in": "path",
-            "name": "linked_key_id",
+            "name": "child_key_id",
             "required": true,
             "description": "The ID of the child key to unlink.",
             "schema": {
