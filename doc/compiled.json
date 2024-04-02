@@ -4241,7 +4241,7 @@
           }
         ]
       },
-      "key_link_reference": {
+      "key_link": {
         "type": "object",
         "properties": {
           "created_at": {
@@ -26705,7 +26705,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/key_link_reference"
+                  "$ref": "#/components/schemas/key_link"
                 }
               }
             }
@@ -26778,7 +26778,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/key_link_reference"
+                  "$ref": "#/components/schemas/key_link"
                 }
               }
             }

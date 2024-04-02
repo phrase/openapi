@@ -30,6 +30,6 @@ responses:
     content:
       application/json:
         schema:
-          "$ref": "../../schemas/key_link_reference.yaml#/key_link_reference"
+          "$ref": "../../schemas/key_link.yaml#/key_link"
   '422':
     "$ref": "../../responses.yaml#/422"

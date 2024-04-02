@@ -1,4 +1,4 @@
-key_link_reference:
+key_link:
   type: object
   properties:
     created_at:
