@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.25.0](https://github.com/phrase/openapi/compare/go-v2.24.0...go-v2.25.0) (2024-04-02)
+
+
+### Features
+
+* **API:** add Linked Keys endpoints ([#555](https://github.com/phrase/openapi/issues/555)) ([4935dac](https://github.com/phrase/openapi/commit/4935dac58c787eaade2f1f65ce649f466b5e3a60))
+
 ## [2.24.0](https://github.com/phrase/openapi/compare/go-v2.23.2...go-v2.24.0) (2024-02-07)
 
 
