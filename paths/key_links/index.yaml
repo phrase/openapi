@@ -1,0 +1,27 @@
+---
+summary: Retrieve all child keys linked to a specific parent key
+description: Returns detailed information about a parent key, including its linked child keys.
+operationId: key_links/index
+tags:
+- Linked Keys
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/key_link.yaml#/key_link"
+  '400':
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+          example:
+            message: "Key <parent_key_code> is not a parent key"
