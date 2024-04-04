@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.25.1](https://github.com/phrase/openapi/compare/go-v2.25.0...go-v2.25.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* (API) Add mandatory params to linked keys endpoints ([#564](https://github.com/phrase/openapi/issues/564)) ([08d9846](https://github.com/phrase/openapi/commit/08d9846bc224d349e2ade9abf28d733afb1e8be3))
+
 ## [2.25.0](https://github.com/phrase/openapi/compare/go-v2.24.0...go-v2.25.0) (2024-04-02)
 
 
