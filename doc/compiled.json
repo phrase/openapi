@@ -26645,9 +26645,6 @@
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
           },
           {
-            "$ref": "#/components/parameters/account_id"
-          },
-          {
             "$ref": "#/components/parameters/project_id"
           },
           {
@@ -26711,9 +26708,6 @@
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
           },
           {
-            "$ref": "#/components/parameters/account_id"
-          },
-          {
             "$ref": "#/components/parameters/project_id"
           },
           {
@@ -26761,9 +26755,6 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
-          },
-          {
-            "$ref": "#/components/parameters/account_id"
           },
           {
             "$ref": "#/components/parameters/project_id"
@@ -26827,9 +26818,6 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/X-PhraseApp-OTP"
-          },
-          {
-            "$ref": "#/components/parameters/account_id"
           },
           {
             "$ref": "#/components/parameters/project_id"
