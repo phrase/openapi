@@ -4386,6 +4386,15 @@
           "type": "string"
         }
       },
+      "key_id_as_id": {
+        "in": "path",
+        "name": "id",
+        "description": "Parent Translation Key ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
       "figma_attachment_id": {
         "in": "path",
         "name": "figma_attachment_id",
@@ -26639,6 +26648,12 @@
             "$ref": "#/components/parameters/account_id"
           },
           {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id_as_id"
+          },
+          {
             "in": "query",
             "name": "unlink_parent",
             "required": false,
@@ -26697,6 +26712,12 @@
           },
           {
             "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id_as_id"
           }
         ],
         "responses": {
@@ -26743,6 +26764,12 @@
           },
           {
             "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id_as_id"
           }
         ],
         "requestBody": {
@@ -26803,6 +26830,12 @@
           },
           {
             "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/key_id_as_id"
           },
           {
             "in": "path",
