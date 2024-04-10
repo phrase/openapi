@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.21.0](https://github.com/phrase/openapi/compare/java-v1.20.0...java-v1.21.0) (2024-04-10)
+
+
+### Features
+
+* **API:** add Linked Keys endpoints ([#555](https://github.com/phrase/openapi/issues/555)) ([4935dac](https://github.com/phrase/openapi/commit/4935dac58c787eaade2f1f65ce649f466b5e3a60))
+
+
+### Bug Fixes
+
+* (API) Add mandatory params to linked keys endpoints ([#564](https://github.com/phrase/openapi/issues/564)) ([08d9846](https://github.com/phrase/openapi/commit/08d9846bc224d349e2ade9abf28d733afb1e8be3))
+
 ## [1.20.0](https://github.com/phrase/openapi/compare/java-v1.19.2...java-v1.20.0) (2024-02-07)
 
 
