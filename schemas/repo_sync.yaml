@@ -1,0 +1,41 @@
+---
+repo_sync:
+  type: object
+  title: repo_sync
+  properties:
+    id:
+      type: string
+    project:
+      "$ref": "./project_short.yaml#/project_short"
+    provider:
+      type: string
+    enabled:
+      type: boolean
+    auto_import:
+      type: boolean
+    repo_name:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    last_import_at:
+      type: string
+      format: date-time
+    last_export_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    project:
+      id: abcd1234cdef1234abcd1234cdef1234
+      name: My Android Project
+      main_format: xml
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'
+    provider: github
+    enabled: true
+    auto_import: true
+    repo_name: organization/repo
+    created_at: '2015-01-28T09:52:53Z'
+    last_import_at: '2015-01-28T09:52:53Z'
+    last_export_at: '2015-01-28T09:52:53Z'

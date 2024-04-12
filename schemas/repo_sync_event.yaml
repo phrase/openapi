@@ -1,0 +1,27 @@
+---
+repo_sync_event:
+  type: object
+  title: repo_sync_event
+  properties:
+    event_type:
+      type: string
+      enum: [import, export]
+    created_at:
+      type: string
+      format: date-time
+    status:
+      type: string
+      enum: [running, success, failure]
+    errors:
+      type: array
+      items:
+        anyOf:
+        - type: string
+        - type: object
+  example:
+    event_type: import
+    created_at: '2015-01-28T09:52:53Z'
+    status: failure
+    errors:
+      - "Error message"
+      - "Error message"

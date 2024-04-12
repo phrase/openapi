@@ -1,0 +1,37 @@
+summary: "Repository Syncs History"
+description: |-
+  Get the history of a single Repo Sync. The history includes all imports and exports
+  performed by the Repo Sync.
+operationId: repo_sync/history
+tags:
+- Repo Syncs
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/repo_sync_id"
+responses:
+  '200':
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/repo_sync_event.yaml#/repo_sync_event"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+      Pagination:
+        "$ref": "../../headers.yaml#/Pagination"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"

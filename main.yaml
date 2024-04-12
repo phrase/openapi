@@ -195,6 +195,10 @@ tags:
   - name: Projects
   - name: Quality
   - name: Releases
+  - name: Repo Syncs
+    description: |
+      The Repo Syncs API allows you to synchronize your Phrase projects with your code repositories.
+      You can import translations from your repository to Phrase and export translations from Phrase to your repository.
   - name: Reports
   - name: Search
   - name: Screenshot Markers
