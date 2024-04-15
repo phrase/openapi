@@ -1,9 +1,12 @@
 ---
 summary: Export to code repository
 description: |-
+  > Beta: this feature will change in the future.
+
   Export translations from Phrase Strings to repository provider according to the
-  .phrase.yml file within the code repository. <br><br><i>Note: Export is done
-  asynchronously and may take several seconds depending on the project size.</i>
+  .phrase.yml file within the code repository.
+
+  *Export is done asynchronously and may take several seconds depending on the project size.*
 operationId: repo_sync/export
 tags:
 - Repo Syncs
