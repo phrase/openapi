@@ -7,7 +7,6 @@ description: |-
 operationId: repo_sync/import
 tags:
 - Repo Syncs
-- beta
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
