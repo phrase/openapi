@@ -1,7 +1,7 @@
 ---
 summary: Get Repo Syncs
 description: Lists all Repo Syncs from an account
-operationId: repo_sync/index
+operationId: repo_sync/list
 tags:
 - Repo Syncs
 parameters:

@@ -2,7 +2,7 @@ summary: "Repository Syncs History"
 description: |-
   Get the history of a single Repo Sync. The history includes all imports and exports
   performed by the Repo Sync.
-operationId: repo_sync/history
+operationId: repo_sync/events
 tags:
 - Repo Syncs
 parameters:
