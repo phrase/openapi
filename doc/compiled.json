@@ -21861,7 +21861,7 @@
       "get": {
         "summary": "Get Repo Syncs",
         "description": "Lists all Repo Syncs from an account",
-        "operationId": "repo_sync/index",
+        "operationId": "repo_sync/list",
         "tags": [
           "Repo Syncs"
         ],
@@ -22137,7 +22137,7 @@
       "get": {
         "summary": "Repository Syncs History",
         "description": "Get the history of a single Repo Sync. The history includes all imports and exports\nperformed by the Repo Sync.",
-        "operationId": "repo_sync/history",
+        "operationId": "repo_sync/events",
         "tags": [
           "Repo Syncs"
         ],
