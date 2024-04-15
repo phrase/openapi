@@ -4291,6 +4291,106 @@
           "parent",
           "children"
         ]
+      },
+      "repo_sync": {
+        "type": "object",
+        "title": "repo_sync",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/project_short"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "auto_import": {
+            "type": "boolean"
+          },
+          "repo_name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_import_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_export_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "project": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "My Android Project",
+            "main_format": "xml",
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z"
+          },
+          "provider": "github",
+          "enabled": true,
+          "auto_import": true,
+          "repo_name": "organization/repo",
+          "created_at": "2015-01-28T09:52:53Z",
+          "last_import_at": "2015-01-28T09:52:53Z",
+          "last_export_at": "2015-01-28T09:52:53Z"
+        }
+      },
+      "repo_sync_event": {
+        "type": "object",
+        "title": "repo_sync_event",
+        "properties": {
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "import",
+              "export"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "success",
+              "failure"
+            ]
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "example": {
+          "event_type": "import",
+          "created_at": "2015-01-28T09:52:53Z",
+          "status": "failure",
+          "errors": [
+            "Error message",
+            "Error message"
+          ]
+        }
       }
     },
     "parameters": {
@@ -21771,7 +21871,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1accounts~1%7Baccount_id%7D~1repo_syncs~1%7Brepo_sync_id%7D/get/responses/200/content/application~1json/schema"
+                    "$ref": "#/components/schemas/repo_sync"
                   }
                 }
               }
@@ -21814,7 +21914,7 @@
             "source": "phrase repo_sync index \\\n--account_id abcd1234 \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.24"
       }
     },
     "/accounts/{account_id}/repo_syncs/{repo_sync_id}": {
@@ -21842,57 +21942,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "repo_sync",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "project": {
-                      "$ref": "#/components/schemas/project_short"
-                    },
-                    "provider": {
-                      "type": "string"
-                    },
-                    "enabled": {
-                      "type": "boolean"
-                    },
-                    "auto_import": {
-                      "type": "boolean"
-                    },
-                    "repo_name": {
-                      "type": "string"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "last_import_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "last_export_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  },
-                  "example": {
-                    "id": "abcd1234cdef1234abcd1234cdef1234",
-                    "project": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
-                      "name": "My Android Project",
-                      "main_format": "xml",
-                      "created_at": "2015-01-28T09:52:53Z",
-                      "updated_at": "2015-01-28T09:52:53Z"
-                    },
-                    "provider": "github",
-                    "enabled": true,
-                    "auto_import": true,
-                    "repo_name": "organization/repo",
-                    "created_at": "2015-01-28T09:52:53Z",
-                    "last_import_at": "2015-01-28T09:52:53Z",
-                    "last_export_at": "2015-01-28T09:52:53Z"
-                  }
+                  "$ref": "#/components/schemas/repo_sync"
                 }
               }
             },
@@ -21928,7 +21978,7 @@
             "source": "phrase repo_sync show \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.24"
       }
     },
     "/accounts/{account_id}/repo_syncs/{repo_sync_id}/export": {
@@ -22000,7 +22050,7 @@
             "source": "phrase repo_sync export \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.24"
       }
     },
     "/accounts/{account_id}/repo_syncs/{repo_sync_id}/import": {
@@ -22072,7 +22122,7 @@
             "source": "phrase repo_sync import \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.24"
       }
     },
     "/accounts/{account_id}/repo_syncs/{repo_sync_id}/events": {
@@ -22102,51 +22152,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "title": "repo_sync_event",
-                    "properties": {
-                      "event_type": {
-                        "type": "string",
-                        "enum": [
-                          "import",
-                          "export"
-                        ]
-                      },
-                      "created_at": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "running",
-                          "success",
-                          "failure"
-                        ]
-                      },
-                      "errors": {
-                        "type": "array",
-                        "items": {
-                          "anyOf": [
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "object"
-                            }
-                          ]
-                        }
-                      }
-                    },
-                    "example": {
-                      "event_type": "import",
-                      "created_at": "2015-01-28T09:52:53Z",
-                      "status": "failure",
-                      "errors": [
-                        "Error message",
-                        "Error message"
-                      ]
-                    }
+                    "$ref": "#/components/schemas/repo_sync_event"
                   }
                 }
               }
@@ -22178,7 +22184,18 @@
           "429": {
             "$ref": "#/components/responses/429"
           }
-        }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/56ef78/events\"\\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase repo_sync events \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.24"
       }
     },
     "/accounts/{account_id}/repo_syncs/{repo_sync_id}/deactivate": {
@@ -22206,7 +22223,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1accounts~1%7Baccount_id%7D~1repo_syncs~1%7Brepo_sync_id%7D/get/responses/200/content/application~1json/schema"
+                  "$ref": "#/components/schemas/repo_sync"
                 }
               }
             },
@@ -22242,7 +22259,7 @@
             "source": "phrase repo_sync deactivate \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.24"
       }
     },
     "/accounts/{account_id}/repo_syncs/{repo_sync_id}/activate": {
@@ -22270,7 +22287,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1accounts~1%7Baccount_id%7D~1repo_syncs~1%7Brepo_sync_id%7D/get/responses/200/content/application~1json/schema"
+                  "$ref": "#/components/schemas/repo_sync"
                 }
               }
             },
@@ -22306,7 +22323,7 @@
             "source": "phrase repo_sync activate \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
           }
         ],
-        "x-cli-version": "2.5"
+        "x-cli-version": "2.24"
       }
     },
     "/accounts/{account_id}/spaces": {

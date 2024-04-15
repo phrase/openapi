@@ -524,7 +524,7 @@
     "$ref": "./paths/repo_syncs/import.yaml"
 "/accounts/{account_id}/repo_syncs/{repo_sync_id}/events":
   get:
-    "$ref": "./paths/repo_syncs/history.yaml"
+    "$ref": "./paths/repo_syncs/events.yaml"
 "/accounts/{account_id}/repo_syncs/{repo_sync_id}/deactivate":
   post:
     "$ref": "./paths/repo_syncs/deactivate.yaml"

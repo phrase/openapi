@@ -49,4 +49,4 @@ x-code-samples:
     phrase repo_sync export \
     --repo_sync_id <repo_sync_id> \
     --access_token <token>
-x-cli-version: '2.5'
+x-cli-version: '2.24'

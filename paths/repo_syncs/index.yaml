@@ -43,4 +43,4 @@ x-code-samples:
     phrase repo_sync index \
     --account_id abcd1234 \
     --access_token <token>
-x-cli-version: '2.5'
+x-cli-version: '2.24'
