@@ -12,7 +12,14 @@ repo_sync_event:
     status:
       type: string
       enum: [running, success, failure]
+    pull_request_url:
+      type: string
+      description: URL of the pull request created on export
+    auto_import:
+      type: boolean
+      description: Whether the import was triggered by the repo push event
     errors:
+      description: List of error messages, in case of failure
       type: array
       items:
         anyOf:
@@ -22,6 +29,7 @@ repo_sync_event:
     event_type: import
     created_at: '2015-01-28T09:52:53Z'
     status: failure
+    auto_import: true
     errors:
       - "Error message"
       - "Error message"
