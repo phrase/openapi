@@ -21921,7 +21921,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase repo_sync index \\\n--account_id abcd1234 \\\n--access_token <token>"
+            "source": "phrase repo_sync list \\\n--account_id abcd1234 \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.24"
