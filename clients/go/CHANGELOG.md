@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.26.0](https://github.com/phrase/openapi/compare/go-v2.25.1...go-v2.26.0) (2024-04-17)
+
+
+### Features
+
+* **API:** Add Repo Sync [TSI-1923] ([#569](https://github.com/phrase/openapi/issues/569)) ([0bd1756](https://github.com/phrase/openapi/commit/0bd17562018cb045ff41cc1ff5008b9419a0ed12))
+
 ## [2.25.1](https://github.com/phrase/openapi/compare/go-v2.25.0...go-v2.25.1) (2024-04-04)
 
 
