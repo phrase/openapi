@@ -164,3 +164,7 @@ schemas:
     "$ref": schemas/organization_job_template_details.yaml#/organization_job_template_details
   key_link:
     "$ref": schemas/key_link.yaml#/key_link
+  repo_sync:
+    "$ref": schemas/repo_sync.yaml#/repo_sync
+  repo_sync_event:
+    "$ref": schemas/repo_sync_event.yaml#/repo_sync_event

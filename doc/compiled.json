@@ -148,6 +148,10 @@
       "name": "Releases"
     },
     {
+      "name": "Repo Syncs",
+      "description": "The Repo Syncs API allows you to synchronize your Phrase projects with your code repositories.\nYou can import translations from your repository to Phrase and export translations from Phrase to your repository.\n"
+    },
+    {
       "name": "Reports"
     },
     {
@@ -4287,6 +4291,116 @@
           "parent",
           "children"
         ]
+      },
+      "repo_sync": {
+        "type": "object",
+        "title": "repo_sync",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/project_short"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "auto_import": {
+            "type": "boolean"
+          },
+          "repo_name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_import_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_export_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "project": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "name": "My Android Project",
+            "main_format": "xml",
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z"
+          },
+          "provider": "github",
+          "enabled": true,
+          "auto_import": true,
+          "repo_name": "organization/repo",
+          "created_at": "2015-01-28T09:52:53Z",
+          "last_import_at": "2015-01-28T09:52:53Z",
+          "last_export_at": "2015-01-28T09:52:53Z"
+        }
+      },
+      "repo_sync_event": {
+        "type": "object",
+        "title": "repo_sync_event",
+        "properties": {
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "import",
+              "export"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "success",
+              "failure"
+            ]
+          },
+          "pull_request_url": {
+            "type": "string",
+            "description": "URL of the pull request created on export"
+          },
+          "auto_import": {
+            "type": "boolean",
+            "description": "Whether the import was triggered by the repo push event"
+          },
+          "errors": {
+            "description": "List of error messages, in case of failure",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "example": {
+          "event_type": "import",
+          "created_at": "2015-01-28T09:52:53Z",
+          "status": "failure",
+          "auto_import": true,
+          "errors": [
+            "Error message",
+            "Error message"
+          ]
+        }
       }
     },
     "parameters": {
@@ -4346,6 +4460,15 @@
         "name": "account_id",
         "description": "Filter by Account ID",
         "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "repo_sync_id": {
+        "in": "path",
+        "name": "repo_sync_id",
+        "description": "Repo Sync ID",
+        "required": true,
         "schema": {
           "type": "string"
         }
@@ -21732,6 +21855,483 @@
           }
         },
         "x-cli-version": "2.20"
+      }
+    },
+    "/accounts/{account_id}/repo_syncs": {
+      "get": {
+        "summary": "Get Repo Syncs",
+        "description": "Lists all Repo Syncs from an account",
+        "operationId": "repo_sync/list",
+        "tags": [
+          "Repo Syncs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/repo_sync"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Pagination": {
+                "$ref": "#/components/headers/Pagination"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs\"\\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase repo_sync list \\\n--account_id abcd1234 \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.24"
+      }
+    },
+    "/accounts/{account_id}/repo_syncs/{repo_sync_id}": {
+      "get": {
+        "summary": "Get a single Repo Sync",
+        "description": "Shows a single Repo Sync setting.",
+        "operationId": "repo_sync/show",
+        "tags": [
+          "Repo Syncs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/repo_sync_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/repo_sync"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/56ef78\"\\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase repo_sync show \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.24"
+      }
+    },
+    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/export": {
+      "post": {
+        "summary": "Export to code repository",
+        "description": "> Beta: this feature will change in the future.\n\nExport translations from Phrase Strings to repository provider according to the\n.phrase.yml file within the code repository.\n\n*Export is done asynchronously and may take several seconds depending on the project size.*",
+        "operationId": "repo_sync/export",
+        "tags": [
+          "Repo Syncs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/repo_sync_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "repo_sync/export",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Export started"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/45ef6789/export\"\\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase repo_sync export \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.24"
+      }
+    },
+    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/import": {
+      "post": {
+        "summary": "Import from code repository",
+        "description": "> Beta: this feature will change in the future.\n\nImport translations from repository provider to Phrase Strings according to the .phrase.yml file\nwithin the code repository.\n\n_Import is done asynchronously and may take several seconds depending on the project size._",
+        "operationId": "repo_sync/import",
+        "tags": [
+          "Repo Syncs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/repo_sync_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "repo_sync/import",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Import started"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/45ef6789/import\"\\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase repo_sync import \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.24"
+      }
+    },
+    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/events": {
+      "get": {
+        "summary": "Repository Syncs History",
+        "description": "Get the history of a single Repo Sync. The history includes all imports and exports\nperformed by the Repo Sync.",
+        "operationId": "repo_sync/events",
+        "tags": [
+          "Repo Syncs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/repo_sync_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/repo_sync_event"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Pagination": {
+                "$ref": "#/components/headers/Pagination"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/56ef78/events\"\\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase repo_sync events \\\n--id <id> \\\n--account_id abcd1234 \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.24"
+      }
+    },
+    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/deactivate": {
+      "post": {
+        "summary": "Deactivate a Repo Sync",
+        "description": "Deactivate an active Repo Sync. Import and export can't be performed on deactivated syncs\nand the pushes to the repository won't trigger the import to Phrase.",
+        "operationId": "repo_sync/deactivate",
+        "tags": [
+          "Repo Syncs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/repo_sync_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/repo_sync"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/45ef6789/deactivate\"\\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase repo_sync deactivate \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.24"
+      }
+    },
+    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/activate": {
+      "post": {
+        "summary": "Activate a Repo Sync",
+        "description": "Activate a deactivated Repo Sync. Active syncs can be used to import and export translations,\nand imports to Phrase are automatically triggered by pushes to the repository, if configured.",
+        "operationId": "repo_sync/activate",
+        "tags": [
+          "Repo Syncs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/repo_sync_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/repo_sync"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/45ef6789/activate\"\\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase repo_sync activate \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.24"
       }
     },
     "/accounts/{account_id}/spaces": {

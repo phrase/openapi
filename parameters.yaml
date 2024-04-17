@@ -46,6 +46,13 @@ query_account_id:
   required: false
   schema:
     type: string
+repo_sync_id:
+  in: path
+  name: repo_sync_id
+  description: Repo Sync ID
+  required: true
+  schema:
+    type: string
 space_id:
   in: path
   name: space_id
