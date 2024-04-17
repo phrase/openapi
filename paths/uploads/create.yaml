@@ -89,6 +89,11 @@ requestBody:
             description: Indicates whether existing translations should be updated with the file content.
             type: boolean
             example:
+          update_translation_keys:
+            description: Indicates whether any missing translation keys should be created or existing ones updated during upload.
+            type: boolean
+            default: true
+            example:
           update_descriptions:
             description: Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.
             type: boolean
