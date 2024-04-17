@@ -14137,7 +14137,7 @@
                     "example": null
                   },
                   "update_translation_keys": {
-                    "description": "Indicates whether any missing translation keys should be created or existing ones updated during upload.",
+                    "description": "Pass `false` here to prevent new keys from being created and existing keys updated.",
                     "type": "boolean",
                     "default": true,
                     "example": null
