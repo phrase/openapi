@@ -2339,6 +2339,22 @@
               },
               "word_count": {
                 "type": "integer"
+              },
+              "linked_translation": {
+                "type": "object",
+                "title": "translation_parent",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "id": "abcd1234cdef1234abcd1234cdef1234",
+                  "content": "My parent translation"
+                }
               }
             },
             "example": {
