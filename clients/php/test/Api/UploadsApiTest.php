@@ -107,7 +107,7 @@ class UploadsApiTest extends TestCase
         $file = new \SplFileObject($fileName, 'w+');
         $file->fwrite('test');
 
-        $result = $this->apiInstance->uploadCreate($projectId, null, null, $file);
+        $result = $this->apiInstance->uploadCreate($projectId, $file, "yml", "en", null, null);
         $file = null;
         unlink($fileName);
 

@@ -46,6 +46,8 @@ requestBody:
       schema:
         type: object
         title: teams/users/create/parameters
+        required:
+          - id
         properties:
           id:
             description: User ID to add to the Team

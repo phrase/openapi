@@ -59,6 +59,10 @@ requestBody:
       schema:
         type: object
         title: upload/create/parameters
+        required:
+          - file
+          - file_format
+          - locale_id
         properties:
           branch:
             description: specify the branch to use
@@ -107,7 +111,7 @@ requestBody:
             type: string
             example:
           locale_mapping:
-            description: Optional, format specific mapping between locale names and the columns the translations to those locales are contained in.
+            description: Mapping between locale names and translation columns. Required in some formats like CSV or XLSX.
             type: object
             properties: {}
             example: '{"en": "2"}'

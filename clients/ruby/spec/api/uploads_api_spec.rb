@@ -53,7 +53,7 @@ describe 'UploadsApi' do
     end
 
     it 'should work' do
-      @api_instance.upload_create('project_id', file: File.new('Gemfile'))
+      @api_instance.upload_create('project_id', File.new('Gemfile'), "yml", "en")
 
       expect(a_request(:post, 'https://api.phrase.com/v2/projects/project_id/uploads')
         .with { |req|

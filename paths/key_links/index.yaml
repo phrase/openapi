@@ -1,5 +1,5 @@
 ---
-summary: Retrieve all child keys linked to a specific parent key
+summary: List child keys of a parent key
 description: Returns detailed information about a parent key, including its linked child keys.
 operationId: key_links/index
 tags:

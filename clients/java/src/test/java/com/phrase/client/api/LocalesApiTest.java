@@ -114,6 +114,7 @@ public class LocalesApiTest {
         String id = null;
         String xPhraseAppOTP = null;
         String branch = null;
+
         api.localeDelete(projectId, id, xPhraseAppOTP, branch);
 
         // TODO: test validations

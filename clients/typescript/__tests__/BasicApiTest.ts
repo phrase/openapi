@@ -89,8 +89,10 @@ describe('UploadsApi', () => {
     test('uploads a file', async () => {
       const projectId = 'my-project-id';
       const file = fs.createReadStream('package.json');
+      const fileFormat = 'json';
+      const localeId = 'en';
 
-      await api.uploadCreate({projectId, file}).then((response) => {
+      await api.uploadCreate({projectId, file, fileFormat, localeId}).then((response) => {
         expect(response.id).toBe('upload_id');
       });
 

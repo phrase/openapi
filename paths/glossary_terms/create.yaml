@@ -50,6 +50,8 @@ requestBody:
       schema:
         type: object
         title: glossary_term/create/parameters
+        required:
+          - term
         properties:
           term:
             description: Glossary term

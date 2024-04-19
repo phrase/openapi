@@ -45,6 +45,8 @@ requestBody:
       schema:
         type: object
         title: authorization/create/parameters
+        required:
+          - note
         properties:
           note:
             description: A note to help you remember what the access is used for.

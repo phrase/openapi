@@ -48,6 +48,8 @@ requestBody:
       schema:
         type: object
         title: space/create/parameters
+        required:
+          - name
         properties:
           name:
             description: Name of the space

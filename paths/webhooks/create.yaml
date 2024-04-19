@@ -48,6 +48,8 @@ requestBody:
       schema:
         type: object
         title: webhook/create/parameters
+        required:
+          - callback_url
         properties:
           callback_url:
             description: Callback URL to send requests to

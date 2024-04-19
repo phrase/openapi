@@ -46,6 +46,8 @@ requestBody:
       schema:
         type: object
         title: teams/projects/create/parameters
+        required:
+          - id
         properties:
           id:
             description: Project ID to add to the Team

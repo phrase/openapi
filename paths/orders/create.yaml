@@ -48,6 +48,9 @@ requestBody:
       schema:
         type: object
         title: order/create/parameters
+        required:
+          - name
+          - lsp
         properties:
           branch:
             description: specify the branch to use

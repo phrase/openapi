@@ -7,12 +7,6 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/key_id_as_id"
-- in: query
-  name: unlink_parent
-  required: false
-  description: Whether to unlink the parent key as well and unmark it as linked-key.
-  schema:
-    type: boolean
 requestBody:
   required: true
   content:
@@ -29,7 +23,10 @@ requestBody:
             example: ["child_key_id1", "child_key_id2"]
             items:
               type: string
-
+          unlink_parent:
+            description: Whether to unlink the parent key as well and unmark it as linked-key.
+            type: boolean
+            default: false
 responses:
   '200':
     description: OK

@@ -48,6 +48,9 @@ requestBody:
       schema:
         type: object
         title: locale/create/parameters
+        required:
+          - name
+          - code
         properties:
           branch:
             description: specify the branch to use

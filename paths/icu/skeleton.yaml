@@ -1,6 +1,6 @@
 ---
-summary: Build icu skeletons
-description: Returns icu skeletons for multiple locale codes based on a source content.
+summary: Build ICU skeletons
+description: Returns ICU skeletons for multiple locale codes based on a source content.
 operationId: icu/skeleton
 tags:
 - ICU

@@ -46,6 +46,8 @@ requestBody:
       schema:
         type: object
         title: teams/spaces/create/parameters
+        required:
+          - id
         properties:
           id:
             description: Space ID to add to the Team

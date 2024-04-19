@@ -54,7 +54,7 @@ requestBody:
             type: string
             example: my-feature-branch
           locale_id:
-            description: Locale. Can be the name or public id of the locale. Preferred is the public id.
+            description: Locale. Can be the name or id of the locale. Preferred is the id
             type: string
             example: abcd1234cdef1234abcd1234cdef1234
           key_id:

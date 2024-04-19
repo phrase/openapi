@@ -26,11 +26,3 @@ key_link:
       items:
         $ref: "./key_preview.yaml#/key_preview"
       description: The child translation keys linked to the parent.
-  required:
-    - created_at
-    - updated_at
-    - created_by
-    - updated_by
-    - account
-    - parent
-    - children
