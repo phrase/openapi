@@ -77,7 +77,7 @@ requestBody:
             type: boolean
             example:
           source_locale_id:
-            description: Source locale. Can be the name or public id of the locale. Preferred is the public id.
+            description: Source locale. Can be the name or id of the locale. Preferred is id.
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
           fallback_locale_id:

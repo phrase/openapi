@@ -65,11 +65,11 @@ requestBody:
             type: string
             example: textmaster
           source_locale_id:
-            description: Source locale for the order. Can be the name or public id of the source locale. Preferred is the public id.
+            description: Source locale for the order. Can be the name or id of the source locale. Preferred is id.
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
           target_locale_ids:
-            description: List of target locales you want the source content translate to. Can be the name or public id of the target locales. Preferred is the public id.
+            description: List of target locales you want the source content translate to. Can be the name or id of the target locales. Preferred is id.
             type: array
             items:
               type: string

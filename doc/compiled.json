@@ -8143,7 +8143,7 @@
                     "example": null
                   },
                   "source_locale_id": {
-                    "description": "Source locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Source locale. Can be the name or id of the locale. Preferred is id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -8346,7 +8346,7 @@
                     "example": null
                   },
                   "source_locale_id": {
-                    "description": "Source locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Source locale. Can be the name or id of the locale. Preferred is id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -8588,7 +8588,7 @@
             }
           },
           {
-            "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.",
+            "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.",
             "example": null,
             "name": "fallback_locale_id",
             "in": "query",
@@ -14122,7 +14122,7 @@
                     "example": "json"
                   },
                   "locale_id": {
-                    "description": "Locale of the file's content. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Locale of the file's content. Can be the name or id of the locale. Preferred is id.",
                     "type": "string",
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
@@ -21475,12 +21475,12 @@
                     "example": "textmaster"
                   },
                   "source_locale_id": {
-                    "description": "Source locale for the order. Can be the name or public id of the source locale. Preferred is the public id.",
+                    "description": "Source locale for the order. Can be the name or id of the source locale. Preferred is id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "target_locale_ids": {
-                    "description": "List of target locales you want the source content translate to. Can be the name or public id of the target locales. Preferred is the public id.",
+                    "description": "List of target locales you want the source content translate to. Can be the name or id of the target locales. Preferred is id.",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -23869,7 +23869,7 @@
                     "example": "my-feature-branch"
                   },
                   "locale_id": {
-                    "description": "Locale. Can be the name or id of the locale. Preferred is the id",
+                    "description": "Locale. Can be the name or id of the locale. Preferred is id",
                     "type": "string",
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },

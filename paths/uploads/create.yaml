@@ -78,7 +78,7 @@ requestBody:
             type: string
             example: json
           locale_id:
-            description: Locale of the file's content. Can be the name or public id of the locale. Preferred is the public id.
+            description: Locale of the file's content. Can be the name or id of the locale. Preferred is id.
             type: string
             example: abcd1234cdef1234abcd1234cdef1234
           tags:
