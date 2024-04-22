@@ -8803,7 +8803,8 @@
                 "type": "object",
                 "title": "distribution/create/parameters",
                 "required": [
-                  "name"
+                  "name",
+                  "project_id"
                 ],
                 "properties": {
                   "name": {
