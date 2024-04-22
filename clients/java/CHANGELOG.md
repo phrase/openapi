@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.23.0](https://github.com/phrase/openapi/compare/java-v1.22.0...java-v1.23.0) (2024-04-22)
+
+
+### Features
+
+* Add linked-parent to translation details ([#570](https://github.com/phrase/openapi/issues/570)) ([2c6f432](https://github.com/phrase/openapi/commit/2c6f43253e24b670b71ac810c85dce0759c29403))
+
 ## [1.22.0](https://github.com/phrase/openapi/compare/java-v1.21.0...java-v1.22.0) (2024-04-17)
 
 
