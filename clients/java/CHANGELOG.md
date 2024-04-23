@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/phrase/openapi/compare/java-v2.0.0...java-v2.0.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* **Java:** fix maven build ([#593](https://github.com/phrase/openapi/issues/593)) ([ce5b408](https://github.com/phrase/openapi/commit/ce5b4081c41348df9750c4f3b79d50eb75c671f3))
+
 ## [2.0.0](https://github.com/phrase/openapi/compare/java-v1.23.0...java-v2.0.0) (2024-04-23)
 
 
