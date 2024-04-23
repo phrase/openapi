@@ -17,7 +17,7 @@ import (
 	"context"
 	"fmt"
 
-	phrase "github.com/phrase/phrase-go/v3"
+	phrase "github.com/phrase/phrase-go/v3" // x-release-please-major
 )
 
 func main() {

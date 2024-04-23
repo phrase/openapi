@@ -40,7 +40,12 @@
           "path": "openapi-generator/go_lang.yaml",
           "jsonpath": "$.packageVersion"
         },
-        "clients/cli/go.mod"
+        "clients/cli/go.mod",
+        "openapi-generator/templates/go/README.mustache",
+        "openapi-generator/templates/go/go.mod.mustache",
+        "clients/go/test/api_custom_metadata_test.go",
+        "clients/go/test/api_jobs_test.go",
+        "clients/go/test/api_locales_test.go"
       ]
     }
   },
