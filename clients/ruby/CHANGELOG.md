@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/phrase/openapi/compare/ruby-v2.26.0...ruby-v3.0.0) (2024-04-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* add missing required params ([#571](https://github.com/phrase/openapi/issues/571))
+
+### Code Refactoring
+
+* add missing required params ([#571](https://github.com/phrase/openapi/issues/571)) ([d810e9e](https://github.com/phrase/openapi/commit/d810e9ebc767e14ba9e56106de8c5774d9d6d178))
+
 ## [2.26.0](https://github.com/phrase/openapi/compare/ruby-v2.25.0...ruby-v2.26.0) (2024-04-22)
 
 
