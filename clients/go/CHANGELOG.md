@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/phrase/openapi/compare/go-v3.0.0...go-v3.0.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* **go:** remove unused dependencies ([#598](https://github.com/phrase/openapi/issues/598)) ([413abb4](https://github.com/phrase/openapi/commit/413abb49253d063d116988a16d17b5dce005d967))
+
 ## [3.0.0](https://github.com/phrase/openapi/compare/go-v2.27.0...go-v3.0.0) (2024-04-23)
 
 
