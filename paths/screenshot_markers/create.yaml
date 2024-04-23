@@ -50,6 +50,8 @@ requestBody:
       schema:
         type: object
         title: screenshot_marker/create/parameters
+        required:
+          - key_id
         properties:
           branch:
             description: specify the branch to use

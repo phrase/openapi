@@ -48,6 +48,8 @@ requestBody:
       schema:
         type: object
         title: team/create/parameters
+        required:
+          - name
         properties:
           name:
             description: Name of the team

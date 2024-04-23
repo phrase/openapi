@@ -29,7 +29,7 @@ describe 'UploadsApi' do
   # @option opts [String] :branch specify the branch to use
   # @option opts [File] :file File to be imported
   # @option opts [String] :file_format File format. Auto-detected when possible and not specified.
-  # @option opts [String] :locale_id Locale of the file&#39;s content. Can be the name or public id of the locale. Preferred is the public id.
+  # @option opts [String] :locale_id Locale of the file&#39;s content. Can be the name or id of the locale. Preferred is id.
   # @option opts [String] :tags List of tags separated by comma to be associated with the new keys contained in the upload.
   # @option opts [Boolean] :update_translations Indicates whether existing translations should be updated with the file content.
   # @option opts [Boolean] :update_descriptions Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.
@@ -53,7 +53,7 @@ describe 'UploadsApi' do
     end
 
     it 'should work' do
-      @api_instance.upload_create('project_id', file: File.new('Gemfile'))
+      @api_instance.upload_create('project_id', File.new('Gemfile'), "yml", "en")
 
       expect(a_request(:post, 'https://api.phrase.com/v2/projects/project_id/uploads')
         .with { |req|

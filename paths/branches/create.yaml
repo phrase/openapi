@@ -48,6 +48,8 @@ requestBody:
       schema:
         type: object
         title: branch/create/parameters
+        required:
+          - name
         properties:
           name:
             description: Name of the branch

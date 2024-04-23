@@ -52,6 +52,9 @@ requestBody:
       schema:
         type: object
         title: glossary_term_translation/create/parameters
+        required:
+          - locale_code
+          - content
         properties:
           locale_code:
             description: Identifies the language for this translation

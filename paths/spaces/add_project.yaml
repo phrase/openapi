@@ -46,6 +46,8 @@ requestBody:
       schema:
         type: object
         title: spaces/projects/create/parameters
+        required:
+         - id
         properties:
           id:
             description: Project ID to add or to the Space

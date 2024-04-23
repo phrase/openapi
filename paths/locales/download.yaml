@@ -100,7 +100,7 @@ parameters:
     in: query
     schema:
       type: boolean
-  - description: If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.
+  - description: If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.
     example:
     name: fallback_locale_id
     in: query

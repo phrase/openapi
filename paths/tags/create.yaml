@@ -48,6 +48,8 @@ requestBody:
       schema:
         type: object
         title: tag/create/parameters
+        required:
+          - name
         properties:
           branch:
             description: specify the branch to use

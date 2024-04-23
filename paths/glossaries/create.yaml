@@ -48,6 +48,8 @@ requestBody:
       schema:
         type: object
         title: glossary/create/parameters
+        required:
+          - name
         properties:
           name:
             description: Name of the glossary

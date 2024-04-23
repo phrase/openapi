@@ -48,6 +48,8 @@ requestBody:
       schema:
         type: object
         title: styleguide/create/parameters
+        required:
+          - title
         properties:
           title:
             description: Style guide title

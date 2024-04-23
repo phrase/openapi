@@ -55,6 +55,8 @@ requestBody:
       schema:
         type: object
         title: key/create/parameters
+        required:
+          - name
         properties:
           branch:
             description: specify the branch to use
@@ -129,5 +131,5 @@ requestBody:
             example:
               fruit: Apple
               vegetable: Tomato
-            
+
 x-cli-version: '2.5'

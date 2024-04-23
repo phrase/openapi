@@ -54,6 +54,8 @@ requestBody:
       schema:
         type: object
         title: figma_attachment/create/parameters
+        required:
+          - url
         properties:
           branch:
             description: specify the branch to use

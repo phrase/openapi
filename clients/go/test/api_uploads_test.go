@@ -46,9 +46,8 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 		apiClient := phrase.NewAPIClient(configuration)
 
 		file, _ := os.Create("testfile.json")
-		fileFormat := optional.NewString("json")
-		fileObject := optional.NewInterface(file)
-		localeId := optional.NewString("99")
+		fileFormat := "json"
+		localeId := "99"
 
 		// setting format_options
 		formatOptions := make(map[string]interface{})
@@ -62,8 +61,8 @@ func Test_phrase_UploadsApiService(t *testing.T) {
 
 		formatOptionsMap := optional.NewInterface(formatOptions)
 
-		localVarOptionals := phrase.UploadCreateOpts{FileFormat: fileFormat, File: fileObject, LocaleId: localeId, FormatOptions: formatOptionsMap}
-		resp, httpRes, err := apiClient.UploadsApi.UploadCreate(context.Background(), "project_id", &localVarOptionals)
+		localVarOptionals := phrase.UploadCreateOpts{FormatOptions: formatOptionsMap}
+		resp, httpRes, err := apiClient.UploadsApi.UploadCreate(context.Background(), "project_id", file, fileFormat, localeId, &localVarOptionals)
 		requestUrl := httpRes.Request.URL
 
 		require.Nil(t, err)

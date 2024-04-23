@@ -48,6 +48,9 @@ requestBody:
       schema:
         type: object
         title: distribution/create/parameters
+        required:
+          - name
+          - project_id
         properties:
           name:
             description: Name of the distribution

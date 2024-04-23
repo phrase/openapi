@@ -4297,16 +4297,7 @@
             },
             "description": "The child translation keys linked to the parent."
           }
-        },
-        "required": [
-          "created_at",
-          "updated_at",
-          "created_by",
-          "updated_by",
-          "account",
-          "parent",
-          "children"
-        ]
+        }
       },
       "repo_sync": {
         "type": "object",
@@ -4894,8 +4885,8 @@
   "paths": {
     "/icu/skeleton": {
       "post": {
-        "summary": "Build icu skeletons",
-        "description": "Returns icu skeletons for multiple locale codes based on a source content.",
+        "summary": "Build ICU skeletons",
+        "description": "Returns ICU skeletons for multiple locale codes based on a source content.",
         "operationId": "icu/skeleton",
         "tags": [
           "ICU"
@@ -5527,6 +5518,9 @@
               "schema": {
                 "type": "object",
                 "title": "figma_attachment/create/parameters",
+                "required": [
+                  "url"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -6021,6 +6015,9 @@
               "schema": {
                 "type": "object",
                 "title": "styleguide/create/parameters",
+                "required": [
+                  "title"
+                ],
                 "properties": {
                   "title": {
                     "description": "Style guide title",
@@ -6943,6 +6940,10 @@
               "schema": {
                 "type": "object",
                 "title": "invitation/create/parameters",
+                "required": [
+                  "email",
+                  "role"
+                ],
                 "properties": {
                   "email": {
                     "description": "The email of the invited user. The <code>email</code> can not be updated once created. Create a new invitation for each unique email.",
@@ -7676,6 +7677,9 @@
               "schema": {
                 "type": "object",
                 "title": "screenshot_marker/create/parameters",
+                "required": [
+                  "key_id"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -8103,6 +8107,10 @@
               "schema": {
                 "type": "object",
                 "title": "locale/create/parameters",
+                "required": [
+                  "name",
+                  "code"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -8135,7 +8143,7 @@
                     "example": null
                   },
                   "source_locale_id": {
-                    "description": "Source locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Source locale. Can be the name or id of the locale. Preferred is id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -8338,7 +8346,7 @@
                     "example": null
                   },
                   "source_locale_id": {
-                    "description": "Source locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Source locale. Can be the name or id of the locale. Preferred is id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -8580,7 +8588,7 @@
             }
           },
           {
-            "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the public ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.",
+            "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.",
             "example": null,
             "name": "fallback_locale_id",
             "in": "query",
@@ -8794,6 +8802,10 @@
               "schema": {
                 "type": "object",
                 "title": "distribution/create/parameters",
+                "required": [
+                  "name",
+                  "project_id"
+                ],
                 "properties": {
                   "name": {
                     "description": "Name of the distribution",
@@ -9758,6 +9770,9 @@
               "schema": {
                 "type": "object",
                 "title": "job/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -11203,6 +11218,9 @@
               "schema": {
                 "type": "object",
                 "title": "glossary/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "description": "Name of the glossary",
@@ -11570,6 +11588,9 @@
               "schema": {
                 "type": "object",
                 "title": "authorization/create/parameters",
+                "required": [
+                  "note"
+                ],
                 "properties": {
                   "note": {
                     "description": "A note to help you remember what the access is used for.",
@@ -13701,6 +13722,9 @@
               "schema": {
                 "type": "object",
                 "title": "webhook/create/parameters",
+                "required": [
+                  "callback_url"
+                ],
                 "properties": {
                   "callback_url": {
                     "description": "Callback URL to send requests to",
@@ -14075,6 +14099,11 @@
               "schema": {
                 "type": "object",
                 "title": "upload/create/parameters",
+                "required": [
+                  "file",
+                  "file_format",
+                  "locale_id"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -14093,7 +14122,7 @@
                     "example": "json"
                   },
                   "locale_id": {
-                    "description": "Locale of the file's content. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Locale of the file's content. Can be the name or id of the locale. Preferred is id.",
                     "type": "string",
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
@@ -14134,7 +14163,7 @@
                     "example": null
                   },
                   "locale_mapping": {
-                    "description": "Optional, format specific mapping between locale names and the columns the translations to those locales are contained in.",
+                    "description": "Mapping between locale names and translation columns. Required in some formats like CSV or XLSX.",
                     "type": "object",
                     "properties": {},
                     "example": "{\"en\": \"2\"}"
@@ -15247,6 +15276,10 @@
               "schema": {
                 "type": "object",
                 "title": "glossary_term_translation/create/parameters",
+                "required": [
+                  "locale_code",
+                  "content"
+                ],
                 "properties": {
                   "locale_code": {
                     "description": "Identifies the language for this translation",
@@ -15566,6 +15599,9 @@
               "schema": {
                 "type": "object",
                 "title": "project/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "description": "Name of the project",
@@ -17352,6 +17388,9 @@
               "schema": {
                 "type": "object",
                 "title": "variable/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "description": "Name of the variable",
@@ -17703,6 +17742,9 @@
               "schema": {
                 "type": "object",
                 "title": "branch/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "description": "Name of the branch",
@@ -19227,6 +19269,9 @@
               "schema": {
                 "type": "object",
                 "title": "glossary_term/create/parameters",
+                "required": [
+                  "term"
+                ],
                 "properties": {
                   "term": {
                     "description": "Glossary term",
@@ -19616,6 +19661,9 @@
               "schema": {
                 "type": "object",
                 "title": "tag/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -19909,6 +19957,9 @@
               "schema": {
                 "type": "object",
                 "title": "blacklisted_key/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "description": "Blocked key name",
@@ -20295,6 +20346,9 @@
               "schema": {
                 "type": "object",
                 "title": "key/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -21400,6 +21454,10 @@
               "schema": {
                 "type": "object",
                 "title": "order/create/parameters",
+                "required": [
+                  "name",
+                  "lsp"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -21417,12 +21475,12 @@
                     "example": "textmaster"
                   },
                   "source_locale_id": {
-                    "description": "Source locale for the order. Can be the name or public id of the source locale. Preferred is the public id.",
+                    "description": "Source locale for the order. Can be the name or id of the source locale. Preferred is id.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "target_locale_ids": {
-                    "description": "List of target locales you want the source content translate to. Can be the name or public id of the target locales. Preferred is the public id.",
+                    "description": "List of target locales you want the source content translate to. Can be the name or id of the target locales. Preferred is id.",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -22489,6 +22547,9 @@
               "schema": {
                 "type": "object",
                 "title": "space/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "description": "Name of the space",
@@ -22829,6 +22890,9 @@
               "schema": {
                 "type": "object",
                 "title": "spaces/projects/create/parameters",
+                "required": [
+                  "id"
+                ],
                 "properties": {
                   "id": {
                     "description": "Project ID to add or to the Space",
@@ -23031,6 +23095,9 @@
               "schema": {
                 "type": "object",
                 "title": "team/create/parameters",
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "description": "Name of the team",
@@ -23294,6 +23361,9 @@
               "schema": {
                 "type": "object",
                 "title": "teams/projects/create/parameters",
+                "required": [
+                  "id"
+                ],
                 "properties": {
                   "id": {
                     "description": "Project ID to add to the Team",
@@ -23418,6 +23488,9 @@
               "schema": {
                 "type": "object",
                 "title": "teams/spaces/create/parameters",
+                "required": [
+                  "id"
+                ],
                 "properties": {
                   "id": {
                     "description": "Space ID to add to the Team",
@@ -23542,6 +23615,9 @@
               "schema": {
                 "type": "object",
                 "title": "teams/users/create/parameters",
+                "required": [
+                  "id"
+                ],
                 "properties": {
                   "id": {
                     "description": "User ID to add to the Team",
@@ -23793,7 +23869,7 @@
                     "example": "my-feature-branch"
                   },
                   "locale_id": {
-                    "description": "Locale. Can be the name or public id of the locale. Preferred is the public id.",
+                    "description": "Locale. Can be the name or id of the locale. Preferred is id",
                     "type": "string",
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
@@ -27265,15 +27341,6 @@
           },
           {
             "$ref": "#/components/parameters/key_id_as_id"
-          },
-          {
-            "in": "query",
-            "name": "unlink_parent",
-            "required": false,
-            "description": "Whether to unlink the parent key as well and unmark it as linked-key.",
-            "schema": {
-              "type": "boolean"
-            }
           }
         ],
         "requestBody": {
@@ -27297,6 +27364,11 @@
                     "items": {
                       "type": "string"
                     }
+                  },
+                  "unlink_parent": {
+                    "description": "Whether to unlink the parent key as well and unmark it as linked-key.",
+                    "type": "boolean",
+                    "default": false
                   }
                 }
               }
@@ -27313,7 +27385,7 @@
         }
       },
       "get": {
-        "summary": "Retrieve all child keys linked to a specific parent key",
+        "summary": "List child keys of a parent key",
         "description": "Returns detailed information about a parent key, including its linked child keys.",
         "operationId": "key_links/index",
         "tags": [

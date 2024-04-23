@@ -48,7 +48,8 @@ class TestUploadsApi(unittest.TestCase):
             api_response = api_instance.upload_create(
                 project_id,
                 file="./test/fixtures/en.json",
-                file_format="simple_json"
+                file_format="simple_json",
+                locale_id="en"
             )
 
             self.assertEqual("https://api.phrase.com/v2/projects/project_id_example/uploads", mock_post.call_args_list[0].args[1])
