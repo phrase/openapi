@@ -14136,6 +14136,12 @@
                     "type": "boolean",
                     "example": null
                   },
+                  "update_translation_keys": {
+                    "description": "Pass `false` here to prevent new keys from being created and existing keys updated.",
+                    "type": "boolean",
+                    "default": true,
+                    "example": null
+                  },
                   "update_descriptions": {
                     "description": "Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.",
                     "type": "boolean",

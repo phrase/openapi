@@ -96,6 +96,7 @@ public class UploadsApiTest {
         String localeId = "en";
         String tags = null;
         Boolean updateTranslations = null;
+        Boolean updateTranslationKeys = true;
         Boolean updateDescriptions = null;
         Boolean convertEmoji = null;
         Boolean skipUploadTags = null;
@@ -106,7 +107,7 @@ public class UploadsApiTest {
         Boolean autotranslate = null;
         Boolean markReviewed = null;
         Boolean tagOnlyAffectedKeys = null;
-        Upload response = api.uploadCreate(projectId, file, fileFormat, localeId, xPhraseAppOTP, branch, tags, updateTranslations, updateDescriptions, convertEmoji, skipUploadTags, skipUnverification, fileEncoding, localeMapping, formatOptions, autotranslate, markReviewed, tagOnlyAffectedKeys);
+        Upload response = api.uploadCreate(projectId, file, fileFormat, localeId, xPhraseAppOTP, branch, tags, updateTranslations, updateTranslationKeys, updateDescriptions, convertEmoji, skipUploadTags, skipUnverification, fileEncoding, localeMapping, formatOptions, autotranslate, markReviewed, tagOnlyAffectedKeys);
 
         Assert.assertEquals("valid id returned", "id_example", response.getId());
         Assert.assertEquals("valid creation date returned", OffsetDateTime.parse("2015-01-28T09:52:53Z"), response.getCreatedAt());
