@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/phrase/openapi/compare/java-v2.0.2...java-v2.1.0) (2024-04-29)
+
+
+### Features
+
+* **API:** Add 'update_translation_keys' for Uploads [TSI-2292] ([#578](https://github.com/phrase/openapi/issues/578)) ([4492ec0](https://github.com/phrase/openapi/commit/4492ec0a7c62f9de9ab1c1125071615bddcc26ce))
+
 ## [2.0.2](https://github.com/phrase/openapi/compare/java-v2.0.1...java-v2.0.2) (2024-04-23)
 
 
