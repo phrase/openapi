@@ -4,6 +4,7 @@
     "README.md",
     "*.json",
     ".github",
+    ".gitignore",
     "doc",
     "docs",
     "output",
