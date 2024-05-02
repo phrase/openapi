@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/phrase/openapi/compare/php-v2.1.0...php-v2.1.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **PHP:** Fix deserializing custom metadata values in key response ([#607](https://github.com/phrase/openapi/issues/607)) ([b6eeeba](https://github.com/phrase/openapi/commit/b6eeeba223e3eabec268a8f3d372afcb6abd09dd))
+
 ## [2.1.0](https://github.com/phrase/openapi/compare/php-v2.0.0...php-v2.1.0) (2024-04-29)
 
 
