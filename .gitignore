@@ -55,6 +55,7 @@ clients/php/test/Model
 clients/php/test/Api/*
 !clients/php/test/Api/LocalesApiTest.php
 !clients/php/test/Api/UploadsApiTest.php
+!clients/php/test/Api/KeysApiTest.php
 
 clients/cli/cmd/api_*.go
 clients/cli/phrase-cli
