@@ -5,7 +5,7 @@ Phrase Strings is a translation management platform for software projects. You c
 ## Installation
 
 ```shell
-go get github.com/phrase/phrase-go
+go get github.com/phrase/phrase-go/v3
 ```
 
 ## Getting Started
