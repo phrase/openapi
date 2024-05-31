@@ -13,7 +13,7 @@ tags:
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
-- "$ref": "../../parameters.yaml#/repo_sync_id"
+- "$ref": "../../parameters.yaml#/id"
 responses:
   '200':
     description: OK
@@ -49,6 +49,6 @@ x-code-samples:
 - lang: CLI v2
   source: |-
     phrase repo_sync export \
-    --repo_sync_id <repo_sync_id> \
+    --id <repo_sync_id> \
     --access_token <token>
 x-cli-version: '2.24'
