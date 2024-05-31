@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/phrase/openapi/compare/php-v2.1.1...php-v2.1.2) (2024-05-31)
+
+
+### Bug Fixes
+
+* **CLI:** use id instead of repo_sync_id as param ([#618](https://github.com/phrase/openapi/issues/618)) ([7a1a0d9](https://github.com/phrase/openapi/commit/7a1a0d9115262dc7fa3065ee7cc76bec7a381ddb))
+
 ## [2.1.1](https://github.com/phrase/openapi/compare/php-v2.1.0...php-v2.1.1) (2024-05-02)
 
 
