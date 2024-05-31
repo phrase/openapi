@@ -4471,15 +4471,6 @@
           "type": "string"
         }
       },
-      "repo_sync_id": {
-        "in": "path",
-        "name": "repo_sync_id",
-        "description": "Repo Sync ID",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
       "space_id": {
         "in": "path",
         "name": "space_id",
@@ -22007,7 +21998,7 @@
         "x-cli-version": "2.24"
       }
     },
-    "/accounts/{account_id}/repo_syncs/{repo_sync_id}": {
+    "/accounts/{account_id}/repo_syncs/{id}": {
       "get": {
         "summary": "Get a single Repo Sync",
         "description": "Shows a single Repo Sync setting.",
@@ -22023,7 +22014,7 @@
             "$ref": "#/components/parameters/account_id"
           },
           {
-            "$ref": "#/components/parameters/repo_sync_id"
+            "$ref": "#/components/parameters/id"
           }
         ],
         "responses": {
@@ -22071,7 +22062,7 @@
         "x-cli-version": "2.24"
       }
     },
-    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/export": {
+    "/accounts/{account_id}/repo_syncs/{id}/export": {
       "post": {
         "summary": "Export to code repository",
         "description": "> Beta: this feature will change in the future.\n\nExport translations from Phrase Strings to repository provider according to the\n.phrase.yml file within the code repository.\n\n*Export is done asynchronously and may take several seconds depending on the project size.*",
@@ -22087,7 +22078,7 @@
             "$ref": "#/components/parameters/account_id"
           },
           {
-            "$ref": "#/components/parameters/repo_sync_id"
+            "$ref": "#/components/parameters/id"
           }
         ],
         "responses": {
@@ -22136,13 +22127,13 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase repo_sync export \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
+            "source": "phrase repo_sync export \\\n--id <repo_sync_id> \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.24"
       }
     },
-    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/import": {
+    "/accounts/{account_id}/repo_syncs/{id}/import": {
       "post": {
         "summary": "Import from code repository",
         "description": "> Beta: this feature will change in the future.\n\nImport translations from repository provider to Phrase Strings according to the .phrase.yml file\nwithin the code repository.\n\n_Import is done asynchronously and may take several seconds depending on the project size._",
@@ -22158,7 +22149,7 @@
             "$ref": "#/components/parameters/account_id"
           },
           {
-            "$ref": "#/components/parameters/repo_sync_id"
+            "$ref": "#/components/parameters/id"
           }
         ],
         "responses": {
@@ -22207,13 +22198,13 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase repo_sync import \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
+            "source": "phrase repo_sync import \\\n--id <repo_sync_id> \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.24"
       }
     },
-    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/events": {
+    "/accounts/{account_id}/repo_syncs/{id}/events": {
       "get": {
         "summary": "Repository Syncs History",
         "description": "Get the history of a single Repo Sync. The history includes all imports and exports\nperformed by the Repo Sync.",
@@ -22229,7 +22220,7 @@
             "$ref": "#/components/parameters/account_id"
           },
           {
-            "$ref": "#/components/parameters/repo_sync_id"
+            "$ref": "#/components/parameters/id"
           }
         ],
         "responses": {
@@ -22286,7 +22277,7 @@
         "x-cli-version": "2.24"
       }
     },
-    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/deactivate": {
+    "/accounts/{account_id}/repo_syncs/{id}/deactivate": {
       "post": {
         "summary": "Deactivate a Repo Sync",
         "description": "Deactivate an active Repo Sync. Import and export can't be performed on deactivated syncs\nand the pushes to the repository won't trigger the import to Phrase.",
@@ -22302,7 +22293,7 @@
             "$ref": "#/components/parameters/account_id"
           },
           {
-            "$ref": "#/components/parameters/repo_sync_id"
+            "$ref": "#/components/parameters/id"
           }
         ],
         "responses": {
@@ -22344,13 +22335,13 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase repo_sync deactivate \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
+            "source": "phrase repo_sync deactivate \\\n--id <repo_sync_id> \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.24"
       }
     },
-    "/accounts/{account_id}/repo_syncs/{repo_sync_id}/activate": {
+    "/accounts/{account_id}/repo_syncs/{id}/activate": {
       "post": {
         "summary": "Activate a Repo Sync",
         "description": "Activate a deactivated Repo Sync. Active syncs can be used to import and export translations,\nand imports to Phrase are automatically triggered by pushes to the repository, if configured.",
@@ -22366,7 +22357,7 @@
             "$ref": "#/components/parameters/account_id"
           },
           {
-            "$ref": "#/components/parameters/repo_sync_id"
+            "$ref": "#/components/parameters/id"
           }
         ],
         "responses": {
@@ -22408,7 +22399,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase repo_sync activate \\\n--repo_sync_id <repo_sync_id> \\\n--access_token <token>"
+            "source": "phrase repo_sync activate \\\n--id <repo_sync_id> \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.24"

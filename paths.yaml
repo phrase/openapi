@@ -513,22 +513,22 @@
 "/accounts/{account_id}/repo_syncs":
   get:
     "$ref": "./paths/repo_syncs/index.yaml"
-"/accounts/{account_id}/repo_syncs/{repo_sync_id}":
+"/accounts/{account_id}/repo_syncs/{id}":
   get:
     "$ref": "./paths/repo_syncs/show.yaml"
-"/accounts/{account_id}/repo_syncs/{repo_sync_id}/export":
+"/accounts/{account_id}/repo_syncs/{id}/export":
   post:
     "$ref": "./paths/repo_syncs/export.yaml"
-"/accounts/{account_id}/repo_syncs/{repo_sync_id}/import":
+"/accounts/{account_id}/repo_syncs/{id}/import":
   post:
     "$ref": "./paths/repo_syncs/import.yaml"
-"/accounts/{account_id}/repo_syncs/{repo_sync_id}/events":
+"/accounts/{account_id}/repo_syncs/{id}/events":
   get:
     "$ref": "./paths/repo_syncs/events.yaml"
-"/accounts/{account_id}/repo_syncs/{repo_sync_id}/deactivate":
+"/accounts/{account_id}/repo_syncs/{id}/deactivate":
   post:
     "$ref": "./paths/repo_syncs/deactivate.yaml"
-"/accounts/{account_id}/repo_syncs/{repo_sync_id}/activate":
+"/accounts/{account_id}/repo_syncs/{id}/activate":
   post:
     "$ref": "./paths/repo_syncs/activate.yaml"
 "/accounts/{account_id}/spaces":
