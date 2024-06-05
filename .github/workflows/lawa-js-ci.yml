@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout app
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Set up node
         uses: actions/setup-node@v2
         with:
@@ -43,7 +43,7 @@ jobs:
         run: |
           touch Gemfile.lawa
           echo "source 'https://rubygems.org'" >> Gemfile.lawa
-          echo -e "gem 'lawa', :git => 'https://github.com/phrase/lawa.git'" >> Gemfile.lawa
+          echo -e "gem 'lawa', github: 'phrase/lawa'" >> Gemfile.lawa
           bundle _2.4.12_ config unset deployment
           BUNDLE_GEMFILE=Gemfile.lawa bundle _2.4.12_ install
         env:
