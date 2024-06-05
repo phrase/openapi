@@ -1,0 +1,139 @@
+---
+- - :permit
+  - MIT
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:52:32.461857690 Z
+- - :permit
+  - ISC
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:52:46.194481344 Z
+- - :permit
+  - Apache 2.0
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:52:56.870964019 Z
+- - :permit
+  - Simplified BSD
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:53:09.055435160 Z
+- - :permit
+  - 2-clause BSDL
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:53:23.315241861 Z
+- - :permit
+  - New BSD
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:54:09.841400998 Z
+- - :permit
+  - WTFPL
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:54:16.868464706 Z
+- - :permit
+  - CC0-1.0
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:56:39.638561577 Z
+- - :permit
+  - CC0-BY-3.0
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:56:47.740690013 Z
+- - :permit
+  - Apache-2.0 WITH LLVM-exception
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:57:00.600618360 Z
+- - :permit
+  - LGPL-2.1+
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:57:22.980208749 Z
+- - :permit
+  - ruby
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:57:37.441754850 Z
+- - :permit
+  - CC-BY-4.0
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:57:42.971775726 Z
+- - :permit
+  - SIL OPEN FONT LICENSE Version 1.1
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 12:58:06.967893021 Z
+- - :permit
+  - Zlib
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-10 13:06:01.563813765 Z
+- - :permit
+  - CC-BY-3.0
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2020-08-11 05:37:47.340170966 Z
+- - :permit
+  - Mozilla Public License 2.0
+  - :who: Sven Dunemann
+    :why: same as MPL 2.0
+    :versions: []
+    :when: 2021-06-03 06:04:40.085744298 Z
+- - :permit
+  - Unlicense
+  - :who: Sven Dunemann
+    :why: free to use for everyone
+    :versions: []
+    :when: 2021-06-03 06:05:29.754925608 Z
+- - :permit
+  - BSD Zero Clause License
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2021-06-03 06:07:12.303998286 Z
+- - :permit
+  - BSD
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2021-06-03 06:07:29.530792613 Z
+- - :permit
+  - Public Domain
+  - :who: Sven Dunemann
+    :why: free to use for everyone
+    :versions: []
+    :when: 2021-06-03 06:09:51.215886401 Z
+- - :permit
+  - Python 2.0
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2021-06-03 06:07:12.303998286 Z
+- - :permit
+  - Python-2.0
+  - :who: Mladen Jablanovic
+    :why: commercial use allowed
+    :versions: []
+    :when: 2024-06-04 14:29:07.814825827 Z

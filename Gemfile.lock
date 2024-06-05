@@ -1,0 +1,39 @@
+GIT
+  remote: https://github.com/phrase/lawa.git
+  revision: 74ac284f252b3b5c1e439ec08599efb085462bb2
+  specs:
+    lawa (0.1.0)
+      license_finder (~> 7.0)
+      racc
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    csv (3.3.0)
+    license_finder (7.2.1)
+      bundler
+      csv (~> 3.2)
+      rubyzip (>= 1, < 3)
+      thor (~> 1.2)
+      tomlrb (>= 1.3, < 2.1)
+      with_env (= 1.1.0)
+      xml-simple (~> 1.1.9)
+    racc (1.8.0)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
+    rubyzip (2.3.2)
+    strscan (3.1.0)
+    thor (1.3.1)
+    tomlrb (2.0.3)
+    with_env (1.1.0)
+    xml-simple (1.1.9)
+      rexml
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  lawa!
+
+BUNDLED WITH
+   2.4.12
