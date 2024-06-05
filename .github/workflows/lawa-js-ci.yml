@@ -1,0 +1,10 @@
+name: CI
+on: [ push ]
+
+jobs:
+  lawa-js-ci:
+    uses: phrase/actions/.github/workflows/lawa-js-ci.yml@main
+    with:
+      decisions-file: ./config/license-decisions.yml
+    secrets:
+      github-token: ${{ secrets.GH_ACCESS_TOKEN }}
