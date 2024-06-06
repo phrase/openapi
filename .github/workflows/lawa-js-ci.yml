@@ -34,23 +34,23 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@c7079efafd956afb5d823e8999c2506e1053aefa
         with:
-          ruby-version: 3.1.3
+          ruby-version: 3.0.3
         env:
           BUNDLE_GITHUB__COM: x-access-token:${{ secrets.GH_ACCESS_TOKEN }}
       - name: Install compatible bundler version
-        run: gem install bundler:2.4.12
+        run: gem install bundler:2.1.4
       - name: Install lawa
         run: |
           touch Gemfile.lawa
           echo "source 'https://rubygems.org'" >> Gemfile.lawa
           echo -e "gem 'lawa', github: 'phrase/lawa'" >> Gemfile.lawa
-          bundle _2.4.12_ config unset deployment
-          BUNDLE_GEMFILE=Gemfile.lawa bundle _2.4.12_ install
+          bundle _2.1.4_ config unset deployment
+          BUNDLE_GEMFILE=Gemfile.lawa bundle _2.1.4_ install
         env:
           BUNDLE_GITHUB__COM: x-access-token:${{ secrets.GH_ACCESS_TOKEN }}
       - name: Run lawa
         run: |
-          BUNDLE_GEMFILE=Gemfile.lawa bundle _2.4.12_ exec lawa --project-path=. --enabled-package-managers=npm --decisions-file=config/license-decisions.yml
+          BUNDLE_GEMFILE=Gemfile.lawa bundle _2.1.4_ exec lawa --project-path=. --enabled-package-managers=npm --decisions-file=config/license-decisions.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
           GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
