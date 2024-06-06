@@ -1,0 +1,17 @@
+name: License Check
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "**"
+jobs:
+  lawa-npm-ci:
+    name: NPM license checks
+    uses: phrase/actions/.github/workflows/lawa-npm-ci.yml@tsi-2536-add-npm-license-check
+    with:
+      node-version: 18
+      decisions-file: config/license-decisions.yml
+    secrets:
+      github-token: ${{ secrets.GH_ACCESS_TOKEN }}
