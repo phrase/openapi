@@ -1,11 +1,5 @@
 name: License Check
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - "**"
+on: push
 jobs:
   lawa-npm-ci:
     name: NPM license checks
