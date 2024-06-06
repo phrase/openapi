@@ -9,7 +9,7 @@ on:
 jobs:
   lawa-npm-ci:
     name: NPM license checks
-    uses: phrase/actions/.github/workflows/lawa-npm-ci.yml@tsi-2536-add-npm-license-check
+    uses: phrase/actions/.github/workflows/lawa-npm-ci.yml@main
     with:
       node-version: 18
       ruby-version: 3.1.3
