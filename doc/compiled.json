@@ -148,6 +148,9 @@
       "name": "Releases"
     },
     {
+      "name": "Release Triggers"
+    },
+    {
       "name": "Repo Syncs",
       "description": "The Repo Syncs API allows you to synchronize your Phrase projects with your code repositories.\nYou can import translations from your repository to Phrase and export translations from Phrase to your repository.\n"
     },
@@ -177,9 +180,6 @@
     },
     {
       "name": "Translations"
-    },
-    {
-      "name": "Trigger Releases"
     },
     {
       "name": "Uploads",
@@ -250,7 +250,7 @@
         "Webhooks",
         "Distributions",
         "Releases",
-        "Trigger Releases"
+        "Release Triggers"
       ]
     },
     {
