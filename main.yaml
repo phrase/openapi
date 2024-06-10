@@ -208,6 +208,7 @@ tags:
   - name: Tags
   - name: Teams
   - name: Translations
+  - name: Trigger Releases
   - name: Uploads
     description: |
       ### Formats
@@ -301,6 +302,7 @@ x-tagGroups:
       - Webhooks
       - Distributions
       - Releases
+      - Trigger Releases
   - name: Ordering
     tags:
       - Orders

@@ -144,6 +144,8 @@ schemas:
     "$ref": schemas/release_preview.yaml#/release_preview
   release:
     "$ref": schemas/release.yaml#/release
+  release_trigger:
+    "$ref": schemas/release_trigger.yaml#/release_trigger
   screenshot:
     "$ref": schemas/screenshot.yaml#/screenshot
   screenshot_marker:
