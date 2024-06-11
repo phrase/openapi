@@ -1,6 +1,6 @@
 ---
 summary: Get a single release trigger
-description: Get details on a single release trigger.
+description: Get details of a single release trigger.
 operationId: release_triggers/show
 tags:
 - Release Triggers
