@@ -26,7 +26,7 @@ requestBody:
             type: string
             example: "Europe/Berlin"
           locale_ids:
-            description: List of locale ids that will be included in the release. If empty, distribution locales will be used
+            description: List of locale ids that will be included in the release.
             type: array
             items:
               type: string

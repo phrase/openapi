@@ -9680,12 +9680,6 @@
           },
           {
             "$ref": "#/components/parameters/distribution_id"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/per_page"
           }
         ],
         "responses": {
@@ -9710,12 +9704,6 @@
               },
               "X-Rate-Limit-Reset": {
                 "$ref": "#/components/headers/X-Rate-Limit-Reset"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
-              },
-              "Pagination": {
-                "$ref": "#/components/headers/Pagination"
               }
             }
           },
@@ -9778,7 +9766,7 @@
                     "example": "Europe/Berlin"
                   },
                   "locale_ids": {
-                    "description": "List of locale ids that will be included in the release. If empty, distribution locales will be used",
+                    "description": "List of locale ids that will be included in the release.",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -9867,7 +9855,7 @@
     "/accounts/{account_id}/distributions/{distribution_id}/release_triggers/{id}": {
       "get": {
         "summary": "Get a single release trigger",
-        "description": "Get details on a single release trigger.",
+        "description": "Get details of a single release trigger.",
         "operationId": "release_triggers/show",
         "tags": [
           "Release Triggers"

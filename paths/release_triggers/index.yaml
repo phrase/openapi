@@ -10,8 +10,6 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
 - "$ref": "../../parameters.yaml#/distribution_id"
-- "$ref": "../../parameters.yaml#/page"
-- "$ref": "../../parameters.yaml#/per_page"
 responses:
   '200':
     description: OK
@@ -28,10 +26,6 @@ responses:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
       X-Rate-Limit-Reset:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
-      Link:
-        "$ref": "../../headers.yaml#/Link"
-      Pagination:
-        "$ref": "../../headers.yaml#/Pagination"
   '400':
     "$ref": "../../responses.yaml#/400"
   '404':
