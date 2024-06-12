@@ -1,4 +1,5 @@
 clients/go/
+!clients/go/.goreleaser.yaml
 
 clients/python/*
 !clients/python/test/test_locales_api.py
