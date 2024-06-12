@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/phrase/openapi/compare/go-v3.1.1...go-v3.2.0) (2024-06-12)
+
+
+### Features
+
+* **API:** Add OTA Release Triggers API [TSI-2485] ([#622](https://github.com/phrase/openapi/issues/622)) ([8cb91dc](https://github.com/phrase/openapi/commit/8cb91dcce2c19ca700cf9d0713fa74f28ad59434))
+
 ## [3.1.1](https://github.com/phrase/openapi/compare/go-v3.1.0...go-v3.1.1) (2024-05-31)
 
 
