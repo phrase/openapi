@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/phrase/openapi/compare/java-v2.1.1...java-v2.2.0) (2024-06-12)
+
+
+### Features
+
+* **API:** Add OTA Release Triggers API [TSI-2485] ([#622](https://github.com/phrase/openapi/issues/622)) ([8cb91dc](https://github.com/phrase/openapi/commit/8cb91dcce2c19ca700cf9d0713fa74f28ad59434))
+
 ## [2.1.1](https://github.com/phrase/openapi/compare/java-v2.1.0...java-v2.1.1) (2024-05-31)
 
 
