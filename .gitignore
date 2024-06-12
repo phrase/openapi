@@ -1,5 +1,6 @@
 clients/go/
 !clients/go/.goreleaser.yaml
+!clients/go/.github/workflows/release.yml
 
 clients/python/*
 !clients/python/test/test_locales_api.py
