@@ -148,6 +148,9 @@
       "name": "Releases"
     },
     {
+      "name": "Release Triggers"
+    },
+    {
       "name": "Repo Syncs",
       "description": "The Repo Syncs API allows you to synchronize your Phrase projects with your code repositories.\nYou can import translations from your repository to Phrase and export translations from Phrase to your repository.\n"
     },
@@ -246,7 +249,8 @@
         "GitLab Sync",
         "Webhooks",
         "Distributions",
-        "Releases"
+        "Releases",
+        "Release Triggers"
       ]
     },
     {
@@ -3820,6 +3824,79 @@
               "code": "en-GB"
             }
           ],
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z"
+        }
+      },
+      "release_trigger": {
+        "type": "object",
+        "title": "release_trigger",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "branch": {
+            "type": "string"
+          },
+          "cron_schedule": {
+            "type": "string",
+            "description": "Cron schedule for the scheduler. Read more about the format of this field at https://en.wikipedia.org/wiki/Cron"
+          },
+          "time_zone": {
+            "type": "string",
+            "description": "Time zone for the scheduler"
+          },
+          "next_run_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The next time a release will be created for this trigger"
+          },
+          "app_min_version": {
+            "type": "string"
+          },
+          "app_max_version": {
+            "type": "string"
+          },
+          "locales": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/locale_preview"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "locales": [
+            {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "English",
+              "code": "en-GB"
+            }
+          ],
+          "branch": "my-feature-branch",
+          "tags": [
+            "android",
+            "feature1"
+          ],
+          "cron_schedule": "15 18 * * 1,3",
+          "time_zone": "Europe/Berlin",
+          "next_run_at": "2015-01-28T09:52:53Z",
+          "app_min_version": "1.0.0",
+          "app_max_version": "2.0.0",
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
         }
@@ -9584,6 +9661,434 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/accounts/{account_id}/distributions/{distribution_id}/release_triggers": {
+      "get": {
+        "summary": "List release triggers",
+        "description": "List all release triggers for the given distribution.<br>\nNote: Currently only one release trigger can exist per distribution.\n",
+        "operationId": "release_triggers/list",
+        "tags": [
+          "Release Triggers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/distribution_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/release_trigger"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions/:distribution_id/release_triggers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase release_triggers list \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.28"
+      },
+      "post": {
+        "summary": "Create a release trigger",
+        "description": "Create a new recurring release. New releases will be published automatically, based on the cron schedule provided. Currently, only one release trigger can exist per distribution.",
+        "operationId": "release_triggers/create",
+        "tags": [
+          "Release Triggers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/distribution_id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "release/create/parameters",
+                "properties": {
+                  "cron_schedule": {
+                    "description": "Cron schedule for the scheduler. Read more about the format of this field at https://en.wikipedia.org/wiki/Cron",
+                    "type": "string",
+                    "example": "15 18 * * 1,3"
+                  },
+                  "time_zone": {
+                    "description": "Time zone for the scheduler",
+                    "type": "string",
+                    "example": "Europe/Berlin"
+                  },
+                  "locale_ids": {
+                    "description": "List of locale ids that will be included in the release.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234",
+                      "fff565db236400772368235db2c6117e"
+                    ]
+                  },
+                  "tags": {
+                    "description": "Only include tagged keys in the release. For a key to be included it must be tagged with all tags provided",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "android",
+                      "feature1"
+                    ]
+                  },
+                  "branch": {
+                    "description": "Branch used for release",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  },
+                  "app_min_version": {
+                    "description": "The created releases will be available only for apps with version greater or equal to this value",
+                    "type": "string",
+                    "example": "1.0.0"
+                  },
+                  "app_max_version": {
+                    "description": "The created releases will be available only for apps with version less or equal to this value",
+                    "type": "string",
+                    "example": "2.0.0"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/release_trigger"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions/:distribution_id/release_triggers\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"cron_schedule\":\"15 18 * * 1,3\",\"time_zone\":\"Europe/Berlin\",\"locale_ids\":[\"abcd1234cdef1234abcd1234cdef1234\",\"fff565db236400772368235db2c6117e\"],\"tags\":[\"android\",\"feature1\"],\"branch\":\"my-feature-branch\",\"app_min_version\":\"1.0.0\",\"app_max_version\":\"2.0.0\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase release_triggers create \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--data '{\"cron_schedule\":\"15 18 * * 1,3\",\"time_zone\":\"Europe/Berlin\",\"locale_ids\":[\"abcd1234cdef1234abcd1234cdef1234\",\"fff565db236400772368235db2c6117e\"],\"tags\":[\"android\",\"feature1\"],\"branch\":\"my-feature-branch\",\"app_min_version\":\"1.0.0\",\"app_max_version\":\"2.0.0\"}' \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.28"
+      }
+    },
+    "/accounts/{account_id}/distributions/{distribution_id}/release_triggers/{id}": {
+      "get": {
+        "summary": "Get a single release trigger",
+        "description": "Get details of a single release trigger.",
+        "operationId": "release_triggers/show",
+        "tags": [
+          "Release Triggers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/distribution_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/release_trigger"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions/:distribution_id/release_triggers/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase release_triggers show \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.28"
+      },
+      "patch": {
+        "summary": "Update a release trigger",
+        "description": "Update a recurring release.",
+        "operationId": "release_triggers/update",
+        "tags": [
+          "Release Triggers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/distribution_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "release/update/parameters",
+                "properties": {
+                  "cron_schedule": {
+                    "description": "Cron schedule for the scheduler. Read more about the format of this field at https://en.wikipedia.org/wiki/Cron",
+                    "type": "string",
+                    "example": "15 18 * * 1,3"
+                  },
+                  "time_zone": {
+                    "description": "Time zone for the scheduler",
+                    "type": "string",
+                    "example": "Europe/Berlin"
+                  },
+                  "locale_ids": {
+                    "description": "List of locale ids that will be included in the release.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234",
+                      "fff565db236400772368235db2c6117e"
+                    ]
+                  },
+                  "tags": {
+                    "description": "Only include tagged keys in the release. For a key to be included it must be tagged with all tags provided",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "android",
+                      "feature1"
+                    ]
+                  },
+                  "branch": {
+                    "description": "Branch used for release",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  },
+                  "app_min_version": {
+                    "description": "The created releases will be available only for apps with version greater or equal to this value",
+                    "type": "string",
+                    "example": "1.0.0"
+                  },
+                  "app_max_version": {
+                    "description": "The created releases will be available only for apps with version less or equal to this value",
+                    "type": "string",
+                    "example": "2.0.0"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/release_trigger"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions/:distribution_id/release_triggers/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"cron_schedule\":\"15 18 * * 1,3\",\"time_zone\":\"Europe/Berlin\",\"locale_ids\":[\"abcd1234cdef1234abcd1234cdef1234\",\"fff565db236400772368235db2c6117e\"],\"tags\":[\"android\",\"feature1\"],\"branch\":\"my-feature-branch\",\"app_min_version\":\"1.0.0\",\"app_max_version\":\"2.0.0\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase release_triggers update \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--data '{\"cron_schedule\":\"15 18 * * 1,3\",\"time_zone\":\"Europe/Berlin\",\"locale_ids\":[\"abcd1234cdef1234abcd1234cdef1234\",\"fff565db236400772368235db2c6117e\"],\"tags\":[\"android\",\"feature1\"],\"branch\":\"my-feature-branch\",\"app_min_version\":\"1.0.0\",\"app_max_version\":\"2.0.0\"}' \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.28"
+      },
+      "delete": {
+        "summary": "Delete a single release trigger",
+        "description": "Delete a single release trigger.",
+        "operationId": "release_triggers/destroy",
+        "tags": [
+          "Release Triggers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/distribution_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/distributions/:distribution_id/release_triggers/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase release_triggers delete \\\n--account_id <account_id> \\\n--distribution_id <distribution_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.28"
       }
     },
     "/projects/{project_id}/jobs": {

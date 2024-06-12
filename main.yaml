@@ -195,6 +195,7 @@ tags:
   - name: Projects
   - name: Quality
   - name: Releases
+  - name: Release Triggers
   - name: Repo Syncs
     description: |
       The Repo Syncs API allows you to synchronize your Phrase projects with your code repositories.
@@ -301,6 +302,7 @@ x-tagGroups:
       - Webhooks
       - Distributions
       - Releases
+      - Release Triggers
   - name: Ordering
     tags:
       - Orders

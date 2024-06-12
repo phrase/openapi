@@ -135,6 +135,18 @@
 "/accounts/{account_id}/distributions/{distribution_id}/releases/{id}/publish":
   post:
     "$ref": "./paths/releases/publish.yaml"
+"/accounts/{account_id}/distributions/{distribution_id}/release_triggers":
+  get:
+    "$ref": "./paths/release_triggers/index.yaml"
+  post:
+    "$ref": "./paths/release_triggers/create.yaml"
+"/accounts/{account_id}/distributions/{distribution_id}/release_triggers/{id}":
+  get:
+    "$ref": "./paths/release_triggers/show.yaml"
+  patch:
+    "$ref": "./paths/release_triggers/update.yaml"
+  delete:
+    "$ref": "./paths/release_triggers/destroy.yaml"
 "/projects/{project_id}/jobs":
   get:
     "$ref": "./paths/jobs/index.yaml"
