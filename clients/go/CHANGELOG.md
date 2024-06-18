@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.1](https://github.com/phrase/openapi/compare/go-v3.2.0...go-v3.2.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* add app_min_version and app_max_version param to releases ([#633](https://github.com/phrase/openapi/issues/633)) ([b384301](https://github.com/phrase/openapi/commit/b3843012460ace4c1d34c4373e5158595466adcb))
+
 ## [3.2.0](https://github.com/phrase/openapi/compare/go-v3.1.1...go-v3.2.0) (2024-06-12)
 
 
