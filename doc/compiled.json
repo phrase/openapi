@@ -4433,6 +4433,9 @@
         "type": "object",
         "title": "repo_sync_event",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "event_type": {
             "type": "string",
             "enum": [
