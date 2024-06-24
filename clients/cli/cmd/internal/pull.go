@@ -2,8 +2,10 @@ package internal
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -27,6 +29,7 @@ type PullCommand struct {
 	phrase.Config
 	Branch             string
 	UseLocalBranchName bool
+	Async              bool
 }
 
 var Auth context.Context
@@ -69,7 +72,7 @@ func (cmd *PullCommand) Run(config *phrase.Config) error {
 	}
 
 	for _, target := range targets {
-		err := target.Pull(client, cmd.Branch)
+		err := target.Pull(client, cmd.Branch, cmd.Async)
 		if err != nil {
 			return err
 		}
@@ -97,7 +100,7 @@ type PullParams struct {
 	LocaleID                  string `json:"locale_id"`
 }
 
-func (target *Target) Pull(client *phrase.APIClient, branch string) error {
+func (target *Target) Pull(client *phrase.APIClient, branch string, async bool) error {
 	if err := target.CheckPreconditions(); err != nil {
 		return err
 	}
@@ -118,7 +121,7 @@ func (target *Target) Pull(client *phrase.APIClient, branch string) error {
 			return err
 		}
 
-		err = target.DownloadAndWriteToFile(client, localeFile, branch)
+		err = target.DownloadAndWriteToFile(client, localeFile, branch, async)
 		if err != nil {
 			if openapiError, ok := err.(phrase.GenericOpenAPIError); ok {
 				print.Warn("API response: %s", openapiError.Body())
@@ -135,7 +138,7 @@ func (target *Target) Pull(client *phrase.APIClient, branch string) error {
 	return nil
 }
 
-func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFile *LocaleFile, branch string) error {
+func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFile *LocaleFile, branch string, async bool) error {
 	localVarOptionals := phrase.LocaleDownloadOpts{}
 
 	if target.Params != nil {
@@ -169,31 +172,99 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 		fmt.Fprintln(os.Stderr, "FormatOptions", localVarOptionals.FormatOptions)
 	}
 
-	file, response, err := client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
-	if err != nil {
-		if response.Rate.Remaining == 0 {
-			waitForRateLimit(response.Rate)
-			file, _, err = client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
+	var err error
+
+	if async {
+		localeDownloadCreateParams := asyncDownloadParams(localVarOptionals)
+
+		localVarOptionals := phrase.LocaleDownloadCreateOpts{}
+		asyncDownload, _, _ := client.LocaleDownloadsApi.LocaleDownloadCreate(Auth, target.ProjectID, localeFile.ID, localeDownloadCreateParams, &localVarOptionals)
+
+		for asyncDownload.Status == "processing" {
+			time.Sleep(5 * time.Second)
+			localVarOptionals := phrase.LocaleDownloadShowOpts{}
+			asyncDownload, _, _ = client.LocaleDownloadsApi.LocaleDownloadShow(Auth, target.ProjectID, localeFile.ID, asyncDownload.Id, &localVarOptionals)
+		}
+		// fetch the file
+		file, _ := os.Create(localeFile.Path)
+		defer file.Close()
+		request, _ := http.NewRequest("GET", asyncDownload.Result.Url, nil)
+		request.Header.Set("Authorization", "Bearer "+Config.Credentials.Token)
+		response, _ := http.DefaultClient.Do(request)
+		defer response.Body.Close()
+		io.Copy(file, response.Body)
+	} else {
+		file, response, err := client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
+		if err != nil {
+			if response.Rate.Remaining == 0 {
+				waitForRateLimit(response.Rate)
+				file, _, err = client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
+				if err != nil {
+					return err
+				}
+			} else {
+				return err
+			}
+		}
+		var data []byte
+		if file != nil {
+			data, err = io.ReadAll(file)
 			if err != nil {
 				return err
 			}
-		} else {
-			return err
+			file.Close()
+			os.Remove(file.Name())
 		}
+
+		err = os.WriteFile(localeFile.Path, data, 0644)
 	}
 
-	var data []byte
-	if file != nil {
-		data, err = ioutil.ReadAll(file)
-		if err != nil {
-			return err
-		}
-		file.Close()
-		os.Remove(file.Name())
-	}
-
-	err = ioutil.WriteFile(localeFile.Path, data, 0644)
 	return err
+}
+
+func asyncDownloadParams(localVarOptionals phrase.LocaleDownloadOpts) phrase.LocaleDownloadCreateParameters {
+	localeDownloadCreateParams := phrase.LocaleDownloadCreateParameters{}
+
+	localeDownloadCreateParams.Branch = localVarOptionals.Branch.Value()
+	localeDownloadCreateParams.FileFormat = localVarOptionals.FileFormat.Value()
+	localeDownloadCreateParams.Tags = localVarOptionals.Tags.Value()
+	if localVarOptionals.IncludeEmptyTranslations.IsSet() {
+		localeDownloadCreateParams.IncludeEmptyTranslations = new(bool)
+		*localeDownloadCreateParams.IncludeEmptyTranslations = localVarOptionals.IncludeEmptyTranslations.Value()
+	}
+	if localVarOptionals.ExcludeEmptyZeroForms.IsSet() {
+		localeDownloadCreateParams.ExcludeEmptyZeroForms = new(bool)
+		*localeDownloadCreateParams.ExcludeEmptyZeroForms = localVarOptionals.ExcludeEmptyZeroForms.Value()
+	}
+	if localVarOptionals.IncludeTranslatedKeys.IsSet() {
+		localeDownloadCreateParams.IncludeTranslatedKeys = new(bool)
+		*localeDownloadCreateParams.IncludeTranslatedKeys = localVarOptionals.IncludeTranslatedKeys.Value()
+	}
+	if localVarOptionals.KeepNotranslateTags.IsSet() {
+		localeDownloadCreateParams.KeepNotranslateTags = new(bool)
+		*localeDownloadCreateParams.KeepNotranslateTags = localVarOptionals.KeepNotranslateTags.Value()
+	}
+	if localVarOptionals.FormatOptions.IsSet() {
+		jsonFormatOptions, _ := json.Marshal(localVarOptionals.FormatOptions.Value())
+		json.Unmarshal(jsonFormatOptions, &localeDownloadCreateParams.FormatOptions)
+	}
+	localeDownloadCreateParams.Encoding = localVarOptionals.Encoding.Value()
+	if localVarOptionals.IncludeUnverifiedTranslations.IsSet() {
+		localeDownloadCreateParams.IncludeUnverifiedTranslations = new(bool)
+		*localeDownloadCreateParams.IncludeUnverifiedTranslations = localVarOptionals.IncludeUnverifiedTranslations.Value()
+	}
+	if localVarOptionals.UseLastReviewedVersion.IsSet() {
+		localeDownloadCreateParams.UseLastReviewedVersion = new(bool)
+		*localeDownloadCreateParams.UseLastReviewedVersion = localVarOptionals.UseLastReviewedVersion.Value()
+	}
+	localeDownloadCreateParams.FallbackLocaleId = localVarOptionals.FallbackLocaleId.Value()
+	localeDownloadCreateParams.SourceLocaleId = localVarOptionals.SourceLocaleId.Value()
+	if localVarOptionals.CustomMetadataFilters.IsSet() {
+		jsonCustomMetadataFilters, _ := json.Marshal(localVarOptionals.CustomMetadataFilters.Value())
+		json.Unmarshal(jsonCustomMetadataFilters, &localeDownloadCreateParams.CustomMetadataFilters)
+	}
+
+	return localeDownloadCreateParams
 }
 
 func (target *Target) LocaleFiles() (LocaleFiles, error) {
