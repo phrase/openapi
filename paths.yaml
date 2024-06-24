@@ -108,6 +108,12 @@
 "/projects/{project_id}/locales/{id}/download":
   get:
     "$ref": "./paths/locales/download.yaml"
+"/projects/{project_id}/locales/{locale_id}/downloads":
+  post:
+    "$ref": "./paths/locale_downloads/create.yaml"
+"/projects/{project_id}/locales/{locale_id}/downloads/{id}":
+  get:
+    "$ref": "./paths/locale_downloads/show.yaml"
 "/accounts/{account_id}/distributions":
   get:
     "$ref": "./paths/distributions/index.yaml"
