@@ -177,10 +177,19 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 		localeDownloadCreateParams := asyncDownloadParams(localVarOptionals)
 
 		localVarOptionals := phrase.LocaleDownloadCreateOpts{}
+		if Debug {
+			fmt.Fprintln(os.Stderr, "Initiating async download...")
+		}
 		asyncDownload, _, _ := client.LocaleDownloadsApi.LocaleDownloadCreate(Auth, target.ProjectID, localeFile.ID, localeDownloadCreateParams, &localVarOptionals)
 
 		for asyncDownload.Status == "processing" {
+			if Debug {
+				fmt.Fprintln(os.Stderr, "Waiting for the files to be exported...")
+			}
 			time.Sleep(asyncWaitTime)
+			if Debug {
+				fmt.Fprintln(os.Stderr, "Checking if the download is ready...")
+			}
 			localVarOptionals := phrase.LocaleDownloadShowOpts{}
 			asyncDownload, _, _ = client.LocaleDownloadsApi.LocaleDownloadShow(Auth, target.ProjectID, localeFile.ID, asyncDownload.Id, &localVarOptionals)
 		}
@@ -219,6 +228,9 @@ func copyToDestination(file *os.File, path string) error {
 }
 
 func fetchFile(url string, localName string) error {
+	if Debug {
+		fmt.Fprintln(os.Stderr, "Downloading file from ", url)
+	}
 	file, err := os.Create(localName)
 	if err != nil {
 		return err
