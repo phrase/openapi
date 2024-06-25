@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/phrase/openapi/compare/go-v3.2.1...go-v3.3.0) (2024-06-25)
+
+
+### Features
+
+* **API:** Async downloads [TSI-2515] ([#642](https://github.com/phrase/openapi/issues/642)) ([6fcab5d](https://github.com/phrase/openapi/commit/6fcab5d4719f64e8e5dd49c327dc9348b384de4c))
+
 ## [3.2.1](https://github.com/phrase/openapi/compare/go-v3.2.0...go-v3.2.1) (2024-06-18)
 
 
