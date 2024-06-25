@@ -21,6 +21,7 @@ import (
 
 const (
 	timeoutInMinutes = 30 * time.Minute
+	asyncWaitTime    = 5 * time.Second
 )
 
 var Config *phrase.Config
@@ -172,8 +173,6 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 		fmt.Fprintln(os.Stderr, "FormatOptions", localVarOptionals.FormatOptions)
 	}
 
-	var err error
-
 	if async {
 		localeDownloadCreateParams := asyncDownloadParams(localVarOptionals)
 
@@ -181,18 +180,14 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 		asyncDownload, _, _ := client.LocaleDownloadsApi.LocaleDownloadCreate(Auth, target.ProjectID, localeFile.ID, localeDownloadCreateParams, &localVarOptionals)
 
 		for asyncDownload.Status == "processing" {
-			time.Sleep(5 * time.Second)
+			time.Sleep(asyncWaitTime)
 			localVarOptionals := phrase.LocaleDownloadShowOpts{}
 			asyncDownload, _, _ = client.LocaleDownloadsApi.LocaleDownloadShow(Auth, target.ProjectID, localeFile.ID, asyncDownload.Id, &localVarOptionals)
 		}
-		// fetch the file
-		file, _ := os.Create(localeFile.Path)
-		defer file.Close()
-		request, _ := http.NewRequest("GET", asyncDownload.Result.Url, nil)
-		request.Header.Set("Authorization", "Bearer "+Config.Credentials.Token)
-		response, _ := http.DefaultClient.Do(request)
-		defer response.Body.Close()
-		io.Copy(file, response.Body)
+		if asyncDownload.Status == "failed" {
+			return fmt.Errorf("download failed: %s", asyncDownload.Error)
+		}
+		return fetchFile(asyncDownload.Result.Url, localeFile.Path)
 	} else {
 		file, response, err := client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
 		if err != nil {
@@ -206,20 +201,41 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 				return err
 			}
 		}
-		var data []byte
-		if file != nil {
-			data, err = io.ReadAll(file)
-			if err != nil {
-				return err
-			}
-			file.Close()
-			os.Remove(file.Name())
-		}
-
-		err = os.WriteFile(localeFile.Path, data, 0644)
+		return copyToDestination(file, localeFile.Path)
 	}
+}
 
+func copyToDestination(file *os.File, path string) error {
+	var data []byte
+	data, err := io.ReadAll(file)
+	if err != nil {
+		return err
+	}
+	file.Close()
+	os.Remove(file.Name())
+
+	err = os.WriteFile(path, data, 0644)
 	return err
+}
+
+func fetchFile(url string, localName string) error {
+	file, err := os.Create(localName)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	request, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return err
+	}
+	request.Header.Set("Authorization", "Bearer "+Config.Credentials.Token)
+	response, err := http.DefaultClient.Do(request)
+	if err != nil {
+		return err
+	}
+	defer response.Body.Close()
+	io.Copy(file, response.Body)
+	return nil
 }
 
 func asyncDownloadParams(localVarOptionals phrase.LocaleDownloadOpts) phrase.LocaleDownloadCreateParameters {
