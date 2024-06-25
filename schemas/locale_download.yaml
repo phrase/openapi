@@ -1,0 +1,62 @@
+---
+locale_download:
+  type: object
+  title: Async Locale Download
+  properties:
+    id:
+      type: string
+    status:
+      type: string
+      enum: [processing, completed, error]
+      description: |
+        The status of the download request. Possible values are `processing`, `completed`, and `error`.
+    result:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: |
+            The URL to the download file. This URL is valid for 15 minutes.
+    params:
+      type: object
+      description: |
+        The parameters of the download request.
+      properties:
+        file_format:
+          type: string
+        locale_id:
+          type: string
+        tags:
+          type: string
+        branch:
+          type: string
+        include_empty_translations:
+          type: boolean
+        include_translated_keys:
+          type: boolean
+        include_unverified_translations:
+          type: boolean
+    error:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    completed_at:
+      type: string
+      format: date-time
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    status: completed
+    result:
+      url: https://example.com/locales/abcd1234cdef1234abcd1234cdef1234/download?file_format=yml
+    params:
+      file_format: yml
+      locale_id: abcd1234cdef1234abcd1234cdef1234
+      tags: feature1,feature2
+      branch: my-feature-branch
+      include_empty_translations: true
+      include_translated_keys: true
+      include_unverified_translations: true
+    created_at: '2015-01-28T09:52:53Z'
+    completed_at: '2015-01-28T09:52:53Z'
