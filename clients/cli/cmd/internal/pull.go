@@ -131,9 +131,7 @@ func (target *Target) Pull(client *phrase.APIClient, branch string, async bool) 
 		} else {
 			print.Success("Downloaded %s to %s", localeFile.Message(), localeFile.RelPath())
 		}
-		if Debug {
-			fmt.Fprintln(os.Stderr, strings.Repeat("-", 10))
-		}
+		debugFprintln(strings.Repeat("-", 10))
 	}
 
 	return nil
@@ -159,59 +157,65 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 		localVarOptionals.Tag = optional.EmptyString()
 	}
 
-	if Debug {
-		fmt.Fprintln(os.Stderr, "Target file pattern:", target.File)
-		fmt.Fprintln(os.Stderr, "Actual file path", localeFile.Path)
-		fmt.Fprintln(os.Stderr, "LocaleID", localeFile.ID)
-		fmt.Fprintln(os.Stderr, "ProjectID", target.ProjectID)
-		fmt.Fprintln(os.Stderr, "FileFormat", localVarOptionals.FileFormat)
-		fmt.Fprintln(os.Stderr, "ConvertEmoji", localVarOptionals.ConvertEmoji)
-		fmt.Fprintln(os.Stderr, "IncludeEmptyTranslations", localVarOptionals.IncludeEmptyTranslations)
-		fmt.Fprintln(os.Stderr, "KeepNotranslateTags", localVarOptionals.KeepNotranslateTags)
-		fmt.Fprintln(os.Stderr, "Tags", localVarOptionals.Tags)
-		fmt.Fprintln(os.Stderr, "Branch", localVarOptionals.Branch)
-		fmt.Fprintln(os.Stderr, "FormatOptions", localVarOptionals.FormatOptions)
-	}
+	debugFprintln("Target file pattern:", target.File)
+	debugFprintln("Actual file path", localeFile.Path)
+	debugFprintln("LocaleID", localeFile.ID)
+	debugFprintln("ProjectID", target.ProjectID)
+	debugFprintln("FileFormat", localVarOptionals.FileFormat)
+	debugFprintln("ConvertEmoji", localVarOptionals.ConvertEmoji)
+	debugFprintln("IncludeEmptyTranslations", localVarOptionals.IncludeEmptyTranslations)
+	debugFprintln("KeepNotranslateTags", localVarOptionals.KeepNotranslateTags)
+	debugFprintln("Tags", localVarOptionals.Tags)
+	debugFprintln("Branch", localVarOptionals.Branch)
+	debugFprintln("FormatOptions", localVarOptionals.FormatOptions)
 
 	if async {
-		localeDownloadCreateParams := asyncDownloadParams(localVarOptionals)
-
-		localVarOptionals := phrase.LocaleDownloadCreateOpts{}
-		if Debug {
-			fmt.Fprintln(os.Stderr, "Initiating async download...")
-		}
-		asyncDownload, _, _ := client.LocaleDownloadsApi.LocaleDownloadCreate(Auth, target.ProjectID, localeFile.ID, localeDownloadCreateParams, &localVarOptionals)
-
-		for asyncDownload.Status == "processing" {
-			if Debug {
-				fmt.Fprintln(os.Stderr, "Waiting for the files to be exported...")
-			}
-			time.Sleep(asyncWaitTime)
-			if Debug {
-				fmt.Fprintln(os.Stderr, "Checking if the download is ready...")
-			}
-			localVarOptionals := phrase.LocaleDownloadShowOpts{}
-			asyncDownload, _, _ = client.LocaleDownloadsApi.LocaleDownloadShow(Auth, target.ProjectID, localeFile.ID, asyncDownload.Id, &localVarOptionals)
-		}
-		if asyncDownload.Status == "failed" {
-			return fmt.Errorf("download failed: %s", asyncDownload.Error)
-		}
-		return fetchFile(asyncDownload.Result.Url, localeFile.Path)
+		return target.downloadAsynchronously(client, localeFile, localVarOptionals)
 	} else {
-		file, response, err := client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
+		return target.downloadSynchronously(client, localeFile, localVarOptionals)
+	}
+}
+
+func (target *Target) downloadAsynchronously(client *phrase.APIClient, localeFile *LocaleFile, downloadOpts phrase.LocaleDownloadOpts) error {
+	localeDownloadCreateParams := asyncDownloadParams(downloadOpts)
+
+	localVarOptionals := phrase.LocaleDownloadCreateOpts{}
+	debugFprintln("Initiating async download...")
+	asyncDownload, _, err := client.LocaleDownloadsApi.LocaleDownloadCreate(Auth, target.ProjectID, localeFile.ID, localeDownloadCreateParams, &localVarOptionals)
+	if err != nil {
+		return err
+	}
+
+	for asyncDownload.Status == "processing" {
+		debugFprintln("Waiting for the files to be exported...")
+		time.Sleep(asyncWaitTime)
+		debugFprintln("Checking if the download is ready...")
+		localVarOptionals := phrase.LocaleDownloadShowOpts{}
+		asyncDownload, _, err = client.LocaleDownloadsApi.LocaleDownloadShow(Auth, target.ProjectID, localeFile.ID, asyncDownload.Id, &localVarOptionals)
 		if err != nil {
-			if response.Rate.Remaining == 0 {
-				waitForRateLimit(response.Rate)
-				file, _, err = client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
-				if err != nil {
-					return err
-				}
-			} else {
+			return err
+		}
+	}
+	if asyncDownload.Status == "failed" {
+		return fmt.Errorf("download failed: %s", asyncDownload.Error)
+	}
+	return downloadExportedLocale(asyncDownload.Result.Url, localeFile.Path)
+}
+
+func (target *Target) downloadSynchronously(client *phrase.APIClient, localeFile *LocaleFile, downloadOpts phrase.LocaleDownloadOpts) error {
+	file, response, err := client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &downloadOpts)
+	if err != nil {
+		if response.Rate.Remaining == 0 {
+			waitForRateLimit(response.Rate)
+			file, _, err = client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &downloadOpts)
+			if err != nil {
 				return err
 			}
+		} else {
+			return err
 		}
-		return copyToDestination(file, localeFile.Path)
 	}
+	return copyToDestination(file, localeFile.Path)
 }
 
 func copyToDestination(file *os.File, path string) error {
@@ -227,10 +231,8 @@ func copyToDestination(file *os.File, path string) error {
 	return err
 }
 
-func fetchFile(url string, localName string) error {
-	if Debug {
-		fmt.Fprintln(os.Stderr, "Downloading file from ", url)
-	}
+func downloadExportedLocale(url string, localName string) error {
+	debugFprintln("Downloading file from ", url)
 	file, err := os.Create(localName)
 	if err != nil {
 		return err
@@ -407,4 +409,10 @@ func createFile(path string) error {
 	}
 
 	return nil
+}
+
+func debugFprintln(a ...any) {
+	if Debug {
+		fmt.Fprintln(os.Stderr, a...)
+	}
 }
