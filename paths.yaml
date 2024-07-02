@@ -542,7 +542,10 @@
     "$ref": "./paths/repo_syncs/import.yaml"
 "/accounts/{account_id}/repo_syncs/{id}/events":
   get:
-    "$ref": "./paths/repo_syncs/events.yaml"
+    "$ref": "./paths/repo_sync_events/index.yaml"
+"/accounts/{account_id}/repo_syncs/{repo_sync_id}/events/{id}":
+  get:
+    "$ref": "./paths/repo_sync_events/show.yaml"
 "/accounts/{account_id}/repo_syncs/{id}/deactivate":
   post:
     "$ref": "./paths/repo_syncs/deactivate.yaml"
