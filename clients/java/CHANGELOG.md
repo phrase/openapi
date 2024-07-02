@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.0](https://github.com/phrase/openapi/compare/java-v2.2.1...java-v2.3.0) (2024-07-02)
+
+
+### Features
+
+* add repo sync events show endpoint ([#641](https://github.com/phrase/openapi/issues/641)) ([e1d9cfb](https://github.com/phrase/openapi/commit/e1d9cfb23e079fea2d9e5475dff9a4137f1f0154))
+* **API:** Async downloads [TSI-2515] ([#642](https://github.com/phrase/openapi/issues/642)) ([6fcab5d](https://github.com/phrase/openapi/commit/6fcab5d4719f64e8e5dd49c327dc9348b384de4c))
+
 ## [2.2.1](https://github.com/phrase/openapi/compare/java-v2.2.0...java-v2.2.1) (2024-06-18)
 
 
