@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/phrase/openapi/compare/go-v3.3.0...go-v3.4.0) (2024-07-02)
+
+
+### Features
+
+* add repo sync events show endpoint ([#641](https://github.com/phrase/openapi/issues/641)) ([e1d9cfb](https://github.com/phrase/openapi/commit/e1d9cfb23e079fea2d9e5475dff9a4137f1f0154))
+
 ## [3.3.0](https://github.com/phrase/openapi/compare/go-v3.2.1...go-v3.3.0) (2024-06-25)
 
 
