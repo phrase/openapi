@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"time"
 
@@ -253,47 +254,32 @@ func downloadExportedLocale(url string, localName string) error {
 }
 
 func asyncDownloadParams(localVarOptionals phrase.LocaleDownloadOpts) phrase.LocaleDownloadCreateParameters {
+	sourceFields := reflect.VisibleFields(reflect.TypeOf(localVarOptionals))
 	localeDownloadCreateParams := phrase.LocaleDownloadCreateParameters{}
+	targetFields := reflect.VisibleFields(reflect.TypeOf(localeDownloadCreateParams))
 
-	localeDownloadCreateParams.Branch = localVarOptionals.Branch.Value()
-	localeDownloadCreateParams.FileFormat = localVarOptionals.FileFormat.Value()
-	localeDownloadCreateParams.Tags = localVarOptionals.Tags.Value()
-	if localVarOptionals.IncludeEmptyTranslations.IsSet() {
-		localeDownloadCreateParams.IncludeEmptyTranslations = new(bool)
-		*localeDownloadCreateParams.IncludeEmptyTranslations = localVarOptionals.IncludeEmptyTranslations.Value()
+	for i, targetField := range targetFields {
+		for _, sourceField := range sourceFields {
+			if targetField.Name == sourceField.Name {
+				sourceValue := reflect.ValueOf(localVarOptionals).FieldByName(sourceField.Name)
+				if sourceValue.MethodByName("IsSet").Call([]reflect.Value{})[0].Interface().(bool) {
+					targetValue := reflect.ValueOf(&localeDownloadCreateParams).Elem().Field(i)
+					sourceOptionalValue := sourceValue.MethodByName("Value").Call([]reflect.Value{})[0]
+					switch sourceField.Type {
+					case reflect.TypeOf((*optional.String)(nil)).Elem():
+						targetValue.Set(sourceOptionalValue)
+					case reflect.TypeOf((*optional.Bool)(nil)).Elem():
+						boolValue := sourceOptionalValue.Interface().(bool)
+						targetValue.Set(reflect.ValueOf(&boolValue))
+					case reflect.TypeOf((*optional.Interface)(nil)).Elem():
+						jsonValue, _ := json.Marshal(sourceOptionalValue.Interface())
+						json.Unmarshal(jsonValue, targetValue.Addr().Interface())
+					}
+				}
+				break
+			}
+		}
 	}
-	if localVarOptionals.ExcludeEmptyZeroForms.IsSet() {
-		localeDownloadCreateParams.ExcludeEmptyZeroForms = new(bool)
-		*localeDownloadCreateParams.ExcludeEmptyZeroForms = localVarOptionals.ExcludeEmptyZeroForms.Value()
-	}
-	if localVarOptionals.IncludeTranslatedKeys.IsSet() {
-		localeDownloadCreateParams.IncludeTranslatedKeys = new(bool)
-		*localeDownloadCreateParams.IncludeTranslatedKeys = localVarOptionals.IncludeTranslatedKeys.Value()
-	}
-	if localVarOptionals.KeepNotranslateTags.IsSet() {
-		localeDownloadCreateParams.KeepNotranslateTags = new(bool)
-		*localeDownloadCreateParams.KeepNotranslateTags = localVarOptionals.KeepNotranslateTags.Value()
-	}
-	if localVarOptionals.FormatOptions.IsSet() {
-		jsonFormatOptions, _ := json.Marshal(localVarOptionals.FormatOptions.Value())
-		json.Unmarshal(jsonFormatOptions, &localeDownloadCreateParams.FormatOptions)
-	}
-	localeDownloadCreateParams.Encoding = localVarOptionals.Encoding.Value()
-	if localVarOptionals.IncludeUnverifiedTranslations.IsSet() {
-		localeDownloadCreateParams.IncludeUnverifiedTranslations = new(bool)
-		*localeDownloadCreateParams.IncludeUnverifiedTranslations = localVarOptionals.IncludeUnverifiedTranslations.Value()
-	}
-	if localVarOptionals.UseLastReviewedVersion.IsSet() {
-		localeDownloadCreateParams.UseLastReviewedVersion = new(bool)
-		*localeDownloadCreateParams.UseLastReviewedVersion = localVarOptionals.UseLastReviewedVersion.Value()
-	}
-	localeDownloadCreateParams.FallbackLocaleId = localVarOptionals.FallbackLocaleId.Value()
-	localeDownloadCreateParams.SourceLocaleId = localVarOptionals.SourceLocaleId.Value()
-	if localVarOptionals.CustomMetadataFilters.IsSet() {
-		jsonCustomMetadataFilters, _ := json.Marshal(localVarOptionals.CustomMetadataFilters.Value())
-		json.Unmarshal(jsonCustomMetadataFilters, &localeDownloadCreateParams.CustomMetadataFilters)
-	}
-
 	return localeDownloadCreateParams
 }
 
