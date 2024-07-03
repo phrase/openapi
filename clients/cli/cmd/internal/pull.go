@@ -23,6 +23,7 @@ import (
 const (
 	timeoutInMinutes = 30 * time.Minute
 	asyncWaitTime    = 5 * time.Second
+	asyncRetryCount  = 360 // 30 minutes
 )
 
 var Config *phrase.Config
@@ -187,7 +188,7 @@ func (target *Target) downloadAsynchronously(client *phrase.APIClient, localeFil
 		return err
 	}
 
-	for asyncDownload.Status == "processing" {
+	for i := 0; asyncDownload.Status == "processing"; i++ {
 		debugFprintln("Waiting for the files to be exported...")
 		time.Sleep(asyncWaitTime)
 		debugFprintln("Checking if the download is ready...")
@@ -195,6 +196,9 @@ func (target *Target) downloadAsynchronously(client *phrase.APIClient, localeFil
 		asyncDownload, _, err = client.LocaleDownloadsApi.LocaleDownloadShow(Auth, target.ProjectID, localeFile.ID, asyncDownload.Id, &localVarOptionals)
 		if err != nil {
 			return err
+		}
+		if i > asyncRetryCount {
+			return fmt.Errorf("download is taking too long")
 		}
 	}
 	if asyncDownload.Status == "failed" {
