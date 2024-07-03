@@ -201,10 +201,10 @@ func (target *Target) downloadAsynchronously(client *phrase.APIClient, localeFil
 			return fmt.Errorf("download is taking too long")
 		}
 	}
-	if asyncDownload.Status == "failed" {
-		return fmt.Errorf("download failed: %s", asyncDownload.Error)
+	if asyncDownload.Status == "completed" {
+		return downloadExportedLocale(asyncDownload.Result.Url, localeFile.Path)
 	}
-	return downloadExportedLocale(asyncDownload.Result.Url, localeFile.Path)
+	return fmt.Errorf("download failed: %s", asyncDownload.Error)
 }
 
 func (target *Target) downloadSynchronously(client *phrase.APIClient, localeFile *LocaleFile, downloadOpts phrase.LocaleDownloadOpts) error {
