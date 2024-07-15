@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.3.0](https://github.com/phrase/openapi/compare/python-v2.2.0...python-v2.3.0) (2024-07-15)
+
+
+### Features
+
+* add repo sync events show endpoint ([#641](https://github.com/phrase/openapi/issues/641)) ([e1d9cfb](https://github.com/phrase/openapi/commit/e1d9cfb23e079fea2d9e5475dff9a4137f1f0154))
+* **API:** Async downloads [TSI-2515] ([#642](https://github.com/phrase/openapi/issues/642)) ([6fcab5d](https://github.com/phrase/openapi/commit/6fcab5d4719f64e8e5dd49c327dc9348b384de4c))
+
+
+### Bug Fixes
+
+* add app_min_version and app_max_version param to releases ([#633](https://github.com/phrase/openapi/issues/633)) ([b384301](https://github.com/phrase/openapi/commit/b3843012460ace4c1d34c4373e5158595466adcb))
+
 ## [2.2.0](https://github.com/phrase/openapi/compare/python-v2.1.1...python-v2.2.0) (2024-06-12)
 
 
