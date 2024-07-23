@@ -18,7 +18,7 @@ jobs:
           go test
   lawa-gomod-ci:
     name: Check licenses
-    uses: phrase/actions/.github/workflows/lawa-gomod-ci.yml@tsi-2537-golang
+    uses: phrase/actions/.github/workflows/lawa-gomod-ci.yml@41f060a1b10ea872cbcdba039bd597a0eca3a1bc
     with:
       working-directory: clients/go
       decisions-file: .license-decisions.yml
