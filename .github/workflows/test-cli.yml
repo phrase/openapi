@@ -16,25 +16,12 @@ jobs:
         run: |
           npm install
           npm run generate.cli
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@0cde4689ba33c09f1b890c1725572ad96751a3fc # pin@v1.178.0
+      - name: License check
+        uses: phrase/actions/lawa-gomod-ci@c6e43803f9dabe420dcfe299fb1b871af50b943b
         with:
+          github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
+          decisions-file: .license-decisions.yml
           ruby-version: 3.3.2
-      - name: Install compatible bundler version
-        run: gem install bundler
-      - name: Install lawa
-        run: |
-          cd ./clients/cli
-          touch Gemfile.lawa
-          echo "source 'https://rubygems.org'" >> Gemfile.lawa
-          echo -e "gem 'lawa', github: 'phrase/lawa'" >> Gemfile.lawa
-          bundle config unset deployment
-          BUNDLE_GEMFILE=Gemfile.lawa bundle install
-        env:
-          BUNDLE_GITHUB__COM: x-access-token:${{ secrets.GH_LAWA_ACCESS_TOKEN }}
-      - name: Run lawa
-        run: |
-          cd ./clients/cli
-          BUNDLE_GEMFILE=Gemfile.lawa bundle exec lawa --enabled-package-managers=gomodules --decisions-file=.license-decisions.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
+          go-version: 1.19.6
+          ruby-bundler-version: 2.3.5
+          working-directory: clients/cli
