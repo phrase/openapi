@@ -17,7 +17,7 @@ jobs:
           cd ./clients/go/test
           go test
       - name: License check
-        uses: phrase/actions/lawa-gomod-ci@tsi-2537-golang
+        uses: phrase/actions/lawa-gomod-ci@d5a501195117b8ab77a586f5078ebbdbb209393d
         with:
           github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
           decisions-file: .license-decisions.yml
