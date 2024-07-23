@@ -19,6 +19,8 @@ jobs:
         gradle-version: 7.1.1
         build-root-directory: ./clients/java
         arguments: test --info
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
     - name: License check
       uses: phrase/actions/lawa-ci@81a398057cae95b3433cf798afb5570e04f08d29
       with:
