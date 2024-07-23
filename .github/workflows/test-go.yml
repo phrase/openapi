@@ -17,11 +17,11 @@ jobs:
           cd ./clients/go/test
           go test
       - name: License check
-        uses: phrase/actions/lawa-gomod-ci@c6e43803f9dabe420dcfe299fb1b871af50b943b
+        uses: phrase/actions/lawa-ci@81a398057cae95b3433cf798afb5570e04f08d29
         with:
           github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
           decisions-file: .license-decisions.yml
           ruby-version: 3.3.2
-          go-version: 1.19.6
           ruby-bundler-version: 2.3.5
           working-directory: clients/go
+          package-managers: gomodules
