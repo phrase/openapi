@@ -16,12 +16,10 @@ jobs:
           npm run generate.go
           cd ./clients/go/test
           go test
-  lawa-gomod-ci:
-    name: Check licenses
-    uses: phrase/actions/.github/workflows/lawa-gomod-ci.yml@b7d615d06d1668a70c27190c1537239f755971bf
-    with:
-      working-directory: clients/go
-      decisions-file: .license-decisions.yml
-      ruby-version: 3.3.2
-    secrets:
-      github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
+      - name: Check licenses
+        uses: phrase/actions/.github/workflows/lawa-gomod-ci.yml@b7d615d06d1668a70c27190c1537239f755971bf
+        with:
+          working-directory: clients/go
+          decisions-file: .license-decisions.yml
+          ruby-version: 3.3.2
+          github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
