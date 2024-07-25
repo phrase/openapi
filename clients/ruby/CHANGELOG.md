@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/phrase/openapi/compare/ruby-v3.3.0...ruby-v3.4.0) (2024-07-25)
+
+
+### Features
+
+* **ruby:** Remove dependency version constraints ([#659](https://github.com/phrase/openapi/issues/659)) ([1cf052b](https://github.com/phrase/openapi/commit/1cf052b3d22642c41d0d43a35288ef4fc134ae08))
+
 ## [3.3.0](https://github.com/phrase/openapi/compare/ruby-v3.2.1...ruby-v3.3.0) (2024-07-02)
 
 
