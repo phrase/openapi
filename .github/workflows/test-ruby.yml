@@ -21,7 +21,7 @@ jobs:
           cd ./clients/ruby
           bundle exec rspec
       - name: Check licenses
-        uses: phrase/actions/lawa-ruby-ci@57a83463fa1ba669808329d87d1b2616dc4cdeef
+        uses: phrase/actions/lawa-ruby-ci
         with:
           working-directory: ./clients/ruby
           github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
