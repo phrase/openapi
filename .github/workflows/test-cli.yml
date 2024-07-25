@@ -21,7 +21,5 @@ jobs:
         with:
           github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
           decisions-file: .license-decisions.yml
-          ruby-version: 3.3.2
-          ruby-bundler-version: 2.3.5
           working-directory: clients/cli
           package-managers: gomodules
