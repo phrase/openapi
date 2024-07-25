@@ -17,7 +17,7 @@ jobs:
           npm install
           npm run generate.cli
       - name: License check
-        uses: phrase/actions/lawa-ci@81a398057cae95b3433cf798afb5570e04f08d29
+        uses: phrase/actions/lawa-ci
         with:
           github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
           decisions-file: .license-decisions.yml
