@@ -41,6 +41,9 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 		formatOptions := optional.NewInterface(map[string]interface{}{
 			"foo": "bar",
 			"baz": "bazz",
+			"custom_metadata_columns": map[string]interface{}{
+				"foo": 100,
+			},
 		})
 		localeDownloadOpts := phrase.LocaleDownloadOpts{FormatOptions: formatOptions}
 
@@ -50,7 +53,7 @@ func Test_phrase_LocalesApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
-		assert.Equal(t, "format_options%5Bbaz%5D=bazz&format_options%5Bfoo%5D=bar", requestUrl.RawQuery)
+		assert.Equal(t, "format_options%5Bbaz%5D=bazz&format_options%5Bcustom_metadata_columns%5D%5Bfoo%5D=100&format_options%5Bfoo%5D=bar", requestUrl.RawQuery)
 		assert.Equal(t, "/projects/project_id_example/locales/locale_id/download", requestUrl.Path)
 		assert.Equal(t, "GET", httpRes.Request.Method)
 	})
