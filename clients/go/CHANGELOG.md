@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.1](https://github.com/phrase/openapi/compare/go-v3.4.0...go-v3.4.1) (2024-07-30)
+
+
+### Bug Fixes
+
+* **go:** Fix query param serialization of nested objects [TSI-2594] ([#661](https://github.com/phrase/openapi/issues/661)) ([8400969](https://github.com/phrase/openapi/commit/8400969940fa49dbdbff770de6ba0d78e152c2e5))
+
 ## [3.4.0](https://github.com/phrase/openapi/compare/go-v3.3.0...go-v3.4.0) (2024-07-02)
 
 
