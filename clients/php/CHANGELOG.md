@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/phrase/openapi/compare/php-v2.3.0...php-v2.3.1) (2024-08-01)
+
+
+### Bug Fixes
+
+* **PHP:** Fix query param serialization of nested objects [TSI-2593] ([#663](https://github.com/phrase/openapi/issues/663)) ([c3a6525](https://github.com/phrase/openapi/commit/c3a6525328028e33a5c703724b9ac7803a4db8f1))
+
 ## [2.3.0](https://github.com/phrase/openapi/compare/php-v2.2.1...php-v2.3.0) (2024-07-02)
 
 
