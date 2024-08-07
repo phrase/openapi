@@ -19,3 +19,10 @@ jobs:
         gradle-version: 7.1.1
         build-root-directory: ./clients/java
         arguments: test --info
+    - name: License check
+      uses: phrase/actions/lawa-ci@v1
+      with:
+        github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
+        decisions-file: .license-decisions.yml
+        working-directory: clients/java
+        package-managers: maven
