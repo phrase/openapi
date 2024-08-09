@@ -18,3 +18,10 @@ jobs:
           php_version: '7.4'
           version: '7.4'
           configuration: ./clients/php/phpunit.xml.dist
+      - name: License check
+        uses: phrase/actions/lawa-ci@v1
+        with:
+          github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
+          decisions-file: .license-decisions.yml
+          working-directory: clients/php
+          package-managers: composer
