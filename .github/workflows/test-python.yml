@@ -18,9 +18,6 @@ jobs:
         run: |
           cd ./clients/python
           pip install -r requirements.txt -r test-requirements.txt
-<<<<<<< Updated upstream
-          python -m unittest
-=======
           pytest
       - name: License check
         uses: phrase/actions/lawa-ci@v1
@@ -29,4 +26,3 @@ jobs:
           decisions-file: .license-decisions.yml
           working-directory: clients/python
           package-managers: pip
->>>>>>> Stashed changes
