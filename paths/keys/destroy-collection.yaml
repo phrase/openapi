@@ -24,6 +24,9 @@ parameters:
       <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>
       <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
     </ul>
+    <br/>
+    <p><strong>Caution:</strong> Query parameters with empty values will be treated as though they are not included in the request and will be ignored.</p>
+    <br/>
     Find more examples <a href="#overview--usage-examples">here</a>.
   example: mykey* translated:true
   name: q
