@@ -95,7 +95,7 @@ requestBody:
             default: true
             example:
           update_translations_on_source_match:
-            description: Pass `true` to update target translations only if the source translations match the uploaded multilingual file
+            description: Update target translations only if the source translations of the uploaded multilingual file match the stored translations
             type: boolean
             default: false
             example:
