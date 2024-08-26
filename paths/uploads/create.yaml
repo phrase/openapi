@@ -94,6 +94,11 @@ requestBody:
             type: boolean
             default: true
             example:
+          update_translations_on_source_match:
+            description: Pass `true` to update target translations only if the source translations match the uploaded multilingual file
+            type: boolean
+            default: false
+            example:
           update_descriptions:
             description: Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.
             type: boolean
