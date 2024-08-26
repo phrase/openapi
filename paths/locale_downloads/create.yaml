@@ -1,4 +1,3 @@
----
 summary: Initiate async download of a locale
 description: Prepare a locale for download in a specific file format.
 operationId: locale_download/create
@@ -65,6 +64,14 @@ requestBody:
             description: If set to true the last reviewed version of a translation is used. This is only available if the review workflow is enabled for the project.
             type: boolean
             example:
+          locale_ids:
+            description: Locale IDs or locale names
+            type: array
+            items:
+              type: string
+            example:
+              - de
+              - en
           fallback_locale_id:
             description: If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.
             type: string
@@ -101,7 +108,6 @@ responses:
 x-code-samples:
   - lang: Curl
     source: |-
-
       curl "https://api.phrase.com/v2/projects/:project_id/locales/:locale_id/downloads" \
         -u USERNAME_OR_ACCESS_TOKEN \
         -X POST \
