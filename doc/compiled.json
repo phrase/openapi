@@ -14990,7 +14990,7 @@
                     "example": null
                   },
                   "update_translations_on_source_match": {
-                    "description": "Update target translations only if the source translations of the uploaded multilingual file match the stored translations",
+                    "description": "Update target translations only if the source translations of the uploaded multilingual file match the stored translations.",
                     "type": "boolean",
                     "default": false,
                     "example": null
