@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/phrase/openapi/compare/java-v2.3.0...java-v2.4.0) (2024-09-03)
+
+
+### Features
+
+* Add update_translations_on_source_match ([#670](https://github.com/phrase/openapi/issues/670)) ([11003ac](https://github.com/phrase/openapi/commit/11003ace7353bf99893482ca4aa32214abf3e581))
+
 ## [2.3.0](https://github.com/phrase/openapi/compare/java-v2.2.1...java-v2.3.0) (2024-07-02)
 
 
