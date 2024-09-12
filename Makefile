@@ -33,7 +33,7 @@ ruby:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g ruby -o clients/ruby -c ./openapi-generator/ruby_lang.yaml
 go:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g go -o clients/go -c ./openapi-generator/go_lang.yaml --global-property apiTests=false,modelTests=false
-	go install golang.org/x/tools/cmd/goimports@latest
+	go install golang.org/x/tools/cmd/goimports@v0.24.0
 	goimports -w clients/go
 	cd clients/go && go mod tidy
 typescript:
