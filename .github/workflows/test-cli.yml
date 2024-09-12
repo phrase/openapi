@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - openapi-generator/cli_lang.yaml
+      - clients/cli/cmd/internal/*
 jobs:
   test:
     runs-on: ubuntu-latest
