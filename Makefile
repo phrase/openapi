@@ -48,6 +48,6 @@ cli:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g go -o tmp/cli -c ./openapi-generator/cli_lang.yaml -e handlebars
 	cp tmp/cli/api_* clients/cli/cmd/
 	cp tmp/cli/README.md clients/cli/
-	go install golang.org/x/tools/cmd/goimports@latest
+	go install golang.org/x/tools/cmd/goimports@v0.24.0
 	goimports -w clients/cli
 	cd clients/cli && go mod tidy
