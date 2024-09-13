@@ -16459,7 +16459,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase projects create \\\n--data '{\"name\": \"My Android Project\", \"main_format\":\"yml\", \"shares_translation_memory\":\"true\"}' \\\n--access_token <token>"
+            "source": "phrase projects create \\\n--data '{\"name\": \"My Android Project\", \"main_format\":\"yml\", \"shares_translation_memory\":true}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
