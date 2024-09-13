@@ -38,7 +38,7 @@ x-code-samples:
   - lang: CLI v2
     source: |-
       phrase projects create \
-      --data '{"name": "My Android Project", "main_format":"yml", "shares_translation_memory":"true"}' \
+      --data '{"name": "My Android Project", "main_format":"yml", "shares_translation_memory":true}' \
       --access_token <token>
 requestBody:
   required: true
