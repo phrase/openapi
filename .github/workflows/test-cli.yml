@@ -1,7 +1,11 @@
 # Currently this does not contain any tests, only a license check
 # Once we add tests, we should add a step here to run them
 name: Run CLI Tests
-on: [push]
+on:
+  push:
+    paths:
+      - openapi-generator/cli_lang.yaml
+      - clients/cli/cmd/internal/*
 jobs:
   test:
     runs-on: ubuntu-latest
