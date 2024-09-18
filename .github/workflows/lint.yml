@@ -5,7 +5,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v1
         with:
           node-version: "18"
@@ -15,7 +15,7 @@ jobs:
   compare-output:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v1
         with:
           node-version: "18"
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Set up Go
@@ -47,7 +47,7 @@ jobs:
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Checkout 🛎️
-  #       uses: actions/checkout@v3
+  #       uses: actions/checkout@v4
   #       with:
   #         persist-credentials: false
   #     - name: Set up Go
