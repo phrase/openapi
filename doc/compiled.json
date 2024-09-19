@@ -11502,7 +11502,7 @@
             }
           },
           {
-            "description": "ids of keys that should added to the job",
+            "description": "ids of keys that should be removed from the job",
             "example": [
               "abcd1234cdef1234abcd1234cdef1234"
             ],
@@ -16525,7 +16525,7 @@
                     "example": "review"
                   },
                   "machine_translation_enabled": {
-                    "description": "(Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest",
+                    "description": "(Optional) Enable machine translation support in the project. Required for Pre-Translation",
                     "type": "boolean",
                     "example": true
                   },
@@ -16586,21 +16586,6 @@
                   },
                   "autotranslate_use_translation_memory": {
                     "description": "(Optional) Requires autotranslate_enabled to be true",
-                    "type": "boolean",
-                    "example": true
-                  },
-                  "smart_suggest_enabled": {
-                    "description": "(Optional) Smart Suggest, requires machine_translation_enabled",
-                    "type": "boolean",
-                    "example": true
-                  },
-                  "smart_suggest_use_glossary": {
-                    "description": "(Optional) Requires smart_suggest_enabled to be true",
-                    "type": "boolean",
-                    "example": true
-                  },
-                  "smart_suggest_use_machine_translation": {
-                    "description": "(Optional) Requires smart_suggest_enabled to be true",
                     "type": "boolean",
                     "example": true
                   }
@@ -16784,7 +16769,7 @@
                     "example": "review"
                   },
                   "machine_translation_enabled": {
-                    "description": "(Optional) Enable machine translation support in the project. Required for Autopilot and Smart Suggest",
+                    "description": "(Optional) Enable machine translation support in the project. Required for Pre-Translation",
                     "type": "boolean",
                     "example": true
                   },
@@ -16845,21 +16830,6 @@
                   },
                   "autotranslate_use_translation_memory": {
                     "description": "(Optional) Requires autotranslate_enabled to be true",
-                    "type": "boolean",
-                    "example": true
-                  },
-                  "smart_suggest_enabled": {
-                    "description": "(Optional) Smart Suggest, requires machine_translation_enabled",
-                    "type": "boolean",
-                    "example": true
-                  },
-                  "smart_suggest_use_glossary": {
-                    "description": "(Optional) Requires smart_suggest_enabled to be true",
-                    "type": "boolean",
-                    "example": true
-                  },
-                  "smart_suggest_use_machine_translation": {
-                    "description": "(Optional) Requires smart_suggest_enabled to be true",
                     "type": "boolean",
                     "example": true
                   }

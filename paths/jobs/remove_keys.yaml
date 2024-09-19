@@ -14,7 +14,7 @@ parameters:
   in: query
   schema:
     type: string
-- description: ids of keys that should added to the job
+- description: ids of keys that should be removed from the job
   example:
   - abcd1234cdef1234abcd1234cdef1234
   name: translation_key_ids
