@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/antihax/optional"
 	"github.com/phrase/phrase-cli/cmd/internal/paths"
 	"github.com/phrase/phrase-cli/cmd/internal/placeholders"
 	"github.com/phrase/phrase-cli/cmd/internal/shared"
@@ -190,6 +191,9 @@ func TargetsFromConfig(config phrase.Config) (Targets, error) {
 		if target.FileFormat == "" {
 			target.FileFormat = fileFormat
 		}
+		if target.Params.TranslationKeyPrefix.Value() == "<file_path>" {
+			target.Params.TranslationKeyPrefix = optional.NewString(TruncateString(target.File))
+		}
 		validTargets = append(validTargets, target)
 	}
 
@@ -198,4 +202,11 @@ func TargetsFromConfig(config phrase.Config) (Targets, error) {
 	}
 
 	return validTargets, nil
+}
+
+func TruncateString(s string) string {
+	if len(s) > 255 {
+		return s[len(s)-255:]
+	}
+	return s
 }
