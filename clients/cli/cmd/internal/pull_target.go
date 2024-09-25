@@ -192,7 +192,7 @@ func TargetsFromConfig(config phrase.Config) (Targets, error) {
 			target.FileFormat = fileFormat
 		}
 		if target.Params.TranslationKeyPrefix.Value() == "<file_path>" {
-			target.Params.TranslationKeyPrefix = optional.NewString(TruncateString(target.File))
+			target.Params.TranslationKeyPrefix = optional.NewString(TruncateString(target.File, 255))
 		}
 		validTargets = append(validTargets, target)
 	}
@@ -202,11 +202,4 @@ func TargetsFromConfig(config phrase.Config) (Targets, error) {
 	}
 
 	return validTargets, nil
-}
-
-func TruncateString(s string) string {
-	if len(s) > 255 {
-		return s[len(s)-255:]
-	}
-	return s
 }

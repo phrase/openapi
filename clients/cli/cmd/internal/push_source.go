@@ -50,6 +50,9 @@ func SourcesFromConfig(config phrase.Config) (Sources, error) {
 		if source.Params == nil {
 			source.Params = new(UploadParams)
 		}
+		if source.Params.TranslationKeyPrefix.Value() == "<file_path>" {
+			source.Params.TranslationKeyPrefix = optional.NewString(TruncateString(source.File, 255))
+		}
 
 		if !source.Params.FileFormat.IsSet() {
 			switch {
