@@ -175,8 +175,8 @@ public class LocalesApiTest {
             branch, fileFormat, tags, tag, includeEmptyTranslations, excludeEmptyZeroForms,
             includeTranslatedKeys, keepNotranslateTags, convertEmoji, formatOptions, encoding,
             skipUnverifiedTranslations, includeUnverifiedTranslations, useLastReviewedVersion,
-            fallbackLocaleId, sourceLocaleId, customMetadataFilters, translationKeyPrefix,
-            useTranslationKeyPrefixAsFilter);
+            fallbackLocaleId, sourceLocaleId, translationKeyPrefix, useTranslationKeyPrefixAsFilter,
+            customMetadataFilters);
 
         String fileContents = new String(java.nio.file.Files.readAllBytes(response.toPath()));
         Assert.assertEquals("Correct file contents", fileContents, body);

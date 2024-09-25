@@ -112,13 +112,13 @@ parameters:
     in: query
     schema:
       type: string
-  - description: Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a <code>tag</code> parameter indicating a specific job.
+  - description: "Download all translation keys, and remove the specified prefix where possible. Warning: this may create duplicate key names if other keys share the same name after the prefix is removed."
     example: "prefix_"
     name: translation_key_prefix
     in: query
     schema:
       type: string
-  - description: Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a <code>tag</code> parameter indicating a specific job.
+  - description: Only download translation keys containing the specified prefix, and remove the prefix from the generated file.
     example:
     name: use_translation_key_prefix_as_filter
     in: query
