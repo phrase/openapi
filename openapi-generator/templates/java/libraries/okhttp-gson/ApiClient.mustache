@@ -667,13 +667,10 @@ public class ApiClient {
                 {{! TODO check why nested params ordering is different }}
                 params.addAll(parsedMappedParams(key, value, new ArrayList<Pair>()));
             }
-
         }
-        
 
         return params;
     }
-
 
     /**
      * Formats the specified query parameter to a list containing a single {@code Pair} object.
@@ -1348,8 +1345,12 @@ public class ApiClient {
                 MediaType mediaType = MediaType.parse(guessContentTypeFromFile(file));
                 mpBuilder.addPart(partHeaders, RequestBody.create(mediaType, file));
             } else {
-                Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + param.getKey() + "\"");
-                mpBuilder.addPart(partHeaders, RequestBody.create(null, parameterToString(param.getValue())));
+                // flatten the nested structures first
+                List<Pair> flatParams = parsedMappedParams(param.getKey(), param.getValue(), new ArrayList<Pair>());
+                for (Pair pair : flatParams) {
+                    Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + pair.getName() + "\"");
+                    mpBuilder.addPart(partHeaders, RequestBody.create(null, parameterToString(pair.getValue())));
+                }
             }
         }
         return mpBuilder.build();
@@ -1473,11 +1474,11 @@ public class ApiClient {
 
             for(Map.Entry<String, Object> entry : mappedValue.entrySet()){
                 String nestedKey = key + "[" + entry.getKey() + "]";
-                parsedMappedParams(nestedKey, entry.getValue(), params); 
+                parsedMappedParams(nestedKey, entry.getValue(), params);
             }
         }
         else{
-            params.add(new Pair(key, parameterToString(value)));    
+            params.add(new Pair(key, parameterToString(value)));
         }
 
         return params;
