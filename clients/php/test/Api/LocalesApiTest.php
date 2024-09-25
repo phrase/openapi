@@ -165,6 +165,8 @@ class LocalesApiTest extends TestCase
             null,
             null,
             null,
+            null,
+            null,
             $custom_metadata_filters
         );
         
