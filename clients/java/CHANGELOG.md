@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/phrase/openapi/compare/java-v2.4.0...java-v2.4.1) (2024-09-25)
+
+
+### Bug Fixes
+
+* **java:** Properly encode nested parameters with file upload ([#688](https://github.com/phrase/openapi/issues/688)) ([c32abb5](https://github.com/phrase/openapi/commit/c32abb5d862ffc6239be9bda3510a8f4b33e0722))
+
 ## [2.4.0](https://github.com/phrase/openapi/compare/java-v2.3.0...java-v2.4.0) (2024-09-03)
 
 
