@@ -120,7 +120,7 @@ parameters:
       type: string
   - description: Only download translation keys containing the specified prefix, and remove the prefix from the generated file.
     example:
-    name: use_translation_key_prefix_as_filter
+    name: filter_by_prefix
     in: query
     schema:
       type: boolean

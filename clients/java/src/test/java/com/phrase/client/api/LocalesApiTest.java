@@ -170,12 +170,12 @@ public class LocalesApiTest {
         String sourceLocaleId = null;
         Object customMetadataFilters = null;
         String translationKeyPrefix = null;
-        Boolean useTranslationKeyPrefixAsFilter = null;
+        Boolean filterByPrefix = null;
         File response = api.localeDownload(projectId, id, xPhraseAppOTP, ifModifiedSince, ifNoneMatch,
             branch, fileFormat, tags, tag, includeEmptyTranslations, excludeEmptyZeroForms,
             includeTranslatedKeys, keepNotranslateTags, convertEmoji, formatOptions, encoding,
             skipUnverifiedTranslations, includeUnverifiedTranslations, useLastReviewedVersion,
-            fallbackLocaleId, sourceLocaleId, translationKeyPrefix, useTranslationKeyPrefixAsFilter,
+            fallbackLocaleId, sourceLocaleId, translationKeyPrefix, filterByPrefix,
             customMetadataFilters);
 
         String fileContents = new String(java.nio.file.Files.readAllBytes(response.toPath()));
