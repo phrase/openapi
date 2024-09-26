@@ -406,10 +406,3 @@ func firstPush() error {
 	cmd := &PushCommand{Config: *config}
 	return cmd.Run()
 }
-
-func TruncateString(s string, length int) string {
-	if len(s) > length {
-		return s[len(s)-length:]
-	}
-	return s
-}

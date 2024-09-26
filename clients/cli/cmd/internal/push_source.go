@@ -51,7 +51,7 @@ func SourcesFromConfig(config phrase.Config) (Sources, error) {
 			source.Params = new(UploadParams)
 		}
 		if source.Params.TranslationKeyPrefix.Value() == "<file_path>" {
-			source.Params.TranslationKeyPrefix = optional.NewString(TruncateString(source.File, 255))
+			source.Params.TranslationKeyPrefix = optional.NewString(source.File)
 		}
 
 		if !source.Params.FileFormat.IsSet() {
