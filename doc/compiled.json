@@ -5166,11 +5166,6 @@
         "tags": [
           "Formats"
         ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/X-PhraseApp-OTP"
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -5183,33 +5178,10 @@
                   }
                 }
               }
-            },
-            "headers": {
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              },
-              "X-Rate-Limit-Remaining": {
-                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
-              },
-              "X-Rate-Limit-Reset": {
-                "$ref": "#/components/headers/X-Rate-Limit-Reset"
-              },
-              "Link": {
-                "$ref": "#/components/headers/Link"
-              },
-              "Pagination": {
-                "$ref": "#/components/headers/Pagination"
-              }
             }
           },
           "400": {
             "$ref": "#/components/responses/400"
-          },
-          "404": {
-            "$ref": "#/components/responses/404"
-          },
-          "429": {
-            "$ref": "#/components/responses/429"
           }
         },
         "x-code-samples": [
