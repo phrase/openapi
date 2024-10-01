@@ -4,8 +4,6 @@ description: Get a handy list of all localization file formats supported in Phra
 operationId: formats/list
 tags:
 - Formats
-parameters:
-- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 responses:
   '200':
     description: OK
@@ -15,23 +13,8 @@ responses:
           type: array
           items:
             "$ref": "../../schemas/format.yaml#/format"
-    headers:
-      X-Rate-Limit-Limit:
-        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
-      X-Rate-Limit-Remaining:
-        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
-      X-Rate-Limit-Reset:
-        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
-      Link:
-        "$ref": "../../headers.yaml#/Link"
-      Pagination:
-        "$ref": "../../headers.yaml#/Pagination"
   '400':
     "$ref": "../../responses.yaml#/400"
-  '404':
-    "$ref": "../../responses.yaml#/404"
-  '429':
-    "$ref": "../../responses.yaml#/429"
 x-code-samples:
 - lang: Curl
   source: curl "https://api.phrase.com/v2/formats"
