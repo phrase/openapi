@@ -8748,6 +8748,24 @@
             }
           },
           {
+            "description": "Download all translation keys, and remove the specified prefix where possible. Warning: this may create duplicate key names if other keys share the same name after the prefix is removed.",
+            "example": "prefix_",
+            "name": "translation_key_prefix",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Only download translation keys containing the specified prefix, and remove the prefix from the generated file.",
+            "example": null,
+            "name": "filter_by_prefix",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "custom_metadata_filters",
             "in": "query",
             "description": "Custom metadata filters. Provide the name of the metadata field and the value to filter by. Only keys with matching metadata will be included in the download.\n",
@@ -15031,6 +15049,11 @@
                     "type": "boolean",
                     "default": false,
                     "example": null
+                  },
+                  "translation_key_prefix": {
+                    "description": "This prefix will be added to all uploaded translation key names to prevent collisions. Use a meaningful prefix related to your project or file to keep key names organized.",
+                    "type": "string",
+                    "example": "prefix_"
                   }
                 }
               }

@@ -109,6 +109,7 @@ public class UploadsApiTest {
         Boolean autotranslate = null;
         Boolean markReviewed = null;
         Boolean tagOnlyAffectedKeys = null;
+        String translationKeyPrefix = null;
 
         Map<String, String> nestedFormatOptionsMap = new HashMap<>();
         nestedFormatOptionsMap.put("nested_option", "sub_option");
@@ -118,7 +119,11 @@ public class UploadsApiTest {
         formatOptionsMap.put("fallback_language", "en");
         formatOptionsMap.put("more_options", nestedFormatOptionsMap);
 
-        Upload response = api.uploadCreate(projectId, file, fileFormat, localeId, xPhraseAppOTP, branch, tags, updateTranslations, updateTranslationKeys, updateTranslationsOnSourceMatch, updateDescriptions, convertEmoji, skipUploadTags, skipUnverification, fileEncoding, localeMapping, formatOptionsMap, autotranslate, markReviewed, tagOnlyAffectedKeys);
+        Upload response = api.uploadCreate(projectId, file, fileFormat, localeId, xPhraseAppOTP, branch,
+            tags, updateTranslations, updateTranslationKeys, updateTranslationsOnSourceMatch,
+            updateDescriptions, convertEmoji, skipUploadTags, skipUnverification, fileEncoding,
+            localeMapping, formatOptionsMap, autotranslate, markReviewed, tagOnlyAffectedKeys,
+            translationKeyPrefix);
 
         Assert.assertEquals("valid id returned", "id_example", response.getId());
         Assert.assertEquals("valid creation date returned", OffsetDateTime.parse("2015-01-28T09:52:53Z"), response.getCreatedAt());

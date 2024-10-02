@@ -143,4 +143,8 @@ requestBody:
             type: boolean
             default: false
             example:
+          translation_key_prefix:
+            description: This prefix will be added to all uploaded translation key names to prevent collisions. Use a meaningful prefix related to your project or file to keep key names organized.
+            type: string
+            example: prefix_
 x-cli-version: '2.12'
