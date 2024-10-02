@@ -15,11 +15,12 @@ jobs:
         name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.19.6
+          go-version: 1.21.9
       - name: Build and Deploy 🚀
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOPRIVATE: github.com/phrase/phrase-go
         run: |
           npm install
           npm run generate.go
@@ -50,11 +51,12 @@ jobs:
         name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.19.6
+          go-version: 1.21.9
       - name: Build and Deploy 🚀
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOPRIVATE: github.com/phrase/phrase-go
         run: |
           npm install
           npm run generate.cli
