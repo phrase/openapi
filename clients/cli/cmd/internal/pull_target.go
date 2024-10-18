@@ -15,12 +15,12 @@ import (
 
 type Targets []*Target
 
-func (targets Targets) ProjectIds() []string {
-	projectIds := []string{}
+func (targets Targets) ProjectIdsBranches() []LocaleCacheKey {
+	projectIdsBranches := []LocaleCacheKey{}
 	for _, target := range targets {
-		projectIds = append(projectIds, target.ProjectID)
+		projectIdsBranches = append(projectIdsBranches, LocaleCacheKey{target.ProjectID, target.Params.Branch.Value()})
 	}
-	return projectIds
+	return projectIdsBranches
 }
 
 type Target struct {
