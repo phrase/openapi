@@ -21,6 +21,7 @@ import (
 var Debug bool
 
 type ProjectLocales interface {
+	// returns a list of LocaleCacheKeys (ProjectId, Branch) for all targets
 	ProjectIdsBranches() []LocaleCacheKey
 }
 
@@ -31,6 +32,7 @@ type LocaleCacheKey struct {
 
 type LocaleCache map[LocaleCacheKey][]*phrase.Locale
 
+// for every project/branch pair, retrieves and caches the list of locales
 func LocalesForProjects(client *phrase.APIClient, projectLocales ProjectLocales, branch string) (LocaleCache, error) {
 	projectIdToLocales := LocaleCache{}
 
