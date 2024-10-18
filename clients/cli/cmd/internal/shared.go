@@ -21,7 +21,8 @@ import (
 var Debug bool
 
 type ProjectLocales interface {
-	ProjectIds() []string
+	// returns a list of LocaleCacheKeys (ProjectId, Branch) for all targets
+	ProjectIdsBranches() []LocaleCacheKey
 }
 
 type LocaleCacheKey struct {
@@ -31,20 +32,25 @@ type LocaleCacheKey struct {
 
 type LocaleCache map[LocaleCacheKey][]*phrase.Locale
 
+// for every project/branch pair, retrieves and caches the list of locales
 func LocalesForProjects(client *phrase.APIClient, projectLocales ProjectLocales, branch string) (LocaleCache, error) {
 	projectIdToLocales := LocaleCache{}
 
-	for _, pid := range projectLocales.ProjectIds() {
+	for _, pid := range projectLocales.ProjectIdsBranches() {
+		branchToUse := pid.Branch
+		if branch != "" {
+			branchToUse = branch
+		}
 		key := LocaleCacheKey{
-			ProjectID: pid,
-			Branch:    branch,
+			ProjectID: pid.ProjectID,
+			Branch:    branchToUse,
 		}
 
 		if _, ok := projectIdToLocales[key]; !ok {
 
 			remoteLocales, http_response, err := RemoteLocales(client, key)
 			if err != nil {
-				if http_response != nil && http_response.StatusCode == 404 && branch != "" {
+				if http_response != nil && http_response.StatusCode == 404 && branchToUse != "" {
 					// skip this key if we targeted a branch in
 					// a project which does not exist
 					continue
