@@ -58,7 +58,7 @@ func (cmd *PullCommand) Run(config *phrase.Config) error {
 	}
 	cmd.Branch = branchName
 
-	projectIdBranchToLocales, err := LocalesForProjects(client, targets, cmd.Branch)
+	projectIdBranchToLocales, err := GetLocalesForCaching(client, targets, cmd.Branch)
 	if err != nil {
 		return err
 	}
@@ -68,7 +68,7 @@ func (cmd *PullCommand) Run(config *phrase.Config) error {
 			target.Params.Branch = optional.NewString(cmd.Branch)
 		}
 
-		val, ok := projectIdBranchToLocales[LocaleCacheKey{target.ProjectID, target.Params.Branch.Value()}]
+		val, ok := projectIdBranchToLocales[LocalesCacheKey{target.ProjectID, target.Params.Branch.Value()}]
 		if !ok || len(val) == 0 {
 			if cmd.Branch != "" {
 				continue

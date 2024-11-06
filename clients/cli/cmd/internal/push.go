@@ -130,12 +130,12 @@ func (cmd *PushCommand) Run() error {
 		}
 	}
 
-	projectIdToLocales, err := LocalesForProjects(client, sources, cmd.Branch)
+	projectIdToLocales, err := GetLocalesForCaching(client, sources, cmd.Branch)
 	if err != nil {
 		return err
 	}
 	for _, source := range sources {
-		val, ok := projectIdToLocales[LocaleCacheKey{source.ProjectID, cmd.Branch}]
+		val, ok := projectIdToLocales[LocalesCacheKey{source.ProjectID, cmd.Branch}]
 		if ok {
 			source.RemoteLocales = val
 		}

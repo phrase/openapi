@@ -15,10 +15,10 @@ import (
 
 type Targets []*Target
 
-func (targets Targets) ProjectIdsBranches() []LocaleCacheKey {
-	projectIdsBranches := []LocaleCacheKey{}
+func (targets Targets) GetAllLocalesCacheKeys() []LocalesCacheKey {
+	projectIdsBranches := []LocalesCacheKey{}
 	for _, target := range targets {
-		projectIdsBranches = append(projectIdsBranches, LocaleCacheKey{target.ProjectID, target.Params.Branch.Value()})
+		projectIdsBranches = append(projectIdsBranches, LocalesCacheKey{target.ProjectID, target.Params.Branch.Value()})
 	}
 	return projectIdsBranches
 }

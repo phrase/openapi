@@ -20,29 +20,29 @@ import (
 
 var Debug bool
 
-type ProjectLocales interface {
-	// returns a list of LocaleCacheKeys (ProjectId, Branch) for all targets
-	ProjectIdsBranches() []LocaleCacheKey
+type SourcesOrTargets interface {
+	// returns a list of LocalesCacheKeys (ProjectId, Branch) for all targets
+	GetAllLocalesCacheKeys() []LocalesCacheKey
 }
 
-type LocaleCacheKey struct {
+type LocalesCacheKey struct {
 	ProjectID string
 	Branch    string
 }
 
-type LocaleCache map[LocaleCacheKey][]*phrase.Locale
+type LocaleCache map[LocalesCacheKey][]*phrase.Locale
 
-// for every project/branch pair, retrieves and caches the list of locales
-func LocalesForProjects(client *phrase.APIClient, projectLocales ProjectLocales, branch string) (LocaleCache, error) {
+// for every source or target, retrieves and caches the list of locales
+func GetLocalesForCaching(client *phrase.APIClient, sourcesOrTargets SourcesOrTargets, branch string) (LocaleCache, error) {
 	projectIdToLocales := LocaleCache{}
 
-	for _, pid := range projectLocales.ProjectIdsBranches() {
-		branchToUse := pid.Branch
+	for _, localesCacheKey := range sourcesOrTargets.GetAllLocalesCacheKeys() {
+		branchToUse := localesCacheKey.Branch
 		if branch != "" {
 			branchToUse = branch
 		}
-		key := LocaleCacheKey{
-			ProjectID: pid.ProjectID,
+		key := LocalesCacheKey{
+			ProjectID: localesCacheKey.ProjectID,
 			Branch:    branchToUse,
 		}
 
@@ -64,7 +64,7 @@ func LocalesForProjects(client *phrase.APIClient, projectLocales ProjectLocales,
 	return projectIdToLocales, nil
 }
 
-func RemoteLocales(client *phrase.APIClient, key LocaleCacheKey) ([]*phrase.Locale, *phrase.APIResponse, error) {
+func RemoteLocales(client *phrase.APIClient, key LocalesCacheKey) ([]*phrase.Locale, *phrase.APIResponse, error) {
 	page := 1
 
 	localVarOptionals := phrase.LocalesListOpts{

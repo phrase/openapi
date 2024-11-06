@@ -148,10 +148,10 @@ func (source *Source) CheckPreconditions() error {
 	return nil
 }
 
-func (sources Sources) ProjectIdsBranches() []LocaleCacheKey {
-	projectIdsBranches := []LocaleCacheKey{}
+func (sources Sources) GetAllLocalesCacheKeys() []LocalesCacheKey {
+	projectIdsBranches := []LocalesCacheKey{}
 	for _, source := range sources {
-		projectIdsBranches = append(projectIdsBranches, LocaleCacheKey{source.ProjectID, source.Branch})
+		projectIdsBranches = append(projectIdsBranches, LocalesCacheKey{source.ProjectID, source.Branch})
 	}
 	return projectIdsBranches
 }
