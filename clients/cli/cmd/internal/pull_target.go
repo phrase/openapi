@@ -16,11 +16,11 @@ import (
 type Targets []*Target
 
 func (targets Targets) GetAllLocalesCacheKeys() []LocalesCacheKey {
-	projectIdsBranches := []LocalesCacheKey{}
+	localesCacheKeys := []LocalesCacheKey{}
 	for _, target := range targets {
-		projectIdsBranches = append(projectIdsBranches, LocalesCacheKey{target.ProjectID, target.Params.Branch.Value()})
+		localesCacheKeys = append(localesCacheKeys, LocalesCacheKey{target.ProjectID, target.Params.Branch.Value()})
 	}
-	return projectIdsBranches
+	return localesCacheKeys
 }
 
 type Target struct {
