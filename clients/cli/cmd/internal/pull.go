@@ -58,7 +58,7 @@ func (cmd *PullCommand) Run(config *phrase.Config) error {
 	}
 	cmd.Branch = branchName
 
-	localesCache, err := GetLocalesForCaching(client, targets, cmd.Branch)
+	localesCache, err := GetLocalesCache(client, targets, cmd.Branch)
 	if err != nil {
 		return err
 	}

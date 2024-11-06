@@ -33,8 +33,8 @@ type LocalesCacheKey struct {
 type LocaleCache map[LocalesCacheKey][]*phrase.Locale
 
 // for every source or target, retrieves and caches the list of locales
-func GetLocalesForCaching(client *phrase.APIClient, sourcesOrTargets SourcesOrTargets, branch string) (LocaleCache, error) {
-	projectIdToLocales := LocaleCache{}
+func GetLocalesCache(client *phrase.APIClient, sourcesOrTargets SourcesOrTargets, branch string) (LocaleCache, error) {
+	localesCache := LocaleCache{}
 
 	for _, localesCacheKey := range sourcesOrTargets.GetAllLocalesCacheKeys() {
 		branchToUse := localesCacheKey.Branch
@@ -46,7 +46,7 @@ func GetLocalesForCaching(client *phrase.APIClient, sourcesOrTargets SourcesOrTa
 			Branch:    branchToUse,
 		}
 
-		if _, ok := projectIdToLocales[key]; !ok {
+		if _, ok := localesCache[key]; !ok {
 
 			remoteLocales, http_response, err := RemoteLocales(client, key)
 			if err != nil {
@@ -58,10 +58,10 @@ func GetLocalesForCaching(client *phrase.APIClient, sourcesOrTargets SourcesOrTa
 				return nil, err
 			}
 
-			projectIdToLocales[key] = remoteLocales
+			localesCache[key] = remoteLocales
 		}
 	}
-	return projectIdToLocales, nil
+	return localesCache, nil
 }
 
 func RemoteLocales(client *phrase.APIClient, key LocalesCacheKey) ([]*phrase.Locale, *phrase.APIResponse, error) {
