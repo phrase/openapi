@@ -21423,9 +21423,6 @@
               },
               "X-Rate-Limit-Reset": {
                 "$ref": "#/components/headers/X-Rate-Limit-Reset"
-              },
-              "Pagination": {
-                "$ref": "#/components/headers/Pagination"
               }
             }
           },
@@ -25085,9 +25082,6 @@
               },
               "X-Rate-Limit-Reset": {
                 "$ref": "#/components/headers/X-Rate-Limit-Reset"
-              },
-              "Pagination": {
-                "$ref": "#/components/headers/Pagination"
               }
             }
           },
@@ -26756,9 +26750,6 @@
               },
               "X-Rate-Limit-Reset": {
                 "$ref": "#/components/headers/X-Rate-Limit-Reset"
-              },
-              "Pagination": {
-                "$ref": "#/components/headers/Pagination"
               }
             }
           },
