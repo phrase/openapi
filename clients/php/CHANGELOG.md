@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.6.0](https://github.com/phrase/openapi/compare/php-v2.5.0...php-v2.6.0) (2024-11-08)
+
+
+### Features
+
+* **API:** Add Pagination header to POST search endpoints [[#457](https://github.com/phrase/openapi/issues/457)] ([#706](https://github.com/phrase/openapi/issues/706)) ([9a79fa3](https://github.com/phrase/openapi/commit/9a79fa31bb3b9d58272fa2f4e82d72d0d44a93a0))
+
+
+### Bug Fixes
+
+* **PHP:** Fix serializing nested form parameters #STRINGS-730 ([#703](https://github.com/phrase/openapi/issues/703)) ([32746b1](https://github.com/phrase/openapi/commit/32746b1a68f217a6130f27b7b52997941f8f6c9d))
+
 ## [2.5.0](https://github.com/phrase/openapi/compare/php-v2.4.0...php-v2.5.0) (2024-10-02)
 
 
