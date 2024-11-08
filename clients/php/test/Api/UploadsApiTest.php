@@ -138,8 +138,8 @@ class UploadsApiTest extends TestCase
         $lastRequest = $this->history[count($this->history) - 1]['request'];
         $this->assertEquals('POST', $lastRequest->getMethod());
         $this->assertEquals('/v2/projects/'.$projectId.'/uploads', $lastRequest->getUri()->getPath());
-        $this->assertStringContainsString('multipart/form-data', $lastRequest->getHeader('Content-Type')[0]);
-        $this->assertStringContainsString("Content-Disposition: form-data; name=\"locale_mapping[en][bar]\"\r\nContent-Length: 3\r\n\r\nbaz\r\n", $lastRequest->getBody()->getContents());
+        $this->assertContains('multipart/form-data', $lastRequest->getHeader('Content-Type')[0]);
+        $this->assertContains("Content-Disposition: form-data; name=\"locale_mapping[en][bar]\"\r\nContent-Length: 3\r\n\r\nbaz\r\n", $lastRequest->getBody()->getContents());
     }
 
     /**
