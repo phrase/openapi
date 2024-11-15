@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.7.0](https://github.com/phrase/openapi/compare/go-v3.6.0...go-v3.7.0) (2024-11-15)
+
+
+### Features
+
+* **API:** Add Pagination header to POST search endpoints [[#457](https://github.com/phrase/openapi/issues/457)] ([#706](https://github.com/phrase/openapi/issues/706)) ([9a79fa3](https://github.com/phrase/openapi/commit/9a79fa31bb3b9d58272fa2f4e82d72d0d44a93a0))
+* **API:** autotranslate param in key creation [STRINGS-786] ([#713](https://github.com/phrase/openapi/issues/713)) ([581d0ff](https://github.com/phrase/openapi/commit/581d0ff5f1d06757e5ddd9603b78fc8d435d68ee))
+
 ## [3.6.0](https://github.com/phrase/openapi/compare/go-v3.5.0...go-v3.6.0) (2024-10-02)
 
 
