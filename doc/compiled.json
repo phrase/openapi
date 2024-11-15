@@ -21257,6 +21257,11 @@
                     "type": "string",
                     "example": "Default translation content"
                   },
+                  "autotranslate": {
+                    "description": "Indicates whether the key should be autotranslated to other locales based on the copy provided in `default_translation_content`.",
+                    "type": "boolean",
+                    "example": null
+                  },
                   "xml_space_preserve": {
                     "description": "Indicates whether the key should be exported with \"xml:space=preserve\". Supported by several XML-based formats.",
                     "type": "boolean",
