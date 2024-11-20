@@ -13093,27 +13093,6 @@
           },
           {
             "$ref": "#/components/parameters/key_id"
-          },
-          {
-            "description": "specify the message for the comment",
-            "example": "some message...",
-            "name": "message",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "specify the locales for the comment",
-            "example": "someId",
-            "name": "locale_ids",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
           }
         ],
         "responses": {
@@ -13165,16 +13144,30 @@
               "schema": {
                 "type": "object",
                 "title": "comment/create/parameters",
+                "required": [
+                  "message"
+                ],
                 "properties": {
+                  "message": {
+                    "description": "Comment message",
+                    "type": "string",
+                    "example": "Some message..."
+                  },
                   "branch": {
                     "description": "specify the branch to use",
                     "type": "string",
                     "example": "my-feature-branch"
                   },
-                  "message": {
-                    "description": "Comment message",
-                    "type": "string",
-                    "example": "Some message..."
+                  "locale_ids": {
+                    "description": "specify the locales for the comment",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "someId",
+                      "someOtherId"
+                    ]
                   }
                 }
               }
