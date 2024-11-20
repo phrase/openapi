@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.6.0](https://github.com/phrase/openapi/compare/python-v2.5.0...python-v2.6.0) (2024-11-20)
+
+
+### Features
+
+* **API:** Add Pagination header to POST search endpoints [[#457](https://github.com/phrase/openapi/issues/457)] ([#706](https://github.com/phrase/openapi/issues/706)) ([9a79fa3](https://github.com/phrase/openapi/commit/9a79fa31bb3b9d58272fa2f4e82d72d0d44a93a0))
+* **API:** autotranslate param in key creation [STRINGS-786] ([#713](https://github.com/phrase/openapi/issues/713)) ([581d0ff](https://github.com/phrase/openapi/commit/581d0ff5f1d06757e5ddd9603b78fc8d435d68ee))
+
+
+### Bug Fixes
+
+* **Python:** Correctly encode nested upload parameters #STRINGS-864 ([#717](https://github.com/phrase/openapi/issues/717)) ([446fd60](https://github.com/phrase/openapi/commit/446fd60ba007a8761b994ed6bd07ccd625a263fd))
+
 ## [2.5.0](https://github.com/phrase/openapi/compare/python-v2.4.0...python-v2.5.0) (2024-10-02)
 
 
