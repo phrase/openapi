@@ -15,14 +15,13 @@ import unittest
 import sys
 
 if sys.version_info[:2] <= (3, 7):
-    from mock import Mock, patch 
+    from mock import Mock, patch
 else:
     from unittest.mock import Mock, patch
 
 import phrase_api
 from phrase_api.api.uploads_api import UploadsApi  # noqa: E501
 from phrase_api.rest import ApiException
-
 
 class TestUploadsApi(unittest.TestCase):
     """UploadsApi unit test stubs"""
@@ -42,7 +41,7 @@ class TestUploadsApi(unittest.TestCase):
         Upload a new file  # noqa: E501
         """
         mock_post.return_value = Mock(ok=True)
-        mock_post.return_value.data = '{"id": "upload_id", "format": "simple_json"}'.encode()
+        mock_post.return_value.data = '{"id": "upload_id", "format": "csv"}'.encode()
         mock_post.return_value.getencoding.return_value = 'utf-8'
         mock_post.return_value.status = 201
         mock_post.return_value.getheader.side_effect = { 'Content-Type': "application/json" }.get
@@ -52,17 +51,29 @@ class TestUploadsApi(unittest.TestCase):
             api_instance = phrase_api.UploadsApi(api_client)
             api_response = api_instance.upload_create(
                 project_id,
-                file="./test/fixtures/en.json",
-                file_format="simple_json",
-                locale_id="en"
+                file="./test/fixtures/test.csv",
+                file_format="csv",
+                locale_id="en",
+                locale_mapping={
+                    "en": 2
+                },
+                format_options={
+                    "deep_parameter": {"foo": "bar"}
+                }
             )
 
             self.assertEqual("https://api.phrase.com/v2/projects/project_id_example/uploads", mock_post.call_args_list[0].args[1])
+            body = mock_post.call_args.kwargs["body"].decode('utf-8')
+            self.assertRegex(body, r'name="file"; filename="test.csv"\r\nContent-Type: text/csv\r\n\r\n')
+            self.assertRegex(body, r'name="file_format"\r\n\r\ncsv\r\n')
+            self.assertRegex(body, r'name="locale_id"\r\n\r\nen\r\n')
+            self.assertRegex(body, r'name="locale_mapping\[en\]"\r\n\r\n2\r\n')
+            self.assertRegex(body, r'name="format_options\[deep_parameter\]\[foo\]"\r\n\r\nbar\r\n')
 
             self.assertIsNotNone(api_response)
             self.assertIsInstance(api_response, phrase_api.models.upload.Upload)
             self.assertEqual("upload_id", api_response.id)
-            self.assertEqual("simple_json", api_response.format)
+            self.assertEqual("csv", api_response.format)
 
     def test_upload_show(self):
         """Test case for upload_show
