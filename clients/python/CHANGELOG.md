@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.1](https://github.com/phrase/openapi/compare/python-v2.6.0...python-v2.6.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* **API:** Comment creation schema fix #STRINGS-866 ([#718](https://github.com/phrase/openapi/issues/718)) ([e201d13](https://github.com/phrase/openapi/commit/e201d1360c89698dd8d3642cc28f89dd0e50a1fb))
+
 ## [2.6.0](https://github.com/phrase/openapi/compare/python-v2.5.0...python-v2.6.0) (2024-11-20)
 
 
