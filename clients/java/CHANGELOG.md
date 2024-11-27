@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.7.0](https://github.com/phrase/openapi/compare/java-v2.6.0...java-v2.7.0) (2024-11-27)
+
+
+### Features
+
+* **API:** autotranslate param in key creation [STRINGS-786] ([#713](https://github.com/phrase/openapi/issues/713)) ([581d0ff](https://github.com/phrase/openapi/commit/581d0ff5f1d06757e5ddd9603b78fc8d435d68ee))
+
+
+### Bug Fixes
+
+* **API:** Comment creation schema fix #STRINGS-866 ([#718](https://github.com/phrase/openapi/issues/718)) ([e201d13](https://github.com/phrase/openapi/commit/e201d1360c89698dd8d3642cc28f89dd0e50a1fb))
+
 ## [2.6.0](https://github.com/phrase/openapi/compare/java-v2.5.0...java-v2.6.0) (2024-11-08)
 
 
