@@ -207,6 +207,13 @@ tag:
   required: false
   schema:
     type: string
+branch:
+  name: branch
+  in: query
+  description: Branch to use
+  schema:
+    type: string
+  example: my-feature-branch
 page:
   in: query
   name: page

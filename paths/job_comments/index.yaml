@@ -8,12 +8,7 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/job_id"
-- description: specify the branch to use
-  example: my-feature-branch
-  name: branch
-  in: query
-  schema:
-    type: string
+- "$ref": "../../parameters.yaml#/branch"
 - description: 'Order direction. Can be one of: asc, desc.'
   name: order
   in: query
