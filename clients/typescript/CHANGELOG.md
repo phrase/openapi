@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.1](https://github.com/phrase/openapi/compare/typescript-v2.6.0...typescript-v2.6.1) (2024-12-09)
+
+
+### Bug Fixes
+
+* **API:** Add missing branch parameter to job comment endpoints #STRINGS-988 ([#724](https://github.com/phrase/openapi/issues/724)) ([64d399c](https://github.com/phrase/openapi/commit/64d399ced0980ac2a48366f91110047287a0c590))
+
 ## [2.6.0](https://github.com/phrase/openapi/compare/typescript-v2.5.0...typescript-v2.6.0) (2024-12-03)
 
 
