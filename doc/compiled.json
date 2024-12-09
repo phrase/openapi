@@ -4848,6 +4848,15 @@
           "type": "string"
         }
       },
+      "branch": {
+        "name": "branch",
+        "in": "query",
+        "description": "Branch to use",
+        "schema": {
+          "type": "string"
+        },
+        "example": "my-feature-branch"
+      },
       "page": {
         "in": "query",
         "name": "page",
@@ -16903,13 +16912,7 @@
             "$ref": "#/components/parameters/per_page"
           },
           {
-            "description": "specify the branch to use",
-            "example": "my-feature-branch",
-            "name": "branch",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/branch"
           }
         ],
         "responses": {
@@ -17116,13 +17119,7 @@
             "$ref": "#/components/parameters/id"
           },
           {
-            "description": "specify the branch to use",
-            "example": "my-feature-branch",
-            "name": "branch",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/branch"
           }
         ],
         "responses": {
@@ -17318,13 +17315,7 @@
             "$ref": "#/components/parameters/id"
           },
           {
-            "description": "specify the branch to use",
-            "example": "my-feature-branch",
-            "name": "branch",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/branch"
           }
         ],
         "responses": {
@@ -26846,13 +26837,7 @@
             "$ref": "#/components/parameters/id"
           },
           {
-            "description": "specify the branch to use",
-            "example": "my-feature-branch",
-            "name": "branch",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/branch"
           }
         ],
         "responses": {
@@ -26974,6 +26959,11 @@
                     "description": "Comment message",
                     "type": "string",
                     "example": "Some message..."
+                  },
+                  "branch": {
+                    "description": "Branch name for the job",
+                    "type": "string",
+                    "example": "my-feature-branch"
                   }
                 }
               }
@@ -27003,13 +26993,7 @@
             "$ref": "#/components/parameters/id"
           },
           {
-            "description": "specify the branch to use",
-            "example": "my-feature-branch",
-            "name": "branch",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/branch"
           }
         ],
         "responses": {
@@ -27058,13 +27042,7 @@
             "$ref": "#/components/parameters/job_id"
           },
           {
-            "description": "specify the branch to use",
-            "example": "my-feature-branch",
-            "name": "branch",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/branch"
           },
           {
             "description": "Order direction. Can be one of: asc, desc.",
@@ -27201,6 +27179,11 @@
                     "description": "Job comment message",
                     "type": "string",
                     "example": "Some message..."
+                  },
+                  "branch": {
+                    "description": "Branch name for the job",
+                    "type": "string",
+                    "example": "my-feature-branch"
                   }
                 }
               }
