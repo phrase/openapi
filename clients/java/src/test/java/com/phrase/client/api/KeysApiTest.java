@@ -81,7 +81,7 @@ public class KeysApiTest {
      *          if the Api call fails
      */
     @Test
-    public void keyCreateTest() throws ApiException {
+    public void keyCreateTest() throws ApiException, InterruptedException {
         String body = "{\"id\":\"id_example\",\"name\":\"test-key-1\",\"created_at\": \"2015-01-28T09:52:53Z\"}";
 
         MockResponse mockResponse = new MockResponse()
@@ -102,6 +102,10 @@ public class KeysApiTest {
         TranslationKeyDetails response = api.keyCreate(projectId, keyCreateParameters, xPhraseAppOTP);
 
         Assert.assertEquals("valid id returned", "id_example", response.getId());
+        RecordedRequest recordedRequest = mockBackend.takeRequest();
+        Assert.assertEquals("Request path", "//projects/MY_PROJECT_ID/keys", recordedRequest.getPath());
+        String requestBody = recordedRequest.getBody().readUtf8();
+        Assert.assertEquals("Request body", "{\"name\":\"test-key-1\",\"plural\":false,\"data_type\":\"string\",\"max_characters_allowed\":2147483647,\"default_translation_content\":\"some test value which should be created and automatically translated in one call\",\"autotranslate\":true}", requestBody);
     }
 
     /**
