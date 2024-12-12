@@ -22912,7 +22912,7 @@
     "/accounts/{account_id}/repo_syncs/{id}/export": {
       "post": {
         "summary": "Export to code repository",
-        "description": "> Beta: this feature will change in the future.\n\nExport translations from Phrase Strings to repository provider according to the\n.phrase.yml file within the code repository.\n\n*Export is done asynchronously and may take several seconds depending on the project size.*",
+        "description": "Export translations from Phrase Strings to repository provider according to the\n.phrase.yml file within the code repository.\n\n*Export is done asynchronously and may take several seconds depending on the project size.*",
         "operationId": "repo_sync/export",
         "tags": [
           "Repo Syncs"
@@ -22976,7 +22976,7 @@
     "/accounts/{account_id}/repo_syncs/{id}/import": {
       "post": {
         "summary": "Import from code repository",
-        "description": "> Beta: this feature will change in the future.\n\nImport translations from repository provider to Phrase Strings according to the .phrase.yml file\nwithin the code repository.\n\n_Import is done asynchronously and may take several seconds depending on the project size._",
+        "description": "Import translations from repository provider to Phrase Strings according to the .phrase.yml file\nwithin the code repository.\n\n_Import is done asynchronously and may take several seconds depending on the project size._",
         "operationId": "repo_sync/import",
         "tags": [
           "Repo Syncs"
