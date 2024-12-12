@@ -1,8 +1,6 @@
 ---
 summary: Export to code repository
 description: |-
-  > Beta: this feature will change in the future.
-
   Export translations from Phrase Strings to repository provider according to the
   .phrase.yml file within the code repository.
 
