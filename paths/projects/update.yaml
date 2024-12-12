@@ -141,4 +141,8 @@ requestBody:
             description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
+          default_encoding:
+            description: "(Optional) Sets the default encoding for Uploads. If you leave it empty, we will try to guess it automatically for you when you Upload a file. You can still overwrite this value by setting the <a href='#post-/projects/-project_id-/uploads'>`file_encoding`</a> parameter for Uploads."
+            type: boolean
+            example: true            
 x-cli-version: "2.6.3"
