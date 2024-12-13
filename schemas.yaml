@@ -4,16 +4,6 @@ schemas:
     "$ref": schemas/authorization.yaml#/authorization
   authorization_with_token:
     "$ref": schemas/authorization_with_token.yaml#/authorization_with_token
-  bitbucket_sync:
-    "$ref": schemas/bitbucket_sync.yaml#/bitbucket_sync
-  bitbucket_sync_export_response:
-    "$ref": schemas/bitbucket_sync_export_response.yaml#/bitbucket_sync_export_response
-  gitlab_sync:
-    "$ref": schemas/gitlab_sync.yaml#/gitlab_sync
-  gitlab_sync_export:
-    "$ref": schemas/gitlab_sync_export.yaml#/gitlab_sync_export
-  gitlab_sync_history:
-    "$ref": schemas/gitlab_sync_history.yaml#/gitlab_sync_history
   blacklisted_key:
     "$ref": schemas/blacklisted_key.yaml#/blacklisted_key
   comment:

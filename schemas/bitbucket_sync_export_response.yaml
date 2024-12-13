@@ -1,9 +1,0 @@
----
-bitbucket_sync_export_response:
-  type: object
-  title: bitbucket_sync_export_response
-  properties:
-    status_path:
-      type: string
-  example:
-    status_path: https://bitbucket.sync.phraseapp.com/export_to_bitbucket_status
