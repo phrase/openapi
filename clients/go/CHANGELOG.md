@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/phrase/openapi/compare/go-v4.0.0...go-v4.0.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* **go:** go v4 module bump ([#738](https://github.com/phrase/openapi/issues/738)) ([e19ae51](https://github.com/phrase/openapi/commit/e19ae516df426b7877b348a04c8c7036373f3217))
+
 ## [4.0.0](https://github.com/phrase/openapi/compare/go-v3.7.1...go-v4.0.0) (2024-12-18)
 
 
