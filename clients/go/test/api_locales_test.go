@@ -16,7 +16,7 @@ import (
 	"testing"
 
 	"github.com/antihax/optional"
-	"github.com/phrase/phrase-go/v3" // x-release-please-major
+	"github.com/phrase/phrase-go/v4" // x-release-please-major
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

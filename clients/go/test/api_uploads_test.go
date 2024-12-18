@@ -17,7 +17,7 @@ import (
 	"testing"
 
 	"github.com/antihax/optional"
-	"github.com/phrase/phrase-go/v3"
+	"github.com/phrase/phrase-go/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
