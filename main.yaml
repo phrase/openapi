@@ -73,7 +73,6 @@ tags:
           </tbody>
         </table>
       </div>
-  - name: Bitbucket Sync
   - name: Blacklisted Keys
   - name: Branches
     description: |
@@ -119,8 +118,6 @@ tags:
   - name: Documents
   - name: Figma Attachments
   - name: Formats
-  - name: GitHub Sync
-  - name: GitLab Sync
   - name: Glossaries
   - name: Glossary Terms
   - name: Glossary Term Translations
@@ -298,9 +295,6 @@ x-tagGroups:
       - Glossary Term Translations
   - name: Integrations
     tags:
-      - Bitbucket Sync
-      - GitHub Sync
-      - GitLab Sync
       - Webhooks
       - Distributions
       - Releases

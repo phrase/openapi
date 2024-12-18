@@ -224,15 +224,6 @@
     "$ref": "./paths/authorizations/update.yaml"
   delete:
     "$ref": "./paths/authorizations/destroy.yaml"
-"/bitbucket_syncs":
-  get:
-    "$ref": "./paths/bitbucket_syncs/index.yaml"
-"/bitbucket_syncs/{id}/export":
-  post:
-    "$ref": "./paths/bitbucket_syncs/export.yaml"
-"/bitbucket_syncs/{id}/import":
-  post:
-    "$ref": "./paths/bitbucket_syncs/import.yaml"
 "/projects/{project_id}/keys/{key_id}/comments":
   get:
     "$ref": "./paths/comments/index.yaml"
@@ -301,31 +292,6 @@
 "/projects/{project_id}/uploads/{id}":
   get:
     "$ref": "./paths/uploads/show.yaml"
-"/github_syncs/export":
-  post:
-    "$ref": "./paths/github_syncs/export.yaml"
-"/github_syncs/import":
-  post:
-    "$ref": "./paths/github_syncs/import.yaml"
-"/gitlab_syncs":
-  get:
-    "$ref": "./paths/gitlab_syncs/index.yaml"
-"/gitlab_syncs/{id}":
-  get:
-    "$ref": "./paths/gitlab_syncs/show.yaml"
-  put:
-    "$ref": "./paths/gitlab_syncs/update.yaml"
-  delete:
-    "$ref": "./paths/gitlab_syncs/destroy.yaml"
-"/gitlab_syncs/{gitlab_sync_id}/import":
-  post:
-    "$ref": "./paths/gitlab_syncs/import.yaml"
-"/gitlab_syncs/{gitlab_sync_id}/export":
-  post:
-    "$ref": "./paths/gitlab_syncs/export.yaml"
-"/gitlab_syncs/{gitlab_sync_id}/history":
-  get:
-    "$ref": "./paths/gitlab_syncs/history.yaml"
 "/projects/{project_id}/translations/{translation_id}/versions":
   get:
     "$ref": "./paths/versions/index.yaml"
