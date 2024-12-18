@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.0](https://github.com/phrase/openapi/compare/ruby-v3.7.1...ruby-v4.0.0) (2024-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove old Git sync endpoints. Replaced with new repo sync ([#735](https://github.com/phrase/openapi/issues/735))
+
+### Features
+
+* **API:** Add 'default_encoding' documentation ([#733](https://github.com/phrase/openapi/issues/733)) ([0139c51](https://github.com/phrase/openapi/commit/0139c51da747fbe7bc9929bcf3534aad7f22f39a))
+* Remove old Git sync endpoints. Replaced with new repo sync ([#735](https://github.com/phrase/openapi/issues/735)) ([c3bd8ec](https://github.com/phrase/openapi/commit/c3bd8eccaabcfa1b1066ea4438971ac59833af46))
+
 ## [3.7.1](https://github.com/phrase/openapi/compare/ruby-v3.7.0...ruby-v3.7.1) (2024-12-09)
 
 
