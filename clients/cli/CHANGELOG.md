@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.0.0](https://github.com/phrase/openapi/compare/cli-v2.34.1...cli-v3.0.0) (2024-12-18)
+## [2.35.0](https://github.com/phrase/openapi/compare/cli-v2.34.1...cli-2.25.0) (2024-12-18)
 
 
 ### ⚠ BREAKING CHANGES
