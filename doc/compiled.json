@@ -22014,7 +22014,7 @@
       "get": {
         "summary": "Get a single Repo Sync Event",
         "description": "Shows a single Repo Sync event.",
-        "operationId": "repo_sync_event/show",
+        "operationId": "repo_sync/events_show",
         "tags": [
           "Repo Syncs"
         ],

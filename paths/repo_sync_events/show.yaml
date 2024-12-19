@@ -1,7 +1,7 @@
 ---
 summary: Get a single Repo Sync Event
 description: Shows a single Repo Sync event.
-operationId: repo_sync_event/show
+operationId: repo_sync/events_show
 tags:
 - Repo Syncs
 parameters:
@@ -36,7 +36,7 @@ x-code-samples:
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
-    phrase repo_syncs show \
+    phrase repo_syncs events_show \
     --id <id> \
     --repo_sync_id <repo_sync_id> \
     --account_id abcd1234 \
