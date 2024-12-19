@@ -4337,7 +4337,7 @@
           "id": {
             "type": "string"
           },
-          "event_type": {
+          "type": {
             "type": "string",
             "enum": [
               "import",
@@ -4380,7 +4380,7 @@
           }
         },
         "example": {
-          "event_type": "import",
+          "type": "import",
           "created_at": "2015-01-28T09:52:53Z",
           "status": "failure",
           "auto_import": true,
@@ -22071,7 +22071,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase repo_sync_event show \\\n--id <id> \\\n--repo_sync_id <repo_sync_id> \\\n--account_id abcd1234 \\\n--access_token <token>"
+            "source": "phrase repo_syncs show \\\n--id <id> \\\n--repo_sync_id <repo_sync_id> \\\n--account_id abcd1234 \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.24"
