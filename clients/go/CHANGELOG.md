@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.4](https://github.com/phrase/openapi/compare/go-v4.0.3...go-v4.0.4) (2024-12-20)
+
+
+### Bug Fixes
+
+* **API:** Repo Sync Event errors field type #STRINGS-1074 ([#756](https://github.com/phrase/openapi/issues/756)) ([c7670e0](https://github.com/phrase/openapi/commit/c7670e04810f95359d72ba6346b5f626bfb77b6f))
+
 ## [4.0.3](https://github.com/phrase/openapi/compare/go-v4.0.2...go-v4.0.3) (2024-12-20)
 
 
