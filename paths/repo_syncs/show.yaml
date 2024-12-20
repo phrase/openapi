@@ -35,7 +35,7 @@ x-code-samples:
       -u USERNAME_OR_ACCESS_TOKEN
 - lang: CLI v2
   source: |-
-    phrase repo_sync show \
+    phrase repo_syncs show \
     --id <id> \
     --account_id abcd1234 \
     --access_token <token>
