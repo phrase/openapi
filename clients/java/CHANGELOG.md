@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/phrase/openapi/compare/java-v3.0.0...java-v3.0.1) (2024-12-20)
+
+
+### Bug Fixes
+
+* **API:** Repo Sync Event errors field type #STRINGS-1074 ([#756](https://github.com/phrase/openapi/issues/756)) ([c7670e0](https://github.com/phrase/openapi/commit/c7670e04810f95359d72ba6346b5f626bfb77b6f))
+* **API:** Repo Sync schema fixes #STRINGS-1074 ([#748](https://github.com/phrase/openapi/issues/748)) ([033be10](https://github.com/phrase/openapi/commit/033be1003fe01b5115de1f8ba2336d32b4862bfd))
+
 ## [3.0.0](https://github.com/phrase/openapi/compare/java-v2.7.0...java-v3.0.0) (2024-12-18)
 
 
