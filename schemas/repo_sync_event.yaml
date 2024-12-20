@@ -24,14 +24,12 @@ repo_sync_event:
       description: List of error messages, in case of failure
       type: array
       items:
-        anyOf:
-        - type: string
-        - type: object
+        type: string
   example:
     type: import
     created_at: '2015-01-28T09:52:53Z'
     status: failure
     auto_import: true
     errors:
-      - "Error message"
-      - "Error message"
+      - "Error message 1"
+      - "Error message 2"

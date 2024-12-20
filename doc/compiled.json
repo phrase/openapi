@@ -4368,14 +4368,7 @@
             "description": "List of error messages, in case of failure",
             "type": "array",
             "items": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "object"
-                }
-              ]
+              "type": "string"
             }
           }
         },
@@ -4385,8 +4378,8 @@
           "status": "failure",
           "auto_import": true,
           "errors": [
-            "Error message",
-            "Error message"
+            "Error message 1",
+            "Error message 2"
           ]
         }
       }
