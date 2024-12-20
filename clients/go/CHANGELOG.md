@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.3](https://github.com/phrase/openapi/compare/go-v4.0.2...go-v4.0.3) (2024-12-20)
+
+
+### Bug Fixes
+
+* **API:** Repo Sync schema fixes #STRINGS-1074 ([#748](https://github.com/phrase/openapi/issues/748)) ([033be10](https://github.com/phrase/openapi/commit/033be1003fe01b5115de1f8ba2336d32b4862bfd))
+
 ## [4.0.2](https://github.com/phrase/openapi/compare/go-v4.0.1...go-v4.0.2) (2024-12-18)
 
 
