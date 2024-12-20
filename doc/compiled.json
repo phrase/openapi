@@ -152,6 +152,9 @@
       "description": "The Repo Syncs API allows you to synchronize your Phrase projects with your code repositories.\nYou can import translations from your repository to Phrase and export translations from Phrase to your repository.\n"
     },
     {
+      "name": "Repo Sync Events"
+    },
+    {
       "name": "Reports"
     },
     {
