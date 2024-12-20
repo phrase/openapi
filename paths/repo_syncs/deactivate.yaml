@@ -39,7 +39,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase repo_sync deactivate \
+    phrase repo_syncs deactivate \
     --id <repo_sync_id> \
     --access_token <token>
 x-cli-version: '2.24'
