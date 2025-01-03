@@ -140,8 +140,6 @@ github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyua
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
 github.com/pelletier/go-toml/v2 v2.2.3 h1:YmeHyLY8mFWbdkNWwpr+qIL2bEqT0o95WSdkNHvL12M=
 github.com/pelletier/go-toml/v2 v2.2.3/go.mod h1:MfCQTFTvCcUyyvvwm1+G6H/jORL20Xlb6rzQu9GuUkc=
-github.com/phrase/phrase-go/v3 v3.7.1 h1:zrGntbiuOTjOpVcG7jkUpQLq570s+RPRYxWIRSfNiTs=
-github.com/phrase/phrase-go/v3 v3.7.1/go.mod h1:s0uOYiXLxKAYlaIS6TbKv3efkKFUlY4OB6OL+VgvK90=
 github.com/phrase/phrase-go/v4 v4.0.4 h1:67AZMguH0/dq3UCZ5POpuQgSkigDhIcRAPoUKi9lch4=
 github.com/phrase/phrase-go/v4 v4.0.4/go.mod h1:4XplKvrbHS2LDaXfFp9xrVDtO5xk2WHFm0htutwwd8c=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
