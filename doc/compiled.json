@@ -21500,7 +21500,7 @@
       "post": {
         "summary": "Get Translation Quality",
         "description": "Retrieves the quality scores for your Strings translations. Returns a score, measured by Phrase QPS",
-        "operationId": "quality_performance_score",
+        "operationId": "quality_performance_score/list",
         "tags": [
           "Quality performance score"
         ],
@@ -21645,7 +21645,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase quality_performance_score \\\n--project_id <project_id> \\\n--data '{\"translation_ids\":[\"translation_id_1\", \"translation_id_2\"]}' \\\n--access_token <token>"
+            "source": "phrase quality_performance_score list \\\n--project_id <project_id> \\\n--data '{\"translation_ids\":[\"translation_id_1\", \"translation_id_2\"]}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
