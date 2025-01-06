@@ -336,7 +336,7 @@
         }
       },
       "X-Rate-Limit-Reset": {
-        "description": "Timestamp of end of current time period as UNIX timestamp",
+        "description": "Timestamp of end of current time period as UNIX timestamp, see [Rate Limiting](#overview--rate-limiting)",
         "schema": {
           "type": "integer"
         }
