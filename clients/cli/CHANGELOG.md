@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.35.6](https://github.com/phrase/openapi/compare/cli-v2.35.5...cli-v2.35.6) (2025-01-15)
+
+
+### Bug Fixes
+
+* **cli:** CLI do not exit with 0 on pull when branch does not exist ([#768](https://github.com/phrase/openapi/issues/768)) ([e7d8c43](https://github.com/phrase/openapi/commit/e7d8c435dafec065ed8fb657e8879bf843ee3a48))
+* **CLI:** Undo version bump ([#770](https://github.com/phrase/openapi/issues/770)) ([643aba1](https://github.com/phrase/openapi/commit/643aba13c79c6350f7416af3f5a78837bc937055))
+
 ## [2.35.5](https://github.com/phrase/openapi/compare/cli-v2.35.4...cli-v2.35.5) (2025-01-06)
 
 
