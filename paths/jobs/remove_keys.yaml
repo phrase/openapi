@@ -8,21 +8,6 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/id"
-- description: specify the branch to use
-  example: my-feature-branch
-  name: branch
-  in: query
-  schema:
-    type: string
-- description: ids of keys that should be removed from the job
-  example:
-  - abcd1234cdef1234abcd1234cdef1234
-  name: translation_key_ids
-  in: query
-  schema:
-    type: array
-    items:
-      type: string
 responses:
   '204':
     "$ref": "../../responses.yaml#/204"
@@ -46,6 +31,26 @@ x-code-samples:
     --project_id <project_id> \
     --id <id> \
     --branch my-feature-branch \
-    --translation_key_ids "abcd1234cdef1234abcd1234cdef1234" \
+    --data '{"branch": "my-feature-branch", "translation_key_ids": ["abcd1234cdef1234abcd1234cdef1234"]}' \
     --access_token <token>
-x-cli-version: '2.5'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: job/keys/delete/parameters
+        required:
+          - name
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          translation_key_ids:
+            description: ids of keys that should be deleted from the job
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
