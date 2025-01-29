@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.6](https://github.com/phrase/openapi/compare/go-v4.0.5...go-v4.0.6) (2025-01-29)
+
+
+### Bug Fixes
+
+* **API:** pass translation_key_ids when removing keys from job ([#771](https://github.com/phrase/openapi/issues/771)) ([f670e27](https://github.com/phrase/openapi/commit/f670e2763b1112fefd1812109b3c09def42b7bd2))
+
 ## [4.0.5](https://github.com/phrase/openapi/compare/go-v4.0.4...go-v4.0.5) (2025-01-06)
 
 
