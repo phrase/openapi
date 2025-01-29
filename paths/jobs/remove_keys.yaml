@@ -41,7 +41,7 @@ requestBody:
         type: object
         title: job/keys/delete/parameters
         required:
-          - name
+          - translation_key_ids
         properties:
           branch:
             description: specify the branch to use
