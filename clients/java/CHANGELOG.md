@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.3](https://github.com/phrase/openapi/compare/java-v3.0.2...java-v3.0.3) (2025-01-29)
+
+
+### Bug Fixes
+
+* **API:** pass translation_key_ids when removing keys from job ([#771](https://github.com/phrase/openapi/issues/771)) ([f670e27](https://github.com/phrase/openapi/commit/f670e2763b1112fefd1812109b3c09def42b7bd2))
+
 ## [3.0.2](https://github.com/phrase/openapi/compare/java-v3.0.1...java-v3.0.2) (2025-01-06)
 
 
