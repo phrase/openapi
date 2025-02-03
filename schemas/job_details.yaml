@@ -9,6 +9,9 @@ job_details:
         "$ref": "./user_preview.yaml#/user_preview"
       job_tag_name:
         type: string
+      source_updated_at:
+        type: string
+        format: date-time
       source_locale:
         "$ref": "./locale_preview.yaml#/locale_preview"
       locales:
@@ -25,6 +28,7 @@ job_details:
         username: joe.doe
         name: Joe Doe
       job_tag_name: Job_123
+      source_updated_at: '2020-01-01T00:00:00Z'
       source_locale:
         id: abcd1234cdef1234abcd1234cdef1235
         name: de-DE
