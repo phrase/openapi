@@ -4694,6 +4694,15 @@
         "schema": {
           "type": "string"
         }
+      },
+      "q": {
+        "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\n<br/>\n<p><strong>Caution:</strong> Query parameters with empty values will be treated as though they are not included in the request and will be ignored.</p>\n<br/>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+        "example": "mykey* translated:true",
+        "name": "q",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "responses": {
@@ -19950,13 +19959,7 @@
             }
           },
           {
-            "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>\n  <li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>\n  <li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
-            "example": "mykey* translated:true",
-            "name": "q",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/q"
           },
           {
             "description": "Locale used to determine the translation state of a key when filtering for untranslated or translated keys.",
@@ -20216,13 +20219,7 @@
             }
           },
           {
-            "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\n<br/>\n<p><strong>Caution:</strong> Query parameters with empty values will be treated as though they are not included in the request and will be ignored.</p>\n<br/>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
-            "example": "mykey* translated:true",
-            "name": "q",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/q"
           },
           {
             "description": "Locale used to determine the translation state of a key when filtering for untranslated or translated keys.",
@@ -20373,7 +20370,7 @@
                     "example": "desc"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>\n  <li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>\n  <li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\nPlease note: If <code>tags</code> are added to filter the search, the search will be limited to a maximum of 65,536 tagged keys.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>\n  <li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>\n  <li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\nPlease note: If <code>tags</code> are added to filter the search, the search will be limited to a maximum of 65,536 tagged keys.\n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -20749,7 +20746,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -20843,7 +20840,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -20937,7 +20934,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -21031,7 +21028,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
