@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gravatar_uid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "name",
+        "gravatar_uid"
+      ]
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "main_format": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "main_format",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "branch": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "deleted_translations_count": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "event",
+    "message",
+    "user",
+    "project",
+    "deleted_translations_count"
+  ]
+}
