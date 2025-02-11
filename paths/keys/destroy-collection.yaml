@@ -13,26 +13,7 @@ parameters:
   in: query
   schema:
     type: string
-- description: |
-    Specify a query to do broad search for keys by name (including wildcards).<br><br>
-    The following qualifiers are also supported in the search term:<br>
-    <ul>
-      <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-      <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>
-      <li><code>tags:tag_name</code> to filter for keys with certain tags</li>
-      <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
-      <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>
-      <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
-    </ul>
-    <br/>
-    <p><strong>Caution:</strong> Query parameters with empty values will be treated as though they are not included in the request and will be ignored.</p>
-    <br/>
-    Find more examples <a href="#overview--usage-examples">here</a>.
-  example: mykey* translated:true
-  name: q
-  in: query
-  schema:
-    type: string
+- "$ref": "../../parameters.yaml#/q"
 - description: Locale used to determine the translation state of a key when filtering for untranslated or translated keys.
   example: abcd1234abcd1234abcd1234abcd1234
   name: locale_id

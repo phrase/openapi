@@ -79,7 +79,7 @@ requestBody:
                 <li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>
                 <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
                 <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>
-                <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
+                <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>
               </ul>
               Find more examples <a href="#overview--usage-examples">here</a>.
               Please note: If <code>tags</code> are added to filter the search, the search will be limited to a maximum of 65,536 tagged keys.
