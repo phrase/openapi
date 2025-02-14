@@ -164,7 +164,7 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams
 		{{#isArray}}
 		t := localVarOptionals.{{vendorExtensions.x-export-param-name}}
 		for i := range t {
-			localVarQueryParams.Add("{{vendorExtensions.x-export-param-name}}[]", parameterToString(t[i], "multi"))
+			localVarQueryParams.Add("{{baseName}}[]", parameterToString(t[i], "multi"))
 		}
 		{{/isArray}}
 		{{^isArray}}

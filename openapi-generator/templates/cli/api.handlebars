@@ -96,15 +96,14 @@ func init{{{nickname}}}() {
 							}
 						{{/isModel~}}
 						{{^isPrimitiveType}}{{^isModel}}
+							if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
 							{{#if (eq dataType "[]string")}}
-								if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
-										var {{paramName}} []string
-								{{else}}
-								if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
-										var {{paramName}} map[string]interface{}
-								{{/if}}
+									var {{paramName}} []string
+							{{else}}
+									var {{paramName}} map[string]interface{}
+							{{/if}}
 
-								if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))), &{{paramName}}); err != nil {
+								if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{paramName}}}"))), &{{paramName}}); err != nil {
 									HandleError(err)
 								}
 								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#if (eq dataType "[]string")}}{{paramName}}{{else}}optional.NewInterface({{paramName}}){{/if}}
