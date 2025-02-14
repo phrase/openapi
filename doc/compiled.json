@@ -8582,6 +8582,21 @@
             },
             "style": "deepObject",
             "explode": true
+          },
+          {
+            "name": "locale_ids",
+            "description": "Locale IDs or locale names",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "example": [
+              "de",
+              "en"
+            ]
           }
         ],
         "responses": {
