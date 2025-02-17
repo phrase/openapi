@@ -13,6 +13,14 @@ upload:
       type: string
     tag:
       type: string
+      description: |
+        Unique tag of the upload
+    tags:
+      type: array
+      items:
+        type: string
+      description: |
+        List of tags that were assigned to the uploaded keys
     url:
       type: string
       description: |
