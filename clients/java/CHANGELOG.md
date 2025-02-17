@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/phrase/openapi/compare/java-v3.1.0...java-v3.2.0) (2025-02-17)
+
+
+### Features
+
+* **API:** document tags attribute of an upload #STRINGS-1221 ([#790](https://github.com/phrase/openapi/issues/790)) ([fff505b](https://github.com/phrase/openapi/commit/fff505bdff35a0033fee06e505c42fe794c88562))
+
 ## [3.1.0](https://github.com/phrase/openapi/compare/java-v3.0.3...java-v3.1.0) (2025-02-17)
 
 
