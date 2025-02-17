@@ -1758,7 +1758,15 @@
             "type": "string"
           },
           "tag": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique tag of the upload\n"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of tags that were assigned to the uploaded keys\n"
           },
           "url": {
             "type": "string",
