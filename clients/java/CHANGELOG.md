@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.0](https://github.com/phrase/openapi/compare/java-v3.0.3...java-v3.1.0) (2025-02-17)
+
+
+### Features
+
+* **API:** Add locale_ids param to synchronous download endpoint [STRINGS-1492] ([#780](https://github.com/phrase/openapi/issues/780)) ([47186a4](https://github.com/phrase/openapi/commit/47186a44fc8c0b8e466636acf3d49413b1f29f30))
+* **API:** Add source last updated at information on job details ([#777](https://github.com/phrase/openapi/issues/777)) ([c9b8423](https://github.com/phrase/openapi/commit/c9b8423766b4138980d0553502b3e18ca524f34e))
+
 ## [3.0.3](https://github.com/phrase/openapi/compare/java-v3.0.2...java-v3.0.3) (2025-01-29)
 
 
