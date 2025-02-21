@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/phrase/openapi/compare/java-v3.2.0...java-v3.3.0) (2025-02-21)
+
+
+### Features
+
+* **API:** add updated_since filter to job list #STRINGS-1555 ([#799](https://github.com/phrase/openapi/issues/799)) ([dc9b6ed](https://github.com/phrase/openapi/commit/dc9b6ed12e013231d397820449086c87fea2f8ba))
+
 ## [3.2.0](https://github.com/phrase/openapi/compare/java-v3.1.0...java-v3.2.0) (2025-02-17)
 
 
