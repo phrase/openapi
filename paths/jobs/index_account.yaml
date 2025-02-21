@@ -9,24 +9,10 @@ parameters:
 - "$ref": "../../parameters.yaml#/account_id"
 - "$ref": "../../parameters.yaml#/page"
 - "$ref": "../../parameters.yaml#/per_page"
-- description: filter by user owning job
-  example: abcd1234cdef1234abcd1234cdef1234
-  name: owned_by
-  in: query
-  schema:
-    type: string
-- description: filter by user assigned to job
-  example: abcd1234cdef1234abcd1234cdef1234
-  name: assigned_to
-  in: query
-  schema:
-    type: string
-- description: filter by state of job Valid states are <code>draft</code>, <code>in_progress</code>, <code>completed</code>
-  example: completed
-  name: state
-  in: query
-  schema:
-    type: string
+- "$ref": "../../parameters.yaml#/job_owner"
+- "$ref": "../../parameters.yaml#/job_assignee"
+- "$ref": "../../parameters.yaml#/job_state"
+- "$ref": "../../parameters.yaml#/job_updated_since"
 responses:
   '200':
     description: OK
