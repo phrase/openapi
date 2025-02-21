@@ -4736,7 +4736,7 @@
         }
       },
       "job_state": {
-        "description": "filter by state of job Valid states are <code>draft</code>, <code>in_progress</code>, <code>completed</code>",
+        "description": "filter by state of job; valid states are: <code>draft</code>, <code>in_progress</code>, <code>completed</code>",
         "example": "completed",
         "name": "state",
         "in": "query",
