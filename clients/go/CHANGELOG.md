@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.0](https://github.com/phrase/openapi/compare/go-v4.2.0...go-v4.3.0) (2025-02-24)
+
+
+### Features
+
+* **API:** add updated_since filter to job list #STRINGS-1555 ([#799](https://github.com/phrase/openapi/issues/799)) ([dc9b6ed](https://github.com/phrase/openapi/commit/dc9b6ed12e013231d397820449086c87fea2f8ba))
+
 ## [4.2.0](https://github.com/phrase/openapi/compare/go-v4.1.0...go-v4.2.0) (2025-02-17)
 
 
