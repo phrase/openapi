@@ -255,8 +255,6 @@ func (source *Source) Push(client *phrase.APIClient, waitForResults bool, branch
 	} else {
 		return nil, errors.New("not all files were uploaded successfully")
 	}
-
-	// return nil
 }
 
 func outputUpload(upload *phrase.Upload) {
