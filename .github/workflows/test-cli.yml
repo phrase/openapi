@@ -26,8 +26,8 @@ jobs:
           GOPRIVATE: github.com/phrase/phrase-go
         run: |
           npm install
-          cd clients/cli
-          go mod edit -replace github.com/phrase/phrase-go/v4=../phrase-go
+          cd ./clients/cli
+          go mod edit -replace github.com/phrase/phrase-go/v4=../go
           cd ../..
           npm run generate.cli
           go build ./clients/cli/
