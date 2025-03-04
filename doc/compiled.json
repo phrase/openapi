@@ -739,11 +739,21 @@
               },
               "slug": {
                 "type": "string"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             },
             "example": {
               "slug": "company-account",
-              "subscription": "subscription"
+              "subscription": "subscription",
+              "roles": [
+                "Owner",
+                "Admin"
+              ]
             }
           }
         ]
