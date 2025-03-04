@@ -4,6 +4,7 @@ name: Run CLI Tests
 on:
   push:
     paths:
+      - .github/workflows/test-cli.yml
       - openapi-generator/cli_lang.yaml
       - clients/cli/cmd/internal/*
 jobs:
