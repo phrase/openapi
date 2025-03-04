@@ -27,6 +27,7 @@ jobs:
         run: |
           npm install
           npm run generate.go
+          ls -la clients/go
           cd ./clients/cli
           go mod edit -replace github.com/phrase/phrase-go/v4=../go
           cd ../..
