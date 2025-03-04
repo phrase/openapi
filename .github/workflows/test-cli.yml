@@ -26,9 +26,12 @@ jobs:
           GOPRIVATE: github.com/phrase/phrase-go
         run: |
           npm install
+          pwd && ls -la
           cd ./clients/cli
+          pwd && ls -la
           go mod edit -replace github.com/phrase/phrase-go/v4=../go
           cd ../..
+          pwd && ls -la
           npm run generate.cli
           go build ./clients/cli/
       - name: License check
