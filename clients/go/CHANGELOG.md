@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.4.0](https://github.com/phrase/openapi/compare/go-v4.3.0...go-v4.4.0) (2025-03-04)
+
+
+### Features
+
+* **API:** Include roles in account response ([#811](https://github.com/phrase/openapi/issues/811)) ([dc27ee5](https://github.com/phrase/openapi/commit/dc27ee5117762222b6e1e6abb639f8e00c6a9101))
+
 ## [4.3.0](https://github.com/phrase/openapi/compare/go-v4.2.0...go-v4.3.0) (2025-02-24)
 
 
