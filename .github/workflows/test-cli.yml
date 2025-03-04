@@ -26,14 +26,11 @@ jobs:
           GOPRIVATE: github.com/phrase/phrase-go
         run: |
           npm install
-          cp ./clients/cli/go.mod ./clients/cli/go.mod.bak
-          cp ./clients/cli/go.sum ./clients/cli/go.sum.bak
-          echo "replace github.com/phrase/phrase-go => ../go" >> ./clients/cli/go.mod
+          cd clients/cli
+          go mod edit -replace github.com/phrase/phrase-go/v4=../phrase-go
+          cd ../..
           npm run generate.cli
           go build ./clients/cli/
-          mv ./clients/cli/go.mod.bak ./clients/cli/go.mod
-          mv ./clients/cli/go.sum.bak ./clients/cli/go.sum
-          rm ./clients/cli/phrase-cli
       - name: License check
         uses: phrase/actions/lawa-ci@v1
         with:
