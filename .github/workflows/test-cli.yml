@@ -4,6 +4,7 @@ name: Run CLI Tests
 on:
   push:
     paths:
+      - .github/workflows/test-cli.yml
       - openapi-generator/cli_lang.yaml
       - clients/cli/cmd/internal/*
 jobs:
@@ -21,7 +22,11 @@ jobs:
           GOPRIVATE: github.com/phrase/phrase-go
         run: |
           npm install
+          npm run generate.go
+          cd ./clients/cli
+          go mod edit -replace github.com/phrase/phrase-go/v4=../go
           npm run generate.cli
+          go build .
       - name: License check
         uses: phrase/actions/lawa-ci@v1
         with:
