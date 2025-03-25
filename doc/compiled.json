@@ -12659,56 +12659,6 @@
             "source": "phrase comments list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--branch \"my-feature-branch\" \\\n--filters unread \\\n--order desc \\\n--query \"Some comment content\" \\\n--locale_ids someId \\\n--access_token <token>"
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "title": "comments/list/parameters",
-                "properties": {
-                  "branch": {
-                    "description": "Specify the branch to use",
-                    "type": "string",
-                    "example": "my-feature-branch"
-                  },
-                  "query": {
-                    "description": "Search query for comment messages",
-                    "type": "string",
-                    "example": "Some comment content"
-                  },
-                  "locale_ids": {
-                    "description": "Search comments by their assigned locales",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "example": [
-                      "someId",
-                      "otherId"
-                    ]
-                  },
-                  "filters": {
-                    "description": "Specify filters to find comments by",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "example": [
-                      "read",
-                      "unread"
-                    ]
-                  },
-                  "order": {
-                    "description": "Specify ordering of comments",
-                    "type": "string",
-                    "example": "desc"
-                  }
-                }
-              }
-            }
-          }
-        },
         "x-cli-version": "2.5"
       },
       "post": {
@@ -13658,45 +13608,6 @@
             "source": "phrase replies list \\\n--project_id <project_id> \\\n--key_id <key_id> \\\n--comment_id <comment_id> \\\n--branch \"my-feature-branch\" \\\n--filters unread \\\n--order desc \\\n--query \"Some comment content\" \\\n--access_token <token>"
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "title": "replies/list/parameters",
-                "properties": {
-                  "branch": {
-                    "description": "Specify the branch to use",
-                    "type": "string",
-                    "example": "my-feature-branch"
-                  },
-                  "query": {
-                    "description": "Search query for comment messages",
-                    "type": "string",
-                    "example": "Some comment content"
-                  },
-                  "filters": {
-                    "description": "Specify filters to find comments by",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "example": [
-                      "read",
-                      "unread"
-                    ]
-                  },
-                  "order": {
-                    "description": "Specify ordering of comments",
-                    "type": "string",
-                    "example": "desc"
-                  }
-                }
-              }
-            }
-          }
-        },
         "x-cli-version": "2.10"
       },
       "post": {
