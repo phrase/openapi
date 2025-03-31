@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.3.0](https://github.com/phrase/openapi/compare/python-v3.2.0...python-v3.3.0) (2025-03-31)
+
+
+### Features
+
+* **API:** add updated_since filter to job list #STRINGS-1555 ([#799](https://github.com/phrase/openapi/issues/799)) ([dc9b6ed](https://github.com/phrase/openapi/commit/dc9b6ed12e013231d397820449086c87fea2f8ba))
+* **API:** Include roles in account response ([#811](https://github.com/phrase/openapi/issues/811)) ([dc27ee5](https://github.com/phrase/openapi/commit/dc27ee5117762222b6e1e6abb639f8e00c6a9101))
+
+
+### Bug Fixes
+
+* **API:** Remove request body from GET comments ([#817](https://github.com/phrase/openapi/issues/817)) ([2646001](https://github.com/phrase/openapi/commit/264600132e80ac03983e0ae86e99db3d6fb9080d))
+
 ## [3.2.0](https://github.com/phrase/openapi/compare/python-v3.1.0...python-v3.2.0) (2025-02-17)
 
 
