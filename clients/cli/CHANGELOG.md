@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.39.1](https://github.com/phrase/openapi/compare/cli-v2.39.0...cli-v2.39.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* **API:** Remove request body from GET comments ([#817](https://github.com/phrase/openapi/issues/817)) ([2646001](https://github.com/phrase/openapi/commit/264600132e80ac03983e0ae86e99db3d6fb9080d))
+
 ## [2.39.0](https://github.com/phrase/openapi/compare/cli-v2.38.0...cli-v2.39.0) (2025-03-06)
 
 
