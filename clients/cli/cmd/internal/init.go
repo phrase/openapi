@@ -143,9 +143,9 @@ func (cmd *InitCommand) askForToken() error {
 }
 
 func (cmd *InitCommand) setToken(token string) {
-	pushNow := ""
-	_ = prompt.WithDefault("Do you want to save the token to the config file? Otherwise you will have to provide it every time you run the command either through a command argument or through an environment variable (y/n)", &pushNow, "n")
-	if pushNow == "y" {
+	saveTokenToConfig := ""
+	_ = prompt.WithDefault("Do you want to save the token to the config file? Otherwise you will have to provide it every time you run the command either through a command argument or through an environment variable (y/n)", &saveTokenToConfig, "n")
+	if saveTokenToConfig == "y" {
 		cmd.YAML.AccessToken = token
 	}
 	cmd.Credentials.Token = token
