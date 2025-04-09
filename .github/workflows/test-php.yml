@@ -16,7 +16,7 @@ jobs:
       - uses: php-actions/phpunit@v3
         with:
           php_version: '8.3'
-          version: '8.3'
+          version: '12.1'
           configuration: ./clients/php/phpunit.xml.dist
       - name: License check
         uses: phrase/actions/lawa-ci@v1
