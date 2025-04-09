@@ -56,16 +56,9 @@ class UploadsApiTest extends TestCase
     private $history = [];
 
     /**
-     * Setup before running any test cases
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->mock = new MockHandler();
         $history = Middleware::history($this->history);
@@ -77,20 +70,6 @@ class UploadsApiTest extends TestCase
         $config = Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'token');
 
         $this->apiInstance = new Api($client, $config);
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
     }
 
     /**
@@ -138,8 +117,8 @@ class UploadsApiTest extends TestCase
         $lastRequest = $this->history[count($this->history) - 1]['request'];
         $this->assertEquals('POST', $lastRequest->getMethod());
         $this->assertEquals('/v2/projects/'.$projectId.'/uploads', $lastRequest->getUri()->getPath());
-        $this->assertContains('multipart/form-data', $lastRequest->getHeader('Content-Type')[0]);
-        $this->assertContains("Content-Disposition: form-data; name=\"locale_mapping[en][bar]\"\r\nContent-Length: 3\r\n\r\nbaz\r\n", $lastRequest->getBody()->getContents());
+        $this->assertStringContainsString('multipart/form-data', $lastRequest->getHeader('Content-Type')[0]);
+        $this->assertStringContainsString("Content-Disposition: form-data; name=\"locale_mapping[en][bar]\"\r\nContent-Length: 3\r\n\r\nbaz\r\n", $lastRequest->getBody()->getContents());
     }
 
     /**
