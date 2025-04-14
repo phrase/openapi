@@ -19,7 +19,7 @@ These changelogs and version bumps are generated as a separate pull requests (on
 PR titles are important, as they are used to generate changelogs and version bumps for the generated client libraries. The format is `change_type(affected_library): description #STRINGS-TICKET`.
 
 The `change_type` is one of the following:
-* `feat`: A new feature. Also applies to extending the schema with new endpoints, properties, query parameters. For every schema change, a new version of every clint library needs to be generated.
+* `feat`: A new feature. Also applies to extending the schema with new endpoints, properties, query parameters. For every schema change, a new version of every client library needs to be generated.
 * `fix`: A bug fix. Also applies to fixing the schema (e.g. fixing a typo in a property name).
 * `docs`: Documentation only changes. This includes changes to the OpenAPI spec (e.g. field descriptions), but not to the schema itself. This does not require a new version of the client libraries.
 * `build`: Changes that affect the build system or external dependencies (example: a change in github actions).
