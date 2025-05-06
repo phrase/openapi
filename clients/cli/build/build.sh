@@ -15,9 +15,6 @@ cd $DIST_DIR
 tar --extract --file=build.tar
 rm -f build.tar
 
-
-./sign.sh $SIGNING_CERTIFICATE $CERTIFICATE_PASSWORD $SIGNING_IDENTITY $KEYCHAIN_PASSWORD $DIST_DIR
-
 # Homebrew - binary must be called phrase, because the binary name inside
 # the tar will be made available system wide
 for name in phrase_macosx_amd64 phrase_macosx_arm64; do
