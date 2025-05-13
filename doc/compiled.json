@@ -14594,6 +14594,7 @@
                   "verify_mentioned_translations": {
                     "description": "Indicates whether all translations mentioned in the upload should be verified.",
                     "type": "boolean",
+                    "default": false,
                     "example": null
                   },
                   "mark_reviewed": {

@@ -136,6 +136,7 @@ requestBody:
           verify_mentioned_translations:
             description: Indicates whether all translations mentioned in the upload should be verified.
             type: boolean
+            default: false
             example:
           mark_reviewed:
             description: Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow is enabled for the project.
