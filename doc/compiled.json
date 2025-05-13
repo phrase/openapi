@@ -14591,6 +14591,11 @@
                     "type": "boolean",
                     "example": null
                   },
+                  "verify_mentioned_translations": {
+                    "description": "Indicates whether all translations mentioned in the upload should be verified.",
+                    "type": "boolean",
+                    "example": null
+                  },
                   "mark_reviewed": {
                     "description": "Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow is enabled for the project.",
                     "type": "boolean",
