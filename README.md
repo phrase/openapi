@@ -14,6 +14,18 @@ This project relies on [conventional commits](https://www.conventionalcommits.or
 
 These changelogs and version bumps are generated as a separate pull requests (one for each client library) and currently need to be merged manually.
 
+### PR titles
+
+PR titles are important, as they are used to generate changelogs and version bumps for the generated client libraries. The format is `change_type(affected_library): description #STRINGS-TICKET`.
+
+The `change_type` is one of the following:
+* `feat`: A new feature. Also applies to extending the schema with new endpoints, properties, query parameters. For every schema change, a new version of every client library needs to be generated.
+* `fix`: A bug fix. Also applies to fixing the schema (e.g. fixing a typo in a property name).
+* `docs`: Documentation only changes. This includes changes to the OpenAPI spec (e.g. field descriptions), but not to the schema itself. This does not require a new version of the client libraries.
+* `build`: Changes that affect the build system or external dependencies (example: a change in github actions).
+
+`affected_library` could be for example `PHP`, `Java`, `Go`, `Python`, `Ruby`, `CLI`, or `JS`, but most commonly it's `API`, in case of any schema changes.
+
 ### Example
 
 You added an endpoint in Phrase Strings. In this project you do the following:
@@ -22,7 +34,7 @@ You added an endpoint in Phrase Strings. In this project you do the following:
 2. Add new endpoints to `/paths/` directory and reference it in `paths.yaml`
 3. `npm start` to re-build the clients
 4. `npm run docs` to generate the documentation (and verify it in action using `npm run watch`)
-5. Open a PR with an informative title (e.g. `feat(api): Add an API endpoint for cat pics`)
+5. Open a PR with an informative title (e.g. `feat(API): Add an API endpoint for cat pics`)
 
 ## Workflow
 
