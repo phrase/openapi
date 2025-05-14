@@ -107,6 +107,7 @@ public class UploadsApiTest {
         String fileEncoding = null;
         Object localeMapping = null;
         Boolean autotranslate = null;
+        Boolean verifyMentionedTranslations = null;
         Boolean markReviewed = null;
         Boolean tagOnlyAffectedKeys = null;
         String translationKeyPrefix = null;
@@ -122,7 +123,7 @@ public class UploadsApiTest {
         Upload response = api.uploadCreate(projectId, file, fileFormat, localeId, xPhraseAppOTP, branch,
             tags, updateTranslations, updateTranslationKeys, updateTranslationsOnSourceMatch,
             updateDescriptions, convertEmoji, skipUploadTags, skipUnverification, fileEncoding,
-            localeMapping, formatOptionsMap, autotranslate, markReviewed, tagOnlyAffectedKeys,
+            localeMapping, formatOptionsMap, autotranslate, verifyMentionedTranslations, markReviewed, tagOnlyAffectedKeys,
             translationKeyPrefix);
 
         Assert.assertEquals("valid id returned", "id_example", response.getId());

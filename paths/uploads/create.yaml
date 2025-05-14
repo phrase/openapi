@@ -1,12 +1,11 @@
----
 summary: Upload a new file
 description: Upload a new language file. Creates necessary resources in your project.
 operationId: upload/create
 tags:
-- Uploads
+  - Uploads
 parameters:
-- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-- "$ref": "../../parameters.yaml#/project_id"
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/project_id"
 responses:
   '201':
     description: Created
@@ -28,30 +27,30 @@ responses:
   '429':
     "$ref": "../../responses.yaml#/429"
 x-code-samples:
-- lang: Curl
-  source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/uploads" \
-      -u USERNAME_OR_ACCESS_TOKEN \
-      -X POST \
-      -F branch=my-feature-branch \
-      -F file=@/path/to/my/file.json \
-      -F file_format=json \
-      -F locale_id=abcd1234cdef1234abcd1234cdef1234 \
-      -F tags=awesome-feature,needs-proofreading \
-      -F locale_mapping[en]=2 \
-      -F format_options[foo]=bar
-- lang: CLI v2
-  source: |-
-    phrase uploads create \
-    --project_id <project_id> \
-    --branch my-feature-branch \
-    --file /path/to/my/file.json \
-    --file_format json \
-    --locale_id abcd1234cdef1234abcd1234cdef1234 \
-    --tags awesome-feature,needs-proofreading \
-    --locale_mapping '{"en": "2"}' \
-    --format_options '{"foo": "bar"}' \
-    --access_token <token>
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:project_id/uploads" \
+        -u USERNAME_OR_ACCESS_TOKEN \
+        -X POST \
+        -F branch=my-feature-branch \
+        -F file=@/path/to/my/file.json \
+        -F file_format=json \
+        -F locale_id=abcd1234cdef1234abcd1234cdef1234 \
+        -F tags=awesome-feature,needs-proofreading \
+        -F locale_mapping[en]=2 \
+        -F format_options[foo]=bar
+  - lang: CLI v2
+    source: |-
+      phrase uploads create \
+      --project_id <project_id> \
+      --branch my-feature-branch \
+      --file /path/to/my/file.json \
+      --file_format json \
+      --locale_id abcd1234cdef1234abcd1234cdef1234 \
+      --tags awesome-feature,needs-proofreading \
+      --locale_mapping '{"en": "2"}' \
+      --format_options '{"foo": "bar"}' \
+      --access_token <token>
 requestBody:
   required: true
   content:
@@ -133,6 +132,11 @@ requestBody:
           autotranslate:
             description: If set, translations for the uploaded language will be fetched automatically.
             type: boolean
+            example:
+          verify_mentioned_translations:
+            description: Indicates whether all translations mentioned in the upload should be verified.
+            type: boolean
+            default: false
             example:
           mark_reviewed:
             description: Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow is enabled for the project.
