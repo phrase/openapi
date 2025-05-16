@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.5.0](https://github.com/phrase/openapi/compare/ruby-v4.4.0...ruby-v4.5.0) (2025-05-16)
+
+
+### Features
+
+* **API:** Add "verify_mentioned_translations" parameter to uploads ([#830](https://github.com/phrase/openapi/issues/830)) ([f2fdf60](https://github.com/phrase/openapi/commit/f2fdf60dd97c3908293cd457a765dafde603bd9b))
+* **API:** Add processed & upload total translations on upload summary ([#824](https://github.com/phrase/openapi/issues/824)) ([081db68](https://github.com/phrase/openapi/commit/081db68d2ffcf5d66a81e07eec0a9572a1f9d633))
+* **API:** Translations unreview & batch unreview ([#831](https://github.com/phrase/openapi/issues/831)) ([6a696db](https://github.com/phrase/openapi/commit/6a696db00d80d8acaf5887a08a7a97997566eb8f))
+
+
+### Bug Fixes
+
+* **API:** Remove request body from GET comments ([#817](https://github.com/phrase/openapi/issues/817)) ([2646001](https://github.com/phrase/openapi/commit/264600132e80ac03983e0ae86e99db3d6fb9080d))
+
 ## [4.4.0](https://github.com/phrase/openapi/compare/ruby-v4.3.0...ruby-v4.4.0) (2025-03-04)
 
 
