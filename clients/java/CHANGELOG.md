@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.3.0](https://github.com/phrase/openapi/compare/java-v3.2.0...java-v3.3.0) (2025-05-16)
+
+
+### Features
+
+* **API:** Add "verify_mentioned_translations" parameter to uploads ([#830](https://github.com/phrase/openapi/issues/830)) ([f2fdf60](https://github.com/phrase/openapi/commit/f2fdf60dd97c3908293cd457a765dafde603bd9b))
+* **API:** Add processed & upload total translations on upload summary ([#824](https://github.com/phrase/openapi/issues/824)) ([081db68](https://github.com/phrase/openapi/commit/081db68d2ffcf5d66a81e07eec0a9572a1f9d633))
+* **API:** add updated_since filter to job list #STRINGS-1555 ([#799](https://github.com/phrase/openapi/issues/799)) ([dc9b6ed](https://github.com/phrase/openapi/commit/dc9b6ed12e013231d397820449086c87fea2f8ba))
+* **API:** Include roles in account response ([#811](https://github.com/phrase/openapi/issues/811)) ([dc27ee5](https://github.com/phrase/openapi/commit/dc27ee5117762222b6e1e6abb639f8e00c6a9101))
+* **API:** Translations unreview & batch unreview ([#831](https://github.com/phrase/openapi/issues/831)) ([6a696db](https://github.com/phrase/openapi/commit/6a696db00d80d8acaf5887a08a7a97997566eb8f))
+
+
+### Bug Fixes
+
+* **API:** Remove request body from GET comments ([#817](https://github.com/phrase/openapi/issues/817)) ([2646001](https://github.com/phrase/openapi/commit/264600132e80ac03983e0ae86e99db3d6fb9080d))
+
 ## [3.2.0](https://github.com/phrase/openapi/compare/java-v3.1.0...java-v3.2.0) (2025-02-17)
 
 
