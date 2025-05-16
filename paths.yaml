@@ -1,4 +1,3 @@
----
 "/icu/skeleton":
   post:
     "$ref": "./paths/icu/skeleton.yaml"
@@ -568,7 +567,6 @@
 "/accounts/{account_id}/teams/{team_id}/users/{id}":
   delete:
     "$ref": "./paths/teams/remove_user.yaml"
-
 "/projects/{project_id}/translations":
   get:
     "$ref": "./paths/translations/index.yaml"
@@ -597,6 +595,9 @@
 "/projects/{project_id}/translations/{id}/review":
   patch:
     "$ref": "./paths/translations/review.yaml"
+"/projects/{project_id}/translations/{id}/unreview":
+  patch:
+    "$ref": "./paths/translations/unreview.yaml"
 "/projects/{project_id}/translations/{id}/exclude":
   patch:
     "$ref": "./paths/translations/exclude.yaml"
@@ -612,6 +613,9 @@
 "/projects/{project_id}/translations/review":
   patch:
     "$ref": "./paths/translations/batch_review.yaml"
+"/projects/{project_id}/translations/unreview":
+  patch:
+    "$ref": "./paths/translations/batch_unreview.yaml"
 "/projects/{project_id}/translations/exclude":
   patch:
     "$ref": "./paths/translations/batch_exclude.yaml"

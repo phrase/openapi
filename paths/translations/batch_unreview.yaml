@@ -1,0 +1,70 @@
+summary: Unreview translations selected by query
+description: Unreview translations matching query.
+operationId: translations/unreview-collection
+tags:
+  - Translations
+parameters:
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/project_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/affected_count.yaml#/affected_count"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:project_id/translations/unreview" \
+        -u USERNAME_OR_ACCESS_TOKEN \
+        -X PATCH \
+        -d '{"branch":"my-feature-branch","q":"PhraseApp*%reviewed:false%20tags:feature,center"}' \
+        -H 'Content-Type: application/json'
+  - lang: CLI v2
+    source: |-
+      phrase translations unreview-collection \
+      --project_id <project_id> \
+      --data '{"branch":"my-feature-branch", "q":"'PhraseApp*%reviewed:false%20tags:feature,center'"}' \
+      --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: translations/unreview/parameters
+        properties:
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          q:
+            description: |
+              Specify a query to find translations by content (including wildcards).<br><br>
+              <i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>
+              The following qualifiers are supported in the query:<br>
+              <ul>
+                <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>
+                <li><code>tags:XYZ</code> for tags on the translation</li>
+                <li><code>unverified:{true|false}</code> for verification status</li>
+                <li><code>excluded:{true|false}</code> for exclusion status</li>
+                <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>
+              </ul>
+              Find more examples <a href="#overview--usage-examples">here</a>.
+            type: string
+            example: PhraseApp*%reviewed:true%20tags:feature,center
+x-cli-version: '2.41'

@@ -24429,6 +24429,88 @@
         "x-cli-version": "2.5"
       }
     },
+    "/projects/{project_id}/translations/{id}/unreview": {
+      "patch": {
+        "summary": "Unreview a translation",
+        "description": "Mark a reviewed translation as translated.",
+        "operationId": "translation/unreview",
+        "tags": [
+          "Translations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/translation_details"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/translations/:id/unreview\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase translations unreview \\\n--project_id <project_id> \\\n--id <id> \\\n--data '{\"branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "translation/unreview/parameters",
+                "properties": {
+                  "branch": {
+                    "description": "specify the branch to use",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.41"
+      }
+    },
     "/projects/{project_id}/translations/{id}/exclude": {
       "patch": {
         "summary": "Exclude a translation from export",
@@ -24858,6 +24940,90 @@
           }
         },
         "x-cli-version": "2.5"
+      }
+    },
+    "/projects/{project_id}/translations/unreview": {
+      "patch": {
+        "summary": "Unreview translations selected by query",
+        "description": "Unreview translations matching query.",
+        "operationId": "translations/unreview-collection",
+        "tags": [
+          "Translations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/affected_count"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/translations/unreview\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"branch\":\"my-feature-branch\",\"q\":\"PhraseApp*%reviewed:false%20tags:feature,center\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase translations unreview-collection \\\n--project_id <project_id> \\\n--data '{\"branch\":\"my-feature-branch\", \"q\":\"'PhraseApp*%reviewed:false%20tags:feature,center'\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "translations/unreview/parameters",
+                "properties": {
+                  "branch": {
+                    "description": "specify the branch to use",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  },
+                  "q": {
+                    "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "type": "string",
+                    "example": "PhraseApp*%reviewed:true%20tags:feature,center"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.41"
       }
     },
     "/projects/{project_id}/translations/exclude": {
