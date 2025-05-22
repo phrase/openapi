@@ -19411,6 +19411,15 @@
             "$ref": "#/components/parameters/name"
           },
           {
+            "description": "omit statistics in the response",
+            "name": "omit_statistics",
+            "example": true,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "description": "specify the branch to use",
             "example": "my-feature-branch",
             "name": "branch",
