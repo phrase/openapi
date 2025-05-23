@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.6.0](https://github.com/phrase/openapi/compare/ruby-v4.5.0...ruby-v4.6.0) (2025-05-23)
+
+
+### Features
+
+* **API:** Add omit_statistics param to tags#show ([#834](https://github.com/phrase/openapi/issues/834)) ([2058b18](https://github.com/phrase/openapi/commit/2058b18297133075885ac99770aee2e171811cd6))
+
 ## [4.5.0](https://github.com/phrase/openapi/compare/ruby-v4.4.0...ruby-v4.5.0) (2025-05-16)
 
 
