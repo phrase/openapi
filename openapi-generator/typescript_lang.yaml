@@ -2,6 +2,6 @@
 generatorName: typescript-fetch
 outputDir: clients/typescript
 npmName: phrase-js
-npmVersion: 3.3.0
+npmVersion: 3.4.0
 typescriptThreePlus: true
 templateDir: openapi-generator/templates/typescript-fetch
