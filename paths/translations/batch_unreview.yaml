@@ -1,11 +1,12 @@
+---
 summary: Unreview translations selected by query
 description: Unreview translations matching query.
 operationId: translations/unreview-collection
 tags:
-  - Translations
+- Translations
 parameters:
-  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-  - "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
 responses:
   '200':
     description: OK

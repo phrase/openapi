@@ -1,12 +1,13 @@
+---
 summary: Unreview a translation
 description: Mark a reviewed translation as translated.
 operationId: translation/unreview
 tags:
-  - Translations
+- Translations
 parameters:
-  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-  - "$ref": "../../parameters.yaml#/project_id"
-  - "$ref": "../../parameters.yaml#/id"
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/id"
 responses:
   '200':
     description: OK
