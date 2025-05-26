@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/phrase/openapi/compare/java-v3.3.0...java-v3.4.0) (2025-05-23)
+
+
+### Features
+
+* **API:** Add omit_statistics param to tags#show ([#834](https://github.com/phrase/openapi/issues/834)) ([2058b18](https://github.com/phrase/openapi/commit/2058b18297133075885ac99770aee2e171811cd6))
+
 ## [3.3.0](https://github.com/phrase/openapi/compare/java-v3.2.0...java-v3.3.0) (2025-05-16)
 
 
