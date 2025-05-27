@@ -9,7 +9,7 @@ sed -e "s/VERSION/${VERSION}/g" ./build/innosetup/phrase-cli.iss.template > ./bu
 
 # Build client
 ./build/build.sh
-./build/innosetup/create_installer.sh
+# ./build/innosetup/create_installer.sh
 
 # build docker image
 
