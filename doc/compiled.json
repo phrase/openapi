@@ -1488,6 +1488,12 @@
               "type": "string"
             }
           },
+          "ordinal_plural_forms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "source_locale": {
             "$ref": "#/components/schemas/locale_preview"
           },
@@ -2242,7 +2248,8 @@
           "key": {
             "id": "abcd1234cdef1234abcd1234cdef1234",
             "name": "home.index.headline",
-            "plural": false
+            "plural": false,
+            "use_ordinal_rules": false
           },
           "locale": {
             "id": "abcd1234cdef1234abcd1234cdef1234",
@@ -2317,6 +2324,9 @@
             "type": "string"
           },
           "plural": {
+            "type": "boolean"
+          },
+          "use_ordinal_rules": {
             "type": "boolean"
           },
           "tags": {

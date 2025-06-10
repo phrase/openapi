@@ -19,6 +19,10 @@ locale:
       type: array
       items:
         type: string
+    ordinal_plural_forms:
+      type: array
+      items:
+        type: string
     source_locale:
       "$ref": "./locale_preview.yaml#/locale_preview"
     fallback_locale:

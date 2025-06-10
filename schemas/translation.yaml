@@ -40,6 +40,7 @@ translation:
       id: abcd1234cdef1234abcd1234cdef1234
       name: home.index.headline
       plural: false
+      use_ordinal_rules: false
     locale:
       id: abcd1234cdef1234abcd1234cdef1234
       name: de
