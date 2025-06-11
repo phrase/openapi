@@ -13,5 +13,5 @@ jobs:
         with:
           token: ${{ secrets.GH_ACCESS_TOKEN }}
           repository: phrase/developer-hub
-          event-type: trigger-workflow
+          event-type: trigger-strings-workflow
           client-payload: '{"source": "phrase/openapi", "type": "update"}'
