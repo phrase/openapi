@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - chore/add-dispatch-workflow
+
 jobs:
   dispatch:
     runs-on: ubuntu-latest
