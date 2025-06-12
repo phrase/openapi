@@ -9,7 +9,7 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: Send repository_dispatch to repo B
+      - name: Send repository_dispatch to phrase/developer-hub
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.DISPATCH_DEVELOPER_HUB_TOKEN }}
