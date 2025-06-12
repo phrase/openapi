@@ -13,7 +13,7 @@ jobs:
       - name: Send repository_dispatch to repo B
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           repository: phrase/developer-hub
           event-type: trigger-strings-workflow
           client-payload: '{"source": "phrase/openapi", "type": "update"}'
