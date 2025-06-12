@@ -4,13 +4,14 @@ on:
   push:
     branches:
       - main
+      - chore/add-dispatch-workflow
 
 jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
       - name: Send repository_dispatch to phrase/developer-hub
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@0eae9e597ebc81bcc8c2220e34ddff4bc7c769b3
         with:
           token: ${{ secrets.DISPATCH_DEVELOPER_HUB_TOKEN }}
           repository: phrase/developer-hub
