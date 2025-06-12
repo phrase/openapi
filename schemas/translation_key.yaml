@@ -13,6 +13,8 @@ translation_key:
       type: string
     plural:
       type: boolean
+    use_ordinal_rules:
+      type: boolean
     tags:
       type: array
       items:
