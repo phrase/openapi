@@ -44,6 +44,9 @@ locale:
     - zero
     - one
     - other
+    plural_ordinal_forms:
+      - zero
+      - other
     source_locale:
       id: abcd1234cdef1234abcd1234cdef1234
       name: en
