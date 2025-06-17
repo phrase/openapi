@@ -1,7 +1,8 @@
 ---
 summary: List release triggers
 description: |
-  List all release triggers for the given distribution.<br>
+  List all release triggers for the given distribution.
+  
   Note: Currently only one release trigger can exist per distribution.
 operationId: release_triggers/list
 tags:

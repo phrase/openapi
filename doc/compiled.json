@@ -327,7 +327,7 @@
         }
       },
       "X-Rate-Limit-Reset": {
-        "description": "Timestamp of end of current time period as UNIX timestamp, see [Rate Limiting](#overview--rate-limiting)",
+        "description": "Timestamp of end of current time period as UNIX timestamp, see [Rate Limiting](/en/api/strings/pagination#rate-limiting)",
         "schema": {
           "type": "integer"
         }
@@ -4428,7 +4428,7 @@
         }
       },
       "If-Modified-Since": {
-        "description": "Last modified condition, see <a href=\"#overview--conditional-get-requests--http-caching\">Conditional GET requests / HTTP Caching</a> (optional)",
+        "description": "Last modified condition, see [Conditional GET requests / HTTP Caching](/en/api/strings/pagination#conditional-get-requests-%2F-http-caching) (optional)",
         "explode": false,
         "in": "header",
         "name": "If-Modified-Since",
@@ -4439,7 +4439,7 @@
         "style": "simple"
       },
       "If-None-Match": {
-        "description": "ETag condition, see <a href=\"#overview--conditional-get-requests--http-caching\">Conditional GET requests / HTTP Caching</a> (optional)",
+        "description": "ETag condition, see [Conditional GET requests / HTTP Caching](/en/api/strings/pagination#conditional-get-requests-%2F-http-caching) (optional)",
         "explode": false,
         "in": "header",
         "name": "If-None-Match",
@@ -4725,7 +4725,7 @@
         }
       },
       "q": {
-        "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\n<br/>\n<p><strong>Caution:</strong> Query parameters with empty values will be treated as though they are not included in the request and will be ignored.</p>\n<br/>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+        "description": "Specify a query to do broad search for keys by name (including wildcards).\n\nThe following qualifiers are also supported in the search term:\n\n- `ids:key_id,...` for queries on a comma-separated list of ids\n- `name:key_name` for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes\n- `tags:tag_name` to filter for keys with certain tags\n- `translated:{true|false}` for translation status (also requires `locale_id` to be specified)\n- `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n- `unmentioned_in_upload:upload_id,...` to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in **all** uploads\n\n**Caution:** Query parameters with empty values will be treated as though they are not included in the request and will be ignored.\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
         "example": "mykey* translated:true",
         "name": "q",
         "in": "query",
@@ -6812,7 +6812,7 @@
     "/accounts/{account_id}/invitations": {
       "get": {
         "summary": "List invitations",
-        "description": "List invitations for an account. It will also list the accessible resources like projects and locales the invited user has access to. In case nothing is shown the default access from the role is used. Access token scope must include <code>team.manage</code>.",
+        "description": "List invitations for an account. It will also list the accessible resources like projects and locales the invited user has access to. In case nothing is shown the default access from the role is used. Access token scope must include `team.manage`.",
         "operationId": "invitations/list",
         "tags": [
           "Invitations"
@@ -6892,7 +6892,7 @@
       },
       "post": {
         "summary": "Create a new invitation",
-        "description": "Invite a person to an account. Developers and translators need <code>project_ids</code> and <code>locale_ids</code> assigned to access them. Access token scope must include <code>team.manage</code>.",
+        "description": "Invite a person to an account. Developers and translators need `project_ids` and `locale_ids` assigned to access them. Access token scope must include `team.manage`.",
         "operationId": "invitation/create",
         "tags": [
           "Invitations"
@@ -6969,7 +6969,7 @@
                 ],
                 "properties": {
                   "email": {
-                    "description": "The email of the invited user. The <code>email</code> can not be updated once created. Create a new invitation for each unique email.",
+                    "description": "The email of the invited user. The `email` can not be updated once created. Create a new invitation for each unique email.",
                     "type": "string",
                     "example": "example@mail.com"
                   },
@@ -7022,7 +7022,7 @@
                     ]
                   },
                   "permissions": {
-                    "description": "Additional permissions depending on invitation role. Available permissions are <code>create_upload</code> and <code>review_translations</code>",
+                    "description": "Additional permissions depending on invitation role. Available permissions are `create_upload` and `review_translations`",
                     "type": "object",
                     "additionalProperties": {
                       "type": "string"
@@ -7043,7 +7043,7 @@
     "/accounts/{account_id}/invitations/{id}": {
       "get": {
         "summary": "Get a single invitation",
-        "description": "Get details on a single invitation. Access token scope must include <code>team.manage</code>.",
+        "description": "Get details on a single invitation. Access token scope must include `team.manage`.",
         "operationId": "invitation/show",
         "tags": [
           "Invitations"
@@ -7111,7 +7111,7 @@
       },
       "patch": {
         "summary": "Update an invitation",
-        "description": "Update an existing invitation (must not be accepted yet). The <code>email</code> cannot be updated. Developers and translators need <code>project_ids</code> and <code>locale_ids</code> assigned to access them. Access token scope must include <code>team.manage</code>.",
+        "description": "Update an existing invitation (must not be accepted yet). The `email` cannot be updated. Developers and translators need `project_ids` and `locale_ids` assigned to access them. Access token scope must include `team.manage`.",
         "operationId": "invitation/update",
         "tags": [
           "Invitations"
@@ -7250,7 +7250,7 @@
       },
       "delete": {
         "summary": "Delete an invitation",
-        "description": "Delete an existing invitation (must not be accepted yet). Access token scope must include <code>team.manage</code>.",
+        "description": "Delete an existing invitation (must not be accepted yet). Access token scope must include `team.manage`.",
         "operationId": "invitation/delete",
         "tags": [
           "Invitations"
@@ -7302,7 +7302,7 @@
     "/accounts/{account_id}/invitations/{id}/resend": {
       "post": {
         "summary": "Resend an invitation",
-        "description": "Resend the invitation email (must not be accepted yet). Access token scope must include <code>team.manage</code>.",
+        "description": "Resend the invitation email (must not be accepted yet). Access token scope must include `team.manage`.",
         "operationId": "invitation/resend",
         "tags": [
           "Invitations"
@@ -7372,7 +7372,7 @@
     "/projects/{project_id}/invitations/{id}": {
       "patch": {
         "summary": "Update a member's invitation access",
-        "description": "Update member's settings in the invitations. Access token scope must include <code>team.manage</code>.",
+        "description": "Update member's settings in the invitations. Access token scope must include `team.manage`.",
         "operationId": "invitation/update_settings",
         "tags": [
           "Invitations"
@@ -7715,7 +7715,7 @@
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "presentation": {
-                    "description": "Presentation details of the screenshot marker in JSON format.<br/><br/>Each Screenshot Marker is represented as a rectangular shaped highlight box with the name of the specified Key attached. You can specify the marker position on the screenshot (<code>x</code>-axis and <code>y</code>-axis in pixels) from the top left corner of the screenshot and the dimensions of the marker itself (<code>w</code> and <code>h</code> in pixels).",
+                    "description": "Presentation details of the screenshot marker in JSON format.\n\nEach Screenshot Marker is represented as a rectangular shaped highlight box with the name of the specified Key attached. You can specify the marker position on the screenshot (`x`-axis and `y`-axis in pixels) from the top left corner of the screenshot and the dimensions of the marker itself (`w` and `h` in pixels).\n",
                     "type": "string",
                     "example": "{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }"
                   }
@@ -7805,7 +7805,7 @@
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "presentation": {
-                    "description": "Presentation details of the screenshot marker in JSON format.<br/><br/>Each Screenshot Marker is represented as a rectangular shaped highlight box with the name of the specified Key attached. You can specify the marker position on the screenshot (<code>x</code>-axis and <code>y</code>-axis in pixels) from the top left corner of the screenshot and the dimensions of the marker itself (<code>w</code> and <code>h</code> in pixels).",
+                    "description": "Presentation details of the screenshot marker in JSON format.\n\nEach Screenshot Marker is represented as a rectangular shaped highlight box with the name of the specified Key attached. You can specify the marker position on the screenshot (`x`-axis and `y`-axis in pixels) from the top left corner of the screenshot and the dimensions of the marker itself (`w` and `h` in pixels).\n",
                     "type": "string",
                     "example": "{ \"x\": 100, \"y\": 100, \"w\": 100, \"h\": 100 }"
                   }
@@ -8156,7 +8156,7 @@
                     "example": null
                   },
                   "main": {
-                    "description": "Indicates whether locale is a main locale. Main locales are part of the <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\" target=\"_blank\">Verification System</a> feature.",
+                    "description": "Indicates whether locale is a main locale. Main locales are part of the [Verification System](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
                     "type": "boolean",
                     "example": null
                   },
@@ -8176,12 +8176,12 @@
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "unverify_new_translations": {
-                    "description": "Indicates that new translations for this locale should be marked as unverified. Part of the <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\" target=\"_blank\">Advanced Workflows</a> feature.",
+                    "description": "Indicates that new translations for this locale should be marked as unverified. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
                     "type": "boolean",
                     "example": null
                   },
                   "unverify_updated_translations": {
-                    "description": "Indicates that updated translations for this locale should be marked as unverified. Part of the <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\" target=\"_blank\">Advanced Workflows</a> feature.",
+                    "description": "Indicates that updated translations for this locale should be marked as unverified. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
                     "type": "boolean",
                     "example": null
                   },
@@ -8359,7 +8359,7 @@
                     "example": null
                   },
                   "main": {
-                    "description": "Indicates whether locale is a main locale. Main locales are part of the <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\" target=\"_blank\">Verification System</a> feature.",
+                    "description": "Indicates whether locale is a main locale. Main locales are part of the [Verification System](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
                     "type": "boolean",
                     "example": null
                   },
@@ -8379,12 +8379,12 @@
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "unverify_new_translations": {
-                    "description": "Indicates that new translations for this locale should be marked as unverified. Part of the <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\" target=\"_blank\">Advanced Workflows</a> feature.",
+                    "description": "Indicates that new translations for this locale should be marked as unverified. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
                     "type": "boolean",
                     "example": null
                   },
                   "unverify_updated_translations": {
-                    "description": "Indicates that updated translations for this locale should be marked as unverified. Part of the <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\" target=\"_blank\">Advanced Workflows</a> feature.",
+                    "description": "Indicates that updated translations for this locale should be marked as unverified. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
                     "type": "boolean",
                     "example": null
                   },
@@ -8488,7 +8488,7 @@
             }
           },
           {
-            "description": "File format name. See the <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">format guide</a> for all supported file formats.",
+            "description": "File format name. See the [format guide](https://support.phrase.com/hc/en-us/sections/6111343326364) for all supported file formats.",
             "example": "yml",
             "name": "file_format",
             "in": "query",
@@ -8562,7 +8562,7 @@
             }
           },
           {
-            "description": "Additional formatting and render options. See the <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">format guide</a> for a list of options available for each format. Specify format options like this: <code>...&format_options[foo]=bar</code>",
+            "description": "Additional formatting and render options. See the [format guide](https://support.phrase.com/hc/en-us/sections/6111343326364) for a list of options available for each format. Specify format options like this: `...&format_options[foo]=bar`",
             "example": null,
             "name": "format_options",
             "in": "query",
@@ -8583,7 +8583,7 @@
             }
           },
           {
-            "description": "Indicates whether the locale file should skip all unverified translations. This parameter is deprecated and should be replaced with <code>include_unverified_translations</code>.",
+            "description": "Indicates whether the locale file should skip all unverified translations. This parameter is deprecated and should be replaced with `include_unverified_translations`.",
             "example": null,
             "deprecated": true,
             "name": "skip_unverified_translations",
@@ -8611,7 +8611,7 @@
             }
           },
           {
-            "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.",
+            "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to `true`.",
             "example": null,
             "name": "fallback_locale_id",
             "in": "query",
@@ -8620,7 +8620,7 @@
             }
           },
           {
-            "description": "Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a <code>tag</code> parameter indicating a specific job.",
+            "description": "Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a `tag` parameter indicating a specific job.",
             "example": null,
             "name": "source_locale_id",
             "in": "query",
@@ -8756,7 +8756,7 @@
                 ],
                 "properties": {
                   "file_format": {
-                    "description": "File format name. See the <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">format guide</a> for all supported file formats.",
+                    "description": "File format name. See the [format guide](https://support.phrase.com/hc/en-us/sections/6111343326364) for all supported file formats.",
                     "type": "string",
                     "example": "yml"
                   },
@@ -8791,7 +8791,7 @@
                     "example": true
                   },
                   "format_options": {
-                    "description": "Additional formatting and render options. See the <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">format guide</a> for a list of options available for each format. Specify format options like this: <code>...&format_options[foo]=bar</code>",
+                    "description": "Additional formatting and render options. See the [format guide](https://support.phrase.com/hc/en-us/sections/6111343326364) for a list of options available for each format. Specify format options like this: `...&format_options[foo]=bar`",
                     "type": "object",
                     "properties": {}
                   },
@@ -8822,12 +8822,12 @@
                     ]
                   },
                   "fallback_locale_id": {
-                    "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.",
+                    "description": "If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to `true`.",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
                   "source_locale_id": {
-                    "description": "Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a <code>tag</code> parameter indicating a specific job.",
+                    "description": "Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a `tag` parameter indicating a specific job.",
                     "example": "abcd1234abcd1234abcd1234abcd1234",
                     "type": "string"
                   },
@@ -9136,7 +9136,7 @@
                     ]
                   },
                   "format_options": {
-                    "description": "Additional formatting and render options. Only <code>enclose_in_cdata</code> is available for platform <code>android</code>.",
+                    "description": "Additional formatting and render options. Only `enclose_in_cdata` is available for platform `android`.\n",
                     "type": "object",
                     "additionalProperties": {
                       "type": "string"
@@ -9335,7 +9335,7 @@
                     ]
                   },
                   "format_options": {
-                    "description": "Additional formatting and render options. Only <code>enclose_in_cdata</code> is available for platform <code>android</code>.",
+                    "description": "Additional formatting and render options. Only `enclose_in_cdata` is available for platform `android`.\n",
                     "type": "object",
                     "additionalProperties": {
                       "type": "string"
@@ -9914,7 +9914,7 @@
     "/accounts/{account_id}/distributions/{distribution_id}/release_triggers": {
       "get": {
         "summary": "List release triggers",
-        "description": "List all release triggers for the given distribution.<br>\nNote: Currently only one release trigger can exist per distribution.\n",
+        "description": "List all release triggers for the given distribution.\n\nNote: Currently only one release trigger can exist per distribution.\n",
         "operationId": "release_triggers/list",
         "tags": [
           "Release Triggers"
@@ -15345,7 +15345,7 @@
                     "example": "My Android Project"
                   },
                   "main_format": {
-                    "description": "Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">Format Guide</a> or our <a href=\"#formats\">Formats API Endpoint</a>.",
+                    "description": "Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see [Format Guide](https://support.phrase.com/hc/en-us/sections/6111343326364) or our [Formats API Endpoint](/en/api/strings/formats/list-formats).",
                     "type": "string",
                     "example": "yml"
                   },
@@ -15386,7 +15386,7 @@
                     "example": "abcd1234"
                   },
                   "workflow": {
-                    "description": "(Optional) Review Workflow. \"simple\" / \"review\". <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\">Read more</a>",
+                    "description": "(Optional) Review Workflow. \"simple\" / \"review\". [Read more](https://support.phrase.com/hc/en-us/articles/5784094755484)",
                     "type": "string",
                     "example": "review"
                   },
@@ -15411,7 +15411,7 @@
                     "example": true
                   },
                   "enable_icu_message_format": {
-                    "description": "(Optional) We can validate and highlight your ICU messages. <a href=\"https://support.phrase.com/hc/en-us/articles/5822319545116\">Read more</a>",
+                    "description": "(Optional) We can validate and highlight your ICU messages. [Read more](https://support.phrase.com/hc/en-us/articles/5822319545116)",
                     "type": "boolean",
                     "example": true
                   },
@@ -15421,7 +15421,7 @@
                     "example": true
                   },
                   "autotranslate_enabled": {
-                    "description": "(Optional) Autopilot, requires machine_translation_enabled. <a href=\"https://support.phrase.com/hc/en-us/articles/5822187934364\">Read more</a>",
+                    "description": "(Optional) Autopilot, requires machine_translation_enabled. [Read more](https://support.phrase.com/hc/en-us/articles/5822187934364)",
                     "type": "boolean",
                     "example": true
                   },
@@ -15604,7 +15604,7 @@
                     "example": "abcd1234"
                   },
                   "main_format": {
-                    "description": "(Optional) Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see <a href=\"https://support.phrase.com/hc/en-us/sections/6111343326364\">Format Guide</a> or our <a href=\"#formats\">Formats API Endpoint</a>.",
+                    "description": "(Optional) Main file format specified by its API Extension name. Used for locale downloads if no format is specified. For API Extension names of available file formats see [Format Guide](https://support.phrase.com/hc/en-us/sections/6111343326364) or our [Formats API Endpoint](#formats).",
                     "type": "string",
                     "example": "yml"
                   },
@@ -15630,7 +15630,7 @@
                     "example": false
                   },
                   "workflow": {
-                    "description": "(Optional) Review Workflow. \"simple\" / \"review\". <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\">Read more</a>",
+                    "description": "(Optional) Review Workflow. \"simple\" / \"review\". [Read more](https://support.phrase.com/hc/en-us/articles/5784094755484)",
                     "type": "string",
                     "example": "review"
                   },
@@ -15655,7 +15655,7 @@
                     "example": true
                   },
                   "enable_icu_message_format": {
-                    "description": "(Optional) We can validate and highlight your ICU messages. <a href=\"https://support.phrase.com/hc/en-us/articles/5822319545116\">Read more</a>",
+                    "description": "(Optional) We can validate and highlight your ICU messages. [Read more](https://support.phrase.com/hc/en-us/articles/5822319545116)",
                     "type": "boolean",
                     "example": true
                   },
@@ -15665,7 +15665,7 @@
                     "example": true
                   },
                   "autotranslate_enabled": {
-                    "description": "(Optional) Autopilot, requires machine_translation_enabled. <a href=\"https://support.phrase.com/hc/en-us/articles/5822187934364\">Read more</a>",
+                    "description": "(Optional) Autopilot, requires machine_translation_enabled. [Read more](https://support.phrase.com/hc/en-us/articles/5822187934364)",
                     "type": "boolean",
                     "example": true
                   },
@@ -15700,7 +15700,7 @@
                     "example": true
                   },
                   "default_encoding": {
-                    "description": "(Optional) Sets the default encoding for Uploads. If you leave it empty, we will try to guess it automatically for you when you Upload a file. You can still override this value by setting the <a href='#post-/projects/-project_id-/uploads'>`file_encoding`</a> parameter for Uploads.",
+                    "description": "(Optional) Sets the default encoding for Uploads. If you leave it empty, we will try to guess it automatically for you when you Upload a file. You can still override this value by setting the [`file_encoding`](/en/api/strings/uploads/upload-a-new-file) parameter for Uploads.",
                     "type": "string",
                     "example": "UTF-8",
                     "enum": [
@@ -17380,7 +17380,7 @@
       },
       "post": {
         "summary": "Create a branch",
-        "description": "Create a new branch. <br><br><i>Note: Creating a new branch may take several minutes depending on the project size.</i>",
+        "description": "Create a new branch.\n\n*Note: Creating a new branch may take several minutes depending on the project size.*\n",
         "operationId": "branch/create",
         "tags": [
           "Branches"
@@ -17650,7 +17650,7 @@
     "/projects/{project_id}/branches/{name}/merge": {
       "patch": {
         "summary": "Merge a branch",
-        "description": "Merge an existing branch. <br><br><i>Note: Merging a branch may take several minutes depending on diff size.</i>",
+        "description": "Merge an existing branch. \n\n*Note: Merging a branch may take several minutes depending on diff size.*\n",
         "operationId": "branch/merge",
         "tags": [
           "Branches"
@@ -17725,7 +17725,7 @@
     "/projects/{project_id}/branches/{name}/compare": {
       "get": {
         "summary": "Compare branches",
-        "description": "Compare branch with main branch. <br><br><i>Note: Comparing a branch may take several minutes depending on the project size.</i>",
+        "description": "Compare branch with main branch. \n\n*Note: Comparing a branch may take several minutes depending on the project size.*\n",
         "operationId": "branch/compare",
         "tags": [
           "Branches"
@@ -17983,7 +17983,7 @@
     "/accounts/{account_id}/members": {
       "get": {
         "summary": "List members",
-        "description": "Get all users active in the account. It also lists resources like projects and locales the member has access to. In case nothing is shown the default access from the role is used. Access token scope must include <code>team.manage</code>.",
+        "description": "Get all users active in the account. It also lists resources like projects and locales the member has access to. In case nothing is shown the default access from the role is used. Access token scope must include `team.manage`.",
         "operationId": "members/list",
         "tags": [
           "Members"
@@ -18065,7 +18065,7 @@
     "/accounts/{account_id}/members/{id}": {
       "get": {
         "summary": "Get single member",
-        "description": "Get details on a single user in the account. Access token scope must include <code>team.manage</code>.",
+        "description": "Get details on a single user in the account. Access token scope must include `team.manage`.",
         "operationId": "member/show",
         "tags": [
           "Members"
@@ -18133,7 +18133,7 @@
       },
       "patch": {
         "summary": "Update a member",
-        "description": "Update user permissions in the account. Developers and translators need <code>project_ids</code> and <code>locale_ids</code> assigned to access them. Access token scope must include <code>team.manage</code>.",
+        "description": "Update user permissions in the account. Developers and translators need `project_ids` and `locale_ids` assigned to access them. Access token scope must include `team.manage`.",
         "operationId": "member/update",
         "tags": [
           "Members"
@@ -18248,7 +18248,7 @@
                     ]
                   },
                   "permissions": {
-                    "description": "Additional permissions depending on member role. Available permissions are <code>create_upload</code> and <code>review_translations</code>",
+                    "description": "Additional permissions depending on member role. Available permissions are `create_upload` and `review_translations`",
                     "type": "object",
                     "additionalProperties": {
                       "type": "string"
@@ -18267,7 +18267,7 @@
       },
       "delete": {
         "summary": "Remove a user from the account",
-        "description": "Remove a user from the account. The user will be removed from the account but not deleted from Phrase. Access token scope must include <code>team.manage</code>.",
+        "description": "Remove a user from the account. The user will be removed from the account but not deleted from Phrase. Access token scope must include `team.manage`.",
         "operationId": "member/delete",
         "tags": [
           "Members"
@@ -18319,7 +18319,7 @@
     "/projects/{project_id}/members/{id}": {
       "patch": {
         "summary": "Update a member's project settings",
-        "description": "Update user settings in the project. Access token scope must include <code>team.manage</code>.",
+        "description": "Update user settings in the project. Access token scope must include `team.manage`.",
         "operationId": "member/update_settings",
         "tags": [
           "Members"
@@ -20340,7 +20340,7 @@
                     "example": "desc"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name,...</code> for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name,...</code> to filter for keys with certain comma-seperated list of tags</li>\n  <li><code>uploads:upload_id,...</code> to filter for keys with certain comma-seperated list of uploads</li>\n  <li><code>job:{true|false}</code> to filter for keys mentioned in an active job</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{&gt;=|&lt;=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\nPlease note: If <code>tags</code> are added to filter the search, the search will be limited to a maximum of 65,536 tagged keys.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).\n\nThe following qualifiers are also supported in the search term:\n\n* `ids:key_id,...` for queries on a comma-separated list of ids\n* `name:key_name,...` for text queries on a comma-seperated list of exact key names - spaces, commas, and colons need to be escaped with double backslashes\n* `tags:tag_name,...` to filter for keys with certain comma-seperated list of tags\n* `uploads:upload_id,...` to filter for keys with certain comma-seperated list of uploads\n* `job:{true|false}` to filter for keys mentioned in an active job\n* `translated:{true|false}` for translation status (also requires `locale_id` to be specified)\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n* `unmentioned_in_upload:upload_id,...` to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in **all** uploads\n\nFind more examples [here](/en/api/strings/usage-examples).\nPlease note: If `tags` are added to filter the search, the search will be limited to a maximum of 65,536 tagged keys.\n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -20716,7 +20716,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).\n\nThe following qualifiers are also supported in the search term:\n\n* `ids:key_id,...` for queries on a comma-separated list of ids\n* `name:key_name` for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes\n* `tags:tag_name` to filter for keys with certain tags\n* `translated:{true|false}` for translation status (also requires `locale_id` to be specified)\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n* `unmentioned_in_upload:upload_id,...` to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in **all** uploads\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -20810,7 +20810,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).\n\nThe following qualifiers are also supported in the search term:\n* `ids:key_id,...` for queries on a comma-separated list of ids\n* `name:key_name` for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes\n* `tags:tag_name` to filter for keys with certain tags\n* `translated:{true|false}` for translation status (also requires `locale_id` to be specified)\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n* `unmentioned_in_upload:upload_id,...` to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in **all** uploads\n\nFind more examples [here](/en/api/strings/usage-examples).    \n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -20904,7 +20904,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).\n\nThe following qualifiers are also supported in the search term:\n- `ids:key_id,...` for queries on a comma-separated list of ids\n- `name:key_name` for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes\n- `tags:tag_name` to filter for keys with certain tags\n- `translated:{true|false}` for translation status (also requires `locale_id` to be specified)\n- `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n- `unmentioned_in_upload:upload_id,...` to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in **all** uploads\n\nFind more examples [here](/en/api/strings/usage-examples).    \n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -20998,7 +20998,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to do broad search for keys by name (including wildcards).<br><br>\nThe following qualifiers are also supported in the search term:<br>\n<ul>\n  <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>\n  <li><code>tags:tag_name</code> to filter for keys with certain tags</li>\n  <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>unmentioned_in_upload:upload_id,...</code> to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in <strong>all</strong> uploads</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to do broad search for keys by name (including wildcards).\n\nThe following qualifiers are also supported in the search term:\n\n* `ids:key_id,...` for queries on a comma-separated list of ids\n* `name:key_name` for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes\n* `tags:tag_name` to filter for keys with certain tags\n* `translated:{true|false}` for translation status (also requires `locale_id` to be specified)\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n* `unmentioned_in_upload:upload_id,...` to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in **all** uploads\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "mykey* translated:true"
                   },
@@ -21106,7 +21106,7 @@
       },
       "post": {
         "summary": "Create a new order",
-        "description": "Create a new order. Access token scope must include <code>orders.create</code>.",
+        "description": "Create a new order. Access token scope must include `orders.create`.",
         "operationId": "order/create",
         "tags": [
           "Orders"
@@ -23451,7 +23451,7 @@
     "/projects/{project_id}/translations": {
       "get": {
         "summary": "List all translations",
-        "description": "List translations for the given project. If you want to download all translations for one locale we recommend to use the <code>locales#download</code> endpoint.",
+        "description": "List translations for the given project. If you want to download all translations for one locale we recommend to use the `locales#download` endpoint.\n",
         "operationId": "translations/list",
         "tags": [
           "Translations"
@@ -23503,7 +23503,7 @@
             }
           },
           {
-            "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n  <li><code>reviewed_after:2013-02-21T00:00:00Z</code> for fetching translations that were reviewed after the given timestamp</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+            "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n\n* `id:translation_id,...` for queries on a comma-separated list of ids\n* `tags:XYZ` for tags on the translation\n* `unverified:{true|false}` for verification status\n* `excluded:{true|false}` for exclusion status\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n* `reviewed_after:2013-02-21T00:00:00Z` for fetching translations that were reviewed after the given timestamp\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
             "example": "PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center",
             "name": "q",
             "in": "query",
@@ -23656,7 +23656,7 @@
                     "example": null
                   },
                   "unverified": {
-                    "description": "Indicates whether translation is unverified. Part of the <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\" target=\"_blank\">Advanced Workflows</a> feature.",
+                    "description": "Indicates whether translation is unverified. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
                     "type": "boolean",
                     "example": null
                   },
@@ -23681,7 +23681,7 @@
     "/projects/{project_id}/locales/{locale_id}/translations": {
       "get": {
         "summary": "List translations by locale",
-        "description": "List translations for a specific locale. If you want to download all translations for one locale we recommend to use the <code>locales#download</code> endpoint.",
+        "description": "List translations for a specific locale. If you want to download all translations for one locale we recommend to use the `locales#download` endpoint.\n",
         "operationId": "translations/by_locale",
         "tags": [
           "Translations"
@@ -23730,7 +23730,7 @@
             }
           },
           {
-            "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+            "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n- `id:translation_id,...` for queries on a comma-separated list of ids\n- `unverified:{true|false}` for verification status\n- `tags:XYZ` for tags on the translation\n- `excluded:{true|false}` for exclusion status\n- `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
             "example": "PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center",
             "name": "q",
             "in": "query",
@@ -23845,7 +23845,7 @@
             }
           },
           {
-            "description": "Specify a query to find translations by content (including wildcards).<br><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+            "description": "Specify a query to find translations by content (including wildcards).\n\nThe following qualifiers are supported in the query:\n\n* `id:translation_id,...` for queries on a comma-separated list of ids\n* `unverified:{true|false}` for verification status\n* `tags:XYZ` for tags on the translation\n* `excluded:{true|false}` for exclusion status\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
             "example": "PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center",
             "name": "q",
             "in": "query",
@@ -23911,7 +23911,7 @@
     "/projects/{project_id}/translations/search": {
       "post": {
         "summary": "Search translations",
-        "description": "Search translations for the given project. Provides the same search interface as <code>translations#index</code> but allows POST requests to avoid limitations imposed by GET requests. If you want to download all translations for one locale we recommend to use the <code>locales#download</code> endpoint.",
+        "description": "Search translations for the given project. Provides the same search interface as `translations#index` but allows POST requests to avoid limitations imposed by GET requests. If you want to download all translations for one locale we recommend to use the `locales#download` endpoint.",
         "operationId": "translations/search",
         "tags": [
           "Translations"
@@ -24002,7 +24002,7 @@
                     "example": "desc"
                   },
                   "q": {
-                    "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n\n- `id:translation_id,...` for queries on a comma-separated list of ids\n- `tags:XYZ` for tags on the translation\n- `unverified:{true|false}` for verification status\n- `excluded:{true|false}` for exclusion status\n- `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center"
                   }
@@ -24170,7 +24170,7 @@
                     "example": null
                   },
                   "unverified": {
-                    "description": "Indicates whether translation is unverified. Part of the <a href=\"https://support.phrase.com/hc/en-us/articles/5784094755484\" target=\"_blank\">Advanced Workflows</a> feature.",
+                    "description": "Indicates whether translation is unverified. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
                     "type": "boolean",
                     "example": null
                   },
@@ -24761,7 +24761,7 @@
                     "example": "fc2f11dd6a658fa9652f6f0a9ebee688"
                   },
                   "q": {
-                    "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n* `id:translation_id,...` for queries on a comma-separated list of ids\n* `tags:XYZ` for tags on the translation\n* `unverified:{true|false}` for verification status\n* `excluded:{true|false}` for exclusion status\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "PhraseApp*%20unverified:true%20tags:feature,center"
                   }
@@ -24845,7 +24845,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n* `id:translation_id,...` for queries on a comma-separated list of ids\n* `tags:XYZ` for tags on the translation\n* `unverified:{true|false}` for verification status\n* `excluded:{true|false}` for exclusion status\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "PhraseApp*%20verified:true%20tags:feature,center"
                   },
@@ -24939,7 +24939,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n\n* `id:translation_id,...` for queries on a comma-separated list of ids\n* `tags:XYZ` for tags on the translation\n* `unverified:{true|false}` for verification status\n* `excluded:{true|false}` for exclusion status\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "PhraseApp*%reviewed:false%20tags:feature,center"
                   }
@@ -25023,7 +25023,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n* `id:translation_id,...` for queries on a comma-separated list of ids\n* `tags:XYZ` for tags on the translation\n* `unverified:{true|false}` for verification status\n* `excluded:{true|false}` for exclusion status\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "PhraseApp*%reviewed:true%20tags:feature,center"
                   }
@@ -25107,7 +25107,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n\n* `id:translation_id,...` for queries on a comma-separated list of ids\n* `tags:XYZ` for tags on the translation\n* `unverified:{true|false}` for verification status\n* `excluded:{true|false}` for exclusion status\n* `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "PhraseApp*%20verified:true%20tags:feature,center"
                   },
@@ -25201,7 +25201,7 @@
                     "example": "my-feature-branch"
                   },
                   "q": {
-                    "description": "Specify a query to find translations by content (including wildcards).<br><br>\n<i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>\nThe following qualifiers are supported in the query:<br>\n<ul>\n  <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>\n  <li><code>tags:XYZ</code> for tags on the translation</li>\n  <li><code>unverified:{true|false}</code> for verification status</li>\n  <li><code>excluded:{true|false}</code> for exclusion status</li>\n  <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>\n</ul>\nFind more examples <a href=\"#overview--usage-examples\">here</a>.\n",
+                    "description": "Specify a query to find translations by content (including wildcards).\n\n*Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*\n\nThe following qualifiers are supported in the query:\n- `id:translation_id,...` for queries on a comma-separated list of ids\n- `tags:XYZ` for tags on the translation\n- `unverified:{true|false}` for verification status\n- `excluded:{true|false}` for exclusion status\n- `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries\n\nFind more examples [here](/en/api/strings/usage-examples).\n",
                     "type": "string",
                     "example": "PhraseApp*%20verified:true%20tags:feature,center"
                   },
@@ -25631,7 +25631,7 @@
     "/accounts/{account_id}/search": {
       "post": {
         "summary": "Search across projects",
-        "description": "Search for keys and translations in all account projects <br><br><i>Note: Search is limited to 10000 results and may not include recently updated data depending on the project sizes.</i>",
+        "description": "Search for keys and translations in all account projects\n\n*Note: Search is limited to 10000 results and may not include recently updated data depending on the project sizes.*\n",
         "operationId": "search/in_account",
         "tags": [
           "Search"

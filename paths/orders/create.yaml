@@ -1,6 +1,6 @@
 ---
 summary: Create a new order
-description: Create a new order. Access token scope must include <code>orders.create</code>.
+description: Create a new order. Access token scope must include `orders.create`.
 operationId: order/create
 tags:
 - Orders
