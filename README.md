@@ -33,8 +33,8 @@ You added an endpoint in Phrase Strings. In this project you do the following:
 1. Add newly added schema (if any) to `/schemas/` directory
 2. Add new endpoints to `/paths/` directory and reference it in `paths.yaml`
 3. `npm start` to re-build the clients
-4. `npm run docs` to generate the documentation (and verify it in action using `npm run watch`)
-5. Open a PR with an informative title (e.g. `feat(API): Add an API endpoint for cat pics`)
+4. Open a PR with an informative title (e.g. `feat(API): Add an API endpoint for cat pics`)
+5. Merge automated documentation PR created in `phrase/developer-hub` [(details)](#documentation-sync-mintlify)
 
 ## Workflow
 
@@ -57,6 +57,21 @@ https://github.com/phrase/phrase-cli
 ### Deployment diagram
 
 ![Deployment diagram](docs/openapi%20workflow.svg)
+
+## Documentation Sync (Mintlify)
+
+When you push changes to the `main` branch in this repository, a GitHub Actions workflow automatically triggers an update in the [`phrase/developer-hub`](https://github.com/phrase/developer-hub) repository.
+
+That workflow:
+
+1. Pulls the latest OpenAPI schema from this repo,
+2. Regenerates the documentation,
+3. Creates a pull request with the updated documentation,
+4. Includes a link to a **Mintlify staging environment**, where you can preview the changes live.
+
+You don't need to manually sync or copy the OpenAPI file to the documentation repo. Just review and merge your changes to `main` here - the rest is handled for you.
+
+This ensures that our API documentation stays in sync with the latest changes to the spec.
 
 ## Specification
 
