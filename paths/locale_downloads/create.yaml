@@ -20,7 +20,7 @@ requestBody:
           - file_format
         properties:
           file_format:
-            description: File format name. See the <a href="https://support.phrase.com/hc/en-us/sections/6111343326364">format guide</a> for all supported file formats.
+            description: File format name. See the [format guide](https://support.phrase.com/hc/en-us/sections/6111343326364) for all supported file formats.
             type: string
             example: yml
           branch:
@@ -48,7 +48,7 @@ requestBody:
             type: boolean
             example: true
           format_options:
-            description: 'Additional formatting and render options. See the <a href="https://support.phrase.com/hc/en-us/sections/6111343326364">format guide</a> for a list of options available for each format. Specify format options like this: <code>...&format_options[foo]=bar</code>'
+            description: 'Additional formatting and render options. See the [format guide](https://support.phrase.com/hc/en-us/sections/6111343326364) for a list of options available for each format. Specify format options like this: `...&format_options[foo]=bar`'
             # example:
             type: object
             properties: {}
@@ -73,11 +73,11 @@ requestBody:
               - de
               - en
           fallback_locale_id:
-            description: If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to <code>true</code>.
+            description: If a key has no translation in the locale being downloaded the translation in the fallback locale will be used. Provide the ID of the locale that should be used as the fallback. Requires include_empty_translations to be set to `true`.
             type: string
             example: abcd1234abcd1234abcd1234abcd1234
           source_locale_id:
-            description: Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a <code>tag</code> parameter indicating a specific job.
+            description: Provides the source language of a corresponding job as the source language of the generated locale file. This parameter will be ignored unless used in combination with a `tag` parameter indicating a specific job.
             example: abcd1234abcd1234abcd1234abcd1234
             type: string
           custom_metadata_filters:

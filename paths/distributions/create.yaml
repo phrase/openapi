@@ -84,7 +84,8 @@ requestBody:
             - abcd1234cdef1234abcd1234cdef1234
             - fff565db236400772368235db2c6117e
           format_options:
-            description: Additional formatting and render options. Only <code>enclose_in_cdata</code> is available for platform <code>android</code>.
+            description: |
+              Additional formatting and render options. Only `enclose_in_cdata` is available for platform `android`.
             type: object
             additionalProperties:
               type: string

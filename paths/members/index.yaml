@@ -1,6 +1,6 @@
 ---
 summary: List members
-description: Get all users active in the account. It also lists resources like projects and locales the member has access to. In case nothing is shown the default access from the role is used. Access token scope must include <code>team.manage</code>.
+description: Get all users active in the account. It also lists resources like projects and locales the member has access to. In case nothing is shown the default access from the role is used. Access token scope must include `team.manage`.
 operationId: members/list
 tags:
 - Members

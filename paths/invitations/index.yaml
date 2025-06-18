@@ -1,6 +1,6 @@
 ---
 summary: List invitations
-description: List invitations for an account. It will also list the accessible resources like projects and locales the invited user has access to. In case nothing is shown the default access from the role is used. Access token scope must include <code>team.manage</code>.
+description: List invitations for an account. It will also list the accessible resources like projects and locales the invited user has access to. In case nothing is shown the default access from the role is used. Access token scope must include `team.manage`.
 operationId: invitations/list
 tags:
 - Invitations

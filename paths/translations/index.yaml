@@ -1,6 +1,7 @@
 ---
 summary: List all translations
-description: List translations for the given project. If you want to download all translations for one locale we recommend to use the <code>locales#download</code> endpoint.
+description: |
+  List translations for the given project. If you want to download all translations for one locale we recommend to use the `locales#download` endpoint.
 operationId: translations/list
 tags:
 - Translations
@@ -30,18 +31,20 @@ parameters:
   schema:
     type: string
 - description: |
-    Specify a query to find translations by content (including wildcards).<br><br>
-    <i>Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).</i><br>
-    The following qualifiers are supported in the query:<br>
-    <ul>
-      <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>
-      <li><code>tags:XYZ</code> for tags on the translation</li>
-      <li><code>unverified:{true|false}</code> for verification status</li>
-      <li><code>excluded:{true|false}</code> for exclusion status</li>
-      <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>
-      <li><code>reviewed_after:2013-02-21T00:00:00Z</code> for fetching translations that were reviewed after the given timestamp</li>
-    </ul>
-    Find more examples <a href="#overview--usage-examples">here</a>.
+    Specify a query to find translations by content (including wildcards).
+    
+    *Note: Search is limited to 10000 results and may not include recently updated data (depending on the project size).*
+    
+    The following qualifiers are supported in the query:
+    
+    * `id:translation_id,...` for queries on a comma-separated list of ids
+    * `tags:XYZ` for tags on the translation
+    * `unverified:{true|false}` for verification status
+    * `excluded:{true|false}` for exclusion status
+    * `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries
+    * `reviewed_after:2013-02-21T00:00:00Z` for fetching translations that were reviewed after the given timestamp
+    
+    Find more examples [here](/en/api/strings/usage-examples).
   example: PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center
   name: q
   in: query

@@ -1,6 +1,6 @@
 ---
 summary: Update a member's project settings
-description: Update user settings in the project. Access token scope must include <code>team.manage</code>.
+description: Update user settings in the project. Access token scope must include `team.manage`.
 operationId: member/update_settings
 tags:
 - Members

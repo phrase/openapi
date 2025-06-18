@@ -1,6 +1,6 @@
 ---
 summary: Delete an invitation
-description: Delete an existing invitation (must not be accepted yet). Access token scope must include <code>team.manage</code>.
+description: Delete an existing invitation (must not be accepted yet). Access token scope must include `team.manage`.
 operationId: invitation/delete
 tags:
 - Invitations

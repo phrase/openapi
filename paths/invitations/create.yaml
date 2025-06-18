@@ -1,6 +1,6 @@
 ---
 summary: Create a new invitation
-description: Invite a person to an account. Developers and translators need <code>project_ids</code> and <code>locale_ids</code> assigned to access them. Access token scope must include <code>team.manage</code>.
+description: Invite a person to an account. Developers and translators need `project_ids` and `locale_ids` assigned to access them. Access token scope must include `team.manage`.
 operationId: invitation/create
 tags:
 - Invitations
@@ -59,7 +59,7 @@ requestBody:
           - role
         properties:
           email:
-            description: The email of the invited user. The <code>email</code> can not be updated once created. Create a new invitation for each unique email.
+            description: The email of the invited user. The `email` can not be updated once created. Create a new invitation for each unique email.
             type: string
             example: example@mail.com
           role:
@@ -99,7 +99,7 @@ requestBody:
             - en
             - de
           permissions:
-            description: Additional permissions depending on invitation role. Available permissions are <code>create_upload</code> and <code>review_translations</code>
+            description: Additional permissions depending on invitation role. Available permissions are `create_upload` and `review_translations`
             type: object
             additionalProperties:
               type: string

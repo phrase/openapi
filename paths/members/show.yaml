@@ -1,6 +1,6 @@
 ---
 summary: Get single member
-description: Get details on a single user in the account. Access token scope must include <code>team.manage</code>.
+description: Get details on a single user in the account. Access token scope must include `team.manage`.
 operationId: member/show
 tags:
 - Members

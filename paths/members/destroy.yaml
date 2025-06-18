@@ -1,6 +1,6 @@
 ---
 summary: Remove a user from the account
-description: Remove a user from the account. The user will be removed from the account but not deleted from Phrase. Access token scope must include <code>team.manage</code>.
+description: Remove a user from the account. The user will be removed from the account but not deleted from Phrase. Access token scope must include `team.manage`.
 operationId: member/delete
 tags:
 - Members

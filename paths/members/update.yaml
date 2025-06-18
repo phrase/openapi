@@ -1,6 +1,6 @@
 ---
 summary: Update a member
-description: Update user permissions in the account. Developers and translators need <code>project_ids</code> and <code>locale_ids</code> assigned to access them. Access token scope must include <code>team.manage</code>.
+description: Update user permissions in the account. Developers and translators need `project_ids` and `locale_ids` assigned to access them. Access token scope must include `team.manage`.
 operationId: member/update
 tags:
 - Members
@@ -88,7 +88,7 @@ requestBody:
             - abcd1234abcd1234abcd1234
             - abcd1234abcd1234abcd1235
           permissions:
-            description: Additional permissions depending on member role. Available permissions are <code>create_upload</code> and <code>review_translations</code>
+            description: Additional permissions depending on member role. Available permissions are `create_upload` and `review_translations`
             type: object
             additionalProperties:
               type: string

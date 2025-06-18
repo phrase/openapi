@@ -29,16 +29,17 @@ parameters:
   schema:
     type: string
 - description: |
-    Specify a query to find translations by content (including wildcards).<br><br>
-    The following qualifiers are supported in the query:<br>
-    <ul>
-      <li><code>id:translation_id,...</code> for queries on a comma-separated list of ids</li>
-      <li><code>unverified:{true|false}</code> for verification status</li>
-      <li><code>tags:XYZ</code> for tags on the translation</li>
-      <li><code>excluded:{true|false}</code> for exclusion status</li>
-      <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>
-    </ul>
-    Find more examples <a href="#overview--usage-examples">here</a>.
+    Specify a query to find translations by content (including wildcards).
+
+    The following qualifiers are supported in the query:
+    
+    * `id:translation_id,...` for queries on a comma-separated list of ids
+    * `unverified:{true|false}` for verification status
+    * `tags:XYZ` for tags on the translation
+    * `excluded:{true|false}` for exclusion status
+    * `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries
+    
+    Find more examples [here](/en/api/strings/usage-examples).
   example: PhraseApp*%20unverified:true%20excluded:true%20tags:feature,center
   name: q
   in: query
