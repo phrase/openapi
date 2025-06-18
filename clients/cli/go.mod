@@ -2,6 +2,8 @@ module github.com/phrase/phrase-cli
 
 go 1.24
 
+toolchain go1.24.4
+
 require (
 	github.com/antihax/optional v1.0.0
 	github.com/bgentry/speakeasy v0.2.0
