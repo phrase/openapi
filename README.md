@@ -34,7 +34,7 @@ You added an endpoint in Phrase Strings. In this project you do the following:
 2. Add new endpoints to `/paths/` directory and reference it in `paths.yaml`
 3. `npm start` to re-build the clients
 4. Open a PR with an informative title (e.g. `feat(API): Add an API endpoint for cat pics`)
-5. Merge automated documentation PR created in `phrase/developer-hub` [(details)](#documentation-sync-mintlify)
+5. Merge automated documentation PR [(details)](#documentation-sync)
 
 ## Workflow
 
@@ -58,20 +58,19 @@ https://github.com/phrase/phrase-cli
 
 ![Deployment diagram](docs/openapi%20workflow.svg)
 
-## Documentation Sync (Mintlify)
+## Documentation Sync
 
-When you push changes to the `main` branch in this repository, a GitHub Actions workflow automatically triggers an update in the [`phrase/developer-hub`](https://github.com/phrase/developer-hub) repository.
+Changes pushed to the main branch automatically trigger an internal workflow that updates the API documentation based on the latest OpenAPI schema.
 
-That workflow:
+This includes:
 
-1. Pulls the latest OpenAPI schema from this repo,
-2. Regenerates the documentation,
-3. Creates a pull request with the updated documentation,
-4. Includes a link to a **Mintlify staging environment**, where you can preview the changes live.
+1. Pulling the most recent schema from this repository,
+2. Regenerating the documentation site,
+3. Deploying the updated docs.
 
-You don't need to manually sync or copy the OpenAPI file to the documentation repo. Just review and merge your changes to `main` here - the rest is handled for you.
+You don't need to take any additional steps. Just make sure your changes are properly committed and merged into main – the documentation will be updated automatically.
 
-This ensures that our API documentation stays in sync with the latest changes to the spec.
+This setup ensures that the public API documentation always reflects the current OpenAPI spec.
 
 ## Specification
 
