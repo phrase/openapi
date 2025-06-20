@@ -8,3 +8,4 @@ gitRepoId: phrase-go
 httpUserAgent: Phrase Strings go
 templateDir: openapi-generator/templates/go
 apiNameSuffix: Api
+invokerPackage: phrase
