@@ -6,7 +6,7 @@ on:
     paths:
       - .github/workflows/test-cli.yml
       - openapi-generator/cli_lang.yaml
-      - clients/cli/cmd/internal/*
+      - clients/cli/*
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.21.9'
+          go-version: '1.24.4'
       - name: Generate CLI
         env:
           GOPRIVATE: github.com/phrase/phrase-go
