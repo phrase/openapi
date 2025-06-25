@@ -277,7 +277,7 @@ func asyncDownloadParams(localVarOptionals phrase.LocaleDownloadOpts) phrase.Loc
 				sourceValue := reflect.ValueOf(localVarOptionals).FieldByName(sourceField.Name)
 				targetValue := reflect.ValueOf(&localeDownloadCreateParams).Elem().Field(i)
 				// handle slices
-				if sourceValue.Kind() == reflect.Slice && targetValue.Kind() == reflect.Slice {
+				if sourceValue.Kind() == reflect.Slice {
 					if sourceValue.Len() > 0 {
 						targetValue.Set(reflect.MakeSlice(targetValue.Type(), sourceValue.Len(), sourceValue.Len()))
 						for j := 0; j < sourceValue.Len(); j++ {
