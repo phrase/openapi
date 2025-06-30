@@ -44,7 +44,7 @@ locale:
     - zero
     - one
     - other
-    plural_ordinal_forms:
+    ordinal_plural_forms:
       - zero
       - other
     source_locale:
