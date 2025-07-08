@@ -8677,8 +8677,7 @@
             "description": "Only include keys that have been updated since the given date. The date must be in ISO 8601 format (e.g., `2023-01-01T00:00:00Z`).\n",
             "in": "query",
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "string"
             },
             "example": "2023-01-01T00:00:00Z"
           }
@@ -8848,8 +8847,7 @@
                   },
                   "updated_since": {
                     "description": "Only include keys that have been updated since the given date. The date must be in ISO 8601 format (e.g., `2023-01-01T00:00:00Z`).\n",
-                    "type": "string",
-                    "format": "date-time"
+                    "type": "string"
                   }
                 }
               }

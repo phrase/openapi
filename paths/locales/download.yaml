@@ -149,7 +149,6 @@ parameters:
     in: query
     schema:
       type: string
-      format: date-time
     example: "2023-01-01T00:00:00Z"
 responses:
   "200":

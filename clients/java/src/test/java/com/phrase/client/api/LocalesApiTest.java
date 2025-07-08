@@ -172,7 +172,7 @@ public class LocalesApiTest {
         String translationKeyPrefix = null;
         Boolean filterByPrefix = null;
         List<String> localeIds = null;
-        OffsetDateTime updatedSince = null;
+        String updatedSince = null;
         File response = api.localeDownload(projectId, id, xPhraseAppOTP, ifModifiedSince, ifNoneMatch,
             branch, fileFormat, tags, tag, includeEmptyTranslations, excludeEmptyZeroForms,
             includeTranslatedKeys, keepNotranslateTags, convertEmoji, formatOptions, encoding,
