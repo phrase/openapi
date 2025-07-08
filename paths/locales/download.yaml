@@ -143,6 +143,14 @@ parameters:
     example:
       - de
       - en
+  - name: updated_since
+    description: |
+      Only include keys that have been updated since the given date. The date must be in ISO 8601 format (e.g., `2023-01-01T00:00:00Z`).
+    in: query
+    schema:
+      type: string
+      format: date-time
+    example: "2023-01-01T00:00:00Z"
 responses:
   "200":
     description: OK
