@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.0](https://github.com/phrase/openapi/compare/php-v3.5.0...php-v3.6.0) (2025-07-09)
+
+
+### Features
+
+* **API:** add updated_since param for downloads ([#858](https://github.com/phrase/openapi/issues/858)) ([db4196b](https://github.com/phrase/openapi/commit/db4196bfb1a45f628577bebb99aad7da1179c241))
+
 ## [3.5.0](https://github.com/phrase/openapi/compare/php-v3.4.0...php-v3.5.0) (2025-05-23)
 
 
