@@ -10,6 +10,7 @@ parameters:
 - "$ref": "../../parameters.yaml#/job_id"
 - "$ref": "../../parameters.yaml#/id"
 - "$ref": "../../parameters.yaml#/branch"
+- "$ref": "../../parameters.yaml#/include_annotations"
 responses:
   '200':
     description: OK

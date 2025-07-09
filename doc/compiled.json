@@ -3182,6 +3182,24 @@
           "review_completed_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "annotations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "value"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "example": {
@@ -4767,6 +4785,16 @@
         "in": "query",
         "schema": {
           "type": "string"
+        }
+      },
+      "include_annotations": {
+        "in": "query",
+        "name": "include_annotations",
+        "description": "Include job-locale annotations in the response",
+        "required": false,
+        "schema": {
+          "type": "boolean",
+          "default": false
         }
       }
     },
@@ -15800,6 +15828,9 @@
           },
           {
             "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/include_annotations"
           }
         ],
         "responses": {
@@ -16007,6 +16038,9 @@
           },
           {
             "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/include_annotations"
           }
         ],
         "responses": {
