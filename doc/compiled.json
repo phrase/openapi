@@ -8674,7 +8674,7 @@
           },
           {
             "name": "updated_since",
-            "description": "Only include keys that have been updated since the given date. The date must be in ISO 8601 format (e.g., `2023-01-01T00:00:00Z`).\n",
+            "description": "Only include translations and keys that have been updated since the given date. The date must be in ISO 8601 format (e.g., `2023-01-01T00:00:00Z`).\n",
             "in": "query",
             "schema": {
               "type": "string"
@@ -8846,8 +8846,9 @@
                     "properties": {}
                   },
                   "updated_since": {
-                    "description": "Only include keys that have been updated since the given date. The date must be in ISO 8601 format (e.g., `2023-01-01T00:00:00Z`).\n",
-                    "type": "string"
+                    "description": "Only include translations and keys that have been updated since the given date. The date must be in ISO 8601 format (e.g., `2023-01-01T00:00:00Z`).\n",
+                    "type": "string",
+                    "example": "2023-01-01T00:00:00Z"
                   }
                 }
               }
