@@ -25,6 +25,18 @@ job_locale:
     review_completed_at:
       type: string
       format: date-time
+    annotations:
+      type: array
+      items:
+        type: object
+        required:
+          - name
+          - value
+        properties:
+          name:
+            type: string
+          value:
+            type: string
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     job:

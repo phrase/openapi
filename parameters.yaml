@@ -288,3 +288,11 @@ job_updated_since:
   in: query
   schema:
     type: string
+include_annotations:
+  in: query
+  name: include_annotations
+  description: Include job-locale annotations in the response
+  required: false
+  schema:
+    type: boolean
+    default: false
