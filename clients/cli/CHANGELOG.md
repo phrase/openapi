@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.43.0](https://github.com/phrase/openapi/compare/cli-v2.42.2...cli-v2.43.0) (2025-07-09)
+
+
+### Features
+
+* **API:** add updated_since param for downloads ([#858](https://github.com/phrase/openapi/issues/858)) ([db4196b](https://github.com/phrase/openapi/commit/db4196bfb1a45f628577bebb99aad7da1179c241))
+
 ## [2.42.2](https://github.com/phrase/openapi/compare/cli-v2.42.1...cli-v2.42.2) (2025-06-30)
 
 
