@@ -21,6 +21,10 @@ job_details:
           type: array
           items:
             "$ref": "./key_preview.yaml#/key_preview"
+        annotations:
+          type: array
+          items:
+            "$ref": "./job_annotation.yaml#/job_annotation"
       example:
         owner:
           id: abcd1234cdef1234abcd1234cdef1234

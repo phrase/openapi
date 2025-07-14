@@ -102,6 +102,13 @@ job_id:
   required: true
   schema:
     type: string
+job_locale_id:
+  in: path
+  name: job_locale_id
+  description: Job Locale ID
+  required: true
+  schema:
+    type: string
 job_template_id:
   in: path
   name: job_template_id

@@ -1,0 +1,39 @@
+---
+summary: List job annotations
+description: Retrieve a list of annotations for a job.
+operationId: job_annotations/index
+tags:
+- Job Annotations
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/job_id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/job_annotation.yaml#/job_annotation"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/annotations" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X GET
+- lang: CLI v2
+  source: |-
+    phrase job_annotations index \
+    --project_id <project_id> \
+    --job_id <job_id> \
+    --access_token <token>
+x-cli-version: '2.43'
