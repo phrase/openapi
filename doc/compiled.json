@@ -17194,6 +17194,70 @@
           }
         },
         "x-cli-version": "2.43"
+      },
+      "delete": {
+        "summary": "Delete a job annotation",
+        "description": "Delete an annotation for a job.",
+        "operationId": "job_annotation/destroy",
+        "tags": [
+          "Job Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Name of the annotation to delete.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/annotations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_annotations destroy \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.43"
       }
     },
     "/projects/{project_id}/jobs/{job_id}/locales/{job_locale_id}/annotations": {
@@ -17353,6 +17417,73 @@
             }
           }
         },
+        "x-cli-version": "2.43"
+      },
+      "delete": {
+        "summary": "Delete a job locale annotation",
+        "description": "Delete an annotation for a job locale.",
+        "operationId": "job_locale_annotation/destroy",
+        "tags": [
+          "Job Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_locale_id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Name of the annotation to delete.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:job_locale_id/annotations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_locale_annotations destroy \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--job_locale_id <job_locale_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
         "x-cli-version": "2.43"
       }
     },

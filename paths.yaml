@@ -356,12 +356,16 @@
 "/projects/{project_id}/jobs/{job_id}/annotations/{id}":
   patch:
     "$ref": "./paths/job_annotations/update.yaml"
+  delete:
+    "$ref": "./paths/job_annotations/destroy.yaml"
 "/projects/{project_id}/jobs/{job_id}/locales/{job_locale_id}/annotations":
   get:
     "$ref": "./paths/job_locale_annotations/index.yaml"
 "/projects/{project_id}/jobs/{job_id}/locales/{job_locale_id}/annotations/{id}":
   patch:
     "$ref": "./paths/job_locale_annotations/update.yaml"
+  delete:
+    "$ref": "./paths/job_locale_annotations/destroy.yaml"
 "/projects/{project_id}/variables":
   get:
     "$ref": "./paths/variables/index.yaml"
