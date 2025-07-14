@@ -74,6 +74,10 @@ requestBody:
             description: Indicates whether key supports pluralization
             type: boolean
             example:
+          use_ordinal_rules:
+            description: Indicates whether key uses ordinal rules for pluralization
+            type: boolean
+            example:
           name_plural:
             description: Plural name for the key (used in some file formats, e.g. Gettext)
             type: string

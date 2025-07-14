@@ -9,4 +9,6 @@ key_preview:
       type: string
     plural:
       type: boolean
+    use_ordinal_rules:
+      type: boolean
   example: 

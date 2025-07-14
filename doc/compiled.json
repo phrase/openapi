@@ -658,6 +658,9 @@
           },
           "plural": {
             "type": "boolean"
+          },
+          "use_ordinal_rules": {
+            "type": "boolean"
           }
         },
         "example": null
@@ -20111,6 +20114,11 @@
                     "type": "boolean",
                     "example": null
                   },
+                  "use_ordinal_rules": {
+                    "description": "Indicates whether key uses ordinal rules for pluralization",
+                    "type": "boolean",
+                    "example": null
+                  },
                   "name_plural": {
                     "description": "Plural name for the key (used in some file formats, e.g. Gettext)",
                     "type": "string",
@@ -20543,6 +20551,11 @@
                   },
                   "plural": {
                     "description": "Indicates whether key supports pluralization",
+                    "type": "boolean",
+                    "example": null
+                  },
+                  "use_ordinal_rules": {
+                    "description": "Indicates whether key uses ordinal rules for pluralization",
                     "type": "boolean",
                     "example": null
                   },
