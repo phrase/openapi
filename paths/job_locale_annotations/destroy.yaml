@@ -1,7 +1,7 @@
 ---
 summary: Delete a job locale annotation
 description: Delete an annotation for a job locale.
-operationId: job_locale_annotation/destroy
+operationId: job_locale_annotation/delete
 tags:
 - Job Annotations
 parameters:
@@ -39,7 +39,7 @@ x-code-samples:
       -X DELETE
 - lang: CLI v2
   source: |-
-    phrase job_locale_annotations destroy \
+    phrase job_locale_annotations delete \
     --project_id <project_id> \
     --job_id <job_id> \
     --job_locale_id <job_locale_id> \

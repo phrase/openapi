@@ -1,7 +1,7 @@
 ---
 summary: Delete a job annotation
 description: Delete an annotation for a job.
-operationId: job_annotation/destroy
+operationId: job_annotation/delete
 tags:
 - Job Annotations
 parameters:
@@ -38,7 +38,7 @@ x-code-samples:
       -X DELETE
 - lang: CLI v2
   source: |-
-    phrase job_annotations destroy \
+    phrase job_annotations delete \
     --project_id <project_id> \
     --job_id <job_id> \
     --id <id> \
