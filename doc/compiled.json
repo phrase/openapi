@@ -17058,6 +17058,9 @@
             "$ref": "#/components/parameters/project_id"
           },
           {
+            "$ref": "#/components/parameters/branch"
+          },
+          {
             "$ref": "#/components/parameters/job_id"
           }
         ],
@@ -17210,6 +17213,9 @@
             "$ref": "#/components/parameters/project_id"
           },
           {
+            "$ref": "#/components/parameters/branch"
+          },
+          {
             "$ref": "#/components/parameters/job_id"
           },
           {
@@ -17274,6 +17280,9 @@
           },
           {
             "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
           },
           {
             "$ref": "#/components/parameters/job_id"
@@ -17432,6 +17441,9 @@
           },
           {
             "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
           },
           {
             "$ref": "#/components/parameters/job_id"

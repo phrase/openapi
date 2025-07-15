@@ -7,6 +7,7 @@ tags:
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/branch"
 - "$ref": "../../parameters.yaml#/job_id"
 - name: id
   in: path
