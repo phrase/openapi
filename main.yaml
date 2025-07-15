@@ -124,6 +124,9 @@ tags:
   - name: Invitations
     description: |
       With the invitation endpoint you can [manage and invite users](https://support.phrase.com/hc/en-us/articles/5709742418716) to Phrase Strings via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
+  - name: Job Annotations
+    description: |
+      The job annotations endpoints allow you to create, update and delete annotations for jobs and job locales. Annotations are used to add metadata to a job or job locale.
   - name: Job Comments
   - name: Job Locales
   - name: Job Template Locales

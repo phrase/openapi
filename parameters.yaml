@@ -102,6 +102,13 @@ job_id:
   required: true
   schema:
     type: string
+job_locale_id:
+  in: path
+  name: job_locale_id
+  description: Job Locale ID
+  required: true
+  schema:
+    type: string
 job_template_id:
   in: path
   name: job_template_id
@@ -288,3 +295,11 @@ job_updated_since:
   in: query
   schema:
     type: string
+include_annotations:
+  in: query
+  name: include_annotations
+  description: Include job-locale annotations in the response
+  required: false
+  schema:
+    type: boolean
+    default: false
