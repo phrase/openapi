@@ -45,7 +45,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase job_annotations update \
+    phrase job_locale_annotations update \
     --project_id <project_id> \
     --job_id <job_id> \
     --job_locale_id <job_locale_id> \

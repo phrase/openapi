@@ -17315,7 +17315,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_annotations index \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--job_locale_id <job_locale_id> \\\n--access_token <token>"
+            "source": "phrase job_locale_annotations index \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--job_locale_id <job_locale_id> \\\n--access_token <token>"
           }
         ],
         "x-cli-version": "2.43"
@@ -17391,7 +17391,7 @@
           },
           {
             "lang": "CLI v2",
-            "source": "phrase job_annotations update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--job_locale_id <job_locale_id> \\\n--id <id> \\\n--data '{\"value\": \"Some value...\"}' \\\n--access_token <token>"
+            "source": "phrase job_locale_annotations update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--job_locale_id <job_locale_id> \\\n--id <id> \\\n--data '{\"value\": \"Some value...\"}' \\\n--access_token <token>"
           }
         ],
         "requestBody": {
