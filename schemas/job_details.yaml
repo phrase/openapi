@@ -24,7 +24,7 @@ job_details:
         annotations:
           type: array
           items:
-            "$ref": "./job_annotation.yaml#/job_annotation"
+            "$ref": "./job_annotation_short.yaml#/job_annotation_short"
       example:
         owner:
           id: abcd1234cdef1234abcd1234cdef1234

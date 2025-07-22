@@ -3100,6 +3100,26 @@
           "updated_at": "2023-10-01T12:00:00Z"
         }
       },
+      "job_annotation_short": {
+        "type": "object",
+        "title": "job_annotation",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "example": {
+          "name": "priority",
+          "value": "high"
+        }
+      },
       "job_details": {
         "allOf": [
           {
@@ -3137,7 +3157,7 @@
               "annotations": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/job_annotation"
+                  "$ref": "#/components/schemas/job_annotation_short"
                 }
               }
             },
@@ -3226,7 +3246,7 @@
           "annotations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/job_annotation"
+              "$ref": "#/components/schemas/job_annotation_short"
             }
           }
         },
@@ -10756,13 +10776,10 @@
             "$ref": "#/components/parameters/id"
           },
           {
-            "description": "specify the branch to use",
-            "example": "my-feature-branch",
-            "name": "branch",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/include_annotations"
           }
         ],
         "responses": {

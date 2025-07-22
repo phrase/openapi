@@ -114,6 +114,8 @@ schemas:
     "$ref": schemas/job.yaml#/job
   job_annotation:
     "$ref": schemas/job_annotation.yaml#/job_annotation
+  job_annotation_short:
+    "$ref": schemas/job_annotation_short.yaml#/job_annotation_short
   job_details:
     "$ref": schemas/job_details.yaml#/job_details
   job_preview:
