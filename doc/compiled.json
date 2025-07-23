@@ -89,6 +89,10 @@
       "description": "With the invitation endpoint you can [manage and invite users](https://support.phrase.com/hc/en-us/articles/5709742418716) to Phrase Strings via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.\n"
     },
     {
+      "name": "Job Annotations",
+      "description": "The job annotations endpoints allow you to create, update and delete annotations for jobs and job locales. Annotations are used to add metadata to a job or job locale.\n"
+    },
+    {
       "name": "Job Comments"
     },
     {
@@ -3084,6 +3088,56 @@
           }
         }
       },
+      "job_annotation": {
+        "type": "object",
+        "title": "job_annotation",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "example": {
+          "name": "priority",
+          "value": "high",
+          "created_at": "2023-10-01T12:00:00Z",
+          "updated_at": "2023-10-01T12:00:00Z"
+        }
+      },
+      "job_annotation_short": {
+        "type": "object",
+        "title": "job_annotation",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "example": {
+          "name": "priority",
+          "value": "high"
+        }
+      },
       "job_details": {
         "allOf": [
           {
@@ -3116,6 +3170,12 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/key_preview"
+                }
+              },
+              "annotations": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/job_annotation_short"
                 }
               }
             },
@@ -3200,6 +3260,12 @@
           "review_completed_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "annotations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/job_annotation_short"
+            }
           }
         },
         "example": {
@@ -3229,6 +3295,14 @@
             "name": "English",
             "code": "en-GB"
           },
+          "annotations": [
+            {
+              "name": "priority",
+              "value": "high",
+              "created_at": "2023-10-01T12:00:00Z",
+              "updated_at": "2023-10-01T12:00:00Z"
+            }
+          ],
           "completed": true,
           "translation_completed_at": "2017-01-28T09:52:53Z",
           "review_completed_at": "2017-01-28T09:52:53Z"
@@ -4567,6 +4641,15 @@
           "type": "string"
         }
       },
+      "job_locale_id": {
+        "in": "path",
+        "name": "job_locale_id",
+        "description": "Job Locale ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
       "job_template_id": {
         "in": "path",
         "name": "job_template_id",
@@ -4785,6 +4868,16 @@
         "in": "query",
         "schema": {
           "type": "string"
+        }
+      },
+      "include_annotations": {
+        "in": "query",
+        "name": "include_annotations",
+        "description": "Include job-locale annotations in the response",
+        "required": false,
+        "schema": {
+          "type": "boolean",
+          "default": false
         }
       }
     },
@@ -10701,13 +10794,10 @@
             "$ref": "#/components/parameters/id"
           },
           {
-            "description": "specify the branch to use",
-            "example": "my-feature-branch",
-            "name": "branch",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/include_annotations"
           }
         ],
         "responses": {
@@ -15818,6 +15908,9 @@
           },
           {
             "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/include_annotations"
           }
         ],
         "responses": {
@@ -16025,6 +16118,9 @@
           },
           {
             "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/include_annotations"
           }
         ],
         "responses": {
@@ -16979,6 +17075,463 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/projects/{project_id}/jobs/{job_id}/annotations": {
+      "get": {
+        "summary": "List job annotations",
+        "description": "Retrieve a list of annotations for a job.",
+        "operationId": "job_annotations/list",
+        "tags": [
+          "Job Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/job_annotation"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/annotations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X GET"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_annotations list \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.43"
+      }
+    },
+    "/projects/{project_id}/jobs/{job_id}/annotations/{id}": {
+      "patch": {
+        "summary": "Create/Update a job annotation",
+        "description": "Create or update an annotation for a job. If the annotation already exists, it will be updated; otherwise, a new annotation will be created.",
+        "operationId": "job_annotation/update",
+        "tags": [
+          "Job Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Name of the annotation to set or update.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/job_annotation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/annotations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"value\":\"Some value...\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_annotations update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--data '{\"value\": \"Some value...\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "job_annotation/update/parameters",
+                "properties": {
+                  "value": {
+                    "description": "Annotation value",
+                    "type": "string",
+                    "example": "Some value..."
+                  },
+                  "branch": {
+                    "description": "Branch name of the job",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.43"
+      },
+      "delete": {
+        "summary": "Delete a job annotation",
+        "description": "Delete an annotation for a job.",
+        "operationId": "job_annotation/delete",
+        "tags": [
+          "Job Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Name of the annotation to delete.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/annotations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_annotations delete \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.43"
+      }
+    },
+    "/projects/{project_id}/jobs/{job_id}/locales/{job_locale_id}/annotations": {
+      "get": {
+        "summary": "List job locale annotations",
+        "description": "Retrieve a list of annotations for a job locale.",
+        "operationId": "job_locale_annotations/list",
+        "tags": [
+          "Job Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_locale_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/job_annotation"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:job_locale_id/annotations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X GET"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_locale_annotations list \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--job_locale_id <job_locale_id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.43"
+      }
+    },
+    "/projects/{project_id}/jobs/{job_id}/locales/{job_locale_id}/annotations/{id}": {
+      "patch": {
+        "summary": "Create/Update a job locale annotation",
+        "description": "Create or update an annotation for a job locale. If the annotation already exists, it will be updated; otherwise, a new annotation will be created.",
+        "operationId": "job_locale_annotation/update",
+        "tags": [
+          "Job Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_locale_id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Name of the annotation to set or update.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/job_annotation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:job_locale_id/annotations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"value\":\"Some value...\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_locale_annotations update \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--job_locale_id <job_locale_id> \\\n--id <id> \\\n--data '{\"value\": \"Some value...\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "job_annotation/update/parameters",
+                "properties": {
+                  "value": {
+                    "description": "Annotation value",
+                    "type": "string",
+                    "example": "Some value..."
+                  },
+                  "branch": {
+                    "description": "Branch name of the job",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-cli-version": "2.43"
+      },
+      "delete": {
+        "summary": "Delete a job locale annotation",
+        "description": "Delete an annotation for a job locale.",
+        "operationId": "job_locale_annotation/delete",
+        "tags": [
+          "Job Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
+          },
+          {
+            "$ref": "#/components/parameters/job_id"
+          },
+          {
+            "$ref": "#/components/parameters/job_locale_id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Name of the annotation to delete.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:job_locale_id/annotations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase job_locale_annotations delete \\\n--project_id <project_id> \\\n--job_id <job_id> \\\n--job_locale_id <job_locale_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.43"
       }
     },
     "/projects/{project_id}/variables": {

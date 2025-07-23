@@ -1,22 +1,23 @@
 ---
-summary: Get a single job
-description: Get details on a single job for a given project.
-operationId: job/show
+summary: List job annotations
+description: Retrieve a list of annotations for a job.
+operationId: job_annotations/list
 tags:
-- Jobs
+- Job Annotations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
-- "$ref": "../../parameters.yaml#/id"
 - "$ref": "../../parameters.yaml#/branch"
-- "$ref": "../../parameters.yaml#/include_annotations"
+- "$ref": "../../parameters.yaml#/job_id"
 responses:
   '200':
     description: OK
     content:
       application/json:
         schema:
-          "$ref": "../../schemas/job_details.yaml#/job_details"
+          type: array
+          items:
+            "$ref": "../../schemas/job_annotation.yaml#/job_annotation"
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
@@ -24,22 +25,16 @@ responses:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
       X-Rate-Limit-Reset:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
-  '400':
-    "$ref": "../../responses.yaml#/400"
-  '404':
-    "$ref": "../../responses.yaml#/404"
-  '429':
-    "$ref": "../../responses.yaml#/429"
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:id?branch=my-feature-branch" \
-      -u USERNAME_OR_ACCESS_TOKEN
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/annotations" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X GET
 - lang: CLI v2
   source: |-
-    phrase jobs show \
+    phrase job_annotations list \
     --project_id <project_id> \
-    --id <id> \
-    --branch my-feature-branch \
+    --job_id <job_id> \
     --access_token <token>
-x-cli-version: '2.5'
+x-cli-version: '2.43'

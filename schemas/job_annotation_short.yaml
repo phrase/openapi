@@ -1,0 +1,15 @@
+---
+job_annotation_short:
+  type: object
+  title: job_annotation
+  properties:
+    name:
+      type: string
+    value:
+      type: string
+  required:
+    - name
+    - value
+  example:
+    name: "priority"
+    value: "high"

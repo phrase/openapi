@@ -1,23 +1,23 @@
 ---
-summary: Show single job target locale
-description: Get a single target locale for a given job.
-operationId: job_locale/show
+summary: Delete a job annotation
+description: Delete an annotation for a job.
+operationId: job_annotation/delete
 tags:
-- Job Locales
+- Job Annotations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
-- "$ref": "../../parameters.yaml#/job_id"
-- "$ref": "../../parameters.yaml#/id"
 - "$ref": "../../parameters.yaml#/branch"
-- "$ref": "../../parameters.yaml#/include_annotations"
+- "$ref": "../../parameters.yaml#/job_id"
+- name: id
+  in: path
+  required: true
+  description: Name of the annotation to delete.
+  schema:
+    type: string
 responses:
-  '200':
-    description: OK
-    content:
-      application/json:
-        schema:
-          "$ref": "../../schemas/job_locale.yaml#/job_locale"
+  '204':
+    description: No Content
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
@@ -34,14 +34,14 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/locales/:id?branch=my-feature-branch" \
-      -u USERNAME_OR_ACCESS_TOKEN
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/annotations/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X DELETE
 - lang: CLI v2
   source: |-
-    phrase job_locales show \
+    phrase job_annotations delete \
     --project_id <project_id> \
     --job_id <job_id> \
     --id <id> \
-    --branch my-feature-branch \
     --access_token <token>
-x-cli-version: '2.9.0'
+x-cli-version: '2.43'

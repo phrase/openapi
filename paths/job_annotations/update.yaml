@@ -1,0 +1,69 @@
+---
+summary: Create/Update a job annotation
+description: Create or update an annotation for a job. If the annotation already exists, it will be updated; otherwise, a new annotation will be created.
+operationId: job_annotation/update
+tags:
+- Job Annotations
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/job_id"
+- name: id
+  in: path
+  required: true
+  description: Name of the annotation to set or update.
+  schema:
+    type: string
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/job_annotation.yaml#/job_annotation"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/jobs/:job_id/annotations/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"value":"Some value..."}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase job_annotations update \
+    --project_id <project_id> \
+    --job_id <job_id> \
+    --id <id> \
+    --data '{"value": "Some value..."}' \
+    --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: job_annotation/update/parameters
+        properties:
+          value:
+            description: Annotation value
+            type: string
+            example: Some value...
+          branch:
+            description: Branch name of the job
+            type: string
+            example: my-feature-branch
+x-cli-version: '2.43'
