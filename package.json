@@ -4,8 +4,6 @@
   "description": "Phrase Strings is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform.",
   "scripts": {
     "start": "make",
-    "docs": "make docs",
-    "watch": "make watch_bundle watch_scss watch_ts serve -j4",
     "bundle": "make lint bundle",
     "lint": "make lint",
     "generate.ruby": "make lint bundle ruby",
@@ -25,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/phrase/openapi/issues"
   },
-  "homepage": "https://developers.phrase.com/api/",
+  "homepage": "https://developers.phrase.com/",
   "devDependencies": {
     "@apidevtools/swagger-cli": "^4.0.4",
     "@openapitools/openapi-generator-cli": "^2.13.5",
