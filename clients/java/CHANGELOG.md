@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.0](https://github.com/phrase/openapi/compare/java-v3.5.0...java-v3.6.0) (2025-07-24)
+
+
+### Features
+
+* **API:** Job and job locale annotations #SCD-145 ([#867](https://github.com/phrase/openapi/issues/867)) ([95b6c2a](https://github.com/phrase/openapi/commit/95b6c2a2ab798d01f9bc0d53a22dbf817a5eb0ee))
+
 ## [3.5.0](https://github.com/phrase/openapi/compare/java-v3.4.0...java-v3.5.0) (2025-07-18)
 
 
