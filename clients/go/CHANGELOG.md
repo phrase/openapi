@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.8.0](https://github.com/phrase/openapi/compare/go-v4.7.0...go-v4.8.0) (2025-07-24)
+
+
+### Features
+
+* **API:** Job and job locale annotations #SCD-145 ([#867](https://github.com/phrase/openapi/issues/867)) ([95b6c2a](https://github.com/phrase/openapi/commit/95b6c2a2ab798d01f9bc0d53a22dbf817a5eb0ee))
+
 ## [4.7.0](https://github.com/phrase/openapi/compare/go-v4.6.0...go-v4.7.0) (2025-07-15)
 
 
