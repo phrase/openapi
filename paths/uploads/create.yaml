@@ -88,6 +88,10 @@ requestBody:
             description: Indicates whether existing translations should be updated with the file content.
             type: boolean
             example:
+          update_custom_metadata:
+            description: Indicates whether existing custom metadata properties should be updated with the file content
+            type: boolean
+            example:
           update_translation_keys:
             description: Pass `false` here to prevent new keys from being created and existing keys updated.
             type: boolean
