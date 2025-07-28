@@ -1,4 +1,5 @@
 @startuml "openapi workflow"
+skinparam backgroundColor #fefefe
 
 collections "* API changes\n* bug fixes" as changes #PaleGreen
 folder "phrase/openapi" as openapi #AliceBlue
