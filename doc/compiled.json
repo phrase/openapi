@@ -14656,51 +14656,51 @@
                   "update_translations": {
                     "description": "Indicates whether existing translations should be updated with the file content.",
                     "type": "boolean",
-                    "example": null
+                    "example": true
                   },
                   "update_custom_metadata": {
                     "description": "Indicates whether existing custom metadata properties should be updated with the file content",
                     "type": "boolean",
                     "default": true,
-                    "example": null
+                    "example": true
                   },
                   "update_translation_keys": {
                     "description": "Pass `false` here to prevent new keys from being created and existing keys updated.",
                     "type": "boolean",
                     "default": true,
-                    "example": null
+                    "example": true
                   },
                   "update_translations_on_source_match": {
                     "description": "Update target translations only if the source translations of the uploaded multilingual file match the stored translations.",
                     "type": "boolean",
                     "default": false,
-                    "example": null
+                    "example": true
                   },
                   "update_descriptions": {
                     "description": "Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.",
                     "type": "boolean",
-                    "example": null
+                    "example": true
                   },
                   "convert_emoji": {
                     "description": "This option is obsolete. Providing the option will cause a bad request error.",
                     "type": "boolean",
-                    "example": null,
+                    "example": true,
                     "deprecated": true
                   },
                   "skip_upload_tags": {
                     "description": "Indicates whether the upload should not create upload tags.",
                     "type": "boolean",
-                    "example": null
+                    "example": true
                   },
                   "skip_unverification": {
                     "description": "Indicates whether the upload should unverify updated translations.",
                     "type": "boolean",
-                    "example": null
+                    "example": true
                   },
                   "file_encoding": {
                     "description": "Enforces a specific encoding on the file contents. Valid options are \"UTF-8\", \"UTF-16\" and \"ISO-8859-1\".",
                     "type": "string",
-                    "example": null
+                    "example": "UTF-8"
                   },
                   "locale_mapping": {
                     "description": "Mapping between locale names and translation columns. Required in some formats like CSV or XLSX.",
@@ -14717,24 +14717,24 @@
                   "autotranslate": {
                     "description": "If set, translations for the uploaded language will be fetched automatically.",
                     "type": "boolean",
-                    "example": null
+                    "example": true
                   },
                   "verify_mentioned_translations": {
                     "description": "Indicates whether all translations mentioned in the upload should be verified.",
                     "type": "boolean",
                     "default": false,
-                    "example": null
+                    "example": true
                   },
                   "mark_reviewed": {
                     "description": "Indicated whether the imported translations should be marked as reviewed. This setting is available if the review workflow is enabled for the project.",
                     "type": "boolean",
-                    "example": null
+                    "example": true
                   },
                   "tag_only_affected_keys": {
                     "description": "Indicates whether only keys affected (created or updated) by the upload should be tagged. The default is `false`",
                     "type": "boolean",
                     "default": false,
-                    "example": null
+                    "example": true
                   },
                   "translation_key_prefix": {
                     "description": "This prefix will be added to all uploaded translation key names to prevent collisions. Use a meaningful prefix related to your project or file to keep key names organized.",
