@@ -14658,6 +14658,12 @@
                     "type": "boolean",
                     "example": null
                   },
+                  "update_custom_metadata": {
+                    "description": "Indicates whether existing custom metadata properties should be updated with the file content",
+                    "type": "boolean",
+                    "default": true,
+                    "example": null
+                  },
                   "update_translation_keys": {
                     "description": "Pass `false` here to prevent new keys from being created and existing keys updated.",
                     "type": "boolean",
