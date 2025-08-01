@@ -4,8 +4,6 @@
 
 * `npm install` installs the dependencies
 * `npm start` builds API clients
-* `npm run docs` generates API documentation in HTML
-* `npm run watch` starts a local server which you can reach at http://localhost:8080
 * `npm run lint` lints your changes
 
 ## Contribution
