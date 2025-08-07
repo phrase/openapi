@@ -99,6 +99,7 @@ public class UploadsApiTest {
         String tags = null;
         Boolean updateTranslations = null;
         Boolean updateCustomMetadata = null;
+        Boolean clearCustomMetadata = null;
         Boolean updateTranslationKeys = true;
         Boolean updateTranslationsOnSourceMatch = null;
         Boolean updateDescriptions = null;
@@ -122,7 +123,7 @@ public class UploadsApiTest {
         formatOptionsMap.put("more_options", nestedFormatOptionsMap);
 
         Upload response = api.uploadCreate(projectId, file, fileFormat, localeId, xPhraseAppOTP, branch,
-            tags, updateTranslations, updateCustomMetadata, updateTranslationKeys, updateTranslationsOnSourceMatch,
+            tags, updateTranslations, updateCustomMetadata, clearCustomMetadata, updateTranslationKeys, updateTranslationsOnSourceMatch,
             updateDescriptions, convertEmoji, skipUploadTags, skipUnverification, fileEncoding,
             localeMapping, formatOptionsMap, autotranslate, verifyMentionedTranslations, markReviewed, tagOnlyAffectedKeys,
             translationKeyPrefix);

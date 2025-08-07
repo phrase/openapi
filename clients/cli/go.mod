@@ -32,6 +32,8 @@ require (
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )
 
+require github.com/phrase/phrase-go/v3 v3.7.1
+
 require (
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/pelletier/go-toml v1.2.0 // indirect

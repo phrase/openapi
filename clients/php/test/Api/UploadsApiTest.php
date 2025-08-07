@@ -96,6 +96,7 @@ class UploadsApiTest extends TestCase
             null, # tags
             null, # update_translations
             null, # update_custom_metadata
+            null, # clear_custom_metadata
             null, # update_translation_keys
             null, # update_translations_on_source_match
             null, # update_descriptions
