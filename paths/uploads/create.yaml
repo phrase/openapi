@@ -94,7 +94,7 @@ requestBody:
             default: true
             example: true
           clear_custom_metadata:
-            description: Determines whether to clear custom metadata values when uploading a file. If set to true, existing metadata can be removed. Passing an empty value deletes the corresponding metadata property. The default is `false`
+            description: Determines whether to clear custom metadata values when uploading a file. If set to true, existing metadata can be removed. Passing an empty value in upload for key metadata deletes the corresponding metadata property. The default is `false`
             type: boolean
             default: false
             example: true
