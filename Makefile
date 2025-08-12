@@ -19,16 +19,6 @@ bundle:
 watch_bundle:
 	make lint
 	npx swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json
-watch_scss:
-	npx sass --watch ./doc/main.scss:./doc/main.css ./doc/rapidoc.scss:./doc/rapidoc.css
-watch_ts:
-	npx tsc --watch ./doc/main.ts --outFile ./doc/main.js
-serve:
-	npx http-server doc -c-1 -p 8080
-docs: lint bundle
-	npx sass -s compressed ./doc/main.scss:./doc/main.css ./doc/rapidoc.scss:./doc/rapidoc.css
-	npx tsc ./doc/main.ts --outFile ./doc/main.js
-	npx terser ./doc/main.js --compress --mangle -o ./doc/main.js
 ruby:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g ruby -o clients/ruby -c ./openapi-generator/ruby_lang.yaml
 go:
