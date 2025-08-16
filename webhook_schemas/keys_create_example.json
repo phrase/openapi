@@ -1,6 +1,7 @@
 {
   "event": "keys:create",
   "message": "john.smith created key application.modal.header in project Translation Project within branch new-feature-1",
+  "sent_at": "2025-02-07 16:44:04 UTC",
   "user": {
     "id": "24b9a53ad72e198ca332fba91bb95f57",
     "username": "john.smith",
