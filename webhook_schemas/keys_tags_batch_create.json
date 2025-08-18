@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "string",
+      "enum": ["keys:tags:batch_create"]
+    },
+    "message": { "type": "string" },
+    "sent_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} UTC$" }
+      ]
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "name": { "type": ["string", "null"] },
+        "gravatar_uid": { "type": ["string", "null"] }
+      },
+      "required": ["id", "username", "name", "gravatar_uid"]
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "main_format": { "type": ["string", "null"] },
+        "project_image_url": { "type": ["string", "null"], "format": "uri" },
+        "created_at": {
+          "anyOf": [
+            { "type": "string", "format": "date-time" },
+            { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} UTC$" }
+          ]
+        },
+        "updated_at": {
+          "anyOf": [
+            { "type": "string", "format": "date-time" },
+            { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} UTC$" }
+          ]
+        },
+        "point_of_contact": {
+          "type": ["object", "null"],
+          "properties": {
+            "id": { "type": "string" },
+            "username": { "type": "string" },
+            "name": { "type": ["string", "null"] },
+            "gravatar_uid": { "type": ["string", "null"] }
+          },
+          "required": ["id", "username", "name", "gravatar_uid"]
+        }
+      },
+      "required": ["id", "name", "main_format", "created_at", "updated_at"]
+    },
+    "branch": {
+      "type": ["object", "null"],
+      "properties": {
+        "name": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" }
+              },
+              "required": ["name"]
+            }
+          }
+        },
+        "required": ["id", "tags"]
+      }
+    }
+  },
+  "required": ["event", "message", "sent_at", "user", "project", "keys"]
+}

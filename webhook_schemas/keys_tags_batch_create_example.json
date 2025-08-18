@@ -1,7 +1,7 @@
 {
-  "event": "custom_metadata_values:batch_update",
-  "message": "john.smith updated custom metadata value Platform for 1 keys in project Translation Project within branch new-feature-1",
-  "sent_at": "2025-02-07 16:44:04 UTC",
+  "event": "keys:tags:batch_create",
+  "message": "john.smith tagged 1 key in project Translation Project within branch new-feature-1",
+  "sent_at": "2025-08-17 14:59:05 UTC",
   "user": {
     "id": "24b9a53ad72e198ca332fba91bb95f57",
     "username": "john.smith",
@@ -21,19 +21,13 @@
   "branch": {
     "name": "new-feature-1"
   },
-  "custom_metadata_value": {
-    "id": "2e7d22d447a0941ea534b09176da7b83",
-    "name": "Platform",
-    "value": "Android"
-  },
   "keys": [
     {
       "id": "fe5b97045d80f91dd950b695d5ebe607",
-      "name": "application.modal.header",
-      "plural": false,
-      "data_type": "string",
       "tags": [
-        "web"
+        {
+          "name": "web"
+        }
       ]
     }
   ]

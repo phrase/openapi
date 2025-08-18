@@ -1,7 +1,7 @@
 {
-  "event": "jobs:create",
-  "message": "john.smith created job Translation job for feature 1 in project Translation Project within branch new-feature-1",
-  "sent_at": "2025-02-07 16:44:04 UTC",
+  "event": "keys:tags:create",
+  "message": "john.smith tagged key application.modal.header in project Translation Project within branch new-feature-1 with the following tags: web",
+  "sent_at": "2025-08-17 14:59:05 UTC",
   "user": {
     "id": "24b9a53ad72e198ca332fba91bb95f57",
     "username": "john.smith",
@@ -21,14 +21,17 @@
   "branch": {
     "name": "new-feature-1"
   },
-  "job": {
-    "id": "ad39faf87fb5af9aa9d9ab44a6c29899",
-    "name": "Translation job for feature 1",
-    "briefing": "Please translate everything!",
-    "due_date": "2025-02-07 16:18:13 UTC",
-    "state": "draft",
-    "ticket_url": "",
-    "created_at": "2025-02-07 16:18:13 UTC",
-    "updated_at": "2025-02-07 16:44:05 UTC"
-  }
+  "key": {
+    "id": "fe5b97045d80f91dd950b695d5ebe607",
+    "name": "application.modal.header",
+    "plural": false,
+    "use_ordinal_rules": false,
+    "data_type": "string",
+    "tags": [
+      "web"
+    ]
+  },
+  "tags": [
+    "web"
+  ]
 }
