@@ -1,4 +1,4 @@
-# OpenAPI specification for Phrase
+# OpenAPI specification for Phrase Strings
 
 ## Commands
 
