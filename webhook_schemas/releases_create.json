@@ -8,6 +8,10 @@
     "message": {
       "type": "string"
     },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "user": {
       "$ref": "user.json"
     },

@@ -1,7 +1,7 @@
 {
-  "event": "translations:batch_unreview",
-  "message": "1 translations unreviewed in project Translation Project within branch new-feature-1",
-  "sent_at": "2025-02-07 16:44:04 UTC",
+  "event": "translations:batch_include",
+  "message": "1 translations included in project Translation Project within branch new-feature-1",
+  "sent_at": "2025-08-07 13:44:50 UTC",
   "user": {
     "id": "24b9a53ad72e198ca332fba91bb95f57",
     "username": "john.smith",
@@ -37,6 +37,7 @@
         "id": "fe5b97045d80f91dd950b695d5ebe607",
         "name": "application.modal.header",
         "plural": false,
+        "use_ordinal_rules": false,
         "data_type": "string",
         "tags": [
           "web"
