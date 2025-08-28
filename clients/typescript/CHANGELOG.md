@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.7.0](https://github.com/phrase/openapi/compare/typescript-v3.6.0...typescript-v3.7.0) (2025-08-01)
+
+
+### Features
+
+* **API:** Add support for `update_custom_metadata` option on upload ([#882](https://github.com/phrase/openapi/issues/882)) ([5b486ea](https://github.com/phrase/openapi/commit/5b486eabf30c84402a8e31911a5ba6fe3b343a89))
+
+## [3.6.0](https://github.com/phrase/openapi/compare/typescript-v3.5.0...typescript-v3.6.0) (2025-07-24)
+
+
+### Features
+
+* **API:** Job and job locale annotations #SCD-145 ([#867](https://github.com/phrase/openapi/issues/867)) ([95b6c2a](https://github.com/phrase/openapi/commit/95b6c2a2ab798d01f9bc0d53a22dbf817a5eb0ee))
+
 ## [3.5.0](https://github.com/phrase/openapi/compare/typescript-v3.4.0...typescript-v3.5.0) (2025-07-18)
 
 

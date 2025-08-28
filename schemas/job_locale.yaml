@@ -25,6 +25,10 @@ job_locale:
     review_completed_at:
       type: string
       format: date-time
+    annotations:
+      type: array
+      items:
+        "$ref": "./job_annotation_short.yaml#/job_annotation_short"
   example:
     id: 626ea67628690c73ac86ac81eec2d185
     job:
@@ -44,6 +48,11 @@ job_locale:
       id: abcd1234cdef1234abcd1234cdef1234
       name: English
       code: en-GB
+    annotations:
+    - name: priority
+      value: high
+      created_at: '2023-10-01T12:00:00Z'
+      updated_at: '2023-10-01T12:00:00Z'
     completed: true
     translation_completed_at: '2017-01-28T09:52:53Z'
     review_completed_at: '2017-01-28T09:52:53Z'
