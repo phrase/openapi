@@ -1,11 +1,12 @@
 @startuml "openapi workflow"
+skinparam backgroundColor #fefefe
 
-collections "* API changes\n* bug fixes\n* doc updates" as changes #PaleGreen
+collections "* API changes\n* bug fixes" as changes #PaleGreen
 folder "phrase/openapi" as openapi #AliceBlue
 control "build" as actions
 
 artifact docs
-frame "https://developers.phrase.com/api" as developers
+frame "https://developers.phrase.com/" as developers
 
 folder "phrase/phrase-go" as go #AliceBlue
 folder "phrase/phrase-cli" as cli #AliceBlue
@@ -31,7 +32,7 @@ artifact "registry.npmjs.org" as npm
 artifact "PyPI"
 
 changes --> openapi : push
-openapi-->actions
+openapi --> actions
 actions --> docs
 docs --> developers : publish
 actions --> go : push

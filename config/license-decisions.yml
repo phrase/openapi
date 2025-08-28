@@ -137,15 +137,3 @@
     :why: commercial use allowed
     :versions: []
     :when: 2024-06-04 14:29:07.814825827 Z
-- - :add_package
-  - rapidoc
-  - 9.1.3
-  - &1
-    :who:
-    :why:
-    :versions: []
-    :when: 2024-06-06 11:13:46.495694105 Z
-- - :license
-  - rapidoc
-  - MIT
-  - *1
