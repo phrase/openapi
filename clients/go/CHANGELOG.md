@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.10.0](https://github.com/phrase/openapi/compare/go-v4.9.0...go-v4.10.0) (2025-09-12)
+
+
+### Features
+
+* **API:** Add "reviewed" param for tanslations#update ([#891](https://github.com/phrase/openapi/issues/891)) ([3f77286](https://github.com/phrase/openapi/commit/3f7728669fa68d5911dfca39a9e39c24cd20c0a4))
+
 ## [4.9.0](https://github.com/phrase/openapi/compare/go-v4.8.0...go-v4.9.0) (2025-08-01)
 
 
