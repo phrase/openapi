@@ -31,7 +31,7 @@ typescript:
 python:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g python -o clients/python -c ./openapi-generator/python_lang.yaml
 java:
-	openapi-generator-cli generate -i tmp/compiled.yaml -g java -o clients/java -c ./openapi-generator/java_lang.yaml --template-dir openapi-generator/templates/java
+	openapi-generator-cli generate -i tmp/compiled.yaml -g java -o clients/java -c ./openapi-generator/java_lang.yaml
 php:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g php -o clients/php -c ./openapi-generator/php_lang.yaml
 cli:
