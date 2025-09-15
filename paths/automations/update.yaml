@@ -26,7 +26,8 @@ requestBody:
             example: Scheduled Job Automation - Hourly
             type: string
           trigger:
-            "$ref": "../../schemas/automation.yaml#/trigger"
+            type: string
+            enum: [schedule, upload]
           project_id:
             description: id of project that the automation belongs to
             type: string
@@ -37,7 +38,10 @@ requestBody:
             example: abcd1234cdef1234abcd1234cdef1234
           status_filters:
             description: translation key statuses used to filter keys that are added to jobs
-            "$ref": "../../schemas/automation.yaml#/status_filters"
+            type: array
+            items:
+              type: string
+              enum: [unverified, untranslated, ready_for_review]
           tag_ids:
             type: array
             items:
