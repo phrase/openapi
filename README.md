@@ -20,7 +20,7 @@ You added an endpoint in Phrase Strings. In this project you do the following:
 
 1. Add newly added schema (if any) to `/schemas/` directory and to `schemas.yaml`
 2. Add new endpoints to `/paths/` directory and reference it in `paths.yaml`
-3. `npm start` to re-build the clients
+3. `npm start` to re-build the clients. Make sure `goimports` is installed first.
 4. `npm run docs` to generate the documentation (and verify it in action using `npm run watch`)
 5. Open a PR with an informative title (e.g. `feat(api): Add an API endpoint for cat pics`)
 
