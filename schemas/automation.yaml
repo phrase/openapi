@@ -11,13 +11,9 @@ automation:
       type: string
       enum: [inactive, active, error]
     trigger:
-      type: string
-      enum: [schedule, upload]
+      "$ref": "#/trigger"
     status_filters:
-      type: array
-      items:
-        type: string
-        enum: [unverified, untranslated, ready_for_review]
+      "$ref": "#/status_filters"
     project_id:
       type: string
     job_template_id:
@@ -57,3 +53,11 @@ automation:
     account: account
     created_at: '2021-06-28T09:52:53Z'
     updated_at: '2021-06-28T09:52:53Z'
+trigger:
+  type: string
+  enum: [schedule, upload]
+status_filters:
+  type: array
+  items:
+    type: string
+    enum: [unverified, untranslated, ready_for_review]

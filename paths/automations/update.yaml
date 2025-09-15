@@ -44,10 +44,12 @@ requestBody:
               type: string
           cron_schedule:
             description: along with time_zone, specifies when the scheduled automation is supposed to run
-            "$ref": "../../schemas/automation.yaml#/cron_schedule"
+            type: string
+            example: '00 13 * * 1,2'
           time_zone:
             description: along with cron_schedule, specifies when the scheduled automation is supposed to run
-            "$ref": "../../schemas/automation.yaml#/time_zone"
+            type: string
+            example: GMT
 responses:
   '200':
     description: OK
