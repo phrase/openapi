@@ -36,3 +36,5 @@ require (
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/ini.v1 v1.62.0 // indirect
 )
+
+require github.com/phrase/phrase-go/v2 v2.27.0
