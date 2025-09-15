@@ -39,6 +39,10 @@ jobs:
           java-version: '8'
           distribution: 'temurin'
           cache: maven
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 7.1.1
       -
         name: Version
         id: version
