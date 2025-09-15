@@ -4408,6 +4408,96 @@
             "Error message"
           ]
         }
+      },
+      "automation": {
+        "type": "object",
+        "title": "automation",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "inactive",
+              "active",
+              "error"
+            ]
+          },
+          "trigger": {
+            "type": "string",
+            "enum": [
+              "schedule",
+              "upload"
+            ]
+          },
+          "status_filters": {
+            "description": "translation key statuses used to filter keys that are added to jobs",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "unverified",
+                "untranslated",
+                "ready_for_review"
+              ]
+            }
+          },
+          "project_id": {
+            "type": "string"
+          },
+          "job_template_id": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cron_schedule": {
+            "type": "string"
+          },
+          "time_zone": {
+            "type": "string"
+          },
+          "account": {
+            "$ref": "#/components/schemas/account"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "name": "My First Automation",
+          "status": "active",
+          "trigger": "schedule",
+          "status_filters": [
+            "unverified",
+            "untranslated",
+            "ready_for_review"
+          ],
+          "project_id": "abcd1234cdef1234abcd1234cdef1234",
+          "job_template_id": "abcd1234cdef1234abcd1234cdef1234",
+          "tags": [
+            "tag-1",
+            "tag-2"
+          ],
+          "cron_schedule": "00 13 * * 1,2",
+          "time_zone": "GMT",
+          "account": "account",
+          "created_at": "2021-06-28T09:52:53Z",
+          "updated_at": "2021-06-28T09:52:53Z"
+        }
       }
     },
     "parameters": {
@@ -27560,7 +27650,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/paths/~1accounts~1%7Baccount_id%7D~1automations/post/responses/201/content/application~1json/schema"
+                    "$ref": "#/components/schemas/automation"
                   }
                 }
               }
@@ -27696,94 +27786,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "automation",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "inactive",
-                        "active",
-                        "error"
-                      ]
-                    },
-                    "trigger": {
-                      "type": "string",
-                      "enum": [
-                        "schedule",
-                        "upload"
-                      ]
-                    },
-                    "status_filters": {
-                      "description": "translation key statuses used to filter keys that are added to jobs",
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "enum": [
-                          "unverified",
-                          "untranslated",
-                          "ready_for_review"
-                        ]
-                      }
-                    },
-                    "project_id": {
-                      "type": "string"
-                    },
-                    "job_template_id": {
-                      "type": "string"
-                    },
-                    "tags": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "cron_schedule": {
-                      "type": "string"
-                    },
-                    "time_zone": {
-                      "type": "string"
-                    },
-                    "account": {
-                      "$ref": "#/components/schemas/account"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  },
-                  "example": {
-                    "id": "abcd1234cdef1234abcd1234cdef1234",
-                    "name": "My First Automation",
-                    "status": "active",
-                    "trigger": "schedule",
-                    "status_filters": [
-                      "unverified",
-                      "untranslated",
-                      "ready_for_review"
-                    ],
-                    "project_id": "abcd1234cdef1234abcd1234cdef1234",
-                    "job_template_id": "abcd1234cdef1234abcd1234cdef1234",
-                    "tags": [
-                      "tag-1",
-                      "tag-2"
-                    ],
-                    "cron_schedule": "00 13 * * 1,2",
-                    "time_zone": "GMT",
-                    "account": "account",
-                    "created_at": "2021-06-28T09:52:53Z",
-                    "updated_at": "2021-06-28T09:52:53Z"
-                  }
+                  "$ref": "#/components/schemas/automation"
                 }
               }
             },
@@ -27850,7 +27853,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1accounts~1%7Baccount_id%7D~1automations/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/automation"
                 }
               }
             },
@@ -27981,7 +27984,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1accounts~1%7Baccount_id%7D~1automations/post/responses/201/content/application~1json/schema"
+                  "$ref": "#/components/schemas/automation"
                 }
               }
             },
