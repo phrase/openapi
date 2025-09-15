@@ -25,7 +25,7 @@ requestBody:
             example: Scheduled Job Automation - Hourly
             type: string
           trigger:
-            "$ref": "../../schemas/automation_type.yaml#/trigger"
+            "$ref": "../../schemas/automation.yaml#/trigger"
           project_id:
             description: id of project that the automation belongs to
             type: string
@@ -36,17 +36,17 @@ requestBody:
             example: abcd1234cdef1234abcd1234cdef1234
           status_filters:
             description: translation key statuses used to filter keys that are added to jobs
-            "$ref": "../../schemas/automation_type.yaml#/status_filters"
+            "$ref": "../../schemas/automation.yaml#/status_filters"
           tag_ids:
             type: array
             items:
               type: string
           cron_schedule:
             description: along with time_zone, specifies when the scheduled automation is supposed to run
-            "$ref": "../../schemas/automation_type.yaml#/cron_schedule"
+            "$ref": "../../schemas/automation.yaml#/cron_schedule"
           time_zone:
             description: along with cron_schedule, specifies when the scheduled automation is supposed to run
-            "$ref": "../../schemas/automation_type.yaml#/time_zone"
+            "$ref": "../../schemas/automation.yaml#/time_zone"
 responses:
   '200':
     description: OK
