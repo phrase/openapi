@@ -1,5 +1,184 @@
 # Changelog
 
+## [3.8.0](https://github.com/phrase/openapi/compare/php-v3.7.0...php-v3.8.0) (2025-08-01)
+
+
+### Features
+
+* **API:** Add support for `update_custom_metadata` option on upload ([#882](https://github.com/phrase/openapi/issues/882)) ([5b486ea](https://github.com/phrase/openapi/commit/5b486eabf30c84402a8e31911a5ba6fe3b343a89))
+
+## [3.7.0](https://github.com/phrase/openapi/compare/php-v3.6.0...php-v3.7.0) (2025-07-24)
+
+
+### Features
+
+* **API:** Job and job locale annotations #SCD-145 ([#867](https://github.com/phrase/openapi/issues/867)) ([95b6c2a](https://github.com/phrase/openapi/commit/95b6c2a2ab798d01f9bc0d53a22dbf817a5eb0ee))
+
+## [3.6.0](https://github.com/phrase/openapi/compare/php-v3.5.0...php-v3.6.0) (2025-07-18)
+
+
+### Features
+
+* **API:** add updated_since param for downloads ([#858](https://github.com/phrase/openapi/issues/858)) ([db4196b](https://github.com/phrase/openapi/commit/db4196bfb1a45f628577bebb99aad7da1179c241))
+* **API:** Add use_ordinal_rules attribute to request body for create/update Keys endpoints ([#868](https://github.com/phrase/openapi/issues/868)) ([29410b5](https://github.com/phrase/openapi/commit/29410b5d4edee9645f449d2d7de53fb953c1f0c2))
+* **API:** Add use_ordinal_rules boolean [STRINGS-2273] ([#846](https://github.com/phrase/openapi/issues/846)) ([450ce0c](https://github.com/phrase/openapi/commit/450ce0cce6bb2064758c44b130b39dd5539c2681))
+
+## [3.5.0](https://github.com/phrase/openapi/compare/php-v3.4.0...php-v3.5.0) (2025-05-23)
+
+
+### Features
+
+* **API:** Add omit_statistics param to tags#show ([#834](https://github.com/phrase/openapi/issues/834)) ([2058b18](https://github.com/phrase/openapi/commit/2058b18297133075885ac99770aee2e171811cd6))
+
+## [3.4.0](https://github.com/phrase/openapi/compare/php-v3.3.0...php-v3.4.0) (2025-05-16)
+
+
+### Features
+
+* **API:** Add "verify_mentioned_translations" parameter to uploads ([#830](https://github.com/phrase/openapi/issues/830)) ([f2fdf60](https://github.com/phrase/openapi/commit/f2fdf60dd97c3908293cd457a765dafde603bd9b))
+* **API:** Add processed & upload total translations on upload summary ([#824](https://github.com/phrase/openapi/issues/824)) ([081db68](https://github.com/phrase/openapi/commit/081db68d2ffcf5d66a81e07eec0a9572a1f9d633))
+* **API:** Translations unreview & batch unreview ([#831](https://github.com/phrase/openapi/issues/831)) ([6a696db](https://github.com/phrase/openapi/commit/6a696db00d80d8acaf5887a08a7a97997566eb8f))
+
+## [3.3.0](https://github.com/phrase/openapi/compare/php-v3.2.0...php-v3.3.0) (2025-04-09)
+
+
+### Features
+
+* **API:** add updated_since filter to job list #STRINGS-1555 ([#799](https://github.com/phrase/openapi/issues/799)) ([dc9b6ed](https://github.com/phrase/openapi/commit/dc9b6ed12e013231d397820449086c87fea2f8ba))
+* **API:** Include roles in account response ([#811](https://github.com/phrase/openapi/issues/811)) ([dc27ee5](https://github.com/phrase/openapi/commit/dc27ee5117762222b6e1e6abb639f8e00c6a9101))
+* **PHP:** Address PHP 8.4 deprecations #STRINGS-1764 ([#823](https://github.com/phrase/openapi/issues/823)) ([683aa47](https://github.com/phrase/openapi/commit/683aa47667f69274fd7767bb3f222f3bcda566a5))
+
+
+### Bug Fixes
+
+* **API:** Remove request body from GET comments ([#817](https://github.com/phrase/openapi/issues/817)) ([2646001](https://github.com/phrase/openapi/commit/264600132e80ac03983e0ae86e99db3d6fb9080d))
+
+## [3.2.0](https://github.com/phrase/openapi/compare/php-v3.1.0...php-v3.2.0) (2025-02-17)
+
+
+### Features
+
+* **API:** document tags attribute of an upload #STRINGS-1221 ([#790](https://github.com/phrase/openapi/issues/790)) ([fff505b](https://github.com/phrase/openapi/commit/fff505bdff35a0033fee06e505c42fe794c88562))
+
+## [3.1.0](https://github.com/phrase/openapi/compare/php-v3.0.3...php-v3.1.0) (2025-02-17)
+
+
+### Features
+
+* **API:** Add locale_ids param to synchronous download endpoint [STRINGS-1492] ([#780](https://github.com/phrase/openapi/issues/780)) ([47186a4](https://github.com/phrase/openapi/commit/47186a44fc8c0b8e466636acf3d49413b1f29f30))
+* **API:** Add source last updated at information on job details ([#777](https://github.com/phrase/openapi/issues/777)) ([c9b8423](https://github.com/phrase/openapi/commit/c9b8423766b4138980d0553502b3e18ca524f34e))
+
+## [3.0.3](https://github.com/phrase/openapi/compare/php-v3.0.2...php-v3.0.3) (2025-01-29)
+
+
+### Bug Fixes
+
+* **API:** pass translation_key_ids when removing keys from job ([#771](https://github.com/phrase/openapi/issues/771)) ([f670e27](https://github.com/phrase/openapi/commit/f670e2763b1112fefd1812109b3c09def42b7bd2))
+
+## [3.0.2](https://github.com/phrase/openapi/compare/php-v3.0.1...php-v3.0.2) (2025-01-06)
+
+
+### Bug Fixes
+
+* **CLI:** Adjust operationId for quality_performance_score #STRINGS-1104 ([#721](https://github.com/phrase/openapi/issues/721)) ([7aa3b9b](https://github.com/phrase/openapi/commit/7aa3b9b508d1d24a4af7f4977b1a2fead8bfda78))
+
+## [3.0.1](https://github.com/phrase/openapi/compare/php-v3.0.0...php-v3.0.1) (2024-12-20)
+
+
+### Bug Fixes
+
+* **API:** Repo Sync Event errors field type #STRINGS-1074 ([#756](https://github.com/phrase/openapi/issues/756)) ([c7670e0](https://github.com/phrase/openapi/commit/c7670e04810f95359d72ba6346b5f626bfb77b6f))
+* **API:** Repo Sync schema fixes #STRINGS-1074 ([#748](https://github.com/phrase/openapi/issues/748)) ([033be10](https://github.com/phrase/openapi/commit/033be1003fe01b5115de1f8ba2336d32b4862bfd))
+
+## [3.0.0](https://github.com/phrase/openapi/compare/php-v2.7.0...php-v3.0.0) (2024-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove old Git sync endpoints. Replaced with new repo sync ([#735](https://github.com/phrase/openapi/issues/735))
+
+### Features
+
+* **API:** Add 'default_encoding' documentation ([#733](https://github.com/phrase/openapi/issues/733)) ([0139c51](https://github.com/phrase/openapi/commit/0139c51da747fbe7bc9929bcf3534aad7f22f39a))
+* Remove old Git sync endpoints. Replaced with new repo sync ([#735](https://github.com/phrase/openapi/issues/735)) ([c3bd8ec](https://github.com/phrase/openapi/commit/c3bd8eccaabcfa1b1066ea4438971ac59833af46))
+
+
+### Bug Fixes
+
+* **API:** Add missing branch parameter to job comment endpoints #STRINGS-988 ([#724](https://github.com/phrase/openapi/issues/724)) ([64d399c](https://github.com/phrase/openapi/commit/64d399ced0980ac2a48366f91110047287a0c590))
+
+## [2.7.0](https://github.com/phrase/openapi/compare/php-v2.6.0...php-v2.7.0) (2024-11-27)
+
+
+### Features
+
+* **API:** autotranslate param in key creation [STRINGS-786] ([#713](https://github.com/phrase/openapi/issues/713)) ([581d0ff](https://github.com/phrase/openapi/commit/581d0ff5f1d06757e5ddd9603b78fc8d435d68ee))
+
+
+### Bug Fixes
+
+* **API:** Comment creation schema fix #STRINGS-866 ([#718](https://github.com/phrase/openapi/issues/718)) ([e201d13](https://github.com/phrase/openapi/commit/e201d1360c89698dd8d3642cc28f89dd0e50a1fb))
+
+## [2.6.0](https://github.com/phrase/openapi/compare/php-v2.5.0...php-v2.6.0) (2024-11-08)
+
+
+### Features
+
+* **API:** Add Pagination header to POST search endpoints [[#457](https://github.com/phrase/openapi/issues/457)] ([#706](https://github.com/phrase/openapi/issues/706)) ([9a79fa3](https://github.com/phrase/openapi/commit/9a79fa31bb3b9d58272fa2f4e82d72d0d44a93a0))
+
+
+### Bug Fixes
+
+* **PHP:** Fix serializing nested form parameters #STRINGS-730 ([#703](https://github.com/phrase/openapi/issues/703)) ([32746b1](https://github.com/phrase/openapi/commit/32746b1a68f217a6130f27b7b52997941f8f6c9d))
+
+## [2.5.0](https://github.com/phrase/openapi/compare/php-v2.4.0...php-v2.5.0) (2024-10-02)
+
+
+### Features
+
+* Add translation key prefixes for upload and download ([#687](https://github.com/phrase/openapi/issues/687)) ([9c9c959](https://github.com/phrase/openapi/commit/9c9c959830631bcac8beaf1de30ab31755ac1ee5))
+
+
+### Bug Fixes
+
+* **API:** Format list is not paginated and authenticated #STRINGS-458 ([#690](https://github.com/phrase/openapi/issues/690)) ([25e90f4](https://github.com/phrase/openapi/commit/25e90f46513e70cf328be80c36ae785cead05851))
+
+## [2.4.0](https://github.com/phrase/openapi/compare/php-v2.3.1...php-v2.4.0) (2024-09-09)
+
+
+### Features
+
+* Add update_translations_on_source_match ([#670](https://github.com/phrase/openapi/issues/670)) ([11003ac](https://github.com/phrase/openapi/commit/11003ace7353bf99893482ca4aa32214abf3e581))
+
+## [2.3.1](https://github.com/phrase/openapi/compare/php-v2.3.0...php-v2.3.1) (2024-08-01)
+
+
+### Bug Fixes
+
+* **PHP:** Fix query param serialization of nested objects [TSI-2593] ([#663](https://github.com/phrase/openapi/issues/663)) ([c3a6525](https://github.com/phrase/openapi/commit/c3a6525328028e33a5c703724b9ac7803a4db8f1))
+
+## [2.3.0](https://github.com/phrase/openapi/compare/php-v2.2.1...php-v2.3.0) (2024-07-02)
+
+
+### Features
+
+* add repo sync events show endpoint ([#641](https://github.com/phrase/openapi/issues/641)) ([e1d9cfb](https://github.com/phrase/openapi/commit/e1d9cfb23e079fea2d9e5475dff9a4137f1f0154))
+* **API:** Async downloads [TSI-2515] ([#642](https://github.com/phrase/openapi/issues/642)) ([6fcab5d](https://github.com/phrase/openapi/commit/6fcab5d4719f64e8e5dd49c327dc9348b384de4c))
+
+## [2.2.1](https://github.com/phrase/openapi/compare/php-v2.2.0...php-v2.2.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* add app_min_version and app_max_version param to releases ([#633](https://github.com/phrase/openapi/issues/633)) ([b384301](https://github.com/phrase/openapi/commit/b3843012460ace4c1d34c4373e5158595466adcb))
+
+## [2.2.0](https://github.com/phrase/openapi/compare/php-v2.1.2...php-v2.2.0) (2024-06-12)
+
+
+### Features
+
+* **API:** Add OTA Release Triggers API [TSI-2485] ([#622](https://github.com/phrase/openapi/issues/622)) ([8cb91dc](https://github.com/phrase/openapi/commit/8cb91dcce2c19ca700cf9d0713fa74f28ad59434))
+
 ## [2.1.2](https://github.com/phrase/openapi/compare/php-v2.1.1...php-v2.1.2) (2024-05-31)
 
 

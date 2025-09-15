@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "gravatar_uid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "name",
+        "email",
+        "gravatar_uid"
+      ]
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "main_format": {
+          "type": "string"
+        },
+        "project_image_url": {
+          "type": "null"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "point_of_contact": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "gravatar_uid": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "slug",
+        "main_format",
+        "project_image_url",
+        "created_at",
+        "updated_at",
+        "point_of_contact"
+      ]
+    },
+    "branch": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "translations": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "content": {
+              "type": "string"
+            },
+            "unverified": {
+              "type": "boolean"
+            },
+            "excluded": {
+              "type": "boolean"
+            },
+            "plural_suffix": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "placeholders": {
+              "type": "array",
+              "items": {}
+            },
+            "state": {
+              "type": "string"
+            },
+            "key": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "plural": {
+                  "type": "boolean"
+                },
+                "data_type": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {}
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "plural",
+                "data_type",
+                "tags"
+              ]
+            },
+            "locale": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "code"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "content",
+            "unverified",
+            "excluded",
+            "plural_suffix",
+            "created_at",
+            "updated_at",
+            "placeholders",
+            "state",
+            "key",
+            "locale"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "event",
+    "message",
+    "user",
+    "project",
+    "branch",
+    "translations"
+  ]
+}

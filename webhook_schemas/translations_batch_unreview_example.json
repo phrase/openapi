@@ -1,0 +1,52 @@
+{
+  "event": "translations:batch_unreview",
+  "message": "1 translations unreviewed in project Translation Project within branch new-feature-1",
+  "sent_at": "2025-02-07 16:44:04 UTC",
+  "user": {
+    "id": "24b9a53ad72e198ca332fba91bb95f57",
+    "username": "john.smith",
+    "name": "John Smith",
+    "email": "john.smith@example.com",
+    "gravatar_uid": "1bc5edb4799fd8eec67c66122f47eb73"
+  },
+  "project": {
+    "id": "b2abd3bd2c23ff0ac546e0a2d9aa0be1",
+    "name": "Translation Project",
+    "slug": "translation-project",
+    "main_format": "yml",
+    "project_image_url": null,
+    "created_at": "2025-02-07 16:18:13 UTC",
+    "updated_at": "2025-02-07 16:18:13 UTC",
+    "point_of_contact": null
+  },
+  "branch": {
+    "name": "new-feature-1"
+  },
+  "translations": [
+    {
+      "id": "89252e4570e73c051fce446c8c55670d",
+      "content": "Header title",
+      "unverified": false,
+      "excluded": false,
+      "plural_suffix": "",
+      "created_at": "2025-02-07T16:18:13Z",
+      "updated_at": "2025-02-07T16:18:13Z",
+      "placeholders": [],
+      "state": "translated",
+      "key": {
+        "id": "fe5b97045d80f91dd950b695d5ebe607",
+        "name": "application.modal.header",
+        "plural": false,
+        "data_type": "string",
+        "tags": [
+          "web"
+        ]
+      },
+      "locale": {
+        "id": "7d8614f35033cebada71d4471fd87518",
+        "name": "en",
+        "code": "en"
+      }
+    }
+  ]
+}

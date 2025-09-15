@@ -37,6 +37,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * API tests for UploadsApi
@@ -96,25 +98,44 @@ public class UploadsApiTest {
         String localeId = "en";
         String tags = null;
         Boolean updateTranslations = null;
+        Boolean updateCustomMetadata = null;
         Boolean updateTranslationKeys = true;
+        Boolean updateTranslationsOnSourceMatch = null;
         Boolean updateDescriptions = null;
         Boolean convertEmoji = null;
         Boolean skipUploadTags = null;
         Boolean skipUnverification = null;
         String fileEncoding = null;
         Object localeMapping = null;
-        Object formatOptions = null;
         Boolean autotranslate = null;
+        Boolean verifyMentionedTranslations = null;
         Boolean markReviewed = null;
         Boolean tagOnlyAffectedKeys = null;
-        Upload response = api.uploadCreate(projectId, file, fileFormat, localeId, xPhraseAppOTP, branch, tags, updateTranslations, updateTranslationKeys, updateDescriptions, convertEmoji, skipUploadTags, skipUnverification, fileEncoding, localeMapping, formatOptions, autotranslate, markReviewed, tagOnlyAffectedKeys);
+        String translationKeyPrefix = null;
+
+        Map<String, String> nestedFormatOptionsMap = new HashMap<>();
+        nestedFormatOptionsMap.put("nested_option", "sub_option");
+
+        Map<String, Object> formatOptionsMap = new HashMap<>();
+        formatOptionsMap.put("omit_separator_space", "true");
+        formatOptionsMap.put("fallback_language", "en");
+        formatOptionsMap.put("more_options", nestedFormatOptionsMap);
+
+        Upload response = api.uploadCreate(projectId, file, fileFormat, localeId, xPhraseAppOTP, branch,
+            tags, updateTranslations, updateCustomMetadata, updateTranslationKeys, updateTranslationsOnSourceMatch,
+            updateDescriptions, convertEmoji, skipUploadTags, skipUnverification, fileEncoding,
+            localeMapping, formatOptionsMap, autotranslate, verifyMentionedTranslations, markReviewed, tagOnlyAffectedKeys,
+            translationKeyPrefix);
 
         Assert.assertEquals("valid id returned", "id_example", response.getId());
         Assert.assertEquals("valid creation date returned", OffsetDateTime.parse("2015-01-28T09:52:53Z"), response.getCreatedAt());
 
         RecordedRequest recordedRequest = mockBackend.takeRequest();
         Assert.assertEquals("Request path", "//projects/projectId_example/uploads", recordedRequest.getPath());
-        Assert.assertTrue("Request payload", recordedRequest.getBody().readUtf8().contains("Content-Disposition: form-data; name=\"file\""));
+        String requestBody = recordedRequest.getBody().readUtf8();
+        Assert.assertTrue("payload contains filename", requestBody.contains("Content-Disposition: form-data; name=\"file\""));
+        Assert.assertTrue("payload contains fileFormat", Pattern.compile("Content-Disposition: form-data; name=\"file_format\"\\s+Content-Length: 11\\s+simple_json", Pattern.MULTILINE).matcher(requestBody).find());
+        Assert.assertTrue("payload contains nested format options", Pattern.compile("Content-Disposition: form-data; name=\"format_options\\[more_options\\]\\[nested_option\\]\"\\s+Content-Length: 10\\s+sub_option", Pattern.MULTILINE).matcher(requestBody).find());
     }
 
     /**

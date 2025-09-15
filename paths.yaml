@@ -1,4 +1,3 @@
----
 "/icu/skeleton":
   post:
     "$ref": "./paths/icu/skeleton.yaml"
@@ -108,6 +107,12 @@
 "/projects/{project_id}/locales/{id}/download":
   get:
     "$ref": "./paths/locales/download.yaml"
+"/projects/{project_id}/locales/{locale_id}/downloads":
+  post:
+    "$ref": "./paths/locale_downloads/create.yaml"
+"/projects/{project_id}/locales/{locale_id}/downloads/{id}":
+  get:
+    "$ref": "./paths/locale_downloads/show.yaml"
 "/accounts/{account_id}/distributions":
   get:
     "$ref": "./paths/distributions/index.yaml"
@@ -135,6 +140,18 @@
 "/accounts/{account_id}/distributions/{distribution_id}/releases/{id}/publish":
   post:
     "$ref": "./paths/releases/publish.yaml"
+"/accounts/{account_id}/distributions/{distribution_id}/release_triggers":
+  get:
+    "$ref": "./paths/release_triggers/index.yaml"
+  post:
+    "$ref": "./paths/release_triggers/create.yaml"
+"/accounts/{account_id}/distributions/{distribution_id}/release_triggers/{id}":
+  get:
+    "$ref": "./paths/release_triggers/show.yaml"
+  patch:
+    "$ref": "./paths/release_triggers/update.yaml"
+  delete:
+    "$ref": "./paths/release_triggers/destroy.yaml"
 "/projects/{project_id}/jobs":
   get:
     "$ref": "./paths/jobs/index.yaml"
@@ -206,15 +223,6 @@
     "$ref": "./paths/authorizations/update.yaml"
   delete:
     "$ref": "./paths/authorizations/destroy.yaml"
-"/bitbucket_syncs":
-  get:
-    "$ref": "./paths/bitbucket_syncs/index.yaml"
-"/bitbucket_syncs/{id}/export":
-  post:
-    "$ref": "./paths/bitbucket_syncs/export.yaml"
-"/bitbucket_syncs/{id}/import":
-  post:
-    "$ref": "./paths/bitbucket_syncs/import.yaml"
 "/projects/{project_id}/keys/{key_id}/comments":
   get:
     "$ref": "./paths/comments/index.yaml"
@@ -283,31 +291,6 @@
 "/projects/{project_id}/uploads/{id}":
   get:
     "$ref": "./paths/uploads/show.yaml"
-"/github_syncs/export":
-  post:
-    "$ref": "./paths/github_syncs/export.yaml"
-"/github_syncs/import":
-  post:
-    "$ref": "./paths/github_syncs/import.yaml"
-"/gitlab_syncs":
-  get:
-    "$ref": "./paths/gitlab_syncs/index.yaml"
-"/gitlab_syncs/{id}":
-  get:
-    "$ref": "./paths/gitlab_syncs/show.yaml"
-  put:
-    "$ref": "./paths/gitlab_syncs/update.yaml"
-  delete:
-    "$ref": "./paths/gitlab_syncs/destroy.yaml"
-"/gitlab_syncs/{gitlab_sync_id}/import":
-  post:
-    "$ref": "./paths/gitlab_syncs/import.yaml"
-"/gitlab_syncs/{gitlab_sync_id}/export":
-  post:
-    "$ref": "./paths/gitlab_syncs/export.yaml"
-"/gitlab_syncs/{gitlab_sync_id}/history":
-  get:
-    "$ref": "./paths/gitlab_syncs/history.yaml"
 "/projects/{project_id}/translations/{translation_id}/versions":
   get:
     "$ref": "./paths/versions/index.yaml"
@@ -367,6 +350,22 @@
     "$ref": "./paths/job_template_locales/update.yaml"
   delete:
     "$ref": "./paths/job_template_locales/destroy.yaml"
+"/projects/{project_id}/jobs/{job_id}/annotations":
+  get:
+    "$ref": "./paths/job_annotations/index.yaml"
+"/projects/{project_id}/jobs/{job_id}/annotations/{id}":
+  patch:
+    "$ref": "./paths/job_annotations/update.yaml"
+  delete:
+    "$ref": "./paths/job_annotations/destroy.yaml"
+"/projects/{project_id}/jobs/{job_id}/locales/{job_locale_id}/annotations":
+  get:
+    "$ref": "./paths/job_locale_annotations/index.yaml"
+"/projects/{project_id}/jobs/{job_id}/locales/{job_locale_id}/annotations/{id}":
+  patch:
+    "$ref": "./paths/job_locale_annotations/update.yaml"
+  delete:
+    "$ref": "./paths/job_locale_annotations/destroy.yaml"
 "/projects/{project_id}/variables":
   get:
     "$ref": "./paths/variables/index.yaml"
@@ -524,7 +523,10 @@
     "$ref": "./paths/repo_syncs/import.yaml"
 "/accounts/{account_id}/repo_syncs/{id}/events":
   get:
-    "$ref": "./paths/repo_syncs/events.yaml"
+    "$ref": "./paths/repo_sync_events/index.yaml"
+"/accounts/{account_id}/repo_syncs/{repo_sync_id}/events/{id}":
+  get:
+    "$ref": "./paths/repo_sync_events/show.yaml"
 "/accounts/{account_id}/repo_syncs/{id}/deactivate":
   post:
     "$ref": "./paths/repo_syncs/deactivate.yaml"
@@ -581,7 +583,6 @@
 "/accounts/{account_id}/teams/{team_id}/users/{id}":
   delete:
     "$ref": "./paths/teams/remove_user.yaml"
-
 "/projects/{project_id}/translations":
   get:
     "$ref": "./paths/translations/index.yaml"
@@ -610,6 +611,9 @@
 "/projects/{project_id}/translations/{id}/review":
   patch:
     "$ref": "./paths/translations/review.yaml"
+"/projects/{project_id}/translations/{id}/unreview":
+  patch:
+    "$ref": "./paths/translations/unreview.yaml"
 "/projects/{project_id}/translations/{id}/exclude":
   patch:
     "$ref": "./paths/translations/exclude.yaml"
@@ -625,6 +629,9 @@
 "/projects/{project_id}/translations/review":
   patch:
     "$ref": "./paths/translations/batch_review.yaml"
+"/projects/{project_id}/translations/unreview":
+  patch:
+    "$ref": "./paths/translations/batch_unreview.yaml"
 "/projects/{project_id}/translations/exclude":
   patch:
     "$ref": "./paths/translations/batch_exclude.yaml"

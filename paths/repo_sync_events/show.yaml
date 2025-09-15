@@ -1,0 +1,44 @@
+---
+summary: Get a single Repo Sync Event
+description: Shows a single Repo Sync event.
+operationId: repo_sync_event/show
+tags:
+- Repo Sync Events
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/repo_sync_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/repo_sync_event.yaml#/repo_sync_event"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/56ef78/events/78dfgj"\
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase repo_sync_events show \
+    --id <id> \
+    --repo_sync_id <repo_sync_id> \
+    --account_id abcd1234 \
+    --access_token <token>
+x-cli-version: '2.24'

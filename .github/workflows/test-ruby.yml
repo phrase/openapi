@@ -4,7 +4,7 @@ jobs:
   rspec:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build
         run: |
           npm install
@@ -20,3 +20,8 @@ jobs:
         run: |
           cd ./clients/ruby
           bundle exec rspec
+      - name: Check licenses
+        uses: phrase/actions/lawa-ruby-ci@main
+        with:
+          working-directory: ./clients/ruby
+          github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}

@@ -12,7 +12,7 @@ import (
 	"github.com/phrase/phrase-cli/cmd/internal/prompt"
 	"github.com/phrase/phrase-cli/cmd/internal/shared"
 	"github.com/phrase/phrase-cli/cmd/internal/spinner"
-	"github.com/phrase/phrase-go/v3"
+	"github.com/phrase/phrase-go/v4"
 	"gopkg.in/yaml.v2"
 )
 
@@ -143,7 +143,11 @@ func (cmd *InitCommand) askForToken() error {
 }
 
 func (cmd *InitCommand) setToken(token string) {
-	cmd.YAML.AccessToken = token
+	saveTokenToConfig := ""
+	_ = prompt.WithDefault("You can choose to save the token to the configuration file. Otherwise you will have to provide it every time you run the command either through a command argument (\"phrase -t YOUR_TOKEN\") or through an environment variable (PHRASE_ACCESS_TOKEN=\"YOUR_TOKEN\").\nDo you want to save the token to the config file? (y/n)", &saveTokenToConfig, "n")
+	if trimAndLower(saveTokenToConfig) == "y" {
+		cmd.YAML.AccessToken = token
+	}
 	cmd.Credentials.Token = token
 	Config = &cmd.Config
 	client := newClient()
@@ -243,7 +247,7 @@ func (cmd *InitCommand) newProject() error {
 }
 
 func (cmd *InitCommand) selectFormat() error {
-	formats, _, err := cmd.client.FormatsApi.FormatsList(Auth, &phrase.FormatsListOpts{})
+	formats, _, err := cmd.client.FormatsApi.FormatsList(Auth)
 	if err != nil {
 		return err
 	}
@@ -304,7 +308,7 @@ func (cmd *InitCommand) configureSources() error {
 
 		err = paths.Validate(pushPath, cmd.FileFormat.ApiName, cmd.FileFormat.Extension)
 		if err != nil {
-			print.Failure(err.Error())
+			print.Failure("%s", err.Error())
 		} else {
 			break
 		}
@@ -335,7 +339,7 @@ func (cmd *InitCommand) configureTargets() error {
 
 		err = paths.Validate(pullPath, cmd.FileFormat.ApiName, cmd.FileFormat.Extension)
 		if err != nil {
-			print.Failure(err.Error())
+			print.Failure("%s", err.Error())
 		} else {
 			break
 		}
@@ -371,12 +375,12 @@ func (cmd *InitCommand) writeConfig() error {
 		return err
 	}
 
-	print.Success("We created the following configuration file for you: " + filename)
+	print.Success("We created the following configuration file for you: %s", filename)
 
 	fmt.Println()
 	fmt.Println(string(yamlBytes))
 
-	print.Success("For advanced configuration options, take a look at the documentation: " + shared.DocsConfigUrl)
+	print.Success("For advanced configuration options, take a look at the documentation: %s", shared.DocsConfigUrl)
 	print.Success("You can now use the push & pull commands in your workflow:")
 	fmt.Println()
 	fmt.Println("$ phrase push")
@@ -385,7 +389,7 @@ func (cmd *InitCommand) writeConfig() error {
 
 	pushNow := ""
 	_ = prompt.WithDefault("Do you want to upload your locales now for the first time? (y/n)", &pushNow, "y")
-	if pushNow == "y" {
+	if trimAndLower(pushNow) == "y" {
 		err = firstPush()
 		if err != nil {
 			return err
@@ -405,4 +409,8 @@ func firstPush() error {
 	}
 	cmd := &PushCommand{Config: *config}
 	return cmd.Run()
+}
+
+func trimAndLower(s string) string {
+	return strings.TrimSpace(strings.ToLower(s))
 }

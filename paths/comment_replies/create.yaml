@@ -9,18 +9,24 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/key_id"
 - "$ref": "../../parameters.yaml#/comment_id"
-- description: specify the branch to use
-  example: my-feature-branch
-  name: branch
-  in: query
-  schema:
-    type: string
-- description: specify the message for the comment
-  example: some message...
-  name: message
-  in: query
-  schema:
-    type: string
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: comment/create/parameters
+        required:
+          - message
+        properties:
+          message:
+            description: Reply message body
+            type: string
+            example: Some message...
+          branch:
+            description: Specify the branch to use
+            type: string
+            example: my-feature-branch
 responses:
   '201':
     description: Created
@@ -46,7 +52,7 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies/" \
+    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments/:comment_id/replies" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
       -d '{"branch":"my-feature-branch", "message":"Some message..."}' \

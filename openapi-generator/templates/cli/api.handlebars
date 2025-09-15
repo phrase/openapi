@@ -9,7 +9,7 @@ import (
 
 	"github.com/antihax/optional"
 	helpers "github.com/phrase/phrase-cli/helpers"
-	api "github.com/phrase/phrase-go/v3"
+	api "github.com/phrase/phrase-go/v4"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -97,11 +97,16 @@ func init{{{nickname}}}() {
 						{{/isModel~}}
 						{{^isPrimitiveType}}{{^isModel}}
 							if params.IsSet(helpers.ToSnakeCase("{{paramName}}")) {
-								var {{paramName}} map[string]interface{}
-								if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{vendorExtensions.x-export-param-name}}}"))), &{{paramName}}); err != nil {
+							{{#if (eq dataType "[]string")}}
+									var {{paramName}} []string
+							{{else}}
+									var {{paramName}} map[string]interface{}
+							{{/if}}
+
+								if err := json.Unmarshal([]byte(params.GetString(helpers.ToSnakeCase("{{{paramName}}}"))), &{{paramName}}); err != nil {
 									HandleError(err)
 								}
-								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = optional.NewInterface({{paramName}})
+								localVarOptionals.{{{vendorExtensions.x-export-param-name}}} = {{#if (eq dataType "[]string")}}{{paramName}}{{else}}optional.NewInterface({{paramName}}){{/if}}
 							}
 						{{/isModel}}{{/isPrimitiveType}}
 					{{/if}}

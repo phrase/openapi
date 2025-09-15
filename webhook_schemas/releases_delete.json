@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user": {
+      "$ref": "user.json"
+    },
+    "project": {
+      "$ref": "project.json"
+    },
+    "branch": {
+      "$ref": "branch.json"
+    },
+    "release": {
+      "$ref": "release.json"
+    }
+  },
+  "required": [
+    "event",
+    "message",
+    "user",
+    "project",
+    "branch",
+    "release"
+  ]
+}

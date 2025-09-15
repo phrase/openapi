@@ -12,7 +12,12 @@
 from __future__ import absolute_import
 
 import unittest
-from unittest.mock import Mock, patch
+import sys
+
+if sys.version_info[:2] <= (3, 7):
+    from mock import Mock, patch 
+else:
+    from unittest.mock import Mock, patch
 
 
 import phrase_api

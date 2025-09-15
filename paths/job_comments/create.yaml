@@ -55,4 +55,8 @@ requestBody:
             description: Job comment message
             type: string
             example: Some message...
+          branch:
+            description: Branch name for the job
+            type: string
+            example: my-feature-branch
 x-cli-version: '2.5'

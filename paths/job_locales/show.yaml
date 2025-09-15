@@ -9,12 +9,8 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/job_id"
 - "$ref": "../../parameters.yaml#/id"
-- description: specify the branch to use
-  example: my-feature-branch
-  name: branch
-  in: query
-  schema:
-    type: string
+- "$ref": "../../parameters.yaml#/branch"
+- "$ref": "../../parameters.yaml#/include_annotations"
 responses:
   '200':
     description: OK

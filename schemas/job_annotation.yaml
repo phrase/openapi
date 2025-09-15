@@ -1,0 +1,23 @@
+---
+job_annotation:
+  type: object
+  title: job_annotation
+  properties:
+    name:
+      type: string
+    value:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  required:
+    - name
+    - value
+  example:
+    name: "priority"
+    value: "high"
+    created_at: '2023-10-01T12:00:00Z'
+    updated_at: '2023-10-01T12:00:00Z'

@@ -74,6 +74,10 @@ requestBody:
             description: Indicates whether key supports pluralization
             type: boolean
             example:
+          use_ordinal_rules:
+            description: Indicates whether key uses ordinal rules for pluralization
+            type: boolean
+            example:
           name_plural:
             description: Plural name for the key (used in some file formats, e.g. Gettext)
             type: string
@@ -109,6 +113,10 @@ requestBody:
             description: Creates a translation in the default locale with the specified content
             type: string
             example: Default translation content
+          autotranslate:
+            description: Indicates whether the key should be autotranslated to other locales based on the copy provided in `default_translation_content`.
+            type: boolean
+            example:
           xml_space_preserve:
             description: Indicates whether the key should be exported with "xml:space=preserve". Supported by several XML-based formats.
             type: boolean

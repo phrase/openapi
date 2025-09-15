@@ -1,49 +1,48 @@
----
 summary: List comments
 description: List all comments for a key.
 operationId: comments/list
 tags:
-- Comments
+  - Comments
 parameters:
-- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
-- "$ref": "../../parameters.yaml#/project_id"
-- "$ref": "../../parameters.yaml#/key_id"
-- "$ref": "../../parameters.yaml#/page"
-- "$ref": "../../parameters.yaml#/per_page"
-- description: specify the branch to use
-  example: my-feature-branch
-  name: branch
-  in: query
-  schema:
-    type: string
-- description: Search query for comment messages
-  example: Some comment content
-  name: query
-  in: query
-  schema:
-    type: string
-- description: Search comments by their assigned locales
-  example: [someId]
-  name: locale_ids
-  in: query
-  schema:
-    type: array
-    items:
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/project_id"
+  - "$ref": "../../parameters.yaml#/key_id"
+  - "$ref": "../../parameters.yaml#/page"
+  - "$ref": "../../parameters.yaml#/per_page"
+  - description: specify the branch to use
+    example: my-feature-branch
+    name: branch
+    in: query
+    schema:
       type: string
-- description: Specify the filter for the comments
-  name: filters
-  in: query
-  schema:
-    type: array
-    example: [read, unread]
-    items:
+  - description: Search query for comment messages
+    example: Some comment content
+    name: query
+    in: query
+    schema:
       type: string
-- description: 'Order direction. Can be one of: asc, desc.'
-  name: order
-  in: query
-  example: desc
-  schema:
-    type: string
+  - description: Search comments by their assigned locales
+    example: [someId]
+    name: locale_ids
+    in: query
+    schema:
+      type: array
+      items:
+        type: string
+  - description: Specify the filter for the comments
+    name: filters
+    in: query
+    schema:
+      type: array
+      example: [read, unread]
+      items:
+        type: string
+  - description: 'Order direction. Can be one of: asc, desc.'
+    name: order
+    in: query
+    example: desc
+    schema:
+      type: string
 responses:
   '200':
     description: OK
@@ -71,53 +70,21 @@ responses:
   '429':
     "$ref": "../../responses.yaml#/429"
 x-code-samples:
-- lang: Curl
-  source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments?branch=my-feature-branch&filters=unread&query=something&locale_ids=someId&order=desc" \
-      -u USERNAME_OR_ACCESS_TOKEN \
-      -X GET \
-      -H 'Content-Type: application/json'
-- lang: CLI v2
-  source: |-
-    phrase comments list \
-    --project_id <project_id> \
-    --key_id <key_id> \
-    --branch "my-feature-branch" \
-    --filters unread \
-    --order desc \
-    --query "Some comment content" \
-    --locale_ids someId \
-    --access_token <token>
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        title: comments/list/parameters
-        properties:
-          branch:
-            description: Specify the branch to use
-            type: string
-            example: my-feature-branch
-          query:
-            description: Search query for comment messages
-            type: string
-            example: Some comment content
-          locale_ids:
-            description: Search comments by their assigned locales
-            type: array
-            items:
-              type: string
-            example: [someId, otherId]
-          filters:
-            description: Specify filters to find comments by
-            type: array
-            items:
-              type: string
-            example: [read, unread]
-          order:
-            description: Specify ordering of comments
-            type: string
-            example: desc
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:project_id/keys/:key_id/comments?branch=my-feature-branch&filters=unread&query=something&locale_ids=someId&order=desc" \
+        -u USERNAME_OR_ACCESS_TOKEN \
+        -X GET \
+        -H 'Content-Type: application/json'
+  - lang: CLI v2
+    source: |-
+      phrase comments list \
+      --project_id <project_id> \
+      --key_id <key_id> \
+      --branch "my-feature-branch" \
+      --filters unread \
+      --order desc \
+      --query "Some comment content" \
+      --locale_ids someId \
+      --access_token <token>
 x-cli-version: '2.5'

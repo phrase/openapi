@@ -1,0 +1,46 @@
+---
+summary: Show status of an async locale download
+description: Show status of already started async locale download. If the download is finished, the download link will be returned.
+operationId: locale_download/show
+tags:
+  - Locale Downloads
+parameters:
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/If-Modified-Since"
+  - "$ref": "../../parameters.yaml#/If-None-Match"
+  - "$ref": "../../parameters.yaml#/project_id"
+  - "$ref": "../../parameters.yaml#/locale_id"
+  - "$ref": "../../parameters.yaml#/id"
+responses:
+  "200":
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/locale_download.yaml#/locale_download"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  "400":
+    "$ref": "../../responses.yaml#/400"
+  "404":
+    "$ref": "../../responses.yaml#/404"
+  "429":
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+  - lang: Curl
+    source: |-
+      curl "https://api.phrase.com/v2/projects/:project_id/locales/:locale_id/downloads/:id" \
+        -u USERNAME_OR_ACCESS_TOKEN
+  - lang: CLI v2
+    source: |-
+      phrase locale_downloads show \
+      --project_id <project_id> \
+      --locale_id <locale_id> \
+      --id <id>
+      --access_token <token>
+x-cli-version: "2.29.0"

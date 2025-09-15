@@ -1,6 +1,6 @@
 ---
 summary: Update a member's invitation access
-description: Update member's settings in the invitations. Access token scope must include <code>team.manage</code>.
+description: Update member's settings in the invitations. Access token scope must include `team.manage`.
 operationId: invitation/update_settings
 tags:
 - Invitations

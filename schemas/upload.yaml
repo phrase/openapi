@@ -13,6 +13,14 @@ upload:
       type: string
     tag:
       type: string
+      description: |
+        Unique tag of the upload
+    tags:
+      type: array
+      items:
+        type: string
+      description: |
+        List of tags that were assigned to the uploaded keys
     url:
       type: string
       description: |
@@ -35,6 +43,10 @@ upload:
         tags_created:
           type: integer
         translation_keys_ignored:
+          type: integer
+        processed_translations:
+          type: integer
+        upload_total_translations:
           type: integer
     created_at:
       type: string

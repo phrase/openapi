@@ -4,16 +4,6 @@ schemas:
     "$ref": schemas/authorization.yaml#/authorization
   authorization_with_token:
     "$ref": schemas/authorization_with_token.yaml#/authorization_with_token
-  bitbucket_sync:
-    "$ref": schemas/bitbucket_sync.yaml#/bitbucket_sync
-  bitbucket_sync_export_response:
-    "$ref": schemas/bitbucket_sync_export_response.yaml#/bitbucket_sync_export_response
-  gitlab_sync:
-    "$ref": schemas/gitlab_sync.yaml#/gitlab_sync
-  gitlab_sync_export:
-    "$ref": schemas/gitlab_sync_export.yaml#/gitlab_sync_export
-  gitlab_sync_history:
-    "$ref": schemas/gitlab_sync_history.yaml#/gitlab_sync_history
   blacklisted_key:
     "$ref": schemas/blacklisted_key.yaml#/blacklisted_key
   comment:
@@ -56,6 +46,8 @@ schemas:
     "$ref": schemas/locale_preview.yaml#/locale_preview
   locale:
     "$ref": schemas/locale.yaml#/locale
+  locale_download:
+    "$ref": schemas/locale_download.yaml#/locale_download
   locale_statistics:
     "$ref": schemas/locale_statistics.yaml#/locale_statistics
   locale_report:
@@ -120,6 +112,10 @@ schemas:
     "$ref": schemas/team_short.yaml#/team_short
   job:
     "$ref": schemas/job.yaml#/job
+  job_annotation:
+    "$ref": schemas/job_annotation.yaml#/job_annotation
+  job_annotation_short:
+    "$ref": schemas/job_annotation_short.yaml#/job_annotation_short
   job_details:
     "$ref": schemas/job_details.yaml#/job_details
   job_preview:
@@ -144,6 +140,8 @@ schemas:
     "$ref": schemas/release_preview.yaml#/release_preview
   release:
     "$ref": schemas/release.yaml#/release
+  release_trigger:
+    "$ref": schemas/release_trigger.yaml#/release_trigger
   screenshot:
     "$ref": schemas/screenshot.yaml#/screenshot
   screenshot_marker:

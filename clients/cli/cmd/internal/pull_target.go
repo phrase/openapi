@@ -9,18 +9,18 @@ import (
 	"github.com/phrase/phrase-cli/cmd/internal/paths"
 	"github.com/phrase/phrase-cli/cmd/internal/placeholders"
 	"github.com/phrase/phrase-cli/cmd/internal/shared"
-	"github.com/phrase/phrase-go/v3"
+	"github.com/phrase/phrase-go/v4"
 	"github.com/spf13/viper"
 )
 
 type Targets []*Target
 
-func (targets Targets) ProjectIds() []string {
-	projectIds := []string{}
+func (targets Targets) GetAllLocalesCacheKeys() []LocalesCacheKey {
+	localesCacheKeys := []LocalesCacheKey{}
 	for _, target := range targets {
-		projectIds = append(projectIds, target.ProjectID)
+		localesCacheKeys = append(localesCacheKeys, LocalesCacheKey{target.ProjectID, target.GetBranch()})
 	}
-	return projectIds
+	return localesCacheKeys
 }
 
 type Target struct {
@@ -30,6 +30,13 @@ type Target struct {
 	FileFormat    string      `json:"file_format"`
 	Params        *PullParams `json:"params" mapstructure:"omittable-nested,omitempty"`
 	RemoteLocales []*phrase.Locale
+}
+
+func (target *Target) GetBranch() string {
+	if target.Params != nil {
+		return target.Params.Branch.Value()
+	}
+	return ""
 }
 
 func (target *Target) CheckPreconditions() error {

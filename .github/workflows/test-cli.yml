@@ -1,0 +1,37 @@
+# Currently this does not contain any tests, only a license check
+# Once we add tests, we should add a step here to run them
+name: Run CLI Tests
+on:
+  push:
+    paths:
+      - .github/workflows/test-cli.yml
+      - openapi-generator/cli_lang.yaml
+      - clients/cli/*
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.24.4'
+      - name: Generate CLI and run tests
+        env:
+          GOPRIVATE: github.com/phrase/phrase-go
+        run: |
+          npm install
+          npm run generate.go
+          cd ./clients/cli
+          go mod edit -replace github.com/phrase/phrase-go/v4=../go
+          npm run generate.cli
+          go build .
+          go test -v ./...
+      - name: License check
+        uses: phrase/actions/lawa-ci@v1
+        with:
+          github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
+          decisions-file: .license-decisions.yml
+          working-directory: clients/cli
+          package-managers: gomodules

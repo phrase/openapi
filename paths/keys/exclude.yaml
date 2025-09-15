@@ -55,17 +55,17 @@ requestBody:
             example: my-feature-branch
           q:
             description: |
-              Specify a query to do broad search for keys by name (including wildcards).<br><br>
-              The following qualifiers are also supported in the search term:<br>
-              <ul>
-                <li><code>ids:key_id,...</code> for queries on a comma-separated list of ids</li>
-                <li><code>name:key_name</code> for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes</li>
-                <li><code>tags:tag_name</code> to filter for keys with certain tags</li>
-                <li><code>translated:{true|false}</code> for translation status (also requires <code>locale_id</code> to be specified)</li>
-                <li><code>updated_at:{>=|<=}2013-02-21T00:00:00Z</code> for date range queries</li>
-                <li><code>unmentioned_in_upload:upload_id</code> to filter keys unmentioned within upload</li>
-              </ul>
-              Find more examples <a href="#overview--usage-examples">here</a>.
+               Specify a query to do broad search for keys by name (including wildcards).
+
+               The following qualifiers are also supported in the search term:
+               - `ids:key_id,...` for queries on a comma-separated list of ids
+               - `name:key_name` for text queries on exact key names - spaces, commas, and colons need to be escaped with double backslashes
+               - `tags:tag_name` to filter for keys with certain tags
+               - `translated:{true|false}` for translation status (also requires `locale_id` to be specified)
+               - `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries
+               - `unmentioned_in_upload:upload_id,...` to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in **all** uploads
+
+               Find more examples [here](/en/api/strings/usage-examples).    
             type: string
             example: mykey* translated:true
           target_locale_id:

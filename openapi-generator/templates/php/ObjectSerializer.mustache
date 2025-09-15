@@ -165,16 +165,24 @@ class ObjectSerializer
      * the http body (form parameter). If it's a string, pass through unchanged
      * If it's a datetime object, format it in ISO8601
      *
-     * @param string|\SplFileObject $value the value of the form parameter
+     * @param string $name the name of the form parameter
+     * @param string|\SplFileObject|array|object $value the value of the form parameter
      *
-     * @return string the form string
+     * @return array the key-value pairs of the form parameters
      */
-    public static function toFormValue($value)
+    public static function toFormValues($name, $value)
     {
-        if ($value instanceof \SplFileObject) {
-            return $value->getRealPath();
+        if (is_array($value) || is_object($value)) {
+            $query = http_build_query([$name => $value]);
+            $params = explode("&", $query);
+            $result = [];
+            foreach ($params as $param) {
+                $kv = explode("=", $param);
+                $result[urldecode($kv[0])] = urldecode($kv[1]);
+            }
+            return $result;
         } else {
-            return self::toString($value);
+            return [$name => self::toString($value)];
         }
     }
 

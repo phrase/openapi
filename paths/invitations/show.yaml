@@ -1,6 +1,6 @@
 ---
 summary: Get a single invitation
-description: Get details on a single invitation. Access token scope must include <code>team.manage</code>.
+description: Get details on a single invitation. Access token scope must include `team.manage`.
 operationId: invitation/show
 tags:
 - Invitations

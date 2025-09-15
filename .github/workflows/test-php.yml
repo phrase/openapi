@@ -4,17 +4,24 @@ jobs:
   phpunit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build
         run: |
           npm install
           npm run generate.php
       - uses: php-actions/composer@v6
         with:
-          php_version: '7.4'
+          php_version: '8.3'
           working_dir: ./clients/php
       - uses: php-actions/phpunit@v3
         with:
-          php_version: '7.4'
-          version: '7.4'
+          php_version: '8.3'
+          version: '12.1'
           configuration: ./clients/php/phpunit.xml.dist
+      - name: License check
+        uses: phrase/actions/lawa-ci@v1
+        with:
+          github-token: ${{ secrets.GH_LAWA_ACCESS_TOKEN }}
+          decisions-file: .license-decisions.yml
+          working-directory: clients/php
+          package-managers: composer
