@@ -27834,7 +27834,7 @@
         "description": "Get details of a single automation.",
         "operationId": "automation/show",
         "tags": [
-          "Custom Metadata"
+          "Automation"
         ],
         "parameters": [
           {
