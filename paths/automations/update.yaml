@@ -1,0 +1,86 @@
+---
+summary: Update an automation
+description: Update an existing automation.
+operationId: automation/update
+tags:
+- Automation
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        required:
+        - name
+        - project_id
+        - status_filters
+        - trigger
+        type: object
+        title: automations/create/parameters
+        properties:
+          name:
+            description: name of the automation
+            example: Scheduled Job Automation - Hourly
+            type: string
+          trigger:
+            "$ref": "../../schemas/automation_type.yaml#/trigger"
+          project_id:
+            description: id of project that the automation belongs to
+            type: string
+            example: abcd1234cdef1234abcd1234cdef1234
+          job_template_id:
+            description: id of job template that the automation uses to create jobs from
+            type: string
+            example: abcd1234cdef1234abcd1234cdef1234
+          status_filters:
+            description: translation key statuses used to filter keys that are added to jobs
+            "$ref": "../../schemas/automation_type.yaml#/status_filters"
+          tag_ids:
+            type: array
+            items:
+              type: string
+          cron_schedule:
+            description: along with time_zone, specifies when the scheduled automation is supposed to run
+            "$ref": "../../schemas/automation_type.yaml#/cron_schedule"
+          time_zone:
+            description: along with cron_schedule, specifies when the scheduled automation is supposed to run
+            "$ref": "../../schemas/automation_type.yaml#/time_zone"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/automation.yaml#/automation"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/automations/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH \
+      -d '{"name":"Schedule Automation - Weekly","tag_ids":["5","6"],time_zone:"UTC"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase automations update \
+    --account_id <account_id> \
+    --id <id> \
+    --data '{"name":"Schedule Automation - Weekly","tag_ids":["5","6"],time_zone:"UTC"}' \
+    --access_token <token>
+x-cli-version: '2.9'
