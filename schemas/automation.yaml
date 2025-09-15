@@ -9,12 +9,15 @@ automation:
       type: string
     status:
       type: string
+      enum: [inactive, active, error]
     trigger:
       type: string
+      enum: [schedule, upload]
     status_filters:
       type: array
       items:
         type: string
+        enum: [unverified, untranslated, ready_for_review]
     project_id:
       type: string
     job_template_id:
