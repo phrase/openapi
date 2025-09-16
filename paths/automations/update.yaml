@@ -42,10 +42,13 @@ requestBody:
             items:
               type: string
               enum: [unverified, untranslated, ready_for_review]
-          tag_ids:
+          tags:
+            description: used to filter which keys are added to jobs
             type: array
             items:
               type: string
+            example:
+            - myTag
           cron_schedule:
             description: along with time_zone, specifies when the scheduled automation is supposed to run
             type: string
