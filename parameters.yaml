@@ -7,7 +7,7 @@ X-PhraseApp-OTP:
   schema:
     type: string
 If-Modified-Since:
-  description: 'Last modified condition, see <a href="#overview--conditional-get-requests--http-caching">Conditional GET requests / HTTP Caching</a> (optional)'
+  description: 'Last modified condition, see [Conditional GET requests / HTTP Caching](/en/api/strings/pagination#conditional-get-requests-%2F-http-caching) (optional)'
   explode: false
   in: header
   name: If-Modified-Since
@@ -16,7 +16,7 @@ If-Modified-Since:
     type: string
   style: simple
 If-None-Match:
-  description: 'ETag condition, see <a href="#overview--conditional-get-requests--http-caching">Conditional GET requests / HTTP Caching</a> (optional)'
+  description: 'ETag condition, see [Conditional GET requests / HTTP Caching](/en/api/strings/pagination#conditional-get-requests-%2F-http-caching) (optional)'
   explode: false
   in: header
   name: If-None-Match
@@ -44,6 +44,13 @@ query_account_id:
   name: account_id
   description: Filter by Account ID
   required: false
+  schema:
+    type: string
+repo_sync_id:
+  in: path
+  name: repo_sync_id
+  description: Repo Sync ID
+  required: true
   schema:
     type: string
 space_id:
@@ -92,6 +99,13 @@ job_id:
   in: path
   name: job_id
   description: Job ID
+  required: true
+  schema:
+    type: string
+job_locale_id:
+  in: path
+  name: job_locale_id
+  description: Job Locale ID
   required: true
   schema:
     type: string
@@ -172,13 +186,6 @@ locale_id_as_id:
   required: true
   schema:
     type: string
-gitlab_sync_id:
-  in: path
-  name: gitlab_sync_id
-  description: Gitlab Sync ID
-  required: true
-  schema:
-    type: string
 id:
   in: path
   name: id
@@ -200,6 +207,13 @@ tag:
   required: false
   schema:
     type: string
+branch:
+  name: branch
+  in: query
+  description: Branch to use
+  schema:
+    type: string
+  example: my-feature-branch
 page:
   in: query
   name: page
@@ -232,3 +246,60 @@ response_status_codes:
   required: false
   schema:
     type: string
+q:
+  description: |
+    Specify a query to do broad search for keys by name (including wildcards).
+
+    The following qualifiers are also supported in the search term:
+
+    - `ids:key_id,...` for queries on a comma-separated list of ids
+    - `name:key_name` for text queries on exact key names - spaces, commas, and colons  need to be escaped with double backslashes
+    - `tags:tag_name` to filter for keys with certain tags
+    - `translated:{true|false}` for translation status (also requires `locale_id` to be specified)
+    - `updated_at:{>=|<=}2013-02-21T00:00:00Z` for date range queries
+    - `unmentioned_in_upload:upload_id,...` to filter keys unmentioned within upload. When multiple upload IDs provided, matches only keys not mentioned in **all** uploads
+
+    **Caution:** Query parameters with empty values will be treated as though they are not included in the request and will be ignored.
+
+    Find more examples [here](/en/api/strings/usage-examples).
+  example: mykey* translated:true
+  name: q
+  in: query
+  schema:
+    type: string
+job_owner:
+  description: filter by user owning job
+  example: abcd1234cdef1234abcd1234cdef1234
+  name: owned_by
+  in: query
+  schema:
+    type: string
+job_assignee:
+  description: filter by user assigned to job
+  example: abcd1234cdef1234abcd1234cdef1234
+  name: assigned_to
+  in: query
+  schema:
+    type: string
+job_state:
+  description: 'filter by state of job; valid states are: `draft`, `in_progress`, `completed`'
+  example: completed
+  name: state
+  in: query
+  schema:
+    type: string
+job_updated_since:
+  description: filter by jobs updated since given date
+  example: 2013-02-21T00:00:00Z
+  name: updated_since
+  in: query
+  schema:
+    type: string
+include_annotations:
+  in: query
+  name: include_annotations
+  description: Include job-locale annotations in the response
+  required: false
+  schema:
+    type: boolean
+    default: false

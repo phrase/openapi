@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "gravatar_uid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "name",
+        "gravatar_uid"
+      ]
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "main_format": {
+          "type": "string"
+        },
+        "project_image_url": {
+          "type": "null"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "point_of_contact": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "slug",
+        "main_format",
+        "project_image_url",
+        "created_at",
+        "updated_at",
+        "point_of_contact"
+      ]
+    },
+    "branch": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "custom_metadata_value": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "value"
+      ]
+    },
+    "key": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "plural": {
+          "type": "boolean"
+        },
+        "data_type": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "plural",
+        "data_type",
+        "tags"
+      ]
+    }
+  },
+  "required": [
+    "event",
+    "message",
+    "user",
+    "project",
+    "branch",
+    "custom_metadata_value",
+    "key"
+  ]
+}

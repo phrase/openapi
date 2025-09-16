@@ -9,6 +9,11 @@ account_details:
         "$ref": "./subscription.yaml#/subscription"
       slug:
         type: string
+      roles:
+        type: array
+        items:
+          type: string
     example:
       slug: company-account
       subscription: subscription
+      roles: [Owner, Admin]

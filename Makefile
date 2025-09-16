@@ -19,21 +19,11 @@ bundle:
 watch_bundle:
 	make lint
 	npx swagger-cli bundle -t json -w 300 main.yaml > doc/compiled.json
-watch_scss:
-	npx sass --watch ./doc/main.scss:./doc/main.css ./doc/rapidoc.scss:./doc/rapidoc.css
-watch_ts:
-	npx tsc --watch ./doc/main.ts --outFile ./doc/main.js
-serve:
-	npx http-server doc -c-1 -p 8080
-docs: lint bundle
-	npx sass -s compressed ./doc/main.scss:./doc/main.css ./doc/rapidoc.scss:./doc/rapidoc.css
-	npx tsc ./doc/main.ts --outFile ./doc/main.js
-	npx terser ./doc/main.js --compress --mangle -o ./doc/main.js
 ruby:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g ruby -o clients/ruby -c ./openapi-generator/ruby_lang.yaml
 go:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g go -o clients/go -c ./openapi-generator/go_lang.yaml --global-property apiTests=false,modelTests=false
-	go install golang.org/x/tools/cmd/goimports@latest
+	go install golang.org/x/tools/cmd/goimports@v0.24.0
 	goimports -w clients/go
 	cd clients/go && go mod tidy
 typescript:
@@ -48,6 +38,6 @@ cli:
 	openapi-generator-cli generate -i tmp/compiled.yaml -g go -o tmp/cli -c ./openapi-generator/cli_lang.yaml -e handlebars
 	cp tmp/cli/api_* clients/cli/cmd/
 	cp tmp/cli/README.md clients/cli/
-	go install golang.org/x/tools/cmd/goimports@latest
+	go install golang.org/x/tools/cmd/goimports@v0.24.0
 	goimports -w clients/cli
 	cd clients/cli && go mod tidy

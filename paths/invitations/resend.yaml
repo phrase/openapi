@@ -1,6 +1,6 @@
 ---
 summary: Resend an invitation
-description: Resend the invitation email (must not be accepted yet). Access token scope must include <code>team.manage</code>.
+description: Resend the invitation email (must not be accepted yet). Access token scope must include `team.manage`.
 operationId: invitation/resend
 tags:
 - Invitations

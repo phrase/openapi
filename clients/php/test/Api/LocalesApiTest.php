@@ -55,16 +55,9 @@ class LocalesApiTest extends TestCase
     private $history = [];
 
     /**
-     * Setup before running any test cases
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->mock = new MockHandler();
         $history = Middleware::history($this->history);
@@ -76,20 +69,6 @@ class LocalesApiTest extends TestCase
         $config = Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'token');
 
         $this->apiInstance = new Api($client, $config);
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
     }
 
     /**
@@ -134,7 +113,42 @@ class LocalesApiTest extends TestCase
 
         $projectId = "project_id_example";
         $id = "locale_id";
-        $result = $this->apiInstance->localeDownload($projectId, $id);
+        $file_format = "csv";
+        $format_options = array(
+            "key" => "value",
+            "nested" => array(
+                "nested_key" => "nested_value"
+            )
+        );
+        $custom_metadata_filters = array('key' => 'value');
+
+        $result = $this->apiInstance-> localeDownload(
+            $projectId,
+            $id,
+            null,
+            null,
+            null,
+            null,
+            $file_format,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            $format_options,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            $custom_metadata_filters
+        );
+
 
         $this->assertNotNull($result);
         $this->assertEquals('foo', $result);
@@ -142,6 +156,7 @@ class LocalesApiTest extends TestCase
         $lastRequest = $this->history[count($this->history)-1]['request'];
         $this->assertEquals('GET', $lastRequest->getMethod());
         $this->assertEquals('/v2/projects/'.$projectId.'/locales/'.$id.'/download', $lastRequest->getUri()->getPath());
+        $this->assertEquals('file_format=csv&format_options%5Bkey%5D=value&format_options%5Bnested%5D%5Bnested_key%5D=nested_value&custom_metadata_filters%5Bkey%5D=value', $lastRequest->getUri()->getQuery());
     }
 
     /**

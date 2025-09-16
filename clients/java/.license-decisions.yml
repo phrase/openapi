@@ -1,0 +1,16 @@
+---
+- - :inherit_from
+  - url: https://raw.githubusercontent.com/phrase/lawa/master/config/license-decisions.yml
+    authorization: token $GITHUB_TOKEN
+- - :approve
+  - javax.annotation-api
+  - :who: Mladen Jablanovic
+    :why: CDDL
+    :versions: []
+    :when: 2024-08-07 17:34:09.423359302 Z
+- - :approve
+  - junit
+  - :who: Mladen Jablanovic
+    :why: EPL 1
+    :versions: []
+    :when: 2024-08-07 17:34:26.745060008 Z

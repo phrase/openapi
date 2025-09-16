@@ -2,10 +2,13 @@ package internal
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"time"
 
@@ -14,11 +17,13 @@ import (
 	"github.com/phrase/phrase-cli/cmd/internal/print"
 
 	"github.com/antihax/optional"
-	"github.com/phrase/phrase-go/v3"
+	"github.com/phrase/phrase-go/v4"
 )
 
 const (
 	timeoutInMinutes = 30 * time.Minute
+	asyncWaitTime    = 5 * time.Second
+	asyncRetryCount  = 360 // 30 minutes
 )
 
 var Config *phrase.Config
@@ -27,6 +32,7 @@ type PullCommand struct {
 	phrase.Config
 	Branch             string
 	UseLocalBranchName bool
+	Async              bool
 }
 
 var Auth context.Context
@@ -52,16 +58,20 @@ func (cmd *PullCommand) Run(config *phrase.Config) error {
 	}
 	cmd.Branch = branchName
 
-	projectIdToLocales, err := LocalesForProjects(client, targets, cmd.Branch)
+	localesCache, err := GetLocalesCache(client, targets, cmd.Branch)
 	if err != nil {
 		return err
 	}
 
 	for _, target := range targets {
-		val, ok := projectIdToLocales[LocaleCacheKey{target.ProjectID, cmd.Branch}]
+		if cmd.Branch != "" {
+			target.Params.Branch = optional.NewString(cmd.Branch)
+		}
+
+		val, ok := localesCache[LocalesCacheKey{target.ProjectID, target.GetBranch()}]
 		if !ok || len(val) == 0 {
 			if cmd.Branch != "" {
-				continue
+				return fmt.Errorf("Branch '%s' does not exist in project '%s'", cmd.Branch, target.ProjectID)
 			}
 			return fmt.Errorf("Could not find any locales for project %q", target.ProjectID)
 		}
@@ -69,7 +79,7 @@ func (cmd *PullCommand) Run(config *phrase.Config) error {
 	}
 
 	for _, target := range targets {
-		err := target.Pull(client, cmd.Branch)
+		err := target.Pull(client, cmd.Async)
 		if err != nil {
 			return err
 		}
@@ -97,7 +107,7 @@ type PullParams struct {
 	LocaleID                  string `json:"locale_id"`
 }
 
-func (target *Target) Pull(client *phrase.APIClient, branch string) error {
+func (target *Target) Pull(client *phrase.APIClient, async bool) error {
 	if err := target.CheckPreconditions(); err != nil {
 		return err
 	}
@@ -118,7 +128,7 @@ func (target *Target) Pull(client *phrase.APIClient, branch string) error {
 			return err
 		}
 
-		err = target.DownloadAndWriteToFile(client, localeFile, branch)
+		err = target.DownloadAndWriteToFile(client, localeFile, async)
 		if err != nil {
 			if openapiError, ok := err.(phrase.GenericOpenAPIError); ok {
 				print.Warn("API response: %s", openapiError.Body())
@@ -127,27 +137,26 @@ func (target *Target) Pull(client *phrase.APIClient, branch string) error {
 		} else {
 			print.Success("Downloaded %s to %s", localeFile.Message(), localeFile.RelPath())
 		}
-		if Debug {
-			fmt.Fprintln(os.Stderr, strings.Repeat("-", 10))
-		}
+		debugFprintln(strings.Repeat("-", 10))
 	}
 
 	return nil
 }
 
-func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFile *LocaleFile, branch string) error {
+func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFile *LocaleFile, async bool) error {
 	localVarOptionals := phrase.LocaleDownloadOpts{}
 
 	if target.Params != nil {
 		localVarOptionals = target.Params.LocaleDownloadOpts
+		translationKeyPrefix, err := placeholders.ResolveTranslationKeyPrefix(target.Params.TranslationKeyPrefix, localeFile.Path)
+		if err != nil {
+			return err
+		}
+		localVarOptionals.TranslationKeyPrefix = translationKeyPrefix
 	}
 
 	if localVarOptionals.FileFormat.Value() == "" {
 		localVarOptionals.FileFormat = optional.NewString(localeFile.FileFormat)
-	}
-
-	if branch != "" {
-		localVarOptionals.Branch = optional.NewString(branch)
 	}
 
 	if localeFile.Tag != "" {
@@ -155,25 +164,61 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 		localVarOptionals.Tag = optional.EmptyString()
 	}
 
-	if Debug {
-		fmt.Fprintln(os.Stderr, "Target file pattern:", target.File)
-		fmt.Fprintln(os.Stderr, "Actual file path", localeFile.Path)
-		fmt.Fprintln(os.Stderr, "LocaleID", localeFile.ID)
-		fmt.Fprintln(os.Stderr, "ProjectID", target.ProjectID)
-		fmt.Fprintln(os.Stderr, "FileFormat", localVarOptionals.FileFormat)
-		fmt.Fprintln(os.Stderr, "ConvertEmoji", localVarOptionals.ConvertEmoji)
-		fmt.Fprintln(os.Stderr, "IncludeEmptyTranslations", localVarOptionals.IncludeEmptyTranslations)
-		fmt.Fprintln(os.Stderr, "KeepNotranslateTags", localVarOptionals.KeepNotranslateTags)
-		fmt.Fprintln(os.Stderr, "Tags", localVarOptionals.Tags)
-		fmt.Fprintln(os.Stderr, "Branch", localVarOptionals.Branch)
-		fmt.Fprintln(os.Stderr, "FormatOptions", localVarOptionals.FormatOptions)
+	debugFprintln("Target file pattern:", target.File)
+	debugFprintln("Actual file path", localeFile.Path)
+	debugFprintln("LocaleID", localeFile.ID)
+	debugFprintln("ProjectID", target.ProjectID)
+	debugFprintln("FileFormat", localVarOptionals.FileFormat)
+	debugFprintln("ConvertEmoji", localVarOptionals.ConvertEmoji)
+	debugFprintln("IncludeEmptyTranslations", localVarOptionals.IncludeEmptyTranslations)
+	debugFprintln("KeepNotranslateTags", localVarOptionals.KeepNotranslateTags)
+	debugFprintln("Tags", localVarOptionals.Tags)
+	debugFprintln("Branch", localVarOptionals.Branch)
+	debugFprintln("FormatOptions", localVarOptionals.FormatOptions)
+	debugFprintln("TranslationKeyPrefix", localVarOptionals.TranslationKeyPrefix)
+
+	if async {
+		return target.downloadAsynchronously(client, localeFile, localVarOptionals)
+	} else {
+		return target.downloadSynchronously(client, localeFile, localVarOptionals)
+	}
+}
+
+func (target *Target) downloadAsynchronously(client *phrase.APIClient, localeFile *LocaleFile, downloadOpts phrase.LocaleDownloadOpts) error {
+	localeDownloadCreateParams := asyncDownloadParams(downloadOpts)
+
+	localVarOptionals := phrase.LocaleDownloadCreateOpts{}
+	debugFprintln("Initiating async download...")
+	asyncDownload, _, err := client.LocaleDownloadsApi.LocaleDownloadCreate(Auth, target.ProjectID, localeFile.ID, localeDownloadCreateParams, &localVarOptionals)
+	if err != nil {
+		return err
 	}
 
-	file, response, err := client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
+	for i := 0; asyncDownload.Status == "processing"; i++ {
+		debugFprintln("Waiting for the files to be exported...")
+		time.Sleep(asyncWaitTime)
+		debugFprintln("Checking if the download is ready...")
+		localVarOptionals := phrase.LocaleDownloadShowOpts{}
+		asyncDownload, _, err = client.LocaleDownloadsApi.LocaleDownloadShow(Auth, target.ProjectID, localeFile.ID, asyncDownload.Id, &localVarOptionals)
+		if err != nil {
+			return err
+		}
+		if i > asyncRetryCount {
+			return fmt.Errorf("download is taking too long")
+		}
+	}
+	if asyncDownload.Status == "completed" {
+		return downloadExportedLocale(asyncDownload.Result.Url, localeFile.Path)
+	}
+	return fmt.Errorf("download failed: %s", asyncDownload.Error)
+}
+
+func (target *Target) downloadSynchronously(client *phrase.APIClient, localeFile *LocaleFile, downloadOpts phrase.LocaleDownloadOpts) error {
+	file, response, err := client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &downloadOpts)
 	if err != nil {
 		if response.Rate.Remaining == 0 {
 			waitForRateLimit(response.Rate)
-			file, _, err = client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &localVarOptionals)
+			file, _, err = client.LocalesApi.LocaleDownload(Auth, target.ProjectID, localeFile.ID, &downloadOpts)
 			if err != nil {
 				return err
 			}
@@ -181,19 +226,88 @@ func (target *Target) DownloadAndWriteToFile(client *phrase.APIClient, localeFil
 			return err
 		}
 	}
+	return copyToDestination(file, localeFile.Path)
+}
 
-	var data []byte
-	if file != nil {
-		data, err = ioutil.ReadAll(file)
-		if err != nil {
-			return err
-		}
-		file.Close()
-		os.Remove(file.Name())
+func copyToDestination(file *os.File, path string) error {
+	destFile, err := os.Create(path)
+	if err != nil {
+		return err
 	}
+	defer destFile.Close()
+	if file != nil {
+		defer file.Close()
+		_, err = io.Copy(destFile, file)
+		return err
+	}
+	return nil
+}
 
-	err = ioutil.WriteFile(localeFile.Path, data, 0644)
-	return err
+func downloadExportedLocale(url string, localName string) error {
+	debugFprintln("Downloading file from ", url)
+	file, err := os.Create(localName)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	request, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return err
+	}
+	request.Header.Set("Authorization", "Bearer "+Config.Credentials.Token)
+	response, err := http.DefaultClient.Do(request)
+	if err != nil {
+		return err
+	}
+	defer response.Body.Close()
+	io.Copy(file, response.Body)
+	return nil
+}
+
+// asyncDownloadParams converts the optional parameters from the Pull command into a LocaleDownloadCreateParameters struct.
+// It uses reflection to match the fields of the optional parameters with the fields of the LocaleDownloadCreateParameters struct.
+func asyncDownloadParams(localVarOptionals phrase.LocaleDownloadOpts) phrase.LocaleDownloadCreateParameters {
+	sourceFields := reflect.VisibleFields(reflect.TypeOf(localVarOptionals))
+	localeDownloadCreateParams := phrase.LocaleDownloadCreateParameters{}
+	targetFields := reflect.VisibleFields(reflect.TypeOf(localeDownloadCreateParams))
+
+	for i, targetField := range targetFields {
+		for _, sourceField := range sourceFields {
+			if targetField.Name == sourceField.Name {
+				sourceValue := reflect.ValueOf(localVarOptionals).FieldByName(sourceField.Name)
+				targetValue := reflect.ValueOf(&localeDownloadCreateParams).Elem().Field(i)
+				// handle slices
+				if sourceValue.Kind() == reflect.Slice {
+					if sourceValue.Len() > 0 {
+						targetValue.Set(reflect.MakeSlice(targetValue.Type(), sourceValue.Len(), sourceValue.Len()))
+						for j := 0; j < sourceValue.Len(); j++ {
+							sourceElem := sourceValue.Index(j)
+							if sourceElem.IsValid() {
+								targetElem := targetValue.Index(j)
+								if targetElem.CanSet() {
+									targetElem.Set(sourceElem)
+								}
+							}
+						}
+					}
+				} else if sourceValue.MethodByName("IsSet").Call([]reflect.Value{})[0].Interface().(bool) {
+					sourceOptionalValue := sourceValue.MethodByName("Value").Call([]reflect.Value{})[0]
+					switch sourceField.Type {
+					case reflect.TypeOf((*optional.String)(nil)).Elem():
+						targetValue.Set(sourceOptionalValue)
+					case reflect.TypeOf((*optional.Bool)(nil)).Elem():
+						boolValue := sourceOptionalValue.Interface().(bool)
+						targetValue.Set(reflect.ValueOf(&boolValue))
+					case reflect.TypeOf((*optional.Interface)(nil)).Elem():
+						jsonValue, _ := json.Marshal(sourceOptionalValue.Interface())
+						json.Unmarshal(jsonValue, targetValue.Addr().Interface())
+					}
+				}
+				break
+			}
+		}
+	}
+	return localeDownloadCreateParams
 }
 
 func (target *Target) LocaleFiles() (LocaleFiles, error) {
@@ -308,4 +422,10 @@ func createFile(path string) error {
 	}
 
 	return nil
+}
+
+func debugFprintln(a ...any) {
+	if Debug {
+		fmt.Fprintln(os.Stderr, a...)
+	}
 }

@@ -6,13 +6,13 @@ locale_report:
     keys_count:
       type: integer
     translated_translations_percentage:
-      type: integer
+      type: number
     unverified_translations_percentage:
-      type: integer
+      type: number
     reviewed_translations_percentage:
-      type: integer
+      type: number
     untranslated_keys_percentage:
-      type: integer
+      type: number
     completed_translations_count:
       type: integer
     untranslated_keys_count:

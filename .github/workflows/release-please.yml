@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - main
 name: Run Release Please
 jobs:
   release-please-python:

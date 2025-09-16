@@ -8,7 +8,8 @@ import (
 
 	"github.com/antihax/optional"
 	"github.com/phrase/phrase-cli/cmd/internal/paths"
-	"github.com/phrase/phrase-go/v3"
+	"github.com/phrase/phrase-cli/cmd/internal/placeholders"
+	"github.com/phrase/phrase-go/v4"
 	"github.com/spf13/viper"
 )
 
@@ -141,18 +142,18 @@ func (source *Source) CheckPreconditions() error {
 
 	if len(duplicatedPlaceholders) > 0 {
 		dups := strings.Join(duplicatedPlaceholders, ", ")
-		return fmt.Errorf(fmt.Sprintf("%s can only occur once in a file pattern!", dups))
+		return fmt.Errorf("%s can only occur once in a file pattern!", dups)
 	}
 
 	return nil
 }
 
-func (sources Sources) ProjectIds() []string {
-	projectIds := []string{}
+func (sources Sources) GetAllLocalesCacheKeys() []LocalesCacheKey {
+	projectIdsBranches := []LocalesCacheKey{}
 	for _, source := range sources {
-		projectIds = append(projectIds, source.ProjectID)
+		projectIdsBranches = append(projectIdsBranches, LocalesCacheKey{source.ProjectID, source.Branch})
 	}
-	return projectIds
+	return projectIdsBranches
 }
 func (source *Source) uploadFile(client *phrase.APIClient, localeFile *LocaleFile, branch string, tag string) (*phrase.Upload, error) {
 	if Debug {
@@ -198,6 +199,12 @@ func (source *Source) uploadFile(client *phrase.APIClient, localeFile *LocaleFil
 	if branch != "" {
 		params.Branch = optional.NewString(branch)
 	}
+
+	translationKeyPrefix, err := placeholders.ResolveTranslationKeyPrefix(params.UploadCreateOpts.TranslationKeyPrefix, localeFile.Path)
+	if err != nil {
+		return nil, err
+	}
+	params.UploadCreateOpts.TranslationKeyPrefix = translationKeyPrefix
 
 	upload, _, err := client.UploadsApi.UploadCreate(Auth, source.ProjectID, file, params.FileFormat.Value(), params.LocaleId.Value(), &params.UploadCreateOpts)
 

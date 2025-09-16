@@ -13,6 +13,8 @@ translation_key:
       type: string
     plural:
       type: boolean
+    use_ordinal_rules:
+      type: boolean
     tags:
       type: array
       items:
@@ -31,6 +33,7 @@ translation_key:
     description: My description for this key...
     name_hash: 1b31d2580ce324f246f66b3be00ed399
     plural: false
+    use_ordinal_rules: false
     tags:
     - awesome-feature
     - needs-proofreading

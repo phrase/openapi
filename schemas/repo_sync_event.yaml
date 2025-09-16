@@ -3,7 +3,9 @@ repo_sync_event:
   type: object
   title: repo_sync_event
   properties:
-    event_type:
+    id:
+      type: string
+    type:
       type: string
       enum: [import, export]
     created_at:
@@ -22,14 +24,12 @@ repo_sync_event:
       description: List of error messages, in case of failure
       type: array
       items:
-        anyOf:
-        - type: string
-        - type: object
+        type: string
   example:
-    event_type: import
+    type: import
     created_at: '2015-01-28T09:52:53Z'
     status: failure
     auto_import: true
     errors:
-      - "Error message"
-      - "Error message"
+      - "Error message 1"
+      - "Error message 2"

@@ -1,8 +1,6 @@
 ---
 summary: Export to code repository
 description: |-
-  > Beta: this feature will change in the future.
-
   Export translations from Phrase Strings to repository provider according to the
   .phrase.yml file within the code repository.
 
@@ -20,12 +18,7 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          title: repo_sync/export
-          properties:
-            message:
-              type: string
-              example: Export started
+          "$ref": "../../schemas/repo_sync_event.yaml#/repo_sync_event"
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
@@ -48,7 +41,7 @@ x-code-samples:
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase repo_sync export \
+    phrase repo_syncs export \
     --id <repo_sync_id> \
     --access_token <token>
 x-cli-version: '2.24'

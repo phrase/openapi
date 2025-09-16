@@ -36,7 +36,12 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{{nickname}}}Opts struct {
 {{/isBinary}}
 {{/isPrimitiveType}}
 {{^isPrimitiveType}}
-	{{vendorExtensions.x-export-param-name}} optional.Interface `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+	{{#isArray}}
+		{{vendorExtensions.x-export-param-name}} []string `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+	{{/isArray}}
+	{{^isArray}}
+		{{vendorExtensions.x-export-param-name}} optional.Interface `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+	{{/isArray}}
 {{/isPrimitiveType}}
 {{/required}}
 {{/allParams}}
@@ -154,8 +159,15 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams
 	{{/isCollectionFormatMulti}}
 	{{/required}}
 	{{^required}}
-	if localVarOptionals != nil && localVarOptionals.{{vendorExtensions.x-export-param-name}}.IsSet() {
+	if localVarOptionals != nil && localVarOptionals.{{vendorExtensions.x-export-param-name}}{{^isArray}}.IsSet(){{/isArray}}{{#isArray}} != nil{{/isArray}} {
 	{{#isCollectionFormatMulti}}
+		{{#isArray}}
+		t := localVarOptionals.{{vendorExtensions.x-export-param-name}}
+		for i := range t {
+			localVarQueryParams.Add("{{baseName}}[]", parameterToString(t[i], "multi"))
+		}
+		{{/isArray}}
+		{{^isArray}}
 		t:=localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value()
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
@@ -165,10 +177,11 @@ func (a *{{{classname}}}Service) {{{nickname}}}(ctx _context.Context{{#hasParams
 		} else {
 			localVarQueryParams.Add("{{baseName}}", parameterToString(t, "{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}"))
 		}
+		{{/isArray}}
 	{{/isCollectionFormatMulti}}
 	{{^isCollectionFormatMulti}}
 		{{#isPrimitiveType}}localVarQueryParams.Add("{{baseName}}", parameterToString(localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value(), "{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}")){{/isPrimitiveType}}{{^isPrimitiveType}}for key, value := range localVarOptionals.{{vendorExtensions.x-export-param-name}}.Value().(map[string]interface{}) {
-			localVarQueryParams.Add(fmt.Sprintf("{{baseName}}[%s]", key), parameterToString(value, ""))
+			localVarQueryParams = serializeMapParams(fmt.Sprintf("{{baseName}}[%s]", key), value, localVarQueryParams)
 		}{{/isPrimitiveType}}
 	{{/isCollectionFormatMulti}}
 	}

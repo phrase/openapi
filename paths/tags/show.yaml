@@ -8,6 +8,12 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/name"
+- description: omit statistics in the response
+  name: omit_statistics
+  example: true
+  in: query
+  schema:
+    type: boolean
 - description: specify the branch to use
   example: my-feature-branch
   name: branch

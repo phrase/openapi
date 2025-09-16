@@ -1,11 +1,9 @@
-# OpenAPI specification for Phrase
+# OpenAPI specification for Phrase Strings
 
 ## Commands
 
 * `npm install` installs the dependencies
 * `npm start` builds API clients
-* `npm run docs` generates API documentation in HTML
-* `npm run watch` starts a local server which you can reach at http://localhost:8080
 * `npm run lint` lints your changes
 
 ## Contribution
@@ -14,15 +12,27 @@ This project relies on [conventional commits](https://www.conventionalcommits.or
 
 These changelogs and version bumps are generated as a separate pull requests (one for each client library) and currently need to be merged manually.
 
+### PR titles
+
+PR titles are important, as they are used to generate changelogs and version bumps for the generated client libraries. The format is `change_type(affected_library): description #STRINGS-TICKET`.
+
+The `change_type` is one of the following:
+* `feat`: A new feature. Also applies to extending the schema with new endpoints, properties, query parameters. For every schema change, a new version of every client library needs to be generated.
+* `fix`: A bug fix. Also applies to fixing the schema (e.g. fixing a typo in a property name).
+* `docs`: Documentation only changes. This includes changes to the OpenAPI spec (e.g. field descriptions), but not to the schema itself. This does not require a new version of the client libraries.
+* `build`: Changes that affect the build system or external dependencies (example: a change in github actions).
+
+`affected_library` could be for example `PHP`, `Java`, `Go`, `Python`, `Ruby`, `CLI`, or `JS`, but most commonly it's `API`, in case of any schema changes.
+
 ### Example
 
 You added an endpoint in Phrase Strings. In this project you do the following:
 
 1. Add newly added schema (if any) to `/schemas/` directory and to `schemas.yaml`
 2. Add new endpoints to `/paths/` directory and reference it in `paths.yaml`
-3. `npm start` to re-build the clients. Make sure `goimports` is installed first.
-4. `npm run docs` to generate the documentation (and verify it in action using `npm run watch`)
-5. Open a PR with an informative title (e.g. `feat(api): Add an API endpoint for cat pics`)
+3. `npm start` to re-build the clients
+4. Open a PR with an informative title (e.g. `feat(API): Add an API endpoint for cat pics`)
+5. Merge automated documentation PR [(details)](#documentation-sync)
 
 ## Workflow
 
@@ -45,6 +55,20 @@ https://github.com/phrase/phrase-cli
 ### Deployment diagram
 
 ![Deployment diagram](docs/openapi%20workflow.svg)
+
+## Documentation Sync
+
+Changes pushed to the main branch automatically trigger an internal workflow that updates the API documentation based on the latest OpenAPI schema.
+
+This includes:
+
+1. Pulling the most recent schema from this repository,
+2. Regenerating the documentation site,
+3. Deploying the updated docs.
+
+You don't need to take any additional steps. Just make sure your changes are properly committed and merged into main – the documentation will be updated automatically.
+
+This setup ensures that the public API documentation always reflects the current OpenAPI spec.
 
 ## Specification
 

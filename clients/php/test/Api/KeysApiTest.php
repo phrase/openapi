@@ -54,16 +54,9 @@ class KeysApiTest extends TestCase
     private $history = [];
 
     /**
-     * Setup before running any test cases
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->mock = new MockHandler();
         $history = Middleware::history($this->history);
@@ -75,20 +68,6 @@ class KeysApiTest extends TestCase
         $config = Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'token');
 
         $this->apiInstance = new Api($client, $config);
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
     }
 
     /**

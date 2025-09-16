@@ -2,9 +2,10 @@
 generatorName: go
 outputDir: clients/go
 packageName: phrase
-packageVersion: 3.1.1
+packageVersion: 4.9.0
 gitUserId: phrase
 gitRepoId: phrase-go
 httpUserAgent: Phrase Strings go
 templateDir: openapi-generator/templates/go
 apiNameSuffix: Api
+invokerPackage: phrase

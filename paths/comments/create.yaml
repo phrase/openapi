@@ -8,20 +8,6 @@ parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/key_id"
-- description: specify the message for the comment
-  example: some message...
-  name: message
-  in: query
-  schema:
-    type: string
-- description: specify the locales for the comment
-  example: someId
-  name: locale_ids
-  in: query
-  schema:
-    type: array
-    items:
-      type: string
 responses:
   '201':
     description: Created
@@ -64,13 +50,23 @@ requestBody:
       schema:
         type: object
         title: comment/create/parameters
+        required:
+          - message
         properties:
-          branch:
-            description: specify the branch to use
-            type: string
-            example: my-feature-branch
           message:
             description: Comment message
             type: string
             example: Some message...
+          branch:
+            description: specify the branch to use
+            type: string
+            example: my-feature-branch
+          locale_ids:
+            description: specify the locales for the comment
+            type: array
+            items:
+              type: string
+            example:
+              - someId
+              - someOtherId
 x-cli-version: '2.5'

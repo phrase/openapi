@@ -56,16 +56,9 @@ class UploadsApiTest extends TestCase
     private $history = [];
 
     /**
-     * Setup before running any test cases
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->mock = new MockHandler();
         $history = Middleware::history($this->history);
@@ -77,20 +70,6 @@ class UploadsApiTest extends TestCase
         $config = Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'token');
 
         $this->apiInstance = new Api($client, $config);
-    }
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
     }
 
     /**
@@ -107,7 +86,25 @@ class UploadsApiTest extends TestCase
         $file = new \SplFileObject($fileName, 'w+');
         $file->fwrite('test');
 
-        $result = $this->apiInstance->uploadCreate($projectId, $file, "yml", "en", null, null);
+        $result = $this->apiInstance->uploadCreate(
+            $projectId,
+            $file,
+            "yml",
+            "en",
+            null, # x_phrase_app_otp
+            null, # branch
+            null, # tags
+            null, # update_translations
+            null, # update_custom_metadata
+            null, # update_translation_keys
+            null, # update_translations_on_source_match
+            null, # update_descriptions
+            null, # convert_emoji
+            null, # skip_upload_tags
+            null, # skip_unverification
+            null, # file_encoding
+            ['en' => ['foo' => 3, 'bar' => 'baz']] # locale_mapping
+        );
         $file = null;
         unlink($fileName);
 
@@ -121,7 +118,8 @@ class UploadsApiTest extends TestCase
         $lastRequest = $this->history[count($this->history) - 1]['request'];
         $this->assertEquals('POST', $lastRequest->getMethod());
         $this->assertEquals('/v2/projects/'.$projectId.'/uploads', $lastRequest->getUri()->getPath());
-        $this->assertContains('multipart/form-data', $lastRequest->getHeader('Content-Type')[0]);
+        $this->assertStringContainsString('multipart/form-data', $lastRequest->getHeader('Content-Type')[0]);
+        $this->assertStringContainsString("Content-Disposition: form-data; name=\"locale_mapping[en][bar]\"\r\nContent-Length: 3\r\n\r\nbaz\r\n", $lastRequest->getBody()->getContents());
     }
 
     /**

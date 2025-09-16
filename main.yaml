@@ -3,8 +3,7 @@ openapi: 3.0.3
 info:
   title: Phrase Strings API Reference
   version: 2.0.0
-  description:
-    $ref: "./intro.md"
+  description: Phrase Strings is a translation management platform for software projects. You can collaborate on language file translation with your team or order translations through our platform. The API allows you to import locale files, download locale files, tag keys or interact in other ways with the localization data stored in Phrase Strings for your account.
 
   contact:
     name: Phrase Support
@@ -73,7 +72,6 @@ tags:
           </tbody>
         </table>
       </div>
-  - name: Bitbucket Sync
   - name: Blacklisted Keys
   - name: Branches
     description: |
@@ -119,8 +117,6 @@ tags:
   - name: Documents
   - name: Figma Attachments
   - name: Formats
-  - name: GitHub Sync
-  - name: GitLab Sync
   - name: Glossaries
   - name: Glossary Terms
   - name: Glossary Term Translations
@@ -128,13 +124,18 @@ tags:
   - name: Invitations
     description: |
       With the invitation endpoint you can [manage and invite users](https://support.phrase.com/hc/en-us/articles/5709742418716) to Phrase Strings via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
+  - name: Job Annotations
+    description: |
+      The job annotations endpoints allow you to create, update and delete annotations for jobs and job locales. Annotations are used to add metadata to a job or job locale.
   - name: Job Comments
   - name: Job Locales
   - name: Job Template Locales
   - name: Job Templates
   - name: Jobs
   - name: Keys
+  - name: Linked Keys
   - name: Locales
+  - name: Locale Downloads
   - name: Members
     description: |
       With the members endpoints you can do basic [team and user management](https://support.phrase.com/hc/en-us/articles/5709742418716) via API. A user can have the role Manager, Developer or Translator each with its own access rights. Developers and translators need resources like projects and locales assigned in order to access them.
@@ -195,10 +196,12 @@ tags:
   - name: Projects
   - name: Quality
   - name: Releases
+  - name: Release Triggers
   - name: Repo Syncs
     description: |
       The Repo Syncs API allows you to synchronize your Phrase projects with your code repositories.
       You can import translations from your repository to Phrase and export translations from Phrase to your repository.
+  - name: Repo Sync Events
   - name: Reports
   - name: Search
   - name: Screenshot Markers
@@ -295,12 +298,10 @@ x-tagGroups:
       - Glossary Term Translations
   - name: Integrations
     tags:
-      - Bitbucket Sync
-      - GitHub Sync
-      - GitLab Sync
       - Webhooks
       - Distributions
       - Releases
+      - Release Triggers
   - name: Ordering
     tags:
       - Orders

@@ -66,9 +66,9 @@ use {{invokerPackage}}\ObjectSerializer;
      * @param int             $host_index (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ClientInterface $client = null,
-        Configuration $config = null,
-        HeaderSelector $selector = null,
+        ?ClientInterface $client = null,
+        ?Configuration $config = null,
+        ?HeaderSelector $selector = null,
         $host_index = 0
     ) {
         $this->client = $client ?: new Client();
@@ -533,7 +533,7 @@ use {{invokerPackage}}\ObjectSerializer;
         if (${{paramName}} !== null) {
             {{#isFile}}
             $multipart = true;
-            $formParams['{{baseName}}'] = \GuzzleHttp\Psr7\Utils::tryFopen(ObjectSerializer::toFormValue(${{paramName}}), 'rb');
+            $formParams['{{baseName}}'] = \GuzzleHttp\Psr7\Utils::tryFopen(${{paramName}}->getRealPath(), 'rb');
             {{/isFile}}
             {{^isFile}}
             $this->formParamsAppend($formParams, '{{baseName}}', ${{paramName}});
@@ -637,7 +637,7 @@ use {{invokerPackage}}\ObjectSerializer;
         $operationHost = $operationHosts[$this->hostIndex];
 
         {{/servers.0}}
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $query = http_build_query($queryParams);
         return new Request(
             '{{httpMethod}}',
             {{^servers.0}}$this->config->getHost(){{/servers.0}}{{#servers.0}}$operationHost{{/servers.0}} . $resourcePath . ($query ? "?{$query}" : ''),
@@ -670,15 +670,10 @@ use {{invokerPackage}}\ObjectSerializer;
      */
     protected function formParamsAppend(&$formParams, $name, $value)
     {
-        if (is_object($value)) {
-            foreach ((array) $value as $k => $v) {
-                $formParams[$name.'['.$k.']'] = ObjectSerializer::toFormValue($v);
-            }
-
-            return;
+        $formValues = ObjectSerializer::toFormValues($name, $value);
+        foreach ($formValues as $k => $v) {
+            $formParams[$k] = $v;
         }
-
-        $formParams[$name] = ObjectSerializer::toFormValue($value);
     }
 }
 {{/operations}}
