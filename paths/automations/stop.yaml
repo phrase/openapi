@@ -32,7 +32,7 @@ x-code-samples:
   source: |-
     curl "https://api.phrase.com/v2/accounts/:account_id/automations/:id/stop" \
       -u USERNAME_OR_ACCESS_TOKEN
-      -X PATCH
+      -X POST
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-

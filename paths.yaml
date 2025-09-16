@@ -727,8 +727,8 @@
   delete:
     "$ref": "./paths/automations/destroy.yaml"
 "/accounts/{account_id}/automations/{automation_id}/start":
-  patch:
+  post:
     "$ref": "./paths/automations/start.yaml"
 "/accounts/{account_id}/automations/{automation_id}/stop":
-  patch:
+  post:
     "$ref": "./paths/automations/stop.yaml"

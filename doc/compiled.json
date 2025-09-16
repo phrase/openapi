@@ -28608,7 +28608,7 @@
       }
     },
     "/accounts/{account_id}/automations/{automation_id}/start": {
-      "patch": {
+      "post": {
         "summary": "Start an automation",
         "operationId": "automation/start",
         "tags": [
@@ -28660,7 +28660,7 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/start\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X PATCH\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/start\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
@@ -28671,7 +28671,7 @@
       }
     },
     "/accounts/{account_id}/automations/{automation_id}/stop": {
-      "patch": {
+      "post": {
         "summary": "Stop an automation",
         "operationId": "automation/stop",
         "tags": [
@@ -28723,7 +28723,7 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/stop\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X PATCH\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/stop\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
