@@ -28235,8 +28235,7 @@
             "lang": "CLI v2",
             "source": "phrase automations list \\\n--account_id <account_id> \\\n--page 1 \\\n--per_page 10 \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.9"
+        ]
       },
       "post": {
         "summary": "Create an automation",
@@ -28301,19 +28300,25 @@
                       ]
                     }
                   },
-                  "tag_ids": {
+                  "tags": {
+                    "description": "used to filter which keys are added to jobs",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "example": [
+                      "myTag"
+                    ]
                   },
                   "cron_schedule": {
                     "description": "along with time_zone, specifies when the scheduled automation is supposed to run",
-                    "type": "string"
+                    "type": "string",
+                    "example": "00 13 * * 1,2"
                   },
                   "time_zone": {
                     "description": "along with cron_schedule, specifies when the scheduled automation is supposed to run",
-                    "type": "string"
+                    "type": "string",
+                    "example": "GMT"
                   }
                 }
               }
@@ -28364,8 +28369,7 @@
             "lang": "CLI v2",
             "source": "phrase automations create \\\n--account_id <account_id> \\\n--data '{\"name\":\"Schedule Automation - Hourly\",\"trigger\":\"schedule\",\"project_id\":\"1\",\"job_template_id\":\"2\",\"status_filters\":[\"untranslated\"],\"tag_ids\":[\"3\",\"4\"],\"cron_schedule\":\"00 13 * * 1,2\",\"time_zone\":\"GMT\"}' \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.9"
+        ]
       }
     },
     "/accounts/{account_id}/automations/{automation_id}": {
@@ -28428,8 +28432,7 @@
             "lang": "CLI v2",
             "source": "phrase automations show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.9"
+        ]
       },
       "patch": {
         "summary": "Update an automation",
@@ -28497,11 +28500,15 @@
                       ]
                     }
                   },
-                  "tag_ids": {
+                  "tags": {
+                    "description": "used to filter which keys are added to jobs",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "example": [
+                      "myTag"
+                    ]
                   },
                   "cron_schedule": {
                     "description": "along with time_zone, specifies when the scheduled automation is supposed to run",
@@ -28559,8 +28566,7 @@
             "lang": "CLI v2",
             "source": "phrase automations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"Schedule Automation - Weekly\",\"tag_ids\":[\"5\",\"6\"],time_zone:\"UTC\"}' \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.9"
+        ]
       },
       "delete": {
         "summary": "Destroy automation",
@@ -28603,8 +28609,7 @@
             "lang": "CLI v2",
             "source": "phrase automations delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.9"
+        ]
       }
     },
     "/accounts/{account_id}/automations/{automation_id}/start": {
@@ -28666,8 +28671,7 @@
             "lang": "CLI v2",
             "source": "phrase automations start \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.9"
+        ]
       }
     },
     "/accounts/{account_id}/automations/{automation_id}/stop": {
@@ -28729,8 +28733,7 @@
             "lang": "CLI v2",
             "source": "phrase automations stop \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.9"
+        ]
       }
     }
   }
