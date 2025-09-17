@@ -393,6 +393,9 @@
 "/projects/{project_id}/branches/{name}/merge":
   patch:
     "$ref": "./paths/branches/merge.yaml"
+"/projects/{project_id}/branches/{name}/sync":
+  patch:
+    "$ref": "./paths/branches/sync.yaml"
 "/projects/{project_id}/branches/{name}/compare":
   get:
     "$ref": "./paths/branches/compare.yaml"
