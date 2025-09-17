@@ -18241,7 +18241,7 @@
     "/projects/{project_id}/branches/{name}/merge": {
       "patch": {
         "summary": "Merge a branch",
-        "description": "Merge an existing branch. \n\n*Note: Merging a branch may take several minutes depending on diff size.*\n",
+        "description": "Merge an existing branch.\n\n*Note: Merging a branch may take several minutes depending on diff size.*\n",
         "operationId": "branch/merge",
         "tags": [
           "Branches"
@@ -18301,7 +18301,7 @@
                 "title": "branch/merge/parameters",
                 "properties": {
                   "strategy": {
-                    "description": "strategy used for merge blocking, use_main or use_branch",
+                    "description": "strategy used for merge conflicts, use_main or use_branch",
                     "type": "string",
                     "example": "use_main"
                   }
@@ -18309,8 +18309,81 @@
               }
             }
           }
+        }
+      }
+    },
+    "/projects/{project_id}/branches/{name}/sync": {
+      "patch": {
+        "summary": "Sync a branch",
+        "description": "Sync an existing branch.\n\n*Note: Only available for branches created with new branching. New branching is currently in private beta*\n",
+        "operationId": "branch/sync",
+        "tags": [
+          "Branches"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
         },
-        "x-cli-version": "2.5"
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/branches/:name/sync\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"strategy\":\"use_main\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase branches sync \\\n--project_id <project_id> \\\n--name <name> \\\n--data '{\"strategy\":\"use_main\"}' \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "branch/sync/parameters",
+                "properties": {
+                  "strategy": {
+                    "description": "strategy used for conflicts, use_main or use_branch",
+                    "type": "string",
+                    "example": "use_main"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/projects/{project_id}/branches/{name}/compare": {
