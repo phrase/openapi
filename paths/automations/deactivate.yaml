@@ -1,6 +1,6 @@
 ---
-summary: Stop an automation
-operationId: automation/stop
+summary: Deactivate an automation
+operationId: automation/deactivate
 tags:
 - Automations
 parameters:
@@ -30,13 +30,13 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/accounts/:account_id/automations/:id/stop" \
+    curl "https://api.phrase.com/v2/accounts/:account_id/automations/:id/deactivate" \
       -u USERNAME_OR_ACCESS_TOKEN
       -X POST
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase automations stop \
+    phrase automations deactivate \
     --account_id <account_id> \
     --id <id> \
     --access_token <token>
