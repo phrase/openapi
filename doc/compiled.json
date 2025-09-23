@@ -28612,10 +28612,10 @@
         ]
       }
     },
-    "/accounts/{account_id}/automations/{automation_id}/start": {
+    "/accounts/{account_id}/automations/{automation_id}/activate": {
       "post": {
-        "summary": "Start an automation",
-        "operationId": "automation/start",
+        "summary": "Activate an automation",
+        "operationId": "automation/activate",
         "tags": [
           "Automations"
         ],
@@ -28665,19 +28665,19 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/start\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/activate\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase automations start \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase automations activate \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
         ]
       }
     },
-    "/accounts/{account_id}/automations/{automation_id}/stop": {
+    "/accounts/{account_id}/automations/{automation_id}/deactivate": {
       "post": {
-        "summary": "Stop an automation",
-        "operationId": "automation/stop",
+        "summary": "Deactivate an automation",
+        "operationId": "automation/deactivate",
         "tags": [
           "Automations"
         ],
@@ -28727,11 +28727,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/stop\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/deactivate\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase automations stop \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+            "source": "phrase automations deactivate \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
           }
         ]
       }
