@@ -28289,7 +28289,7 @@
                     "example": "abcd1234cdef1234abcd1234cdef1234"
                   },
                   "status_filters": {
-                    "description": "translation key statuses used to filter keys that are added to jobs",
+                    "description": "Translation states used when selecting keys for a job. \nStates are derived from associated translations, not the keys themselves. \nWhen review workflow is enabled, `ready_for_review` is internally treated as `translated`.\n",
                     "type": "array",
                     "items": {
                       "type": "string",
