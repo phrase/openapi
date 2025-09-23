@@ -726,9 +726,9 @@
     "$ref": "./paths/automations/update.yaml"
   delete:
     "$ref": "./paths/automations/destroy.yaml"
-"/accounts/{account_id}/automations/{automation_id}/start":
+"/accounts/{account_id}/automations/{automation_id}/activate":
   post:
-    "$ref": "./paths/automations/start.yaml"
+    "$ref": "./paths/automations/activate.yaml"
 "/accounts/{account_id}/automations/{automation_id}/stop":
   post:
     "$ref": "./paths/automations/stop.yaml"
