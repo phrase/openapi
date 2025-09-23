@@ -3,7 +3,7 @@ summary: Get a single automation
 description: Get details of a single automation.
 operationId: automation/show
 tags:
-- Automation
+- Automations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

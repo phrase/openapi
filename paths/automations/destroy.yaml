@@ -6,7 +6,7 @@ description: |
   This endpoint is only available to accounts with advanced plans or above.
 operationId: automation/delete
 tags:
-- Automation
+- Automations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"

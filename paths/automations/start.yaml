@@ -2,7 +2,7 @@
 summary: Start an automation
 operationId: automation/start
 tags:
-- Automation
+- Automations
 parameters:
 - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
 - "$ref": "../../parameters.yaml#/account_id"
