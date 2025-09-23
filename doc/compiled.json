@@ -28242,7 +28242,7 @@
         "description": "Create a new automation.",
         "operationId": "automation/create",
         "tags": [
-          "Automation"
+          "Automations"
         ],
         "parameters": [
           {
@@ -28378,7 +28378,7 @@
         "description": "Get details of a single automation.",
         "operationId": "automation/show",
         "tags": [
-          "Automation"
+          "Automations"
         ],
         "parameters": [
           {
@@ -28439,7 +28439,7 @@
         "description": "Update an existing automation.",
         "operationId": "automation/update",
         "tags": [
-          "Automation"
+          "Automations"
         ],
         "parameters": [
           {
@@ -28573,7 +28573,7 @@
         "description": "Destroy an automation of an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
         "operationId": "automation/delete",
         "tags": [
-          "Automation"
+          "Automations"
         ],
         "parameters": [
           {
@@ -28617,7 +28617,7 @@
         "summary": "Start an automation",
         "operationId": "automation/start",
         "tags": [
-          "Automation"
+          "Automations"
         ],
         "parameters": [
           {
@@ -28679,7 +28679,7 @@
         "summary": "Stop an automation",
         "operationId": "automation/stop",
         "tags": [
-          "Automation"
+          "Automations"
         ],
         "parameters": [
           {
