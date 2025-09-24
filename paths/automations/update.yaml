@@ -15,7 +15,7 @@ requestBody:
       schema:
         required:
         - name
-        - project_id
+        - project_ids
         - status_filters
         - trigger
         type: object
@@ -28,10 +28,16 @@ requestBody:
           trigger:
             type: string
             enum: [schedule, upload]
-          project_id:
-            description: id of project that the automation belongs to
-            type: string
-            example: abcd1234cdef1234abcd1234cdef1234
+          project_ids:
+            description: |
+              List of project IDs to associate with the automation.
+              Currently, only the first ID in the array is used.
+              The array format leaves room for future support of multiple projects.
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
           job_template_id:
             description: id of job template that the automation uses to create jobs from
             type: string

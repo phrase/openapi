@@ -28259,7 +28259,7 @@
               "schema": {
                 "required": [
                   "name",
-                  "project_id",
+                  "project_ids",
                   "status_filters",
                   "trigger"
                 ],
@@ -28278,10 +28278,15 @@
                       "upload"
                     ]
                   },
-                  "project_id": {
-                    "description": "id of project that the automation belongs to",
-                    "type": "string",
-                    "example": "abcd1234cdef1234abcd1234cdef1234"
+                  "project_ids": {
+                    "description": "List of project IDs to associate with the automation.\nCurrently, only the first ID in the array is used.\nThe array format leaves room for future support of multiple projects.\n",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
                   },
                   "job_template_id": {
                     "description": "id of job template that the automation uses to create jobs from",
@@ -28363,11 +28368,11 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"Schedule Automation - Hourly\",\"trigger\":\"schedule\",\"project_id\":\"1\",\"job_template_id\":\"2\",\"status_filters\":[\"untranslated\"],\"tag_ids\":[\"3\",\"4\"],\"cron_schedule\":\"00 13 * * 1,2\",\"time_zone\":\"GMT\"}' \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"Schedule Automation - Hourly\",\"trigger\":\"schedule\",\"project_ids\":[\"1\"],\"job_template_id\":\"2\",\"status_filters\":[\"untranslated\"],\"tag_ids\":[\"3\",\"4\"],\"cron_schedule\":\"00 13 * * 1,2\",\"time_zone\":\"GMT\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase automations create \\\n--account_id <account_id> \\\n--data '{\"name\":\"Schedule Automation - Hourly\",\"trigger\":\"schedule\",\"project_id\":\"1\",\"job_template_id\":\"2\",\"status_filters\":[\"untranslated\"],\"tag_ids\":[\"3\",\"4\"],\"cron_schedule\":\"00 13 * * 1,2\",\"time_zone\":\"GMT\"}' \\\n--access_token <token>"
+            "source": "phrase automations create \\\n--account_id <account_id> \\\n--data '{\"name\":\"Schedule Automation - Hourly\",\"trigger\":\"schedule\",\"project_ids\":[\"1\"],\"job_template_id\":\"2\",\"status_filters\":[\"untranslated\"],\"tag_ids\":[\"3\",\"4\"],\"cron_schedule\":\"00 13 * * 1,2\",\"time_zone\":\"GMT\"}' \\\n--access_token <token>"
           }
         ]
       }
@@ -28459,7 +28464,7 @@
               "schema": {
                 "required": [
                   "name",
-                  "project_id",
+                  "project_ids",
                   "status_filters",
                   "trigger"
                 ],
@@ -28478,10 +28483,15 @@
                       "upload"
                     ]
                   },
-                  "project_id": {
-                    "description": "id of project that the automation belongs to",
-                    "type": "string",
-                    "example": "abcd1234cdef1234abcd1234cdef1234"
+                  "project_ids": {
+                    "description": "List of project IDs to associate with the automation.\nCurrently, only the first ID in the array is used.\nThe array format leaves room for future support of multiple projects.\n",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
                   },
                   "job_template_id": {
                     "description": "id of job template that the automation uses to create jobs from",

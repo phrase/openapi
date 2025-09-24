@@ -14,7 +14,7 @@ requestBody:
       schema:
         required:
         - name
-        - project_id
+        - project_ids
         - status_filters
         - trigger
         type: object
@@ -27,10 +27,16 @@ requestBody:
           trigger:
             type: string
             enum: [schedule, upload]
-          project_id:
-            description: id of project that the automation belongs to
-            type: string
-            example: abcd1234cdef1234abcd1234cdef1234
+          project_ids:
+            description: |
+              List of project IDs to associate with the automation.
+              Currently, only the first ID in the array is used.
+              The array format leaves room for future support of multiple projects.
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
           job_template_id:
             description: id of job template that the automation uses to create jobs from
             type: string
@@ -87,11 +93,11 @@ x-code-samples:
     curl "https://api.phrase.com/v2/accounts/:account_id/automations" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
-      -d '{"name":"Schedule Automation - Hourly","trigger":"schedule","project_id":"1","job_template_id":"2","status_filters":["untranslated"],"tag_ids":["3","4"],"cron_schedule":"00 13 * * 1,2","time_zone":"GMT"}' \
+      -d '{"name":"Schedule Automation - Hourly","trigger":"schedule","project_ids":["1"],"job_template_id":"2","status_filters":["untranslated"],"tag_ids":["3","4"],"cron_schedule":"00 13 * * 1,2","time_zone":"GMT"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase automations create \
     --account_id <account_id> \
-    --data '{"name":"Schedule Automation - Hourly","trigger":"schedule","project_id":"1","job_template_id":"2","status_filters":["untranslated"],"tag_ids":["3","4"],"cron_schedule":"00 13 * * 1,2","time_zone":"GMT"}' \
+    --data '{"name":"Schedule Automation - Hourly","trigger":"schedule","project_ids":["1"],"job_template_id":"2","status_filters":["untranslated"],"tag_ids":["3","4"],"cron_schedule":"00 13 * * 1,2","time_zone":"GMT"}' \
     --access_token <token>
