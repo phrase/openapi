@@ -714,3 +714,21 @@
 "/projects/{project_id}/keys/{id}/key_links/{child_key_id}":
   delete:
     "$ref": "./paths/key_links/destroy.yaml"
+"/accounts/{account_id}/automations":
+  get:
+    "$ref": "./paths/automations/index.yaml"
+  post:
+    "$ref": "./paths/automations/create.yaml"
+"/accounts/{account_id}/automations/{automation_id}":
+  get:
+    "$ref": "./paths/automations/show.yaml"
+  patch:
+    "$ref": "./paths/automations/update.yaml"
+  delete:
+    "$ref": "./paths/automations/destroy.yaml"
+"/accounts/{account_id}/automations/{automation_id}/activate":
+  post:
+    "$ref": "./paths/automations/activate.yaml"
+"/accounts/{account_id}/automations/{automation_id}/deactivate":
+  post:
+    "$ref": "./paths/automations/deactivate.yaml"

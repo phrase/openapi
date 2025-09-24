@@ -1,0 +1,35 @@
+---
+summary: Destroy automation
+description: |
+  Destroy an automation of an account.
+
+  This endpoint is only available to accounts with advanced plans or above.
+operationId: automation/delete
+tags:
+- Automations
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
+responses:
+  '204':
+    "$ref": "../../responses.yaml#/204"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/automations/:id" \
+      -u USERNAME_OR_ACCESS_TOKEN
+      -X DELETE
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase automations delete \
+    --account_id <account_id> \
+    --id <id> \
+    --access_token <token>

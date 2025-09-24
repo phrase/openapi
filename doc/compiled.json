@@ -4506,6 +4506,96 @@
             "Error message 2"
           ]
         }
+      },
+      "automation": {
+        "type": "object",
+        "title": "automation",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "inactive",
+              "active",
+              "error"
+            ]
+          },
+          "trigger": {
+            "type": "string",
+            "enum": [
+              "schedule",
+              "upload"
+            ]
+          },
+          "status_filters": {
+            "description": "translation key statuses used to filter keys that are added to jobs",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "unverified",
+                "untranslated",
+                "ready_for_review"
+              ]
+            }
+          },
+          "project_id": {
+            "type": "string"
+          },
+          "job_template_id": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cron_schedule": {
+            "type": "string"
+          },
+          "time_zone": {
+            "type": "string"
+          },
+          "account": {
+            "$ref": "#/components/schemas/account"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "name": "My First Automation",
+          "status": "active",
+          "trigger": "schedule",
+          "status_filters": [
+            "unverified",
+            "untranslated",
+            "ready_for_review"
+          ],
+          "project_id": "abcd1234cdef1234abcd1234cdef1234",
+          "job_template_id": "abcd1234cdef1234abcd1234cdef1234",
+          "tags": [
+            "tag-1",
+            "tag-2"
+          ],
+          "cron_schedule": "00 13 * * 1,2",
+          "time_zone": "GMT",
+          "account": "account",
+          "created_at": "2021-06-28T09:52:53Z",
+          "updated_at": "2021-06-28T09:52:53Z"
+        }
       }
     },
     "parameters": {
@@ -28068,6 +28158,592 @@
             "$ref": "#/components/responses/422"
           }
         }
+      }
+    },
+    "/accounts/{account_id}/automations": {
+      "get": {
+        "summary": "List automations",
+        "description": "List all automations for an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "operationId": "automations/list",
+        "tags": [
+          "Automations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/automation"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Pagination": {
+                "$ref": "#/components/headers/Pagination"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations?page=1&per_page=10\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase automations list \\\n--account_id <account_id> \\\n--page 1 \\\n--per_page 10 \\\n--access_token <token>"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create an automation",
+        "description": "Create a new automation.",
+        "operationId": "automation/create",
+        "tags": [
+          "Automations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name",
+                  "project_ids",
+                  "status_filters",
+                  "trigger"
+                ],
+                "type": "object",
+                "title": "automations/create/parameters",
+                "properties": {
+                  "name": {
+                    "description": "name of the automation",
+                    "example": "Scheduled Job Automation - Hourly",
+                    "type": "string"
+                  },
+                  "trigger": {
+                    "type": "string",
+                    "enum": [
+                      "schedule",
+                      "upload"
+                    ]
+                  },
+                  "project_ids": {
+                    "description": "List of project IDs to associate with the automation.\nCurrently, only the first ID in the array is used.\nThe array format leaves room for future support of multiple projects.\n",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "job_template_id": {
+                    "description": "id of job template that the automation uses to create jobs from",
+                    "type": "string",
+                    "example": "abcd1234cdef1234abcd1234cdef1234"
+                  },
+                  "status_filters": {
+                    "description": "Translation states used when selecting keys for a job. \nStates are derived from associated translations, not the keys themselves. \nWhen review workflow is enabled, `ready_for_review` is internally treated as `translated`.\n",
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "unverified",
+                        "untranslated",
+                        "ready_for_review"
+                      ]
+                    }
+                  },
+                  "tags": {
+                    "description": "used to filter which keys are added to jobs",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "myTag"
+                    ]
+                  },
+                  "cron_schedule": {
+                    "description": "along with time_zone, specifies when the scheduled automation is supposed to run",
+                    "type": "string",
+                    "example": "00 13 * * 1,2"
+                  },
+                  "time_zone": {
+                    "description": "along with cron_schedule, specifies when the scheduled automation is supposed to run",
+                    "type": "string",
+                    "example": "GMT"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/automation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"name\":\"Schedule Automation - Hourly\",\"trigger\":\"schedule\",\"project_ids\":[\"1\"],\"job_template_id\":\"2\",\"status_filters\":[\"untranslated\"],\"tag_ids\":[\"3\",\"4\"],\"cron_schedule\":\"00 13 * * 1,2\",\"time_zone\":\"GMT\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase automations create \\\n--account_id <account_id> \\\n--data '{\"name\":\"Schedule Automation - Hourly\",\"trigger\":\"schedule\",\"project_ids\":[\"1\"],\"job_template_id\":\"2\",\"status_filters\":[\"untranslated\"],\"tag_ids\":[\"3\",\"4\"],\"cron_schedule\":\"00 13 * * 1,2\",\"time_zone\":\"GMT\"}' \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/automations/{automation_id}": {
+      "get": {
+        "summary": "Get a single automation",
+        "description": "Get details of a single automation.",
+        "operationId": "automation/show",
+        "tags": [
+          "Automations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/automation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase automations show \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Update an automation",
+        "description": "Update an existing automation.",
+        "operationId": "automation/update",
+        "tags": [
+          "Automations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name",
+                  "project_ids",
+                  "status_filters",
+                  "trigger"
+                ],
+                "type": "object",
+                "title": "automations/create/parameters",
+                "properties": {
+                  "name": {
+                    "description": "name of the automation",
+                    "example": "Scheduled Job Automation - Hourly",
+                    "type": "string"
+                  },
+                  "trigger": {
+                    "type": "string",
+                    "enum": [
+                      "schedule",
+                      "upload"
+                    ]
+                  },
+                  "project_ids": {
+                    "description": "List of project IDs to associate with the automation.\nCurrently, only the first ID in the array is used.\nThe array format leaves room for future support of multiple projects.\n",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "job_template_id": {
+                    "description": "id of job template that the automation uses to create jobs from",
+                    "type": "string",
+                    "example": "abcd1234cdef1234abcd1234cdef1234"
+                  },
+                  "status_filters": {
+                    "description": "translation key statuses used to filter keys that are added to jobs",
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "unverified",
+                        "untranslated",
+                        "ready_for_review"
+                      ]
+                    }
+                  },
+                  "tags": {
+                    "description": "used to filter which keys are added to jobs",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "myTag"
+                    ]
+                  },
+                  "cron_schedule": {
+                    "description": "along with time_zone, specifies when the scheduled automation is supposed to run",
+                    "type": "string",
+                    "example": "00 13 * * 1,2"
+                  },
+                  "time_zone": {
+                    "description": "along with cron_schedule, specifies when the scheduled automation is supposed to run",
+                    "type": "string",
+                    "example": "GMT"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/automation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH \\\n  -d '{\"name\":\"Schedule Automation - Weekly\",\"tag_ids\":[\"5\",\"6\"],time_zone:\"UTC\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase automations update \\\n--account_id <account_id> \\\n--id <id> \\\n--data '{\"name\":\"Schedule Automation - Weekly\",\"tag_ids\":[\"5\",\"6\"],time_zone:\"UTC\"}' \\\n--access_token <token>"
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Destroy automation",
+        "description": "Destroy an automation of an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "operationId": "automation/delete",
+        "tags": [
+          "Automations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X DELETE\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase automations delete \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/automations/{automation_id}/activate": {
+      "post": {
+        "summary": "Activate an automation",
+        "operationId": "automation/activate",
+        "tags": [
+          "Automations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/automation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/activate\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase automations activate \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/automations/{automation_id}/deactivate": {
+      "post": {
+        "summary": "Deactivate an automation",
+        "operationId": "automation/deactivate",
+        "tags": [
+          "Automations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/automation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/deactivate\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase automations deactivate \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ]
       }
     }
   }

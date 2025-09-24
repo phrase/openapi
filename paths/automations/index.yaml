@@ -1,0 +1,54 @@
+---
+summary: List automations
+description: |
+  List all automations for an account.
+
+  This endpoint is only available to accounts with advanced plans or above.
+operationId: automations/list
+tags:
+- Automations
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/page"
+- "$ref": "../../parameters.yaml#/per_page"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/automation.yaml#/automation"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+      Pagination:
+        "$ref": "../../headers.yaml#/Pagination"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/automations?page=1&per_page=10" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase automations list \
+    --account_id <account_id> \
+    --page 1 \
+    --per_page 10 \
+    --access_token <token>
