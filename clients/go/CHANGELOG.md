@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.10.0](https://github.com/phrase/openapi/compare/go-v4.9.0...go-v4.10.0) (2025-09-30)
+
+
+### Features
+
+* **API:** Add "reviewed" param for tanslations#update ([#891](https://github.com/phrase/openapi/issues/891)) ([3f77286](https://github.com/phrase/openapi/commit/3f7728669fa68d5911dfca39a9e39c24cd20c0a4))
+* **SCM-732:** expose Automation API ([#910](https://github.com/phrase/openapi/issues/910)) ([6eea53d](https://github.com/phrase/openapi/commit/6eea53d06aca8f43623ba90e2e0a8cd6761c9a13))
+
 ## [4.9.0](https://github.com/phrase/openapi/compare/go-v4.8.0...go-v4.9.0) (2025-08-01)
 
 
