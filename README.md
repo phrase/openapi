@@ -66,7 +66,7 @@ This includes:
 2. Regenerating the documentation site,
 3. Deploying the updated docs.
 
-You don't need to take any additional steps. Just make sure your changes are properly committed and merged into main – the documentation will be updated automatically.
+The last step in bringing your changes live is to merge in the automatically generated PR to `developer-hub`. This requires `write` permissions, so look to see who has merged previous PRs for who to ping to get something merged.
 
 This setup ensures that the public API documentation always reflects the current OpenAPI spec.
 
