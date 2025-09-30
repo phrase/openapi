@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.9.0](https://github.com/phrase/openapi/compare/java-v3.8.0...java-v3.9.0) (2025-09-30)
+
+
+### Features
+
+* **SCM-732:** expose Automation API ([#910](https://github.com/phrase/openapi/issues/910)) ([6eea53d](https://github.com/phrase/openapi/commit/6eea53d06aca8f43623ba90e2e0a8cd6761c9a13))
+
 ## [3.8.0](https://github.com/phrase/openapi/compare/java-v3.7.0...java-v3.8.0) (2025-09-15)
 
 
