@@ -1,0 +1,103 @@
+---
+summary: Create an automation
+description: Create a new automation.
+operationId: automation/create
+tags:
+- Automations
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        required:
+        - name
+        - project_ids
+        - status_filters
+        - trigger
+        type: object
+        title: automations/create/parameters
+        properties:
+          name:
+            description: name of the automation
+            example: Scheduled Job Automation - Hourly
+            type: string
+          trigger:
+            type: string
+            enum: [schedule, upload]
+          project_ids:
+            description: |
+              List of project IDs to associate with the automation.
+              Currently, only the first ID in the array is used.
+              The array format leaves room for future support of multiple projects.
+            type: array
+            items:
+              type: string
+            example:
+            - abcd1234cdef1234abcd1234cdef1234
+          job_template_id:
+            description: id of job template that the automation uses to create jobs from
+            type: string
+            example: abcd1234cdef1234abcd1234cdef1234
+          status_filters:
+            description: |
+              Translation states used when selecting keys for a job. 
+              States are derived from associated translations, not the keys themselves. 
+              When review workflow is enabled, `ready_for_review` is internally treated as `translated`.
+            type: array
+            items:
+              type: string
+              enum: [unverified, untranslated, ready_for_review]
+          tags:
+            description: used to filter which keys are added to jobs
+            type: array
+            items:
+              type: string
+            example:
+            - myTag
+          cron_schedule:
+            description: along with time_zone, specifies when the scheduled automation is supposed to run
+            type: string
+            example: 00 13 * * 1,2
+          time_zone:
+            description: along with cron_schedule, specifies when the scheduled automation is supposed to run
+            type: string
+            example: GMT
+responses:
+  '201':
+    description: Created
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/automation.yaml#/automation"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '422':
+    "$ref": "../../responses.yaml#/422"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/automations" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"name":"Schedule Automation - Hourly","trigger":"schedule","project_ids":["1"],"job_template_id":"2","status_filters":["untranslated"],"tag_ids":["3","4"],"cron_schedule":"00 13 * * 1,2","time_zone":"GMT"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase automations create \
+    --account_id <account_id> \
+    --data '{"name":"Schedule Automation - Hourly","trigger":"schedule","project_ids":["1"],"job_template_id":"2","status_filters":["untranslated"],"tag_ids":["3","4"],"cron_schedule":"00 13 * * 1,2","time_zone":"GMT"}' \
+    --access_token <token>

@@ -28,7 +28,7 @@ The `change_type` is one of the following:
 
 You added an endpoint in Phrase Strings. In this project you do the following:
 
-1. Add newly added schema (if any) to `/schemas/` directory
+1. Add newly added schema (if any) to `/schemas/` directory and to `schemas.yaml`
 2. Add new endpoints to `/paths/` directory and reference it in `paths.yaml`
 3. `npm start` to re-build the clients
 4. Open a PR with an informative title (e.g. `feat(API): Add an API endpoint for cat pics`)
