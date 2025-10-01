@@ -1,10 +1,10 @@
 ---
-summary: Merge a branch
+summary: Sync a branch
 description: |
-  Merge an existing branch.
+  Sync an existing branch.
 
-  *Note: Merging a branch may take several minutes depending on diff size.*
-operationId: branch/merge
+  *Note: Only available for branches created with new branching. New branching is currently in private beta*
+operationId: branch/sync
 tags:
 - Branches
 parameters:
@@ -30,14 +30,14 @@ responses:
 x-code-samples:
 - lang: Curl
   source: |-
-    curl "https://api.phrase.com/v2/projects/:project_id/branches/:name/merge" \
+    curl "https://api.phrase.com/v2/projects/:project_id/branches/:name/sync" \
       -u USERNAME_OR_ACCESS_TOKEN \
       -X PATCH \
       -d '{"strategy":"use_main"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
-    phrase branches merge \
+    phrase branches sync \
     --project_id <project_id> \
     --name <name> \
     --data '{"strategy":"use_main"}' \
@@ -48,9 +48,9 @@ requestBody:
     application/json:
       schema:
         type: object
-        title: branch/merge/parameters
+        title: branch/sync/parameters
         properties:
           strategy:
-            description: strategy used for merge conflicts, use_main or use_branch
+            description: strategy used for conflicts, use_main or use_branch
             type: string
             example: use_main
