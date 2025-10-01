@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.11.0](https://github.com/phrase/openapi/compare/go-v4.10.0...go-v4.11.0) (2025-10-01)
+
+
+### Features
+
+* add branch sync endpoint ([#912](https://github.com/phrase/openapi/issues/912)) ([3293917](https://github.com/phrase/openapi/commit/329391757b3f81574448b1b87506b85bfdeb6761))
+
 ## [4.10.0](https://github.com/phrase/openapi/compare/go-v4.9.0...go-v4.10.0) (2025-09-30)
 
 
