@@ -28236,7 +28236,7 @@
     "/accounts/{account_id}/automations": {
       "get": {
         "summary": "List automations",
-        "description": "List all automations for an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "description": "List all automations for an account.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automations/list",
         "tags": [
           "Automations"
