@@ -1,6 +1,9 @@
 ---
 summary: Create an automation
-description: Create a new automation.
+description: |
+  Create a new automation.
+
+  For feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).
 operationId: automation/create
 tags:
 - Automations
