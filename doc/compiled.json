@@ -28698,6 +28698,7 @@
     "/accounts/{account_id}/automations/{automation_id}/activate": {
       "post": {
         "summary": "Activate an automation",
+        "description": "Activate an automation.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation/activate",
         "tags": [
           "Automations"
@@ -28760,6 +28761,7 @@
     "/accounts/{account_id}/automations/{automation_id}/deactivate": {
       "post": {
         "summary": "Deactivate an automation",
+        "description": "Deactivate an automation.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation/deactivate",
         "tags": [
           "Automations"
