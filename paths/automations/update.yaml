@@ -1,6 +1,9 @@
 ---
 summary: Update an automation
-description: Update an existing automation.
+description: |
+  Update an existing automation.
+
+  For feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).
 operationId: automation/update
 tags:
 - Automations

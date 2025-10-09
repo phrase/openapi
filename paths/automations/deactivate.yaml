@@ -1,5 +1,9 @@
 ---
 summary: Deactivate an automation
+description: |
+  Deactivate an automation.
+
+  For feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).
 operationId: automation/deactivate
 tags:
 - Automations

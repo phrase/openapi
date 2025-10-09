@@ -3,7 +3,7 @@ summary: Destroy automation
 description: |
   Destroy an automation of an account.
 
-  This endpoint is only available to accounts with advanced plans or above.
+  For feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).
 operationId: automation/delete
 tags:
 - Automations

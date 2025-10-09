@@ -28236,7 +28236,7 @@
     "/accounts/{account_id}/automations": {
       "get": {
         "summary": "List automations",
-        "description": "List all automations for an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "description": "List all automations for an account.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automations/list",
         "tags": [
           "Automations"
@@ -28312,7 +28312,7 @@
       },
       "post": {
         "summary": "Create an automation",
-        "description": "Create a new automation.",
+        "description": "Create a new automation.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation/create",
         "tags": [
           "Automations"
@@ -28453,7 +28453,7 @@
     "/accounts/{account_id}/automations/{automation_id}": {
       "get": {
         "summary": "Get a single automation",
-        "description": "Get details of a single automation.",
+        "description": "Get details of a single automation.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation/show",
         "tags": [
           "Automations"
@@ -28514,7 +28514,7 @@
       },
       "patch": {
         "summary": "Update an automation",
-        "description": "Update an existing automation.",
+        "description": "Update an existing automation.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation/update",
         "tags": [
           "Automations"
@@ -28653,7 +28653,7 @@
       },
       "delete": {
         "summary": "Destroy automation",
-        "description": "Destroy an automation of an account.\n\nThis endpoint is only available to accounts with advanced plans or above.\n",
+        "description": "Destroy an automation of an account.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation/delete",
         "tags": [
           "Automations"
@@ -28698,6 +28698,7 @@
     "/accounts/{account_id}/automations/{automation_id}/activate": {
       "post": {
         "summary": "Activate an automation",
+        "description": "Activate an automation.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation/activate",
         "tags": [
           "Automations"
@@ -28760,6 +28761,7 @@
     "/accounts/{account_id}/automations/{automation_id}/deactivate": {
       "post": {
         "summary": "Deactivate an automation",
+        "description": "Deactivate an automation.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation/deactivate",
         "tags": [
           "Automations"

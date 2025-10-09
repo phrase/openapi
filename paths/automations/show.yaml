@@ -1,6 +1,9 @@
 ---
 summary: Get a single automation
-description: Get details of a single automation.
+description: |
+  Get details of a single automation.
+
+  For feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).
 operationId: automation/show
 tags:
 - Automations
