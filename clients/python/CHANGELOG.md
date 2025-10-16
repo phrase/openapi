@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.10.0](https://github.com/phrase/openapi/compare/python-v3.9.0...python-v3.10.0) (2025-10-16)
+
+
+### Features
+
+* List child branches ([#926](https://github.com/phrase/openapi/issues/926)) ([31d3b57](https://github.com/phrase/openapi/commit/31d3b57e0d1381149409b77c3e236b226cde22a1))
+
 ## [3.9.0](https://github.com/phrase/openapi/compare/python-v3.8.0...python-v3.9.0) (2025-10-01)
 
 
