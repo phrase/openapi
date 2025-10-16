@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.12.0](https://github.com/phrase/openapi/compare/go-v4.11.0...go-v4.12.0) (2025-10-16)
+
+
+### Features
+
+* List child branches ([#926](https://github.com/phrase/openapi/issues/926)) ([31d3b57](https://github.com/phrase/openapi/commit/31d3b57e0d1381149409b77c3e236b226cde22a1))
+
 ## [4.11.0](https://github.com/phrase/openapi/compare/go-v4.10.0...go-v4.11.0) (2025-10-01)
 
 
