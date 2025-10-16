@@ -3536,6 +3536,12 @@
           },
           "state": {
             "type": "string"
+          },
+          "child_branches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "example": {
@@ -3553,7 +3559,11 @@
             "username": "joe.doe",
             "name": "Joe Doe"
           },
-          "state": "success"
+          "state": "success",
+          "child_branches": [
+            "feature_2",
+            "feature_3"
+          ]
         }
       },
       "distribution_preview": {
