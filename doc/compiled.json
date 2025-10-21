@@ -21671,6 +21671,9 @@
               "schema": {
                 "type": "object",
                 "title": "keys/exclude/parameters",
+                "required": [
+                  "target_locale_id"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -21683,7 +21686,7 @@
                     "example": "mykey* translated:true"
                   },
                   "target_locale_id": {
-                    "description": "Locale used to exlcude or include keys.",
+                    "description": "Exclude translations in locale",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -21765,6 +21768,9 @@
               "schema": {
                 "type": "object",
                 "title": "keys/include/parameters",
+                "required": [
+                  "target_locale_id"
+                ],
                 "properties": {
                   "branch": {
                     "description": "specify the branch to use",
@@ -21777,7 +21783,7 @@
                     "example": "mykey* translated:true"
                   },
                   "target_locale_id": {
-                    "description": "Locale used to exlcude or include keys.",
+                    "description": "Include translations in locale",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
