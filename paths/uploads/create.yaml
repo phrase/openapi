@@ -103,6 +103,10 @@ requestBody:
             type: boolean
             default: false
             example: true
+          source_locale_id:
+            description: Specifies the source locale for multilingual files. Can be the name or id of the locale. Preferred is id.
+            type: string
+            example: abcd1234cdef1234abcd1234cdef1234
           update_descriptions:
             description: Existing key descriptions will be updated with the file content. Empty descriptions overwrite existing descriptions.
             type: boolean
