@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.12.0](https://github.com/phrase/openapi/compare/java-v3.11.0...java-v3.12.0) (2025-10-23)
+
+
+### Features
+
+* **API:** Support source_locale_id param in uploads ([#935](https://github.com/phrase/openapi/issues/935)) ([304a406](https://github.com/phrase/openapi/commit/304a4061aaac8001a3a9e10c5cf985b04c31dab2))
+
 ## [3.11.0](https://github.com/phrase/openapi/compare/java-v3.10.0...java-v3.11.0) (2025-10-16)
 
 
