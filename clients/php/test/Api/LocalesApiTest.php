@@ -123,30 +123,11 @@ class LocalesApiTest extends TestCase
         $custom_metadata_filters = array('key' => 'value');
 
         $result = $this->apiInstance-> localeDownload(
-            $projectId,
-            $id,
-            null,
-            null,
-            null,
-            null,
-            $file_format,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            $format_options,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            $custom_metadata_filters
+            project_id: $projectId,
+            id: $id,
+            file_format: $file_format,
+            format_options: $format_options,
+            custom_metadata_filters: $custom_metadata_filters
         );
 
 

@@ -87,24 +87,11 @@ class UploadsApiTest extends TestCase
         $file->fwrite('test');
 
         $result = $this->apiInstance->uploadCreate(
-            $projectId,
-            $file,
-            "yml",
-            "en",
-            null, # x_phrase_app_otp
-            null, # branch
-            null, # tags
-            null, # update_translations
-            null, # update_custom_metadata
-            null, # update_translation_keys
-            null, # update_translations_on_source_match
-            null, # source_locale_id
-            null, # update_descriptions
-            null, # convert_emoji
-            null, # skip_upload_tags
-            null, # skip_unverification
-            null, # file_encoding
-            ['en' => ['foo' => 3, 'bar' => 'baz']] # locale_mapping
+            project_id: $projectId,
+            file: $file,
+            file_format: "yml",
+            locale_id: "en",
+            locale_mapping: ['en' => ['foo' => 3, 'bar' => 'baz']] # locale_mapping
         );
         $file = null;
         unlink($fileName);
