@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.13.0](https://github.com/phrase/openapi/compare/go-v4.12.0...go-v4.13.0) (2025-10-23)
+
+
+### Features
+
+* **API:** Support source_locale_id param in uploads ([#935](https://github.com/phrase/openapi/issues/935)) ([304a406](https://github.com/phrase/openapi/commit/304a4061aaac8001a3a9e10c5cf985b04c31dab2))
+
 ## [4.12.0](https://github.com/phrase/openapi/compare/go-v4.11.0...go-v4.12.0) (2025-10-16)
 
 
