@@ -97,6 +97,14 @@
         "state": {
           "type": "string"
         },
+        "child_branches": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
         "created_by": {
           "type": "object",
           "properties": {
@@ -132,6 +140,7 @@
         "updated_at",
         "merged_at",
         "state",
+        "child_branches",
         "created_by",
         "merged_by"
       ]
