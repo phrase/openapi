@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.12.0](https://github.com/phrase/openapi/compare/python-v3.11.0...python-v3.12.0) (2025-10-27)
+
+
+### Features
+
+* **API:** Support omit_translation_keys param in Jobs#show ([#944](https://github.com/phrase/openapi/issues/944)) ([690a2ce](https://github.com/phrase/openapi/commit/690a2ce992359e7920367699145d2d4ff3a206fa))
+
 ## [3.11.0](https://github.com/phrase/openapi/compare/python-v3.10.0...python-v3.11.0) (2025-10-23)
 
 
