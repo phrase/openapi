@@ -306,7 +306,7 @@ include_annotations:
 omit_translation_keys:
   in: query
   name: omit_translation_keys
-  description: Omit translation keys in the response
+  description: Omit translation keys in the response to reduce payload size for bigger jobs
   required: false
   schema:
     type: boolean
