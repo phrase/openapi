@@ -21673,7 +21673,7 @@
                     "example": "mykey* translated:true"
                   },
                   "target_locale_id": {
-                    "description": "Locale used to exlcude or include keys.",
+                    "description": "Exclude translations in locale",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
@@ -21767,7 +21767,7 @@
                     "example": "mykey* translated:true"
                   },
                   "target_locale_id": {
-                    "description": "Locale used to exlcude or include keys.",
+                    "description": "Include translations in locale",
                     "type": "string",
                     "example": "abcd1234abcd1234abcd1234abcd1234"
                   },
