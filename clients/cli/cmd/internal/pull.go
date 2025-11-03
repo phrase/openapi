@@ -66,7 +66,7 @@ func (cmd *PullCommand) Run(config *phrase.Config) error {
 	for _, target := range targets {
 		if cmd.Branch != "" {
 			if target.Params == nil {
-				target.Params = &PullParams{LocaleDownloadOpts: phrase.LocaleDownloadOpts{}}
+				target.Params = &PullParams{}
 			}
 			target.Params.Branch = optional.NewString(cmd.Branch)
 		}
