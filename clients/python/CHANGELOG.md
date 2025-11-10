@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.12.1](https://github.com/phrase/openapi/compare/python-v3.12.0...python-v3.12.1) (2025-11-10)
+
+
+### Bug Fixes
+
+* **API:** Add omit_translation_keys to Jobs#show endpoint ([#957](https://github.com/phrase/openapi/issues/957)) ([23ece66](https://github.com/phrase/openapi/commit/23ece66b05fc748a4598ce876cb2954ed1a385cc))
+
 ## [3.12.0](https://github.com/phrase/openapi/compare/python-v3.11.0...python-v3.12.0) (2025-10-27)
 
 
