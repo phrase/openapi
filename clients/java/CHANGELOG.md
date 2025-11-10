@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.13.1](https://github.com/phrase/openapi/compare/java-v3.13.0...java-v3.13.1) (2025-11-10)
+
+
+### Bug Fixes
+
+* **API:** Add omit_translation_keys to Jobs#show endpoint ([#957](https://github.com/phrase/openapi/issues/957)) ([23ece66](https://github.com/phrase/openapi/commit/23ece66b05fc748a4598ce876cb2954ed1a385cc))
+
 ## [3.13.0](https://github.com/phrase/openapi/compare/java-v3.12.0...java-v3.13.0) (2025-10-27)
 
 
