@@ -10909,6 +10909,9 @@
           },
           {
             "$ref": "#/components/parameters/include_annotations"
+          },
+          {
+            "$ref": "#/components/parameters/omit_translation_keys"
           }
         ],
         "responses": {
