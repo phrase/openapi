@@ -10,6 +10,7 @@ parameters:
 - "$ref": "../../parameters.yaml#/id"
 - "$ref": "../../parameters.yaml#/branch"
 - "$ref": "../../parameters.yaml#/include_annotations"
+- "$ref": "../../parameters.yaml#/omit_translation_keys"
 responses:
   '200':
     description: OK
