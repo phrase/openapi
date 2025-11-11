@@ -1,12 +1,13 @@
-name: Dispatch Developer Hub Workflow
+name: Dispatch Developer Hub on PR merge
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [closed]
 
 jobs:
   dispatch:
+    # Only run this job if the pull request was merged into the main branch
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Send repository_dispatch to phrase/developer-hub
@@ -15,4 +16,10 @@ jobs:
           token: ${{ secrets.DISPATCH_DEVELOPER_HUB_TOKEN }}
           repository: phrase/developer-hub
           event-type: trigger-strings-workflow
-          client-payload: '{"source": "phrase/openapi", "type": "update"}'
+          client-payload: >-
+            {
+              "source": "phrase/openapi",
+              "type": "update",
+              "pr_author": "${{ github.event.pull_request.user.login }}",
+              "pr_url": "${{ github.event.pull_request.html_url }}"
+            }
