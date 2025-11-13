@@ -1,0 +1,52 @@
+---
+summary: Create comparison (async.)
+description: |
+  Create a branch comparison asynchronously.
+operationId: branch/create_comparison
+tags:
+- Branches
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/name"
+responses:
+  '200':
+    "$ref": "../../responses.yaml#/200"
+  '202':
+    "$ref": "../../responses.yaml#/202"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '409':
+    "$ref": "../../responses.yaml#/409"
+    description: An asynchronous comparison is already in progress for this branch.
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/branches/:name/compare" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X POST \
+      -d '{"direction":"merge"}' \
+      -H 'Content-Type: application/json'
+- lang: CLI v2
+  source: |-
+    phrase branches create_comparison \
+    --project_id <project_id> \
+    --name <name> \
+    --access_token <token>
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        title: branch/create_comparison/parameters
+        properties:
+          direction:
+            description: direction of comparison, possible values are sync or merge (only for v2 branches, currently in private beta )
+            type: string
+            example: merge
+            default: merge

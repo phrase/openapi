@@ -16,6 +16,15 @@
       $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
     X-Rate-Limit-Reset:
       $ref: "./headers.yaml#/X-Rate-Limit-Reset"
+202:
+  description: Accepted
+  headers:
+    X-Rate-Limit-Limit:
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
+    X-Rate-Limit-Remaining:
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
+    X-Rate-Limit-Reset:
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 204:
   description: The resource was deleted successfully.
   headers:
@@ -47,6 +56,15 @@
       $ref: "./headers.yaml#/X-Rate-Limit-Reset"
 404:
   description: Not Found
+  headers:
+    X-Rate-Limit-Limit:
+      $ref: "./headers.yaml#/X-Rate-Limit-Limit"
+    X-Rate-Limit-Remaining:
+      $ref: "./headers.yaml#/X-Rate-Limit-Remaining"
+    X-Rate-Limit-Reset:
+      $ref: "./headers.yaml#/X-Rate-Limit-Reset"
+409:
+  description: Conflict
   headers:
     X-Rate-Limit-Limit:
       $ref: "./headers.yaml#/X-Rate-Limit-Limit"
