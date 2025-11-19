@@ -28560,26 +28560,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/automation"
-                }
-              }
-            },
-            "headers": {
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              },
-              "X-Rate-Limit-Remaining": {
-                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
-              },
-              "X-Rate-Limit-Reset": {
-                "$ref": "#/components/headers/X-Rate-Limit-Reset"
-              }
-            }
+          "204": {
+            "$ref": "#/components/responses/204"
           },
           "400": {
             "$ref": "#/components/responses/400"
