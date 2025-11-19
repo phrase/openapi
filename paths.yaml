@@ -725,8 +725,6 @@
 "/accounts/{account_id}/automations/{automation_id}":
   get:
     "$ref": "./paths/automations/show.yaml"
-  post:
-    "$ref": "./paths/automations/trigger.yaml"
   patch:
     "$ref": "./paths/automations/update.yaml"
   delete:
@@ -737,3 +735,6 @@
 "/accounts/{account_id}/automations/{automation_id}/deactivate":
   post:
     "$ref": "./paths/automations/deactivate.yaml"
+"/accounts/{account_id}/automations/{automation_id}/trigger":
+  post:
+    "$ref": "./paths/automations/trigger.yaml"
