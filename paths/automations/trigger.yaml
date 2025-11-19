@@ -10,19 +10,8 @@ parameters:
 - "$ref": "../../parameters.yaml#/account_id"
 - "$ref": "../../parameters.yaml#/id"
 responses:
-  '200':
-    description: OK
-    content:
-      application/json:
-        schema:
-          "$ref": "../../schemas/automation.yaml#/automation"
-    headers:
-      X-Rate-Limit-Limit:
-        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
-      X-Rate-Limit-Remaining:
-        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
-      X-Rate-Limit-Reset:
-        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '204':
+    "$ref": "../../responses.yaml#/204"
   '400':
     "$ref": "../../responses.yaml#/400"
   '404':
