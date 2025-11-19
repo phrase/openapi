@@ -28849,6 +28849,51 @@
           }
         ]
       }
+    },
+    "/accounts/{account_id}/automations/{automation_id}/trigger": {
+      "post": {
+        "summary": "Trigger an automation",
+        "description": "Trigger an automation.\n",
+        "operationId": "automation/trigger",
+        "tags": [
+          "Automations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/trigger\" \\\n  -u USERNAME_OR_ACCESS_TOKEN\n  -X POST\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase automations trigger \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ]
+      }
     }
   }
 }
