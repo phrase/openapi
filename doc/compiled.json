@@ -18621,9 +18621,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "$ref": "#/components/responses/200"
-          },
           "202": {
             "$ref": "#/components/responses/202"
           },

@@ -10,8 +10,6 @@ parameters:
 - "$ref": "../../parameters.yaml#/project_id"
 - "$ref": "../../parameters.yaml#/name"
 responses:
-  '200':
-    "$ref": "../../responses.yaml#/200"
   '202':
     "$ref": "../../responses.yaml#/202"
   '400':
