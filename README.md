@@ -54,7 +54,78 @@ https://github.com/phrase/phrase-cli
 
 ### Deployment diagram
 
-![Deployment diagram](docs/openapi%20workflow.svg)
+```mermaid
+@startuml "openapi workflow"
+skinparam backgroundColor #fefefe
+
+collections "* API changes\n* bug fixes" as changes #PaleGreen
+folder "phrase/openapi" as openapi #AliceBlue
+control "build" as actions
+
+artifact docs
+frame "https://developers.phrase.com/" as developers
+
+folder "phrase/phrase-go" as go #AliceBlue
+folder "phrase/phrase-cli" as cli #AliceBlue
+folder "phrase/phrase-php" as php #AliceBlue
+folder "phrase/phrase-java" as java #AliceBlue
+folder "phrase/phrase-python" as python #AliceBlue
+folder "phrase/phrase-ruby" as ruby #AliceBlue
+folder "phrase/phrase-js" as js #AliceBlue
+
+
+control "build" as go_actions
+control "build" as build_cli
+control "build" as build_java
+control "build" as build_js
+control "build" as build_ruby
+control "build" as build_python
+
+artifact go_library
+artifact "Docker CLI images" as docker_images
+folder homebrew
+collections "Github package registry" as github_package_registry
+artifact "registry.npmjs.org" as npm
+artifact "PyPI"
+
+changes --> openapi : push
+openapi --> actions
+actions --> docs
+docs --> developers : publish
+actions --> go : push
+actions --> php : push
+actions --> java : push
+actions --> python : push
+actions --> cli : push
+actions --> ruby : push
+actions --> js : push
+
+go --> go_actions
+go_actions --> go_library : publish
+
+cli --> build_cli
+build_cli ..> go_library : use
+build_cli --> homebrew : bump formula
+build_cli --> docker_images : push
+build_cli ..> cli : upload to release
+
+java --> build_java
+build_java ..> java : upload to release
+build_java --> github_package_registry : publish
+
+python --> build_python
+build_python ..> python : upload to release
+build_python --> PyPI : publish
+
+js --> build_js
+build_js --> npm : publish
+
+ruby --> build_ruby
+build_ruby --> github_package_registry : publish
+build_ruby ..> ruby : release gem
+
+@enduml
+```
 
 ## Documentation Sync
 
