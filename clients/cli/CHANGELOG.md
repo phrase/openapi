@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.51.0](https://github.com/phrase/openapi/compare/cli-v2.50.2...cli-v2.51.0) (2025-11-27)
+
+
+### Features
+
+* **API:** add manual triggering of automations #SCM-953 ([#968](https://github.com/phrase/openapi/issues/968)) ([ebe1c68](https://github.com/phrase/openapi/commit/ebe1c68e472d87ea6c6cd2f76bb421406c30a274))
+
 ## [2.50.2](https://github.com/phrase/openapi/compare/cli-v2.50.1...cli-v2.50.2) (2025-11-10)
 
 
