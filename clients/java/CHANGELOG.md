@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.14.0](https://github.com/phrase/openapi/compare/java-v3.13.1...java-v3.14.0) (2025-11-27)
+
+
+### Features
+
+* **API:** add manual triggering of automations #SCM-953 ([#968](https://github.com/phrase/openapi/issues/968)) ([ebe1c68](https://github.com/phrase/openapi/commit/ebe1c68e472d87ea6c6cd2f76bb421406c30a274))
+
 ## [3.13.1](https://github.com/phrase/openapi/compare/java-v3.13.0...java-v3.13.1) (2025-11-10)
 
 
