@@ -18605,7 +18605,7 @@
       "post": {
         "summary": "Create comparison (async.)",
         "description": "Create a branch comparison asynchronously.\n",
-        "operationId": "branch/create_comparison",
+        "operationId": "branch/comparison/create",
         "tags": [
           "Branches"
         ],
