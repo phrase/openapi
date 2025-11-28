@@ -167,6 +167,7 @@ public class LocalesApiTest {
         Boolean includeUnverifiedTranslations = null;
         Boolean useLastReviewedVersion = null;
         String fallbackLocaleId = null;
+        Boolean useLocaleFallback = null;
         String sourceLocaleId = null;
         Object customMetadataFilters = null;
         String translationKeyPrefix = null;
@@ -177,7 +178,7 @@ public class LocalesApiTest {
             branch, fileFormat, tags, tag, includeEmptyTranslations, excludeEmptyZeroForms,
             includeTranslatedKeys, keepNotranslateTags, convertEmoji, formatOptions, encoding,
             skipUnverifiedTranslations, includeUnverifiedTranslations, useLastReviewedVersion,
-            fallbackLocaleId, sourceLocaleId, translationKeyPrefix, filterByPrefix,
+            fallbackLocaleId, useLocaleFallback, sourceLocaleId, translationKeyPrefix, filterByPrefix,
             customMetadataFilters, localeIds, updatedSince);
 
         String fileContents = new String(java.nio.file.Files.readAllBytes(response.toPath()));
