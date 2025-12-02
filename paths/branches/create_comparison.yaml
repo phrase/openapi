@@ -44,7 +44,7 @@ requestBody:
         title: branch/create_comparison/parameters
         properties:
           direction:
-            description: direction of comparison, possible values are sync or merge (only for v2 branches, currently in private beta )
+            description: direction of comparison, possible values are sync or merge (only for v2 branches)
             type: string
             example: merge
             default: merge

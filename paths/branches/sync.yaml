@@ -3,7 +3,7 @@ summary: Sync a branch
 description: |
   Sync an existing branch.
 
-  *Note: Only available for branches created with new branching. New branching is currently in private beta*
+  *Note: Only available for branches created with new branching.*
 operationId: branch/sync
 tags:
 - Branches

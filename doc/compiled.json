@@ -18462,7 +18462,7 @@
     "/projects/{project_id}/branches/{name}/sync": {
       "patch": {
         "summary": "Sync a branch",
-        "description": "Sync an existing branch.\n\n*Note: Only available for branches created with new branching. New branching is currently in private beta*\n",
+        "description": "Sync an existing branch.\n\n*Note: Only available for branches created with new branching.*\n",
         "operationId": "branch/sync",
         "tags": [
           "Branches"
@@ -18657,7 +18657,7 @@
                 "title": "branch/create_comparison/parameters",
                 "properties": {
                   "direction": {
-                    "description": "direction of comparison, possible values are sync or merge (only for v2 branches, currently in private beta )",
+                    "description": "direction of comparison, possible values are sync or merge (only for v2 branches)",
                     "type": "string",
                     "example": "merge",
                     "default": "merge"
