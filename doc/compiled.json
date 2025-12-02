@@ -5021,6 +5021,20 @@
           }
         }
       },
+      "202": {
+        "description": "Accepted",
+        "headers": {
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
+          },
+          "X-Rate-Limit-Remaining": {
+            "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+          },
+          "X-Rate-Limit-Reset": {
+            "$ref": "#/components/headers/X-Rate-Limit-Reset"
+          }
+        }
+      },
       "204": {
         "description": "The resource was deleted successfully.",
         "headers": {
@@ -5068,6 +5082,20 @@
       },
       "404": {
         "description": "Not Found",
+        "headers": {
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
+          },
+          "X-Rate-Limit-Remaining": {
+            "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+          },
+          "X-Rate-Limit-Reset": {
+            "$ref": "#/components/headers/X-Rate-Limit-Reset"
+          }
+        }
+      },
+      "409": {
+        "description": "Conflict",
         "headers": {
           "X-Rate-Limit-Limit": {
             "$ref": "#/components/headers/X-Rate-Limit-Limit"
@@ -18448,7 +18476,7 @@
     "/projects/{project_id}/branches/{name}/sync": {
       "patch": {
         "summary": "Sync a branch",
-        "description": "Sync an existing branch.\n\n*Note: Only available for branches created with new branching. New branching is currently in private beta*\n",
+        "description": "Sync an existing branch.\n\n*Note: Only available for branches created with new branching.*\n",
         "operationId": "branch/sync",
         "tags": [
           "Branches"
@@ -18522,7 +18550,7 @@
     "/projects/{project_id}/branches/{name}/compare": {
       "get": {
         "summary": "Compare branches",
-        "description": "Compare branch with main branch. \n\n*Note: Comparing a branch may take several minutes depending on the project size.*\n",
+        "description": "Compare branch with main branch.\n\n*Note: Comparing a branch may take several minutes depending on the project size. Consider using the `POST /compare` endpoint for creating comparison asynchronously.*\n",
         "operationId": "branch/compare",
         "tags": [
           "Branches"
@@ -18568,6 +18596,10 @@
           "404": {
             "$ref": "#/components/responses/404"
           },
+          "409": {
+            "$ref": "#/components/responses/409",
+            "description": "A comparison is already in progress for this branch."
+          },
           "429": {
             "$ref": "#/components/responses/429"
           }
@@ -18583,6 +18615,72 @@
           }
         ],
         "x-cli-version": "2.5"
+      },
+      "post": {
+        "summary": "Create comparison (async.)",
+        "description": "Create a branch comparison asynchronously.\n",
+        "operationId": "branch/comparison/create",
+        "tags": [
+          "Branches"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/name"
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/202"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409",
+            "description": "An asynchronous comparison is already in progress for this branch."
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/branches/:name/compare\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"direction\":\"merge\"}' \\\n  -H 'Content-Type: application/json'"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase branches create_comparison \\\n--project_id <project_id> \\\n--name <name> \\\n--access_token <token>"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "branch/create_comparison/parameters",
+                "properties": {
+                  "direction": {
+                    "description": "direction of comparison, possible values are sync or merge (only for v2 branches)",
+                    "type": "string",
+                    "example": "merge",
+                    "default": "merge"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/accounts": {
