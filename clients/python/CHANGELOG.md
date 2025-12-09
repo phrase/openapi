@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.13.0](https://github.com/phrase/openapi/compare/python-v3.12.1...python-v3.13.0) (2025-12-09)
+
+
+### Features
+
+* **API:** add manual triggering of automations #SCM-953 ([#968](https://github.com/phrase/openapi/issues/968)) ([ebe1c68](https://github.com/phrase/openapi/commit/ebe1c68e472d87ea6c6cd2f76bb421406c30a274))
+* **API:** add use_locale_fallback option to download #SCD-620 ([#976](https://github.com/phrase/openapi/issues/976)) ([9266c68](https://github.com/phrase/openapi/commit/9266c680d8717bb736aed83625858f0b3419da54))
+
+
+### Bug Fixes
+
+* **python:** pin urllib3 version to &lt;2.6 #SCD-642 ([#979](https://github.com/phrase/openapi/issues/979)) ([04177c5](https://github.com/phrase/openapi/commit/04177c5dbb6a918209ecd51d63655c95f5ed0445))
+
 ## [3.12.1](https://github.com/phrase/openapi/compare/python-v3.12.0...python-v3.12.1) (2025-11-10)
 
 
