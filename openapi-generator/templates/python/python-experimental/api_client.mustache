@@ -274,7 +274,7 @@ class ApiClient(object):
         # handle file downloading
         # save response body into a tmp file and return the instance
         if response_type == (file_type,):
-            content_disposition = response.headers.get("Content-Disposition")
+            content_disposition = response.getheader("Content-Disposition")
             return deserialize_file(response.data, self.configuration,
                                     content_disposition=content_disposition)
 
