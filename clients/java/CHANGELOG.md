@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.14.0](https://github.com/phrase/openapi/compare/java-v3.13.1...java-v3.14.0) (2025-12-11)
+
+
+### Features
+
+* **API:** Add create comparison endpoint for branches [SCD-549] ([#966](https://github.com/phrase/openapi/issues/966)) ([4099e32](https://github.com/phrase/openapi/commit/4099e32d42744f9d73346077ef30b0f4bd5c849e))
+* **API:** add manual triggering of automations #SCM-953 ([#968](https://github.com/phrase/openapi/issues/968)) ([ebe1c68](https://github.com/phrase/openapi/commit/ebe1c68e472d87ea6c6cd2f76bb421406c30a274))
+* **API:** add use_locale_fallback option to download #SCD-620 ([#976](https://github.com/phrase/openapi/issues/976)) ([9266c68](https://github.com/phrase/openapi/commit/9266c680d8717bb736aed83625858f0b3419da54))
+
 ## [3.13.1](https://github.com/phrase/openapi/compare/java-v3.13.0...java-v3.13.1) (2025-11-10)
 
 
