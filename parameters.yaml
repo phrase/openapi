@@ -214,6 +214,14 @@ branch:
   schema:
     type: string
   example: my-feature-branch
+pr_branch:
+  name: pr_branch
+  in: query
+  description: Branch name for the pull request
+  required: false
+  schema:
+    type: string
+  example: my-feature-branch
 page:
   in: query
   name: page
