@@ -4889,7 +4889,7 @@
       "pr_branch": {
         "name": "pr_branch",
         "in": "query",
-        "description": "Branch name for the pull request. If left empty, a branch will be created with the default value",
+        "description": "Branch name for the pull request",
         "required": false,
         "schema": {
           "type": "string"
