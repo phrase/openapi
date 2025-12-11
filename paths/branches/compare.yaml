@@ -1,9 +1,9 @@
 ---
 summary: Compare branches
 description: |
-  Compare branch with main branch. 
-  
-  *Note: Comparing a branch may take several minutes depending on the project size.*
+  Compare branch with main branch.
+
+  *Note: Comparing a branch may take several minutes depending on the project size. Consider using the `POST /compare` endpoint for creating comparison asynchronously.*
 operationId: branch/compare
 tags:
 - Branches
@@ -31,6 +31,9 @@ responses:
     "$ref": "../../responses.yaml#/400"
   '404':
     "$ref": "../../responses.yaml#/404"
+  '409':
+    "$ref": "../../responses.yaml#/409"
+    description: A comparison is already in progress for this branch.
   '429':
     "$ref": "../../responses.yaml#/429"
 x-code-samples:
