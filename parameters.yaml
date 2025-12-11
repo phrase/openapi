@@ -217,7 +217,7 @@ branch:
 pr_branch:
   name: pr_branch
   in: query
-  description: Source branch to open a pull request from
+  description: Branch name for the pull request
   required: false
   schema:
     type: string
