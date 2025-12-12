@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.14.0](https://github.com/phrase/openapi/compare/python-v3.13.0...python-v3.14.0) (2025-12-11)
+
+
+### Features
+
+* **API:** Add create comparison endpoint for branches [SCD-549] ([#966](https://github.com/phrase/openapi/issues/966)) ([4099e32](https://github.com/phrase/openapi/commit/4099e32d42744f9d73346077ef30b0f4bd5c849e))
+
 ## [3.13.0](https://github.com/phrase/openapi/compare/python-v3.12.1...python-v3.13.0) (2025-12-09)
 
 
