@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.14.0](https://github.com/phrase/openapi/compare/typescript-v3.13.0...typescript-v3.14.0) (2025-12-16)
+
+
+### Features
+
+* **typescript:** Parse pagination headers in API responses #SCD-665 ([#984](https://github.com/phrase/openapi/issues/984)) ([92ad9fc](https://github.com/phrase/openapi/commit/92ad9fc573acfc4bb451c914727cc871625d91ac))
+
 ## [3.13.0](https://github.com/phrase/openapi/compare/typescript-v3.12.1...typescript-v3.13.0) (2025-12-11)
 
 
