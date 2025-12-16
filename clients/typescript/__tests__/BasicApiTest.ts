@@ -75,7 +75,7 @@ describe('LocalesApi', () => {
     beforeEach(() => {
       mockFetch = getMockFetch([{id: 'locale_id_1'}], 'foo', {
         pagination: '{"total_count":59,"total_pages_count":3,"current_page":1,"current_per_page":25,"previous_page":null,"next_page":2}',
-        link: '<https://api.phrase.com/v2/projects/90a09794c0dd0564e22e51f917a67632/keys?page=1>; rel=first, <https://api.phrase.com/v2/projects/90a09794c0dd0564e22e51f917a67632/keys?page=3>; rel=last, <https://api.phrase.com/v2/projects/90a09794c0dd0564e22e51f917a67632/keys?page=2>; rel=next'
+        link: '<https://api.phrase.com/v2/projects/my-project-id/locales?page=1>; rel=first, <https://api.phrase.com/v2/projects/my-project-id/locales?page=3>; rel=last, <https://api.phrase.com/v2/projects/my-project-id/locales?page=2>; rel=next'
       });
       configuration = new Configuration(
         {
@@ -92,7 +92,7 @@ describe('LocalesApi', () => {
       await api.localesListRaw({projectId}).then((response) => {
         expect(response.isPaginated).toBe(true);
         expect(response.hasNextPage).toBe(true);
-        expect(response.nextPageUrl).toBe('https://api.phrase.com/v2/projects/90a09794c0dd0564e22e51f917a67632/keys?page=2');
+        expect(response.nextPageUrl).toBe('https://api.phrase.com/v2/projects/my-project-id/locales?page=2');
         expect(response.totalCount).toBe(59);
         expect(response.totalPages).toBe(3);
         expect(response.nextPage).toBe(2);
