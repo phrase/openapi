@@ -219,7 +219,7 @@ func TestConfigPath_ConfigInCWD(t *testing.T) {
 		t.Fatalf("Cannot Getwd, got: %s", err)
 	}
 
-	cwd := pwd + "/testdata"
+	cwd := pwd + "/testdata/config_files"
 
 	oldDir, _ := os.Getwd()
 	err = os.Chdir(cwd)
@@ -232,7 +232,7 @@ func TestConfigPath_ConfigInCWD(t *testing.T) {
 	if err != nil {
 		t.Fatalf("didn't expect an error, got: %s", err)
 	}
-	expPath := cwd + "/.phraseapp.yml"
+	expPath := cwd + "/.phrase.yml"
 	if path != expPath {
 		t.Errorf("expected path to be %q, got %q", expPath, path)
 	}
@@ -269,7 +269,7 @@ func TestConfigPath_ConfigInHomeDir(t *testing.T) {
 		t.Fatalf("Cannot Getwd, got: %s", err)
 	}
 
-	cwd := pwd + "/testdata/empty"
+	cwd := pwd + "/testdata/empty2"
 
 	oldDir, _ := os.Getwd()
 	err = os.Chdir(cwd)
@@ -278,7 +278,7 @@ func TestConfigPath_ConfigInHomeDir(t *testing.T) {
 	}
 	defer os.Chdir(oldDir)
 
-	newHome := pwd + "/testdata"
+	newHome := pwd + "/testdata/config_files"
 	oldHome := os.Getenv("HOME")
 	os.Setenv("HOME", newHome)
 	defer os.Setenv("HOME", oldHome)
@@ -287,7 +287,32 @@ func TestConfigPath_ConfigInHomeDir(t *testing.T) {
 	if err != nil {
 		t.Fatalf("didn't expect an error, got: %s", err)
 	}
-	expPath := newHome + "/.phraseapp.yml"
+	expPath := newHome + "/.phrase.yml"
+	if path != expPath {
+		t.Errorf("expected path to be %q, got %q", expPath, path)
+	}
+}
+
+func TestConfigPath_ConfigInParentDir(t *testing.T) {
+	pwd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("Cannot Getwd, got: %s", err)
+	}
+
+	cwd := pwd + "/testdata/config_files/empty"
+
+	oldDir, _ := os.Getwd()
+	err = os.Chdir(cwd)
+	if err != nil {
+		t.Fatalf("didn't expect an error changing the working directory, got: %s", err)
+	}
+	defer os.Chdir(oldDir)
+
+	path, err := configPath()
+	if err != nil {
+		t.Fatalf("didn't expect an error, got: %s", err)
+	}
+	expPath := pwd + "/testdata/config_files/.phrase.yml"
 	if path != expPath {
 		t.Errorf("expected path to be %q, got %q", expPath, path)
 	}
@@ -302,7 +327,7 @@ func TestConfigPath_NoConfigAvailable(t *testing.T) {
 		t.Fatalf("Cannot Getwd, got: %s", err)
 	}
 
-	cwd := pwd + "/testdata/empty"
+	cwd := pwd + "/testdata/empty2"
 
 	oldDir, _ := os.Getwd()
 	err = os.Chdir(cwd)
@@ -318,7 +343,7 @@ func TestConfigPath_NoConfigAvailable(t *testing.T) {
 		t.Fatalf("Cannot Getwd, got: %s", err)
 	}
 
-	os.Setenv("HOME", pwd+"/testdata/empty2")
+	os.Setenv("HOME", pwd+"/testdata")
 	defer os.Setenv("HOME", oldHome)
 
 	path, err := configPath()
