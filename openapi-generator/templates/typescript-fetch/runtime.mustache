@@ -288,14 +288,57 @@ export interface Middleware {
 export interface ApiResponse<T> {
     raw: Response;
     value(): Promise<T>;
+    isPaginated?: boolean;
+    hasNextPage?: boolean;
+    nextPage?: number;
+    nextPageUrl?: string;
+    totalCount?: number;
+    totalPages?: number;
 }
 
 export interface ResponseTransformer<T> {
     (json: any): T;
 }
 
-export class JSONApiResponse<T> {
-    constructor(public raw: Response, private transformer: ResponseTransformer<T> = (jsonValue: any) => jsonValue) {}
+export class JSONApiResponse<T> implements ApiResponse<T> {
+    public isPaginated: boolean;
+    public hasNextPage: boolean;
+    public nextPage?: number;
+    public nextPageUrl?: string;
+    public totalCount?: number;
+    public totalPages?: number;
+
+    constructor(public raw: Response, private transformer: ResponseTransformer<T> = (jsonValue: any) => jsonValue) {
+        const link = raw.headers.get('Link') || raw.headers.get('link');
+        const pagination = raw.headers.get('Pagination') || raw.headers.get('pagination');
+        this.isPaginated = !!link;
+        this.hasNextPage = false;
+        if (link) {
+            const match = link.match(/<([^>]+)>;\s*rel=next/);
+            if (match) {
+                this.hasNextPage = true;
+                this.nextPageUrl = match[1];
+            }
+        }
+        if (pagination) {
+            try {
+                const paginationObj = JSON.parse(pagination);
+                if (paginationObj) {
+                    if (typeof paginationObj['total_count'] === 'number') {
+                        this.totalCount = paginationObj['total_count'];
+                    }
+                    if (typeof paginationObj['total_pages_count'] === 'number') {
+                        this.totalPages = paginationObj['total_pages_count'];
+                    }
+                    if (typeof paginationObj['next_page'] === 'number') {
+                        this.nextPage = paginationObj['next_page'];
+                    }
+                }
+            } catch (e) {
+                // ignore invalid pagination header
+            }
+        }
+    }
 
     async value(): Promise<T> {
         return this.transformer(await this.raw.json());
