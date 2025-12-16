@@ -114,10 +114,10 @@ func configPath() (string, error) {
 			if _, err := os.Stat(possiblePath); err == nil {
 				return possiblePath, nil
 			}
-			dir = filepath.Dir(dir)
-			if dir == "/" {
+			if filepath.Dir(dir) == dir { // reached the root directory
 				break
 			}
+			dir = filepath.Dir(dir)
 		}
 	}
 
