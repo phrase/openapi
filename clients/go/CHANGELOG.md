@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.17.0](https://github.com/phrase/openapi/compare/go-v4.16.0...go-v4.17.0) (2025-12-17)
+
+
+### Features
+
+* **go:** Bubble up directories looking for config #SCD-148 ([#985](https://github.com/phrase/openapi/issues/985)) ([5b712e9](https://github.com/phrase/openapi/commit/5b712e93e5df7b9b153bd9a135683af39ff9b7d5))
+
 ## [4.16.0](https://github.com/phrase/openapi/compare/go-v4.15.0...go-v4.16.0) (2025-12-11)
 
 
