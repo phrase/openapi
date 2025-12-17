@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.14.1](https://github.com/phrase/openapi/compare/typescript-v3.14.0...typescript-v3.14.1) (2025-12-17)
+
+
+### Bug Fixes
+
+* **typescript:** use trusted publishing for typescript client ([#987](https://github.com/phrase/openapi/issues/987)) ([de2e477](https://github.com/phrase/openapi/commit/de2e4771e0bc1fba9949d6650834817e3016e185))
+
 ## [3.14.0](https://github.com/phrase/openapi/compare/typescript-v3.13.0...typescript-v3.14.0) (2025-12-16)
 
 
