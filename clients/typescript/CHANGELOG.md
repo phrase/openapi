@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.14.2](https://github.com/phrase/openapi/compare/typescript-v3.14.1...typescript-v3.14.2) (2025-12-17)
+
+
+### Bug Fixes
+
+* **typescript:** Fix github release creation ([#989](https://github.com/phrase/openapi/issues/989)) ([4165f9e](https://github.com/phrase/openapi/commit/4165f9e1ec8d880ca292e41b8cf321d05fb6d456))
+
 ## [3.14.1](https://github.com/phrase/openapi/compare/typescript-v3.14.0...typescript-v3.14.1) (2025-12-17)
 
 
