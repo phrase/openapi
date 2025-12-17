@@ -18,7 +18,7 @@ jobs:
           event-type: trigger-strings-workflow
           client-payload: >-
             {
-              "source": "phrase/openapi",
+              "source": "phrase/strings-openapi",
               "type": "update",
               "pr_author": "${{ github.event.pull_request.user.login }}",
               "pr_url": "${{ github.event.pull_request.html_url }}"

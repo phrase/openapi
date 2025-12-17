@@ -2,7 +2,7 @@
 skinparam backgroundColor #fefefe
 
 collections "* API changes\n* bug fixes" as changes #PaleGreen
-folder "phrase/openapi" as openapi #AliceBlue
+folder "phrase/strings-openapi" as openapi #AliceBlue
 control "build" as actions
 
 artifact docs

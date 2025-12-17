@@ -32,7 +32,7 @@ jobs:
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
           git add .
-          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git commit --message "Deploying from  phrase/strings-openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a v$PACKAGE_VERSION -m v$PACKAGE_VERSION || true
           git push --tags origin master
@@ -68,7 +68,7 @@ jobs:
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
           git add .
-          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git commit --message "Deploying from  phrase/strings-openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
@@ -99,7 +99,7 @@ jobs:
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
           git add .
-          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git commit --message "Deploying from  phrase/strings-openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
@@ -130,7 +130,7 @@ jobs:
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
           git add .
-          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git commit --message "Deploying from  phrase/strings-openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
@@ -161,7 +161,7 @@ jobs:
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
           git add .
-          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git commit --message "Deploying from  phrase/strings-openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
@@ -192,7 +192,7 @@ jobs:
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
           git add .
-          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git commit --message "Deploying from  phrase/strings-openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
@@ -223,7 +223,7 @@ jobs:
           git config --global user.email "support@phrase.com"
           git config --global user.name "Phrase"
           git add .
-          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+          git commit --message "Deploying from  phrase/strings-openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
