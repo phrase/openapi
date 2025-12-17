@@ -107,9 +107,17 @@ func configPath() (string, error) {
 	}
 
 	for _, configName := range configNames {
-		possiblePath := filepath.Join(workingDir, configName)
-		if _, err := os.Stat(possiblePath); err == nil {
-			return possiblePath, nil
+		dir := workingDir
+		// loop up the directory tree
+		for {
+			possiblePath := filepath.Join(dir, configName)
+			if _, err := os.Stat(possiblePath); err == nil {
+				return possiblePath, nil
+			}
+			if filepath.Dir(dir) == dir { // reached the root directory
+				break
+			}
+			dir = filepath.Dir(dir)
 		}
 	}
 
