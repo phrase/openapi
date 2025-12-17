@@ -8134,12 +8134,6 @@
           },
           {
             "$ref": "#/components/parameters/id"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/per_page"
           }
         ],
         "responses": {
@@ -8153,9 +8147,6 @@
                     "type": "object",
                     "title": "locale_preview",
                     "properties": {
-                      "id": {
-                        "type": "string"
-                      },
                       "name": {
                         "type": "string"
                       },
@@ -8167,11 +8158,9 @@
                       }
                     },
                     "example": {
-                      "id": "abcd1234cdef1234abcd1234cdef1234",
                       "name": "English",
                       "code": "en-GB",
                       "project": {
-                        "id": "abcd1234cdef1234abcd1234cdef1234",
                         "name": "My Android Project",
                         "main_format": "xml",
                         "created_at": "2015-01-28T09:52:53Z",

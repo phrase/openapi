@@ -3,8 +3,6 @@ account_locale:
   type: object
   title: locale_preview
   properties:
-    id:
-      type: string
     name:
       type: string
     code:
@@ -12,11 +10,9 @@ account_locale:
     project:
       "$ref": "./project_short.yaml#/project_short"
   example:
-    id: abcd1234cdef1234abcd1234cdef1234
     name: English
     code: en-GB
     project:
-      id: abcd1234cdef1234abcd1234cdef1234
       name: My Android Project
       main_format: xml
       created_at: '2015-01-28T09:52:53Z'
