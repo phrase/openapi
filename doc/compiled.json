@@ -2005,11 +2005,81 @@
               },
               "shares_translation_memory": {
                 "type": "boolean"
+              },
+              "machine_translation_enabled": {
+                "type": "boolean",
+                "example": true
+              },
+              "zero_plural_form_enabled": {
+                "type": "boolean",
+                "example": true
+              },
+              "enable_all_data_type_translation_keys_for_translators": {
+                "type": "boolean",
+                "example": false
+              },
+              "enable_icu_message_format": {
+                "type": "boolean",
+                "example": false
+              },
+              "enable_branching": {
+                "type": "boolean",
+                "example": false
+              },
+              "protect_master_branch": {
+                "type": "boolean",
+                "example": false
+              },
+              "autotranslate_enabled": {
+                "type": "boolean",
+                "example": false
+              },
+              "autotranslate_check_new_translation_keys": {
+                "type": "boolean",
+                "example": false
+              },
+              "autotranslate_check_new_uploads": {
+                "type": "boolean",
+                "example": false
+              },
+              "autotranslate_check_new_locales": {
+                "type": "boolean",
+                "example": false
+              },
+              "autotranslate_mark_as_unverified": {
+                "type": "boolean",
+                "example": false
+              },
+              "autotranslate_use_machine_translation": {
+                "type": "boolean",
+                "example": false
+              },
+              "autotranslate_use_translation_memory": {
+                "type": "boolean",
+                "example": true
+              },
+              "default_encoding": {
+                "type": "string",
+                "example": "UTF-8"
               }
             },
             "example": {
               "slug": "my-android-project",
-              "shares_translation_memory": true
+              "shares_translation_memory": true,
+              "machine_translation_enabled": true,
+              "zero_plural_form_enabled": true,
+              "enable_all_data_type_translation_keys_for_translators": false,
+              "enable_icu_message_format": false,
+              "enable_branching": false,
+              "protect_master_branch": false,
+              "autotranslate_enabled": false,
+              "autotranslate_check_new_translation_keys": false,
+              "autotranslate_check_new_uploads": false,
+              "autotranslate_check_new_locales": false,
+              "autotranslate_mark_as_unverified": false,
+              "autotranslate_use_machine_translation": false,
+              "autotranslate_use_translation_memory": true,
+              "default_encoding": "UTF-8"
             }
           }
         ]
