@@ -74,7 +74,11 @@ jobs:
       - name: Upload signed binaries to Draft Release
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/*
+          files: |
+            dist/phrase_macosx_*.zip
+            dist/*.tar.gz
+          fail_on_unmatched_files: true
+          overwrite: true
           name: ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
           draft: true

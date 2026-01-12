@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+umask 077
 
 CERTIFICATE_BASE64="${SIGNING_CERTIFICATE}"
 P12_PASSWORD="${CERTIFICATE_PASSWORD}"
@@ -41,6 +42,8 @@ echo "🔐 Setting up certificate and keychain..."
 
 # Decode the certificate (macOS-only)
 echo "$CERTIFICATE_BASE64" | /usr/bin/base64 -D > "$CERTIFICATE_PATH"
+# Restrict permissions on sensitive certificate material
+chmod 600 "$CERTIFICATE_PATH"
 
 # Create temporary keychain
 security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
@@ -71,9 +74,11 @@ echo "📦 Zipping macOS binaries for notarization..."
 shopt -s nullglob
 for bin in "$DIST_DIR"/phrase_macosx_*; do
   [[ "$bin" == *.tar.gz ]] && continue
-  zip_name="${bin}.zip"
-  echo "Creating ${zip_name}"
-  /usr/bin/zip -j -o "$zip_name" "$bin"
+  relbin="${bin#${DIST_DIR}/}"
+  echo "Creating $DIST_DIR/${relbin}.zip"
+  (
+    cd "$DIST_DIR" && /usr/bin/zip -o "${relbin}.zip" "${relbin}"
+  )
 done
 
 # --- Notarization via Apple notarytool (Apple ID + app-specific password) ---
