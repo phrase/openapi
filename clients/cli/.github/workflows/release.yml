@@ -5,6 +5,9 @@ on:
     tags:
       - '*'
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -58,7 +61,7 @@ jobs:
           name: dist
           path: dist
       - name: Sign CLI binaries
-        run: bash ./build/sign.sh
+        run: bash ./build/sign_and_notarize.sh
         env:
           SIGNING_CERTIFICATE: ${{ secrets.SIGNING_CERTIFICATE }}
           CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
@@ -78,7 +81,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish GitHub Release
-        run: gh release edit ${{ github.ref_name }} --draft=false
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: false
+          name: ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   brew:
