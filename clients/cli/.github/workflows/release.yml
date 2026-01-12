@@ -65,6 +65,9 @@ jobs:
           SIGNING_IDENTITY: ${{ secrets.SIGNING_IDENTITY }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
           DIST_DIR: "dist"
+          NOTARIZATION_APPLE_ID: ${{ secrets.NOTARIZATION_APPLE_ID }}
+          NOTARIZATION_APP_PASSWORD: ${{ secrets.NOTARIZATION_APP_PASSWORD }}
+          NOTARIZATION_TEAM_ID: ${{ secrets.NOTARIZATION_TEAM_ID }}
       - name: Upload signed binaries to Draft Release
         uses: softprops/action-gh-release@v1
         with:
