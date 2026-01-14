@@ -41,7 +41,7 @@ jobs:
           name: dist
           path: dist/
       - name: Create draft GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # pin@v1
         with:
           draft: true
           name: ${{ github.ref_name }}
@@ -72,7 +72,7 @@ jobs:
           NOTARIZATION_APP_PASSWORD: ${{ secrets.NOTARIZATION_APP_PASSWORD }}
           NOTARIZATION_TEAM_ID: ${{ secrets.NOTARIZATION_TEAM_ID }}
       - name: Upload signed binaries to Draft Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # pin@v1
         with:
           files: |
             dist/phrase_macosx_*.zip
@@ -85,7 +85,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # pin@v1
         with:
           draft: false
           name: ${{ github.ref_name }}
