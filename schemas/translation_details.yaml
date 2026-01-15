@@ -9,8 +9,6 @@ translation_details:
         "$ref": "./user_preview.yaml#/user_preview"
       word_count:
         type: integer
-      linked_translation:
-        "$ref": "./translation_parent.yaml#/translation_parent"
     example:
       user:
         id: abcd1234cdef1234abcd1234cdef1234
