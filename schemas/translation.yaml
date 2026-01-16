@@ -30,6 +30,8 @@ translation:
     updated_at:
       type: string
       format: date-time
+    linked_translation:
+      "$ref": "./translation_parent.yaml#/translation_parent"
   example:
     id: abcd1234cdef1234abcd1234cdef1234
     content: My translation
