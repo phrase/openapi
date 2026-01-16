@@ -17,7 +17,7 @@ licenseUrl: https://choosealicense.com/licenses/mit/
 modelPackage: com.phrase.client.model
 scmConnection: scm:git:git@github.com:phrase/openapi.git
 scmDeveloperConnection: scm:git:git@github.com:phrase/openapi.git
-scmUrl: https://github.com/phrase/openapi
+scmUrl: https://github.com/phrase/strings-openapi
 java8: true
 dateLibrary: java8
 templateDir: openapi-generator/templates/java
