@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.15.1](https://github.com/phrase/strings-openapi/compare/python-v3.15.0...python-v3.15.1) (2026-01-16)
+
+
+### Bug Fixes
+
+* **API:** Add linked_translation to translation type ([#1005](https://github.com/phrase/strings-openapi/issues/1005)) ([b18e64c](https://github.com/phrase/strings-openapi/commit/b18e64c948d40a9e5f996e8fdf6dee07d1812b02))
+
 ## [3.15.0](https://github.com/phrase/openapi/compare/python-v3.14.0...python-v3.15.0) (2026-01-09)
 
 
