@@ -1,4 +1,7 @@
 ---
+- - :inherit_from
+  - url: https://raw.githubusercontent.com/Phrase-Engineering/strings-lawa/blob/master/config/license-decisions.yml
+    authorization: token $GITHUB_TOKEN
 - - :permit
   - MIT
   - :who: Sven Dunemann
