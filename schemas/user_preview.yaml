@@ -12,3 +12,7 @@ user_preview:
     gravatar_uid:
       type: string
   example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    username: johndoe
+    name: John Doe
+    gravatar_uid: 205e460b479e2e5b48aec07710c08d50

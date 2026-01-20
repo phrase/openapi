@@ -2717,7 +2717,12 @@
             "type": "string"
           }
         },
-        "example": null
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "username": "johndoe",
+          "name": "John Doe",
+          "gravatar_uid": "205e460b479e2e5b48aec07710c08d50"
+        }
       },
       "user": {
         "type": "object",
@@ -15114,6 +15119,136 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/projects/{project_id}/upload_batches": {
+      "post": {
+        "summary": "Create upload batch",
+        "description": "Groups multiple file uploads into a single batch. Optionally, launches the deletion of unmentioned translation keys\nafter all uploads in the batch are completed.\n",
+        "operationId": "upload_batches/create",
+        "tags": [
+          "Upload Batches"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "upload_batches/create/parameters",
+                "required": [
+                  "upload_ids"
+                ],
+                "properties": {
+                  "branch": {
+                    "description": "specify the branch to use",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  },
+                  "delete_unmentioned_keys": {
+                    "description": "If set to true, after all uploads in the batch are completed, translation keys that were not mentioned in any of the uploaded files will be deleted.",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "upload_ids": {
+                    "description": "Array of upload IDs to include in the batch",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234",
+                      "bcde2345defg2345bcde2345defg2345"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "upload_batch",
+                  "properties": {
+                    "state": {
+                      "type": "string"
+                    },
+                    "delete_unmentioned_keys": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "project": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/project_short"
+                    },
+                    "user": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/user_preview"
+                    },
+                    "uploads": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/upload"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/upload_batches\" \\\n-X POST \\\n-H \"Content-Type: application/json\" \\\n-d '{\n  \"branch\": \"my-feature-branch\",\n  \"delete_unmentioned_keys\": true,\n  \"upload_ids\": [\n    \"abcd1234cdef1234abcd1234cdef1234\",\n    \"bcde2345defg2345bcde2345defg2345\"\n  ]\n}' \\\n-u <token>:"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase upload_batches create --project-id :project_id \\\n--data '{\n  \"branch\": \"my-feature-branch\",\n  \"delete_unmentioned_keys\": true,\n  \"upload_ids\": [\n    \"abcd1234cdef1234abcd1234cdef1234\",\n    \"bcde2345defg2345bcde2345defg2345\"\n  ]\n}' \\\n--access_token <token>"
+          }
+        ],
+        "x-cli-version": "2.12"
       }
     },
     "/projects/{project_id}/translations/{translation_id}/versions": {
