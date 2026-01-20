@@ -291,6 +291,9 @@
 "/projects/{project_id}/uploads/{id}":
   get:
     "$ref": "./paths/uploads/show.yaml"
+"/projects/{project_id}/upload_batches":
+  post:
+    "$ref": "./paths/upload_batches/create.yaml"
 "/projects/{project_id}/translations/{translation_id}/versions":
   get:
     "$ref": "./paths/versions/index.yaml"
