@@ -1,7 +1,4 @@
 ---
-- - :inherit_from
-  - url: https://raw.githubusercontent.com/Phrase-Engineering/strings-lawa/blob/master/config/license-decisions.yml
-    authorization: token $GITHUB_TOKEN
 - - :permit
   - MIT
   - :who: Sven Dunemann
@@ -140,3 +137,9 @@
     :why: commercial use allowed
     :versions: []
     :when: 2024-06-04 14:29:07.814825827 Z
+- - :permit
+  - BlueOak-1.0.0
+  - :who: Sven Dunemann
+    :why: commercial use allowed
+    :versions: []
+    :when: 2025-07-03 12:20:17.998286303 Z
