@@ -38,10 +38,24 @@ x-code-samples:
     curl "https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/45ef6789/import"\
       -u USERNAME_OR_ACCESS_TOKEN \
       -X POST \
+      -d '{"import_branch":"my-feature-branch"}' \
       -H 'Content-Type: application/json'
 - lang: CLI v2
   source: |-
     phrase repo_syncs import \
     --id <repo_sync_id> \
+    --data '{"import_branch":"my-feature-branch"}' \
     --access_token <token>
+requestBody:
+  required: false
+  content:
+    application/json:
+      schema:
+        type: object
+        title: repo_sync/import/parameters
+        properties:
+          import_branch:
+            description: Branch to import from
+            type: string
+            example: my-feature-branch
 x-cli-version: '2.24'
