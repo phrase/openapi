@@ -7,13 +7,6 @@ account_locale:
       type: string
     code:
       type: string
-    project:
-      "$ref": "./project_short.yaml#/project_short"
   example:
     name: English
     code: en-GB
-    project:
-      name: My Android Project
-      main_format: xml
-      created_at: '2015-01-28T09:52:53Z'
-      updated_at: '2015-01-28T09:52:53Z'
