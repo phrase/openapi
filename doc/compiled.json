@@ -22815,6 +22815,9 @@
           },
           {
             "$ref": "#/components/parameters/id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
           }
         ],
         "responses": {
