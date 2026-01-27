@@ -15193,10 +15193,16 @@
                   "title": "upload_batch",
                   "properties": {
                     "state": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Processing state of the upload batch",
+                      "enum": [
+                        "started",
+                        "done"
+                      ]
                     },
                     "delete_unmentioned_keys": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indicates whether unmentioned keys will be deleted after processing all uploads in the batch"
                     },
                     "created_at": {
                       "type": "string",
