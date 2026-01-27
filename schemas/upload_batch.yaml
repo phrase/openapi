@@ -1,0 +1,31 @@
+---
+upload_batch:
+  type: object
+  title: upload_batch
+  properties:
+    state:
+      type: string
+      description: Processing state of the upload batch
+      enum:
+        - started
+        - done
+    delete_unmentioned_keys:
+      type: boolean
+      description: Indicates whether unmentioned keys will be deleted after processing all uploads in the batch
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    project:
+      type: object
+      "$ref": "./project_short.yaml#/project_short"
+    user:
+      type: object
+      "$ref": "./user_preview.yaml#/user_preview"
+    uploads:
+      type: array
+      items:
+        type: object
+        "$ref": "./upload.yaml#/upload"
