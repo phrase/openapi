@@ -15262,8 +15262,7 @@
             "lang": "CLI v2",
             "source": "phrase upload_batches create --project-id :project_id \\\n--data '{\n  \"branch\": \"my-feature-branch\",\n  \"delete_unmentioned_keys\": true,\n  \"upload_ids\": [\n    \"abcd1234cdef1234abcd1234cdef1234\",\n    \"bcde2345defg2345bcde2345defg2345\"\n  ]\n}' \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.12"
+        ]
       }
     },
     "/projects/{project_id}/translations/{translation_id}/versions": {
