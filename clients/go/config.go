@@ -3,7 +3,6 @@ package phrase
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -32,8 +31,8 @@ type Config struct {
 
 	Defaults map[string]map[string]interface{}
 
-	Targets []byte
-	Sources []byte
+	Pull []byte
+	Push []byte
 
 	UserAgent string
 }
@@ -83,7 +82,7 @@ func configContent(cfgFilePath string) ([]byte, error) {
 	case path == "":
 		return nil, nil
 	default:
-		return ioutil.ReadFile(path)
+		return os.ReadFile(path)
 	}
 }
 
@@ -141,8 +140,8 @@ func (cfg *Config) UnmarshalYAML(unmarshal func(i interface{}) error) error {
 		"per_page":     &cfg.PerPage,
 		"project_id":   &cfg.DefaultProjectID,
 		"file_format":  &cfg.DefaultFileFormat,
-		"push":         &cfg.Sources,
-		"pull":         &cfg.Targets,
+		"push":         &cfg.Push,
+		"pull":         &cfg.Pull,
 		"defaults":     &m,
 	})
 	if err != nil {
