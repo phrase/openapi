@@ -155,7 +155,7 @@ func (cmd *PushCommand) Run() error {
 		if err != nil {
 			return err
 		}
-		// collect all upload ids for cleanup by project and branch
+		// collect all upload ids by project and branch for batch creation (cleanup depends on cmd.Cleanup)
 		found := false
 		for _, result := range pushResults {
 			if result.ProjectID == pushResult.ProjectID && result.Branch == pushResult.Branch {
