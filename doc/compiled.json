@@ -15184,10 +15184,16 @@
                   "title": "upload_batch",
                   "properties": {
                     "state": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Processing state of the upload batch",
+                      "enum": [
+                        "started",
+                        "done"
+                      ]
                     },
                     "delete_unmentioned_keys": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "description": "Indicates whether unmentioned keys will be deleted after processing all uploads in the batch"
                     },
                     "created_at": {
                       "type": "string",
@@ -15247,8 +15253,7 @@
             "lang": "CLI v2",
             "source": "phrase upload_batches create --project-id :project_id \\\n--data '{\n  \"branch\": \"my-feature-branch\",\n  \"delete_unmentioned_keys\": true,\n  \"upload_ids\": [\n    \"abcd1234cdef1234abcd1234cdef1234\",\n    \"bcde2345defg2345bcde2345defg2345\"\n  ]\n}' \\\n--access_token <token>"
           }
-        ],
-        "x-cli-version": "2.12"
+        ]
       }
     },
     "/projects/{project_id}/translations/{translation_id}/versions": {
@@ -22950,6 +22955,9 @@
           },
           {
             "$ref": "#/components/parameters/id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
           }
         ],
         "responses": {
@@ -22987,13 +22995,31 @@
         "x-code-samples": [
           {
             "lang": "Curl",
-            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/45ef6789/import\"\\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -H 'Content-Type: application/json'"
+            "source": "curl \"https://api.phrase.com/v2/accounts/ab12cd34/repo_syncs/45ef6789/import\"\\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X POST \\\n  -d '{\"repository_branch\":\"my-feature-branch\"}' \\\n  -H 'Content-Type: application/json'"
           },
           {
             "lang": "CLI v2",
-            "source": "phrase repo_syncs import \\\n--id <repo_sync_id> \\\n--access_token <token>"
+            "source": "phrase repo_syncs import \\\n--id <repo_sync_id> \\\n--data '{\"repository_branch\":\"my-feature-branch\"}' \\\n--access_token <token>"
           }
         ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "repo_sync/import/parameters",
+                "properties": {
+                  "repository_branch": {
+                    "description": "Branch to import from",
+                    "type": "string",
+                    "example": "my-feature-branch"
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-cli-version": "2.24"
       }
     },
