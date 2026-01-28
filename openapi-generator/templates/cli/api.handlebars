@@ -88,11 +88,13 @@ func init{{{nickname}}}() {
 						{{/isPrimitiveType~}}
 						{{#isModel~}}
 							var {{paramName}} map[string]interface{}
-							if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
-								HandleError(err)
-							}
-							if Config.Debug {
-								fmt.Printf("%+v\n", {{paramName}})
+							if params.IsSet("data") {
+								if err := json.Unmarshal([]byte(params.GetString("data")), &{{paramName}}); err != nil {
+									HandleError(err)
+								}
+								if Config.Debug {
+									fmt.Printf("%+v\n", {{paramName}})
+								}
 							}
 						{{/isModel~}}
 						{{^isPrimitiveType}}{{^isModel}}
