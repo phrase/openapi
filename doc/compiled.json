@@ -15295,7 +15295,8 @@
             "name": "only_content_updates",
             "in": "query",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "default": false
             }
           }
         ],
