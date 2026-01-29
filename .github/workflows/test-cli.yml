@@ -33,6 +33,7 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler-cache: true
+          working-directory: ./clients/cli
       - name: Run integration tests
         run: |
           cd ./clients/cli
