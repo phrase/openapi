@@ -2,11 +2,12 @@ require "open3"
 require "spec_helper"
 
 RSpec.describe "General behavior" do
+  let(:token) { "test-token" }
   let(:config) { <<~YAML }
     phrase:
       host: #{ENV.fetch("BASE_URL")}
       project_id: "test-project"
-      access_token: "test-token"
+      access_token: "#{token}"
   YAML
 
   it "info prints the version" do
@@ -16,7 +17,7 @@ RSpec.describe "General behavior" do
     expect(r[:stderr]).to include("You're running a development version")
   end
 
-  describe "format commands" do
+  describe "a simple command" do
     before do
       mock_set!("GET", "/formats", status: 200, body: [
         {
@@ -34,7 +35,7 @@ RSpec.describe "General behavior" do
       ])
     end
 
-    it "gets the format list" do
+    it "performs the authenticated request" do
       r = run_cli("formats", "list", config:)
       expect(r[:exit_code]).to eq(0)
       expect(r[:stdout]).to include("Ruby/Rails YAML")
@@ -45,7 +46,7 @@ RSpec.describe "General behavior" do
       request = requests_made.first
       expect(request["method"]).to eq("GET")
       expect(request["path"]).to eq("/formats")
-      expect(request["headers"]["HTTP_AUTHORIZATION"]).to eq("token test-token")
+      expect(request["headers"]["HTTP_AUTHORIZATION"]).to eq("token #{token}")
     end
   end
 end
