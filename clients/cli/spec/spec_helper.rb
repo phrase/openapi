@@ -2,6 +2,9 @@ require "rspec"
 require "open3"
 require "socket"
 require "timeout"
+require "tempfile"
+
+require_relative "support/mock_control"
 
 def free_port
   s = TCPServer.new("127.0.0.1", 0)
@@ -59,19 +62,24 @@ RSpec.configure do |config|
       io.close rescue nil
     end
   end
+
+  config.include MockControl
 end
 
 # Point this to your actual binary (relative to repo root, or absolute path)
 CLI_PATH = File.expand_path("../phrase-cli", __dir__)
 # e.g. if it’s built somewhere: File.expand_path("../../target/release/my_cli", __dir__)
 
-def run_cli(*args, env: {})
-  full_env = {
-    # Whatever your CLI reads to find the server:
-    # BASE_URL is set in spec_helper, but you can override per test via env:
-    "BASE_URL" => ENV.fetch("BASE_URL")
-  }.merge(env)
+def run_cli(*args, config: nil, env: {})
+  stdout, stderr, status = if config.nil?
+    Open3.capture3({}, CLI_PATH, *args.map(&:to_s))
+  else
+    Tempfile.create(".phrase.yml") do |f|
+      f.write(config)
+      f.flush
 
-  stdout, stderr, status = Open3.capture3(full_env, CLI_PATH, *args.map(&:to_s))
+      Open3.capture3({}, CLI_PATH, "--config", f.path, *args.map(&:to_s))
+    end
+  end
   { stdout: stdout, stderr: stderr, status: status, exit_code: status.exitstatus }
 end
