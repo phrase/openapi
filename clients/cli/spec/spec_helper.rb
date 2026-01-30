@@ -72,13 +72,13 @@ CLI_PATH = File.expand_path("../phrase-cli", __dir__)
 
 def run_cli(*args, config: nil, env: {})
   stdout, stderr, status = if config.nil?
-    Open3.capture3({}, CLI_PATH, *args.map(&:to_s))
+    Open3.capture3(env, CLI_PATH, *args.map(&:to_s))
   else
     Tempfile.create(".phrase.yml") do |f|
       f.write(config)
       f.flush
 
-      Open3.capture3({}, CLI_PATH, "--config", f.path, *args.map(&:to_s))
+      Open3.capture3(env, CLI_PATH, "--config", f.path, *args.map(&:to_s))
     end
   end
   { stdout: stdout, stderr: stderr, status: status, exit_code: status.exitstatus }
