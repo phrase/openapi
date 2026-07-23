@@ -69,9 +69,6 @@ requestBody:
               Accepted values are `legacy` and `cldr_41`. Defaults to
               `legacy` when omitted.
             type: string
-            enum:
-              - legacy
-              - cldr_41
             example: cldr_41
         oneOf:
           - required:

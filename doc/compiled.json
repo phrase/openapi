@@ -113,6 +113,9 @@
       "name": "Jobs"
     },
     {
+      "name": "Key Format Annotations"
+    },
+    {
       "name": "Keys"
     },
     {
@@ -217,6 +220,7 @@
         "Projects",
         "Locales",
         "Keys",
+        "Key Format Annotations",
         "Translations",
         "Uploads",
         "Tags",
@@ -4870,6 +4874,21 @@
           ]
         }
       },
+      "format_annotation": {
+        "type": "object",
+        "properties": {
+          "file_format": {
+            "type": "string",
+            "description": "The public file format name that produced this annotation. Possible values include `arb`, `xliff_2`, `xlf`, `xml`, `ts`, and `strings_catalog`. Internal-only format variants (such as `xliff_jobsync`) are never returned; they are collapsed to their public equivalent (for example, `xliff_jobsync` is reported as `xliff_2`).\n",
+            "example": "arb"
+          },
+          "original_representation": {
+            "type": "string",
+            "description": "The original file-format snippet captured when the key was imported, returned byte-for-byte without transformation, reformatting, or additional escaping. May contain multi-line content.\n",
+            "example": "{\"placeholders\": {\"name\": {\"type\": \"String\"}}}"
+          }
+        }
+      },
       "repo_sync": {
         "type": "object",
         "title": "repo_sync",
@@ -5451,7 +5470,7 @@
       },
       "job_updated_since": {
         "description": "filter by jobs updated since given date",
-        "example": "2013-02-21T00:00:00.000Z",
+        "example": "2013-02-21T00:00:00Z",
         "name": "updated_since",
         "in": "query",
         "schema": {
@@ -5733,10 +5752,6 @@
                   "cldr_version": {
                     "description": "Pluralization rule set to apply when constructing skeletons. Accepted values are `legacy` and `cldr_41`. Defaults to `legacy` when omitted.",
                     "type": "string",
-                    "enum": [
-                      "legacy",
-                      "cldr_41"
-                    ],
                     "example": "cldr_41"
                   }
                 },
@@ -31486,6 +31501,68 @@
             "source": "curl -i \"https://api.phrase.com/v2/projects/:project_id/keys/:id/key_links/1234abcd1234cdef1234abcd1234cdef\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
           }
         ]
+      }
+    },
+    "/projects/{project_id}/keys/{id}/format_annotations": {
+      "get": {
+        "summary": "List format annotations for a key",
+        "description": "Returns the format annotations stored directly on a translation key. Format annotations\ncapture the original file-format snippet recorded when the key was imported — for example,\nan ARB placeholder block, an XLIFF 2 note, or an Android XML context string.\n\nOnly annotations stored directly on the key are returned. Annotations stored on the\nkey's translations (per locale) are excluded.\n\nResults are ordered by insertion order (ascending by internal ID) and capped at 1,000\nentries. When a key has more than 1,000 stored annotations, only the first 1,000 are\nreturned without an error or any indication that the list was truncated.\n",
+        "operationId": "key_format_annotations/list",
+        "tags": [
+          "Key Format Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/format_annotation"
+                  }
+                },
+                "example": [
+                  {
+                    "file_format": "arb",
+                    "original_representation": "{\"placeholders\": {\"name\": {\"type\": \"String\"}}}"
+                  },
+                  {
+                    "file_format": "xliff_2",
+                    "original_representation": "<notes><note>Shown on the welcome screen</note></notes>"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-cli-version": "2.5"
       }
     },
     "/accounts/{account_id}/automations": {
