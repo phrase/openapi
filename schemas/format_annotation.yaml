@@ -1,0 +1,18 @@
+format_annotation:
+  type: object
+  properties:
+    file_format:
+      type: string
+      description: >
+        The public file format name that produced this annotation. Possible values include
+        `arb`, `xliff_2`, `xlf`, `xml`, `ts`, and `strings_catalog`. Internal-only format
+        variants (such as `xliff_jobsync`) are never returned; they are collapsed to their
+        public equivalent (for example, `xliff_jobsync` is reported as `xliff_2`).
+      example: arb
+    original_representation:
+      type: string
+      description: >
+        The original file-format snippet captured when the key was imported, returned
+        byte-for-byte without transformation, reformatting, or additional escaping.
+        May contain multi-line content.
+      example: '{"placeholders": {"name": {"type": "String"}}}'
