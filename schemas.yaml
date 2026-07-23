@@ -156,8 +156,6 @@ schemas:
     "$ref": schemas/variable.yaml#/variable
   icu:
     "$ref": schemas/icu.yaml#/skeleton
-  icu_skeleton_cldr_version:
-    "$ref": schemas/icu.yaml#/skeleton_cldr_version
   notification:
     "$ref": schemas/notification.yaml#/notification
   notification_group:
@@ -170,8 +168,6 @@ schemas:
     "$ref": schemas/organization_job_template_details.yaml#/organization_job_template_details
   key_link:
     "$ref": schemas/key_link.yaml#/key_link
-  format_annotation:
-    "$ref": schemas/format_annotation.yaml#/format_annotation
   repo_sync:
     "$ref": schemas/repo_sync.yaml#/repo_sync
   repo_sync_event:

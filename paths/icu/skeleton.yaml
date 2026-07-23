@@ -64,7 +64,15 @@ requestBody:
             type: boolean
             example: false
           cldr_version:
-            "$ref": "../../schemas/icu.yaml#/skeleton_cldr_version"
+            description: >-
+              Pluralization rule set to apply when constructing skeletons.
+              Accepted values are `legacy` and `cldr_41`. Defaults to
+              `legacy` when omitted.
+            type: string
+            enum:
+              - legacy
+              - cldr_41
+            example: cldr_41
         oneOf:
           - required:
               - content

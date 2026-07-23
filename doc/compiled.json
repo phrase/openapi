@@ -4460,15 +4460,6 @@
           "de": "{number, plural, one {} other {}}"
         }
       },
-      "icu_skeleton_cldr_version": {
-        "type": "string",
-        "description": "Pluralization rule set to apply when constructing skeletons. Accepted values are `legacy` and `cldr_41`. Defaults to `legacy` when omitted.",
-        "enum": [
-          "legacy",
-          "cldr_41"
-        ],
-        "example": "cldr_41"
-      },
       "notification": {
         "type": "object",
         "title": "notification",
@@ -4881,21 +4872,6 @@
               ]
             }
           ]
-        }
-      },
-      "format_annotation": {
-        "type": "object",
-        "properties": {
-          "file_format": {
-            "type": "string",
-            "description": "The file format that produced this annotation.\n",
-            "example": "xliff_2"
-          },
-          "original_representation": {
-            "type": "string",
-            "description": "The original file-format snippet captured when the key was imported. Returned as-is, may contain multi-line content.\n",
-            "example": "<note category=\"meaning\">header</note>"
-          }
         }
       },
       "repo_sync": {
@@ -5759,7 +5735,13 @@
                     "example": false
                   },
                   "cldr_version": {
-                    "$ref": "#/components/schemas/icu_skeleton_cldr_version"
+                    "description": "Pluralization rule set to apply when constructing skeletons. Accepted values are `legacy` and `cldr_41`. Defaults to `legacy` when omitted.",
+                    "type": "string",
+                    "enum": [
+                      "legacy",
+                      "cldr_41"
+                    ],
+                    "example": "cldr_41"
                   }
                 },
                 "oneOf": [
@@ -31540,7 +31522,19 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/format_annotation"
+                    "type": "object",
+                    "properties": {
+                      "file_format": {
+                        "type": "string",
+                        "description": "The file format that produced this annotation.\n",
+                        "example": "xliff_2"
+                      },
+                      "original_representation": {
+                        "type": "string",
+                        "description": "The original file-format snippet captured when the key was imported. Returned as-is, may contain multi-line content.\n",
+                        "example": "<note category=\"meaning\">header</note>"
+                      }
+                    }
                   }
                 },
                 "example": [
