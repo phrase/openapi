@@ -5724,7 +5724,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "title": "icu_skeleton_parameters",
+                "title": "icu/skeleton/parameters",
                 "properties": {
                   "content": {
                     "description": "Source ICU message string to derive skeletons from. Mutually exclusive with `id`; exactly one of the two must be provided.\n",
@@ -31554,13 +31554,28 @@
                   }
                 ]
               }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "401": {
             "$ref": "#/components/responses/401"
           },
           "403": {
-            "$ref": "#/components/responses/403"
+            "$ref": "#/components/responses/403",
+            "description": "Forbidden. Returned when the access token lacks the `read` scope or when the requesting user is not allowed to access keys in this project."
           },
           "404": {
             "$ref": "#/components/responses/404"

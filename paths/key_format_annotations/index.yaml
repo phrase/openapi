@@ -33,10 +33,20 @@ responses:
             original_representation: '{"placeholders": {"name": {"type": "String"}}}'
           - file_format: xliff_2
             original_representation: "<notes><note>Shown on the welcome screen</note></notes>"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
   '401':
     "$ref": "../../responses.yaml#/401"
   '403':
     "$ref": "../../responses.yaml#/403"
+    description: Forbidden. Returned when the access token lacks the `read` scope or when the requesting user is not allowed to access keys in this project.
   '404':
     "$ref": "../../responses.yaml#/404"
   '429':
