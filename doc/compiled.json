@@ -5451,7 +5451,7 @@
       },
       "job_updated_since": {
         "description": "filter by jobs updated since given date",
-        "example": "2013-02-21T00:00:00Z",
+        "example": "2013-02-21T00:00:00.000Z",
         "name": "updated_since",
         "in": "query",
         "schema": {
