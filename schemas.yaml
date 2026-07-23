@@ -156,8 +156,6 @@ schemas:
     "$ref": schemas/variable.yaml#/variable
   icu:
     "$ref": schemas/icu.yaml#/skeleton
-  icu_skeleton_cldr_version:
-    "$ref": schemas/icu.yaml#/skeleton_cldr_version
   notification:
     "$ref": schemas/notification.yaml#/notification
   notification_group:

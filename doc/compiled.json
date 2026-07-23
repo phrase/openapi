@@ -4456,11 +4456,6 @@
           "de": "{number, plural, one {} other {}}"
         }
       },
-      "icu_skeleton_cldr_version": {
-        "type": "string",
-        "description": "Pluralization rule set to use when constructing skeletons. Pass `legacy` for pre-CLDR behaviour, or a CLDR version string such as `cldr48`. Defaults to the project's configured version when omitted.",
-        "example": "cldr48"
-      },
       "notification": {
         "type": "object",
         "title": "notification",
@@ -5736,7 +5731,9 @@
                     "example": false
                   },
                   "cldr_version": {
-                    "$ref": "#/components/schemas/icu_skeleton_cldr_version"
+                    "description": "Pluralization rule set to use when constructing skeletons. Pass `legacy` for pre-CLDR behaviour, or a CLDR version string such as `cldr48`. Defaults to the project's configured version when omitted.",
+                    "type": "string",
+                    "example": "cldr48"
                   }
                 },
                 "oneOf": [
