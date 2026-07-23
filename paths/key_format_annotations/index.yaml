@@ -1,16 +1,11 @@
 ---
 summary: List format annotations for a key
 description: |
-  Returns the format annotations stored directly on a translation key. Format annotations
-  capture the original file-format snippet recorded when the key was imported — for example,
-  an ARB placeholder block, an XLIFF 2 note, or an Android XML context string.
+  Returns the format annotations stored on a translation key. Format annotations capture
+  file-format data recorded when the key was imported — for example, an ARB placeholder
+  block or an XLIFF note.
 
-  Only annotations stored directly on the key are returned. Annotations stored on the
-  key's translations (per locale) are excluded.
-
-  Results are ordered by insertion order (ascending by internal ID) and capped at 1,000
-  entries. When a key has more than 1,000 stored annotations, only the first 1,000 are
-  returned without an error or any indication that the list was truncated.
+  Results are limited to 1,000 entries.
 operationId: key_format_annotations/list
 tags:
   - Key Format Annotations

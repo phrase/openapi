@@ -4888,12 +4888,12 @@
         "properties": {
           "file_format": {
             "type": "string",
-            "description": "The public file format name that produced this annotation. Possible values include `arb`, `xliff_2`, `xlf`, `xml`, `ts`, and `strings_catalog`. Internal-only format variants (such as `xliff_jobsync`) are never returned; they are collapsed to their public equivalent (for example, `xliff_jobsync` is reported as `xliff_2`).\n",
+            "description": "The file format that produced this annotation. Possible values: `arb`, `xliff_2`, `xlf`, `xml`, `ts`, `strings_catalog`.\n",
             "example": "arb"
           },
           "original_representation": {
             "type": "string",
-            "description": "The original file-format snippet captured when the key was imported, returned byte-for-byte without transformation, reformatting, or additional escaping. May contain multi-line content.\n",
+            "description": "The original file-format snippet captured when the key was imported. Returned as-is, may contain multi-line content.\n",
             "example": "{\"placeholders\": {\"name\": {\"type\": \"String\"}}}"
           }
         }
@@ -31513,7 +31513,7 @@
     "/projects/{project_id}/keys/{id}/format_annotations": {
       "get": {
         "summary": "List format annotations for a key",
-        "description": "Returns the format annotations stored directly on a translation key. Format annotations\ncapture the original file-format snippet recorded when the key was imported — for example,\nan ARB placeholder block, an XLIFF 2 note, or an Android XML context string.\n\nOnly annotations stored directly on the key are returned. Annotations stored on the\nkey's translations (per locale) are excluded.\n\nResults are ordered by insertion order (ascending by internal ID) and capped at 1,000\nentries. When a key has more than 1,000 stored annotations, only the first 1,000 are\nreturned without an error or any indication that the list was truncated.\n",
+        "description": "Returns the format annotations stored on a translation key. Format annotations capture\nfile-format data recorded when the key was imported — for example, an ARB placeholder\nblock or an XLIFF note.\n\nResults are limited to 1,000 entries.\n",
         "operationId": "key_format_annotations/list",
         "tags": [
           "Key Format Annotations"
