@@ -24,10 +24,8 @@ responses:
           items:
             "$ref": "../../schemas/format_annotation.yaml#/format_annotation"
         example:
-          - file_format: arb
-            original_representation: '{"placeholders": {"name": {"type": "String"}}}'
           - file_format: xliff_2
-            original_representation: "<notes><note>Shown on the welcome screen</note></notes>"
+            original_representation: '<note category="meaning">header</note>'
     headers:
       X-Rate-Limit-Limit:
         "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"

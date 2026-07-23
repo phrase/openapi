@@ -6,10 +6,10 @@ format_annotation:
       description: >
         The file format that produced this annotation.
         Possible values: `arb`, `xliff_2`, `xlf`, `xml`, `ts`, `strings_catalog`.
-      example: arb
+      example: xliff_2
     original_representation:
       type: string
       description: >
         The original file-format snippet captured when the key was imported.
         Returned as-is, may contain multi-line content.
-      example: '{"placeholders": {"name": {"type": "String"}}}'
+      example: '<note category="meaning">header</note>'

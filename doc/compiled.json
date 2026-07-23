@@ -4889,12 +4889,12 @@
           "file_format": {
             "type": "string",
             "description": "The file format that produced this annotation. Possible values: `arb`, `xliff_2`, `xlf`, `xml`, `ts`, `strings_catalog`.\n",
-            "example": "arb"
+            "example": "xliff_2"
           },
           "original_representation": {
             "type": "string",
             "description": "The original file-format snippet captured when the key was imported. Returned as-is, may contain multi-line content.\n",
-            "example": "{\"placeholders\": {\"name\": {\"type\": \"String\"}}}"
+            "example": "<note category=\"meaning\">header</note>"
           }
         }
       },
@@ -31545,12 +31545,8 @@
                 },
                 "example": [
                   {
-                    "file_format": "arb",
-                    "original_representation": "{\"placeholders\": {\"name\": {\"type\": \"String\"}}}"
-                  },
-                  {
                     "file_format": "xliff_2",
-                    "original_representation": "<notes><note>Shown on the welcome screen</note></notes>"
+                    "original_representation": "<note category=\"meaning\">header</note>"
                   }
                 ]
               }
