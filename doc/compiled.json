@@ -4456,6 +4456,15 @@
           "de": "{number, plural, one {} other {}}"
         }
       },
+      "icu_skeleton_cldr_version": {
+        "type": "string",
+        "description": "Pluralization rule set to apply when constructing skeletons. Accepted values are `legacy` and `cldr_41`. Defaults to `legacy` when omitted.",
+        "enum": [
+          "legacy",
+          "cldr_41"
+        ],
+        "example": "cldr_41"
+      },
       "notification": {
         "type": "object",
         "title": "notification",
@@ -5731,13 +5740,7 @@
                     "example": false
                   },
                   "cldr_version": {
-                    "description": "Pluralization rule set to apply when constructing skeletons. Accepted values are `legacy` and `cldr_41`. Defaults to `legacy` when omitted.",
-                    "type": "string",
-                    "enum": [
-                      "legacy",
-                      "cldr_41"
-                    ],
-                    "example": "cldr_41"
+                    "$ref": "#/components/schemas/icu_skeleton_cldr_version"
                   }
                 },
                 "oneOf": [
