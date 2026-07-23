@@ -9,3 +9,14 @@ skeleton:
   example:
     en: "{number, plural, one {} other {}}"
     de: "{number, plural, one {} other {}}"
+
+skeleton_cldr_version:
+  type: string
+  description: >-
+    Pluralization rule set to apply when constructing skeletons.
+    Accepted values are `legacy` and `cldr_41`. Defaults to
+    `legacy` when omitted.
+  enum:
+    - legacy
+    - cldr_41
+  example: cldr_41
