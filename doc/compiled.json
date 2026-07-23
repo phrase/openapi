@@ -5470,7 +5470,7 @@
       },
       "job_updated_since": {
         "description": "filter by jobs updated since given date",
-        "example": "2013-02-21T00:00:00Z",
+        "example": "2013-02-21T00:00:00.000Z",
         "name": "updated_since",
         "in": "query",
         "schema": {
@@ -5715,7 +5715,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "title": "icu/skeleton/parameters",
+                "title": "icu_skeleton_parameters",
                 "properties": {
                   "content": {
                     "description": "Source ICU message string to derive skeletons from. Mutually exclusive with `id`; exactly one of the two must be provided.\n",
@@ -5752,6 +5752,10 @@
                   "cldr_version": {
                     "description": "Pluralization rule set to apply when constructing skeletons. Accepted values are `legacy` and `cldr_41`. Defaults to `legacy` when omitted.",
                     "type": "string",
+                    "enum": [
+                      "legacy",
+                      "cldr_41"
+                    ],
                     "example": "cldr_41"
                   }
                 },
