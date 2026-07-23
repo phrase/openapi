@@ -4888,7 +4888,7 @@
         "properties": {
           "file_format": {
             "type": "string",
-            "description": "The file format that produced this annotation. Possible values: `arb`, `xliff_2`, `xlf`, `xml`, `ts`, `strings_catalog`.\n",
+            "description": "The file format that produced this annotation.\n",
             "example": "xliff_2"
           },
           "original_representation": {
