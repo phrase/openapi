@@ -4458,12 +4458,8 @@
       },
       "icu_skeleton_cldr_version": {
         "type": "string",
-        "description": "Pluralization rule set to apply when constructing skeletons. Accepted values are `legacy` and `cldr_41`. Defaults to `legacy` when omitted.",
-        "enum": [
-          "legacy",
-          "cldr_41"
-        ],
-        "example": "cldr_41"
+        "description": "Pluralization rule set to use when constructing skeletons. Pass `legacy` for pre-CLDR behaviour, or a CLDR version string such as `cldr48`. Defaults to the project's configured version when omitted.",
+        "example": "cldr48"
       },
       "notification": {
         "type": "object",
@@ -5460,7 +5456,7 @@
       },
       "job_updated_since": {
         "description": "filter by jobs updated since given date",
-        "example": "2013-02-21T00:00:00.000Z",
+        "example": "2013-02-21T00:00:00Z",
         "name": "updated_since",
         "in": "query",
         "schema": {

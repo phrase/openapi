@@ -13,10 +13,7 @@ skeleton:
 skeleton_cldr_version:
   type: string
   description: >-
-    Pluralization rule set to apply when constructing skeletons.
-    Accepted values are `legacy` and `cldr_41`. Defaults to
-    `legacy` when omitted.
-  enum:
-    - legacy
-    - cldr_41
-  example: cldr_41
+    Pluralization rule set to use when constructing skeletons. Pass `legacy`
+    for pre-CLDR behaviour, or a CLDR version string such as `cldr48`.
+    Defaults to the project's configured version when omitted.
+  example: cldr48
