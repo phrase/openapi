@@ -724,6 +724,9 @@
 "/projects/{project_id}/keys/{id}/key_links/{child_key_id}":
   delete:
     "$ref": "./paths/key_links/destroy.yaml"
+"/projects/{project_id}/keys/{id}/format_annotations":
+  get:
+    "$ref": "./paths/key_format_annotations/index.yaml"
 "/accounts/{account_id}/automations":
   get:
     "$ref": "./paths/automations/index.yaml"

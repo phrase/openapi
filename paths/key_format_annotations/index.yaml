@@ -1,0 +1,47 @@
+---
+summary: List format annotations for a key
+description: |
+  Returns the format annotations stored on a translation key. Format annotations capture
+  file-format data recorded when the key was imported — for example, an ARB placeholder
+  block or an XLIFF note.
+
+  Results are limited to 1,000 entries.
+operationId: key_format_annotations/list
+tags:
+  - Key Format Annotations
+parameters:
+  - "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+  - "$ref": "../../parameters.yaml#/project_id"
+  - "$ref": "../../parameters.yaml#/id"
+  - "$ref": "../../parameters.yaml#/branch"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/format_annotation.yaml#/format_annotation"
+        example:
+          - file_format: xliff_2
+            original_representation: '<note category="meaning">header</note>'
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '401':
+    "$ref": "../../responses.yaml#/401"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+    description: Forbidden. Returned when the access token lacks the `read` scope or when the requesting user is not allowed to access keys in this project.
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-cli-version: "2.5"

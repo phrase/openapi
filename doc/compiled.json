@@ -113,6 +113,9 @@
       "name": "Jobs"
     },
     {
+      "name": "Key Format Annotations"
+    },
+    {
       "name": "Keys"
     },
     {
@@ -217,6 +220,7 @@
         "Projects",
         "Locales",
         "Keys",
+        "Key Format Annotations",
         "Translations",
         "Uploads",
         "Tags",
@@ -31482,6 +31486,91 @@
             "source": "curl -i \"https://api.phrase.com/v2/projects/:project_id/keys/:id/key_links/1234abcd1234cdef1234abcd1234cdef\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X DELETE"
           }
         ]
+      }
+    },
+    "/projects/{project_id}/keys/{id}/format_annotations": {
+      "get": {
+        "summary": "List format annotations for a key",
+        "description": "Returns the format annotations stored on a translation key. Format annotations capture\nfile-format data recorded when the key was imported — for example, an ARB placeholder\nblock or an XLIFF note.\n\nResults are limited to 1,000 entries.\n",
+        "operationId": "key_format_annotations/list",
+        "tags": [
+          "Key Format Annotations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "$ref": "#/components/parameters/branch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "file_format": {
+                        "type": "string",
+                        "description": "The file format that produced this annotation.\n",
+                        "example": "xliff_2"
+                      },
+                      "original_representation": {
+                        "type": "string",
+                        "description": "The original file-format snippet captured when the key was imported. Returned as-is, may contain multi-line content.\n",
+                        "example": "<note category=\"meaning\">header</note>"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "file_format": "xliff_2",
+                    "original_representation": "<note category=\"meaning\">header</note>"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403",
+            "description": "Forbidden. Returned when the access token lacks the `read` scope or when the requesting user is not allowed to access keys in this project."
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-cli-version": "2.5"
       }
     },
     "/accounts/{account_id}/automations": {

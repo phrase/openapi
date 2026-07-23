@@ -135,6 +135,7 @@ tags:
   - name: Job Template Locales
   - name: Job Templates
   - name: Jobs
+  - name: Key Format Annotations
   - name: Keys
   - name: Linked Keys
   - name: Locales
@@ -274,6 +275,7 @@ x-tagGroups:
       - Projects
       - Locales
       - Keys
+      - Key Format Annotations
       - Translations
       - Uploads
       - Tags
