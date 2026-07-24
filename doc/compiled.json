@@ -148,6 +148,9 @@
       "name": "Organization Job Templates"
     },
     {
+      "name": "Pre Translations"
+    },
+    {
       "name": "Projects"
     },
     {
@@ -2884,6 +2887,53 @@
           "priority": true,
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
+        }
+      },
+      "pre_translation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "abcd1234cdef1234abcd1234cdef1234"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "running",
+              "success",
+              "error"
+            ],
+            "description": "Current execution state of the pre-translation job. Jobs start as `pending` while queued, transition to `running` while executing, and settle to `success` or `error`.\n"
+          },
+          "translatable_type": {
+            "type": "string",
+            "enum": [
+              "locale",
+              "job",
+              "translation_key",
+              "upload"
+            ],
+            "description": "Resource type that was pre-translated."
+          },
+          "translatable_id": {
+            "type": "string",
+            "description": "ID of the targeted resource (locale ID, job ID, key ID, or upload ID).",
+            "example": "abcd1234cdef1234abcd1234cdef1234"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true,
+            "description": "Error message. `null` unless the job's status is `error`."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       },
       "translation_version": {
@@ -16222,6 +16272,239 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/projects/{project_id}/pre_translations": {
+      "get": {
+        "summary": "List pre-translation jobs",
+        "description": "Returns all pre-translation jobs scoped to a project, ordered by\ncreation date descending.\n",
+        "operationId": "pre_translations/list",
+        "tags": [
+          "Pre Translations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/If-Modified-Since"
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/pre_translation"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Pagination": {
+                "$ref": "#/components/headers/Pagination"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403",
+            "description": "Forbidden. Returned when the access token lacks the `read` scope, when the requesting user is not allowed to list pre-translation jobs in this project, or when the account does not have the `autopilot` plan feature."
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a pre-translation job",
+        "description": "Triggers a pre-translation job for a resource within a project, addressed\nby `translatable_type` (`locale`, `job`, `translation_key`, or `upload`)\nand `translatable_id` (its ID).\n\nEnqueues machine translation using the project's configured MT engine.\nReturns 202 Accepted immediately; the job itself runs asynchronously.\n",
+        "operationId": "pre_translation/create",
+        "tags": [
+          "Pre Translations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "title": "pre_translation/create/parameters",
+                "properties": {
+                  "translatable_type": {
+                    "type": "string",
+                    "enum": [
+                      "locale",
+                      "job",
+                      "translation_key",
+                      "upload"
+                    ],
+                    "description": "Resource type to pre-translate."
+                  },
+                  "translatable_id": {
+                    "type": "string",
+                    "description": "ID of the targeted resource: locale ID for `locale`, job ID for `job`, key ID for `translation_key`, upload ID for `upload`.\n"
+                  }
+                },
+                "example": {
+                  "translatable_type": "locale",
+                  "translatable_id": "abcd1234cdef1234abcd1234cdef1234"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pre_translation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403",
+            "description": "Forbidden. Returned when the access token lacks the `write` scope, when the requesting user is not allowed to create pre-translation jobs in this project, when the project is protected, or when the account does not have the `autopilot` plan feature."
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/pre_translations/{id}": {
+      "get": {
+        "summary": "Get a single pre-translation job",
+        "description": "Returns a single pre-translation job identified by its ID.\n",
+        "operationId": "pre_translation/show",
+        "tags": [
+          "Pre Translations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/If-Modified-Since"
+          },
+          {
+            "$ref": "#/components/parameters/If-None-Match"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pre_translation"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403",
+            "description": "Forbidden. Returned when the access token lacks the `read` scope, when the requesting user is not allowed to read pre-translation jobs in this project, or when the account does not have the `autopilot` plan feature."
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        }
       }
     },
     "/projects/{project_id}/uploads": {

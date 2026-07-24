@@ -94,6 +94,8 @@ schemas:
     "$ref": schemas/affected_resources.yaml#/affected_resources
   translation_order:
     "$ref": schemas/translation_order.yaml#/translation_order
+  pre_translation:
+    "$ref": schemas/pre_translation.yaml#/pre_translation
   translation_version:
     "$ref": schemas/translation_version.yaml#/translation_version
   translation_version_with_user:
