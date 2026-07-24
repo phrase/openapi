@@ -16353,7 +16353,7 @@
       },
       "post": {
         "summary": "Create a pre-translation job",
-        "description": "Triggers a pre-translation job for a resource within a project, addressed\nby `translatable_type` (`locale`, `job`, `translation_key`, or `upload`)\nand `translatable_id` (its ID).\n\nEnqueues machine translation using the project's configured MT engine.\nReturns 202 Accepted immediately; the job itself runs asynchronously.\n",
+        "description": "Triggers a pre-translation job for a resource within a project, addressed\nby `translatable_type` (`locale`, `job`, `translation_key`, or `upload`)\nand `translatable_id` (its ID).\n\nEnqueues machine translation using the project's configured MT engine.\n",
         "operationId": "pre_translation/create",
         "tags": [
           "Pre Translations"

@@ -6,7 +6,6 @@ description: |
   and `translatable_id` (its ID).
 
   Enqueues machine translation using the project's configured MT engine.
-  Returns 202 Accepted immediately; the job itself runs asynchronously.
 operationId: pre_translation/create
 tags:
 - Pre Translations
