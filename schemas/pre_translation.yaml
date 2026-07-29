@@ -1,0 +1,40 @@
+---
+pre_translation:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "abcd1234cdef1234abcd1234cdef1234"
+    status:
+      type: string
+      enum:
+        - pending
+        - running
+        - success
+        - error
+      description: >
+        Current execution state of the pre-translation job. Jobs start as
+        `pending` while queued, transition to `running` while executing,
+        and settle to `success` or `error`.
+    translatable_type:
+      type: string
+      enum:
+        - locale
+        - job
+        - translation_key
+        - upload
+      description: Resource type that was pre-translated.
+    translatable_id:
+      type: string
+      description: ID of the targeted resource (locale ID, job ID, key ID, or upload ID).
+      example: "abcd1234cdef1234abcd1234cdef1234"
+    error:
+      type: string
+      nullable: true
+      description: Error message. `null` unless the job's status is `error`.
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time

@@ -1,0 +1,46 @@
+---
+summary: List pre-translation jobs
+description: |
+  Returns all pre-translation jobs scoped to a project, ordered by
+  creation date descending.
+operationId: pre_translations/list
+tags:
+- Pre Translations
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/If-Modified-Since"
+- "$ref": "../../parameters.yaml#/If-None-Match"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/page"
+- "$ref": "../../parameters.yaml#/per_page"
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/pre_translation.yaml#/pre_translation"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+      Pagination:
+        "$ref": "../../headers.yaml#/Pagination"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '401':
+    "$ref": "../../responses.yaml#/401"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+    description: Forbidden. Returned when the access token lacks the `read` scope, when the requesting user is not allowed to list pre-translation jobs in this project, or when the account does not have the `autopilot` plan feature.
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"

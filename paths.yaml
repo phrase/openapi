@@ -283,6 +283,14 @@
 "/projects/{project_id}/webhooks/{id}/test":
   post:
     "$ref": "./paths/webhooks/test.yaml"
+"/projects/{project_id}/pre_translations":
+  get:
+    "$ref": "./paths/pre_translations/index.yaml"
+  post:
+    "$ref": "./paths/pre_translations/create.yaml"
+"/projects/{project_id}/pre_translations/{id}":
+  get:
+    "$ref": "./paths/pre_translations/show.yaml"
 "/projects/{project_id}/uploads":
   post:
     "$ref": "./paths/uploads/create.yaml"
