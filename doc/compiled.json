@@ -32674,7 +32674,7 @@
     "/accounts/{account_id}/automations/{automation_id}/events": {
       "get": {
         "summary": "List events for an automation",
-        "description": "Returns the run history for a specific automation, newest-first.\n\nThis endpoint requires the `automation_job_creation` feature to be enabled on the account.\nAccess is limited to users with read permission on the automation. Users who lack access\nto all projects associated with the automation receive a 403.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
+        "description": "Returns the run history for a specific automation, newest-first.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "automation_events/list",
         "tags": [
           "Automation Events"
@@ -32825,7 +32825,7 @@
     "/accounts/{account_id}/automation_events": {
       "get": {
         "summary": "List automation events for an account",
-        "description": "Returns the run history across all automations in the account, newest-first.\n\nThis endpoint requires the `automation_job_creation` feature to be enabled on the account.\nResults are automatically scoped to automations the current user can access. Users without\nread permission on the `Automation` resource in this account receive a 403.\n\nUse `automation_id` to narrow results to a single automation. Use `project_id` or\n`project_ids` to narrow by project.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
+        "description": "Returns the run history across all automations in the account, newest-first.\n\nUse `automation_id` to narrow results to a single automation. Use `project_id` or `project_ids` to narrow by project.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "account_automation_events/list",
         "tags": [
           "Automation Events"
