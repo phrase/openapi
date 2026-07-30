@@ -1,0 +1,104 @@
+---
+summary: List events for an automation
+description: |
+  Returns the run history for a specific automation, newest-first.
+
+  This endpoint requires the `automation_job_creation` feature to be enabled on the account.
+  Access is limited to users with read permission on the automation. Users who lack access
+  to all projects associated with the automation receive a 403.
+
+  For feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).
+operationId: automation_events/list
+tags:
+- Automation Events
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/account_id"
+- "$ref": "../../parameters.yaml#/id"
+- "$ref": "../../parameters.yaml#/page"
+- "$ref": "../../parameters.yaml#/per_page"
+- name: state
+  in: query
+  required: false
+  schema:
+    type: string
+    enum:
+    - success
+    - failure
+    - in_progress
+  description: Filter events by outcome state. Unrecognized values are ignored.
+- name: triggered_by
+  in: query
+  required: false
+  schema:
+    type: string
+    enum:
+    - manual
+    - schedule
+    - upload
+    - upload_batch
+  description: Filter events by what triggered the automation run. Unrecognized values are ignored.
+- name: project_id
+  in: query
+  required: false
+  schema:
+    type: string
+  description: Filter events by project ID. Accepts a single ID or a comma-separated list of IDs.
+- name: project_ids[]
+  in: query
+  required: false
+  schema:
+    type: array
+    items:
+      type: string
+  description: Filter events by one or more project IDs.
+- name: created_after
+  in: query
+  required: false
+  schema:
+    type: string
+    format: date-time
+  description: Return only events created after this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time.
+- name: created_before
+  in: query
+  required: false
+  schema:
+    type: string
+    format: date-time
+  description: Return only events created before this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time.
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/automation_event.yaml#/automation_event"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+      Pagination:
+        "$ref": "../../headers.yaml#/Pagination"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '401':
+    "$ref": "../../responses.yaml#/401"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+    description: Forbidden. Returned when the access token lacks the `read` scope, when the requesting user is not allowed to read this automation, or when the account does not have the Automation Job Creation feature.
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/accounts/:account_id/automations/:id/events" \
+      -u USERNAME_OR_ACCESS_TOKEN

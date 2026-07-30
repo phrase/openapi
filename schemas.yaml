@@ -176,3 +176,5 @@ schemas:
     "$ref": schemas/repo_sync_event.yaml#/repo_sync_event
   automation:
     "$ref": schemas/automation.yaml#/automation
+  automation_event:
+    "$ref": schemas/automation_event.yaml#/automation_event

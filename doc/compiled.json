@@ -47,6 +47,9 @@
       "description": "The endpoints provided by the Authorizations API are **only accessible via Basic authentication with email and password**.\n\nWhen creating a new authorization, the new access token for this authorization will be returned in the immediate response but not later, due to security reasons. When accessing authorizations later, you will only see the last eight chars of the token in plain text (`token_last_eight`) and the SHA256 digest of the token for reference (`hashed_token`).\n\nFor instructions on how authorization in general works, see our [Auth Guide](#overview--authentication).\n\n### Scopes\n\nWhen creating or updating an OAuth authorization, you can define a list of scopes to limit the access that can be performed by that authorization.\n\n#### Available Scopes\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">Scope</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>read</code></td>\n        <td class=\"basic-table__cell\">Read projects, locales, keys, translations, orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>write</code></td>\n        <td class=\"basic-table__cell\">Write projects, locales, keys, translations but not orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>orders.create</code></td>\n        <td class=\"basic-table__cell\">Create and confirm orders</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>team.manage</code></td>\n        <td class=\"basic-table__cell\">Manage invitations and members</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
     },
     {
+      "name": "Automation Events"
+    },
+    {
       "name": "Blacklisted Keys"
     },
     {
@@ -5148,6 +5151,92 @@
           "created_at": "2021-06-28T09:52:53Z",
           "updated_at": "2021-06-28T09:52:53Z"
         }
+      },
+      "automation_event": {
+        "type": "object",
+        "title": "automation_event",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the automation event."
+          },
+          "automation_id": {
+            "type": "string",
+            "description": "Identifier of the automation that produced this event."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "success",
+              "failure",
+              "in_progress"
+            ],
+            "description": "Outcome of the automation run."
+          },
+          "triggered_by": {
+            "type": "string",
+            "enum": [
+              "manual",
+              "schedule",
+              "upload",
+              "upload_batch"
+            ],
+            "description": "What caused the automation to run."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the event was created."
+          },
+          "jobs_created": {
+            "type": "integer",
+            "description": "Number of jobs created during this automation run."
+          },
+          "job_ids": {
+            "type": "array",
+            "description": "Identifiers of the jobs created during this automation run.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "project": {
+            "type": "object",
+            "nullable": true,
+            "description": "The project associated with this automation event. Null when no project is set.",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Project identifier."
+              },
+              "name": {
+                "type": "string",
+                "description": "Project name."
+              }
+            }
+          },
+          "details": {
+            "type": "string",
+            "nullable": true,
+            "description": "Error message describing the failure when state is `failure`; null otherwise."
+          }
+        },
+        "example": {
+          "id": "abcd1234ef56",
+          "automation_id": "xyz9876abc123",
+          "state": "success",
+          "triggered_by": "schedule",
+          "created_at": "2021-06-28T09:52:53Z",
+          "jobs_created": 3,
+          "job_ids": [
+            "job1abc",
+            "job2def"
+          ],
+          "project": {
+            "id": "proj1234abcd",
+            "name": "My Project"
+          },
+          "details": null
+        }
       }
     },
     "parameters": {
@@ -5206,6 +5295,15 @@
         "in": "query",
         "name": "account_id",
         "description": "Filter by Account ID",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "query_automation_id": {
+        "in": "query",
+        "name": "automation_id",
+        "description": "Filter events to a single automation by its ID.",
         "required": false,
         "schema": {
           "type": "string"
@@ -5505,7 +5603,7 @@
       },
       "job_updated_since": {
         "description": "filter by jobs updated since given date",
-        "example": "2013-02-21T00:00:00.000Z",
+        "example": "2013-02-21T00:00:00Z",
         "name": "updated_since",
         "in": "query",
         "schema": {
@@ -32570,6 +32668,305 @@
           {
             "lang": "CLI v2",
             "source": "phrase automations trigger \\\n--account_id <account_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/automations/{automation_id}/events": {
+      "get": {
+        "summary": "List events for an automation",
+        "description": "Returns the run history for a specific automation, newest-first.\n\nThis endpoint requires the `automation_job_creation` feature to be enabled on the account.\nAccess is limited to users with read permission on the automation. Users who lack access\nto all projects associated with the automation receive a 403.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
+        "operationId": "automation_events/list",
+        "tags": [
+          "Automation Events"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "success",
+                "failure",
+                "in_progress"
+              ]
+            },
+            "description": "Filter events by outcome state. Unrecognized values are ignored."
+          },
+          {
+            "name": "triggered_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "manual",
+                "schedule",
+                "upload",
+                "upload_batch"
+              ]
+            },
+            "description": "Filter events by what triggered the automation run. Unrecognized values are ignored."
+          },
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter events by project ID. Accepts a single ID or a comma-separated list of IDs."
+          },
+          {
+            "name": "project_ids[]",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter events by one or more project IDs."
+          },
+          {
+            "name": "created_after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Return only events created after this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time."
+          },
+          {
+            "name": "created_before",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Return only events created before this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/automation_event"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Pagination": {
+                "$ref": "#/components/headers/Pagination"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403",
+            "description": "Forbidden. Returned when the access token lacks the `read` scope, when the requesting user is not allowed to read this automation, or when the account does not have the Automation Job Creation feature."
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automations/:id/events\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          }
+        ]
+      }
+    },
+    "/accounts/{account_id}/automation_events": {
+      "get": {
+        "summary": "List automation events for an account",
+        "description": "Returns the run history across all automations in the account, newest-first.\n\nThis endpoint requires the `automation_job_creation` feature to be enabled on the account.\nResults are automatically scoped to automations the current user can access. Users without\nread permission on the `Automation` resource in this account receive a 403.\n\nUse `automation_id` to narrow results to a single automation. Use `project_id` or\n`project_ids[]` to narrow by project.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
+        "operationId": "account_automation_events/list",
+        "tags": [
+          "Automation Events"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/account_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "$ref": "#/components/parameters/query_automation_id"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "success",
+                "failure",
+                "in_progress"
+              ]
+            },
+            "description": "Filter events by outcome state. Unrecognized values are ignored."
+          },
+          {
+            "name": "triggered_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "manual",
+                "schedule",
+                "upload",
+                "upload_batch"
+              ]
+            },
+            "description": "Filter events by what triggered the automation run. Unrecognized values are ignored."
+          },
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter events by project ID. Accepts a single ID or a comma-separated list of IDs."
+          },
+          {
+            "name": "project_ids[]",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter events by one or more project IDs."
+          },
+          {
+            "name": "created_after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Return only events created after this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time."
+          },
+          {
+            "name": "created_before",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Return only events created before this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/automation_event"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Pagination": {
+                "$ref": "#/components/headers/Pagination"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403",
+            "description": "Forbidden. Returned when the access token lacks the `read` scope, when the requesting user is not allowed to list automations in this account, or when the account does not have the Automation Job Creation feature."
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/accounts/:account_id/automation_events\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
           }
         ]
       }

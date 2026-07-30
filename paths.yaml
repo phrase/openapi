@@ -756,3 +756,9 @@
 "/accounts/{account_id}/automations/{automation_id}/trigger":
   post:
     "$ref": "./paths/automations/trigger.yaml"
+"/accounts/{account_id}/automations/{automation_id}/events":
+  get:
+    "$ref": "./paths/automations/events.yaml"
+"/accounts/{account_id}/automation_events":
+  get:
+    "$ref": "./paths/automation_events/index.yaml"
