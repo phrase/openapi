@@ -5201,7 +5201,6 @@
           },
           "project": {
             "type": "object",
-            "nullable": true,
             "description": "The project associated with this automation event. Null when no project is set.",
             "properties": {
               "id": {
@@ -32735,7 +32734,7 @@
             "description": "Filter events by project ID. Accepts a single ID or a comma-separated list of IDs."
           },
           {
-            "name": "project_ids[]",
+            "name": "project_ids",
             "in": "query",
             "required": false,
             "schema": {
@@ -32751,9 +32750,9 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "string"
             },
+            "example": "2023-01-01T00:00:00Z",
             "description": "Return only events created after this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time."
           },
           {
@@ -32761,9 +32760,9 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "string"
             },
+            "example": "2023-01-01T00:00:00Z",
             "description": "Return only events created before this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time."
           }
         ],
@@ -32826,7 +32825,7 @@
     "/accounts/{account_id}/automation_events": {
       "get": {
         "summary": "List automation events for an account",
-        "description": "Returns the run history across all automations in the account, newest-first.\n\nThis endpoint requires the `automation_job_creation` feature to be enabled on the account.\nResults are automatically scoped to automations the current user can access. Users without\nread permission on the `Automation` resource in this account receive a 403.\n\nUse `automation_id` to narrow results to a single automation. Use `project_id` or\n`project_ids[]` to narrow by project.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
+        "description": "Returns the run history across all automations in the account, newest-first.\n\nThis endpoint requires the `automation_job_creation` feature to be enabled on the account.\nResults are automatically scoped to automations the current user can access. Users without\nread permission on the `Automation` resource in this account receive a 403.\n\nUse `automation_id` to narrow results to a single automation. Use `project_id` or\n`project_ids` to narrow by project.\n\nFor feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).\n",
         "operationId": "account_automation_events/list",
         "tags": [
           "Automation Events"
@@ -32886,7 +32885,7 @@
             "description": "Filter events by project ID. Accepts a single ID or a comma-separated list of IDs."
           },
           {
-            "name": "project_ids[]",
+            "name": "project_ids",
             "in": "query",
             "required": false,
             "schema": {
@@ -32902,9 +32901,9 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "string"
             },
+            "example": "2023-01-01T00:00:00Z",
             "description": "Return only events created after this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time."
           },
           {
@@ -32912,9 +32911,9 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "string"
             },
+            "example": "2023-01-01T00:00:00Z",
             "description": "Return only events created before this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time."
           }
         ],

@@ -31,7 +31,6 @@ automation_event:
         type: string
     project:
       type: object
-      nullable: true
       description: The project associated with this automation event. Null when no project is set.
       properties:
         id:

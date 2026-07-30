@@ -44,7 +44,7 @@ parameters:
   schema:
     type: string
   description: Filter events by project ID. Accepts a single ID or a comma-separated list of IDs.
-- name: project_ids[]
+- name: project_ids
   in: query
   required: false
   schema:
@@ -57,14 +57,14 @@ parameters:
   required: false
   schema:
     type: string
-    format: date-time
+  example: "2023-01-01T00:00:00Z"
   description: Return only events created after this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time.
 - name: created_before
   in: query
   required: false
   schema:
     type: string
-    format: date-time
+  example: "2023-01-01T00:00:00Z"
   description: Return only events created before this ISO 8601 timestamp. Returns 400 if the value is not a valid date-time.
 responses:
   '200':
