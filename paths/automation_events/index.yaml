@@ -3,12 +3,7 @@ summary: List automation events for an account
 description: |
   Returns the run history across all automations in the account, newest-first.
 
-  This endpoint requires the `automation_job_creation` feature to be enabled on the account.
-  Results are automatically scoped to automations the current user can access. Users without
-  read permission on the `Automation` resource in this account receive a 403.
-
-  Use `automation_id` to narrow results to a single automation. Use `project_id` or
-  `project_ids` to narrow by project.
+  Use `automation_id` to narrow results to a single automation. Use `project_id` or `project_ids` to narrow by project.
 
   For feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).
 operationId: account_automation_events/list

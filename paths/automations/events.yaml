@@ -3,10 +3,6 @@ summary: List events for an automation
 description: |
   Returns the run history for a specific automation, newest-first.
 
-  This endpoint requires the `automation_job_creation` feature to be enabled on the account.
-  Access is limited to users with read permission on the automation. Users who lack access
-  to all projects associated with the automation receive a 403.
-
   For feature availability, see [Jobs (Strings)](https://support.phrase.com/hc/en-us/articles/5784100517788-Jobs-Strings).
 operationId: automation_events/list
 tags:
