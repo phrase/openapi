@@ -46,6 +46,13 @@ query_account_id:
   required: false
   schema:
     type: string
+query_automation_id:
+  in: query
+  name: automation_id
+  description: Filter events to a single automation by its ID.
+  required: false
+  schema:
+    type: string
 repo_sync_id:
   in: path
   name: repo_sync_id
@@ -290,7 +297,7 @@ job_state:
     type: string
 job_updated_since:
   description: filter by jobs updated since given date
-  example: 2013-02-21T00:00:00Z
+  example: "2013-02-21T00:00:00Z"
   name: updated_since
   in: query
   schema:

@@ -75,6 +75,7 @@ tags:
           </tbody>
         </table>
       </div>
+  - name: Automation Events
   - name: Blacklisted Keys
   - name: Branches
     description: |

@@ -1,0 +1,59 @@
+---
+automation_event:
+  type: object
+  title: automation_event
+  properties:
+    id:
+      type: string
+      description: Unique identifier of the automation event.
+    automation_id:
+      type: string
+      description: Identifier of the automation that produced this event.
+    state:
+      type: string
+      enum: [success, failure, in_progress]
+      description: Outcome of the automation run.
+    triggered_by:
+      type: string
+      enum: [manual, schedule, upload, upload_batch]
+      description: What caused the automation to run.
+    created_at:
+      type: string
+      format: date-time
+      description: Timestamp when the event was created.
+    jobs_created:
+      type: integer
+      description: Number of jobs created during this automation run.
+    job_ids:
+      type: array
+      description: Identifiers of the jobs created during this automation run.
+      items:
+        type: string
+    project:
+      type: object
+      description: The project associated with this automation event. Null when no project is set.
+      properties:
+        id:
+          type: string
+          description: Project identifier.
+        name:
+          type: string
+          description: Project name.
+    details:
+      type: string
+      nullable: true
+      description: Error message describing the failure when state is `failure`; null otherwise.
+  example:
+    id: abcd1234ef56
+    automation_id: xyz9876abc123
+    state: success
+    triggered_by: schedule
+    created_at: '2021-06-28T09:52:53Z'
+    jobs_created: 3
+    job_ids:
+      - job1abc
+      - job2def
+    project:
+      id: proj1234abcd
+      name: My Project
+    details:
