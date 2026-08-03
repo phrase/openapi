@@ -10,7 +10,7 @@ module Phrase
       link_headers = headers["link"]
       if link_headers
         @paginated = true
-        parsed_links = LinkHeaderParser.parse(link_headers, base: 'https://api.phrase.com').group_by_relation_type
+        parsed_links = LinkHeaderParser.parse(link_headers, base_uri: 'https://api.phrase.com').group_by_relation_type.transform_keys(&:to_sym)
         next_page_link = parsed_links[:next]&.first
         if next_page_link
           @next_page = CGI.parse(URI.parse(next_page_link.target_uri).query)["page"]&.first&.to_i

@@ -14,6 +14,7 @@ clients/ruby/git_push.sh
 clients/ruby/openapitools.json
 clients/ruby/*.gemspec
 clients/ruby/spec/*.rb
+!clients/ruby/spec/response_spec.rb
 clients/ruby/spec/api/*
 clients/ruby/spec/models/
 clients/ruby/docs
