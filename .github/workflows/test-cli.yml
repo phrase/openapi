@@ -26,15 +26,20 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: '1.24.4'
-      - name: Generate CLI and run unit tests
+      - name: Generate CLI
         env:
           GOPRIVATE: github.com/phrase/phrase-go
         run: |
-          npm install
-          npm run generate.go
+          {
+            npm install
+            npm run generate.go
+            cd ./clients/cli
+            go mod edit -replace github.com/phrase/phrase-go/v4=../go
+            npm run generate.cli
+          } > generate.log 2>&1 || { cat generate.log; exit 1; }
+      - name: Build and run unit tests
+        run: |
           cd ./clients/cli
-          go mod edit -replace github.com/phrase/phrase-go/v4=../go
-          npm run generate.cli
           go build .
           go test -v ./...
       - name: Install Ruby and rspec
@@ -46,7 +51,7 @@ jobs:
       - name: Run integration tests
         run: |
           cd ./clients/cli
-          bundle exec rspec
+          bundle exec rspec --format documentation
       - name: License check
         uses: phrase/actions/lawa-ci@v1
         with:
