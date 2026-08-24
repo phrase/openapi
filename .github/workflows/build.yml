@@ -61,9 +61,9 @@ jobs:
           npm install
           npm run generate.go
           npm run generate.cli
-          # Verify the generated CLI compiles before publishing it. Build against
-          # the freshly generated go client so this does not depend on a released
-          # phrase-go version that may lag behind the spec.
+          # Verify the generated CLI compiles against the freshly generated go
+          # client, so this does not depend on a released phrase-go version
+          # that may lag behind the spec.
           (cd ./clients/cli && go mod edit -replace github.com/phrase/phrase-go/v4=../go && go build . && go mod edit -dropreplace github.com/phrase/phrase-go/v4)
           git clone https://$API_TOKEN_GITHUB@github.com/phrase/phrase-cli.git clones/cli &> /dev/null
           rsync -avI --delete --exclude='.git/' clients/cli/ clones/cli
@@ -75,6 +75,18 @@ jobs:
           git add .
           git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
           PACKAGE_VERSION=$(awk '/- Package version:/{print $NF}' README.md)
+          if ! git rev-parse "$PACKAGE_VERSION" >/dev/null 2>&1; then
+            # About to cut a new CLI release tag: this is the point that
+            # actually reaches users, so verify the build against the
+            # pinned, published phrase-go dependency too -- the same build
+            # phrase-cli's own release workflow will run. A mismatch (e.g.
+            # this release's generated code outrunning the last released
+            # phrase-go version) fails here instead of breaking the public
+            # release build. Routine, non-release pushes skip this since
+            # unreleased master content isn't consumed by anyone.
+            go mod download
+            go build ./...
+          fi
           git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION || true
           git push --tags origin master
           else
