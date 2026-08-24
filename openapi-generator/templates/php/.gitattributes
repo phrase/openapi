@@ -4,6 +4,5 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 .openapi-generator-ignore export-ignore
-.php_cs export-ignore
 git_push.sh export-ignore
 phpunit.xml.dist export-ignore
