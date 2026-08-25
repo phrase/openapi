@@ -127,10 +127,12 @@ func init{{{nickname}}}() {
 						HandleError(castedError)
 				}
 			} else if api_response.StatusCode >= 200 && api_response.StatusCode < 300 {
-				{{#if returnType}}{{#if (eq returnType "*os.File")}}content, _ := ioutil.ReadAll(data)
-				fmt.Printf("%s", string(content))
-				data.Close()
-				os.Remove(data.Name()){{else}}jsonBuf, jsonErr := json.MarshalIndent(data, "", " ")
+				{{#if returnType}}{{#if (eq returnType "*os.File")}}if data != nil {
+					content, _ := ioutil.ReadAll(data)
+					fmt.Printf("%s", string(content))
+					data.Close()
+					os.Remove(data.Name())
+				}{{else}}jsonBuf, jsonErr := json.MarshalIndent(data, "", " ")
 				if jsonErr != nil {
 					fmt.Printf("%v\n", data)
 					HandleError(err)
