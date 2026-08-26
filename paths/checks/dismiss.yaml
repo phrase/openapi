@@ -1,6 +1,9 @@
 ---
 summary: Dismiss a check issue
-description: Mark a check issue as dismissed so it no longer appears on the list of active check issues.
+description: |-
+  **Note:** The Checks API is still in development and might change in subsequent releases.
+
+  Mark a check issue as dismissed so it no longer appears on the list of active check issues.
 operationId: check_issue/dismiss
 tags:
 - Checks

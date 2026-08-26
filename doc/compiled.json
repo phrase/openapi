@@ -23529,7 +23529,7 @@
     "/projects/{project_id}/checks/issues": {
       "get": {
         "summary": "List check issues",
-        "description": "List check issues for the given project. Results can be filtered by locale, check name, and state.",
+        "description": "**Note:** The Checks API is still in development and might change in subsequent releases.\n\nList check issues for the given project. Results can be filtered by locale, check name, and state.",
         "operationId": "check_issues/list",
         "tags": [
           "Checks"
@@ -23663,7 +23663,7 @@
     "/projects/{project_id}/checks/issues/{id}/dismiss": {
       "patch": {
         "summary": "Dismiss a check issue",
-        "description": "Mark a check issue as dismissed so it no longer appears on the list of active check issues.",
+        "description": "**Note:** The Checks API is still in development and might change in subsequent releases.\n\nMark a check issue as dismissed so it no longer appears on the list of active check issues.",
         "operationId": "check_issue/dismiss",
         "tags": [
           "Checks"

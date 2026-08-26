@@ -1,6 +1,9 @@
 ---
 summary: List check issues
-description: List check issues for the given project. Results can be filtered by locale, check name, and state.
+description: |-
+  **Note:** The Checks API is still in development and might change in subsequent releases.
+
+  List check issues for the given project. Results can be filtered by locale, check name, and state.
 operationId: check_issues/list
 tags:
 - Checks
