@@ -1,0 +1,65 @@
+---
+check_issue:
+  type: object
+  title: check_issue
+  properties:
+    id:
+      type: string
+    check_name:
+      description: Identifier of the check that reported this issue.
+      type: string
+    state:
+      description: 'Current state of the check issue. One of: `active`, `solved`, `dismissed`.'
+      type: string
+      enum:
+      - active
+      - solved
+      - dismissed
+    description:
+      description: Human-readable description of the reported issue, always in English.
+      type: string
+    dismissed_at:
+      type: string
+      format: date-time
+      nullable: true
+    solved_at:
+      type: string
+      format: date-time
+      nullable: true
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    translation:
+      "$ref": "./translation.yaml#/translation"
+  example:
+    id: abcd1234cdef1234abcd1234cdef1234
+    check_name: translation_placeholder_usage
+    state: active
+    description: 'The translation contains invalid placeholders. (missing: %{count})'
+    dismissed_at: null
+    solved_at: null
+    created_at: '2015-01-28T09:52:53Z'
+    updated_at: '2015-01-28T09:52:53Z'
+    translation:
+      id: abcd1234cdef1234abcd1234cdef1234
+      content: My translation
+      unverified: false
+      excluded: false
+      plural_suffix: ''
+      key:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: home.index.headline
+        plural: false
+        use_ordinal_rules: false
+      locale:
+        id: abcd1234cdef1234abcd1234cdef1234
+        name: de
+        code: de-DE
+      placeholders:
+      - "%{count}"
+      state: translated
+      created_at: '2015-01-28T09:52:53Z'
+      updated_at: '2015-01-28T09:52:53Z'

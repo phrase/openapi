@@ -1,0 +1,54 @@
+---
+summary: Dismiss a check issue
+description: Mark a check issue as dismissed so it no longer appears on the list of active check issues.
+operationId: check_issue/dismiss
+tags:
+- Checks
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- name: id
+  in: path
+  required: true
+  description: Check Issue ID
+  schema:
+    type: string
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          "$ref": "../../schemas/check_issue.yaml#/check_issue"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '401':
+    "$ref": "../../responses.yaml#/401"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+    description: Forbidden. Returned when the access token lacks the `write` scope or when the requesting user is not allowed to dismiss check issues in this project.
+  '422':
+    "$ref": "../../responses.yaml#/422"
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/checks/issues/:id/dismiss" \
+      -u USERNAME_OR_ACCESS_TOKEN \
+      -X PATCH
+- lang: CLI v2
+  source: |-
+    phrase check_issues dismiss \
+    --project_id <project_id> \
+    --id <id> \
+    --access_token <token>

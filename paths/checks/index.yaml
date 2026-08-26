@@ -1,0 +1,85 @@
+---
+summary: List check issues
+description: List check issues for the given project. Results can be filtered by locale, check name, and state.
+operationId: check_issues/list
+tags:
+- Checks
+parameters:
+- "$ref": "../../parameters.yaml#/X-PhraseApp-OTP"
+- "$ref": "../../parameters.yaml#/project_id"
+- "$ref": "../../parameters.yaml#/page"
+- "$ref": "../../parameters.yaml#/per_page"
+- description: 'Filter by state of the check issue. Can be one of: `active`, `solved`, `dismissed`, `all`. Defaults to `active`.'
+  name: state
+  in: query
+  required: false
+  schema:
+    type: string
+    default: active
+    enum:
+    - active
+    - solved
+    - dismissed
+    - all
+  example: active
+- description: Filter by one or more locale IDs.
+  name: locale_ids
+  in: query
+  required: false
+  schema:
+    type: array
+    items:
+      type: string
+    example:
+    - abcd1234cdef1234abcd1234cdef1234
+- description: Filter by one or more check names.
+  name: check_names
+  in: query
+  required: false
+  schema:
+    type: array
+    items:
+      type: string
+    example:
+    - translation_placeholder_usage
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            "$ref": "../../schemas/check_issue.yaml#/check_issue"
+    headers:
+      X-Rate-Limit-Limit:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Limit"
+      X-Rate-Limit-Remaining:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Remaining"
+      X-Rate-Limit-Reset:
+        "$ref": "../../headers.yaml#/X-Rate-Limit-Reset"
+      Link:
+        "$ref": "../../headers.yaml#/Link"
+      Pagination:
+        "$ref": "../../headers.yaml#/Pagination"
+  '400':
+    "$ref": "../../responses.yaml#/400"
+  '404':
+    "$ref": "../../responses.yaml#/404"
+  '401':
+    "$ref": "../../responses.yaml#/401"
+  '403':
+    "$ref": "../../responses.yaml#/403"
+    description: Forbidden. Returned when the access token lacks the `read` scope or when the requesting user is not allowed to view check issues in this project.
+  '429':
+    "$ref": "../../responses.yaml#/429"
+x-code-samples:
+- lang: Curl
+  source: |-
+    curl "https://api.phrase.com/v2/projects/:project_id/checks/issues" \
+      -u USERNAME_OR_ACCESS_TOKEN
+- lang: CLI v2
+  source: |-
+    phrase check_issues list \
+    --project_id <project_id> \
+    --access_token <token>
