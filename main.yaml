@@ -115,6 +115,8 @@ tags:
       </div>
   - name: Checks
     description: |
+      **Note:** The Checks API is still in development and might change in subsequent releases.
+
       The Checks API lets you list the check issues detected in a project and dismiss issues that should no longer appear on the list of active check issues.
 
       #### Available States
