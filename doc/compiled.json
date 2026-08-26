@@ -496,8 +496,13 @@
             "type": "string"
           },
           "check_name": {
-            "description": "Identifier of the check that reported this issue.",
-            "type": "string"
+            "description": "Identifier of the check that reported this issue. One of: `translation_content_length`, `translation_placeholder_usage`, `translation_glossary_usage`.",
+            "type": "string",
+            "enum": [
+              "translation_content_length",
+              "translation_placeholder_usage",
+              "translation_glossary_usage"
+            ]
           },
           "state": {
             "description": "Current state of the check issue. One of: `active`, `solved`, `dismissed`.",
@@ -23575,14 +23580,19 @@
             }
           },
           {
-            "description": "Filter by one or more check names.",
+            "description": "Filter by one or more check names. Valid values are:\n\n- `translation_content_length` — the translation exceeds the maximum character limit configured for the key.\n- `translation_placeholder_usage` — the translation is missing placeholders present in the source, or contains unexpected ones.\n- `translation_glossary_usage` — the translation does not follow the glossary term translations.",
             "name": "check_names",
             "in": "query",
             "required": false,
             "schema": {
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "translation_content_length",
+                  "translation_placeholder_usage",
+                  "translation_glossary_usage"
+                ]
               },
               "example": [
                 "translation_placeholder_usage"

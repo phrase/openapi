@@ -6,8 +6,12 @@ check_issue:
     id:
       type: string
     check_name:
-      description: Identifier of the check that reported this issue.
+      description: 'Identifier of the check that reported this issue. One of: `translation_content_length`, `translation_placeholder_usage`, `translation_glossary_usage`.'
       type: string
+      enum:
+      - translation_content_length
+      - translation_placeholder_usage
+      - translation_glossary_usage
     state:
       description: 'Current state of the check issue. One of: `active`, `solved`, `dismissed`.'
       type: string

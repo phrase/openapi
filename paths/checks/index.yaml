@@ -32,7 +32,12 @@ parameters:
       type: string
     example:
     - abcd1234cdef1234abcd1234cdef1234
-- description: Filter by one or more check names.
+- description: |-
+    Filter by one or more check names. Valid values are:
+
+    - `translation_content_length` — the translation exceeds the maximum character limit configured for the key.
+    - `translation_placeholder_usage` — the translation is missing placeholders present in the source, or contains unexpected ones.
+    - `translation_glossary_usage` — the translation does not follow the glossary term translations.
   name: check_names
   in: query
   required: false
@@ -40,6 +45,10 @@ parameters:
     type: array
     items:
       type: string
+      enum:
+      - translation_content_length
+      - translation_placeholder_usage
+      - translation_glossary_usage
     example:
     - translation_placeholder_usage
 responses:
