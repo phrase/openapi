@@ -20,7 +20,7 @@ check_issue:
       - solved
       - dismissed
     description:
-      description: Human-readable description of the reported issue, always in English.
+      description: Human-readable description of the reported issue, always in English. This message is intended for display only. Its wording may change at any time and it should not be parsed or relied upon programmatically.
       type: string
     dismissed_at:
       type: string
