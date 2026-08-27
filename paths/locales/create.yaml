@@ -99,6 +99,10 @@ requestBody:
             description: Indicates that updated translations for this locale should be marked as unverified. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.
             type: boolean
             example:
+          unverify_on_source_changes:
+            description: Indicates that translations for this locale should be marked as unverified when the source language has been changed.
+            type: boolean
+            example:
           autotranslate:
             description: If set, translations for this locale will be fetched automatically, right after creation.
             type: boolean

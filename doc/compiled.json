@@ -1688,6 +1688,18 @@
           "language_ai_profile": {
             "type": "string"
           },
+          "unverify_new_translations": {
+            "type": "boolean",
+            "description": "Indicates that new translations for this locale are marked as unverified. Only applies to locales using the basic verification workflow. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature."
+          },
+          "unverify_updated_translations": {
+            "type": "boolean",
+            "description": "Indicates that updated translations for this locale are marked as unverified. Only applies to locales using the basic verification workflow. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature."
+          },
+          "unverify_on_source_changes": {
+            "type": "boolean",
+            "description": "Indicates that translations for this locale are marked as unverified when the source language has been changed."
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -1724,6 +1736,9 @@
             "code": "en-GB"
           },
           "language_ai_profile": "abcd1234abcd1234abcd1234abcd1234",
+          "unverify_new_translations": false,
+          "unverify_updated_translations": false,
+          "unverify_on_source_changes": false,
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
         }
@@ -9415,6 +9430,11 @@
                     "type": "boolean",
                     "example": null
                   },
+                  "unverify_on_source_changes": {
+                    "description": "Indicates that translations for this locale should be marked as unverified when the source language has been changed.",
+                    "type": "boolean",
+                    "example": null
+                  },
                   "autotranslate": {
                     "description": "If set, translations for this locale will be fetched automatically, right after creation.",
                     "type": "boolean",
@@ -9637,6 +9657,11 @@
                   },
                   "unverify_updated_translations": {
                     "description": "Indicates that updated translations for this locale should be marked as unverified. Part of the [Advanced Workflows](https://support.phrase.com/hc/en-us/articles/5784094755484) feature.",
+                    "type": "boolean",
+                    "example": null
+                  },
+                  "unverify_on_source_changes": {
+                    "description": "Indicates that translations for this locale should be marked as unverified when the source language has been changed.",
                     "type": "boolean",
                     "example": null
                   },
