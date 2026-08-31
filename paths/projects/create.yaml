@@ -162,7 +162,7 @@ requestBody:
             type: boolean
             example: true
           fallback_for_unverified_translations:
-            description: "(Optional) When enabled, translations in a non-final state are replaced by the fallback locale's translation on export, in addition to empty translations. \"Non-final\" means `unverified` in the simple workflow, and additionally `translated` (awaiting review) in the review workflow. Requires a fallback locale to be configured on the locale. This is a persistent project-level default; the `fallback_for_unverified_translations` query parameter on locale downloads overrides it for a single request only."
+            description: "(Optional) When enabled, the fallback locale's translation is used on export for unverified translations in addition to empty ones. Requires a fallback locale to be configured on the locale."
             type: boolean
             example: false
           autocomplete_job_enabled:
