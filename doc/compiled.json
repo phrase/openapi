@@ -17834,6 +17834,26 @@
                     "type": "boolean",
                     "example": true
                   },
+                  "tm_ids": {
+                    "description": "List of TMS translation memory IDs, used to provide reference translations for the AI translation agent.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "term_base_ids": {
+                    "description": "List of TMS term base IDs, used to ensure consistent terminology for the AI translation agent.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
                   "project_image": {
                     "description": "Image to identify the project",
                     "type": "string",
@@ -18172,6 +18192,26 @@
                     "description": "(Optional) Indicates whether the project should share the account's translation memory",
                     "type": "boolean",
                     "example": true
+                  },
+                  "tm_ids": {
+                    "description": "List of TMS translation memory IDs, used to provide reference translations for the AI translation agent.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
+                  },
+                  "term_base_ids": {
+                    "description": "List of TMS term base IDs, used to ensure consistent terminology for the AI translation agent.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "abcd1234cdef1234abcd1234cdef1234"
+                    ]
                   },
                   "project_image": {
                     "description": "(Optional) Image to identify the project",
