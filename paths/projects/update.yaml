@@ -153,6 +153,10 @@ requestBody:
             description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
+          fallback_for_unverified_translations:
+            description: "(Optional) When enabled, translations in a non-final state are replaced by the fallback locale's translation on export, in addition to empty translations. \"Non-final\" means `unverified` in the simple workflow, and additionally `translated` (awaiting review) in the review workflow. Requires a fallback locale to be configured on the locale. This is a persistent project-level default; the `fallback_for_unverified_translations` query parameter on locale downloads overrides it for a single request only."
+            type: boolean
+            example: false
           default_encoding:
             description: "(Optional) Sets the default encoding for Uploads. If you leave it empty, we will try to guess it automatically for you when you Upload a file. You can still override this value by setting the [`file_encoding`](/en/api/strings/uploads/upload-a-new-file) parameter for Uploads."
             type: string

@@ -161,6 +161,10 @@ requestBody:
             description: "(Optional) Requires autotranslate_enabled to be true"
             type: boolean
             example: true
+          fallback_for_unverified_translations:
+            description: "(Optional) When enabled, translations in a non-final state are replaced by the fallback locale's translation on export, in addition to empty translations. \"Non-final\" means `unverified` in the simple workflow, and additionally `translated` (awaiting review) in the review workflow. Requires a fallback locale to be configured on the locale. This is a persistent project-level default; the `fallback_for_unverified_translations` query parameter on locale downloads overrides it for a single request only."
+            type: boolean
+            example: false
           autocomplete_job_enabled:
             description: "(Optional) Enable autocomplete-job behavior so that newly created keys and locales are automatically added to in-progress jobs."
             type: boolean
