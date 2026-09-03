@@ -480,6 +480,12 @@
     "$ref": "./paths/blacklisted_keys/update.yaml"
   delete:
     "$ref": "./paths/blacklisted_keys/destroy.yaml"
+"/projects/{project_id}/checks/issues":
+  get:
+    "$ref": "./paths/checks/index.yaml"
+"/projects/{project_id}/checks/issues/{id}/dismiss":
+  patch:
+    "$ref": "./paths/checks/dismiss.yaml"
 "/projects/{project_id}/keys":
   get:
     "$ref": "./paths/keys/index.yaml"

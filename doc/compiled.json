@@ -57,6 +57,10 @@
       "description": "### Branch creation\n\nBranches will be created asynchronously. State of branch creation is returned as state.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>initialized</code></td>\n        <td class=\"basic-table__cell\">Data received.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>processing</code></td>\n        <td class=\"basic-table__cell\">Branch is currently creating.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>success</code></td>\n        <td class=\"basic-table__cell\">Branch was created successfully</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>error</code></td>\n        <td class=\"basic-table__cell\">Branch creation failed.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
     },
     {
+      "name": "Checks",
+      "description": "**Note:** The Checks API is still in development and might change in subsequent releases.\n\nThe Checks API lets you list the check issues detected in a project and dismiss issues that should no longer appear on the list of active check issues.\n\n#### Available States\n\n<div class=\"table-responsive\">\n  <table class=\"basic-table\">\n    <thead>\n      <tr class=\"basic-table__row basic-table__row--header\">\n        <th class=\"basic-table__cell basic-table__cell--header\">State</th>\n        <th class=\"basic-table__cell basic-table__cell--header\">Description</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"basic-table__cell\"><code>active</code></td>\n        <td class=\"basic-table__cell\">The issue is unresolved and not dismissed.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>solved</code></td>\n        <td class=\"basic-table__cell\">The issue has been resolved.</td>\n      </tr>\n      <tr>\n        <td class=\"basic-table__cell\"><code>dismissed</code></td>\n        <td class=\"basic-table__cell\">The issue has been dismissed by a user.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+    },
+    {
       "name": "Comments"
     },
     {
@@ -255,6 +259,7 @@
     {
       "name": "Quality",
       "tags": [
+        "Checks",
         "Glossaries",
         "Glossary Terms",
         "Glossary Term Translations"
@@ -481,6 +486,92 @@
           "name": "date.formats.*",
           "created_at": "2015-01-28T09:52:53Z",
           "updated_at": "2015-01-28T09:52:53Z"
+        }
+      },
+      "check_issue": {
+        "type": "object",
+        "title": "check_issue",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "check_name": {
+            "description": "Identifier of the check that reported this issue. One of: `translation_content_length`, `translation_placeholder_usage`, `translation_glossary_usage`.",
+            "type": "string",
+            "enum": [
+              "translation_content_length",
+              "translation_placeholder_usage",
+              "translation_glossary_usage"
+            ]
+          },
+          "state": {
+            "description": "Current state of the check issue. One of: `active`, `solved`, `dismissed`.",
+            "type": "string",
+            "enum": [
+              "active",
+              "solved",
+              "dismissed"
+            ]
+          },
+          "description": {
+            "description": "Human-readable description of the reported issue, always in English. This message is intended for display only. Its wording may change at any time and it should not be parsed or relied upon programmatically.",
+            "type": "string"
+          },
+          "dismissed_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "solved_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "translation": {
+            "$ref": "#/components/schemas/translation"
+          }
+        },
+        "example": {
+          "id": "abcd1234cdef1234abcd1234cdef1234",
+          "check_name": "translation_placeholder_usage",
+          "state": "active",
+          "description": "The translation contains invalid placeholders. (missing: %{count})",
+          "dismissed_at": null,
+          "solved_at": null,
+          "created_at": "2015-01-28T09:52:53Z",
+          "updated_at": "2015-01-28T09:52:53Z",
+          "translation": {
+            "id": "abcd1234cdef1234abcd1234cdef1234",
+            "content": "My translation",
+            "unverified": false,
+            "excluded": false,
+            "plural_suffix": "",
+            "key": {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "home.index.headline",
+              "plural": false,
+              "use_ordinal_rules": false
+            },
+            "locale": {
+              "id": "abcd1234cdef1234abcd1234cdef1234",
+              "name": "de",
+              "code": "de-DE"
+            },
+            "placeholders": [
+              "%{count}"
+            ],
+            "state": "translated",
+            "created_at": "2015-01-28T09:52:53Z",
+            "updated_at": "2015-01-28T09:52:53Z"
+          }
         }
       },
       "branch_comparison": {
@@ -23498,6 +23589,217 @@
           }
         ],
         "x-cli-version": "2.5"
+      }
+    },
+    "/projects/{project_id}/checks/issues": {
+      "get": {
+        "summary": "List check issues",
+        "description": "**Note:** The Checks API is still in development and might change in subsequent releases.\n\nList check issues for the given project. Results can be filtered by locale, check name, and state.",
+        "operationId": "check_issues/list",
+        "tags": [
+          "Checks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "description": "Filter by state of the check issue. Can be one of: `active`, `solved`, `dismissed`, `all`. Defaults to `active`.",
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "active",
+              "enum": [
+                "active",
+                "solved",
+                "dismissed",
+                "all"
+              ]
+            },
+            "example": "active"
+          },
+          {
+            "description": "Filter by one or more locale IDs.",
+            "name": "locale_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": [
+                "abcd1234cdef1234abcd1234cdef1234"
+              ]
+            }
+          },
+          {
+            "description": "Filter by one or more check names. Valid values are:\n\n- `translation_content_length` — the translation exceeds the maximum character limit configured for the key.\n- `translation_placeholder_usage` — the translation is missing placeholders present in the source, or contains unexpected ones.\n- `translation_glossary_usage` — the translation does not follow the glossary term translations.",
+            "name": "check_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "translation_content_length",
+                  "translation_placeholder_usage",
+                  "translation_glossary_usage"
+                ]
+              },
+              "example": [
+                "translation_placeholder_usage"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/check_issue"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Pagination": {
+                "$ref": "#/components/headers/Pagination"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/checks/issues\" \\\n  -u USERNAME_OR_ACCESS_TOKEN"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase check_issues list \\\n--project_id <project_id> \\\n--access_token <token>"
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/checks/issues/{id}/dismiss": {
+      "patch": {
+        "summary": "Dismiss a check issue",
+        "description": "**Note:** The Checks API is still in development and might change in subsequent releases.\n\nMark a check issue as dismissed so it no longer appears on the list of active check issues.",
+        "operationId": "check_issue/dismiss",
+        "tags": [
+          "Checks"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/X-PhraseApp-OTP"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Check Issue ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/check_issue"
+                }
+              }
+            },
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "X-Rate-Limit-Remaining": {
+                "$ref": "#/components/headers/X-Rate-Limit-Remaining"
+              },
+              "X-Rate-Limit-Reset": {
+                "$ref": "#/components/headers/X-Rate-Limit-Reset"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "Curl",
+            "source": "curl \"https://api.phrase.com/v2/projects/:project_id/checks/issues/:id/dismiss\" \\\n  -u USERNAME_OR_ACCESS_TOKEN \\\n  -X PATCH"
+          },
+          {
+            "lang": "CLI v2",
+            "source": "phrase check_issues dismiss \\\n--project_id <project_id> \\\n--id <id> \\\n--access_token <token>"
+          }
+        ]
       }
     },
     "/projects/{project_id}/keys": {

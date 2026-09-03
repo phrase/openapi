@@ -113,6 +113,38 @@ tags:
           </tbody>
         </table>
       </div>
+  - name: Checks
+    description: |
+      **Note:** The Checks API is still in development and might change in subsequent releases.
+
+      The Checks API lets you list the check issues detected in a project and dismiss issues that should no longer appear on the list of active check issues.
+
+      #### Available States
+
+      <div class="table-responsive">
+        <table class="basic-table">
+          <thead>
+            <tr class="basic-table__row basic-table__row--header">
+              <th class="basic-table__cell basic-table__cell--header">State</th>
+              <th class="basic-table__cell basic-table__cell--header">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="basic-table__cell"><code>active</code></td>
+              <td class="basic-table__cell">The issue is unresolved and not dismissed.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>solved</code></td>
+              <td class="basic-table__cell">The issue has been resolved.</td>
+            </tr>
+            <tr>
+              <td class="basic-table__cell"><code>dismissed</code></td>
+              <td class="basic-table__cell">The issue has been dismissed by a user.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   - name: Comments
   - name: Comment Reactions
   - name: Comment Replies
@@ -300,6 +332,7 @@ x-tagGroups:
       - Branches
   - name: Quality
     tags:
+      - Checks
       - Glossaries
       - Glossary Terms
       - Glossary Term Translations

@@ -6,6 +6,8 @@ schemas:
     "$ref": schemas/authorization_with_token.yaml#/authorization_with_token
   blacklisted_key:
     "$ref": schemas/blacklisted_key.yaml#/blacklisted_key
+  check_issue:
+    "$ref": schemas/check_issue.yaml#/check_issue
   branch_comparison:
     "$ref": schemas/branch_comparison.yaml#/branch_comparison
   branch_comparison_diff:
