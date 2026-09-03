@@ -17,6 +17,8 @@ requestBody:
   content:
     application/json:
       schema:
+        type: object
+        title: machine_translation_locale_provider_mappings/create/parameters
         required:
           - source_locale_code
           - target_locale_code
@@ -37,22 +39,6 @@ requestBody:
             description: >
               The machine translation service to use for this locale pair.
               Must be a service enabled for the account.
-            example: google_translate
-    application/x-www-form-urlencoded:
-      schema:
-        required:
-          - source_locale_code
-          - target_locale_code
-          - service
-        properties:
-          source_locale_code:
-            type: string
-            example: en
-          target_locale_code:
-            type: string
-            example: de
-          service:
-            type: string
             example: google_translate
 responses:
   '201':

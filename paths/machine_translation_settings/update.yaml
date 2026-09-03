@@ -16,6 +16,8 @@ requestBody:
   content:
     application/json:
       schema:
+        type: object
+        title: machine_translation_settings/update/parameters
         properties:
           default_service:
             type: string
@@ -26,15 +28,6 @@ requestBody:
               microsoft_translate, google_translate, amazon_translate,
               intento_translate, gpt_translate. Pass null or an empty string
               to reset to the plan default.
-            example: google_translate
-    application/x-www-form-urlencoded:
-      schema:
-        properties:
-          default_service:
-            type: string
-            nullable: true
-            description: >
-              The machine translation engine to use as the account default.
             example: google_translate
 responses:
   '200':

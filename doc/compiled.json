@@ -33176,23 +33176,13 @@
           "content": {
             "application/json": {
               "schema": {
+                "type": "object",
+                "title": "machine_translation_settings/update/parameters",
                 "properties": {
                   "default_service": {
                     "type": "string",
                     "nullable": true,
                     "description": "The machine translation engine to use as the account default. Supported values: language_ai_translate, aita_translate, microsoft_translate, google_translate, amazon_translate, intento_translate, gpt_translate. Pass null or an empty string to reset to the plan default.\n",
-                    "example": "google_translate"
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "properties": {
-                  "default_service": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The machine translation engine to use as the account default.\n",
                     "example": "google_translate"
                   }
                 }
@@ -33279,6 +33269,8 @@
           "content": {
             "application/json": {
               "schema": {
+                "type": "object",
+                "title": "machine_translation_locale_provider_mappings/create/parameters",
                 "required": [
                   "source_locale_code",
                   "target_locale_code",
@@ -33298,29 +33290,6 @@
                   "service": {
                     "type": "string",
                     "description": "The machine translation service to use for this locale pair. Must be a service enabled for the account.\n",
-                    "example": "google_translate"
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "required": [
-                  "source_locale_code",
-                  "target_locale_code",
-                  "service"
-                ],
-                "properties": {
-                  "source_locale_code": {
-                    "type": "string",
-                    "example": "en"
-                  },
-                  "target_locale_code": {
-                    "type": "string",
-                    "example": "de"
-                  },
-                  "service": {
-                    "type": "string",
                     "example": "google_translate"
                   }
                 }
