@@ -1,5 +1,32 @@
 # Changelog
 
+## [3.25.0](https://github.com/phrase/strings-openapi/compare/typescript-v3.24.0...typescript-v3.25.0) (2026-08-31)
+
+
+### Features
+
+* **API:** add automation events list endpoints #STRINGS-2826 ([#1227](https://github.com/phrase/strings-openapi/issues/1227)) ([c0ffc83](https://github.com/phrase/strings-openapi/commit/c0ffc839d71105d16b7633f8fea68ff08fbbb5fa))
+* **API:** add fallback_for_unverified_translations param to locale d… ([#1148](https://github.com/phrase/strings-openapi/issues/1148)) ([9ef6248](https://github.com/phrase/strings-openapi/commit/9ef6248aae14d9bd65eee9ea3554f03c6f9331cb))
+* **API:** add key format annotations list endpoint #STRINGS-3028 ([#1222](https://github.com/phrase/strings-openapi/issues/1222)) ([c43cc32](https://github.com/phrase/strings-openapi/commit/c43cc32cd6eadad3d7e2a49e31ca8f070033cf73))
+* **API:** Add language_ai_profile to locales ([#1207](https://github.com/phrase/strings-openapi/issues/1207)) ([1dbfc65](https://github.com/phrase/strings-openapi/commit/1dbfc65767a9feead5ec18b35f306b728d7b2779))
+* **API:** add name field to repo sync schema and create endpoint ([#1203](https://github.com/phrase/strings-openapi/issues/1203)) ([ed5dabd](https://github.com/phrase/strings-openapi/commit/ed5dabdc5483e98ac3742466272e9de2f7949a56))
+* **API:** add pre_translations resource to API ([#1224](https://github.com/phrase/strings-openapi/issues/1224)) ([d4ca2d0](https://github.com/phrase/strings-openapi/commit/d4ca2d0a1a47c10ac4b6f0bbe812b52d44974c5c))
+* **API:** Add translation_key_prefix and filter_by_prefix to async locale download ([#1210](https://github.com/phrase/strings-openapi/issues/1210)) ([9c0dd12](https://github.com/phrase/strings-openapi/commit/9c0dd12d938626d49ee828b6eedf6692d4669414))
+* **API:** document branch compare output ([#1151](https://github.com/phrase/strings-openapi/issues/1151)) ([f082775](https://github.com/phrase/strings-openapi/commit/f0827755e1c6d6c3f66f10db5e6c26dc5003a679))
+* **API:** document tm_ids and term_base_ids params on projects API ([#1244](https://github.com/phrase/strings-openapi/issues/1244)) ([c8a2eea](https://github.com/phrase/strings-openapi/commit/c8a2eeab870236e46a8f87770c5499f0d6ffd2ca))
+* **API:** include review_due_date in job responses ([#1205](https://github.com/phrase/strings-openapi/issues/1205)) ([649d5ab](https://github.com/phrase/strings-openapi/commit/649d5ab6001f46f8c785d8d73cb13ac2062d179b))
+
+
+### Bug Fixes
+
+* **API:** extract cldr_version enum to fix TypeScript client build ([#1223](https://github.com/phrase/strings-openapi/issues/1223)) ([9a3aa7f](https://github.com/phrase/strings-openapi/commit/9a3aa7f8f1cb61676e554db5e72777a347805a53))
+* **API:** improve delete /projects/{project_id}/keys/{id}/key_links documentation ([#1193](https://github.com/phrase/strings-openapi/issues/1193)) ([b0b2e3f](https://github.com/phrase/strings-openapi/commit/b0b2e3f03407fb59dff1fd6004cf77d7a0aab503))
+* **API:** improve delete /projects/{project_id}/keys/{id}/key_links/{child_key_id} documentation ([#1194](https://github.com/phrase/strings-openapi/issues/1194)) ([c0055b4](https://github.com/phrase/strings-openapi/commit/c0055b46575dfdaec95ee6e13f59b68015493f8b))
+* **API:** improve get /formats documentation ([#1196](https://github.com/phrase/strings-openapi/issues/1196)) ([46fd53b](https://github.com/phrase/strings-openapi/commit/46fd53bda361a5b928147ab965515c29dbf887d3))
+* **API:** improve get /projects/{project_id}/keys/{id}/key_links documentation ([#1188](https://github.com/phrase/strings-openapi/issues/1188)) ([41ae4c9](https://github.com/phrase/strings-openapi/commit/41ae4c93f946012032f41c4f206f53c97121d264))
+* **API:** improve post /icu/skeleton documentation ([#1187](https://github.com/phrase/strings-openapi/issues/1187)) ([1bbf2dc](https://github.com/phrase/strings-openapi/commit/1bbf2dcf6306742bc802ff12d9d6ae6962c4182e))
+* **ruby:** pin link-header-parser to &gt;=7.0 and fix its new keyword arg ([#1229](https://github.com/phrase/strings-openapi/issues/1229)) ([34b7d82](https://github.com/phrase/strings-openapi/commit/34b7d8292cd0ea56da3c2f51d1fc76705b7910cd))
+
 ## [3.24.0](https://github.com/phrase/strings-openapi/compare/typescript-v3.23.0...typescript-v3.24.0) (2026-06-04)
 
 
