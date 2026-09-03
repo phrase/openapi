@@ -3,8 +3,9 @@ placeholder_style:
   type: string
   description: >-
     Placeholder style supported for detecting and highlighting variable
-    placeholders in translation keys.
-  enum:
+    placeholders in translation keys. This list may grow over time as new
+    styles are added.
+  x-extensible-enum:
     - rails_i18n
     - i18next_nesting
     - gettext_python
