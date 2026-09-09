@@ -23714,6 +23714,16 @@
                 "translation_placeholder_usage"
               ]
             }
+          },
+          {
+            "name": "created_since",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2026-01-01T12:00:00Z",
+            "description": "Return only check issues created on or after this ISO 8601 datetime. Returns 400 if the value is not a valid date-time."
           }
         ],
         "responses": {
